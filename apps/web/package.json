@@ -10,6 +10,7 @@
   "dependencies": {
     "@base-ui/react": "^1.0.0",
     "@cogito-acad/env": "workspace:*",
+    "@sanity/image-url": "^2.0.2",
     "@tanstack/react-form": "^1.27.3",
     "babel-plugin-react-compiler": "^1.0.0",
     "class-variance-authority": "^0.7.1",
@@ -17,6 +18,7 @@
     "dotenv": "catalog:",
     "lucide-react": "^0.546.0",
     "next": "^16.1.1",
+    "next-sanity": "^12.0.8",
     "next-themes": "^0.4.6",
     "react": "^19.2.3",
     "react-dom": "^19.2.3",
