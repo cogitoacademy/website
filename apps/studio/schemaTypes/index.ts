@@ -6,10 +6,10 @@ import tutor from "./tutor";
 import event from "./event";
 
 export const schemaTypes = [
-	competitionCategory,
-	location,
-	eventScale,
-	educationLevel,
-	tutor,
-	event,
+  competitionCategory,
+  location,
+  eventScale,
+  educationLevel,
+  tutor,
+  event,
 ];

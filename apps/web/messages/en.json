@@ -1,32 +1,32 @@
 {
-	"nav": {
-		"home": "Home",
-		"tutors": "Tutors",
-		"events": "Events",
-		"about": "About",
-		"faq": "FAQ"
-	},
-	"hero": {
-		"title": "Join the Best Tutors",
-		"subtitle": "Master competition skills with experienced mentors",
-		"cta": "Start Learning"
-	},
-	"tutors": {
-		"title": "Our Tutor Team",
-		"description": "Join our experienced tutors who are experts in various competition fields",
-		"location": "Location",
-		"competitionField": "Competition Field",
-		"selectLocation": "Select Location",
-		"selectCategory": "Select Category",
-		"clearFilters": "Clear Filters",
-		"noTutors": "No tutors match the selected filters",
-		"loading": "Loading tutors...",
-		"achievements": "Achievements",
-		"experiences": "Experiences"
-	},
-	"common": {
-		"loading": "Loading...",
-		"error": "An error occurred",
-		"readMore": "Read More"
-	}
+  "nav": {
+    "home": "Home",
+    "tutors": "Tutors",
+    "events": "Events",
+    "about": "About",
+    "faq": "FAQ"
+  },
+  "hero": {
+    "title": "Join the Best Tutors",
+    "subtitle": "Master competition skills with experienced mentors",
+    "cta": "Start Learning"
+  },
+  "tutors": {
+    "title": "Our Tutor Team",
+    "description": "Join our experienced tutors who are experts in various competition fields",
+    "location": "Location",
+    "competitionField": "Competition Field",
+    "selectLocation": "Select Location",
+    "selectCategory": "Select Category",
+    "clearFilters": "Clear Filters",
+    "noTutors": "No tutors match the selected filters",
+    "loading": "Loading tutors...",
+    "achievements": "Achievements",
+    "experiences": "Experiences"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "readMore": "Read More"
+  }
 }

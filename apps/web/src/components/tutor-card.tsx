@@ -6,7 +6,6 @@ import { useState } from "react";
 import { ChevronDown, ChevronUp, MapPin, Award, Briefcase } from "lucide-react";
 import { useLocale } from "next-intl";
 import type { Tutor } from "@/types/tutor";
-import { cn } from "@/lib/utils";
 import { AnimatePresence } from "motion/react";
 
 interface TutorCardProps {
@@ -17,10 +16,8 @@ interface TutorCardProps {
  * Helper: ambil value berdasarkan locale
  * fallback ke item pertama kalau locale ga ketemu
  */
-const getLocalizedValue = (
-  arr?: { _key: string; value: string }[],
-  locale?: string,
-) => arr?.find((item) => item._key === locale)?.value || arr?.[0]?.value || "";
+const getLocalizedValue = (arr?: { _key: string; value: string }[], locale?: string) =>
+  arr?.find((item) => item._key === locale)?.value || arr?.[0]?.value || "";
 
 export default function TutorCard({ tutor }: TutorCardProps) {
   const locale = useLocale();
@@ -30,11 +27,9 @@ export default function TutorCard({ tutor }: TutorCardProps) {
   // ===== normalized data (UI cuma render) =====
   const jurusan = getLocalizedValue(tutor.jurusan, locale);
 
-  const achievements =
-    tutor.achievements?.map((a) => getLocalizedValue(a.text, locale)) || [];
+  const achievements = tutor.achievements?.map((a) => getLocalizedValue(a.text, locale)) || [];
 
-  const experiences =
-    tutor.experiences?.map((e) => getLocalizedValue(e.text, locale)) || [];
+  const experiences = tutor.experiences?.map((e) => getLocalizedValue(e.text, locale)) || [];
 
   return (
     <m.div
@@ -57,12 +52,8 @@ export default function TutorCard({ tutor }: TutorCardProps) {
           </div>
 
           <div className="flex-1 min-w-0">
-            <h3 className="text-xl font-semibold mb-1 truncate">
-              {tutor.name}
-            </h3>
-            <p className="text-sm text-muted-foreground line-clamp-2">
-              {jurusan}
-            </p>
+            <h3 className="text-xl font-semibold mb-1 truncate">{tutor.name}</h3>
+            <p className="text-sm text-muted-foreground line-clamp-2">{jurusan}</p>
           </div>
         </div>
 
