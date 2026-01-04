@@ -12,6 +12,9 @@ build
 .env
 .env*.local
 
+# Documentation
+docs/
+
 # IDEs and editors
 .vscode/*
 !.vscode/settings.json
