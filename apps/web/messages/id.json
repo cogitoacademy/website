@@ -11,6 +11,19 @@
 		"subtitle": "Pelajari keterampilan berkompetisi dengan mentor berpengalaman",
 		"cta": "Mulai Belajar"
 	},
+	"tutors": {
+		"title": "Tim Tutor Kami",
+		"description": "Bergabunglah dengan tutor berpengalaman kami yang ahli dalam berbagai bidang perlombaan",
+		"location": "Lokasi",
+		"competitionField": "Bidang Kompetisi",
+		"selectLocation": "Pilih Lokasi",
+		"selectCategory": "Pilih Bidang",
+		"clearFilters": "Hapus Filter",
+		"noTutors": "Tidak ada tutor yang cocok dengan filter yang dipilih",
+		"loading": "Memuat tutor...",
+		"achievements": "Pencapaian",
+		"experiences": "Pengalaman"
+	},
 	"common": {
 		"loading": "Memuat...",
 		"error": "Terjadi kesalahan",
