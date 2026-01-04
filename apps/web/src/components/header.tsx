@@ -3,6 +3,7 @@
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/routing";
 import { ModeToggle } from "./mode-toggle";
+import LanguageToggle from "./lang-toggle";
 
 export default function Header({ locale }: { locale: string }) {
 	const t = useTranslations("nav");
@@ -43,12 +44,7 @@ export default function Header({ locale }: { locale: string }) {
 					</nav>
 
 					<div className="flex items-center gap-4">
-						<Link
-							href={locale === "id" ? "/en" : "/id"}
-							className="px-3 py-1 text-sm border rounded-md hover:bg-accent transition-colors"
-						>
-							{locale === "id" ? "EN" : "ID"}
-						</Link>
+						<LanguageToggle />
 						<ModeToggle />
 					</div>
 				</div>

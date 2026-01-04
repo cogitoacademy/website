@@ -4,6 +4,7 @@ import { Geist, Geist_Mono, Inter, Lexend_Deca } from "next/font/google";
 
 import "../../index.css";
 import Providers from "@/components/providers";
+import Header from "@/components/header";
 
 const lexendDeca = Lexend_Deca({
 	variable: "--font-lexend-deca",
@@ -27,11 +28,14 @@ export default async function LocaleLayout({
 
 	return (
 		<html lang={locale} suppressHydrationWarning>
-			<body
-				className={`${lexendDeca.variable} ${inter.variable} antialiased`}
-			>
+			<body className={`${lexendDeca.variable} ${inter.variable} antialiased`}>
 				<NextIntlClientProvider messages={messages}>
-					<Providers>{children}</Providers>
+					<Providers>
+						<div className="grid grid-rows-[auto_1fr] h-svh">
+							<Header locale={locale} />
+							{children}
+						</div>
+					</Providers>
 				</NextIntlClientProvider>
 			</body>
 		</html>
