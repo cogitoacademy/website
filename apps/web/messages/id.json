@@ -1,0 +1,19 @@
+{
+	"nav": {
+		"home": "Beranda",
+		"tutors": "Tutor",
+		"events": "Event",
+		"about": "Tentang Kami",
+		"faq": "FAQ"
+	},
+	"hero": {
+		"title": "Bergabung dengan Tutor Terbaik",
+		"subtitle": "Pelajari keterampilan berkompetisi dengan mentor berpengalaman",
+		"cta": "Mulai Belajar"
+	},
+	"common": {
+		"loading": "Memuat...",
+		"error": "Terjadi kesalahan",
+		"readMore": "Baca Selengkapnya"
+	}
+}

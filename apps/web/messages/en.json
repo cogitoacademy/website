@@ -1,0 +1,19 @@
+{
+	"nav": {
+		"home": "Home",
+		"tutors": "Tutors",
+		"events": "Events",
+		"about": "About",
+		"faq": "FAQ"
+	},
+	"hero": {
+		"title": "Join the Best Tutors",
+		"subtitle": "Master competition skills with experienced mentors",
+		"cta": "Start Learning"
+	},
+	"common": {
+		"loading": "Loading...",
+		"error": "An error occurred",
+		"readMore": "Read More"
+	}
+}
