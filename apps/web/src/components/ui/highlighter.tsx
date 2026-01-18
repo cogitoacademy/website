@@ -111,7 +111,7 @@ export function Highlighter({
   ]);
 
   return (
-    <span ref={elementRef} className="relative inline-block bg-transparent pl-1 pr-3">
+    <span ref={elementRef} className="relative inline-block bg-transparent pl-1 pr-3 text-primary-500">
       {children}
     </span>
   );

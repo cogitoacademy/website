@@ -2,24 +2,25 @@ import { ArrowRight, MessageSquare } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { landingAssets } from "./assets";
 import { WordRotateHighlighter } from "../ui/word-rotate-highlighter";
+import { Container } from "../ui/container";
 
 export function HeroSection() {
   return (
-    <section className="relative overflow-hidden bg-background-cream">
-      <div className="container mx-auto max-w-7xl px-4 py-16 lg:py-24">
+    <Container asChild className="pb-0">
+      <section className="relative overflow-hidden">
         <div className="flex flex-col items-center gap-12 lg:flex-row lg:gap-16">
           {/* Left Content */}
           <div className="z-10 flex-1 space-y-8">
             {/* Headline */}
-            <div className="space-y-3">
-              <div className="font-bold text-4xl">Wujudkan Prestasi Nyata</div>
-              <div className="mb-4 flex items-baseline font-bold text-4xl">
+            <div >
+              <div className="font-bold text-4xl text-neutral-1000">Wujudkan Prestasi Nyata</div>
+              <div className="mb-4 flex items-baseline font-bold text-4xl text-neutral-1000">
                 di Tingkat<span className="w-2"> </span>
                 <WordRotateHighlighter
                   words={["Internasional", "Regional", "Nasional"]}
                   className="italic"
                   action="highlight"
-                  color="#87CEFA"
+                  color="#f8eaa4"
                   highlightDelay={500}
                 />{" "}
               </div>
@@ -36,16 +37,15 @@ export function HeroSection() {
               <Button
                 size="lg"
               >
-                <span className="font-normal text-base">Jadwalkan Konsultasi Gratis</span>
+                <span >Jadwalkan Konsultasi Gratis</span>
                 <MessageSquare className="size-4" />
               </Button>
 
               <Button
-                variant="outline"
+                variant="subtle"
                 size="lg"
-                className="rounded-lg border-primary-100 bg-primary-100 text-neutral-1000 shadow-sm hover:bg-primary-200"
               >
-                <span className="font-normal text-base">Lihat Program</span>
+                <span>Lihat Program</span>
                 <ArrowRight className="ml-2 size-5" />
               </Button>
             </div>
@@ -71,9 +71,6 @@ export function HeroSection() {
                 <span className="mt-2 text-neutral-1000 text-sm leading-tight">Siswa Berhasil</span>
               </div>
             </div>
-
-            {/* Trust Badge */}
-            <p className="text-neutral-1000 text-sm">Cogito telah dipercaya oleh</p>
           </div>
 
           {/* Right Content - Images */}
@@ -93,7 +90,7 @@ export function HeroSection() {
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </Container>
   );
 }

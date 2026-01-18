@@ -17,8 +17,8 @@ export default function LanguageToggle() {
       locale={targetLocale}
       scroll={false}
       className={cn(
-        buttonVariants(),
-        "px-3 py-1 text-sm border rounded-md hover:bg-accent transition-colors",
+        buttonVariants({ size: "lg" }),
+        "transition-colors",
       )}
     >
       {targetLocale.toUpperCase()}

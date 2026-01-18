@@ -8,7 +8,7 @@ import { Button } from "./ui/button";
 
 export default function Header() {
   return (
-    <header className="fixed top-0 right-0 left-0 z-50 border-neutral-200 border-b bg-background-cream">
+    <header className="fixed top-0 right-0 left-0 z-50 bg-background-cream">
       <div className="container mx-auto px-4 py-5 lg:px-8">
         <div className="flex items-center justify-between">
           {/* Logo */}
@@ -42,28 +42,15 @@ export default function Header() {
           {/* Right Side Actions */}
           <div className="flex items-center gap-3">
             {/* Language Toggle Button */}
-            <Button
-              variant="default"
-              size="default"
-              className="hidden h-12 items-center gap-2 rounded-lg border-primary-500 bg-primary-500 px-4 text-white hover:bg-primary-600 lg:flex"
-            >
-              <Globe className="size-5" />
-              <span className="font-bold text-sm">ID</span>
-            </Button>
+            <LanguageToggle />
 
             {/* Contact Button */}
             <Button
-              variant="default"
-              size="default"
-              className="h-12 rounded-lg border-primary-500 bg-primary-500 px-4 text-white hover:bg-primary-600"
-            >
-              <span className="font-bold text-sm">Hubungi Kami</span>
-            </Button>
 
-            {/* Mobile Language Toggle */}
-            <div className="lg:hidden">
-              <LanguageToggle />
-            </div>
+              size="lg"
+            >
+              <span>Hubungi Kami</span>
+            </Button>
           </div>
         </div>
 

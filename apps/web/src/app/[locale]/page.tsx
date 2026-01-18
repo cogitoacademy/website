@@ -11,7 +11,7 @@ import { TutorsSection } from "@/components/landing/tutors-section";
 
 export default function HomePage() {
   return (
-    <div className="w-full overflow-x-clip">
+    <div className="w-full overflow-x-clip bg-background-cream">
       <HeroSection />
       <PartnersCarousel />
       <EventsSection />

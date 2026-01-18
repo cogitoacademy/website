@@ -143,11 +143,14 @@
   --shadow-lg: 0px 4px 8px -1px hsl(0 0% 0% / 0.1), 0px 4px 6px -2px hsl(0 0% 0% / 0.1);
   --shadow-xl: 0px 4px 8px -1px hsl(0 0% 0% / 0.1), 0px 8px 10px -2px hsl(0 0% 0% / 0.1);
   --shadow-2xl: 0px 4px 8px -1px hsl(0 0% 0% / 0.25);
+  --shadow-inset-top-color: rgba(0, 0, 0, 0.15);
+  --shadow-inset-top-subtle: rgba(16, 24, 40, 0.05);
+
   --tracking-normal: 0em;
   --spacing: 0.25rem;
 }
 
-.dark {
+/*.dark {
   --background: oklch(0.2046 0 0);
   --foreground: oklch(0.9219 0 0);
   --card: oklch(0.2686 0 0);
@@ -198,7 +201,7 @@
   --shadow-lg: 0px 4px 8px -1px hsl(0 0% 0% / 0.1), 0px 4px 6px -2px hsl(0 0% 0% / 0.1);
   --shadow-xl: 0px 4px 8px -1px hsl(0 0% 0% / 0.1), 0px 8px 10px -2px hsl(0 0% 0% / 0.1);
   --shadow-2xl: 0px 4px 8px -1px hsl(0 0% 0% / 0.25);
-}
+}*/
 
 @theme inline {
   --color-background: var(--background);
@@ -380,7 +383,30 @@
 }
 
 @layer utilities {
-  .shadow-inset-top {
-    box-shadow: inset 0 -2px 0 0 rgba(0, 0, 0, 0.15);
+  .shadow-inset-top-default {
+    box-shadow: inset 0 -2px 0 0 var(--shadow-inset-top-color, rgba(0, 0, 0, 0.15));
+  }
+
+  .shadow-inset-top-subtle {
+    box-shadow: inset 0 -2px 0 0 var(--shadow-inset-top-color, rgba(16, 24, 40, 0.05));
+  }
+
+  /*
+   * Custom shadow colors:
+   *
+   * 1. Using inline style:
+   *    style={{ "--shadow-inset-top-color": "rgba(255,0,0,0.3)" }}
+   *
+   * 2. Using Tailwind arbitrary values (Tailwind v4):
+   *    className="shadow-inset-top [--shadow-inset-top-color:rgba(0,0,0,0.2)]"
+   *
+   * 3. Using CSS variable in component:
+   *    className="shadow-inset-top"
+   *    style={{ "--shadow-inset-top-color": "rgba(255,0,0,0.3)" }}
+   */
+
+  /* Accordion icon rotation */
+  [data-slot="accordion-item"]:has([data-slot="accordion-panel"]:not([hidden])) [data-slot="accordion-trigger"] svg {
+    transform: rotate(135deg);
   }
 }
