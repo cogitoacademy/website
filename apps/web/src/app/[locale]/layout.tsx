@@ -1,10 +1,10 @@
+import { Inter, Lexend_Deca } from "next/font/google";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
-import { Inter, Lexend_Deca } from "next/font/google";
 
 import "../../index.css";
-import Providers from "@/components/providers";
 import Header from "@/components/header";
+import Providers from "@/components/providers";
 
 const lexendDeca = Lexend_Deca({
   variable: "--font-lexend-deca",
@@ -31,10 +31,8 @@ export default async function LocaleLayout({
       <body className={`${lexendDeca.variable} ${inter.variable} antialiased`}>
         <NextIntlClientProvider messages={messages}>
           <Providers>
-            <div className="grid grid-rows-[auto_1fr] h-svh">
-              <Header />
-              {children}
-            </div>
+            <Header />
+            {children}
           </Providers>
         </NextIntlClientProvider>
       </body>

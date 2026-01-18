@@ -12,13 +12,13 @@ interface WordRotateHighlighterProps {
   motionProps?: MotionProps;
   className?: string;
   action?:
-  | "highlight"
-  | "underline"
-  | "box"
-  | "circle"
-  | "strike-through"
-  | "crossed-off"
-  | "bracket";
+    | "highlight"
+    | "underline"
+    | "box"
+    | "circle"
+    | "strike-through"
+    | "crossed-off"
+    | "bracket";
   color?: string;
   strokeWidth?: number;
   animationDuration?: number;

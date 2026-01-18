@@ -1,60 +1,85 @@
 "use client";
 
-import { useTranslations } from "next-intl";
+import { Globe } from "lucide-react";
+import Image from "next/image";
 import { Link } from "@/i18n/routing";
-import { ModeToggle } from "./mode-toggle";
 import LanguageToggle from "./lang-toggle";
+import { Button } from "./ui/button";
 
 export default function Header() {
-  const t = useTranslations("nav");
-
   return (
-    <header className="border-b">
-      <div className="container mx-auto px-4 py-4">
+    <header className="fixed top-0 right-0 left-0 z-50 border-neutral-200 border-b bg-background-cream">
+      <div className="container mx-auto px-4 py-5 lg:px-8">
         <div className="flex items-center justify-between">
-          <Link href="/" className="text-2xl font-bold">
-            cogito-acad
+          {/* Logo */}
+          <Link href="/" className="flex items-center">
+            <div className="flex h-[50px] w-[106px] items-center justify-center rounded">
+              <Image
+                src="/cogito-academy-logo.webp"
+                alt="Cogito Academy"
+                width={424}
+                height={200}
+              />
+            </div>
           </Link>
 
-          <nav className="hidden md:flex items-center gap-6">
-            <Link href="/" className="hover:text-primary transition-colors">
-              {t("home")}
+          {/* Desktop Navigation */}
+          <nav className="hidden items-center gap-8 lg:flex">
+            <Link
+              href="/tutors"
+              className="font-medium text-lg text-neutral-1000 transition-colors hover:text-primary-500"
+            >
+              Tutor Cogito
             </Link>
-            <Link href="/tutors" className="hover:text-primary transition-colors">
-              {t("tutors")}
-            </Link>
-            <Link href="/events" className="hover:text-primary transition-colors">
-              {t("events")}
-            </Link>
-            <Link href="/about" className="hover:text-primary transition-colors">
-              {t("about")}
-            </Link>
-            <Link href="/faq" className="hover:text-primary transition-colors">
-              {t("faq")}
+            <Link
+              href="/events"
+              className="font-medium text-lg text-neutral-1000 transition-colors hover:text-primary-500"
+            >
+              Lomba-Lomba
             </Link>
           </nav>
 
-          <div className="flex items-center gap-4">
-            <LanguageToggle />
-            <ModeToggle />
+          {/* Right Side Actions */}
+          <div className="flex items-center gap-3">
+            {/* Language Toggle Button */}
+            <Button
+              variant="default"
+              size="default"
+              className="hidden h-12 items-center gap-2 rounded-lg border-primary-500 bg-primary-500 px-4 text-white hover:bg-primary-600 lg:flex"
+            >
+              <Globe className="size-5" />
+              <span className="font-bold text-sm">ID</span>
+            </Button>
+
+            {/* Contact Button */}
+            <Button
+              variant="default"
+              size="default"
+              className="h-12 rounded-lg border-primary-500 bg-primary-500 px-4 text-white hover:bg-primary-600"
+            >
+              <span className="font-bold text-sm">Hubungi Kami</span>
+            </Button>
+
+            {/* Mobile Language Toggle */}
+            <div className="lg:hidden">
+              <LanguageToggle />
+            </div>
           </div>
         </div>
 
-        <nav className="md:hidden flex items-center justify-around py-2 gap-4">
-          <Link href="/" className="text-sm hover:text-primary transition-colors">
-            {t("home")}
+        {/* Mobile Navigation */}
+        <nav className="mt-4 flex items-center justify-around gap-4 border-neutral-200 border-t pt-4 lg:hidden">
+          <Link
+            href="/tutors"
+            className="font-medium text-neutral-1000 text-sm transition-colors hover:text-primary-500"
+          >
+            Tutor Cogito
           </Link>
-          <Link href="/tutors" className="text-sm hover:text-primary transition-colors">
-            {t("tutors")}
-          </Link>
-          <Link href="/events" className="text-sm hover:text-primary transition-colors">
-            {t("events")}
-          </Link>
-          <Link href="/about" className="text-sm hover:text-primary transition-colors">
-            {t("about")}
-          </Link>
-          <Link href="/faq" className="text-sm hover:text-primary transition-colors">
-            {t("faq")}
+          <Link
+            href="/events"
+            className="font-medium text-neutral-1000 text-sm transition-colors hover:text-primary-500"
+          >
+            Lomba-Lomba
           </Link>
         </nav>
       </div>
