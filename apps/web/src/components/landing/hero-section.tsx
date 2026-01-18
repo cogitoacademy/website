@@ -6,7 +6,7 @@ import { Container } from "../ui/container";
 
 export function HeroSection() {
   return (
-    <Container asChild className="pb-0">
+    <Container asChild className="pb-0 pt-64">
       <section className="relative overflow-hidden">
         <div className="flex flex-col items-center gap-12 lg:flex-row lg:gap-16">
           {/* Left Content */}
@@ -14,7 +14,7 @@ export function HeroSection() {
             {/* Headline */}
             <div >
               <div className="font-bold text-4xl text-neutral-1000">Wujudkan Prestasi Nyata</div>
-              <div className="mb-4 flex items-baseline font-bold text-4xl text-neutral-1000">
+              <div className="mb-4 flex items-baseline font-bold text-4xl text-neutral-1000 flex-wrap">
                 di Tingkat<span className="w-2"> </span>
                 <WordRotateHighlighter
                   words={["Internasional", "Regional", "Nasional"]}
