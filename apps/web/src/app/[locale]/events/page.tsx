@@ -1,12 +1,15 @@
-import { useTranslations } from "next-intl";
+import { Container } from "@/components/ui/container";
+import Component from "./calendar";
+import NavbarResolver from "@/components/navbar-resolver";
 
-export default function EventsPage() {
-  const t = useTranslations("nav");
-
+export default function CompetitionCalendarPage() {
   return (
-    <div className="container mx-auto px-4 py-8">
-      <h1 className="text-4xl font-bold mb-4">{t("events")}</h1>
-      <p className="text-muted-foreground">Events page - coming soon</p>
-    </div>
+    <>
+      <NavbarResolver />
+      <Container>
+        <h1>Competition Calendar</h1>
+        <Component />
+      </Container>
+    </>
   );
 }
