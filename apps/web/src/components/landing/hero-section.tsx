@@ -12,7 +12,7 @@ export function HeroSection() {
           {/* Left Content */}
           <div className="z-10 flex-1 space-y-8">
             {/* Headline */}
-            <div >
+            <div>
               <div className="font-bold text-4xl text-neutral-1000">Wujudkan Prestasi Nyata</div>
               <div className="mb-4 flex items-baseline font-bold text-4xl text-neutral-1000 flex-wrap">
                 di Tingkat<span className="w-2"> </span>
@@ -34,17 +34,12 @@ export function HeroSection() {
 
             {/* CTA Buttons */}
             <div className="flex flex-col gap-4 sm:flex-row">
-              <Button
-                size="lg"
-              >
-                <span >Jadwalkan Konsultasi Gratis</span>
+              <Button size="lg">
+                <span>Jadwalkan Konsultasi Gratis</span>
                 <MessageSquare className="size-4" />
               </Button>
 
-              <Button
-                variant="subtle"
-                size="lg"
-              >
+              <Button variant="subtle" size="lg">
                 <span>Lihat Program</span>
                 <ArrowRight className="ml-2 size-5" />
               </Button>

@@ -7,11 +7,7 @@ type ContainerProps = {
   children?: React.ReactNode;
 };
 
-export const Container = ({
-  className,
-  asChild = false,
-  children,
-}: ContainerProps) => {
+export const Container = ({ className, asChild = false, children }: ContainerProps) => {
   const baseClassName = "mx-auto flex w-full container flex-col gap-4 px-4 py-8 md:px-8";
 
   if (asChild && isValidElement(children)) {
@@ -21,7 +17,5 @@ export const Container = ({
     });
   }
 
-  return (
-    <main className={cn(baseClassName, className)}>{children}</main>
-  );
+  return <main className={cn(baseClassName, className)}>{children}</main>;
 };

@@ -406,7 +406,9 @@
    */
 
   /* Accordion icon rotation */
-  [data-slot="accordion-item"]:has([data-slot="accordion-panel"]:not([hidden])) [data-slot="accordion-trigger"] svg {
+  [data-slot="accordion-item"]:has([data-slot="accordion-panel"]:not([hidden]))
+    [data-slot="accordion-trigger"]
+    svg {
     transform: rotate(135deg);
   }
 }

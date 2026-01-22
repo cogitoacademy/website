@@ -12,9 +12,11 @@ const buttonVariants = cva(
       variant: {
         // Default (Orange)
         // default: "bg-primary text-primary-foreground [a]:hover:bg-primary/80",
-        default: "rounded-lg bg-primary-500 text-white shadow-sm hover:bg-primary-600 text-base leading-6 shadow-inset-top-default",
+        default:
+          "rounded-lg bg-primary-500 text-white shadow-sm hover:bg-primary-600 text-base leading-6 shadow-inset-top-default",
         // Cream (Primary 100)
-        subtle: 'rounded-lg bg-primary-100 text-white shadow-sm hover:bg-primary-50 text-base leading-6 text-neutral-1000 shadow-inset-top-subtle hover:bg-primary-200',
+        subtle:
+          "rounded-lg bg-primary-100 text-white shadow-sm hover:bg-primary-50 text-base leading-6 text-neutral-1000 shadow-inset-top-subtle hover:bg-primary-200",
         outline:
           "border-border bg-background hover:bg-muted hover:text-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50 aria-expanded:bg-muted aria-expanded:text-foreground",
         secondary:

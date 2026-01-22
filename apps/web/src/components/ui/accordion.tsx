@@ -25,7 +25,10 @@ export function AccordionItem({
   return (
     <BaseAccordion.Item
       data-slot="accordion-item"
-      className={cn("group/item w-full border-card-border border-b last:border-b-0 bg-neutral-100 rounded-xl overflow-hidden min-w-0", className)}
+      className={cn(
+        "group/item w-full border-card-border border-b last:border-b-0 bg-neutral-100 rounded-xl overflow-hidden min-w-0",
+        className,
+      )}
       {...props}
     >
       {children}
@@ -39,7 +42,11 @@ export function AccordionHeader({
   ...props
 }: React.ComponentProps<typeof BaseAccordion.Header>) {
   return (
-    <BaseAccordion.Header data-slot="accordion-header" className={cn("w-full", className)} {...props}>
+    <BaseAccordion.Header
+      data-slot="accordion-header"
+      className={cn("w-full", className)}
+      {...props}
+    >
       {children}
     </BaseAccordion.Header>
   );
@@ -69,9 +76,7 @@ export function AccordionTrigger({
       {children}
       {expandableIndicator && (
         <Plus
-          className={cn(
-            "ml-auto size-5 shrink-0 transition-transform duration-200 ease-in-out"
-          )}
+          className={cn("ml-auto size-5 shrink-0 transition-transform duration-200 ease-in-out")}
         />
       )}
     </BaseAccordion.Trigger>

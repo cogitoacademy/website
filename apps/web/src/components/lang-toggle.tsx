@@ -16,10 +16,7 @@ export default function LanguageToggle() {
       href={pathname}
       locale={targetLocale}
       scroll={false}
-      className={cn(
-        buttonVariants({ size: "lg" }),
-        "transition-colors",
-      )}
+      className={cn(buttonVariants({ size: "lg" }), "transition-colors")}
     >
       {targetLocale.toUpperCase()}
     </Link>
