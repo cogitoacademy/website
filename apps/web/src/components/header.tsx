@@ -23,8 +23,9 @@ export default function Header() {
 
   return (
     <header
-      className={`fixed top-0 right-0 left-0 z-50 transition-colors duration-300 ${isScrolled ? "bg-background-cream" : "bg-transparent"
-        }`}
+      className={`fixed top-0 right-0 left-0 z-50 transition-colors duration-300 ${
+        isScrolled ? "bg-background-cream" : "bg-transparent"
+      }`}
     >
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">

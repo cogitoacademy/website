@@ -3,10 +3,7 @@
 import { addDays, setHours, setMinutes, subDays } from "date-fns";
 import { useState } from "react";
 
-import {
-  type CalendarEvent,
-  EventCalendar,
-} from "@/components/competition-calendar";
+import { type CalendarEvent, EventCalendar } from "@/components/competition-calendar";
 
 // Sample events data with hardcoded times
 const sampleEvents: CalendarEvent[] = [
@@ -140,11 +137,7 @@ export default function Component() {
   };
 
   const handleEventUpdate = (updatedEvent: CalendarEvent) => {
-    setEvents(
-      events.map((event) =>
-        event.id === updatedEvent.id ? updatedEvent : event,
-      ),
-    );
+    setEvents(events.map((event) => (event.id === updatedEvent.id ? updatedEvent : event)));
   };
 
   const handleEventDelete = (eventId: string) => {

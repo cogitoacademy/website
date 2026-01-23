@@ -296,9 +296,9 @@ export function EventDialog({ event, isOpen, onClose, onSave, onDelete }: EventD
             {!allDay && (
               <div className="min-w-28 *:not-first:mt-1.5">
                 <Label htmlFor="start-time">Start Time</Label>
-                <Select onValueChange={setStartTime} value={startTime}>
+                <Select onValueChange={(value) => value && setStartTime(value)} value={startTime}>
                   <SelectTrigger id="start-time">
-                    <SelectValue placeholder="Select time" />
+                    <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
                     {timeOptions.map((option) => (
@@ -358,9 +358,9 @@ export function EventDialog({ event, isOpen, onClose, onSave, onDelete }: EventD
             {!allDay && (
               <div className="min-w-28 *:not-first:mt-1.5">
                 <Label htmlFor="end-time">End Time</Label>
-                <Select onValueChange={setEndTime} value={endTime}>
+                <Select onValueChange={(value) => value && setEndTime(value)} value={endTime}>
                   <SelectTrigger id="end-time">
-                    <SelectValue placeholder="Select time" />
+                    <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
                     {timeOptions.map((option) => (
@@ -392,7 +392,7 @@ export function EventDialog({ event, isOpen, onClose, onSave, onDelete }: EventD
             <RadioGroup
               className="flex gap-1.5"
               defaultValue={colorOptions[0]?.value}
-              onValueChange={(value: EventColor) => setColor(value)}
+              onValueChange={(value) => setColor(value as EventColor)}
               value={color}
             >
               {colorOptions.map((colorOption) => (
