@@ -23,6 +23,7 @@
   },
   "dependencies": {
     "@cogito-acad/env": "workspace:*",
+    "@phosphor-icons/react": "^2.1.10",
     "dotenv": "catalog:",
     "zod": "catalog:"
   },

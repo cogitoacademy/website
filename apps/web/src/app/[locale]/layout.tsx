@@ -5,6 +5,7 @@ import { getMessages } from "next-intl/server";
 import "../../index.css";
 import Header from "@/components/header";
 import Providers from "@/components/providers";
+import Footer from "@/components/footer";
 
 const lexendDeca = Lexend_Deca({
   variable: "--font-lexend-deca",
@@ -33,6 +34,7 @@ export default async function LocaleLayout({
           <Providers>
             <Header />
             {children}
+            <Footer />
           </Providers>
         </NextIntlClientProvider>
       </body>

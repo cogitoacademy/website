@@ -1,3 +1,5 @@
-export default function NavbarResolver() {
-  return <div className="py-10" />;
+import { cn } from "@/lib/utils";
+
+export default function NavbarResolver({ className }: { className?: string }) {
+  return <div className={cn("py-10", className)} />;
 }

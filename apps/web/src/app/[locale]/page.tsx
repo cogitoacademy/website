@@ -21,7 +21,6 @@ export default function HomePage() {
       <TestimonialsSection />
       <ProgramsSection />
       <FaqSection />
-      <CtaSection />
     </div>
   );
 }

@@ -2,8 +2,8 @@
 
 import {
   Accordion,
+  AccordionContent,
   AccordionItem,
-  AccordionPanel,
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Container } from "../ui/container";
@@ -58,7 +58,7 @@ export function FaqSection() {
                 <AccordionTrigger className="group">
                   <span>{item.question}</span>
                 </AccordionTrigger>
-                <AccordionPanel>{item.answer}</AccordionPanel>
+                <AccordionContent>{item.answer}</AccordionContent>
               </AccordionItem>
             ))}
           </div>
@@ -68,7 +68,7 @@ export function FaqSection() {
                 <AccordionTrigger className="group">
                   <span>{item.question}</span>
                 </AccordionTrigger>
-                <AccordionPanel>{item.answer}</AccordionPanel>
+                <AccordionContent>{item.answer}</AccordionContent>
               </AccordionItem>
             ))}
           </div>

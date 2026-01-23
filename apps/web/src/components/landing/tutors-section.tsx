@@ -57,18 +57,18 @@ export function TutorsSection() {
             {tutors.map((tutor, index) => (
               <div
                 key={index}
-                className="h-[359px] w-full overflow-hidden rounded-lg shadow-sm sm:w-[284px]"
+                className="w-full overflow-hidden rounded-lg shadow-sm sm:w-[284px]"
                 style={{ backgroundColor: `var(--${tutor.bgColor})` }}
               >
                 {/* Tutor Image */}
-                <div className="relative h-[258px] overflow-hidden">
+                <div className="relative h-[258px] overflow-hidden z-1">
                   <img src={tutor.image} alt={tutor.name} className="h-full w-full object-cover" />
                   {/* Gradient overlay */}
                   <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/20" />
                 </div>
 
                 {/* Tutor Info */}
-                <div className="h-[101px] bg-white p-3">
+                <div className="h-[101px] bg-white p-3 rounded-t-xl -mt-2 relative z-2">
                   <h3 className="mb-1 font-black text-lg text-neutral-1000 leading-tight">
                     {tutor.name}
                   </h3>

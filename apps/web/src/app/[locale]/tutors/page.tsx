@@ -7,6 +7,7 @@ import { client } from "@/sanity/client";
 import type { CompetitionCategory, Location } from "@/types/tutor";
 import { Skeleton } from "@/components/ui/skeleton";
 import NavbarResolver from "@/components/navbar-resolver";
+import { Container } from "@/components/ui/container";
 
 async function TutorContent() {
   console.log("🔍 Fetching data from Sanity...");
@@ -32,21 +33,23 @@ async function TutorContent() {
   });
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <div className="mb-8">
-        <h1 className="text-4xl font-bold mb-2">{t("title")}</h1>
-        <p className="text-muted-foreground">{t("description")}</p>
-      </div>
+    <main className="bg-background-primary">
+      <Container>
+        <div className="mb-8">
+          <h1 className="text-4xl font-bold mb-2">{t("title")}</h1>
+          <p className="text-muted-foreground">{t("description")}</p>
+        </div>
 
-      <TutorList tutors={tutors} locations={locations} categories={categories} />
-    </div>
+        <TutorList tutors={tutors} locations={locations} categories={categories} />
+      </Container>
+    </main>
   );
 }
 
 export default function TutorsPage() {
   return (
     <>
-      <NavbarResolver />
+      <NavbarResolver className="bg-background-primary" />
       <Suspense
         fallback={
           <div className="container mx-auto px-4 sm:px-0 py-8">
