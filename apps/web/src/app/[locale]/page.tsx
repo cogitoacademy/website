@@ -1,4 +1,3 @@
-import { CtaSection } from "@/components/landing/cta-section";
 import { EventsSection } from "@/components/landing/events-section";
 import { FaqSection } from "@/components/landing/faq-section";
 import { HeroSection } from "@/components/landing/hero-section";
