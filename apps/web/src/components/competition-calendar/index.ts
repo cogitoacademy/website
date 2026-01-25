@@ -11,6 +11,7 @@ export { DraggableEvent } from "./draggable-event";
 export { DroppableCell } from "./droppable-cell";
 export { EventCalendar } from "./event-calendar";
 export { EventDialog } from "./event-dialog";
+export { EventDetailsDialog } from "./event-details-dialog";
 export { EventItem } from "./event-item";
 export { EventsPopup } from "./events-popup";
 // Hook exports

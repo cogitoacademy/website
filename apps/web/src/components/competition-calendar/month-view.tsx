@@ -35,10 +35,10 @@ interface MonthViewProps {
   currentDate: Date;
   events: CalendarEvent[];
   onEventSelect: (event: CalendarEvent) => void;
-  onEventCreate: (startTime: Date) => void;
+  readOnly?: boolean;
 }
 
-export function MonthView({ currentDate, events, onEventSelect, onEventCreate }: MonthViewProps) {
+export function MonthView({ currentDate, events, onEventSelect, readOnly = false }: MonthViewProps) {
   const days = useMemo(() => {
     const monthStart = startOfMonth(currentDate);
     const monthEnd = endOfMonth(monthStart);
@@ -124,11 +124,14 @@ export function MonthView({ currentDate, events, onEventSelect, onEventCreate }:
                   <DroppableCell
                     date={day}
                     id={cellId}
-                    onClick={() => {
-                      const startTime = new Date(day);
-                      startTime.setHours(DefaultStartHour, 0, 0);
-                      onEventCreate(startTime);
-                    }}
+                    onClick={
+                      readOnly
+                        ? undefined
+                        : () => {
+                            const startTime = new Date(day);
+                            startTime.setHours(DefaultStartHour, 0, 0);
+                          }
+                    }
                   >
                     <div className="mt-1 inline-flex size-6 items-center justify-center rounded-full text-sm group-data-today:bg-primary group-data-today:text-primary-foreground">
                       {format(day, "d")}

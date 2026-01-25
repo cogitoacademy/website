@@ -40,27 +40,24 @@ export default defineType({
       validation: (Rule: any) => Rule.required(),
     }),
     defineField({
-      name: "eventDates",
-      title: "Event Dates",
-      type: "array",
-      of: [
-        defineArrayMember({
-          name: "dateRange",
-          type: "object",
-          fields: [
-            defineField({
-              name: "startDate",
-              title: "Start Date",
-              type: "datetime",
-            }),
-            defineField({
-              name: "endDate",
-              title: "End Date",
-              type: "datetime",
-            }),
-          ],
+      name: "eventDate",
+      title: "Event Date",
+      type: "object",
+      fields: [
+        defineField({
+          name: "startDate",
+          title: "Start Date",
+          type: "datetime",
+          validation: (Rule: any) => Rule.required(),
+        }),
+        defineField({
+          name: "endDate",
+          title: "End Date",
+          type: "datetime",
+          validation: (Rule: any) => Rule.required(),
         }),
       ],
+      validation: (Rule: any) => Rule.required(),
     }),
     defineField({
       name: "socialMediaLink",

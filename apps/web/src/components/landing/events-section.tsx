@@ -45,7 +45,7 @@ export function EventsSection() {
             {/* Featured Event Card */}
             <div className="flex h-[230px] w-full overflow-hidden rounded-lg bg-tertiary-blue-100 shadow-sm lg:flex-1">
               {/* Event Image */}
-              <div className="h-full w-[184px] flex-shrink-0">
+              <div className="h-full w-46 shrink-0">
                 <img
                   src={landingAssets.rectangle24}
                   alt="Featured Event"

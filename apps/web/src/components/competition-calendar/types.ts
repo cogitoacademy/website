@@ -7,8 +7,23 @@ export interface CalendarEvent {
   start: Date;
   end: Date;
   allDay?: boolean;
-  color?: EventColor;
   location?: string;
+
+  // For Sanity-sourced events
+  categories?: Array<{
+    name: string;
+    coreCategory: string;
+    color: string;
+  }>;
+  educationLevels?: string[];
+  scale?: string;
+  organizer?: string;
+  registrationDeadline?: Date;
+  registrationLink?: string;
+  socialMediaLink?: string;
+
+  // For manually created events (backward compatibility)
+  color?: EventColor;
 }
 
 export type EventColor = "sky" | "amber" | "violet" | "rose" | "emerald" | "orange";

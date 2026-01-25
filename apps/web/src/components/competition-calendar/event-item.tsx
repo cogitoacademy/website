@@ -10,7 +10,9 @@ import {
   getBorderRadiusClasses,
   getEventColorClasses,
 } from "@/components/competition-calendar";
+import { getBrandColorClass } from "@/lib/colors/brandColors";
 import { cn } from "@/lib/utils";
+import { Badge } from "@/components/ui/badge";
 
 // Using date-fns format with custom formatting:
 // 'h' - hours (1-12)
@@ -166,16 +168,7 @@ export function EventItem({
         onMouseDown={onMouseDown}
         onTouchStart={onTouchStart}
       >
-        {children || (
-          <span className="truncate">
-            {!event.allDay && (
-              <span className="truncate font-normal opacity-70 sm:text-[11px]">
-                {formatTimeWithOptionalMinutes(displayStart)}{" "}
-              </span>
-            )}
-            {event.title}
-          </span>
-        )}
+        {children || <span className="truncate">{event.title}</span>}
       </EventWrapper>
     );
   }
@@ -201,19 +194,9 @@ export function EventItem({
         onTouchStart={onTouchStart}
       >
         {durationMinutes < 45 ? (
-          <div className="truncate">
-            {event.title}{" "}
-            {showTime && (
-              <span className="opacity-70">{formatTimeWithOptionalMinutes(displayStart)}</span>
-            )}
-          </div>
+          <div className="truncate">{event.title}</div>
         ) : (
-          <>
-            <div className="truncate font-medium">{event.title}</div>
-            {showTime && (
-              <div className="truncate font-normal opacity-70 sm:text-[11px]">{getEventTime()}</div>
-            )}
-          </>
+          <div className="truncate font-medium">{event.title}</div>
         )}
       </EventWrapper>
     );
@@ -223,7 +206,7 @@ export function EventItem({
   return (
     <button
       className={cn(
-        "flex w-full flex-col gap-1 rounded p-2 text-left outline-none transition focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 data-past-event:line-through data-past-event:opacity-90",
+        "flex w-full flex-col gap-2 rounded p-2 text-left outline-none transition focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 data-past-event:line-through data-past-event:opacity-90",
         getEventColorClasses(eventColor),
         className,
       )}
@@ -235,23 +218,35 @@ export function EventItem({
       {...dndListeners}
       {...dndAttributes}
     >
+      {/* Category Badges */}
+      {event.categories && event.categories.length > 0 && (
+        <div className="flex flex-wrap gap-1">
+          {event.categories.map((category, index) => (
+            <Badge key={index} className={cn("text-xs", getBrandColorClass(category.color))}>
+              {category.name}
+            </Badge>
+          ))}
+        </div>
+      )}
+
+      {/* Event Title */}
       <div className="font-medium text-sm">{event.title}</div>
-      <div className="text-xs opacity-70">
-        {event.allDay ? (
-          <span>All day</span>
-        ) : (
-          <span className="uppercase">
-            {formatTimeWithOptionalMinutes(displayStart)} -{" "}
-            {formatTimeWithOptionalMinutes(displayEnd)}
-          </span>
-        )}
-        {event.location && (
-          <>
-            <span className="px-1 opacity-35"> · </span>
-            <span>{event.location}</span>
-          </>
-        )}
-      </div>
+
+      {/* Location */}
+      {event.location && <div className="text-xs opacity-70">{event.location}</div>}
+
+      {/* Education Levels */}
+      {event.educationLevels && event.educationLevels.length > 0 && (
+        <div className="flex flex-wrap gap-1">
+          {event.educationLevels.map((level, index) => (
+            <Badge key={index} variant="outline" className="text-xs">
+              {level}
+            </Badge>
+          ))}
+        </div>
+      )}
+
+      {/* Description */}
       {event.description && <div className="my-1 text-xs opacity-90">{event.description}</div>}
     </button>
   );

@@ -14,17 +14,15 @@ import {
 } from "date-fns";
 import { ChevronDownIcon, ChevronLeftIcon, ChevronRightIcon, PlusIcon } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
-import { toast } from "sonner";
 
 import {
   AgendaDaysToShow,
   AgendaView,
-  addHoursToDate,
   CalendarDndProvider,
   type CalendarEvent,
   type CalendarView,
   DayView,
-  EventDialog,
+  EventDetailsDialog,
   EventGap,
   EventHeight,
   MonthView,
@@ -43,33 +41,27 @@ import {
 
 export interface EventCalendarProps {
   events?: CalendarEvent[];
-  onEventAdd?: (event: CalendarEvent) => void;
-  onEventUpdate?: (event: CalendarEvent) => void;
-  onEventDelete?: (eventId: string) => void;
+  readOnly?: boolean;
   className?: string;
   initialView?: CalendarView;
 }
 
 export function EventCalendar({
   events = [],
-  onEventAdd,
-  onEventUpdate,
-  onEventDelete,
+  readOnly = false,
   className,
   initialView = "month",
 }: EventCalendarProps) {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [view, setView] = useState<CalendarView>(initialView);
-  const [isEventDialogOpen, setIsEventDialogOpen] = useState(false);
+  const [isEventDetailsDialogOpen, setIsEventDetailsDialogOpen] = useState(false);
   const [selectedEvent, setSelectedEvent] = useState<CalendarEvent | null>(null);
 
   // Add keyboard shortcuts for view switching
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       // Skip if user is typing in an input, textarea or contentEditable element
-      // or if the event dialog is open
       if (
-        isEventDialogOpen ||
         e.target instanceof HTMLInputElement ||
         e.target instanceof HTMLTextAreaElement ||
         (e.target instanceof HTMLElement && e.target.isContentEditable)
@@ -98,7 +90,7 @@ export function EventCalendar({
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
     };
-  }, [isEventDialogOpen]);
+  }, []);
 
   const handlePrevious = () => {
     if (view === "month") {
@@ -131,86 +123,8 @@ export function EventCalendar({
   };
 
   const handleEventSelect = (event: CalendarEvent) => {
-    console.log("Event selected:", event); // Debug log
     setSelectedEvent(event);
-    setIsEventDialogOpen(true);
-  };
-
-  const handleEventCreate = (startTime: Date) => {
-    console.log("Creating new event at:", startTime); // Debug log
-
-    // Snap to 15-minute intervals
-    const minutes = startTime.getMinutes();
-    const remainder = minutes % 15;
-    if (remainder !== 0) {
-      if (remainder < 7.5) {
-        // Round down to nearest 15 min
-        startTime.setMinutes(minutes - remainder);
-      } else {
-        // Round up to nearest 15 min
-        startTime.setMinutes(minutes + (15 - remainder));
-      }
-      startTime.setSeconds(0);
-      startTime.setMilliseconds(0);
-    }
-
-    const newEvent: CalendarEvent = {
-      allDay: false,
-      end: addHoursToDate(startTime, 1),
-      id: "",
-      start: startTime,
-      title: "",
-    };
-    setSelectedEvent(newEvent);
-    setIsEventDialogOpen(true);
-  };
-
-  const handleEventSave = (event: CalendarEvent) => {
-    if (event.id) {
-      onEventUpdate?.(event);
-      // Show toast notification when an event is updated
-      toast(`Event "${event.title}" updated`, {
-        description: format(new Date(event.start), "MMM d, yyyy"),
-        position: "bottom-left",
-      });
-    } else {
-      onEventAdd?.({
-        ...event,
-        id: Math.random().toString(36).substring(2, 11),
-      });
-      // Show toast notification when an event is added
-      toast(`Event "${event.title}" added`, {
-        description: format(new Date(event.start), "MMM d, yyyy"),
-        position: "bottom-left",
-      });
-    }
-    setIsEventDialogOpen(false);
-    setSelectedEvent(null);
-  };
-
-  const handleEventDelete = (eventId: string) => {
-    const deletedEvent = events.find((e) => e.id === eventId);
-    onEventDelete?.(eventId);
-    setIsEventDialogOpen(false);
-    setSelectedEvent(null);
-
-    // Show toast notification when an event is deleted
-    if (deletedEvent) {
-      toast(`Event "${deletedEvent.title}" deleted`, {
-        description: format(new Date(deletedEvent.start), "MMM d, yyyy"),
-        position: "bottom-left",
-      });
-    }
-  };
-
-  const handleEventUpdate = (updatedEvent: CalendarEvent) => {
-    onEventUpdate?.(updatedEvent);
-
-    // Show toast notification when an event is updated via drag and drop
-    toast(`Event "${updatedEvent.title}" moved`, {
-      description: format(new Date(updatedEvent.start), "MMM d, yyyy"),
-      position: "bottom-left",
-    });
+    setIsEventDetailsDialogOpen(true);
   };
 
   const viewTitle = useMemo(() => {
@@ -262,7 +176,7 @@ export function EventCalendar({
         } as React.CSSProperties
       }
     >
-      <CalendarDndProvider onEventUpdate={handleEventUpdate}>
+      <CalendarDndProvider onEventUpdate={readOnly ? undefined : undefined}>
         <div className={cn("flex items-center justify-between p-2 sm:p-4", className)}>
           <div className="flex items-center gap-1 sm:gap-4">
             <Button
@@ -312,19 +226,20 @@ export function EventCalendar({
                   Agenda <DropdownMenuShortcut>A</DropdownMenuShortcut>
                 </DropdownMenuItem>
               </DropdownMenuContent>
-            </DropdownMenu>
+          </DropdownMenu>
+          {!readOnly && (
             <Button
               className="max-[479px]:aspect-square max-[479px]:p-0!"
               onClick={() => {
-                setSelectedEvent(null); // Ensure we're creating a new event
-                setIsEventDialogOpen(true);
+                // This would be for future non-read-only usage
               }}
               size="sm"
             >
               <PlusIcon aria-hidden="true" className="sm:-ms-1 opacity-60" size={16} />
               <span className="max-sm:sr-only">New event</span>
             </Button>
-          </div>
+          )}
+        </div>
         </div>
 
         <div className="flex flex-1 flex-col">
@@ -332,24 +247,24 @@ export function EventCalendar({
             <MonthView
               currentDate={currentDate}
               events={events}
-              onEventCreate={handleEventCreate}
               onEventSelect={handleEventSelect}
+              readOnly={readOnly}
             />
           )}
           {view === "week" && (
             <WeekView
               currentDate={currentDate}
               events={events}
-              onEventCreate={handleEventCreate}
               onEventSelect={handleEventSelect}
+              readOnly={readOnly}
             />
           )}
           {view === "day" && (
             <DayView
               currentDate={currentDate}
               events={events}
-              onEventCreate={handleEventCreate}
               onEventSelect={handleEventSelect}
+              readOnly={readOnly}
             />
           )}
           {view === "agenda" && (
@@ -361,15 +276,13 @@ export function EventCalendar({
           )}
         </div>
 
-        <EventDialog
+        <EventDetailsDialog
           event={selectedEvent}
-          isOpen={isEventDialogOpen}
+          isOpen={isEventDetailsDialogOpen}
           onClose={() => {
-            setIsEventDialogOpen(false);
+            setIsEventDetailsDialogOpen(false);
             setSelectedEvent(null);
           }}
-          onDelete={handleEventDelete}
-          onSave={handleEventSave}
         />
       </CalendarDndProvider>
     </div>

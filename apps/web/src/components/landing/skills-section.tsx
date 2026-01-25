@@ -1,4 +1,3 @@
-import { ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Container } from "../ui/container";
 import { ArrowRightIcon } from "@phosphor-icons/react/dist/ssr";
