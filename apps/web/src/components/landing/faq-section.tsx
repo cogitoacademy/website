@@ -39,7 +39,7 @@ export function FaqSection() {
   const midPoint = Math.ceil(faq.length / 2);
 
   return (
-    <Container className="bg-background-cream max-w-7xl py-15 mb-20">
+    <Container className="bg-background-cream max-w-7xl py-15">
       {/* Header */}
       <div className="space-y-2 text-center">
         <h2 className="font-extrabold text-[32px] text-neutral-1000">

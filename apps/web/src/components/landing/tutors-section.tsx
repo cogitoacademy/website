@@ -53,7 +53,7 @@ export function TutorsSection() {
           </div>
 
           {/* Tutors Grid */}
-          <div className="flex w-full flex-wrap justify-center gap-6">
+          <div className="flex w-full justify-center gap-6">
             {tutors.map((tutor, index) => (
               <div
                 key={index}

@@ -36,7 +36,6 @@ export default function TutorCard({ tutor }: TutorCardProps) {
       transition={{ duration: 0.3 }}
       className="group relative flex flex-col overflow-hidden rounded-xl bg-card text-card-foreground shadow-sm transition-all hover:shadow-md"
     >
-
       {/* Header */}
       <div className="flex flex-col">
         <div className="relative h-70 w-full shrink-0 bg-muted z-1">
@@ -76,8 +75,6 @@ export default function TutorCard({ tutor }: TutorCardProps) {
           )}
         </div>
       </div>
-
-
     </m.div>
   );
 }

@@ -14,9 +14,13 @@ const buttonVariants = cva(
         // default: "bg-primary text-primary-foreground [a]:hover:bg-primary/80",
         default:
           "rounded-lg bg-primary-500 text-white shadow-sm hover:bg-primary-600 text-base leading-6 shadow-inset-top-default",
-        // Cream (Primary 100)
+        // (Primary 100)
         subtle:
-          "rounded-lg bg-primary-100 text-white shadow-sm hover:bg-primary-50 text-base leading-6 text-neutral-1000 shadow-inset-top-subtle hover:bg-primary-200",
+          "rounded-lg bg-primary-100 shadow-sm hover:bg-primary-50 text-base leading-6 text-neutral-1000 shadow-inset-top-subtle hover:bg-primary-200",
+        cream:
+          "rounded-lg bg-background-cream text-primary-500 shadow-sm text-base leading-6  shadow-inset-top-subtle hover:bg-primary-200 hover:bg-background-cream/80",
+        // Gray (Neutral 200)
+        gray: "bg-neutral-200 rounded-lg text-white shadow-sm hover:bg-neutral-300 text-base leading-6 text-neutral-1000 shadow-inset-top-default",
         outline:
           "border-border bg-background hover:bg-muted hover:text-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50 aria-expanded:bg-muted aria-expanded:text-foreground",
         secondary:
@@ -37,6 +41,7 @@ const buttonVariants = cva(
         "icon-xs": "size-6 rounded-none [&_svg:not([class*='size-'])]:size-3",
         "icon-sm": "size-7 rounded-none",
         "icon-lg": "size-9",
+        "icon-xl": "size-10",
       },
     },
     defaultVariants: {
