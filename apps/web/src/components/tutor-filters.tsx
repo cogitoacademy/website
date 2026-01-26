@@ -21,7 +21,7 @@ interface LocationOption {
 }
 
 interface TutorFiltersProps {
-  locations: LocationOption[];
+  locations: readonly LocationOption[];
   categories: CompetitionCategory[];
   selectedLocations: string[];
   selectedCategories: string[];

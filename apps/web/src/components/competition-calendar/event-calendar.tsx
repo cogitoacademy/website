@@ -44,6 +44,9 @@ export interface EventCalendarProps {
   readOnly?: boolean;
   className?: string;
   initialView?: CalendarView;
+  onEventAdd?: (event: CalendarEvent) => void;
+  onEventDelete?: (eventId: string) => void;
+  onEventUpdate?: (updatedEvent: CalendarEvent) => void;
 }
 
 export function EventCalendar({
@@ -51,6 +54,9 @@ export function EventCalendar({
   readOnly = false,
   className,
   initialView = "month",
+  onEventAdd,
+  onEventDelete,
+  onEventUpdate,
 }: EventCalendarProps) {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [view, setView] = useState<CalendarView>(initialView);
@@ -176,7 +182,7 @@ export function EventCalendar({
         } as React.CSSProperties
       }
     >
-      <CalendarDndProvider onEventUpdate={readOnly ? undefined : undefined}>
+      <CalendarDndProvider onEventUpdate={readOnly || !onEventUpdate ? () => {} : onEventUpdate}>
         <div className={cn("flex items-center justify-between p-2 sm:p-4", className)}>
           <div className="flex items-center gap-1 sm:gap-4">
             <Button

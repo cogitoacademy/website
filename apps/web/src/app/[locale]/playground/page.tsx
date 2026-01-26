@@ -64,37 +64,40 @@ export default function Page() {
         </div>
       </div>
 
-      <div>
-        <h2>All Variant & Size Combinations</h2>
-        <div className="space-y-4">
-          {[
-            "default",
-            "subtle",
-            "gray",
-            "outline",
-            "secondary",
-            "ghost",
-            "destructive",
-            "link",
-          ].map((variant) => (
-            <div key={variant} className="flex flex-wrap gap-2">
-              <span className="w-20 font-medium text-sm capitalize">{variant}:</span>
-              <Button size="xs" variant={variant}>
-                XS
-              </Button>
-              <Button size="sm" variant={variant}>
-                SM
-              </Button>
-              <Button size="default" variant={variant}>
-                Default
-              </Button>
-              <Button size="lg" variant={variant}>
-                LG
-              </Button>
-            </div>
-          ))}
-        </div>
-      </div>
+      {/*<div>
+				<h2>All Variant & Size Combinations</h2>
+				<div className="space-y-4">
+					{[
+						"default",
+						"subtle",
+						"gray",
+						"outline",
+						"secondary",
+						"ghost",
+						"destructive",
+						"link",
+						"cream",
+					].map((variant) => (
+						<div key={variant} className="flex flex-wrap gap-2">
+							<span className="w-20 font-medium text-sm capitalize">
+								{variant}:
+							</span>
+							<Button size="xs" variant={variant as any}>
+								XS
+							</Button>
+							<Button size="sm" variant={variant as any}>
+								SM
+							</Button>
+							<Button size="default" variant={variant as any}>
+								Default
+							</Button>
+							<Button size="lg" variant={variant as any}>
+								LG
+							</Button>
+						</div>
+					))}
+				</div>
+			</div>*/}
     </Container>
   );
 }
