@@ -5,7 +5,7 @@ import { format } from "date-fns";
 import type { CalendarEvent } from "@/components/competition-calendar/types";
 import { getBrandColorClass } from "@/lib/colors/brandColors";
 import { Badge } from "@/components/ui/badge";
-import { Button, buttonVariants } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,

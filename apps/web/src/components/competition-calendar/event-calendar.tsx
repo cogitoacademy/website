@@ -226,20 +226,20 @@ export function EventCalendar({
                   Agenda <DropdownMenuShortcut>A</DropdownMenuShortcut>
                 </DropdownMenuItem>
               </DropdownMenuContent>
-          </DropdownMenu>
-          {!readOnly && (
-            <Button
-              className="max-[479px]:aspect-square max-[479px]:p-0!"
-              onClick={() => {
-                // This would be for future non-read-only usage
-              }}
-              size="sm"
-            >
-              <PlusIcon aria-hidden="true" className="sm:-ms-1 opacity-60" size={16} />
-              <span className="max-sm:sr-only">New event</span>
-            </Button>
-          )}
-        </div>
+            </DropdownMenu>
+            {!readOnly && (
+              <Button
+                className="max-[479px]:aspect-square max-[479px]:p-0!"
+                onClick={() => {
+                  // This would be for future non-read-only usage
+                }}
+                size="sm"
+              >
+                <PlusIcon aria-hidden="true" className="sm:-ms-1 opacity-60" size={16} />
+                <span className="max-sm:sr-only">New event</span>
+              </Button>
+            )}
+          </div>
         </div>
 
         <div className="flex flex-1 flex-col">

@@ -106,7 +106,7 @@ export function EventItem({
   view,
   isDragging,
   onClick,
-  showTime,
+  showTime: _showTime,
   currentTime,
   isFirstDay = true,
   isLastDay = true,
@@ -138,7 +138,7 @@ export function EventItem({
     return differenceInMinutes(displayEnd, displayStart);
   }, [displayStart, displayEnd]);
 
-  const getEventTime = () => {
+  const _getEventTime = () => {
     if (event.allDay) return "All day";
 
     // For short events (less than 45 minutes), only show start time

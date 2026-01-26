@@ -11,26 +11,20 @@ export const TUTORS_QUERY = defineQuery(`
         altText
       }
     },
-    jurusan,
+    affiliation,
     competitionFields[]->{
       _id,
-      name
+      name,
+      coreCategory
     },
-    location->{
-      _id,
-      name
-    },
+    locations,
     achievements,
     experiences
   }
 `);
 
-export const LOCATIONS_QUERY = defineQuery(`
-  *[_type == "location"] | order(name asc) {
-    _id,
-    name
-  }
-`);
+// Locations are now enum strings, no need for separate query
+// Use LOCATIONS constant from @/lib/config/locations instead
 
 export const COMPETITION_CATEGORIES_QUERY = defineQuery(`
   *[_type == "competitionCategory"] | order(name asc) {

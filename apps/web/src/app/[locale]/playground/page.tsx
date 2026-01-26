@@ -18,7 +18,7 @@ export default function Page() {
           <Badge variant="outline">Badge</Badge>
           <Badge variant="ghost">Badge</Badge>
           <Badge variant="link">Badge</Badge>
-          <Badge variant="mun">Badge</Badge>
+          {/*<Badge variant="mun">Badge</Badge>*/}
         </div>
       </div>
 

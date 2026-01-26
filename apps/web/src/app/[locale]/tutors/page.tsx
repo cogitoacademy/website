@@ -1,10 +1,10 @@
 import { Suspense } from "react";
 import { getTranslations } from "next-intl/server";
 import TutorList from "@/components/tutor-list";
-import { LOCATIONS_QUERY, COMPETITION_CATEGORIES_QUERY } from "@/queries/tutors";
+import { COMPETITION_CATEGORIES_QUERY } from "@/queries/tutors";
 import { getTutors } from "@/lib/tutors";
 import { client } from "@/sanity/client";
-import type { CompetitionCategory, Location } from "@/types/tutor";
+import type { CompetitionCategory } from "@/types/tutor";
 import { Skeleton } from "@/components/ui/skeleton";
 import NavbarResolver from "@/components/navbar-resolver";
 import { Container } from "@/components/ui/container";
@@ -16,19 +16,16 @@ async function TutorContent() {
     dataset: process.env.NEXT_PUBLIC_SANITY_DATASET,
   });
 
-  const [t, tutors, locations, categories] = await Promise.all([
+  const [t, tutors, categories] = await Promise.all([
     getTranslations("tutors"),
     getTutors(),
-    client.fetch<Location[]>(LOCATIONS_QUERY),
     client.fetch<CompetitionCategory[]>(COMPETITION_CATEGORIES_QUERY),
   ]);
 
   console.log("✅ Fetched data:", {
     tutorsCount: tutors.length,
-    locationsCount: locations.length,
     categoriesCount: categories.length,
     tutors: tutors,
-    locations,
     categories,
   });
 
@@ -40,7 +37,7 @@ async function TutorContent() {
           <p className="text-muted-foreground">{t("description")}</p>
         </div>
 
-        <TutorList tutors={tutors} locations={locations} categories={categories} />
+        <TutorList tutors={tutors} categories={categories} />
       </Container>
     </main>
   );

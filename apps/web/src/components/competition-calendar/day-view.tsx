@@ -279,28 +279,28 @@ export function DayView({ currentDate, events, onEventSelect, readOnly = false }
                 {[0, 1, 2, 3].map((quarter) => {
                   const quarterHourTime = hourValue + quarter * 0.25;
                   return (
-                  <DroppableCell
-                    className={cn(
-                      "absolute h-[calc(var(--week-cells-height)/4)] w-full",
-                      quarter === 0 && "top-0",
-                      quarter === 1 && "top-[calc(var(--week-cells-height)/4)]",
-                      quarter === 2 && "top-[calc(var(--week-cells-height)/4*2)]",
-                      quarter === 3 && "top-[calc(var(--week-cells-height)/4*3)]",
-                    )}
-                    date={currentDate}
-                    id={`day-cell-${currentDate.toISOString()}-${quarterHourTime}`}
-                    key={`${hour.toString()}-${quarter}`}
-                    onClick={
-                      readOnly
-                        ? undefined
-                        : () => {
-                            const startTime = new Date(currentDate);
-                            startTime.setHours(hourValue);
-                            startTime.setMinutes(quarter * 15);
-                          }
-                    }
-                    time={quarterHourTime}
-                  />
+                    <DroppableCell
+                      className={cn(
+                        "absolute h-[calc(var(--week-cells-height)/4)] w-full",
+                        quarter === 0 && "top-0",
+                        quarter === 1 && "top-[calc(var(--week-cells-height)/4)]",
+                        quarter === 2 && "top-[calc(var(--week-cells-height)/4*2)]",
+                        quarter === 3 && "top-[calc(var(--week-cells-height)/4*3)]",
+                      )}
+                      date={currentDate}
+                      id={`day-cell-${currentDate.toISOString()}-${quarterHourTime}`}
+                      key={`${hour.toString()}-${quarter}`}
+                      onClick={
+                        readOnly
+                          ? undefined
+                          : () => {
+                              const startTime = new Date(currentDate);
+                              startTime.setHours(hourValue);
+                              startTime.setMinutes(quarter * 15);
+                            }
+                      }
+                      time={quarterHourTime}
+                    />
                   );
                 })}
               </div>

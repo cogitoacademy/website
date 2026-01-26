@@ -17,7 +17,7 @@ const badgeVariants = cva(
         ghost: "hover:bg-muted hover:text-muted-foreground dark:hover:bg-muted/50",
         link: "text-primary underline-offset-4 hover:underline",
         // Competition Badge
-        mun: "bg-tertiary-blue-300 text-neutral-1000 [a]:hover:bg-tertiary-blue-300/80 italic",
+        tutor: "italic rounded-md py-1",
       },
     },
     defaultVariants: {

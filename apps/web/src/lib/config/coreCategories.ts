@@ -1,7 +1,7 @@
 export const CORE_CATEGORIES = {
   mun: {
     name: "Model United Nations",
-    brandColor: "tertiary-blue-400",
+    brandColor: "tertiary-blue-300",
   },
   olimpiade: {
     name: "Olimpiade",

@@ -1,10 +1,10 @@
 import { client } from "@/sanity/client";
-import { LOCATIONS_QUERY, COMPETITION_CATEGORIES_QUERY } from "@/queries/tutors";
-import type { CompetitionCategory, Location } from "@/types/tutor";
+import { COMPETITION_CATEGORIES_QUERY } from "@/queries/tutors";
+import type { CompetitionCategory } from "@/types/tutor";
+import { LOCATIONS } from "@/lib/config/locations";
 
-export async function getLocations(): Promise<Location[]> {
-  const locations = await client.fetch(LOCATIONS_QUERY);
-  return locations || [];
+export function getLocations() {
+  return LOCATIONS;
 }
 
 export async function getCompetitionCategories(): Promise<CompetitionCategory[]> {

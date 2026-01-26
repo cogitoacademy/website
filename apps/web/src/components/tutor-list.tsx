@@ -4,15 +4,15 @@ import { useState, useMemo } from "react";
 import { useTranslations } from "next-intl";
 import TutorFilters from "@/components/tutor-filters";
 import TutorCard from "@/components/tutor-card";
-import type { Tutor, CompetitionCategory, Location } from "@/types/tutor";
+import type { Tutor, CompetitionCategory } from "@/types/tutor";
+import { LOCATIONS } from "@/lib/config/locations";
 
 interface TutorListProps {
   tutors: Tutor[];
-  locations: Location[];
   categories: CompetitionCategory[];
 }
 
-export default function TutorList({ tutors, locations, categories }: TutorListProps) {
+export default function TutorList({ tutors, categories }: TutorListProps) {
   const t = useTranslations("tutors");
   const [selectedLocations, setSelectedLocations] = useState<string[]>([]);
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
@@ -21,7 +21,7 @@ export default function TutorList({ tutors, locations, categories }: TutorListPr
     return tutors.filter((tutor) => {
       const locationMatch =
         selectedLocations.length === 0 ||
-        (tutor.location && selectedLocations.includes(tutor.location._id));
+        (tutor.locations && tutor.locations.some((loc) => selectedLocations.includes(loc)));
 
       const categoryMatch =
         selectedCategories.length === 0 ||
@@ -52,7 +52,7 @@ export default function TutorList({ tutors, locations, categories }: TutorListPr
   return (
     <>
       <TutorFilters
-        locations={locations}
+        locations={LOCATIONS}
         categories={categories}
         selectedLocations={selectedLocations}
         selectedCategories={selectedCategories}
@@ -68,7 +68,7 @@ export default function TutorList({ tutors, locations, categories }: TutorListPr
           </p>
         </div>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-6">
           {filteredTutors.map((tutor) => (
             <TutorCard key={tutor._id} tutor={tutor} />
           ))}

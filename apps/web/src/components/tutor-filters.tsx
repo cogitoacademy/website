@@ -2,7 +2,8 @@
 
 import { useTranslations } from "next-intl";
 import { ChevronDown } from "lucide-react";
-import type { CompetitionCategory, Location } from "@/types/tutor";
+import type { CompetitionCategory } from "@/types/tutor";
+import type { LocationValue } from "@/lib/config/locations";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -14,12 +15,17 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
 
+interface LocationOption {
+  value: LocationValue;
+  label: string;
+}
+
 interface TutorFiltersProps {
-  locations: Location[];
+  locations: LocationOption[];
   categories: CompetitionCategory[];
   selectedLocations: string[];
   selectedCategories: string[];
-  onLocationChange: (id: string) => void;
+  onLocationChange: (value: string) => void;
   onCategoryChange: (id: string) => void;
   onClearAll: () => void;
 }
@@ -49,11 +55,11 @@ export default function TutorFilters({
           <DropdownMenuSeparator />
           {locations.map((location) => (
             <DropdownMenuCheckboxItem
-              key={location._id}
-              checked={selectedLocations.includes(location._id)}
-              onCheckedChange={() => onLocationChange(location._id)}
+              key={location.value}
+              checked={selectedLocations.includes(location.value)}
+              onCheckedChange={() => onLocationChange(location.value)}
             >
-              {location.name.replace(/_/g, " ")}
+              {location.label}
             </DropdownMenuCheckboxItem>
           ))}
         </DropdownMenuContent>

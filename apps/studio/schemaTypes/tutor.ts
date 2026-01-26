@@ -21,15 +21,15 @@ export default defineType({
       validation: (Rule: any) => Rule.required(),
     }),
     defineField({
-      name: "jurusan",
-      title: "Jurusan/Title",
+      name: "affiliation",
+      title: "Affiliation",
       type: "internationalizedArrayString",
-      description: "e.g., Hubungan Internasional, Universitas Brawijaya",
+      description: "e.g., International Relations, Brawijaya University",
       validation: (Rule: any) => Rule.required(),
     }),
     defineField({
       name: "competitionFields",
-      title: "Bidang Perlombaan",
+      title: "Competition Fields",
       type: "array",
       of: [
         defineArrayMember({
@@ -39,14 +39,26 @@ export default defineType({
       ],
     }),
     defineField({
-      name: "location",
-      title: "Lokasi Kelas",
-      type: "reference",
-      to: [{ type: "location" }],
+      name: "locations",
+      title: "Class Locations",
+      type: "array",
+      of: [
+        defineArrayMember({
+          type: "string",
+          options: {
+            list: [
+              { title: "Online", value: "online" },
+              { title: "Offline - Surabaya", value: "offline_surabaya" },
+              { title: "Offline - Semarang", value: "offline_semarang" },
+              { title: "Offline - Jakarta", value: "offline_jakarta" },
+            ],
+          },
+        }),
+      ],
     }),
     defineField({
       name: "achievements",
-      title: "Pencapaian",
+      title: "Achievements",
       type: "array",
       of: [
         defineArrayMember({
@@ -64,7 +76,7 @@ export default defineType({
     }),
     defineField({
       name: "experiences",
-      title: "Pengalaman",
+      title: "Experiences",
       type: "array",
       of: [
         defineArrayMember({
@@ -85,13 +97,13 @@ export default defineType({
     select: {
       title: "name",
       media: "profilePicture",
-      jurusan: "jurusan",
+      affiliation: "affiliation",
     },
     prepare(selection: any) {
-      const { title, media, jurusan } = selection;
+      const { title, media, affiliation } = selection;
       return {
         title,
-        subtitle: jurusan ? jurusan.find((item: any) => item._key === "id")?.value : "",
+        subtitle: affiliation ? affiliation.find((item: any) => item._key === "id")?.value : "",
         media,
       };
     },

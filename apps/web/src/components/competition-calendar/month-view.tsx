@@ -38,7 +38,12 @@ interface MonthViewProps {
   readOnly?: boolean;
 }
 
-export function MonthView({ currentDate, events, onEventSelect, readOnly = false }: MonthViewProps) {
+export function MonthView({
+  currentDate,
+  events,
+  onEventSelect,
+  readOnly = false,
+}: MonthViewProps) {
   const days = useMemo(() => {
     const monthStart = startOfMonth(currentDate);
     const monthEnd = endOfMonth(monthStart);
