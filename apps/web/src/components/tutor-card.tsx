@@ -32,10 +32,8 @@ export default function TutorCard({ tutor }: TutorCardProps) {
   return (
     <>
       <m.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.3 }}
-        className="group relative flex flex-col overflow-hidden rounded-xl bg-card text-card-foreground shadow-sm transition-all hover:shadow-md"
+        initial={false}
+        className="group relative flex h-full flex-col overflow-hidden rounded-xl bg-card text-card-foreground shadow-sm transition-all hover:shadow-md"
       >
         {/* Button as modal trigger */}
         <Button
@@ -48,7 +46,7 @@ export default function TutorCard({ tutor }: TutorCardProps) {
         </Button>
 
         {/* Header */}
-        <div className="flex flex-col">
+        <div className="flex min-h-0 flex-1 flex-col">
           <div className="relative h-70 w-full shrink-0 bg-muted z-1">
             <Image
               src={tutor.profilePicture.asset.url}
@@ -59,13 +57,13 @@ export default function TutorCard({ tutor }: TutorCardProps) {
           </div>
 
           {/* Bawah */}
-          <div className="p-2.5 rounded-xl -mt-2 bg-neutral-100 relative z-2 shadow-inset-top">
+          <div className="relative z-2 -mt-2 flex min-h-0 flex-1 flex-col rounded-xl bg-neutral-100 p-2.5 shadow-inset-top">
             <h3 className="font-semibold text-lg leading-tight truncate">{tutor.name}</h3>
-            <p className="text-sm text-muted-foreground line-clamp-2">{affiliation}</p>
+            <p className="text-sm text-muted-foreground line-clamp-2 mb-2">{affiliation}</p>
 
             {/* Tags */}
             {tutor.competitionFields?.length > 0 && (
-              <div className="flex flex-wrap gap-2 mt-2">
+              <div className="flex flex-wrap gap-2 mt-auto mb-0">
                 {tutor.competitionFields.map((field) => (
                   <Badge
                     key={field._id}

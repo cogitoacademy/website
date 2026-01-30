@@ -1,8 +1,10 @@
 import { ArrowRightIcon } from "@phosphor-icons/react/dist/ssr";
 import NavbarResolver from "@/components/navbar-resolver";
-import { Badge } from "@/components/ui/badge";
+import { Badge, badgeVariants } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
+import { getCoreCategoryBadgeColor } from "@/lib/colors/brandColors";
+import { cn } from "@/lib/utils";
 
 export default function Page() {
   return (
@@ -11,7 +13,7 @@ export default function Page() {
       <h1>Playground</h1>
       <div>
         <h2>Badge</h2>
-        <div>
+        <div className="flex gap-2 flex-wrap">
           <Badge variant="default">Badge</Badge>
           <Badge variant="secondary">Badge</Badge>
           <Badge variant="destructive">Badge</Badge>
@@ -19,6 +21,21 @@ export default function Page() {
           <Badge variant="ghost">Badge</Badge>
           <Badge variant="link">Badge</Badge>
           {/*<Badge variant="mun">Badge</Badge>*/}
+          <Badge className={cn(badgeVariants({ variant: "tutor" }), getCoreCategoryBadgeColor('wsc'))}>
+            WSC
+          </Badge>
+          <Badge className={cn(badgeVariants({ variant: "tutor" }), getCoreCategoryBadgeColor('kti'))}>
+            KTI/Esai
+          </Badge>
+          <Badge className={cn(badgeVariants({ variant: "tutor" }), getCoreCategoryBadgeColor('debat'))}>
+            Debat
+          </Badge>
+          <Badge className={cn(badgeVariants({ variant: "tutor" }), getCoreCategoryBadgeColor('business'))}>
+            Bisnis
+          </Badge>
+          <Badge className={cn(badgeVariants({ variant: "tutor" }), getCoreCategoryBadgeColor('pidato'))}>
+            Pidato
+          </Badge>
         </div>
       </div>
 

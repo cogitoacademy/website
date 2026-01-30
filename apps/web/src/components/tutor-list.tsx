@@ -2,6 +2,7 @@
 
 import { useState, useMemo } from "react";
 import { useTranslations } from "next-intl";
+import * as m from "motion/react-m";
 import TutorFilters from "@/components/tutor-filters";
 import TutorCard from "@/components/tutor-card";
 import type { Tutor, CompetitionCategory } from "@/types/tutor";
@@ -68,11 +69,16 @@ export default function TutorList({ tutors, categories }: TutorListProps) {
           </p>
         </div>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-6">
+        <m.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4 }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-6"
+        >
           {filteredTutors.map((tutor) => (
             <TutorCard key={tutor._id} tutor={tutor} />
           ))}
-        </div>
+        </m.div>
       )}
     </>
   );
