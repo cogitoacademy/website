@@ -7,6 +7,7 @@ import { ProgramsSection } from "@/components/landing/programs-section";
 import { SkillsSection } from "@/components/landing/skills-section";
 import { TestimonialsSection } from "@/components/landing/testimonials-section";
 import { TutorsSection } from "@/components/landing/tutors-section";
+import FaqSectionV2 from "../../components/landing/faq-v2";
 
 export default function HomePage() {
   return (
@@ -20,6 +21,7 @@ export default function HomePage() {
       <TestimonialsSection />
       <ProgramsSection />
       <FaqSection />
+      <FaqSectionV2 />
     </div>
   );
 }
