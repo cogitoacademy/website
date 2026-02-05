@@ -37,9 +37,10 @@ export default function Header() {
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-10">
             <Link href="/" className="flex items-center">
-              {/*<div
-                className={`flex h-[50px] w-[106px] items-center justify-center rounded transition-all duration-300 ${isScrolled ? "" : "bg-background-cream/90 backdrop-blur-sm"
-                  }`}
+              <div
+                className={`flex h-[50px] w-[106px] items-center justify-center rounded transition-all duration-300 ${
+                  isScrolled ? "" : "bg-background-cream/90 backdrop-blur-sm"
+                }`}
               >
                 <Image
                   src="/cogito-academy-logo.webp"
@@ -47,15 +48,15 @@ export default function Header() {
                   width={424}
                   height={200}
                 />
-              </div>*/}
-              <Button size="lg" variant="subtle" className="w-[106px] px-2 py-1">
+              </div>
+              {/*<Button size="lg" variant="subtle" className="w-[106px] px-2 py-1">
                 <Image
                   src="/cogito-academy-logo.webp"
                   alt="Cogito Academy"
                   width={424}
                   height={200}
                 />
-              </Button>
+              </Button>*/}
             </Link>
 
             <nav className="hidden items-start gap-8 md:flex">
@@ -116,7 +117,11 @@ export default function Header() {
                     <div className="w-fit">
                       <LanguageToggle />
                     </div>
-                    <Button size="lg" className="flex-1" onClick={() => setIsMobileMenuOpen(false)}>
+                    <Button
+                      size="lg"
+                      className="flex-1"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
                       <span>Hubungi Kami</span>
                     </Button>
                   </nav>

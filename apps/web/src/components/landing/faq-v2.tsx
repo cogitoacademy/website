@@ -41,7 +41,7 @@ export default function FaqSectionV2() {
   const [activeIndex, setActiveIndex] = useState(0);
 
   return (
-    <section className="w-full max-w-7xl mx-auto p-4 flex flex-col md:flex-row gap-4 h-[300px]">
+    <section className="w-full max-w-7xl mx-auto p-4 flex flex-col md:flex-row gap-4 h-[300px] *:select-none">
       {faqData.map((item, index) => {
         const isActive = activeIndex === index;
 

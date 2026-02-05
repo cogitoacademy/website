@@ -47,43 +47,19 @@ export function TutorsSection() {
               <span className="text-primary-500">Tangan Pertama</span>
             </h2>
             <p className="mx-auto max-w-3xl font-medium text-lg text-neutral-1000">
-              Para ahli dan praktisi global yang siap mendampingimu meraih standar juara dunia di
-              setiap kompetisi.
+              Para ahli dan praktisi global yang siap mendampingimu meraih
+              standar juara dunia di setiap kompetisi.
             </p>
           </div>
 
           {/* Tutors Grid */}
-          <div className="flex w-full justify-center gap-6">
-            {tutors.map((tutor, index) => (
-              <div
-                key={index}
-                className="w-full overflow-hidden rounded-lg shadow-sm sm:w-[284px]"
-                style={{ backgroundColor: `var(--${tutor.bgColor})` }}
-              >
-                {/* Tutor Image */}
-                <div className="relative h-[258px] overflow-hidden z-1">
-                  <img src={tutor.image} alt={tutor.name} className="h-full w-full object-cover" />
-                  {/* Gradient overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/20" />
-                </div>
-
-                {/* Tutor Info */}
-                <div className="h-[101px] bg-white p-3 rounded-t-xl -mt-2 relative z-2">
-                  <h3 className="mb-1 font-black text-lg text-neutral-1000 leading-tight">
-                    {tutor.name}
-                  </h3>
-                  <p className="text-neutral-1000 text-sm leading-tight">{tutor.description}</p>
-                </div>
-              </div>
-            ))}
-          </div>
+          <div>dsadsa</div>
 
           {/* CTA Button */}
-          <Button
-            size="lg"
-            className="h-auto rounded-lg border-primary-600 bg-primary-500 px-5 py-6 text-white shadow-sm hover:bg-primary-600"
-          >
-            <span className="font-normal text-base">Lihat Semua Tutor Unggul Kami</span>
+          <Button size="lg">
+            <span className="font-normal text-base">
+              Lihat Semua Tutor Unggul Kami
+            </span>
             <ArrowRight className="ml-2 size-5" />
           </Button>
         </div>

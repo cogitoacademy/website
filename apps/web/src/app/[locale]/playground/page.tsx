@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
 
 export default function Page() {
   return (
-    <Container>
+    <Container className="min-h-screen">
       <NavbarResolver />
       <h1>Playground</h1>
       <div>
@@ -21,19 +21,44 @@ export default function Page() {
           <Badge variant="ghost">Badge</Badge>
           <Badge variant="link">Badge</Badge>
           {/*<Badge variant="mun">Badge</Badge>*/}
-          <Badge className={cn(badgeVariants({ variant: "tutor" }), getCoreCategoryBadgeColor('wsc'))}>
+          <Badge
+            className={cn(
+              badgeVariants({ variant: "tutor" }),
+              getCoreCategoryBadgeColor("wsc"),
+            )}
+          >
             WSC
           </Badge>
-          <Badge className={cn(badgeVariants({ variant: "tutor" }), getCoreCategoryBadgeColor('kti'))}>
+          <Badge
+            className={cn(
+              badgeVariants({ variant: "tutor" }),
+              getCoreCategoryBadgeColor("kti"),
+            )}
+          >
             KTI/Esai
           </Badge>
-          <Badge className={cn(badgeVariants({ variant: "tutor" }), getCoreCategoryBadgeColor('debat'))}>
+          <Badge
+            className={cn(
+              badgeVariants({ variant: "tutor" }),
+              getCoreCategoryBadgeColor("debat"),
+            )}
+          >
             Debat
           </Badge>
-          <Badge className={cn(badgeVariants({ variant: "tutor" }), getCoreCategoryBadgeColor('business'))}>
+          <Badge
+            className={cn(
+              badgeVariants({ variant: "tutor" }),
+              getCoreCategoryBadgeColor("business"),
+            )}
+          >
             Bisnis
           </Badge>
-          <Badge className={cn(badgeVariants({ variant: "tutor" }), getCoreCategoryBadgeColor('pidato'))}>
+          <Badge
+            className={cn(
+              badgeVariants({ variant: "tutor" }),
+              getCoreCategoryBadgeColor("pidato"),
+            )}
+          >
             Pidato
           </Badge>
         </div>

@@ -29,7 +29,11 @@ import {
   useEventVisibility,
 } from "@/components/competition-calendar";
 import { DefaultStartHour } from "@/components/competition-calendar/constants";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 
 interface MonthViewProps {
   currentDate: Date;
@@ -94,14 +98,17 @@ export function MonthView({
     <div className="contents" data-slot="month-view">
       <div className="grid grid-cols-7 border-border/70 border-b">
         {weekdays.map((day) => (
-          <div className="py-2 text-center text-muted-foreground/70 text-sm" key={day}>
+          <div className="py-2 text-center text-neutral-1000 text-sm bg-background-cream" key={day}>
             {day}
           </div>
         ))}
       </div>
-      <div className="grid flex-1 auto-rows-fr">
+      <div className="grid flex-1 auto-rows-fr ">
         {weeks.map((week, weekIndex) => (
-          <div className="grid grid-cols-7 [&:last-child>*]:border-b-0" key={`week-${week}`}>
+          <div
+            className="grid grid-cols-7 [&:last-child>*]:border-b-0"
+            key={`week-${week}`}
+          >
             {week.map((day, dayIndex) => {
               if (!day) return null; // Skip if day is undefined
 
@@ -116,8 +123,12 @@ export function MonthView({
               const visibleCount = isMounted
                 ? getVisibleEventCount(allDayEvents.length)
                 : undefined;
-              const hasMore = visibleCount !== undefined && allDayEvents.length > visibleCount;
-              const remainingCount = hasMore ? allDayEvents.length - visibleCount : 0;
+              const hasMore =
+                visibleCount !== undefined &&
+                allDayEvents.length > visibleCount;
+              const remainingCount = hasMore
+                ? allDayEvents.length - visibleCount
+                : 0;
 
               return (
                 <div
@@ -151,7 +162,8 @@ export function MonthView({
                         const isFirstDay = isSameDay(day, eventStart);
                         const isLastDay = isSameDay(day, eventEnd);
 
-                        const isHidden = isMounted && visibleCount && index >= visibleCount;
+                        const isHidden =
+                          isMounted && visibleCount && index >= visibleCount;
 
                         if (!visibleCount) return null;
 
@@ -171,7 +183,12 @@ export function MonthView({
                               >
                                 <div aria-hidden={true} className="invisible">
                                   {!event.allDay && (
-                                    <span>{format(new Date(event.start), "h:mm")} </span>
+                                    <span>
+                                      {format(
+                                        new Date(event.start),
+                                        "h:mm",
+                                      )}{" "}
+                                    </span>
                                   )}
                                   {event.title}
                                 </div>
@@ -209,7 +226,8 @@ export function MonthView({
                             }
                           >
                             <span>
-                              + {remainingCount} <span className="max-sm:sr-only">more</span>
+                              + {remainingCount}{" "}
+                              <span className="max-sm:sr-only">more</span>
                             </span>
                           </PopoverTrigger>
                           <PopoverContent
@@ -222,7 +240,9 @@ export function MonthView({
                             }
                           >
                             <div className="space-y-2">
-                              <div className="font-medium text-sm">{format(day, "EEE d")}</div>
+                              <div className="font-medium text-sm">
+                                {format(day, "EEE d")}
+                              </div>
                               <div className="space-y-1">
                                 {sortEvents(allEvents).map((event) => {
                                   const eventStart = new Date(event.start);
@@ -236,7 +256,9 @@ export function MonthView({
                                       isFirstDay={isFirstDay}
                                       isLastDay={isLastDay}
                                       key={event.id}
-                                      onClick={(e) => handleEventClick(event, e)}
+                                      onClick={(e) =>
+                                        handleEventClick(event, e)
+                                      }
                                       view="month"
                                     />
                                   );
