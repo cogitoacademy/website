@@ -3,54 +3,31 @@ import { landingAssets } from "./assets";
 
 export function MethodsSection() {
   return (
-    <section className="outline outline-red-500 max-w-7xl mx-auto">
+    <section className="max-w-7xl mx-auto py-20">
       <div className="flex flex-col items-center justify-center">
-        <h2 className="text-3xl font-bold mb-4 text-center">
+        <h2 className="font-bold mb-4 text-center text-xl">
           Di Balik Setiap Medali,
           <br />
-          <span>Inilah Metode Kami</span>
+          <span className="text-3xl">Inilah Metode Kami</span>
         </h2>
-        <div className="grid grid-cols-2 xl:grid-cols-4 gap-4">
-          <MethodCard
-            icon={<Award className="w-16 h-16" />}
-            title="Award"
-            description="Our award-winning approach ensures excellence in every project."
-          />
-          <MethodCard
-            icon={<BookOpen className="w-16 h-16" />}
-            title="Book Open"
-            description="Our book open approach ensures excellence in every project."
-          />
-          <MethodCard
-            icon={<Briefcase className="w-16 h-16" />}
-            title="Briefcase"
-            description="Our briefcase approach ensures excellence in every project."
-          />
-          <MethodCard
-            icon={<Check className="w-16 h-16" />}
-            title="Check"
-            description="Our check approach ensures excellence in every project."
-          />
+        <div className="grid grid-cols-2 xl:grid-cols-4 gap-6">
+          <TutorJuaraDuniaCard />
+          <TutorJuaraDuniaCard />
+          <TutorJuaraDuniaCard />
+          <TutorJuaraDuniaCard />
         </div>
       </div>
     </section>
   );
 }
 
-function MethodCard({
-  icon,
-  title,
-  description,
-}: {
-  icon: React.ReactNode;
-  title: string;
-  description: string;
-}) {
+function TutorJuaraDuniaCard() {
   return (
-    <div className="flex flex-col items-center justify-center aspect-312/251 outline">
-      {icon}
-      <h3 className="text-xl font-bold mb-2">{title}</h3>
-      <p className="text-center">{description}</p>
+    <div className="bg-tertiary-red-200 aspect-312/251 rounded-2xl py-6 px-4 text-center">
+      <p className="font-semibold">Tutor Juara Dunia</p>
+      <p className="text-sm">
+        Strategi rahasia dari mereka yang sudah berdiri di podium dunia.
+      </p>
     </div>
   );
 }

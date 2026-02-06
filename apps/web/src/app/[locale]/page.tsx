@@ -19,7 +19,7 @@ export default function HomePage() {
       <SkillsSection />
       <TutorsSection />
       <TestimonialsSection />
-      <FaqSection />
+      {/*<FaqSection />*/}
       <FaqSectionV2 />
       <Cta />
     </div>

@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { landingAssets } from "./assets";
 import { WordRotateHighlighter } from "../ui/word-rotate-highlighter";
 import { Container } from "../ui/container";
+import { ChatsCircleIcon } from "@phosphor-icons/react/dist/ssr";
 
 export function HeroSection() {
   return (
@@ -34,8 +35,12 @@ export function HeroSection() {
         {/* CTA Buttons */}
         <div className="flex flex-col gap-4 sm:flex-row my-6">
           <Button size="lg">
-            <span>Jadwalkan Konsultasi Gratis</span>
-            <MessageSquare className="size-4" />
+            <span>Jadwalkan Konsultasi gratis</span>
+            <ChatsCircleIcon
+              weight="duotone"
+              color="#ffffff"
+              className="size-5"
+            />
           </Button>
 
           <Button variant="subtle" size="lg">

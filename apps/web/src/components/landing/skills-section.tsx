@@ -44,21 +44,23 @@ export function SkillsSection() {
   ];
 
   return (
-    <Container className="max-w-7xl border p-20">
-      <h2 className="text-3xl font-bold text-center">
-        Fokus <span className="text-primary-500">Pembelajaran</span>
-      </h2>
-      <div className="flex w-full flex-wrap items-center justify-center gap-6">
-        {skills.map((skill, index) => (
-          <FieldCard
-            key={index}
-            title={skill.title}
-            description={skill.description}
-            color={skill.color}
-          />
-        ))}
-      </div>
-    </Container>
+    <section className="bg-primary-100 py-20">
+      <Container className="rounded-2xl max-w-7xl border pt-9 pb-20 bg-background-cream">
+        <h2 className="text-3xl font-bold text-center">
+          Fokus <span className="text-primary-500">Pembelajaran</span>
+        </h2>
+        <div className="flex w-full flex-wrap items-center justify-center gap-6">
+          {skills.map((skill, index) => (
+            <FieldCard
+              key={index}
+              title={skill.title}
+              description={skill.description}
+              color={skill.color}
+            />
+          ))}
+        </div>
+      </Container>
+    </section>
   );
 }
 
