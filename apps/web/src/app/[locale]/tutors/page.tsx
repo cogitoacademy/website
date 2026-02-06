@@ -31,9 +31,9 @@ async function TutorContent() {
 
   return (
     <main className="bg-background-primary min-h-screen">
-      <Container>
-        <div className="mb-8">
-          <h1 className="text-4xl font-bold mb-2">{t("title")}</h1>
+      <Container className="gap-y-15">
+        <div className="space-y-2">
+          <h1 className="text-4xl font-bold">{t("title")}</h1>
           <p className="text-muted-foreground">{t("description")}</p>
         </div>
 

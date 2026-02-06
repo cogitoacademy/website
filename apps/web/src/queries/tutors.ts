@@ -23,6 +23,29 @@ export const TUTORS_QUERY = defineQuery(`
   }
 `);
 
+export const FEATURED_TUTORS_QUERY = defineQuery(`
+  *[_type == "tutor"] | order(name asc)[0..3] {
+    _id,
+    name,
+    profilePicture {
+      asset->{
+        _id,
+        url,
+        altText
+      }
+    },
+    affiliation,
+    competitionFields[]->{
+      _id,
+      name,
+      coreCategory
+    },
+    locations,
+    achievements,
+    experiences
+  }
+`);
+
 // Locations are now enum strings, no need for separate query
 // Use LOCATIONS constant from @/lib/config/locations instead
 
