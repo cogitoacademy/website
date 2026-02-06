@@ -10,7 +10,7 @@ import { Button } from "./ui/button";
 
 const NAV_ITEMS = [
   { label: "#TutorJuara", href: "/tutors" },
-  { label: "Kalender Lomba", href: "/events" },
+  { label: "Kalender Lomba", href: "/calendar" },
   { label: "Playground", href: "/playground" },
 ];
 

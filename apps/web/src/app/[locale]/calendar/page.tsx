@@ -32,8 +32,8 @@ export default function CompetitionCalendarPage() {
   return (
     <>
       <NavbarResolver />
-      <Container className="z-1 relative">
-        <div className="mb-6 space-y-2">
+      <Container className="z-1 relative gap-y-15">
+        <div className="space-y-2">
           <h1 className="text-4xl font-bold">
             Temukan Panggung Duniamu Selanjutnya
           </h1>
