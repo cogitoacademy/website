@@ -1,4 +1,4 @@
-// import { EventsSection } from "@/components/landing/events-section";
+import { EventsSection } from "@/components/landing/events-section";
 // import { FaqSection } from "@/components/landing/faq-section";
 import { HeroSection } from "@/components/landing/hero-section";
 import { MethodsSection } from "@/components/landing/methods-section";
@@ -14,7 +14,7 @@ export default function HomePage() {
     <div className="w-full overflow-x-clip bg-background-cream">
       <HeroSection />
       {/*<PartnersCarousel />*/}
-      {/*<EventsSection />*/}
+      <EventsSection />
       <MethodsSection />
       <SkillsSection />
       <TutorsSection />
