@@ -32,20 +32,31 @@ export default function CompetitionCalendarPage() {
   return (
     <>
       <NavbarResolver />
-      <Container className="z-1 relative gap-y-15">
+      <main className="z-1 relative gap-y-15 max-w-7xl mx-auto px-4 space-y-15">
         <div className="space-y-2">
-          <h1 className="text-4xl font-bold">Temukan Panggung Duniamu Selanjutnya</h1>
+          <h1 className="text-4xl font-semibold">
+            Temukan{" "}
+            <span className="text-primary-500 font-extrabold italic">
+              Panggung Duniamu
+            </span>{" "}
+            Selanjutnya
+          </h1>
           <p className="max-w-2xl">
-            Dari kompetisi nasional hingga panggung internasional, kami menyediakan akses ke ribuan
-            peluang prestasi yang telah dikurasi secara sistematis untukmu.
+            Dari kompetisi nasional hingga panggung internasional, kami
+            menyediakan akses ke ribuan peluang prestasi yang telah dikurasi
+            secara sistematis untukmu.
           </p>
         </div>
         <Suspense
-          fallback={<div className="text-muted-foreground min-h-screen">Loading calendar...</div>}
+          fallback={
+            <div className="text-muted-foreground min-h-screen">
+              Loading calendar...
+            </div>
+          }
         >
           <CalendarContent />
         </Suspense>
-      </Container>
+      </main>
     </>
   );
 }

@@ -1,8 +1,18 @@
-import { InstagramLogoIcon, LinkedinLogoIcon, XLogoIcon } from "@phosphor-icons/react/dist/ssr";
+import {
+  InstagramLogoIcon,
+  LinkedinLogoIcon,
+  MapPinLineIcon,
+  XLogoIcon,
+} from "@phosphor-icons/react/dist/ssr";
 import Image from "next/image";
 import { Button } from "./ui/button";
 
 const SOCIALS = [
+  {
+    name: "Location",
+    href: "https://www.instagram.com/cogitoacademy/",
+    icon: <MapPinLineIcon className="size-6" />,
+  },
   {
     name: "Instagram",
     href: "https://www.instagram.com/cogitoacademy/",
@@ -29,10 +39,13 @@ export default function Footer() {
         preserveAspectRatio="none"
         className="absolute top-0 left-0 w-full h-60 -translate-y-full"
       >
-        <path d="M0,160 C240,0 1200,0 1440,160 L1440,160 L0,160 Z" className="fill-primary-200" />
+        <path
+          d="M0,160 C240,0 1200,0 1440,160 L1440,160 L0,160 Z"
+          className="fill-primary-200"
+        />
       </svg>
 
-      <section className="flex max-w-7xl mx-auto flex-col justify-between pt-72 pb-12 md:pb-16 md:flex-row items-center md:items-start gap-8">
+      <section className="flex max-w-7xl mx-auto flex-col justify-between pt-72 pb-12 md:pb-16 md:flex-row items-center md:items-start gap-8 px-4">
         {/* Left side - Logo */}
         <div className="flex flex-col items-center md:items-start">
           <Image
@@ -51,8 +64,17 @@ export default function Footer() {
           </p>
           <div className="flex gap-3">
             {SOCIALS.map((social) => (
-              <a key={social.name} href={social.href} target="_blank" rel="noopener noreferrer">
-                <Button size="icon-xl" variant="cream" className="cursor-pointer">
+              <a
+                key={social.name}
+                href={social.href}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Button
+                  size="icon-xl"
+                  variant="cream"
+                  className="cursor-pointer"
+                >
                   {social.icon}
                 </Button>
               </a>

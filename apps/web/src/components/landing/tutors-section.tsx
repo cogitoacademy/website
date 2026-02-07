@@ -13,13 +13,14 @@ export async function TutorsSection() {
       <div className="container mx-auto max-w-7xl px-4">
         <div className="flex flex-col items-center gap-8">
           {/* Header */}
-          <div className="text-center">
-            <h2 className="font-extrabold text-[32px] text-neutral-1000">
+          <div className="text-center *:text-pretty">
+            <h2 className="font-bold text-3xl text-neutral-1000">
               Dapatkan Strategi Langsung dari{" "}
               <span className="text-primary-500">Tangan Pertama</span>
             </h2>
             <p className="mx-auto max-w-3xl font-medium text-lg text-neutral-1000">
-              Para tutor siap mendampingimu untuk meraih juara di setiap kompetisi.
+              Para tutor siap mendampingimu untuk meraih juara di setiap
+              kompetisi.
             </p>
           </div>
 

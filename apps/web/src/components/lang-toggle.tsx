@@ -1,26 +1,38 @@
 "use client";
 
-import { buttonVariants } from "@/components/ui/button";
-import { Link, usePathname } from "@/i18n/routing";
-import { cn } from "@/lib/utils";
 import { GlobeIcon } from "@phosphor-icons/react/dist/ssr";
 import { useLocale } from "next-intl";
+import { type ButtonProps, buttonVariants } from "@/components/ui/button";
+import { Link, usePathname } from "@/i18n/routing";
+import { cn } from "@/lib/utils";
 
-export default function LanguageToggle() {
-  const locale = useLocale();
-  const pathname = usePathname();
+interface LanguageToggleProps {
+	className?: string;
+	variant?: ButtonProps["variant"];
+}
 
-  const targetLocale = locale === "en" ? "id" : "en";
+export default function LanguageToggle({
+	className,
+	variant = "default",
+}: LanguageToggleProps) {
+	const locale = useLocale();
+	const pathname = usePathname();
 
-  return (
-    <Link
-      href={pathname}
-      locale={targetLocale}
-      scroll={false}
-      className={cn(buttonVariants({ size: "lg" }), "transition-colors")}
-    >
-      <GlobeIcon className="size-5" />
-      {targetLocale.toUpperCase()}
-    </Link>
-  );
+	const targetLocale = locale === "en" ? "id" : "en";
+
+	return (
+		<Link
+			href={pathname}
+			locale={targetLocale}
+			scroll={false}
+			className={cn(
+				buttonVariants({ size: "lg", variant }),
+				"transition-colors",
+				className,
+			)}
+		>
+			<GlobeIcon className="size-5" />
+			{targetLocale.toUpperCase()}
+		</Link>
+	);
 }

@@ -5,6 +5,8 @@ import { motion } from "motion/react";
 import { ArrowUpRight } from "lucide-react";
 import { clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
+import { Badge } from "../ui/badge";
+import { SealQuestionIcon } from "@phosphor-icons/react/dist/ssr";
 
 function cn(...inputs: (string | undefined | null | false)[]) {
   return twMerge(clsx(inputs));
@@ -41,8 +43,22 @@ export default function FaqSectionV2() {
   const [activeIndex, setActiveIndex] = useState(0);
 
   return (
-    <section className="bg-background-primary">
-      <div className="w-full max-w-7xl mx-auto py-20 flex flex-col md:flex-row gap-4 h-[400px] *:select-none ">
+    <section className="bg-background-primary w-full max-w-7xl mx-auto px-4 py-20 gap-y-7.5 flex flex-col">
+      <div className="flex items-center justify-center flex-col space-y-2">
+        <Badge variant={"headline-cream"}>
+          <SealQuestionIcon className="size-5" /> <span>FAQ</span>
+        </Badge>
+        <h3 className="font-bold text-3xl leading-none">
+          Segala yang Perlu Kamu Tahu untuk{" "}
+          <span className="text-primary-500">Memulai</span>
+        </h3>
+        <p>
+          Kami juga siap membantu mendiskusikan rencana prestasimu secara
+          mendalam.
+        </p>
+      </div>
+
+      <div className="flex flex-col md:flex-row gap-4 h-[300px] *:select-none ">
         {faqData.map((item, index) => {
           const isActive = activeIndex === index;
 
@@ -86,13 +102,13 @@ export default function FaqSectionV2() {
                      Isinya cuma 'terpotong' oleh overflow parent.
                   */}
                   <div className="w-full flex-shrink-0 flex flex-col h-full">
-                    <h3 className="text-xl font-bold text-gray-900 mb-3 p-4 pb-0">
+                    <h3 className="text-base font-bold text-gray-900 mb-3 p-4 pb-0">
                       {item.question}
                     </h3>
 
                     <div className="flex-1 bg-white rounded-2xl p-6 overflow-hidden shadow-sm">
                       <div className="h-full overflow-y-auto pr-2 custom-scrollbar">
-                        <p className="text-gray-600 leading-relaxed whitespace-pre-line">
+                        <p className="text-gray-600 leading-relaxed whitespace-pre-line text-sm">
                           {item.answer}
                         </p>
                       </div>

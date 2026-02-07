@@ -1,9 +1,13 @@
 import { cn } from "@/lib/utils";
 import { Container } from "../ui/container";
-import { ArrowRightIcon } from "@phosphor-icons/react/dist/ssr";
+import {
+  ArrowRightIcon,
+  ListMagnifyingGlassIcon,
+} from "@phosphor-icons/react/dist/ssr";
 import Link from "next/link";
 import { Button } from "../ui/button";
 import Image from "next/image";
+import { Badge } from "../ui/badge";
 
 export function SkillsSection() {
   const skills = [
@@ -11,6 +15,11 @@ export function SkillsSection() {
       title: "Model United Nations",
       description: "Ahli negosiasi dan diplomasi global.",
       color: "tertiary-blue-400",
+    },
+    {
+      title: "Pidato",
+      description: "Bicara publik di berbagai tingkat.",
+      color: "tertiary-pink-300",
     },
     {
       title: "Olimpiade",
@@ -37,30 +46,28 @@ export function SkillsSection() {
       description: "Rancang inovasi bisnis masa depan.",
       color: "tertiary-green-600",
     },
-    {
-      title: "Pidato",
-      description: "Bicara publik di berbagai tingkat.",
-      color: "tertiary-pink-300",
-    },
   ];
 
   return (
-    <section className="bg-primary-100 py-20">
+    <section className="bg-primary-100 py-20 px-4">
       <Container className="rounded-2xl max-w-7xl border pt-9 pb-20 bg-tertiary-pink-500 relative overflow-hidden">
         <Image
           src="/images/landing/fields-background.webp"
           alt="Skills Section Image"
           width={1400}
           height={422}
-          className="absolute inset-0 z-3 w-full bottom-0"
+          className="absolute inset-0 z-3 w-full bottom-0 mt-auto"
         />
 
         <div className="absolute inset-0 z-0 w-full bottom-30 bg-tertiary-pink-300 [clip-path:polygon(0_0,100%_0,100%_65%,50%_100%,0%_65%)]" />
 
         <div className="absolute inset-0 z-0 w-full bottom-50 bg-background-cream [clip-path:polygon(0_0,100%_0,100%_60%,50%_100%,0%_60%)]" />
 
-        <div className="flex items-center justify-center flex-col">
-          <p>Jenis Perlombaan</p>
+        <div className="flex items-center justify-center flex-col relative z-3">
+          <Badge variant={"headline-cream"}>
+            <ListMagnifyingGlassIcon className="size-5" />{" "}
+            <span>Jenis Perlombaan</span>
+          </Badge>
           <h2 className="text-3xl font-bold text-center z-1 relative">
             Fokus <span className="text-primary-500">Pembelajaran</span>
           </h2>
@@ -91,7 +98,7 @@ function FieldCard({
 }) {
   return (
     <div
-      className={cn("h-fit max-h-25 w-88 rounded-xl pt-5", {
+      className={cn("h-fit max-h-25 w-88 rounded-xl pt-4", {
         "bg-tertiary-blue-400": color === "tertiary-blue-400",
         "bg-tertiary-red-600": color === "tertiary-red-600",
         "bg-tertiary-yellow-600": color === "tertiary-yellow-600",
@@ -103,12 +110,12 @@ function FieldCard({
     >
       <div className="rounded-xl bg-neutral-100 p-5 shadow-inset-top flex items-center justify-between">
         <div>
-          <h4 className="font-semibold text-lg">{title}</h4>
+          <h4 className="font-semibold text-lg leading-none">{title}</h4>
           <p className="text-sm">{description}</p>
         </div>
         <Link href={`#`}>
           <Button variant="gray" size="icon-lg">
-            <ArrowRightIcon weight="bold" />
+            <ArrowRightIcon weight="bold" className="text-neutral-1000" />
           </Button>
         </Link>
       </div>
