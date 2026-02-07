@@ -3,6 +3,7 @@ import { Container } from "../ui/container";
 import { ArrowRightIcon } from "@phosphor-icons/react/dist/ssr";
 import Link from "next/link";
 import { Button } from "../ui/button";
+import Image from "next/image";
 
 export function SkillsSection() {
   const skills = [
@@ -45,11 +46,26 @@ export function SkillsSection() {
 
   return (
     <section className="bg-primary-100 py-20">
-      <Container className="rounded-2xl max-w-7xl border pt-9 pb-20 bg-background-cream">
-        <h2 className="text-3xl font-bold text-center">
-          Fokus <span className="text-primary-500">Pembelajaran</span>
-        </h2>
-        <div className="flex w-full flex-wrap items-center justify-center gap-6">
+      <Container className="rounded-2xl max-w-7xl border pt-9 pb-20 bg-tertiary-pink-500 relative overflow-hidden">
+        <Image
+          src="/images/landing/fields-background.webp"
+          alt="Skills Section Image"
+          width={1400}
+          height={422}
+          className="absolute inset-0 z-3 w-full bottom-0"
+        />
+
+        <div className="absolute inset-0 z-0 w-full bottom-30 bg-tertiary-pink-300 [clip-path:polygon(0_0,100%_0,100%_65%,50%_100%,0%_65%)]" />
+
+        <div className="absolute inset-0 z-0 w-full bottom-50 bg-background-cream [clip-path:polygon(0_0,100%_0,100%_60%,50%_100%,0%_60%)]" />
+
+        <div className="flex items-center justify-center flex-col">
+          <p>Jenis Perlombaan</p>
+          <h2 className="text-3xl font-bold text-center z-1 relative">
+            Fokus <span className="text-primary-500">Pembelajaran</span>
+          </h2>
+        </div>
+        <div className="flex w-full flex-wrap items-center justify-center gap-6 z-3 relative">
           {skills.map((skill, index) => (
             <FieldCard
               key={index}

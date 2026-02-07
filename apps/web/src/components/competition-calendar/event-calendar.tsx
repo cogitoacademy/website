@@ -12,12 +12,7 @@ import {
   subMonths,
   subWeeks,
 } from "date-fns";
-import {
-  ChevronDownIcon,
-  ChevronLeftIcon,
-  ChevronRightIcon,
-  PlusIcon,
-} from "lucide-react";
+import { ChevronDownIcon, ChevronLeftIcon, ChevronRightIcon, PlusIcon } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 
 import {
@@ -65,11 +60,8 @@ export function EventCalendar({
 }: EventCalendarProps) {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [view, setView] = useState<CalendarView>(initialView);
-  const [isEventDetailsDialogOpen, setIsEventDetailsDialogOpen] =
-    useState(false);
-  const [selectedEvent, setSelectedEvent] = useState<CalendarEvent | null>(
-    null,
-  );
+  const [isEventDetailsDialogOpen, setIsEventDetailsDialogOpen] = useState(false);
+  const [selectedEvent, setSelectedEvent] = useState<CalendarEvent | null>(null);
 
   // Add keyboard shortcuts for view switching
   useEffect(() => {
@@ -162,9 +154,7 @@ export function EventCalendar({
           <span aria-hidden="true" className="max-[479px]:hidden min-md:hidden">
             {format(currentDate, "MMMM d, yyyy")}
           </span>
-          <span className="max-md:hidden">
-            {format(currentDate, "EEE MMMM d, yyyy")}
-          </span>
+          <span className="max-md:hidden">{format(currentDate, "EEE MMMM d, yyyy")}</span>
         </>
       );
     }
@@ -192,9 +182,7 @@ export function EventCalendar({
         } as React.CSSProperties
       }
     >
-      <CalendarDndProvider
-        onEventUpdate={readOnly || !onEventUpdate ? () => {} : onEventUpdate}
-      >
+      <CalendarDndProvider onEventUpdate={readOnly || !onEventUpdate ? () => {} : onEventUpdate}>
         <div
           className={cn(
             "flex items-center justify-between p-2 sm:p-4 bg-tertiary-pink-200 rounded-t-3xl",
@@ -208,44 +196,23 @@ export function EventCalendar({
               variant="cream"
               size="lg"
             >
-              <RiCalendarCheckLine
-                aria-hidden="true"
-                className="min-[480px]:hidden"
-                size={16}
-              />
+              <RiCalendarCheckLine aria-hidden="true" className="min-[480px]:hidden" size={16} />
               <span className="max-[479px]:sr-only">Today</span>
             </Button>
             <div className="flex items-center sm:gap-2">
-              <Button
-                aria-label="Previous"
-                onClick={handlePrevious}
-                size="icon"
-                variant="ghost"
-              >
+              <Button aria-label="Previous" onClick={handlePrevious} size="icon" variant="ghost">
                 <ChevronLeftIcon aria-hidden="true" size={16} />
               </Button>
-              <Button
-                aria-label="Next"
-                onClick={handleNext}
-                size="icon"
-                variant="ghost"
-              >
+              <Button aria-label="Next" onClick={handleNext} size="icon" variant="ghost">
                 <ChevronRightIcon aria-hidden="true" size={16} />
               </Button>
             </div>
-            <h2 className="font-semibold text-sm sm:text-lg md:text-xl">
-              {viewTitle}
-            </h2>
+            <h2 className="font-semibold text-sm sm:text-lg md:text-xl">{viewTitle}</h2>
           </div>
           <div className="flex items-center gap-2">
             <DropdownMenu>
               <DropdownMenuTrigger
-                render={
-                  <Button
-                    className="gap-1.5 max-[479px]:h-8"
-                    variant="outline"
-                  />
-                }
+                render={<Button className="gap-1.5 max-[479px]:h-8" variant="outline" />}
               >
                 <span>
                   <span aria-hidden="true" className="min-[480px]:hidden">
@@ -255,11 +222,7 @@ export function EventCalendar({
                     {view.charAt(0).toUpperCase() + view.slice(1)}
                   </span>
                 </span>
-                <ChevronDownIcon
-                  aria-hidden="true"
-                  className="-me-1 opacity-60"
-                  size={16}
-                />
+                <ChevronDownIcon aria-hidden="true" className="-me-1 opacity-60" size={16} />
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end" className="min-w-32">
                 <DropdownMenuItem onClick={() => setView("month")}>
@@ -284,11 +247,7 @@ export function EventCalendar({
                 }}
                 size="sm"
               >
-                <PlusIcon
-                  aria-hidden="true"
-                  className="sm:-ms-1 opacity-60"
-                  size={16}
-                />
+                <PlusIcon aria-hidden="true" className="sm:-ms-1 opacity-60" size={16} />
                 <span className="max-sm:sr-only">New event</span>
               </Button>
             )}

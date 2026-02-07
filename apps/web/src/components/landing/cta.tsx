@@ -16,18 +16,14 @@ export default function Cta() {
               Terbesar Dalam Dirimu
             </h2>
             <p className="text-base text-gray-700 mt-2 max-w-md">
-              Sampaikan pertanyaanmu langsung kepada konsultan ahli kami melalui
-              sesi diskusi gratis.
+              Sampaikan pertanyaanmu langsung kepada konsultan ahli kami melalui sesi diskusi
+              gratis.
             </p>
           </div>
           <div className="flex-1 h-full" />
           <Button size="lg" className="mt-auto mb-0">
             <span>Jadwalkan Konsultasi gratis</span>
-            <ChatsCircleIcon
-              weight="duotone"
-              color="#ffffff"
-              className="size-5"
-            />
+            <ChatsCircleIcon weight="duotone" color="#ffffff" className="size-5" />
           </Button>
         </div>
 

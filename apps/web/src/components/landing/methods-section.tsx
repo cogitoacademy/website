@@ -1,6 +1,3 @@
-import { Award, BookOpen, Briefcase, Check, Globe } from "lucide-react";
-import { landingAssets } from "./assets";
-
 export function MethodsSection() {
   return (
     <section className="max-w-7xl mx-auto py-20">

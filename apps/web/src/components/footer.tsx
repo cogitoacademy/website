@@ -5,7 +5,6 @@ import {
 } from "@phosphor-icons/react/dist/ssr";
 import Image from "next/image";
 import { Button } from "./ui/button";
-import { Container } from "./ui/container";
 
 const SOCIALS = [
   {

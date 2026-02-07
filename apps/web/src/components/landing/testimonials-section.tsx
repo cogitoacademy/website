@@ -44,8 +44,8 @@ export function TestimonialsSection() {
               <span className="text-primary-500">Tangan Pertama</span>
             </h2>
             <p className="mx-auto max-w-3xl font-medium text-lg text-neutral-1000">
-              Para ahli dan praktisi global yang siap mendampingimu meraih
-              standar juara dunia di setiap kompetisi.
+              Para ahli dan praktisi global yang siap mendampingimu meraih standar juara dunia di
+              setiap kompetisi.
             </p>
           </div>
 

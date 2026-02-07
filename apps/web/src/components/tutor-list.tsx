@@ -23,19 +23,15 @@ export default function TutorList({ tutors, categories }: TutorListProps) {
     return tutors.filter((tutor) => {
       const locationMatch =
         selectedLocations.length === 0 ||
-        (tutor.locations &&
-          tutor.locations.some((loc) => selectedLocations.includes(loc)));
+        (tutor.locations && tutor.locations.some((loc) => selectedLocations.includes(loc)));
 
       const categoryMatch =
         selectedCategories.length === 0 ||
         (tutor.competitionFields &&
-          tutor.competitionFields.some((cat) =>
-            selectedCategories.includes(cat._id),
-          ));
+          tutor.competitionFields.some((cat) => selectedCategories.includes(cat._id)));
 
       const searchMatch =
-        searchQuery === "" ||
-        tutor.name.toLowerCase().includes(searchQuery.toLowerCase());
+        searchQuery === "" || tutor.name.toLowerCase().includes(searchQuery.toLowerCase());
 
       return locationMatch && categoryMatch && searchMatch;
     });
