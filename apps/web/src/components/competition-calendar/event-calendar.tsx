@@ -29,7 +29,6 @@ import {
   WeekCellsHeight,
   WeekView,
 } from "@/components/competition-calendar";
-import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -38,15 +37,16 @@ import {
   DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { cn } from "@/lib/utils";
 
 export interface EventCalendarProps {
   events?: CalendarEvent[];
   readOnly?: boolean;
   className?: string;
   initialView?: CalendarView;
-  onEventAdd?: (event: CalendarEvent) => void;
-  onEventDelete?: (eventId: string) => void;
-  onEventUpdate?: (updatedEvent: CalendarEvent) => void;
+  onEventAdd?: (_date: Date) => void;
+  onEventDelete?: (_id: string) => void;
+  onEventUpdate?: (event: CalendarEvent) => void;
 }
 
 export function EventCalendar({
@@ -54,8 +54,8 @@ export function EventCalendar({
   readOnly = false,
   className,
   initialView = "month",
-  onEventAdd,
-  onEventDelete,
+  onEventAdd: _onEventAdd,
+  onEventDelete: _onEventDelete,
   onEventUpdate,
 }: EventCalendarProps) {
   const [currentDate, setCurrentDate] = useState(new Date());
@@ -173,7 +173,7 @@ export function EventCalendar({
 
   return (
     <div
-      className="flex flex-col rounded-3xl border has-data-[slot=month-view]:flex-1 bg-neutral-100"
+      className="flex flex-col rounded-3xl border bg-neutral-100 has-data-[slot=month-view]:flex-1"
       style={
         {
           "--event-gap": `${EventGap}px`,
@@ -185,13 +185,13 @@ export function EventCalendar({
       <CalendarDndProvider onEventUpdate={readOnly || !onEventUpdate ? () => {} : onEventUpdate}>
         <div
           className={cn(
-            "flex items-center justify-between p-2 sm:p-4 bg-tertiary-pink-200 rounded-t-3xl",
+            "flex items-center justify-between rounded-t-3xl bg-tertiary-pink-200 p-2 sm:p-4",
             className,
           )}
         >
           <div className="flex items-center gap-1 sm:gap-4">
             <Button
-              className="max-[479px]:aspect-square max-[479px]:p-0! text-neutral-1000"
+              className="text-neutral-1000 max-[479px]:aspect-square max-[479px]:p-0!"
               onClick={handleToday}
               variant="cream"
               size="lg"
@@ -247,7 +247,7 @@ export function EventCalendar({
                 }}
                 size="sm"
               >
-                <PlusIcon aria-hidden="true" className="sm:-ms-1 opacity-60" size={16} />
+                <PlusIcon aria-hidden="true" className="opacity-60 sm:-ms-1" size={16} />
                 <span className="max-sm:sr-only">New event</span>
               </Button>
             )}

@@ -1,4 +1,4 @@
-import { ChevronLeft, ChevronRight } from "lucide-react";
+// import { ChevronLeft, ChevronRight } from "lucide-react";
 import { landingAssets } from "./assets";
 
 export function TestimonialsSection() {
@@ -49,7 +49,7 @@ export function TestimonialsSection() {
             </p>
           </div>
 
-          <div>dasdas</div>
+          <div>{testimonials.length} testimonials available (UI pending)</div>
         </div>
       </div>
     </section>
