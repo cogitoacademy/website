@@ -1,85 +1,55 @@
-import type { CalendarEvent } from "@/components/competition-calendar/types";
-import { CORE_CATEGORIES, type CoreCategorySlug } from "@/lib/config/coreCategories";
-import type { SanityEvent } from "@/types/sanity/event";
+import type { Event, SanityEvent } from "@/types/sanity/event";
 
 /**
  * Extract localized value from Sanity internationalized array
  */
 function getLocalizedValue(
-  arr?: Array<{ _key: string; value: string }>,
-  locale: string = "id",
+	arr?: Array<{ _key: string; value: string }>,
+	locale = "id",
 ): string | undefined {
-  if (!arr || arr.length === 0) return undefined;
+	if (!arr || arr.length === 0) return undefined;
 
-  // Try to find the requested locale
-  const localized = arr.find((item) => item._key === locale);
-  if (localized) return localized.value;
+	const localized = arr.find((item) => item._key === locale);
+	if (localized) return localized.value;
 
-  // Fallback to first available value
-  return arr[0]?.value;
+	return arr[0]?.value;
 }
 
 /**
- * Transform Sanity Event to Calendar Event
+ * Compute event status based on date vs today
  */
-export function sanityToCalendarEvent(
-  sanityEvent: SanityEvent,
-  locale: string = "id",
-): CalendarEvent | null {
-  // Validate that event has at least one category with core category
-  const firstCategory = sanityEvent.categories?.[0];
-  if (!firstCategory?.coreCategory) {
-    console.warn(`Event ${sanityEvent._id} is missing core category, skipping`);
-    return null;
-  }
+function computeStatus(date: Date): "upcoming" | "past" {
+	const today = new Date();
+	today.setHours(0, 0, 0, 0);
 
-  // Transform categories with core category colors
-  const categories =
-    sanityEvent.categories?.map((cat) => {
-      const coreSlug = cat.coreCategory as CoreCategorySlug;
-      const coreData = CORE_CATEGORIES[coreSlug];
+	const eventDate = new Date(date);
+	eventDate.setHours(0, 0, 0, 0);
 
-      return {
-        name: cat.name,
-        coreCategory: cat.coreCategory,
-        color: coreData?.brandColor || "primary-500",
-      };
-    }) || [];
+	return eventDate >= today ? "upcoming" : "past";
+}
 
-  // Extract localized strings
-  const title = getLocalizedValue(sanityEvent.title, locale);
-  const description = getLocalizedValue(sanityEvent.description, locale);
-  const location = getLocalizedValue(sanityEvent.location, locale);
+/**
+ * Transform a Sanity Event document to a frontend Event
+ */
+export function sanityToEvent(sanityEvent: SanityEvent, locale = "id"): Event {
+	const title = getLocalizedValue(sanityEvent.title, locale);
+	const description = getLocalizedValue(sanityEvent.description, locale);
+	const place = getLocalizedValue(sanityEvent.place, locale);
+	const summary = getLocalizedValue(sanityEvent.summary, locale);
+	const date = new Date(sanityEvent.date);
 
-  // Parse dates
-  const startDate = new Date(sanityEvent.eventDate.startDate);
-  const endDate = new Date(sanityEvent.eventDate.endDate);
-
-  // Determine if all-day event (if time is exactly 00:00:00)
-  const isAllDay =
-    startDate.getHours() === 0 &&
-    startDate.getMinutes() === 0 &&
-    startDate.getSeconds() === 0 &&
-    endDate.getHours() === 0 &&
-    endDate.getMinutes() === 0 &&
-    endDate.getSeconds() === 0;
-
-  return {
-    id: sanityEvent._id,
-    title: title || "Untitled Event",
-    description,
-    start: startDate,
-    end: endDate,
-    allDay: isAllDay,
-    location,
-    categories,
-    educationLevels: sanityEvent.educationLevels?.map((level) => level.name) || [],
-    scale: sanityEvent.scale?.name,
-    organizer: sanityEvent.organizer,
-    registrationDeadline: sanityEvent.registrationDeadline
-      ? new Date(sanityEvent.registrationDeadline)
-      : undefined,
-    registrationLink: sanityEvent.registrationLink,
-    socialMediaLink: sanityEvent.socialMediaLink,
-  };
+	return {
+		id: sanityEvent._id,
+		title: title || "Untitled Event",
+		slug: sanityEvent.slug.current,
+		category: sanityEvent.category,
+		imageUrl: sanityEvent.imageUrl,
+		description,
+		date,
+		time: sanityEvent.time,
+		place,
+		summary,
+		registrationLink: sanityEvent.registrationLink,
+		status: computeStatus(date),
+	};
 }
