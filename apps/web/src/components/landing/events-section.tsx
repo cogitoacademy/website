@@ -20,16 +20,13 @@ const EVENT_DUMMY = [
 
 export function EventsSection() {
   return (
-    <div className="relative">
+    <div className="relative z-1">
       <svg
         viewBox="0 0 1440 160"
         preserveAspectRatio="none"
         className="absolute top-0 left-0 w-full h-30 -translate-y-full"
       >
-        <path
-          d="M0,160 C240,0 1200,0 1440,160 L1440,160 L0,160 Z"
-          className="fill-primary-100"
-        />
+        <path d="M0,160 C240,0 1200,0 1440,160 L1440,160 L0,160 Z" className="fill-primary-100" />
       </svg>
       <section className="bg-primary-100 pt-5 pb-20">
         <div className="mx-auto max-w-7xl">

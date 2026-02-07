@@ -22,9 +22,7 @@ function TutorJuaraDuniaCard() {
   return (
     <div className="bg-tertiary-red-200 aspect-312/251 rounded-2xl py-6 px-4 text-center">
       <p className="font-semibold">Tutor Juara Dunia</p>
-      <p className="text-sm">
-        Strategi rahasia dari mereka yang sudah berdiri di podium dunia.
-      </p>
+      <p className="text-sm">Strategi rahasia dari mereka yang sudah berdiri di podium dunia.</p>
     </div>
   );
 }

@@ -19,8 +19,7 @@ export async function TutorsSection() {
               <span className="text-primary-500">Tangan Pertama</span>
             </h2>
             <p className="mx-auto max-w-3xl font-medium text-lg text-neutral-1000">
-              Para tutor siap mendampingimu untuk meraih juara di setiap
-              kompetisi.
+              Para tutor siap mendampingimu untuk meraih juara di setiap kompetisi.
             </p>
           </div>
 

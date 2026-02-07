@@ -15,11 +15,7 @@ interface LogoCloudProps {
   displayCount?: number;
 }
 
-export function LogoCloud({
-  logos,
-  interval = 3000,
-  displayCount = 3,
-}: LogoCloudProps) {
+export function LogoCloud({ logos, interval = 3000, displayCount = 3 }: LogoCloudProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [key, setKey] = useState(0);
 
@@ -71,7 +67,7 @@ export function LogoCloud({
   };
 
   return (
-    <div className="w-full flex flex-col items-center justify-center py-6">
+    <div className="w-full flex flex-col items-center justify-center pb-6">
       <div className="w-full max-w-4xl px-4">
         <motion.div
           className="grid grid-cols-3 gap-6"

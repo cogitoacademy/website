@@ -79,10 +79,7 @@ export default function Header() {
                       {item.label}
                       <ChevronDown className="h-4 w-4" />
                     </DropdownMenuTrigger>
-                    <DropdownMenuContent
-                      align="start"
-                      className="w-48 bg-background-cream"
-                    >
+                    <DropdownMenuContent align="start" className="w-48 bg-background-cream">
                       {item.items.map((subItem) => (
                         <DropdownMenuItem
                           key={subItem.href}
