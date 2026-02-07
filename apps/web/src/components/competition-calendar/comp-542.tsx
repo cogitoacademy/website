@@ -1,7 +1,6 @@
 "use client";
 
 import { addDays, setHours, setMinutes, subDays } from "date-fns";
-import { useState } from "react";
 
 import { type CalendarEvent, EventCalendar } from "@/components/competition-calendar";
 
@@ -130,26 +129,5 @@ const sampleEvents: CalendarEvent[] = [
 ];
 
 export default function Component() {
-  const [events, setEvents] = useState<CalendarEvent[]>(sampleEvents);
-
-  const handleEventAdd = (event: CalendarEvent) => {
-    setEvents([...events, event]);
-  };
-
-  const handleEventUpdate = (updatedEvent: CalendarEvent) => {
-    setEvents(events.map((event) => (event.id === updatedEvent.id ? updatedEvent : event)));
-  };
-
-  const handleEventDelete = (eventId: string) => {
-    setEvents(events.filter((event) => event.id !== eventId));
-  };
-
-  return (
-    <EventCalendar
-      events={events}
-      onEventAdd={handleEventAdd}
-      onEventDelete={handleEventDelete}
-      onEventUpdate={handleEventUpdate}
-    />
-  );
+  return <EventCalendar events={sampleEvents} />;
 }
