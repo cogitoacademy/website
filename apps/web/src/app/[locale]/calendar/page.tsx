@@ -1,62 +1,65 @@
 import { Suspense } from "react";
-import { Container } from "@/components/ui/container";
-import CalendarClient from "./calendar";
+import type { CalendarCompetition } from "@/components/competition-calendar/types";
 import NavbarResolver from "@/components/navbar-resolver";
+import { sanityToCalendarCompetition } from "@/lib/transforms/competitionTransform";
+import { COMPETITIONS_QUERY } from "@/queries/competitions";
 import { client } from "@/sanity/client";
-import { EVENTS_QUERY } from "@/queries/events";
-import { sanityToCalendarEvent } from "@/lib/transforms/eventTransform";
-import type { SanityEvent } from "@/types/sanity/event";
-import type { CalendarEvent } from "@/components/competition-calendar/types";
+import type { SanityCompetition } from "@/types/sanity/competition";
+import CalendarClient from "./calendar";
 
 async function CalendarContent() {
-  console.log("🔍 Fetching events from Sanity (server-side)...");
+	console.log("Fetching competitions from Sanity (server-side)...");
 
-  try {
-    const sanityEvents = await client.fetch<SanityEvent[]>(EVENTS_QUERY);
-    console.log("✅ Sanity events fetched:", sanityEvents.length);
+	try {
+		const sanityCompetitions =
+			await client.fetch<SanityCompetition[]>(COMPETITIONS_QUERY);
+		console.log("Sanity competitions fetched:", sanityCompetitions.length);
 
-    const calendarEvents = sanityEvents
-      .map((e) => sanityToCalendarEvent(e))
-      .filter(Boolean) as CalendarEvent[];
+		const calendarCompetitions = sanityCompetitions
+			.map((c) => sanityToCalendarCompetition(c))
+			.filter(Boolean) as CalendarCompetition[];
 
-    console.log("✅ Transformed calendar events:", calendarEvents.length);
+		console.log(
+			"Transformed calendar competitions:",
+			calendarCompetitions.length,
+		);
 
-    return <CalendarClient initialEvents={calendarEvents} />;
-  } catch (error) {
-    console.error("❌ Failed to fetch events:", error);
-    return <CalendarClient initialEvents={[]} />;
-  }
+		return <CalendarClient initialCompetitions={calendarCompetitions} />;
+	} catch (error) {
+		console.error("Failed to fetch competitions:", error);
+		return <CalendarClient initialCompetitions={[]} />;
+	}
 }
 
 export default function CompetitionCalendarPage() {
-  return (
-    <>
-      <NavbarResolver />
-      <main className="z-1 relative gap-y-15 max-w-7xl mx-auto px-4 space-y-15">
-        <div className="space-y-2">
-          <h1 className="text-4xl font-semibold">
-            Temukan{" "}
-            <span className="text-primary-500 font-extrabold italic">
-              Panggung Duniamu
-            </span>{" "}
-            Selanjutnya
-          </h1>
-          <p className="max-w-2xl">
-            Dari kompetisi nasional hingga panggung internasional, kami
-            menyediakan akses ke ribuan peluang prestasi yang telah dikurasi
-            secara sistematis untukmu.
-          </p>
-        </div>
-        <Suspense
-          fallback={
-            <div className="text-muted-foreground min-h-screen">
-              Loading calendar...
-            </div>
-          }
-        >
-          <CalendarContent />
-        </Suspense>
-      </main>
-    </>
-  );
+	return (
+		<>
+			<NavbarResolver />
+			<main className="relative z-1 mx-auto max-w-7xl gap-y-15 space-y-15 px-4">
+				<div className="space-y-2">
+					<h1 className="font-semibold text-4xl">
+						Temukan{" "}
+						<span className="font-extrabold text-primary-500 italic">
+							Panggung Duniamu
+						</span>{" "}
+						Selanjutnya
+					</h1>
+					<p className="max-w-2xl">
+						Dari kompetisi nasional hingga panggung internasional, kami
+						menyediakan akses ke ribuan peluang prestasi yang telah dikurasi
+						secara sistematis untukmu.
+					</p>
+				</div>
+				<Suspense
+					fallback={
+						<div className="min-h-screen text-muted-foreground">
+							Loading calendar...
+						</div>
+					}
+				>
+					<CalendarContent />
+				</Suspense>
+			</main>
+		</>
+	);
 }

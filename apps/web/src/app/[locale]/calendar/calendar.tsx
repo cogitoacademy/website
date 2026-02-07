@@ -1,11 +1,16 @@
 "use client";
 
-import { type CalendarEvent, EventCalendar } from "@/components/competition-calendar";
+import {
+	type CalendarCompetition,
+	EventCalendar,
+} from "@/components/competition-calendar";
 
 interface CalendarClientProps {
-  initialEvents: CalendarEvent[];
+	initialCompetitions: CalendarCompetition[];
 }
 
-export default function CalendarClient({ initialEvents }: CalendarClientProps) {
-  return <EventCalendar events={initialEvents} readOnly />;
+export default function CalendarClient({
+	initialCompetitions,
+}: CalendarClientProps) {
+	return <EventCalendar events={initialCompetitions} readOnly />;
 }
