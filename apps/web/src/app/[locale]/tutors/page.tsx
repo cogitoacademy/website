@@ -31,7 +31,7 @@ async function TutorContent() {
 
   return (
     <main className="bg-background-primary min-h-screen">
-      <Container className="gap-y-15">
+      <Container className="gap-y-15 max-w-7xl">
         <div className="space-y-2">
           <h1 className="text-4xl font-bold">{t("title")}</h1>
           <p className="text-muted-foreground">{t("description")}</p>
@@ -50,7 +50,7 @@ export default function TutorsPage() {
       <Suspense
         fallback={
           <div className="min-h-screen bg-background-primary">
-            <div className="container mx-auto">
+            <div className="max-w-7xl px-4 mx-auto">
               <div className="mb-8 space-y-2">
                 <Skeleton className="h-12 w-64" />
                 <Skeleton className="h-6 w-96" />

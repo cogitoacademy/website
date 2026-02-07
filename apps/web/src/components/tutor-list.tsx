@@ -23,15 +23,19 @@ export default function TutorList({ tutors, categories }: TutorListProps) {
     return tutors.filter((tutor) => {
       const locationMatch =
         selectedLocations.length === 0 ||
-        (tutor.locations && tutor.locations.some((loc) => selectedLocations.includes(loc)));
+        (tutor.locations &&
+          tutor.locations.some((loc) => selectedLocations.includes(loc)));
 
       const categoryMatch =
         selectedCategories.length === 0 ||
         (tutor.competitionFields &&
-          tutor.competitionFields.some((cat) => selectedCategories.includes(cat._id)));
+          tutor.competitionFields.some((cat) =>
+            selectedCategories.includes(cat._id),
+          ));
 
       const searchMatch =
-        searchQuery === "" || tutor.name.toLowerCase().includes(searchQuery.toLowerCase());
+        searchQuery === "" ||
+        tutor.name.toLowerCase().includes(searchQuery.toLowerCase());
 
       return locationMatch && categoryMatch && searchMatch;
     });
@@ -80,7 +84,7 @@ export default function TutorList({ tutors, categories }: TutorListProps) {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4 }}
-          className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4"
+          className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
         >
           {filteredTutors.map((tutor) => (
             <TutorCard key={tutor._id} tutor={tutor} />

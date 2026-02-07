@@ -1,16 +1,14 @@
 "use client";
 
+import { MapPinIcon, RadioIcon, XIcon } from "lucide-react";
 import Image from "next/image";
-import { useLocale } from "next-intl";
-import { useTranslations } from "next-intl";
-import type { Tutor } from "@/types/tutor";
+import { useLocale, useTranslations } from "next-intl";
+import { Button } from "@/components/ui/button";
 import { getCoreCategoryBadgeColor } from "@/lib/colors/brandColors";
-import { MapPinIcon } from "@phosphor-icons/react/dist/ssr";
+import type { Tutor } from "@/types/tutor";
 import {
   ResponsiveModal,
   ResponsiveModalContent,
-  ResponsiveModalDescription,
-  ResponsiveModalHeader,
   ResponsiveModalTitle,
 } from "./ui/responsive-modal";
 
@@ -24,101 +22,147 @@ interface TutorDetailModalProps {
  * Helper: ambil value berdasarkan locale
  * fallback ke item pertama kalau locale ga ketemu
  */
-const getLocalizedValue = (arr?: { _key: string; value: string }[], locale?: string) =>
-  arr?.find((item) => item._key === locale)?.value || arr?.[0]?.value || "";
+const getLocalizedValue = (
+  arr?: { _key: string; value: string }[],
+  locale?: string,
+) => arr?.find((item) => item._key === locale)?.value || arr?.[0]?.value || "";
 
-export default function TutorDetailModal({ tutor, open, onOpenChange }: TutorDetailModalProps) {
+export default function TutorDetailModal({
+  tutor,
+  open,
+  onOpenChange,
+}: TutorDetailModalProps) {
   const locale = useLocale();
   const t = useTranslations("tutors");
 
   // Normalized data
   const affiliation = getLocalizedValue(tutor.affiliation, locale);
-  const achievements = tutor.achievements?.map((a) => getLocalizedValue(a.text, locale)) || [];
-  const experiences = tutor.experiences?.map((e) => getLocalizedValue(e.text, locale)) || [];
+  const achievements =
+    tutor.achievements?.map((a) => getLocalizedValue(a.text, locale)) || [];
+  const experiences =
+    tutor.experiences?.map((e) => getLocalizedValue(e.text, locale)) || [];
+
+  const badges = tutor.competitionFields?.map((field) => (
+    <span
+      key={field._id}
+      className={`inline-flex items-center rounded px-2.5 py-0.5 font-medium text-xs ${getCoreCategoryBadgeColor(
+        field.coreCategory,
+      )}`}
+    >
+      {field.name || "Unknown Field"}
+    </span>
+  ));
 
   return (
     <ResponsiveModal open={open} onOpenChange={onOpenChange}>
-      <ResponsiveModalContent side="bottom" className="max-h-[90vh] overflow-y-auto">
-        <ResponsiveModalHeader>
-          {/* Profile Picture and Name */}
-          <div className="flex flex-col items-center gap-4 mb-4">
-            <div className="relative h-32 w-32 rounded-full overflow-hidden bg-muted shrink-0">
-              <Image
-                src={tutor.profilePicture.asset.url}
-                alt={tutor.profilePicture.asset.altText || tutor.name}
-                fill
-                className="object-cover"
-              />
-            </div>
-            <div className="text-center">
-              <ResponsiveModalTitle>{tutor.name}</ResponsiveModalTitle>
+      <ResponsiveModalContent
+        side="bottom"
+        className="flex max-h-[95vh] w-full max-w-full flex-col gap-0 overflow-hidden border-none bg-background p-0 sm:w-[calc(100%-2rem)] sm:max-w-5xl sm:flex-row"
+        showCloseButton={false}
+      >
+        {/* Left/Top: Image Section */}
+        <div className="relative h-[300px] shrink-0 overflow-hidden bg-[#A855F7] sm:h-auto sm:w-2/5">
+          {/* Main Image */}
+          {tutor.profilePicture?.asset?.url && (
+            <Image
+              src={tutor.profilePicture.asset.url}
+              alt={tutor.profilePicture.asset.altText || tutor.name}
+              fill
+              className="object-cover object-top"
+              sizes="(max-width: 640px) 100vw, 40vw"
+            />
+          )}
+
+          {/* Gradient Overlay for Text Readability (Mobile) */}
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/60 to-transparent sm:hidden" />
+
+          {/* Mobile Badges Overlay */}
+          <div className="absolute right-4 bottom-4 left-4 z-10 flex flex-wrap gap-2 sm:hidden">
+            {badges}
+          </div>
+
+          {/* Custom Close Button */}
+          <Button
+            variant="secondary"
+            size="icon"
+            className="absolute top-4 right-4 z-20 h-8 w-8 rounded-md bg-white/90 text-black shadow-sm hover:bg-white sm:right-auto sm:left-4"
+            onClick={() => onOpenChange(false)}
+          >
+            <XIcon className="h-4 w-4" />
+            <span className="sr-only">Close</span>
+          </Button>
+        </div>
+
+        {/* Right/Bottom: Content Section */}
+        <div className="flex-1 overflow-y-auto bg-background">
+          <div className="space-y-6 p-6">
+            {/* Header Info */}
+            <div className="space-y-3">
+              <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+                <ResponsiveModalTitle className="font-bold text-2xl text-foreground tracking-tight sm:text-3xl">
+                  {tutor.name}
+                </ResponsiveModalTitle>
+
+                {/* Desktop Badges */}
+                <div className="hidden max-w-[50%] flex-wrap justify-end gap-2 sm:flex">
+                  {badges}
+                </div>
+              </div>
+
               {affiliation && (
-                <ResponsiveModalDescription className="mt-2">
+                <p className="font-medium text-base text-muted-foreground">
                   {affiliation}
-                </ResponsiveModalDescription>
+                </p>
+              )}
+
+              {/* Locations / Status */}
+              <div className="flex flex-wrap gap-3 pt-1">
+                <div className="inline-flex items-center gap-2 rounded-md bg-muted/50 px-3 py-1.5 font-medium text-muted-foreground text-sm">
+                  <RadioIcon className="h-4 w-4" />
+                  <span>Online</span>
+                </div>
+                {tutor.locations && tutor.locations.length > 0 && (
+                  <div className="inline-flex items-center gap-2 rounded-md bg-muted/50 px-3 py-1.5 font-medium text-muted-foreground text-sm">
+                    <MapPinIcon className="h-4 w-4" />
+                    <span className="capitalize">
+                      {tutor.locations
+                        .map((loc) => loc.replace(/_/g, " "))
+                        .join(", ")}
+                    </span>
+                  </div>
+                )}
+              </div>
+            </div>
+
+            {/* Content Columns */}
+            <div className="grid grid-cols-1 gap-4 pt-2 sm:grid-cols-2">
+              {achievements.length > 0 && (
+                <div className="h-full space-y-3 rounded-xl bg-[#FFF5EB] p-5">
+                  <h3 className="font-semibold text-base text-foreground">
+                    Rekam Jejak Prestasi
+                  </h3>
+                  <ul className="list-outside list-disc space-y-2 pl-4 text-muted-foreground/90 text-sm leading-relaxed">
+                    {achievements.map((item, index) => (
+                      <li key={index}>{item}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
+              {experiences.length > 0 && (
+                <div className="h-full space-y-3 rounded-xl bg-[#FFF5EB] p-5">
+                  <h3 className="font-semibold text-base text-foreground">
+                    {t("experiences") || "Pengalaman"}
+                  </h3>
+                  <ul className="list-outside list-disc space-y-2 pl-4 text-muted-foreground/90 text-sm leading-relaxed">
+                    {experiences.map((item, index) => (
+                      <li key={index}>{item}</li>
+                    ))}
+                  </ul>
+                </div>
               )}
             </div>
           </div>
-        </ResponsiveModalHeader>
-
-        <div className="space-y-6">
-          {/* Locations */}
-          {tutor.locations && tutor.locations.length > 0 && (
-            <div className="space-y-2">
-              <h4 className="text-sm font-semibold">{t("location")}</h4>
-              <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                <MapPinIcon className="h-4 w-4 shrink-0" />
-                <span className="capitalize">
-                  {tutor.locations.map((loc) => loc.replace(/_/g, " ")).join(", ")}
-                </span>
-              </div>
-            </div>
-          )}
-
-          {/* Competition Fields */}
-          {tutor.competitionFields?.length > 0 && (
-            <div className="space-y-2">
-              <h4 className="text-sm font-semibold">{t("competitionField")}</h4>
-              <div className="flex flex-wrap gap-2">
-                {tutor.competitionFields.map((field) => (
-                  <span
-                    key={field._id}
-                    className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium border ${getCoreCategoryBadgeColor(field.coreCategory)}`}
-                  >
-                    {field.name || "Unknown Field"}
-                  </span>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {/* Achievements */}
-          {achievements.length > 0 && (
-            <div className="space-y-2">
-              <h4 className="text-sm font-semibold">{t("achievements")}</h4>
-              <ul className="space-y-2 list-disc list-outside pl-5">
-                {achievements.map((achievement, index) => (
-                  <li key={index} className="text-sm text-muted-foreground">
-                    <span>{achievement}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
-
-          {/* Experiences */}
-          {experiences.length > 0 && (
-            <div className="space-y-2">
-              <h4 className="text-sm font-semibold">{t("experiences")}</h4>
-              <ul className="space-y-2 list-disc list-outside pl-5">
-                {experiences.map((experience, index) => (
-                  <li key={index} className="text-sm text-muted-foreground">
-                    <span className="flex items-start gap-2">{experience}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
         </div>
       </ResponsiveModalContent>
     </ResponsiveModal>

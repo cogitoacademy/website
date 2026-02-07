@@ -21,10 +21,8 @@ const badgeVariants = cva(
         link: "text-primary underline-offset-4 hover:underline",
         // Competition Badge
         tutor: "italic rounded-md py-1",
-        "headline-primary":
-          "rounded-md bg-background-primary px-2.5 py-2 leading-none",
-        "headline-cream":
-          "rounded-md bg-background-cream px-2.5 py-2 leading-none",
+        "headline-primary": "rounded-md bg-background-primary px-2.5 py-2",
+        "headline-cream": "rounded-md bg-background-cream px-2.5 py-2",
       },
     },
     defaultVariants: {
