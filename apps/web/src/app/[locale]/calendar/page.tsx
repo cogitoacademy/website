@@ -31,7 +31,7 @@ export default function CompetitionCalendarPage() {
   return (
     <>
       <NavbarResolver />
-      <main className="relative z-1 mx-auto max-w-7xl gap-y-15 space-y-15 px-4">
+      <main className="relative z-3 mx-auto max-w-7xl gap-y-15 space-y-15 px-4">
         <div className="space-y-2">
           <h1 className="font-semibold text-4xl">
             Temukan <span className="font-extrabold text-primary-500 italic">Panggung Duniamu</span>{" "}

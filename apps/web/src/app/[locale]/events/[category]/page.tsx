@@ -96,7 +96,7 @@ export default async function EventCategoryPage({ params }: Props) {
   return (
     <>
       <NavbarResolver />
-      <main className="relative z-1 mx-auto max-w-7xl px-4 pb-20">
+      <main className="relative z-3 mx-auto max-w-7xl px-4 pb-20">
         {/* Hero Section */}
         <section className="py-12 md:py-20">
           <div className="space-y-4">

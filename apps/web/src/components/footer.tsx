@@ -59,7 +59,12 @@ export default function Footer() {
         </svg>
       )}
 
-      <section className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-8 px-4 pt-72 pb-12 md:flex-row md:items-start md:pb-16">
+      <section
+        className={cn(
+          "mx-auto flex max-w-7xl flex-col items-center justify-between gap-8 px-4 pb-12 md:flex-row md:items-start md:pb-16",
+          isContactPage ? "pt-30" : " pt-72",
+        )}
+      >
         {/* Left side - Logo */}
         <div className="flex flex-col items-center md:items-start">
           <Image

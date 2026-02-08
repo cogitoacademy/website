@@ -35,8 +35,8 @@ export default function ContactPage() {
           <span className="text-primary-500 italic font-extrabold">Cogito Academy</span>
         </h1>
         <p className="max-w-lg mt-2 lg:mt-5">
-          Bergabunglah dalam perjalanan kami mencetak generasi unggul yang
-          beneran jago di bidangnya dan siap berprestasi.
+          Bergabunglah dalam perjalanan kami mencetak generasi unggul yang beneran jago di bidangnya
+          dan siap berprestasi.
         </p>
       </div>
       <section className="mx-auto min-h-[80svh] w-full max-w-[calc(80rem-32px)] bg-primary-100 p-15 rounded-4xl space-y-4 lg:space-y-7.5">
@@ -72,11 +72,7 @@ export default function ContactPage() {
         <div className="flex flex-wrap items-center justify-center gap-6">
           {BUTTON_CONTENT.map((button, index) => (
             <a key={index} href={button.href as string}>
-              <Button
-                className="cursor-pointer text-base font-normal"
-                variant="primary"
-                size="lg"
-              >
+              <Button className="cursor-pointer text-base font-normal" variant="primary" size="lg">
                 {button.icon}
                 {button.label}
               </Button>
