@@ -8,7 +8,7 @@ export default function Cta() {
   return (
     <section className="relative bg-primary-100 py-20 px-4">
       {/*<Container>*/}
-      <div className="relative z-1 mx-auto h-[383px] max-w-7xl overflow-visible rounded-3xl bg-neutral-100 p-10">
+      <div className="relative z-2 mx-auto h-[383px] max-w-[calc(80rem-2rem)] overflow-visible rounded-3xl bg-neutral-100 p-10">
         {/* Left Content */}
         <div className="flex h-full flex-col items-start justify-between">
           <div>

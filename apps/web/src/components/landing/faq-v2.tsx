@@ -43,100 +43,102 @@ export default function FaqSectionV2() {
   const [activeIndex, setActiveIndex] = useState(0);
 
   return (
-    <section className="bg-background-primary w-full max-w-7xl mx-auto px-4 py-20 gap-y-7.5 flex flex-col">
-      <div className="flex items-center justify-center flex-col space-y-2">
-        <Badge variant={"headline-cream"}>
-          <SealQuestionIcon className="size-5" /> <span>FAQ</span>
-        </Badge>
-        <h3 className="font-bold text-3xl leading-none">
-          Segala yang Perlu Kamu Tahu untuk <span className="text-primary-500">Memulai</span>
-        </h3>
-        <p>Kami juga siap membantu mendiskusikan rencana prestasimu secara mendalam.</p>
-      </div>
+    <section className="bg-background-primary">
+      <div className="w-full max-w-7xl mx-auto px-4 py-20 gap-y-7.5 flex flex-col">
+        <div className="flex items-center justify-center flex-col space-y-2">
+          <Badge variant={"headline-cream"}>
+            <SealQuestionIcon className="size-5" /> <span>FAQ</span>
+          </Badge>
+          <h3 className="font-bold text-3xl leading-none">
+            Segala yang Perlu Kamu Tahu untuk <span className="text-primary-500">Memulai</span>
+          </h3>
+          <p>Kami juga siap membantu mendiskusikan rencana prestasimu secara mendalam.</p>
+        </div>
 
-      <div className="flex flex-col md:flex-row gap-4 h-[300px] *:select-none ">
-        {faqData.map((item, index) => {
-          const isActive = activeIndex === index;
+        <div className="flex flex-col md:flex-row gap-4 h-[300px] *:select-none ">
+          {faqData.map((item, index) => {
+            const isActive = activeIndex === index;
 
-          return (
-            <motion.div
-              key={item.id}
-              // UPDATE 1: Hapus prop 'layout'
-              // UPDATE 2: Animate flex value-nya langsung
-              animate={{
-                flex: isActive ? 3 : 1,
-                backgroundColor: isActive ? "#E89AB8" : "#FFFBF7",
-              }}
-              transition={{
-                duration: 0.4,
-                ease: "easeInOut", // Pakai easeInOut biar lebih natural daripada spring utk width
-              }}
-              onClick={() => setActiveIndex(index)}
-              className={cn(
-                "relative rounded-3xl cursor-pointer overflow-hidden border border-gray-100 shadow-sm",
-                // Hapus transition-colors manual CSS, biarkan Motion yg handle via animate prop di atas
-                !isActive && "hover:bg-white",
-              )}
-            >
-              {/* Content Wrapper */}
-              <div className="h-full w-full relative">
-                {/* ACTIVE STATE CONTENT */}
-                {/* Gunakan absolute positioning agar transisinya cross-fade, bukan shifting */}
-                <motion.div
-                  initial={false}
-                  animate={{
-                    opacity: isActive ? 1 : 0,
-                    zIndex: isActive ? 10 : 0,
-                  }}
-                  transition={{ duration: 0.3, delay: isActive ? 0.2 : 0 }} // Delay dikit biar smooth pas kebuka
-                  className="absolute inset-0 flex flex-col"
-                  style={{ pointerEvents: isActive ? "auto" : "none" }}
-                >
-                  {/* UPDATE 3: THE ANTI-SQUASH TRICK
-                     Wrapper ini punya lebar FIX (min-w).
-                     Jadi saat card menyusut, isinya TIDAK ikut menyusut/gepeng.
-                     Isinya cuma 'terpotong' oleh overflow parent.
-                  */}
-                  <div className="w-full flex-shrink-0 flex flex-col h-full">
-                    <h3 className="text-base font-bold text-gray-900 mb-3 p-4 pb-0">
-                      {item.question}
-                    </h3>
+            return (
+              <motion.div
+                key={item.id}
+                // UPDATE 1: Hapus prop 'layout'
+                // UPDATE 2: Animate flex value-nya langsung
+                animate={{
+                  flex: isActive ? 3 : 1,
+                  backgroundColor: isActive ? "#E89AB8" : "#FFFBF7",
+                }}
+                transition={{
+                  duration: 0.4,
+                  ease: "easeInOut", // Pakai easeInOut biar lebih natural daripada spring utk width
+                }}
+                onClick={() => setActiveIndex(index)}
+                className={cn(
+                  "relative rounded-3xl cursor-pointer overflow-hidden border border-gray-100 shadow-sm",
+                  // Hapus transition-colors manual CSS, biarkan Motion yg handle via animate prop di atas
+                  !isActive && "hover:bg-white",
+                )}
+              >
+                {/* Content Wrapper */}
+                <div className="h-full w-full relative">
+                  {/* ACTIVE STATE CONTENT */}
+                  {/* Gunakan absolute positioning agar transisinya cross-fade, bukan shifting */}
+                  <motion.div
+                    initial={false}
+                    animate={{
+                      opacity: isActive ? 1 : 0,
+                      zIndex: isActive ? 10 : 0,
+                    }}
+                    transition={{ duration: 0.3, delay: isActive ? 0.2 : 0 }} // Delay dikit biar smooth pas kebuka
+                    className="absolute inset-0 flex flex-col"
+                    style={{ pointerEvents: isActive ? "auto" : "none" }}
+                  >
+                    {/* UPDATE 3: THE ANTI-SQUASH TRICK
+                       Wrapper ini punya lebar FIX (min-w).
+                       Jadi saat card menyusut, isinya TIDAK ikut menyusut/gepeng.
+                       Isinya cuma 'terpotong' oleh overflow parent.
+                    */}
+                    <div className="w-full flex-shrink-0 flex flex-col h-full">
+                      <h3 className="text-base font-bold text-gray-900 mb-3 p-4 pb-0">
+                        {item.question}
+                      </h3>
 
-                    <div className="flex-1 bg-white rounded-2xl p-6 overflow-hidden shadow-sm">
-                      <div className="h-full overflow-y-auto pr-2 custom-scrollbar">
-                        <p className="text-gray-600 leading-relaxed whitespace-pre-line text-sm">
-                          {item.answer}
-                        </p>
+                      <div className="flex-1 bg-white rounded-2xl p-6 overflow-hidden shadow-sm">
+                        <div className="h-full overflow-y-auto pr-2 custom-scrollbar">
+                          <p className="text-gray-600 leading-relaxed whitespace-pre-line text-sm">
+                            {item.answer}
+                          </p>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </motion.div>
+                  </motion.div>
 
-                {/* INACTIVE STATE CONTENT */}
-                <motion.div
-                  initial={false}
-                  animate={{
-                    opacity: isActive ? 0 : 1,
-                    zIndex: isActive ? 0 : 10,
-                  }}
-                  transition={{ duration: 0.2 }}
-                  className="absolute inset-0 p-6 flex flex-col justify-between bg-white"
-                >
-                  <div className="self-end">
-                    {/* Icon diputar dikit biar interaktif */}
-                    <ArrowUpRight className="w-6 h-6 text-gray-800" />
-                  </div>
-                  <div>
-                    {/* Line clamp biar teks ga overflow pas sempit banget */}
-                    <p className="text-gray-600 font-medium leading-snug line-clamp-3">
-                      {item.question}
-                    </p>
-                  </div>
-                </motion.div>
-              </div>
-            </motion.div>
-          );
-        })}
+                  {/* INACTIVE STATE CONTENT */}
+                  <motion.div
+                    initial={false}
+                    animate={{
+                      opacity: isActive ? 0 : 1,
+                      zIndex: isActive ? 0 : 10,
+                    }}
+                    transition={{ duration: 0.2 }}
+                    className="absolute inset-0 p-6 flex flex-col justify-between bg-white"
+                  >
+                    <div className="self-end">
+                      {/* Icon diputar dikit biar interaktif */}
+                      <ArrowUpRight className="w-6 h-6 text-gray-800" />
+                    </div>
+                    <div>
+                      {/* Line clamp biar teks ga overflow pas sempit banget */}
+                      <p className="text-gray-600 font-medium leading-snug line-clamp-3">
+                        {item.question}
+                      </p>
+                    </div>
+                  </motion.div>
+                </div>
+              </motion.div>
+            );
+          })}
+        </div>
       </div>
     </section>
   );

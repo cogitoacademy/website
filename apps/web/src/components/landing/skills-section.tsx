@@ -1,4 +1,4 @@
-import { ArrowRightIcon, ListMagnifyingGlassIcon } from "@phosphor-icons/react/dist/ssr";
+import { ArrowRightIcon, MedalIcon } from "@phosphor-icons/react/dist/ssr";
 import Image from "next/image";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
@@ -47,7 +47,7 @@ export function SkillsSection() {
 
   return (
     <section className="bg-primary-100 px-4 py-20">
-      <Container className="relative max-w-7xl overflow-hidden rounded-2xl border bg-tertiary-pink-500 pt-9 pb-20">
+      <Container className="relative max-w-[calc(80rem-2rem)] overflow-hidden rounded-2xl border bg-tertiary-pink-500 pt-9 pb-20">
         <Image
           src="/images/landing/fields-background.webp"
           alt="Skills Section Image"
@@ -62,7 +62,7 @@ export function SkillsSection() {
 
         <div className="relative z-3 flex flex-col items-center justify-center">
           <Badge variant={"headline-cream"}>
-            <ListMagnifyingGlassIcon className="size-5" /> <span>Jenis Perlombaan</span>
+            <MedalIcon className="size-5" /> <span>Jenis Perlombaan</span>
           </Badge>
           <h2 className="relative z-1 text-center font-bold text-3xl">
             Fokus <span className="text-primary-500">Pembelajaran</span>

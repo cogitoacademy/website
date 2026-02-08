@@ -1,4 +1,6 @@
 // import { ChevronLeft, ChevronRight } from "lucide-react";
+import { UserSoundIcon } from "@phosphor-icons/react/dist/ssr";
+import { Badge } from "../ui/badge";
 import { landingAssets } from "./assets";
 
 export function TestimonialsSection() {
@@ -39,6 +41,9 @@ export function TestimonialsSection() {
         <div className="flex flex-col items-center gap-12">
           {/* Header */}
           <div className="space-y-2 text-center">
+            <Badge variant={"headline-primary"}>
+              <UserSoundIcon /> <span>Testimoni</span>
+            </Badge>
             <h2 className="font-extrabold text-[32px] text-neutral-1000">
               Dapatkan Strategi Langsung dari{" "}
               <span className="text-primary-500">Tangan Pertama</span>

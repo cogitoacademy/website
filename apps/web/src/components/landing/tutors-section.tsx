@@ -4,6 +4,8 @@ import { Button } from "@/components/ui/button";
 import { getFeaturedTutors } from "@/lib/tutors";
 import TutorCard from "../tutor-card";
 import { Link } from "@/i18n/routing";
+import { Badge } from "../ui/badge";
+import { BooksIcon } from "@phosphor-icons/react/dist/ssr";
 
 export async function TutorsSection() {
   const tutors = await getFeaturedTutors();
@@ -13,7 +15,10 @@ export async function TutorsSection() {
       <div className="container mx-auto max-w-7xl px-4">
         <div className="flex flex-col items-center gap-8">
           {/* Header */}
-          <div className="text-center *:text-pretty">
+          <div className="text-center *:text-pretty space-y-2">
+            <Badge variant={"headline-cream"}>
+              <BooksIcon className="size-5" /> <span>Tutor Cogito</span>
+            </Badge>
             <h2 className="font-bold text-3xl text-neutral-1000">
               Dapatkan Strategi Langsung dari{" "}
               <span className="text-primary-500">Tangan Pertama</span>

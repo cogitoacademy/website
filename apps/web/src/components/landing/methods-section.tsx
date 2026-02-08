@@ -1,4 +1,4 @@
-import { Check, MagnifyingGlassIcon } from "@phosphor-icons/react/dist/ssr";
+import { Check, ListMagnifyingGlassIcon } from "@phosphor-icons/react/dist/ssr";
 import { cn } from "@/lib/utils";
 import { Badge } from "../ui/badge";
 
@@ -7,7 +7,7 @@ export function MethodsSection() {
     <section className="mx-auto max-w-7xl px-4 py-20">
       <div className="flex flex-col items-center justify-center space-y-2">
         <Badge variant={"headline-primary"}>
-          <MagnifyingGlassIcon /> <span>Jenis Perlombaan</span>
+          <ListMagnifyingGlassIcon /> <span>Kenapa Kita</span>
         </Badge>
         <h2 className="mb-4 text-center font-bold text-xl leading-tight">
           Di Balik Setiap Medali,

@@ -1,7 +1,8 @@
-import { ArrowRightIcon } from "@phosphor-icons/react/dist/ssr";
+import { ArrowRightIcon, CalendarDotsIcon } from "@phosphor-icons/react/dist/ssr";
 import Image from "next/image";
 import { Link } from "@/i18n/routing";
 import { Button } from "../ui/button";
+import { Badge } from "../ui/badge";
 
 const EVENT_DUMMY = [
   {
@@ -32,10 +33,15 @@ export function EventsSection() {
         <div className="mx-auto max-w-7xl">
           <div className="flex flex-col items-center gap-8">
             {/* Header */}
-            <h2 className="font-extrabold text-3xl text-neutral-1000">
-              Satu <span className="text-primary-500">Bulan</span>, Satu{" "}
-              <span className="text-primary-500">Inspirasi Dunia</span>
-            </h2>
+            <div className="space-y-2 flex items-center flex-col">
+              <Badge variant={"headline-primary"}>
+                <CalendarDotsIcon /> <span>Acara Publik</span>
+              </Badge>
+              <h2 className="font-extrabold text-3xl text-neutral-1000">
+                Satu <span className="text-primary-500">Bulan</span>, Satu{" "}
+                <span className="text-primary-500">Inspirasi Dunia</span>
+              </h2>
+            </div>
             <div className="grid w-full grid-cols-1 gap-8 px-10 md:grid-cols-2">
               {EVENT_DUMMY.slice(0, 2).map((event) => (
                 <EventCard key={event.title} {...event} />
