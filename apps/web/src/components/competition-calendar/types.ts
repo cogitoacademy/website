@@ -32,4 +32,13 @@ export type CompetitionColor =
 	| "violet"
 	| "rose"
 	| "emerald"
-	| "orange";
+	| "orange"
+	| "tertiary-blue-300"
+	| "tertiary-blue-400"
+	| "tertiary-blue-500"
+	| "tertiary-pink-300"
+	| "tertiary-red-600"
+	| "tertiary-yellow-600"
+	| "primary-500"
+	| "secondary-500"
+	| "tertiary-green-600";

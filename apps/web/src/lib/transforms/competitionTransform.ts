@@ -44,12 +44,18 @@ export function sanityToCalendarCompetition(
 			const coreSlug = cat.coreCategory as CoreCategorySlug;
 			const coreData = CORE_CATEGORIES[coreSlug];
 
+			// Get color from core category config
+			const color = coreData?.brandColor || "primary-500";
+
 			return {
 				name: cat.name,
 				coreCategory: cat.coreCategory,
-				color: coreData?.brandColor || "primary-500",
+				color: color,
 			};
 		}) || [];
+
+	const eventColor =
+		categories.length > 0 ? categories[0].color : "primary-500";
 
 	// Extract localized strings
 	const title = getLocalizedValue(sanityCompetition.title, locale);
@@ -77,7 +83,12 @@ export function sanityToCalendarCompetition(
 		end: endDate,
 		allDay: isAllDay,
 		location,
-		categories,
+		categories: categories.map((cat) => ({
+			name: cat.name || "",
+			coreCategory: cat.coreCategory || "",
+			color: cat.color,
+		})),
+		color: eventColor as any, // Use first category's color as main event color
 		educationLevels:
 			sanityCompetition.educationLevels?.map((level) => level.name) || [],
 		scale: sanityCompetition.scale?.name,

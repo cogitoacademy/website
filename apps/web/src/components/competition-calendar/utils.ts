@@ -23,6 +23,27 @@ export function getCompetitionColorClasses(
 			return "bg-emerald-200/50 hover:bg-emerald-200/40 text-emerald-950/80 dark:bg-emerald-400/25 dark:hover:bg-emerald-400/20 dark:text-emerald-200 shadow-emerald-700/8";
 		case "orange":
 			return "bg-orange-200/50 hover:bg-orange-200/40 text-orange-950/80 dark:bg-orange-400/25 dark:hover:bg-orange-400/20 dark:text-orange-200 shadow-orange-700/8";
+
+		// New colors based on core categories
+		case "tertiary-blue-300": // Model United Nations (Old - Fallback to 500)
+			return "bg-tertiary-blue-200/50 hover:bg-tertiary-blue-200/40 text-tertiary-blue-900/80 dark:bg-tertiary-blue-500/25 dark:hover:bg-tertiary-blue-500/20 dark:text-tertiary-blue-200 shadow-tertiary-blue-700/8";
+		case "tertiary-blue-400": // Model United Nations (Fallback to 500)
+			return "bg-tertiary-blue-200/50 hover:bg-tertiary-blue-200/40 text-tertiary-blue-900/80 dark:bg-tertiary-blue-500/25 dark:hover:bg-tertiary-blue-500/20 dark:text-tertiary-blue-200 shadow-tertiary-blue-700/8";
+		case "tertiary-blue-500": // Model United Nations (New)
+			return "bg-tertiary-blue-200/50 hover:bg-tertiary-blue-200/40 text-tertiary-blue-900/80 dark:bg-tertiary-blue-500/25 dark:hover:bg-tertiary-blue-500/20 dark:text-tertiary-blue-200 shadow-tertiary-blue-700/8";
+		case "tertiary-pink-300": // Pidato
+			return "bg-tertiary-pink-200/50 hover:bg-tertiary-pink-200/40 text-tertiary-pink-900/80 dark:bg-tertiary-pink-400/25 dark:hover:bg-tertiary-pink-400/20 dark:text-tertiary-pink-200 shadow-tertiary-pink-700/8";
+		case "tertiary-red-600": // Olimpiade
+			return "bg-tertiary-red-200/50 hover:bg-tertiary-red-200/40 text-tertiary-red-900/80 dark:bg-tertiary-red-400/25 dark:hover:bg-tertiary-red-400/20 dark:text-tertiary-red-200 shadow-tertiary-red-700/8";
+		case "tertiary-yellow-600": // World Scholar's Cup
+			return "bg-tertiary-yellow-200/50 hover:bg-tertiary-yellow-200/40 text-tertiary-yellow-900/80 dark:bg-tertiary-yellow-400/25 dark:hover:bg-tertiary-yellow-400/20 dark:text-tertiary-yellow-200 shadow-tertiary-yellow-700/8";
+		case "primary-500": // KTI dan Esai
+			return "bg-primary-200/50 hover:bg-primary-200/40 text-primary-900/80 dark:bg-primary-500/25 dark:hover:bg-primary-500/20 dark:text-primary-200 shadow-primary-700/8";
+		case "secondary-500": // Debat
+			return "bg-secondary-200/50 hover:bg-secondary-200/40 text-secondary-900/80 dark:bg-secondary-500/25 dark:hover:bg-secondary-500/20 dark:text-secondary-200 shadow-secondary-700/8";
+		case "tertiary-green-600": // Business Plan
+			return "bg-tertiary-green-200/50 hover:bg-tertiary-green-200/40 text-tertiary-green-900/80 dark:bg-tertiary-green-400/25 dark:hover:bg-tertiary-green-400/20 dark:text-tertiary-green-200 shadow-tertiary-green-700/8";
+
 		default:
 			return "bg-sky-200/50 hover:bg-sky-200/40 text-sky-950/80 dark:bg-sky-400/25 dark:hover:bg-sky-400/20 dark:text-sky-200 shadow-sky-700/8";
 	}
