@@ -5,7 +5,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const badgeVariants = cva(
-  "gap-1 rounded-none px-2 pt-px text-xs font-normal transition-all has-data-[icon=inline-end]:pr-1.5 has-data-[icon=inline-start]:pl-1.5 [&>svg]:size-4! inline-flex items-center justify-center w-fit whitespace-nowrap shrink-0 [&>svg]:pointer-events-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive overflow-hidden group/badge leading-[18px]",
+  "gap-1 rounded-none px-2 pt-px text-xs font-normal transition-all has-data-[icon=inline-end]:pr-1.5 has-data-[icon=inline-start]:pl-1.5 [&>svg]:size-5! inline-flex items-center justify-center w-fit whitespace-nowrap shrink-0 [&>svg]:pointer-events-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive overflow-hidden group/badge leading-[18px]",
   {
     variants: {
       variant: {
@@ -18,8 +18,8 @@ const badgeVariants = cva(
         link: "text-primary underline-offset-4 hover:underline",
         // Competition Badge
         tutor: "italic rounded-md py-1",
-        "headline-primary": "rounded-md bg-background-primary px-2.5 py-2",
-        "headline-cream": "rounded-md bg-background-cream px-2.5 py-2",
+        "headline-primary": "rounded-md bg-background-primary px-2.5 py-2 text-base",
+        "headline-cream": "rounded-md bg-background-cream px-2.5 py-2 text-base",
       },
     },
     defaultVariants: {
