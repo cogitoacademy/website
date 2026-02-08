@@ -3,6 +3,7 @@
 import { MapPinIcon, RadioIcon, XIcon } from "lucide-react";
 import Image from "next/image";
 import { useLocale, useTranslations } from "next-intl";
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { getCoreCategoryBadgeColor } from "@/lib/colors/brandColors";
 import type { Tutor } from "@/types/tutor";
@@ -34,6 +35,24 @@ export default function TutorDetailModal({
 }: TutorDetailModalProps) {
   const locale = useLocale();
   const t = useTranslations("tutors");
+  const [maxHeight, setMaxHeight] = useState<string>("85vh");
+
+  // Use window.innerHeight for reliable mobile viewport height
+  // This accounts for address bar, notch, safe areas etc.
+  useEffect(() => {
+    const SM_BREAKPOINT = 640;
+    function updateHeight() {
+      if (window.innerWidth < SM_BREAKPOINT) {
+        const vh = window.innerHeight;
+        setMaxHeight(`${vh * 0.85}px`);
+      } else {
+        setMaxHeight("85vh");
+      }
+    }
+    updateHeight();
+    window.addEventListener("resize", updateHeight);
+    return () => window.removeEventListener("resize", updateHeight);
+  }, []);
 
   // Normalized data
   const affiliation = getLocalizedValue(tutor.affiliation, locale);
@@ -57,7 +76,8 @@ export default function TutorDetailModal({
     <ResponsiveModal open={open} onOpenChange={onOpenChange}>
       <ResponsiveModalContent
         side="bottom"
-        className="flex max-h-[95vh] w-full max-w-full flex-col gap-0 overflow-hidden border-none bg-background p-0 sm:w-[calc(100%-2rem)] sm:max-w-5xl sm:flex-row"
+        className="flex w-full max-w-full flex-col gap-0 overflow-hidden rounded-t-2xl border-none bg-background p-0 sm:max-h-[85vh] sm:w-[calc(100%-2rem)] sm:max-w-5xl sm:flex-row sm:rounded-lg"
+        style={{ maxHeight }}
         showCloseButton={false}
       >
         {/* Left/Top: Image Section */}
@@ -94,7 +114,7 @@ export default function TutorDetailModal({
         </div>
 
         {/* Right/Bottom: Content Section */}
-        <div className="flex-1 overflow-y-auto bg-background">
+        <div className="min-h-0 flex-1 overflow-y-auto bg-background">
           <div className="space-y-6 p-6">
             {/* Header Info */}
             <div className="space-y-3">
@@ -136,31 +156,41 @@ export default function TutorDetailModal({
 
             {/* Content Columns */}
             <div className="grid grid-cols-1 gap-4 pt-2 sm:grid-cols-2">
-              {achievements.length > 0 && (
-                <div className="h-full space-y-3 rounded-xl bg-[#FFF5EB] p-5">
-                  <h3 className="font-semibold text-base text-foreground">
-                    Rekam Jejak Prestasi
-                  </h3>
+              <div className="h-full space-y-3 rounded-xl bg-[#FFF5EB] p-5">
+                <h3 className="font-semibold text-base text-foreground">
+                  Rekam Jejak Prestasi
+                </h3>
+                {achievements.length == 0 && (
+                  <p className="text-muted-foreground/90 text-sm leading-relaxed">
+                    isinya sedang diracik, ditunggu ya!
+                  </p>
+                )}
+                {achievements.length > 0 && (
                   <ul className="list-outside list-disc space-y-2 pl-4 text-muted-foreground/90 text-sm leading-relaxed">
                     {achievements.map((item, index) => (
                       <li key={index}>{item}</li>
                     ))}
                   </ul>
-                </div>
-              )}
+                )}
+              </div>
 
-              {experiences.length > 0 && (
-                <div className="h-full space-y-3 rounded-xl bg-[#FFF5EB] p-5">
-                  <h3 className="font-semibold text-base text-foreground">
-                    {t("experiences") || "Pengalaman"}
-                  </h3>
+              <div className="h-full space-y-3 rounded-xl bg-[#FFF5EB] p-5">
+                <h3 className="font-semibold text-base text-foreground">
+                  {t("experiences") || "Pengalaman"}
+                </h3>
+                {experiences.length == 0 && (
+                  <p className="text-muted-foreground/90 text-sm leading-relaxed">
+                    isinya sedang diracik, ditunggu ya!
+                  </p>
+                )}
+                {experiences.length > 0 && (
                   <ul className="list-outside list-disc space-y-2 pl-4 text-muted-foreground/90 text-sm leading-relaxed">
                     {experiences.map((item, index) => (
                       <li key={index}>{item}</li>
                     ))}
                   </ul>
-                </div>
-              )}
+                )}
+              </div>
             </div>
           </div>
         </div>
