@@ -23,16 +23,10 @@ interface TutorDetailModalProps {
  * Helper: ambil value berdasarkan locale
  * fallback ke item pertama kalau locale ga ketemu
  */
-const getLocalizedValue = (
-  arr?: { _key: string; value: string }[],
-  locale?: string,
-) => arr?.find((item) => item._key === locale)?.value || arr?.[0]?.value || "";
+const getLocalizedValue = (arr?: { _key: string; value: string }[], locale?: string) =>
+  arr?.find((item) => item._key === locale)?.value || arr?.[0]?.value || "";
 
-export default function TutorDetailModal({
-  tutor,
-  open,
-  onOpenChange,
-}: TutorDetailModalProps) {
+export default function TutorDetailModal({ tutor, open, onOpenChange }: TutorDetailModalProps) {
   const locale = useLocale();
   const t = useTranslations("tutors");
   const [maxHeight, setMaxHeight] = useState<string>("85vh");
@@ -56,10 +50,8 @@ export default function TutorDetailModal({
 
   // Normalized data
   const affiliation = getLocalizedValue(tutor.affiliation, locale);
-  const achievements =
-    tutor.achievements?.map((a) => getLocalizedValue(a.text, locale)) || [];
-  const experiences =
-    tutor.experiences?.map((e) => getLocalizedValue(e.text, locale)) || [];
+  const achievements = tutor.achievements?.map((a) => getLocalizedValue(a.text, locale)) || [];
+  const experiences = tutor.experiences?.map((e) => getLocalizedValue(e.text, locale)) || [];
 
   const badges = tutor.competitionFields?.map((field) => (
     <span
@@ -130,9 +122,7 @@ export default function TutorDetailModal({
               </div>
 
               {affiliation && (
-                <p className="font-medium text-base text-muted-foreground">
-                  {affiliation}
-                </p>
+                <p className="font-medium text-base text-muted-foreground">{affiliation}</p>
               )}
 
               {/* Locations / Status */}
@@ -145,9 +135,7 @@ export default function TutorDetailModal({
                   <div className="inline-flex items-center gap-2 rounded-md bg-muted/50 px-3 py-1.5 font-medium text-muted-foreground text-sm">
                     <MapPinIcon className="h-4 w-4" />
                     <span className="capitalize">
-                      {tutor.locations
-                        .map((loc) => loc.replace(/_/g, " "))
-                        .join(", ")}
+                      {tutor.locations.map((loc) => loc.replace(/_/g, " ")).join(", ")}
                     </span>
                   </div>
                 )}
@@ -157,9 +145,7 @@ export default function TutorDetailModal({
             {/* Content Columns */}
             <div className="grid grid-cols-1 gap-4 pt-2 sm:grid-cols-2">
               <div className="h-full space-y-3 rounded-xl bg-[#FFF5EB] p-5">
-                <h3 className="font-semibold text-base text-foreground">
-                  Rekam Jejak Prestasi
-                </h3>
+                <h3 className="font-semibold text-base text-foreground">Rekam Jejak Prestasi</h3>
                 {achievements.length == 0 && (
                   <p className="text-muted-foreground/90 text-sm leading-relaxed">
                     isinya sedang diracik, ditunggu ya!

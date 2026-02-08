@@ -7,11 +7,11 @@ import location from "./location";
 import tutor from "./tutor";
 
 export const schemaTypes = [
-	competitionCategory,
-	location,
-	eventScale,
-	educationLevel,
-	tutor,
-	competition,
-	event,
+  competitionCategory,
+  location,
+  eventScale,
+  educationLevel,
+  tutor,
+  competition,
+  event,
 ];

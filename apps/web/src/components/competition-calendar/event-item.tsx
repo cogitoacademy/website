@@ -6,9 +6,9 @@ import { differenceInMinutes, format, getMinutes, isPast } from "date-fns";
 import { useMemo } from "react";
 
 import {
-	type CalendarCompetition,
-	getBorderRadiusClasses,
-	getCompetitionColorClasses,
+  type CalendarCompetition,
+  getBorderRadiusClasses,
+  getCompetitionColorClasses,
 } from "@/components/competition-calendar";
 import { Badge } from "@/components/ui/badge";
 import { getBrandColorClass } from "@/lib/colors/brandColors";
@@ -19,242 +19,235 @@ import { cn } from "@/lib/utils";
 // 'a' - am/pm
 // ':mm' - minutes with leading zero (only if the token 'mm' is present)
 const formatTimeWithOptionalMinutes = (date: Date) => {
-	return format(date, getMinutes(date) === 0 ? "ha" : "h:mma").toLowerCase();
+  return format(date, getMinutes(date) === 0 ? "ha" : "h:mma").toLowerCase();
 };
 
 interface EventWrapperProps {
-	event: CalendarCompetition;
-	isFirstDay?: boolean;
-	isLastDay?: boolean;
-	isDragging?: boolean;
-	onClick?: (e: React.MouseEvent) => void;
-	className?: string;
-	children: React.ReactNode;
-	currentTime?: Date;
-	dndListeners?: SyntheticListenerMap;
-	dndAttributes?: DraggableAttributes;
-	onMouseDown?: (e: React.MouseEvent) => void;
-	onTouchStart?: (e: React.TouchEvent) => void;
+  event: CalendarCompetition;
+  isFirstDay?: boolean;
+  isLastDay?: boolean;
+  isDragging?: boolean;
+  onClick?: (e: React.MouseEvent) => void;
+  className?: string;
+  children: React.ReactNode;
+  currentTime?: Date;
+  dndListeners?: SyntheticListenerMap;
+  dndAttributes?: DraggableAttributes;
+  onMouseDown?: (e: React.MouseEvent) => void;
+  onTouchStart?: (e: React.TouchEvent) => void;
 }
 
 // Shared wrapper component for event styling
 function EventWrapper({
-	event,
-	isFirstDay = true,
-	isLastDay = true,
-	isDragging,
-	onClick,
-	className,
-	children,
-	currentTime,
-	dndListeners,
-	dndAttributes,
-	onMouseDown,
-	onTouchStart,
+  event,
+  isFirstDay = true,
+  isLastDay = true,
+  isDragging,
+  onClick,
+  className,
+  children,
+  currentTime,
+  dndListeners,
+  dndAttributes,
+  onMouseDown,
+  onTouchStart,
 }: EventWrapperProps) {
-	// Always use the currentTime (if provided) to determine if the event is in the past
-	const displayEnd = currentTime
-		? new Date(
-				new Date(currentTime).getTime() +
-					(new Date(event.end).getTime() - new Date(event.start).getTime()),
-			)
-		: new Date(event.end);
+  // Always use the currentTime (if provided) to determine if the event is in the past
+  const displayEnd = currentTime
+    ? new Date(
+        new Date(currentTime).getTime() +
+          (new Date(event.end).getTime() - new Date(event.start).getTime()),
+      )
+    : new Date(event.end);
 
-	const isEventInPast = isPast(displayEnd);
+  const isEventInPast = isPast(displayEnd);
 
-	return (
-		<button
-			className={cn(
-				"flex size-full select-none overflow-hidden px-1 text-left font-medium outline-none backdrop-blur-md transition focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 data-dragging:cursor-grabbing data-past-event:line-through data-dragging:shadow-lg sm:px-2",
-				getCompetitionColorClasses(event.color),
-				getBorderRadiusClasses(isFirstDay, isLastDay),
-				className,
-			)}
-			data-dragging={isDragging || undefined}
-			data-past-event={isEventInPast || undefined}
-			onClick={onClick}
-			onMouseDown={onMouseDown}
-			onTouchStart={onTouchStart}
-			type="button"
-			{...dndListeners}
-			{...dndAttributes}
-		>
-			{children}
-		</button>
-	);
+  return (
+    <button
+      className={cn(
+        "flex size-full select-none overflow-hidden px-1 text-left font-medium outline-none backdrop-blur-md transition focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 data-dragging:cursor-grabbing data-past-event:line-through data-dragging:shadow-lg sm:px-2",
+        getCompetitionColorClasses(event.color),
+        getBorderRadiusClasses(isFirstDay, isLastDay),
+        className,
+      )}
+      data-dragging={isDragging || undefined}
+      data-past-event={isEventInPast || undefined}
+      onClick={onClick}
+      onMouseDown={onMouseDown}
+      onTouchStart={onTouchStart}
+      type="button"
+      {...dndListeners}
+      {...dndAttributes}
+    >
+      {children}
+    </button>
+  );
 }
 
 interface EventItemProps {
-	event: CalendarCompetition;
-	view: "month" | "week" | "day" | "agenda";
-	isDragging?: boolean;
-	onClick?: (e: React.MouseEvent) => void;
-	showTime?: boolean;
-	currentTime?: Date; // For updating time during drag
-	isFirstDay?: boolean;
-	isLastDay?: boolean;
-	children?: React.ReactNode;
-	className?: string;
-	dndListeners?: SyntheticListenerMap;
-	dndAttributes?: DraggableAttributes;
-	onMouseDown?: (e: React.MouseEvent) => void;
-	onTouchStart?: (e: React.TouchEvent) => void;
+  event: CalendarCompetition;
+  view: "month" | "week" | "day" | "agenda";
+  isDragging?: boolean;
+  onClick?: (e: React.MouseEvent) => void;
+  showTime?: boolean;
+  currentTime?: Date; // For updating time during drag
+  isFirstDay?: boolean;
+  isLastDay?: boolean;
+  children?: React.ReactNode;
+  className?: string;
+  dndListeners?: SyntheticListenerMap;
+  dndAttributes?: DraggableAttributes;
+  onMouseDown?: (e: React.MouseEvent) => void;
+  onTouchStart?: (e: React.TouchEvent) => void;
 }
 
 export function EventItem({
-	event,
-	view,
-	isDragging,
-	onClick,
-	showTime: _showTime,
-	currentTime,
-	isFirstDay = true,
-	isLastDay = true,
-	children,
-	className,
-	dndListeners,
-	dndAttributes,
-	onMouseDown,
-	onTouchStart,
+  event,
+  view,
+  isDragging,
+  onClick,
+  showTime: _showTime,
+  currentTime,
+  isFirstDay = true,
+  isLastDay = true,
+  children,
+  className,
+  dndListeners,
+  dndAttributes,
+  onMouseDown,
+  onTouchStart,
 }: EventItemProps) {
-	const eventColor = event.color;
+  const eventColor = event.color;
 
-	// Use the provided currentTime (for dragging) or the event's actual time
-	const displayStart = useMemo(() => {
-		return currentTime || new Date(event.start);
-	}, [currentTime, event.start]);
+  // Use the provided currentTime (for dragging) or the event's actual time
+  const displayStart = useMemo(() => {
+    return currentTime || new Date(event.start);
+  }, [currentTime, event.start]);
 
-	const displayEnd = useMemo(() => {
-		return currentTime
-			? new Date(
-					new Date(currentTime).getTime() +
-						(new Date(event.end).getTime() - new Date(event.start).getTime()),
-				)
-			: new Date(event.end);
-	}, [currentTime, event.start, event.end]);
+  const displayEnd = useMemo(() => {
+    return currentTime
+      ? new Date(
+          new Date(currentTime).getTime() +
+            (new Date(event.end).getTime() - new Date(event.start).getTime()),
+        )
+      : new Date(event.end);
+  }, [currentTime, event.start, event.end]);
 
-	// Calculate event duration in minutes
-	const durationMinutes = useMemo(() => {
-		return differenceInMinutes(displayEnd, displayStart);
-	}, [displayStart, displayEnd]);
+  // Calculate event duration in minutes
+  const durationMinutes = useMemo(() => {
+    return differenceInMinutes(displayEnd, displayStart);
+  }, [displayStart, displayEnd]);
 
-	const _getEventTime = () => {
-		if (event.allDay) return "All day";
+  const _getEventTime = () => {
+    if (event.allDay) return "All day";
 
-		// For short events (less than 45 minutes), only show start time
-		if (durationMinutes < 45) {
-			return formatTimeWithOptionalMinutes(displayStart);
-		}
+    // For short events (less than 45 minutes), only show start time
+    if (durationMinutes < 45) {
+      return formatTimeWithOptionalMinutes(displayStart);
+    }
 
-		// For longer events, show both start and end time
-		return `${formatTimeWithOptionalMinutes(displayStart)} - ${formatTimeWithOptionalMinutes(displayEnd)}`;
-	};
+    // For longer events, show both start and end time
+    return `${formatTimeWithOptionalMinutes(displayStart)} - ${formatTimeWithOptionalMinutes(displayEnd)}`;
+  };
 
-	if (view === "month") {
-		return (
-			<EventWrapper
-				className={cn(
-					"mt-[var(--event-gap)] h-[var(--event-height)] items-center text-[10px] sm:text-xs",
-					className,
-				)}
-				currentTime={currentTime}
-				dndAttributes={dndAttributes}
-				dndListeners={dndListeners}
-				event={event}
-				isDragging={isDragging}
-				isFirstDay={isFirstDay}
-				isLastDay={isLastDay}
-				onClick={onClick}
-				onMouseDown={onMouseDown}
-				onTouchStart={onTouchStart}
-			>
-				{children || <span className="truncate">{event.title}</span>}
-			</EventWrapper>
-		);
-	}
+  if (view === "month") {
+    return (
+      <EventWrapper
+        className={cn(
+          "mt-[var(--event-gap)] h-[var(--event-height)] items-center text-[10px] sm:text-xs",
+          className,
+        )}
+        currentTime={currentTime}
+        dndAttributes={dndAttributes}
+        dndListeners={dndListeners}
+        event={event}
+        isDragging={isDragging}
+        isFirstDay={isFirstDay}
+        isLastDay={isLastDay}
+        onClick={onClick}
+        onMouseDown={onMouseDown}
+        onTouchStart={onTouchStart}
+      >
+        {children || <span className="truncate">{event.title}</span>}
+      </EventWrapper>
+    );
+  }
 
-	if (view === "week" || view === "day") {
-		return (
-			<EventWrapper
-				className={cn(
-					"py-1",
-					durationMinutes < 45 ? "items-center" : "flex-col",
-					view === "week" ? "text-[10px] sm:text-xs" : "text-xs",
-					className,
-				)}
-				currentTime={currentTime}
-				dndAttributes={dndAttributes}
-				dndListeners={dndListeners}
-				event={event}
-				isDragging={isDragging}
-				isFirstDay={isFirstDay}
-				isLastDay={isLastDay}
-				onClick={onClick}
-				onMouseDown={onMouseDown}
-				onTouchStart={onTouchStart}
-			>
-				{durationMinutes < 45 ? (
-					<div className="truncate">{event.title}</div>
-				) : (
-					<div className="truncate font-medium">{event.title}</div>
-				)}
-			</EventWrapper>
-		);
-	}
+  if (view === "week" || view === "day") {
+    return (
+      <EventWrapper
+        className={cn(
+          "py-1",
+          durationMinutes < 45 ? "items-center" : "flex-col",
+          view === "week" ? "text-[10px] sm:text-xs" : "text-xs",
+          className,
+        )}
+        currentTime={currentTime}
+        dndAttributes={dndAttributes}
+        dndListeners={dndListeners}
+        event={event}
+        isDragging={isDragging}
+        isFirstDay={isFirstDay}
+        isLastDay={isLastDay}
+        onClick={onClick}
+        onMouseDown={onMouseDown}
+        onTouchStart={onTouchStart}
+      >
+        {durationMinutes < 45 ? (
+          <div className="truncate">{event.title}</div>
+        ) : (
+          <div className="truncate font-medium">{event.title}</div>
+        )}
+      </EventWrapper>
+    );
+  }
 
-	// Agenda view - kept separate since it's significantly different
-	return (
-		<button
-			className={cn(
-				"flex w-full flex-col gap-2 rounded p-2 text-left outline-none transition focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 data-past-event:line-through data-past-event:opacity-90",
-				getCompetitionColorClasses(eventColor),
-				className,
-			)}
-			data-past-event={isPast(new Date(event.end)) || undefined}
-			onClick={onClick}
-			onMouseDown={onMouseDown}
-			onTouchStart={onTouchStart}
-			type="button"
-			{...dndListeners}
-			{...dndAttributes}
-		>
-			{/* Category Badges */}
-			{event.categories && event.categories.length > 0 && (
-				<div className="flex flex-wrap gap-1">
-					{event.categories.map((category, index) => (
-						<Badge
-							key={index}
-							className={cn("text-xs", getBrandColorClass(category.color))}
-						>
-							{category.name}
-						</Badge>
-					))}
-				</div>
-			)}
+  // Agenda view - kept separate since it's significantly different
+  return (
+    <button
+      className={cn(
+        "flex w-full flex-col gap-2 rounded p-2 text-left outline-none transition focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 data-past-event:line-through data-past-event:opacity-90",
+        getCompetitionColorClasses(eventColor),
+        className,
+      )}
+      data-past-event={isPast(new Date(event.end)) || undefined}
+      onClick={onClick}
+      onMouseDown={onMouseDown}
+      onTouchStart={onTouchStart}
+      type="button"
+      {...dndListeners}
+      {...dndAttributes}
+    >
+      {/* Category Badges */}
+      {event.categories && event.categories.length > 0 && (
+        <div className="flex flex-wrap gap-1">
+          {event.categories.map((category, index) => (
+            <Badge key={index} className={cn("text-xs", getBrandColorClass(category.color))}>
+              {category.name}
+            </Badge>
+          ))}
+        </div>
+      )}
 
-			{/* Event Title */}
-			<div className="font-medium text-sm">{event.title}</div>
+      {/* Event Title */}
+      <div className="font-medium text-sm">{event.title}</div>
 
-			{/* Location */}
-			{event.location && (
-				<div className="text-xs opacity-70">{event.location}</div>
-			)}
+      {/* Location */}
+      {event.location && <div className="text-xs opacity-70">{event.location}</div>}
 
-			{/* Education Levels */}
-			{event.educationLevels && event.educationLevels.length > 0 && (
-				<div className="flex flex-wrap gap-1">
-					{event.educationLevels.map((level, index) => (
-						<Badge key={index} variant="outline" className="text-xs">
-							{level}
-						</Badge>
-					))}
-				</div>
-			)}
+      {/* Education Levels */}
+      {event.educationLevels && event.educationLevels.length > 0 && (
+        <div className="flex flex-wrap gap-1">
+          {event.educationLevels.map((level, index) => (
+            <Badge key={index} variant="outline" className="text-xs">
+              {level}
+            </Badge>
+          ))}
+        </div>
+      )}
 
-			{/* Description */}
-			{event.description && (
-				<div className="my-1 text-xs opacity-90">{event.description}</div>
-			)}
-		</button>
-	);
+      {/* Description */}
+      {event.description && <div className="my-1 text-xs opacity-90">{event.description}</div>}
+    </button>
+  );
 }

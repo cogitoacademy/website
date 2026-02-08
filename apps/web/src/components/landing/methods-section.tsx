@@ -13,8 +13,7 @@ export function MethodsSection() {
           Di Balik Setiap Medali,
           <br />
           <span className="text-3xl">
-            Inilah{" "}
-            <span className="font-bold text-primary-500">Metode Kami</span>
+            Inilah <span className="font-bold text-primary-500">Metode Kami</span>
           </span>
         </h2>
         <div className="grid w-full grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-4">
@@ -47,12 +46,8 @@ function MethodCard({
       )}
     >
       <h3 className="mb-2 font-bold text-lg text-neutral-900">{title}</h3>
-      <p className="mb-4 text-neutral-800 text-sm leading-relaxed">
-        {description}
-      </p>
-      <div className="relative mt-auto flex w-full flex-1 items-end justify-center">
-        {children}
-      </div>
+      <p className="mb-4 text-neutral-800 text-sm leading-relaxed">{description}</p>
+      <div className="relative mt-auto flex w-full flex-1 items-end justify-center">{children}</div>
     </div>
   );
 }
@@ -108,9 +103,7 @@ function PersonalTerukurCard() {
         {/* Front Card */}
         <div className="absolute bottom-[-10px] left-4 z-10 flex h-24 w-36 -rotate-3 flex-col rounded-lg border border-neutral-100 bg-white p-3 shadow-md">
           <div className="mb-2 flex items-center gap-1">
-            <span className="font-extrabold text-[10px] text-primary-500">
-              cogito
-            </span>
+            <span className="font-extrabold text-[10px] text-primary-500">cogito</span>
           </div>
           <p className="mb-1 font-bold text-[6px] text-neutral-800 uppercase">
             Laporan Hasil Belajar
@@ -131,11 +124,7 @@ function PersonalTerukurCard() {
 }
 
 function KurikulumHolistikCard() {
-  const items = [
-    "Riset Strategis",
-    "Teknik Orasi Persuasif",
-    "Analisis Isu Global",
-  ];
+  const items = ["Riset Strategis", "Teknik Orasi Persuasif", "Analisis Isu Global"];
 
   return (
     <MethodCard
@@ -177,18 +166,14 @@ function PembelajaranFleksibelCard() {
           <div className="flex h-6 w-6 items-center justify-center rounded-full bg-secondary-100">
             <div className="h-2 w-2 rounded-full bg-secondary-500" />
           </div>
-          <p className="font-bold text-[10px] text-neutral-800 leading-tight">
-            Kelas Tatap Muka
-          </p>
+          <p className="font-bold text-[10px] text-neutral-800 leading-tight">Kelas Tatap Muka</p>
         </div>
         {/* Online Card */}
         <div className="relative z-10 flex h-28 w-1/2 flex-col items-center justify-center gap-2 rounded-t-lg border-secondary-500 border-t-4 bg-white p-3 text-center shadow-md">
           <div className="flex h-6 w-6 items-center justify-center rounded-full bg-secondary-100">
             <div className="h-2 w-2 animate-pulse rounded-full bg-secondary-500" />
           </div>
-          <p className="font-bold text-[10px] text-neutral-800 leading-tight">
-            Kelas Online
-          </p>
+          <p className="font-bold text-[10px] text-neutral-800 leading-tight">Kelas Online</p>
         </div>
       </div>
     </MethodCard>

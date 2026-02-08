@@ -18,6 +18,8 @@ const buttonVariants = cva(
           "rounded-lg bg-primary-100 shadow-sm hover:bg-primary-50  leading-6 text-neutral-1000 shadow-inset-top-subtle hover:bg-primary-200",
         cream:
           "rounded-lg bg-background-cream text-primary-500 shadow-sm leading-6 shadow-inset-top-subtle hover:bg-primary-200 hover:bg-background-cream/80",
+        primary:
+          "bg-background-primary text-primary-foreground hover:bg-background-primary/80 shadow-inset-top-default",
         // Gray (Neutral 200)
         gray: "bg-neutral-200 rounded-lg text-white shadow-sm hover:bg-neutral-300 leading-6 text-neutral-1000 shadow-inset-top-default",
         outline:

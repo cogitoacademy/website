@@ -49,13 +49,9 @@ export default function FaqSectionV2() {
           <SealQuestionIcon className="size-5" /> <span>FAQ</span>
         </Badge>
         <h3 className="font-bold text-3xl leading-none">
-          Segala yang Perlu Kamu Tahu untuk{" "}
-          <span className="text-primary-500">Memulai</span>
+          Segala yang Perlu Kamu Tahu untuk <span className="text-primary-500">Memulai</span>
         </h3>
-        <p>
-          Kami juga siap membantu mendiskusikan rencana prestasimu secara
-          mendalam.
-        </p>
+        <p>Kami juga siap membantu mendiskusikan rencana prestasimu secara mendalam.</p>
       </div>
 
       <div className="flex flex-col md:flex-row gap-4 h-[300px] *:select-none ">

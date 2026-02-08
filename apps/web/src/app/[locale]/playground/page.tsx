@@ -22,26 +22,17 @@ export default function Page() {
           <Badge variant="link">Badge</Badge>
           {/*<Badge variant="mun">Badge</Badge>*/}
           <Badge
-            className={cn(
-              badgeVariants({ variant: "tutor" }),
-              getCoreCategoryBadgeColor("wsc"),
-            )}
+            className={cn(badgeVariants({ variant: "tutor" }), getCoreCategoryBadgeColor("wsc"))}
           >
             WSC
           </Badge>
           <Badge
-            className={cn(
-              badgeVariants({ variant: "tutor" }),
-              getCoreCategoryBadgeColor("kti"),
-            )}
+            className={cn(badgeVariants({ variant: "tutor" }), getCoreCategoryBadgeColor("kti"))}
           >
             KTI/Esai
           </Badge>
           <Badge
-            className={cn(
-              badgeVariants({ variant: "tutor" }),
-              getCoreCategoryBadgeColor("debat"),
-            )}
+            className={cn(badgeVariants({ variant: "tutor" }), getCoreCategoryBadgeColor("debat"))}
           >
             Debat
           </Badge>
@@ -54,10 +45,7 @@ export default function Page() {
             Bisnis
           </Badge>
           <Badge
-            className={cn(
-              badgeVariants({ variant: "tutor" }),
-              getCoreCategoryBadgeColor("pidato"),
-            )}
+            className={cn(badgeVariants({ variant: "tutor" }), getCoreCategoryBadgeColor("pidato"))}
           >
             Pidato
           </Badge>
