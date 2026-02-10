@@ -97,9 +97,8 @@ export default async function EventCategoryPage({ params }: Props) {
 	try {
 		const sanityEvents = await client.fetch<SanityEvent[]>(
 			EVENTS_BY_CATEGORY_QUERY,
-			{
-				category: categorySlug,
-			},
+			{ category: categorySlug },
+			{ next: { revalidate: 1800 } },
 		);
 
 		events = sanityEvents.map((e) => sanityToEvent(e, lang));

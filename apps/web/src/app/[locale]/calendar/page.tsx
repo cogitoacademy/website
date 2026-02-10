@@ -9,21 +9,16 @@ import type { SanityCompetition } from "@/types/sanity/competition";
 import CalendarClient from "./calendar";
 
 async function CalendarContent() {
-	console.log("Fetching competitions from Sanity (server-side)...");
-
 	try {
-		const sanityCompetitions =
-			await client.fetch<SanityCompetition[]>(COMPETITIONS_QUERY);
-		console.log("Sanity competitions fetched:", sanityCompetitions.length);
+		const sanityCompetitions = await client.fetch<SanityCompetition[]>(
+			COMPETITIONS_QUERY,
+			{},
+			{ next: { revalidate: 1800 } },
+		);
 
 		const calendarCompetitions = sanityCompetitions
 			.map((c) => sanityToCalendarCompetition(c))
 			.filter(Boolean) as CalendarCompetition[];
-
-		console.log(
-			"Transformed calendar competitions:",
-			calendarCompetitions.length,
-		);
 
 		return <CalendarClient initialCompetitions={calendarCompetitions} />;
 	} catch (error) {
