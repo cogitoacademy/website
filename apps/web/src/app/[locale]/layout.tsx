@@ -1,5 +1,5 @@
 import { Inter, Lexend_Deca } from "next/font/google";
-import { NextIntlClientProvider } from "next-intl";
+import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { getMessages, setRequestLocale } from "next-intl/server";
 
 import "../../index.css";
@@ -7,6 +7,7 @@ import Footer from "@/components/footer";
 import Header from "@/components/header";
 import Providers from "@/components/providers";
 import { routing } from "@/i18n/routing";
+import NotFound from "./not-found";
 
 const lexendDeca = Lexend_Deca({
 	variable: "--font-lexend-deca",
@@ -30,6 +31,9 @@ export default async function LocaleLayout({
 	params: Promise<{ locale: string }>;
 }) {
 	const { locale } = await params;
+	if (!hasLocale(routing.locales, locale)) {
+		return <NotFound />;
+	}
 	setRequestLocale(locale);
 	const messages = await getMessages();
 

@@ -1,41 +1,54 @@
 {
-  "nav": {
-    "home": "Home",
-    "tutors": "Tutors",
-    "activities": "Activities",
-    "calendar": "Competition Calendar",
-    "about": "About",
-    "faq": "FAQ"
-  },
-  "hero": {
-    "title": "Join the Best Tutors",
-    "subtitle": "Master competition skills with experienced mentors",
-    "cta": "Start Learning"
-  },
-  "tutors": {
-    "title": "Our Tutor Team",
-    "description": "Join our experienced tutors who are experts in various competition fields",
-    "location": "Location",
-    "competitionField": "Competition Field",
-    "selectLocation": "Select Location",
-    "selectCategory": "Select Category",
-    "searchPlaceholder": "Search tutors...",
-    "clearFilters": "Clear Filters",
-    "noTutors": "No tutors match the selected filters",
-    "loading": "Loading tutors...",
-    "achievements": "Achievements",
-    "experiences": "Experiences"
-  },
-  "events": {
-    "upcoming": "Upcoming",
-    "past": "Past Events",
-    "done": "Past",
-    "noEvents": "No events available yet.",
-    "registerNow": "Register Now"
-  },
-  "common": {
-    "loading": "Loading...",
-    "error": "An error occurred",
-    "readMore": "Read More"
-  }
+	"nav": {
+		"home": "Home",
+		"tutors": "Tutors",
+		"activities": "Activities",
+		"calendar": "Competition Calendar",
+		"about": "About",
+		"faq": "FAQ"
+	},
+	"hero": {
+		"title": "Join the Best Tutors",
+		"subtitle": "Master competition skills with experienced mentors",
+		"cta": "Start Learning"
+	},
+	"tutors": {
+		"title": "Our Tutor Team",
+		"description": "Join our experienced tutors who are experts in various competition fields",
+		"location": "Location",
+		"competitionField": "Competition Field",
+		"selectLocation": "Select Location",
+		"selectCategory": "Select Category",
+		"searchPlaceholder": "Search tutors...",
+		"clearFilters": "Clear Filters",
+		"noTutors": "No tutors match the selected filters",
+		"loading": "Loading tutors...",
+		"achievements": "Achievements",
+		"experiences": "Experiences"
+	},
+	"events": {
+		"upcoming": "Upcoming",
+		"past": "Past Events",
+		"done": "Past",
+		"noEvents": "No events available yet.",
+		"registerNow": "Register Now"
+	},
+	"common": {
+		"loading": "Loading...",
+		"error": "An error occurred",
+		"readMore": "Read More"
+	},
+	"error": {
+		"404": {
+			"title": "Page not found.",
+			"description": "This page does not exist, please head back home and try again.",
+			"button": "Back to homepage"
+		},
+		"generic": {
+			"title": "Something went wrong.",
+			"description": "We're sorry, but something went wrong. Please try again or contact support if the problem persists.",
+			"button": "Try again",
+			"backButton": "Back to homepage"
+		}
+	}
 }
