@@ -1,13 +1,13 @@
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Suspense } from "react";
-import { getTranslations } from "next-intl/server";
+import NavbarResolver from "@/components/navbar-resolver";
 import TutorList from "@/components/tutor-list";
-import { COMPETITION_CATEGORIES_QUERY } from "@/queries/tutors";
+import { Container } from "@/components/ui/container";
+import { Skeleton } from "@/components/ui/skeleton";
 import { getTutors } from "@/lib/tutors";
+import { COMPETITION_CATEGORIES_QUERY } from "@/queries/tutors";
 import { client } from "@/sanity/client";
 import type { CompetitionCategory } from "@/types/tutor";
-import { Skeleton } from "@/components/ui/skeleton";
-import NavbarResolver from "@/components/navbar-resolver";
-import { Container } from "@/components/ui/container";
 
 async function TutorContent() {
   console.log("🔍 Fetching data from Sanity...");
@@ -30,10 +30,10 @@ async function TutorContent() {
   });
 
   return (
-    <main className="bg-background-primary min-h-screen">
-      <Container className="gap-y-15 max-w-7xl relative z-3">
+    <main className="min-h-screen bg-background-primary">
+      <Container className="relative z-3 max-w-7xl gap-y-15 py-0">
         <div className="space-y-2">
-          <h1 className="text-4xl font-bold">{t("title")}</h1>
+          <h1 className="font-bold text-4xl">{t("title")}</h1>
           <p className="text-muted-foreground">{t("description")}</p>
         </div>
 
@@ -43,23 +43,32 @@ async function TutorContent() {
   );
 }
 
-export default function TutorsPage() {
+type Props = {
+  params: Promise<{
+    locale: string;
+  }>;
+};
+
+export default async function TutorsPage({ params }: Props) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+
   return (
     <>
       <NavbarResolver className="bg-background-primary" />
       <Suspense
         fallback={
           <div className="min-h-screen bg-background-primary">
-            <div className="max-w-7xl px-4 mx-auto">
+            <div className="mx-auto max-w-7xl px-4">
               <div className="mb-8 space-y-2">
                 <Skeleton className="h-12 w-64" />
                 <Skeleton className="h-6 w-96" />
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
                 {[...Array(6)].map((_, i) => (
-                  <div key={i} className="p-6 space-y-4">
+                  <div key={i} className="space-y-4 p-6">
                     <div className="flex items-start gap-4">
-                      <Skeleton className="w-24 h-24 rounded-full shrink-0" />
+                      <Skeleton className="h-24 w-24 shrink-0 rounded-full" />
                       <div className="flex-1 space-y-2">
                         <Skeleton className="h-6 w-32" />
                         <Skeleton className="h-4 w-full" />

@@ -1,3 +1,4 @@
+import { setRequestLocale } from "next-intl/server";
 import { checkAccess } from "@/actions/auth";
 import NavbarResolver from "@/components/navbar-resolver";
 import { PasswordGate } from "@/components/student-resources/password-gate";
@@ -7,31 +8,39 @@ import { client } from "@/sanity/client";
 
 export const dynamic = "force-dynamic";
 
-export default async function StudentResourcesPage() {
-  const hasAccess = await checkAccess();
+type Props = {
+	params: Promise<{
+		locale: string;
+	}>;
+};
 
-  if (!hasAccess) {
-    return <PasswordGate />;
-  }
+export default async function StudentResourcesPage({ params }: Props) {
+	const { locale } = await params;
+	setRequestLocale(locale);
+	const hasAccess = await checkAccess();
 
-  const resources = await client.fetch(STUDENT_RESOURCES_QUERY);
+	if (!hasAccess) {
+		return <PasswordGate />;
+	}
 
-  return (
-    <>
-      <NavbarResolver />
-      <div className="max-w-7xl mx-auto px-4 py-12 relative z-3 min-h-screen">
-        <div className="mb-8">
-          <h1 className="font-bold text-3xl tracking-tight">
-            Student Resources
-          </h1>
-          <p className="mt-2 text-muted-foreground">
-            Access exclusive materials including Position Papers and Resolution
-            Banks.
-          </p>
-        </div>
+	const resources = await client.fetch(STUDENT_RESOURCES_QUERY);
 
-        <ResourceList resources={resources} />
-      </div>
-    </>
-  );
+	return (
+		<>
+			<NavbarResolver />
+			<div className="relative z-3 mx-auto min-h-screen max-w-7xl px-4 py-12">
+				<div className="mb-8">
+					<h1 className="font-bold text-3xl tracking-tight">
+						Student Resources
+					</h1>
+					<p className="mt-2 text-muted-foreground">
+						Access exclusive materials including Position Papers and Resolution
+						Banks.
+					</p>
+				</div>
+
+				<ResourceList resources={resources} />
+			</div>
+		</>
+	);
 }

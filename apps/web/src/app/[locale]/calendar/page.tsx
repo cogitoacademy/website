@@ -1,3 +1,4 @@
+import { setRequestLocale } from "next-intl/server";
 import { Suspense } from "react";
 import type { CalendarCompetition } from "@/components/competition-calendar/types";
 import NavbarResolver from "@/components/navbar-resolver";
@@ -39,6 +40,7 @@ type Props = {
 
 export default async function CompetitionCalendarPage({ params }: Props) {
 	const { locale } = await params;
+	setRequestLocale(locale);
 
 	return (
 		<>

@@ -3,6 +3,7 @@ import {
 	InstagramLogoIcon,
 	MapPinLineIcon,
 } from "@phosphor-icons/react/dist/ssr";
+import { setRequestLocale } from "next-intl/server";
 import { ActionCard } from "@/components/contact/action-card";
 import NavbarResolver from "@/components/navbar-resolver";
 import { Button } from "@/components/ui/button";
@@ -60,6 +61,7 @@ const BUTTON_CONTENT: Record<Locale, ButtonItem[]> = {
 
 export default async function ContactPage({ params }: Props) {
 	const { locale } = await params;
+	setRequestLocale(locale);
 	const isId = locale === "id";
 
 	return (

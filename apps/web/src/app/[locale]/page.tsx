@@ -1,3 +1,4 @@
+import { setRequestLocale } from "next-intl/server";
 import { EventsSection } from "@/components/landing/events-section";
 // import { FaqSection } from "@/components/landing/faq-section";
 import { HeroSection } from "@/components/landing/hero-section";
@@ -9,19 +10,25 @@ import { TutorsSection } from "@/components/landing/tutors-section";
 import Cta from "../../components/landing/cta";
 import FaqSectionV2 from "../../components/landing/faq-v2";
 
-export default function HomePage() {
-  return (
-    <div className="w-full overflow-x-clip bg-background-cream">
-      <HeroSection />
-      {/*<PartnersCarousel />*/}
-      <EventsSection />
-      <MethodsSection />
-      <SkillsSection />
-      <TutorsSection />
-      <TestimonialsSection />
-      {/*<FaqSection />*/}
-      <FaqSectionV2 />
-      <Cta />
-    </div>
-  );
+export default async function HomePage({
+	params,
+}: {
+	params: Promise<{ locale: string }>;
+}) {
+	const { locale } = await params;
+	setRequestLocale(locale);
+	return (
+		<div className="w-full overflow-x-clip bg-background-cream">
+			<HeroSection />
+			{/*<PartnersCarousel />*/}
+			<EventsSection />
+			<MethodsSection />
+			<SkillsSection />
+			<TutorsSection />
+			<TestimonialsSection />
+			{/*<FaqSection />*/}
+			<FaqSectionV2 />
+			<Cta />
+		</div>
+	);
 }
