@@ -1,4 +1,7 @@
-import { CORE_CATEGORIES, type CoreCategorySlug } from "@/lib/config/coreCategories";
+import {
+  CORE_CATEGORIES,
+  type CoreCategorySlug,
+} from "@/lib/config/coreCategories";
 
 /**
  * Map brand color keys to Tailwind CSS classes
@@ -18,8 +21,10 @@ const BRAND_COLOR_MAP: Record<string, string> = {
     "bg-tertiary-red-600 hover:bg-tertiary-red-500 border-tertiary-red-600 text-white",
   "tertiary-yellow-600":
     "bg-tertiary-yellow-600 hover:bg-tertiary-yellow-500 border-tertiary-yellow-600 text-white",
-  "primary-500": "bg-primary-500 hover:bg-primary-400 border-primary-500 text-white",
-  "secondary-500": "bg-secondary-500 hover:bg-secondary-400 border-secondary-500 text-white",
+  "primary-500":
+    "bg-primary-500 hover:bg-primary-400 border-primary-500 text-white",
+  "secondary-500":
+    "bg-secondary-500 hover:bg-secondary-400 border-secondary-500 text-white",
   "tertiary-green-600":
     "bg-tertiary-green-600 hover:bg-tertiary-green-500 border-tertiary-green-600 text-white",
   "tertiary-pink-300":
@@ -38,9 +43,7 @@ export function getBrandColorClass(colorKey: string): string {
  */
 const BADGE_COLOR_MAP: Record<string, string> = {
   // MUN (Mapped to 500 for consistency)
-  "tertiary-blue-300": "bg-tertiary-blue-500 text-neutral-1000",
-  "tertiary-blue-400": "bg-tertiary-blue-500 text-neutral-1000",
-  "tertiary-blue-500": "bg-tertiary-blue-500 text-neutral-1000",
+  "tertiary-blue-500": "bg-tertiary-blue-500 text-neutral-100",
 
   // Olimpiade
 
@@ -62,7 +65,9 @@ const BADGE_COLOR_MAP: Record<string, string> = {
  */
 export function getCoreCategoryColor(coreSlug: string): string {
   const category = CORE_CATEGORIES[coreSlug as CoreCategorySlug];
-  return category ? getBrandColorClass(category.brandColor) : getBrandColorClass("primary-500");
+  return category
+    ? getBrandColorClass(category.brandColor)
+    : getBrandColorClass("primary-500");
 }
 
 /**

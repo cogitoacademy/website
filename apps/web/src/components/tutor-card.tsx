@@ -59,7 +59,7 @@ export default function TutorCard({ tutor }: TutorCardProps) {
           {/* Bawah */}
           <div className="relative z-2 -mt-2 flex min-h-0 flex-1 flex-col rounded-xl bg-neutral-100 p-2.5 shadow-inset-top">
             <h3 className="font-semibold text-lg leading-tight truncate">{tutor.name}</h3>
-            <p className="text-sm text-muted-foreground line-clamp-2 mb-2">{affiliation}</p>
+            <p className="text-xs text-muted-foreground line-clamp-2 mb-2.5 mt-1">{affiliation}</p>
 
             {/* Tags */}
             {tutor.competitionFields?.length > 0 && (
