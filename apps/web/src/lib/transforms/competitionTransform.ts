@@ -83,8 +83,8 @@ export function sanityToCalendarCompetition(
       color: cat.color,
     })),
     color: eventColor as any, // Use first category's color as main event color
-    educationLevels: sanityCompetition.educationLevels?.map((level) => level.name) || [],
-    scale: sanityCompetition.scale?.name,
+    educationLevels: sanityCompetition.educationLevels || [],
+    scale: sanityCompetition.scale,
     organizer: sanityCompetition.organizer,
     registrationDeadline: sanityCompetition.registrationDeadline
       ? new Date(sanityCompetition.registrationDeadline)

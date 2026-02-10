@@ -10,17 +10,12 @@ export interface SanityCompetition {
     name: string;
     coreCategory: string;
   }>;
-  educationLevels?: Array<{
-    _id: string;
-    name: string;
-  }>;
+  educationLevels?: string[];
   eventDate: {
     startDate: string;
     endDate: string;
   };
-  scale?: {
-    name: string;
-  };
+  scale?: string;
   location?: Array<{ _key: string; value: string }>;
   organizer?: string;
   registrationDeadline?: string;

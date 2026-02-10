@@ -30,8 +30,13 @@ export default defineType({
     defineField({
       name: "scale",
       title: "Scale",
-      type: "reference",
-      to: [{ type: "eventScale" }],
+      type: "string",
+      options: {
+        list: [
+          { title: "International", value: "international" },
+          { title: "National", value: "national" },
+        ],
+      },
     }),
     defineField({
       name: "registrationDeadline",
@@ -86,8 +91,14 @@ export default defineType({
       type: "array",
       of: [
         defineArrayMember({
-          type: "reference",
-          to: [{ type: "educationLevel" }],
+          type: "string",
+          options: {
+            list: [
+              { title: "SMP", value: "smp" },
+              { title: "SMA", value: "sma" },
+              { title: "Mahasiswa", value: "mahasiswa" },
+            ],
+          },
         }),
       ],
     }),

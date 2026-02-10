@@ -1,19 +1,13 @@
-import competition from './competition'
-import competitionCategory from './competitionCategory'
-import educationLevel from './educationLevel'
-import studentResource from './studentResource'
-import eventScale from './eventScale'
-import location from './location'
-import tutor from './tutor'
-import event from './event'
+import competition from "./competition";
+import competitionCategory from "./competitionCategory";
+import event from "./event";
+import studentResource from "./studentResource";
+import tutor from "./tutor";
 
 export const schemaTypes = [
-  competitionCategory,
-  location,
-  eventScale,
-  educationLevel,
-  tutor,
-  competition,
-  event,
-  studentResource,
-]
+	competitionCategory,
+	tutor,
+	competition,
+	event,
+	studentResource,
+];

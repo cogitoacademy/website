@@ -10,17 +10,12 @@ export const COMPETITIONS_QUERY = defineQuery(`
       name,
       coreCategory
     },
-    educationLevels[]->{
-      _id,
-      name
-    },
+    educationLevels,
     eventDate {
       startDate,
       endDate
     },
-    scale->{
-      name
-    },
+    scale,
     location,
     organizer,
     registrationDeadline,
