@@ -1,10 +1,18 @@
 "use client";
 
+import { IdentificationBadgeIcon } from "@phosphor-icons/react/dist/ssr";
 import * as m from "motion/react-m";
 import { useTranslations } from "next-intl";
 import { useMemo, useState } from "react";
 import TutorCard from "@/components/tutor-card";
 import TutorFilters from "@/components/tutor-filters";
+import {
+  Empty,
+  EmptyDescription,
+  EmptyHeader,
+  EmptyMedia,
+  EmptyTitle,
+} from "@/components/ui/empty";
 import { LOCATIONS } from "@/lib/config/locations";
 import type { CompetitionCategory, Tutor } from "@/types/tutor";
 
@@ -70,12 +78,23 @@ export default function TutorList({ tutors, categories }: TutorListProps) {
       />
 
       {filteredTutors.length === 0 ? (
-        <div className="py-12 text-center">
-          <p className="text-muted-foreground">
-            {tutors.length === 0 ? t("loading") : t("noTutors")}
-          </p>
-        </div>
+        <Empty className="h-full">
+          <EmptyHeader>
+            <EmptyMedia variant="icon">
+              <IdentificationBadgeIcon />
+            </EmptyMedia>
+            <EmptyTitle>{t("noTutorsTitle")}</EmptyTitle>
+            <EmptyDescription className="text-pretty">
+              {tutors.length === 0 ? t("loading") : t("noTutors")}
+            </EmptyDescription>
+          </EmptyHeader>
+        </Empty>
       ) : (
+        // <div className="py-12 text-center">
+        //   <p className="text-muted-foreground">
+        //     {tutors.length === 0 ? t("loading") : t("noTutors")}
+        //   </p>
+        // </div>
         <m.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}

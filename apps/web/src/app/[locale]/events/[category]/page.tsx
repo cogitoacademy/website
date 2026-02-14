@@ -1,25 +1,7 @@
-import { format } from "date-fns";
-import { id as idLocale } from "date-fns/locale";
-import {
-	CalendarIcon,
-	ClockIcon,
-	ExternalLinkIcon,
-	MapPinIcon,
-} from "lucide-react";
-import Image from "next/image";
 import { notFound } from "next/navigation";
 import { setRequestLocale } from "next-intl/server";
+import { EventsGrid, type SerializedEvent } from "@/components/events/events-grid";
 import NavbarResolver from "@/components/navbar-resolver";
-import { Badge } from "@/components/ui/badge";
-import { buttonVariants } from "@/components/ui/button";
-import {
-	Card,
-	CardContent,
-	CardDescription,
-	CardFooter,
-	CardHeader,
-	CardTitle,
-} from "@/components/ui/card";
 import { routing } from "@/i18n/routing";
 import { sanityToEvent } from "@/lib/transforms/eventTransform";
 import { EVENTS_BY_CATEGORY_QUERY } from "@/queries/events";
@@ -30,237 +12,120 @@ const VALID_CATEGORIES = ["monthly-townhall", "cogito-101-series"] as const;
 type CategorySlug = (typeof VALID_CATEGORIES)[number];
 
 const CATEGORY_META: Record<
-	CategorySlug,
-	{
-		title: { id: string; en: string };
-		subtitle: { id: string; en: string };
-		description: { id: string; en: string };
-	}
+  CategorySlug,
+  {
+    headline: {
+      id: { before: string; highlight: string; after: string };
+      en: { before: string; highlight: string; after: string };
+    };
+    subtitle: { id: string; en: string };
+  }
 > = {
-	"monthly-townhall": {
-		title: {
-			id: "Monthly Townhall",
-			en: "Monthly Townhall",
-		},
-		subtitle: {
-			id: "Bergabunglah setiap bulan untuk update, diskusi, dan bonding komunitas.",
-			en: "Join us every month for updates, discussions, and community bonding.",
-		},
-		description: {
-			id: "Pertemuan bulanan kami adalah detak jantung komunitas Cogito. Kami membahas kegiatan mendatang, berbagi pencapaian, dan membuka sesi tanya jawab.",
-			en: "Our monthly meetings are the heartbeat of the Cogito community. We discuss upcoming activities, share achievements, and open the floor for Q&A.",
-		},
-	},
-	"cogito-101-series": {
-		title: {
-			id: "Cogito 101 Series",
-			en: "Cogito 101 Series",
-		},
-		subtitle: {
-			id: "Kenali ragam peluang prestasi global dan siapkan dirimu!",
-			en: "Discover global achievement opportunities and prepare yourself!",
-		},
-		description: {
-			id: "Seri pengenalan untuk kamu yang baru bergabung atau ingin memahami lebih dalam tentang dunia kompetisi dan peluang prestasi di Cogito Academy.",
-			en: "An introductory series for newcomers or those who want to dive deeper into the world of competitions and achievement opportunities at Cogito Academy.",
-		},
-	},
+  "monthly-townhall": {
+    headline: {
+      id: {
+        before: "Gali ",
+        highlight: "Wawasan Baru",
+        after: " dalam Diskusi Bulanan Kami",
+      },
+      en: {
+        before: "Discover ",
+        highlight: "New Insights",
+        after: " in Our Monthly Discussions",
+      },
+    },
+    subtitle: {
+      id: "Perdalam penguasaan ilmumu melalui dialog langsung bersama para ahli di setiap sesi bulanan.",
+      en: "Deepen your knowledge through direct dialogue with experts in every monthly session.",
+    },
+  },
+  "cogito-101-series": {
+    headline: {
+      id: {
+        before: "Kenali ",
+        highlight: "Ragam Peluang",
+        after: " Prestasi Global",
+      },
+      en: {
+        before: "Discover ",
+        highlight: "Global Achievement",
+        after: " Opportunities",
+      },
+    },
+    subtitle: {
+      id: "Seri pengenalan untuk kamu yang ingin memahami lebih dalam tentang dunia kompetisi dan peluang prestasi.",
+      en: "An introductory series for those who want to dive deeper into competitions and achievement opportunities.",
+    },
+  },
 };
 
 type Props = {
-	params: Promise<{
-		locale: string;
-		category: string;
-	}>;
+  params: Promise<{
+    locale: string;
+    category: string;
+  }>;
 };
 
 export function generateStaticParams() {
-	return routing.locales.flatMap((locale) =>
-		VALID_CATEGORIES.map((category) => ({ locale, category })),
-	);
+  return routing.locales.flatMap((locale) =>
+    VALID_CATEGORIES.map((category) => ({ locale, category })),
+  );
 }
 
 export default async function EventCategoryPage({ params }: Props) {
-	const { locale, category } = await params;
-	setRequestLocale(locale);
+  const { locale, category } = await params;
+  setRequestLocale(locale);
 
-	if (!VALID_CATEGORIES.includes(category as CategorySlug)) {
-		notFound();
-	}
+  if (!VALID_CATEGORIES.includes(category as CategorySlug)) {
+    notFound();
+  }
 
-	const categorySlug = category as CategorySlug;
-	const meta = CATEGORY_META[categorySlug];
-	const lang = locale === "en" ? "en" : "id";
+  const categorySlug = category as CategorySlug;
+  const meta = CATEGORY_META[categorySlug];
+  const lang = locale === "en" ? "en" : "id";
+  const headline = meta.headline[lang];
 
-	// Fetch events from Sanity
-	let events: Event[] = [];
-	try {
-		const sanityEvents = await client.fetch<SanityEvent[]>(
-			EVENTS_BY_CATEGORY_QUERY,
-			{ category: categorySlug },
-			{ next: { revalidate: 1800 } },
-		);
+  // Fetch events from Sanity
+  let events: Event[] = [];
+  try {
+    const sanityEvents = await client.fetch<SanityEvent[]>(
+      EVENTS_BY_CATEGORY_QUERY,
+      { category: categorySlug },
+      { next: { revalidate: 1800 } },
+    );
 
-		events = sanityEvents.map((e) => sanityToEvent(e, lang));
-	} catch (error) {
-		console.error("Failed to fetch events:", error);
-	}
+    events = sanityEvents.map((e) => sanityToEvent(e, lang));
+  } catch (error) {
+    console.error("Failed to fetch events:", error);
+  }
 
-	const upcomingEvents = events.filter((e) => e.status === "upcoming");
-	const pastEvents = events.filter((e) => e.status === "past");
+  // Serialize events for client component (Date -> ISO string)
+  const serializedEvents: SerializedEvent[] = events.map((e) => ({
+    ...e,
+    date: e.date.toISOString(),
+  }));
 
-	return (
-		<>
-			<NavbarResolver />
-			<main className="relative z-3 mx-auto max-w-7xl px-4 pb-20">
-				{/* Hero Section */}
-				<section className="py-12 md:py-20">
-					<div className="space-y-4">
-						<h1 className="font-bold text-4xl text-neutral-1000 tracking-tight md:text-5xl">
-							{meta.title[lang]}
-						</h1>
-						<p className="font-medium text-neutral-600 text-xl md:text-2xl">
-							{meta.subtitle[lang]}
-						</p>
-						<p className="max-w-2xl text-base text-neutral-600 leading-relaxed">
-							{meta.description[lang]}
-						</p>
-					</div>
-				</section>
+  return (
+    <>
+      <NavbarResolver />
+      <main className="relative z-3 mx-auto max-w-7xl px-4 pb-20 sm:px-6 lg:px-8">
+        {/* Hero Section */}
+        <section className="py-8 sm:py-12 md:py-16">
+          <div className="max-w-2xl space-y-3">
+            <h1 className="font-bold text-2xl text-neutral-1000 tracking-tight sm:text-3xl md:text-4xl lg:text-5xl">
+              {headline.before}
+              <em className="text-primary-500">{headline.highlight}</em>
+              {headline.after}
+            </h1>
+            <p className="text-neutral-600 text-sm leading-relaxed sm:text-base">
+              {meta.subtitle[lang]}
+            </p>
+          </div>
+        </section>
 
-				{/* Upcoming Events */}
-				{upcomingEvents.length > 0 && (
-					<section className="mb-12">
-						<h2 className="mb-6 font-bold text-2xl text-neutral-1000">
-							{lang === "id" ? "Akan Datang" : "Upcoming"}
-						</h2>
-						<div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-							{upcomingEvents.map((event) => (
-								<EventCard key={event.id} event={event} lang={lang} />
-							))}
-						</div>
-					</section>
-				)}
-
-				{/* Past Events */}
-				{pastEvents.length > 0 && (
-					<section className="mb-12">
-						<h2 className="mb-6 font-bold text-2xl text-neutral-1000">
-							{lang === "id" ? "Sudah Berlalu" : "Past Events"}
-						</h2>
-						<div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-							{pastEvents.map((event) => (
-								<EventCard key={event.id} event={event} lang={lang} />
-							))}
-						</div>
-					</section>
-				)}
-
-				{/* Empty State */}
-				{events.length === 0 && (
-					<section className="py-20 text-center">
-						<p className="text-lg text-neutral-500">
-							{lang === "id"
-								? "Belum ada kegiatan yang terdaftar."
-								: "No events available yet."}
-						</p>
-					</section>
-				)}
-			</main>
-		</>
-	);
-}
-
-function EventCard({ event, lang }: { event: Event; lang: string }) {
-	const dateLocale = lang === "id" ? idLocale : undefined;
-	const formattedDate = format(event.date, "d MMMM yyyy", {
-		locale: dateLocale,
-	});
-
-	return (
-		<Card className="overflow-hidden border-neutral-200 shadow-sm transition-shadow hover:shadow-md">
-			{/* Image */}
-			{event.imageUrl && (
-				<div className="relative aspect-[16/9] bg-neutral-100">
-					<Image
-						src={event.imageUrl}
-						alt={event.title}
-						fill
-						className="object-cover"
-					/>
-				</div>
-			)}
-
-			<CardHeader>
-				<div className="mb-2 flex items-center gap-2">
-					<Badge
-						variant={event.status === "upcoming" ? "default" : "secondary"}
-					>
-						{event.status === "upcoming"
-							? lang === "id"
-								? "Akan Datang"
-								: "Upcoming"
-							: lang === "id"
-								? "Selesai"
-								: "Past"}
-					</Badge>
-				</div>
-				<CardTitle className="line-clamp-2 text-lg md:text-xl">
-					{event.title}
-				</CardTitle>
-			</CardHeader>
-
-			<CardContent className="space-y-3">
-				{event.description && (
-					<CardDescription className="line-clamp-3 text-sm">
-						{event.description}
-					</CardDescription>
-				)}
-
-				<div className="space-y-2 text-neutral-600 text-sm">
-					<div className="flex items-center gap-2">
-						<CalendarIcon className="h-4 w-4 shrink-0" />
-						<span>{formattedDate}</span>
-					</div>
-
-					{event.time && (
-						<div className="flex items-center gap-2">
-							<ClockIcon className="h-4 w-4 shrink-0" />
-							<span>{event.time}</span>
-						</div>
-					)}
-
-					{event.place && (
-						<div className="flex items-center gap-2">
-							<MapPinIcon className="h-4 w-4 shrink-0" />
-							<span>{event.place}</span>
-						</div>
-					)}
-				</div>
-
-				{event.summary && (
-					<p className="line-clamp-4 text-neutral-600 text-sm leading-relaxed">
-						{event.summary}
-					</p>
-				)}
-			</CardContent>
-
-			{event.registrationLink && event.status === "upcoming" && (
-				<CardFooter>
-					<a
-						href={event.registrationLink}
-						target="_blank"
-						rel="noopener noreferrer"
-						className={buttonVariants({
-							variant: "default",
-							className: "w-full",
-						})}
-					>
-						{lang === "id" ? "Daftar Sekarang" : "Register Now"}
-						<ExternalLinkIcon className="ml-2 h-4 w-4" />
-					</a>
-				</CardFooter>
-			)}
-		</Card>
-	);
+        {/* Events Grid with Pagination */}
+        <EventsGrid events={serializedEvents} lang={lang} />
+      </main>
+    </>
+  );
 }

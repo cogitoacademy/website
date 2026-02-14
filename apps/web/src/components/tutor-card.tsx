@@ -47,7 +47,7 @@ export default function TutorCard({ tutor }: TutorCardProps) {
 
         {/* Header */}
         <div className="flex min-h-0 flex-1 flex-col">
-          <div className="relative h-70 w-full shrink-0 bg-muted z-1">
+          <div className="relative h-60 w-full shrink-0 bg-muted z-1">
             <Image
               src={tutor.profilePicture.asset.url}
               alt={tutor.profilePicture.asset.altText || tutor.name}

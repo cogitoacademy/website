@@ -1,6 +1,6 @@
 "use client";
 
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, Search } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 import {
@@ -48,6 +48,18 @@ export default function TutorFilters({
 
   return (
     <div className="mb-8 flex flex-col items-start justify-between gap-4 md:flex-row md:items-center">
+      <div className="w-full md:w-72">
+        <div className="relative">
+          <Search className="absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 " />
+          <Input
+            placeholder={t("searchPlaceholder")}
+            value={searchQuery}
+            onChange={(e) => onSearchChange(e.target.value)}
+            type="search"
+            className="pl-9"
+          />
+        </div>
+      </div>
       <div className="flex flex-wrap gap-3">
         <DropdownMenu>
           <DropdownMenuTrigger render={<Button variant="outline" />}>
@@ -102,14 +114,6 @@ export default function TutorFilters({
             {t("clearFilters")}
           </Button>
         )}
-      </div>
-
-      <div className="w-full md:w-72">
-        <Input
-          placeholder={t("searchPlaceholder")}
-          value={searchQuery}
-          onChange={(e) => onSearchChange(e.target.value)}
-        />
       </div>
     </div>
   );
