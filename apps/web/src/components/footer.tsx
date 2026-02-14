@@ -45,7 +45,7 @@ export default function Footer() {
   return (
     <footer
       className={cn(
-        "relative z-1 -mt-56",
+        "relative z-1 -mt-18",
         isContactPage ? "bg-background-primary" : "bg-primary-200",
       )}
     >
@@ -55,7 +55,7 @@ export default function Footer() {
         <svg
           viewBox="0 0 1440 160"
           preserveAspectRatio="none"
-          className="absolute top-0 left-0 h-60 w-full -translate-y-full"
+          className="absolute top-0 left-0 lg:h-60 w-full -translate-y-full z-1"
         >
           <path d="M0,160 C240,0 1200,0 1440,160 L1440,160 L0,160 Z" className="fill-primary-200" />
         </svg>
@@ -64,20 +64,20 @@ export default function Footer() {
       <section
         className={cn(
           "mx-auto flex max-w-7xl flex-col items-center justify-between gap-8 px-4 pb-12 md:flex-row md:items-start md:pb-16",
-          isContactPage ? "pt-30" : "pt-72",
+          isContactPage ? "pt-30" : "pt-30",
         )}
       >
-        <div className="flex flex-col items-center md:items-start">
+        <div className="flex flex-col items-center md:items-start w-full">
           <Image
             src="/cogito-academy-logo.webp"
             alt="Cogito Academy"
             width={424}
             height={200}
-            className="h-30 w-auto"
+            className="w-full h-auto sm:h-30 sm:w-auto"
           />
         </div>
 
-        <div className="flex flex-col items-center gap-y-5 text-center md:items-end md:text-right">
+        <div className="flex flex-col items-end sm:items-center gap-y-5  text-right sm:text-center md:items-end md:text-right w-full">
           <p className="max-w-sm text-gray-700">
             {isId
               ? "Mengubah potensi menjadi prestasi dan kemampuan secara sistematis."

@@ -27,6 +27,7 @@ const NAV_ITEMS_ID = [
       { label: "Cogito 101 Series", href: "/events/cogito-101-series" },
     ],
   },
+  { label: "Materi Siswa", href: "/student-resources" },
 ];
 
 const NAV_ITEMS_EN = [
@@ -41,6 +42,7 @@ const NAV_ITEMS_EN = [
       { label: "Cogito 101 Series", href: "/events/cogito-101-series" },
     ],
   },
+  { label: "Student Resources", href: "/student-resources" },
 ];
 
 export default function Header() {
@@ -64,7 +66,7 @@ export default function Header() {
     <>
       <header
         className={`fixed top-0 right-0 left-0 z-40 transition-colors duration-300 ${
-          isScrolled ? "rounded-b-2xl bg-background-cream shadow-sm" : "bg-transparent"
+          isScrolled ? "rounded-b-2xl bg-neutral-100 shadow-sm" : "bg-transparent"
         }`}
       >
         <div className="mx-auto max-w-7xl px-4 py-4">
