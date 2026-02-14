@@ -1,4 +1,4 @@
-import "@cogito-acad/env/web";
+// import "@cogito-acad/env/web";
 import type { NextConfig } from "next";
 import createNextIntlPlugin from "next-intl/plugin";
 
