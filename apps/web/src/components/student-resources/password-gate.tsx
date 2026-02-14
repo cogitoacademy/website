@@ -1,57 +1,56 @@
 "use client";
 
-import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { toast } from "sonner";
 import { verifyPassword } from "@/actions/auth";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
 export function PasswordGate() {
   const [password, setPassword] = useState("");
+  const [error, setError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const router = useRouter();
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setIsLoading(true);
+    setError(false);
 
     try {
       const result = await verifyPassword(password);
       if (result.success) {
-        toast.success("Access granted!");
-        router.refresh(); // Refresh to check cookie again
+        window.location.reload();
       } else {
-        toast.error(result.error || "Incorrect password");
+        setError(true);
       }
-    } catch (error) {
-      toast.error("Something went wrong");
+    } catch {
+      setError(true);
     } finally {
       setIsLoading(false);
     }
-  };
+  }
 
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center p-4 relative z-3">
-      <div className="w-full max-w-md space-y-8 rounded-xl border bg-card p-8 shadow-sm">
+    <div className="flex min-h-screen flex-col items-center justify-center bg-background-cream px-4">
+      <div className="w-full max-w-md space-y-6">
         <div className="text-center">
-          <h1 className="font-bold text-2xl tracking-tight">Student Resources</h1>
+          <h1 className="font-bold text-3xl tracking-tight">Student Resources</h1>
           <p className="mt-2 text-muted-foreground">
-            Please enter the password to access these resources.
+            Enter the password to access exclusive materials.
           </p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-4">
-          <div className="space-y-2">
+          <div>
             <Input
               type="password"
               placeholder="Enter password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              disabled={isLoading}
-              required
-              className="w-full"
+              className={error ? "border-red-500" : ""}
             />
+            {error && (
+              <p className="mt-2 text-red-500 text-sm">Incorrect password. Please try again.</p>
+            )}
           </div>
           <Button type="submit" className="w-full" disabled={isLoading}>
             {isLoading ? "Verifying..." : "Access Resources"}
