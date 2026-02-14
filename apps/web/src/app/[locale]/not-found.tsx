@@ -1,5 +1,3 @@
-"use client";
-
 import { Sparkles } from "lucide-react";
 import { useTranslations } from "next-intl";
 
@@ -17,9 +15,7 @@ export default function NotFound() {
           {t("title")}
         </h1>
 
-        <p className="mb-8 text-base leading-relaxed md:text-lg">
-          {t("description")}
-        </p>
+        <p className="mb-8 text-base leading-relaxed md:text-lg">{t("description")}</p>
 
         <Link
           href="/"

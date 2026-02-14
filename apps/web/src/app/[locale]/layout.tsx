@@ -10,44 +10,44 @@ import { routing } from "@/i18n/routing";
 import NotFound from "./not-found";
 
 const lexendDeca = Lexend_Deca({
-	variable: "--font-lexend-deca",
-	subsets: ["latin"],
+  variable: "--font-lexend-deca",
+  subsets: ["latin"],
 });
 
 const inter = Inter({
-	variable: "--font-sans",
-	subsets: ["latin"],
+  variable: "--font-sans",
+  subsets: ["latin"],
 });
 
 export function generateStaticParams() {
-	return routing.locales.map((locale) => ({ locale }));
+  return routing.locales.map((locale) => ({ locale }));
 }
 
 export default async function LocaleLayout({
-	children,
-	params,
+  children,
+  params,
 }: {
-	children: React.ReactNode;
-	params: Promise<{ locale: string }>;
+  children: React.ReactNode;
+  params: Promise<{ locale: string }>;
 }) {
-	const { locale } = await params;
-	if (!hasLocale(routing.locales, locale)) {
-		return <NotFound />;
-	}
-	setRequestLocale(locale);
-	const messages = await getMessages();
+  const { locale } = await params;
+  if (!hasLocale(routing.locales, locale)) {
+    return <NotFound />;
+  }
+  setRequestLocale(locale);
+  const messages = await getMessages();
 
-	return (
-		<html lang={locale} suppressHydrationWarning>
-			<body className={`${lexendDeca.variable} ${inter.variable} antialiased`}>
-				<NextIntlClientProvider messages={messages}>
-					<Providers>
-						<Header />
-						{children}
-						<Footer />
-					</Providers>
-				</NextIntlClientProvider>
-			</body>
-		</html>
-	);
+  return (
+    <html lang={locale} suppressHydrationWarning>
+      <body className={`${lexendDeca.variable} ${inter.variable} antialiased`}>
+        <NextIntlClientProvider messages={messages}>
+          <Providers>
+            <Header />
+            {children}
+            <Footer />
+          </Providers>
+        </NextIntlClientProvider>
+      </body>
+    </html>
+  );
 }
