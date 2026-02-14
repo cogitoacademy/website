@@ -2,7 +2,7 @@ import { defineArrayMember, defineField, defineType } from "sanity";
 
 export default defineType({
   name: "competition",
-  title: "Competition",
+  title: "Competition Calendar",
   type: "document",
   fields: [
     defineField({

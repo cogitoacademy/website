@@ -1,54 +1,55 @@
 {
-	"nav": {
-		"home": "Beranda",
-		"tutors": "Tutor",
-		"activities": "Kegiatan",
-		"calendar": "Kalender Lomba",
-		"about": "Tentang Kami",
-		"faq": "FAQ"
-	},
-	"hero": {
-		"title": "Bergabung dengan Tutor Terbaik",
-		"subtitle": "Pelajari keterampilan berkompetisi dengan mentor berpengalaman",
-		"cta": "Mulai Belajar"
-	},
-	"tutors": {
-		"title": "Tim Tutor Kami",
-		"description": "Bergabunglah dengan tutor berpengalaman kami yang ahli dalam berbagai bidang perlombaan",
-		"location": "Lokasi",
-		"competitionField": "Bidang Kompetisi",
-		"selectLocation": "Pilih Lokasi",
-		"selectCategory": "Pilih Bidang",
-		"searchPlaceholder": "Cari tutor...",
-		"clearFilters": "Hapus Filter",
-		"noTutors": "Tidak ada tutor yang cocok dengan filter yang dipilih",
-		"loading": "Memuat tutor...",
-		"achievements": "Pencapaian",
-		"experiences": "Pengalaman"
-	},
-	"events": {
-		"upcoming": "Akan Datang",
-		"past": "Sudah Berlalu",
-		"done": "Selesai",
-		"noEvents": "Belum ada kegiatan yang terdaftar.",
-		"registerNow": "Daftar Sekarang"
-	},
-	"common": {
-		"loading": "Memuat...",
-		"error": "Terjadi kesalahan",
-		"readMore": "Baca Selengkapnya"
-	},
-	"error": {
-		"404": {
-			"title": "Halaman tidak ditemukan.",
-			"description": "Halaman ini tidak ada, silakan kembali ke beranda dan coba lagi.",
-			"button": "Kembali ke beranda"
-		},
-		"generic": {
-			"title": "Terjadi kesalahan.",
-			"description": "Maaf, terjadi kesalahan. Silakan coba lagi atau hubungi dukungan jika masalah berlanjut.",
-			"button": "Coba lagi",
-			"backButton": "Kembali ke beranda"
-		}
-	}
+  "nav": {
+    "home": "Beranda",
+    "tutors": "Tutor",
+    "activities": "Kegiatan",
+    "calendar": "Kalender Lomba",
+    "about": "Tentang Kami",
+    "faq": "FAQ"
+  },
+  "hero": {
+    "title": "Bergabung dengan Tutor Terbaik",
+    "subtitle": "Pelajari keterampilan berkompetisi dengan mentor berpengalaman",
+    "cta": "Mulai Belajar"
+  },
+  "tutors": {
+    "title": "Tim Tutor Kami",
+    "description": "Bergabunglah dengan tutor berpengalaman kami yang ahli dalam berbagai bidang perlombaan",
+    "location": "Lokasi",
+    "competitionField": "Bidang Kompetisi",
+    "selectLocation": "Pilih Lokasi",
+    "selectCategory": "Pilih Bidang",
+    "searchPlaceholder": "Cari tutor...",
+    "clearFilters": "Hapus Filter",
+    "noTutorsTitle": "Duh, Tutor yang kamu cari gada nih.",
+    "noTutors": "Coba cari dengan kata kunci yang lain atau reset filter, ya!",
+    "loading": "Memuat tutor...",
+    "achievements": "Pencapaian",
+    "experiences": "Pengalaman"
+  },
+  "events": {
+    "upcoming": "Akan Datang",
+    "past": "Sudah Berlalu",
+    "done": "Selesai",
+    "noEvents": "Belum ada kegiatan yang terdaftar.",
+    "registerNow": "Daftar Sekarang"
+  },
+  "common": {
+    "loading": "Memuat...",
+    "error": "Terjadi kesalahan",
+    "readMore": "Baca Selengkapnya"
+  },
+  "error": {
+    "404": {
+      "title": "Halaman tidak ditemukan.",
+      "description": "Halaman ini tidak ada, silakan kembali ke beranda dan coba lagi.",
+      "button": "Kembali ke beranda"
+    },
+    "generic": {
+      "title": "Terjadi kesalahan.",
+      "description": "Maaf, terjadi kesalahan. Silakan coba lagi atau hubungi dukungan jika masalah berlanjut.",
+      "button": "Coba lagi",
+      "backButton": "Kembali ke beranda"
+    }
+  }
 }

@@ -4,10 +4,4 @@ import event from "./event";
 import studentResource from "./studentResource";
 import tutor from "./tutor";
 
-export const schemaTypes = [
-	competitionCategory,
-	tutor,
-	competition,
-	event,
-	studentResource,
-];
+export const schemaTypes = [competitionCategory, tutor, competition, event, studentResource];
