@@ -9,7 +9,6 @@
   },
   "dependencies": {
     "@base-ui/react": "^1.0.0",
-    "@cogito-acad/env": "workspace:*",
     "@dnd-kit/core": "^6.3.1",
     "@dnd-kit/modifiers": "^9.0.0",
     "@dnd-kit/utilities": "^3.2.2",
@@ -40,7 +39,6 @@
     "zod": "catalog:"
   },
   "devDependencies": {
-    "@cogito-acad/config": "workspace:*",
     "@tailwindcss/postcss": "^4.1.10",
     "@types/node": "^20",
     "@types/react": "^19.2.7",
