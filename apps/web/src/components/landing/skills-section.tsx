@@ -82,9 +82,31 @@ export async function SkillsSection() {
           className="absolute inset-0 bottom-0 z-3 mt-auto w-full"
         />
 
-        <div className="absolute inset-0 bottom-30 z-0 w-full bg-tertiary-pink-300 [clip-path:polygon(0_0,100%_0,100%_65%,50%_100%,0%_65%)]" />
+        <div className="absolute top-20 left-0 w-full aspect-[500/520] lg:aspect-16/5">
+          <svg
+            viewBox="0 0 1000 120"
+            preserveAspectRatio="none"
+            className="w-full h-full"
+          >
+            <polygon
+              points="0,0 1000,0 1000,80 500,120 0,80"
+              className="fill-tertiary-pink-300"
+            />
+          </svg>
+        </div>
 
-        <div className="absolute inset-0 bottom-50 z-0 w-full bg-background-cream [clip-path:polygon(0_0,100%_0,100%_60%,50%_100%,0%_60%)]" />
+        <div className="absolute top-0 left-0 w-full aspect-[500/520] lg:aspect-16/5">
+          <svg
+            viewBox="0 0 1000 120"
+            preserveAspectRatio="none"
+            className="w-full h-full"
+          >
+            <polygon
+              points="0,0 1000,0 1000,80 500,120 0,80"
+              className="fill-neutral-100"
+            />
+          </svg>
+        </div>
 
         <div className="relative z-3 flex flex-col items-center justify-center">
           <Badge variant={"headline-cream"}>

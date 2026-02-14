@@ -80,7 +80,7 @@ function TutorJuaraDuniaCard({ isId }: { isId: boolean }) {
       }
       className="bg-tertiary-red-200"
     >
-      <div className="absolute -bottom-[60%] left-1/2 aspect-square w-[150%] -translate-x-1/2 rounded-full bg-white/40" />
+      <div className="absolute translate-y-1/2 -bottom-30 md:-bottom-12 left-1/2 aspect-square w-[150%] -translate-x-1/2 rounded-full bg-white/40" />
       <div className="relative z-10 flex w-full items-end justify-center gap-x-8 px-2 pb-6">
         <div className="text-center">
           <p className="font-bold text-2xl text-primary-600">200+</p>

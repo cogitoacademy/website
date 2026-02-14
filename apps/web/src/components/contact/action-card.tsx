@@ -74,7 +74,7 @@ export function ActionCard({
                 target="_blank"
                 rel="noopener noreferrer"
                 className={cn(
-                  buttonVariants({ size: "default" }),
+                  buttonVariants({ size: "lg" }),
                   "gap-2 text-sm sm:text-base",
                 )}
               >
@@ -85,7 +85,7 @@ export function ActionCard({
               <Link
                 href={action.href as import("next").Route}
                 className={cn(
-                  buttonVariants({ size: "default" }),
+                  buttonVariants({ size: "lg" }),
                   "gap-2 text-sm sm:text-base",
                 )}
               >
