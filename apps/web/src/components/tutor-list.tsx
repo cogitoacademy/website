@@ -93,7 +93,7 @@ export default function TutorList({ tutors, categories }: TutorListProps) {
 					</EmptyHeader>
 				</Empty>
 			) : (
-				<TutorsGrid tutors={filteredTutors} />
+				<TutorsGrid tutors={filteredTutors} showAll />
 			)}
 		</div>
 	);

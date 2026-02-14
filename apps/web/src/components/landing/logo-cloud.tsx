@@ -15,7 +15,11 @@ interface LogoCloudProps {
   displayCount?: number;
 }
 
-export function LogoCloud({ logos, interval = 3000, displayCount = 3 }: LogoCloudProps) {
+export function LogoCloud({
+  logos,
+  interval = 3000,
+  displayCount = 3,
+}: LogoCloudProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [key, setKey] = useState(0);
 
@@ -82,7 +86,7 @@ export function LogoCloud({ logos, interval = 3000, displayCount = 3 }: LogoClou
               variants={itemVariants}
               className="flex items-center justify-center"
             >
-              <div className="flex h-16 w-full items-center justify-center rounded-lg border border-white/15 bg-gradient-to-br from-white/10 to-white/5 transition-all duration-300 sm:h-20 md:h-24">
+              <div className="flex h-16 w-full items-center justify-center rounded-lg transition-all duration-300 sm:h-20 md:h-24">
                 <img
                   src={logo.url || "/placeholder.svg"}
                   alt={logo.name}

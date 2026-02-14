@@ -92,7 +92,7 @@ export async function HeroSection() {
 
   return (
     <>
-      <div className="absolute inset-0 bottom-150 z-0 w-full bg-neutral-100 [clip-path:polygon(0_0,100%_0,100%_70%,50%_100%,0%_70%)] sm:bottom-120 md:bottom-90" />
+      <div className="absolute inset-0 bottom-50 z-0 w-full bg-neutral-100 [clip-path:polygon(0_0,100%_0,100%_70%,50%_100%,0%_70%)] sm:bottom-120 md:bottom-90" />
       <Container className="relative z-1 flex-col items-center pt-28 pb-0 sm:pt-36 md:pt-42 lg:pt-50">
         <section className="flex flex-col items-center justify-center">
           {/* Badge / Tagline */}
