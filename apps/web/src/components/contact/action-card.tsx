@@ -52,7 +52,7 @@ export function ActionCard({
     >
       <div className="flex h-full flex-col lg:flex-row">
         {/* Content Section */}
-        <div className="relative z-10 flex flex-1 flex-col justify-start p-5 sm:p-6 lg:p-8">
+        <div className="relative z-10 justify-start p-5 sm:p-6 lg:p-8">
           <h3 className="mb-2 font-bold text-primary-500 text-xl sm:text-2xl">
             {highlight ? (
               <>
@@ -97,7 +97,7 @@ export function ActionCard({
         </div>
 
         {/* Image Section */}
-        <div className="absolute right-0 bottom-0 min-h-[200px] w-full overflow-hidden sm:min-h-[250px] lg:min-h-[300px] z-5">
+        <div className="absolute right-0 bottom-0 min-h-[200px] w-full overflow-hidden h-full sm:min-h-[250px] lg:min-h-[300px] z-5">
           {/* Background Circle Decoration */}
           <div
             className={cn(
