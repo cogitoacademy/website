@@ -148,11 +148,16 @@
   --shadow-color: hsl(0 0% 0%);
   --shadow-2xs: 0px 4px 8px -1px hsl(0 0% 0% / 0.05);
   --shadow-xs: 0px 4px 8px -1px hsl(0 0% 0% / 0.05);
-  --shadow-sm: 0px 4px 8px -1px hsl(0 0% 0% / 0.1), 0px 1px 2px -2px hsl(0 0% 0% / 0.1);
-  --shadow: 0px 4px 8px -1px hsl(0 0% 0% / 0.1), 0px 1px 2px -2px hsl(0 0% 0% / 0.1);
-  --shadow-md: 0px 4px 8px -1px hsl(0 0% 0% / 0.1), 0px 2px 4px -2px hsl(0 0% 0% / 0.1);
-  --shadow-lg: 0px 4px 8px -1px hsl(0 0% 0% / 0.1), 0px 4px 6px -2px hsl(0 0% 0% / 0.1);
-  --shadow-xl: 0px 4px 8px -1px hsl(0 0% 0% / 0.1), 0px 8px 10px -2px hsl(0 0% 0% / 0.1);
+  --shadow-sm:
+    0px 4px 8px -1px hsl(0 0% 0% / 0.1), 0px 1px 2px -2px hsl(0 0% 0% / 0.1);
+  --shadow:
+    0px 4px 8px -1px hsl(0 0% 0% / 0.1), 0px 1px 2px -2px hsl(0 0% 0% / 0.1);
+  --shadow-md:
+    0px 4px 8px -1px hsl(0 0% 0% / 0.1), 0px 2px 4px -2px hsl(0 0% 0% / 0.1);
+  --shadow-lg:
+    0px 4px 8px -1px hsl(0 0% 0% / 0.1), 0px 4px 6px -2px hsl(0 0% 0% / 0.1);
+  --shadow-xl:
+    0px 4px 8px -1px hsl(0 0% 0% / 0.1), 0px 8px 10px -2px hsl(0 0% 0% / 0.1);
   --shadow-2xl: 0px 4px 8px -1px hsl(0 0% 0% / 0.25);
   --shadow-inset-top-color: rgba(0, 0, 0, 0.15);
   --shadow-inset-top-subtle: rgba(16, 24, 40, 0.05);
@@ -353,11 +358,18 @@
 
 @layer utilities {
   .shadow-inset-top-default {
-    box-shadow: inset 0 -2px 0 0 var(--shadow-inset-top-color, rgba(0, 0, 0, 0.15));
+    box-shadow: inset 0 -2px 0 0
+      var(--shadow-inset-top-color, rgba(0, 0, 0, 0.15));
   }
 
   .shadow-inset-top-subtle {
-    box-shadow: inset 0 -2px 0 0 var(--shadow-inset-top-color, rgba(16, 24, 40, 0.05));
+    box-shadow: inset 0 -2px 0 0
+      var(--shadow-inset-top-color, rgba(16, 24, 40, 0.05));
+  }
+
+  .shadow-inset-left-subtle {
+    box-shadow: inset 2px 0 0 0
+      var(--shadow-inset-top-color, rgba(16, 24, 40, 0.05));
   }
 
   /*

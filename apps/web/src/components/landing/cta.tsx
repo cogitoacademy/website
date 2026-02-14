@@ -37,20 +37,28 @@ export default async function Cta() {
           <div className="h-full flex-1" />
           <Link href="/contact" className="relative z-1 mt-auto mb-0">
             <Button size="lg">
-              <span>{isId ? "Jadwalkan Konsultasi gratis" : "Schedule Free Consultation"}</span>
-              <ChatsCircleIcon weight="duotone" color="#ffffff" className="size-5" />
+              <span>
+                {isId
+                  ? "Jadwalkan Konsultasi gratis"
+                  : "Schedule Free Consultation"}
+              </span>
+              <ChatsCircleIcon
+                weight="duotone"
+                color="#ffffff"
+                className="size-5"
+              />
             </Button>
           </Link>
         </div>
 
-        <div className="absolute bottom-0 left-0 h-[110%]">
+        <div className="absolute bottom-0 right-0 h-[110%]">
           <Image
             src="/person-with-laptop.webp"
             alt="Student studying"
             width={925}
             height={443}
             quality={100}
-            className="z-10 h-full w-auto rounded-bl-3xl object-contain object-bottom"
+            className="z-10 h-full w-auto rounded-br-3xl object-contain object-bottom"
           />
         </div>
       </div>
