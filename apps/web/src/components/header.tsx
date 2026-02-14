@@ -18,7 +18,7 @@ import {
 const NAV_ITEMS_ID = [
   { label: "#TutorJuara", href: "/tutors" },
   { label: "Kalender Lomba", href: "/calendar" },
-  { label: "Playground", href: "/playground" },
+  // { label: "Playground", href: "/playground" },
   {
     label: "Kegiatan",
     href: "#",
@@ -33,7 +33,7 @@ const NAV_ITEMS_ID = [
 const NAV_ITEMS_EN = [
   { label: "#ChampionTutors", href: "/tutors" },
   { label: "Competition Calendar", href: "/calendar" },
-  { label: "Playground", href: "/playground" },
+  // { label: "Playground", href: "/playground" },
   {
     label: "Activities",
     href: "#",
@@ -66,7 +66,9 @@ export default function Header() {
     <>
       <header
         className={`fixed top-0 right-0 left-0 z-40 transition-colors duration-300 ${
-          isScrolled ? "rounded-b-2xl bg-neutral-100 shadow-sm" : "bg-transparent"
+          isScrolled
+            ? "rounded-b-2xl bg-neutral-100 shadow-sm"
+            : "bg-transparent"
         }`}
       >
         <div className="mx-auto max-w-7xl px-4 py-4">
@@ -91,11 +93,14 @@ export default function Header() {
                 {navItems.map((item) =>
                   item.items ? (
                     <DropdownMenu key={item.label}>
-                      <DropdownMenuTrigger className="flex items-center gap-1 font-medium text-lg text-neutral-1000 outline-none transition-colors hover:text-primary-500 data-[state=open]:text-primary-500">
+                      <DropdownMenuTrigger className="flex items-center gap-1 font-medium text-base text-neutral-1000 outline-none transition-colors hover:text-primary-500 data-[state=open]:text-primary-500">
                         {item.label}
                         <ChevronDown className="h-4 w-4" />
                       </DropdownMenuTrigger>
-                      <DropdownMenuContent align="start" className="w-48 bg-background-cream">
+                      <DropdownMenuContent
+                        align="start"
+                        className="w-48 bg-background-cream"
+                      >
                         {item.items.map((subItem) => (
                           <DropdownMenuItem
                             key={subItem.href}
@@ -115,7 +120,7 @@ export default function Header() {
                     <Link
                       key={item.label}
                       href={item.href}
-                      className="font-medium text-lg text-neutral-1000 transition-colors hover:text-primary-500"
+                      className="font-medium text-base text-neutral-1000 transition-colors hover:text-primary-500"
                     >
                       {item.label}
                     </Link>
@@ -145,7 +150,10 @@ export default function Header() {
           </div>
         </div>
       </header>
-      <MobileMenu isOpen={isMobileMenuOpen} onClose={() => setIsMobileMenuOpen(false)} />
+      <MobileMenu
+        isOpen={isMobileMenuOpen}
+        onClose={() => setIsMobileMenuOpen(false)}
+      />
     </>
   );
 }

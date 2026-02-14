@@ -45,15 +45,15 @@ export function ActionCard({
   return (
     <Card
       className={cn(
-        "relative overflow-hidden border-none bg-neutral-100 p-0 shadow-sm rounded-2xl",
+        "relative overflow-hidden rounded-2xl border-none bg-neutral-100 p-0 shadow-sm min-h-[300px]",
         className,
       )}
       {...props}
     >
-      <div className="flex h-full flex-col md:flex-row">
+      <div className="flex h-full flex-col lg:flex-row">
         {/* Content Section */}
-        <div className="relative z-10 flex flex-1 flex-col justify-center p-6 md:p-8">
-          <h3 className="mb-2 font-bold text-2xl text-primary-500">
+        <div className="relative z-10 flex flex-1 flex-col justify-start p-5 sm:p-6 lg:p-8">
+          <h3 className="mb-2 font-bold text-primary-500 text-xl sm:text-2xl">
             {highlight ? (
               <>
                 {titleParts[0]}
@@ -64,24 +64,32 @@ export function ActionCard({
               title
             )}
           </h3>
-          <p className="mb-6 max-w-sm text-neutral-700">{description}</p>
+          <p className="mb-4 max-w-50 text-neutral-1000 text-xs sm:mb-6 sm:text-sm">
+            {description}
+          </p>
           <div>
             {action.href.startsWith("http") ? (
               <a
                 href={action.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={cn(buttonVariants({ size: "lg" }), "gap-2")}
+                className={cn(
+                  buttonVariants({ size: "default" }),
+                  "gap-2 text-sm sm:text-base",
+                )}
               >
-                <ChatCircleDots className="size-5" />
+                <ChatCircleDots className="size-4 sm:size-5" />
                 {action.label}
               </a>
             ) : (
               <Link
                 href={action.href as import("next").Route}
-                className={cn(buttonVariants({ size: "lg" }), "gap-2")}
+                className={cn(
+                  buttonVariants({ size: "default" }),
+                  "gap-2 text-sm sm:text-base",
+                )}
               >
-                <ChatCircleDots className="size-5" />
+                <ChatCircleDots className="size-4 sm:size-5" />
                 {action.label}
               </Link>
             )}
@@ -89,23 +97,24 @@ export function ActionCard({
         </div>
 
         {/* Image Section */}
-        <div className="absolute right-0 min-h-[250px] w-full items-end justify-end overflow-hidden md:min-h-[300px] md:w-1/2">
+        <div className="absolute right-0 bottom-0 min-h-[200px] w-full overflow-hidden sm:min-h-[250px] lg:min-h-[300px] z-5">
           {/* Background Circle Decoration */}
           <div
             className={cn(
-              "absolute -right-10 -bottom-10 z-0 size-64 rounded-full opacity-80 md:-right-20 md:-bottom-20 md:size-80",
+              "absolute -right-10 -bottom-10 z-0 size-48 rounded-full opacity-80 sm:size-64 lg:-right-20 lg:-bottom-20 lg:size-80",
               circleColor,
             )}
           />
 
           {/* Main Image */}
-          <div className="relative z-10 h-full w-full">
+          <div className="absolute right-0 bottom-0 z-10 h-full w-full">
             <Image
               src={image.src}
               alt={image.alt}
-              fill
-              className="object-contain object-bottom md:object-right-bottom"
-              sizes="(max-width: 768px) 100vw, 50vw"
+              width={287}
+              height={399}
+              className="absolute right-0 bottom-0 h-[120%] w-auto object-contain object-right-bottom"
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 50vw"
             />
           </div>
         </div>

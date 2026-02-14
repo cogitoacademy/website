@@ -43,34 +43,40 @@ const classCardsData = {
   id: [
     {
       title: "Kelas Intensif",
-      description: "Persiapan kilat menuju satu ajang juara dengan strategi taktis yang teruji.",
+      description:
+        "Persiapan kilat menuju satu ajang juara dengan strategi taktis yang teruji.",
       tags: ["Individu & Kelompok", "Semua Lomba"],
     },
     {
       title: "Kelas Ekstrakurikuler",
-      description: "Bentuk ekosistem juara di sekolahmu dengan program rutin yang fleksibel.",
+      description:
+        "Bentuk ekosistem juara di sekolahmu dengan program rutin yang fleksibel.",
       tags: ["Individu", "MUN & WSC & Debate"],
     },
     {
       title: "Kelas Reguler",
-      description: "Bentuk ekosistem juara di sekolahmu dengan program rutin yang fleksibel.",
+      description:
+        "Bentuk ekosistem juara di sekolahmu dengan program rutin yang fleksibel.",
       tags: ["Kelompok", "Semua Lomba"],
     },
   ],
   en: [
     {
       title: "Intensive Class",
-      description: "Quick preparation towards a championship with proven tactical strategies.",
+      description:
+        "Quick preparation towards a championship with proven tactical strategies.",
       tags: ["Individual & Group", "All Competitions"],
     },
     {
       title: "Extracurricular Class",
-      description: "Build a champion ecosystem in your school with flexible routine programs.",
+      description:
+        "Build a champion ecosystem in your school with flexible routine programs.",
       tags: ["Individual", "MUN & WSC & Debate"],
     },
     {
       title: "Extracurricular Class",
-      description: "Build a champion ecosystem in your school with flexible routine programs.",
+      description:
+        "Build a champion ecosystem in your school with flexible routine programs.",
       tags: ["Group", "All Competitions"],
     },
   ],
@@ -90,17 +96,22 @@ export async function HeroSection() {
       <Container className="relative z-1 flex-col items-center pt-28 pb-0 sm:pt-36 md:pt-42 lg:pt-50">
         <section className="flex flex-col items-center justify-center">
           {/* Badge / Tagline */}
-          <div className="mb-2 rounded-[12px] bg-background-primary px-2.5 py-2 text-center text-xs leading-snug sm:text-sm">
+          <div className="mb-2 rounded-[12px] bg-background-primary px-2.5 py-2 text-center text-2xs leading-snug sm:text-sm">
             {isId ? (
               <>
-                Didukung oleh <span className="font-bold text-secondary-600">200+</span> prestasi
-                tutor di <span className="font-bold text-secondary-600">9</span> bidang keilmuan
+                Didukung oleh{" "}
+                <span className="font-bold text-secondary-600">200+</span>{" "}
+                prestasi tutor di{" "}
+                <span className="font-bold text-secondary-600">9</span> bidang
+                keilmuan
               </>
             ) : (
               <>
-                Supported by <span className="font-bold text-secondary-600">200+</span> tutor
-                achievements in <span className="font-bold text-secondary-600">9</span> fields of
-                study
+                Supported by{" "}
+                <span className="font-bold text-secondary-600">200+</span> tutor
+                achievements in{" "}
+                <span className="font-bold text-secondary-600">9</span> fields
+                of study
               </>
             )}
           </div>
@@ -108,7 +119,9 @@ export async function HeroSection() {
           {/* Headline */}
           <div className="*:text-center">
             <div className="font-bold text-2xl text-neutral-1000 sm:text-3xl md:text-4xl lg:text-5xl">
-              {isId ? "Mulai Perjalananmu Menjadi" : "Start Your Journey to Become"}
+              {isId
+                ? "Mulai Perjalananmu Menjadi"
+                : "Start Your Journey to Become"}
             </div>
             <div className="mb-4 flex flex-wrap items-baseline justify-center font-bold text-2xl text-neutral-1000 transition-normal sm:text-3xl md:text-4xl lg:text-5xl">
               {isId ? (
@@ -147,24 +160,31 @@ export async function HeroSection() {
           {/* CTA Buttons */}
           <div className="my-6 flex w-full flex-col items-center gap-4 sm:w-auto sm:flex-row">
             <Button size="lg" className="w-full sm:w-auto">
-              <span>{isId ? "Jadwalkan Konsultasi Gratis" : "Schedule Free Consultation"}</span>
-              <ChatsCircleIcon weight="duotone" color="#ffffff" className="size-5" />
+              <span>
+                {isId
+                  ? "Jadwalkan Konsultasi Gratis"
+                  : "Schedule Free Consultation"}
+              </span>
+              <ChatsCircleIcon
+                weight="duotone"
+                color="#ffffff"
+                className="size-5"
+              />
             </Button>
 
-            <button
-              type="button"
-              className="inline-flex items-center gap-1.5 font-medium text-neutral-1000 text-sm transition-colors hover:text-primary-500"
-            >
+            <Button size="lg" variant="gray">
               <span>{isId ? "Lihat Program" : "View Programs"}</span>
               <ArrowRight className="size-4" />
-            </button>
+            </Button>
           </div>
         </section>
 
         {/* Trust Section */}
         <section className="flex flex-col items-center">
           <p className="text-neutral-700 text-xs sm:text-sm">
-            {isId ? "Cogito telah dipercaya oleh" : "Cogito has been trusted by"}
+            {isId
+              ? "Cogito telah dipercaya oleh"
+              : "Cogito has been trusted by"}
           </p>
           <LogoCloud logos={sampleLogos} interval={3000} displayCount={3} />
         </section>
@@ -219,7 +239,9 @@ function ClassCard({
     <div
       className={`flex flex-col gap-3 rounded-2xl px-5 py-5 sm:px-8 sm:py-6 ${className} md:min-h-100`}
     >
-      <h2 className="font-bold text-neutral-1000 text-xl sm:text-2xl">{title}</h2>
+      <h2 className="font-bold text-neutral-1000 text-xl sm:text-2xl">
+        {title}
+      </h2>
       <p className="text-neutral-1000 text-sm">{description}</p>
       <div className="flex flex-wrap gap-2">
         {tags.map((tag) => (

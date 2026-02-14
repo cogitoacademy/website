@@ -68,26 +68,30 @@ export default async function ContactPage({ params }: Props) {
     <main className="relative z-1 flex min-h-screen flex-col">
       <NavbarResolver className="pt-40" />
       <div className="mx-auto mb-10 flex max-w-7xl flex-col items-center justify-center px-4 text-center lg:mb-12">
-        <h1 className="font-semibold text-5xl">
+        <h1 className="font-semibold text-3xl sm:text-4xl lg:text-5xl">
           {isId ? (
             <>
-              Berkolaborasi dengan <br />
-              <span className="font-extrabold text-primary-500 italic">Cogito Academy</span>
+              Berkolaborasi dengan <br className="hidden sm:block" />
+              <span className="font-extrabold text-primary-500 italic">
+                Cogito Academy
+              </span>
             </>
           ) : (
             <>
-              Collaborate with <br />
-              <span className="font-extrabold text-primary-500 italic">Cogito Academy</span>
+              Collaborate with <br className="hidden sm:block" />
+              <span className="font-extrabold text-primary-500 italic">
+                Cogito Academy
+              </span>
             </>
           )}
         </h1>
-        <p className="mt-2 max-w-lg lg:mt-5">
+        <p className="mt-2 max-w-lg text-sm sm:text-base lg:mt-5">
           {isId
             ? "Bergabunglah dalam perjalanan kami mencetak generasi unggul yang beneran jago di bidangnya dan siap berprestasi."
             : "Join our journey in creating an outstanding generation who are truly skilled in their fields and ready to achieve."}
         </p>
       </div>
-      <section className="mx-auto min-h-[80svh] w-full max-w-[calc(80rem-32px)] space-y-4 rounded-4xl bg-primary-100 p-15 lg:space-y-7.5">
+      <section className="mx-4 xl:mx-auto min-h-[80svh] w-auto xl:w-full max-w-[calc(80rem-32px)] space-y-4 rounded-4xl bg-primary-100 p-6 sm:p-8 md:p-12 lg:space-y-7.5 lg:p-15">
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
           <ActionCard
             title={isId ? "Menjadi #TutorJuara" : "Become #ChampionTutor"}
@@ -102,7 +106,7 @@ export default async function ContactPage({ params }: Props) {
               href: "https://wa.me/6281234567890",
             }}
             image={{
-              src: "/placeholder.jpg",
+              src: "/contact-1.webp",
               alt: isId ? "Tutor Juana" : "Champion Tutor",
             }}
             theme="pink"
@@ -119,16 +123,24 @@ export default async function ContactPage({ params }: Props) {
               href: "https://wa.me/6281234567890",
             }}
             image={{
-              src: "/placeholder.jpg",
+              src: "/contact-2.webp",
               alt: isId ? "Konsultasi" : "Consultation",
             }}
             theme="blue"
           />
         </div>
-        <div className="flex flex-wrap items-center justify-center gap-6">
+        <div className="flex flex-col items-center justify-center gap-4 sm:flex-row sm:flex-wrap sm:gap-6">
           {BUTTON_CONTENT[locale as Locale].map((button, index) => (
-            <a key={index} href={button.href as string}>
-              <Button className="cursor-pointer font-normal text-base" variant="primary" size="lg">
+            <a
+              key={index}
+              href={button.href as string}
+              className="w-full sm:w-auto"
+            >
+              <Button
+                className="w-full cursor-pointer font-normal text-base sm:w-auto"
+                variant="primary"
+                size="lg"
+              >
                 {button.icon}
                 {button.label}
               </Button>
