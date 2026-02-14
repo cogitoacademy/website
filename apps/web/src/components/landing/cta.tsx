@@ -37,16 +37,8 @@ export default async function Cta() {
           <div className="h-full flex-1" />
           <Link href="/contact" className="relative z-1 mt-auto mb-0">
             <Button size="lg">
-              <span>
-                {isId
-                  ? "Jadwalkan Konsultasi gratis"
-                  : "Schedule Free Consultation"}
-              </span>
-              <ChatsCircleIcon
-                weight="duotone"
-                color="#ffffff"
-                className="size-5"
-              />
+              <span>{isId ? "Jadwalkan Konsultasi gratis" : "Schedule Free Consultation"}</span>
+              <ChatsCircleIcon weight="duotone" color="#ffffff" className="size-5" />
             </Button>
           </Link>
         </div>

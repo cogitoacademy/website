@@ -65,16 +65,11 @@ function EventWrapper({
   // Get the inset shadow color based on event color
   // Blue: 500, Yellow: 400, Orange(KTI/primary): 400, Pink: 500, Green: 600, Red: 500, Purple: 500
   const getInsetShadowColor = () => {
-    if (event.color?.startsWith("tertiary-blue"))
-      return "rgba(59, 130, 246, 0.6)"; // Blue 500
-    if (event.color?.startsWith("tertiary-pink"))
-      return "rgba(236, 72, 153, 0.6)"; // Pink 500
-    if (event.color?.startsWith("tertiary-red"))
-      return "rgba(239, 68, 68, 0.6)"; // Red 500
-    if (event.color?.startsWith("tertiary-yellow"))
-      return "rgba(250, 204, 21, 0.6)"; // Yellow 400
-    if (event.color?.startsWith("tertiary-green"))
-      return "rgba(22, 163, 74, 0.6)"; // Green 600
+    if (event.color?.startsWith("tertiary-blue")) return "rgba(59, 130, 246, 0.6)"; // Blue 500
+    if (event.color?.startsWith("tertiary-pink")) return "rgba(236, 72, 153, 0.6)"; // Pink 500
+    if (event.color?.startsWith("tertiary-red")) return "rgba(239, 68, 68, 0.6)"; // Red 500
+    if (event.color?.startsWith("tertiary-yellow")) return "rgba(250, 204, 21, 0.6)"; // Yellow 400
+    if (event.color?.startsWith("tertiary-green")) return "rgba(22, 163, 74, 0.6)"; // Green 600
     if (event.color?.startsWith("primary")) return "rgba(255, 134, 52, 1)"; // Primary 400 (Orange/KTI)
     if (event.color?.startsWith("secondary")) return "rgba(168, 85, 247, 0.6)"; // Purple 500
     if (event.color === "sky") return "rgba(14, 165, 233, 0.6)";
@@ -99,11 +94,7 @@ function EventWrapper({
       onClick={onClick}
       onMouseDown={onMouseDown}
       onTouchStart={onTouchStart}
-      style={
-        isFirstDay
-          ? { boxShadow: `inset 6px 0 0 0 ${getInsetShadowColor()}` }
-          : undefined
-      }
+      style={isFirstDay ? { boxShadow: `inset 6px 0 0 0 ${getInsetShadowColor()}` } : undefined}
       type="button"
       {...dndListeners}
       {...dndAttributes}
@@ -234,15 +225,11 @@ export function EventItem({
   // Get the inset shadow color for agenda view
   // Blue: 500, Yellow: 400, Orange(KTI/primary): 400, Pink: 500, Green: 600, Red: 500, Purple: 500
   const getAgendaInsetShadowColor = () => {
-    if (eventColor?.startsWith("tertiary-blue"))
-      return "rgba(59, 130, 246, 0.6)"; // Blue 500
-    if (eventColor?.startsWith("tertiary-pink"))
-      return "rgba(236, 72, 153, 0.6)"; // Pink 500
+    if (eventColor?.startsWith("tertiary-blue")) return "rgba(59, 130, 246, 0.6)"; // Blue 500
+    if (eventColor?.startsWith("tertiary-pink")) return "rgba(236, 72, 153, 0.6)"; // Pink 500
     if (eventColor?.startsWith("tertiary-red")) return "rgba(239, 68, 68, 0.6)"; // Red 500
-    if (eventColor?.startsWith("tertiary-yellow"))
-      return "rgba(250, 204, 21, 0.6)"; // Yellow 400
-    if (eventColor?.startsWith("tertiary-green"))
-      return "rgba(22, 163, 74, 0.6)"; // Green 600
+    if (eventColor?.startsWith("tertiary-yellow")) return "rgba(250, 204, 21, 0.6)"; // Yellow 400
+    if (eventColor?.startsWith("tertiary-green")) return "rgba(22, 163, 74, 0.6)"; // Green 600
     if (eventColor?.startsWith("primary")) return "rgba(96, 165, 250, 0.6)"; // Primary 400 (Orange/KTI)
     if (eventColor?.startsWith("secondary")) return "rgba(168, 85, 247, 0.6)"; // Purple 500
     if (eventColor === "sky") return "rgba(14, 165, 233, 0.6)";
@@ -267,9 +254,7 @@ export function EventItem({
       onMouseDown={onMouseDown}
       onTouchStart={onTouchStart}
       style={
-        isFirstDay
-          ? { boxShadow: `inset 5px 0 0 0 ${getAgendaInsetShadowColor()}` }
-          : undefined
+        isFirstDay ? { boxShadow: `inset 5px 0 0 0 ${getAgendaInsetShadowColor()}` } : undefined
       }
       type="button"
       {...dndListeners}
@@ -279,10 +264,7 @@ export function EventItem({
       {event.categories && event.categories.length > 0 && (
         <div className="flex flex-wrap gap-1">
           {event.categories.map((category, index) => (
-            <Badge
-              key={index}
-              className={cn("text-xs", getBrandColorClass(category.color))}
-            >
+            <Badge key={index} className={cn("text-xs", getBrandColorClass(category.color))}>
               {category.name}
             </Badge>
           ))}
@@ -293,9 +275,7 @@ export function EventItem({
       <div className="font-medium text-sm">{event.title}</div>
 
       {/* Location */}
-      {event.location && (
-        <div className="text-xs opacity-70">{event.location}</div>
-      )}
+      {event.location && <div className="text-xs opacity-70">{event.location}</div>}
 
       {/* Education Levels */}
       {event.educationLevels && event.educationLevels.length > 0 && (
@@ -309,9 +289,7 @@ export function EventItem({
       )}
 
       {/* Description */}
-      {event.description && (
-        <div className="my-1 text-xs opacity-90">{event.description}</div>
-      )}
+      {event.description && <div className="my-1 text-xs opacity-90">{event.description}</div>}
     </button>
   );
 }
