@@ -43,14 +43,14 @@ export default async function Cta() {
           </Link>
         </div>
 
-        <div className="absolute right-0 bottom-0 h-[110%]">
+        <div className="absolute bottom-0 left-0 h-[110%]">
           <Image
             src="/person-with-laptop.webp"
             alt="Student studying"
             width={925}
             height={443}
             quality={100}
-            className="z-10 h-full w-auto rounded-br-3xl object-contain object-bottom"
+            className="z-10 h-full w-auto rounded-bl-3xl object-contain object-bottom"
           />
         </div>
       </div>

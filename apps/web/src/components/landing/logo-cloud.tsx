@@ -70,7 +70,7 @@ export function LogoCloud({ logos, interval = 3000, displayCount = 3 }: LogoClou
     <div className="flex w-full flex-col items-center justify-center pb-6">
       <div className="w-full max-w-4xl px-4">
         <motion.div
-          className="grid grid-cols-3 gap-6"
+          className="grid grid-cols-3 gap-3 sm:gap-4 md:gap-6"
           variants={containerVariants}
           initial="hidden"
           animate="visible"
@@ -82,11 +82,11 @@ export function LogoCloud({ logos, interval = 3000, displayCount = 3 }: LogoClou
               variants={itemVariants}
               className="flex items-center justify-center"
             >
-              <div className="flex h-24 w-full items-center justify-center rounded-lg border border-white/15 bg-gradient-to-br from-white/10 to-white/5 transition-all duration-300">
+              <div className="flex h-16 w-full items-center justify-center rounded-lg border border-white/15 bg-gradient-to-br from-white/10 to-white/5 transition-all duration-300 sm:h-20 md:h-24">
                 <img
                   src={logo.url || "/placeholder.svg"}
                   alt={logo.name}
-                  className="h-12 w-auto object-contain px-4"
+                  className="h-8 w-auto object-contain px-3 sm:h-10 sm:px-4 md:h-12"
                 />
               </div>
             </motion.div>

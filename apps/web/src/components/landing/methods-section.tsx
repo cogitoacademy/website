@@ -33,7 +33,7 @@ export async function MethodsSection() {
             </>
           )}
         </h2>
-        <div className="grid w-full grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-4">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-4 items-center justify-center">
           <TutorJuaraDuniaCard isId={isId} />
           <PersonalTerukurCard isId={isId} />
           <KurikulumHolistikCard isId={isId} />
@@ -58,7 +58,7 @@ function MethodCard({
   return (
     <div
       className={cn(
-        "relative flex aspect-[312/340] flex-col items-center overflow-hidden rounded-2xl px-6 pt-8 text-center xl:aspect-[312/280]",
+        "relative flex max-w-[400px] md:max-w-[293px] flex-col items-center overflow-hidden rounded-2xl px-6 pt-8 text-center aspect-312/220 md:aspect-[312/280]",
         className,
       )}
     >

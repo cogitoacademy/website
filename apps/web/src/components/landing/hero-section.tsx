@@ -39,19 +39,58 @@ const sampleLogos = [
   },
 ];
 
+const classCardsData = {
+  id: [
+    {
+      title: "Kelas Intensif",
+      description: "Persiapan kilat menuju satu ajang juara dengan strategi taktis yang teruji.",
+      tags: ["Individu & Kelompok", "Semua Lomba"],
+    },
+    {
+      title: "Kelas Ekstrakurikuler",
+      description: "Bentuk ekosistem juara di sekolahmu dengan program rutin yang fleksibel.",
+      tags: ["Individu", "MUN & WSC & Debate"],
+    },
+    {
+      title: "Kelas Reguler",
+      description: "Bentuk ekosistem juara di sekolahmu dengan program rutin yang fleksibel.",
+      tags: ["Kelompok", "Semua Lomba"],
+    },
+  ],
+  en: [
+    {
+      title: "Intensive Class",
+      description: "Quick preparation towards a championship with proven tactical strategies.",
+      tags: ["Individual & Group", "All Competitions"],
+    },
+    {
+      title: "Extracurricular Class",
+      description: "Build a champion ecosystem in your school with flexible routine programs.",
+      tags: ["Individual", "MUN & WSC & Debate"],
+    },
+    {
+      title: "Extracurricular Class",
+      description: "Build a champion ecosystem in your school with flexible routine programs.",
+      tags: ["Group", "All Competitions"],
+    },
+  ],
+};
+
 export async function HeroSection() {
   const locale = await getLocale();
   const isId = locale === "id";
 
   const rotatingWordsId = ["Kompeten", "Tangguh", "Mendunia"];
   const rotatingWordsEn = ["Competent", "Resilient", "Global"];
+  const cards = isId ? classCardsData.id : classCardsData.en;
 
   return (
     <>
-      <div className="absolute inset-0 bottom-90 z-0 w-full bg-neutral-100 [clip-path:polygon(0_0,100%_0,100%_70%,50%_100%,0%_70%)]" />
-      <Container className="relative z-1 flex-col items-center pt-50 pb-0">
+      <div className="absolute inset-0 bottom-150 z-0 w-full bg-neutral-100 [clip-path:polygon(0_0,100%_0,100%_70%,50%_100%,0%_70%)] sm:bottom-120 md:bottom-90" />
+      <Container className="relative z-1 flex-col items-center pt-28 pb-0 sm:pt-36 md:pt-42 lg:pt-50">
         <section className="flex flex-col items-center justify-center">
-          <div className="mb-2 rounded-[12px] bg-background-primary px-2.5 py-2 leading-none">
+          {/* Badge / Tagline */}
+          <div className="mb-2 rounded-[12px] bg-background-primary px-2.5 py-2 text-center text-xs leading-snug sm:text-sm">
             {isId ? (
               <>
                 Didukung oleh <span className="font-bold text-secondary-600">200+</span> prestasi
@@ -68,13 +107,13 @@ export async function HeroSection() {
 
           {/* Headline */}
           <div className="*:text-center">
-            <div className="font-bold text-5xl text-neutral-1000">
+            <div className="font-bold text-2xl text-neutral-1000 sm:text-3xl md:text-4xl lg:text-5xl">
               {isId ? "Mulai Perjalananmu Menjadi" : "Start Your Journey to Become"}
             </div>
-            <div className="mb-4 flex flex-wrap items-baseline justify-center font-bold text-5xl text-neutral-1000 transition-normal">
+            <div className="mb-4 flex flex-wrap items-baseline justify-center font-bold text-2xl text-neutral-1000 transition-normal sm:text-3xl md:text-4xl lg:text-5xl">
               {isId ? (
                 <>
-                  Pelajar yang<span className="w-2"> </span>
+                  Pelajar yang<span className="w-1 sm:w-2"> </span>
                   <WordRotateHighlighter
                     words={rotatingWordsId}
                     className="italic"
@@ -85,7 +124,7 @@ export async function HeroSection() {
                 </>
               ) : (
                 <>
-                  Student who<span className="w-2"> </span>
+                  Student who<span className="w-1 sm:w-2"> </span>
                   <WordRotateHighlighter
                     words={rotatingWordsEn}
                     className="italic"
@@ -99,51 +138,99 @@ export async function HeroSection() {
           </div>
 
           {/* Subtitle */}
-          <p className="max-w-md text-center text-neutral-1000 text-sm">
+          <p className="max-w-xs text-center text-neutral-1000 text-xs sm:max-w-md sm:text-sm">
             {isId
               ? "Menjadi ahli yang siap berprestasi, lebih dari sekadar kompetisi, bersama Cogito Academy melalui materi mendalam."
               : "Become an expert ready to excel, beyond just competitions, with Cogito Academy's in-depth materials."}
           </p>
 
           {/* CTA Buttons */}
-          <div className="my-6 flex flex-col gap-4 sm:flex-row">
-            <Button size="lg">
-              <span>{isId ? "Jadwalkan Konsultasi gratis" : "Schedule Free Consultation"}</span>
+          <div className="my-6 flex w-full flex-col items-center gap-4 sm:w-auto sm:flex-row">
+            <Button size="lg" className="w-full sm:w-auto">
+              <span>{isId ? "Jadwalkan Konsultasi Gratis" : "Schedule Free Consultation"}</span>
               <ChatsCircleIcon weight="duotone" color="#ffffff" className="size-5" />
             </Button>
 
-            <Button variant="subtle" size="lg">
+            <button
+              type="button"
+              className="inline-flex items-center gap-1.5 font-medium text-neutral-1000 text-sm transition-colors hover:text-primary-500"
+            >
               <span>{isId ? "Lihat Program" : "View Programs"}</span>
-              <ArrowRight className="ml-2 size-5" />
-            </Button>
+              <ArrowRight className="size-4" />
+            </button>
           </div>
         </section>
+
+        {/* Trust Section */}
         <section className="flex flex-col items-center">
-          <p>{isId ? "Cogito telah dipercaya oleh" : "Cogito has been trusted by"}</p>
+          <p className="text-neutral-700 text-xs sm:text-sm">
+            {isId ? "Cogito telah dipercaya oleh" : "Cogito has been trusted by"}
+          </p>
           <LogoCloud logos={sampleLogos} interval={3000} displayCount={3} />
         </section>
 
-        <section className="grid grid-cols-1 md:grid-cols-3">
-          <ClassCard className="translate-y-20 -rotate-10 bg-tertiary-yellow-400" isId={isId} />
-          <ClassCard className="bg-tertiary-blue-500" isId={isId} />
-          <ClassCard className="translate-y-20 rotate-10 bg-tertiary-pink-300" isId={isId} />
+        {/* Baca Selengkapnya Link */}
+        <section className="flex w-full items-center justify-between rounded-2xl bg-neutral-100 px-5 py-4">
+          <span className="font-semibold text-neutral-1000 text-sm">
+            {isId ? "Baca Selengkapnya" : "Read More"}
+          </span>
+          <ArrowRight className="size-5 text-primary-500" />
+        </section>
+
+        {/* Class Cards */}
+        <section className="grid w-full grid-cols-1 gap-5 md:grid-cols-3 md:gap-4 -mt-70 md:mt-0">
+          {/* Kuning */}
+          <ClassCard
+            className="bg-tertiary-yellow-400 md:translate-y-20 md:-rotate-10 order-2 md:order-1 -rotate-3 translate-y-20 min-h-90"
+            title={cards[0].title}
+            description={cards[0].description}
+            tags={cards[0].tags}
+          />
+          <ClassCard
+            className="bg-tertiary-blue-500 order-1 md:order-2 min-h-120 translate-y-70 md:translate-y-0"
+            title={cards[1].title}
+            description={cards[1].description}
+            tags={cards[1].tags}
+          />
+          <ClassCard
+            className="bg-tertiary-pink-300 md:translate-y-20 rotate-2 md:rotate-10 order-2 md:order-3 min-h-84"
+            title={cards[2].title}
+            description={cards[2].description}
+            tags={cards[2].tags}
+          />
         </section>
       </Container>
     </>
   );
 }
 
-function ClassCard({ className, isId }: { className?: string; isId: boolean }) {
+function ClassCard({
+  className,
+  title,
+  description,
+  tags,
+}: {
+  className?: string;
+  title: string;
+  description: string;
+  tags: string[];
+}) {
   return (
-    <div className={`flex flex-col items-center px-8 py-6 ${className} min-h-100 rounded-2xl`}>
-      <h2 className="mb-4 font-bold text-2xl text-neutral-1000">
-        {isId ? "Kelas Online" : "Online Classes"}
-      </h2>
-      <p className="text-center text-base text-neutral-1000">
-        {isId
-          ? "Ikuti kelas online yang diselenggarakan oleh Cogito Academy."
-          : "Join online classes organized by Cogito Academy."}
-      </p>
+    <div
+      className={`flex flex-col gap-3 rounded-2xl px-5 py-5 sm:px-8 sm:py-6 ${className} md:min-h-100`}
+    >
+      <h2 className="font-bold text-neutral-1000 text-xl sm:text-2xl">{title}</h2>
+      <p className="text-neutral-1000 text-sm">{description}</p>
+      <div className="flex flex-wrap gap-2">
+        {tags.map((tag) => (
+          <span
+            key={tag}
+            className="inline-flex items-center rounded-full bg-neutral-100/80 px-3 py-1.5 font-medium text-neutral-1000 text-xs"
+          >
+            {tag}
+          </span>
+        ))}
+      </div>
     </div>
   );
 }
