@@ -10,12 +10,16 @@ const badgeVariants = cva(
     variants: {
       variant: {
         default: "bg-primary text-primary-foreground [a]:hover:bg-primary/80",
-        secondary: "bg-secondary text-secondary-foreground [a]:hover:bg-secondary/80",
+        secondary:
+          "bg-secondary text-secondary-foreground [a]:hover:bg-secondary/80 rounded-md py-1",
         destructive:
           "bg-destructive/10 [a]:hover:bg-destructive/20 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 text-destructive dark:bg-destructive/20",
         outline: "border-border text-foreground [a]:hover:bg-muted [a]:hover:text-muted-foreground",
         ghost: "hover:bg-muted hover:text-muted-foreground dark:hover:bg-muted/50",
         link: "text-primary underline-offset-4 hover:underline",
+        // Event (Kegiatan)
+        upcoming: "bg-background-cream text-neutral-1000 rounded-md py-1",
+        completed: "bg-neutral-800 text-neutral-100 rounded-md py-1",
         // Competition Badge
         tutor: "italic rounded-md py-1",
         "headline-primary": "rounded-md bg-background-primary px-2.5 py-2 text-base",
