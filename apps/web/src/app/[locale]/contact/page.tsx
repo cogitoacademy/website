@@ -66,22 +66,18 @@ export default async function ContactPage({ params }: Props) {
 
   return (
     <main className="relative z-1 flex flex-col">
-      <NavbarResolver className="pt-40" />
+      <NavbarResolver />
       <div className="mx-auto mb-10 flex max-w-7xl flex-col items-center justify-center px-4 text-center lg:mb-12">
         <h1 className="font-semibold text-3xl sm:text-4xl lg:text-5xl">
           {isId ? (
             <>
               Berkolaborasi dengan <br className="hidden sm:block" />
-              <span className="font-extrabold text-primary-500 italic">
-                Cogito Academy
-              </span>
+              <span className="font-extrabold text-primary-500 italic">Cogito Academy</span>
             </>
           ) : (
             <>
               Collaborate with <br className="hidden sm:block" />
-              <span className="font-extrabold text-primary-500 italic">
-                Cogito Academy
-              </span>
+              <span className="font-extrabold text-primary-500 italic">Cogito Academy</span>
             </>
           )}
         </h1>
@@ -132,11 +128,7 @@ export default async function ContactPage({ params }: Props) {
         <div className="flex items-center justify-center gap-2 md:gap-4 flex-row flex-wrap lg:gap-6">
           {BUTTON_CONTENT[locale as Locale].map((button, index) => (
             <a key={index} href={button.href as string} className="w-auto">
-              <Button
-                className="cursor-pointer font-normal text-base w-auto"
-                variant="primary"
-                size="lg"
-              >
+              <Button className="cursor-pointer w-auto" variant="primary" size="md">
                 {button.icon}
                 {button.label}
               </Button>

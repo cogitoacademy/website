@@ -45,14 +45,14 @@ export function ActionCard({
   return (
     <Card
       className={cn(
-        "relative overflow-hidden rounded-2xl border-none bg-neutral-100 p-0 shadow-sm min-h-[300px]",
+        "relative overflow-hidden rounded-2xl border-none bg-neutral-100 p-0 shadow-sm min-h-[350px]",
         className,
       )}
       {...props}
     >
       <div className="flex h-full flex-col lg:flex-row">
         {/* Content Section */}
-        <div className="relative z-10 justify-start p-5 sm:p-6 lg:p-8">
+        <div className="relative z-10 justify-start p-5 sm:p-6 lg:p-8 h-full">
           <h3 className="mb-2 font-bold text-primary-500 text-xl sm:text-2xl">
             {highlight ? (
               <>
@@ -67,16 +67,13 @@ export function ActionCard({
           <p className="mb-4 max-w-50 text-neutral-1000 text-xs sm:mb-6 sm:text-sm">
             {description}
           </p>
-          <div>
+          <div className="mt-auto mb-0">
             {action.href.startsWith("http") ? (
               <a
                 href={action.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={cn(
-                  buttonVariants({ size: "lg" }),
-                  "gap-2 text-sm sm:text-base",
-                )}
+                className={cn(buttonVariants({ size: "md" }), "gap-2 text-sm sm:text-base")}
               >
                 <ChatCircleDots className="size-4 sm:size-5" />
                 {action.label}
@@ -84,10 +81,7 @@ export function ActionCard({
             ) : (
               <Link
                 href={action.href as import("next").Route}
-                className={cn(
-                  buttonVariants({ size: "lg" }),
-                  "gap-2 text-sm sm:text-base",
-                )}
+                className={cn(buttonVariants({ size: "md" }), "gap-2 text-sm sm:text-base")}
               >
                 <ChatCircleDots className="size-4 sm:size-5" />
                 {action.label}
