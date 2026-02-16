@@ -17,6 +17,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
 import { Sheet, SheetContent, SheetFooter, SheetHeader, SheetTitle } from "@/components/ui/sheet";
+import { FunnelIcon, FunnelXIcon } from "@phosphor-icons/react/dist/ssr";
 
 interface Resource {
   _id: string;
@@ -88,14 +89,14 @@ export function ResourceList({ resources }: ResourceListProps) {
   return (
     <div className="space-y-6">
       {/* Filters Section */}
-      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+      <div className="flex gap-1.5 sm:gap-4 sm:items-center sm:justify-between">
         <div className="relative w-full sm:w-96">
           <Search className="absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
           <Input
             placeholder="Search resources..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="pl-10"
+            className="pl-9"
           />
           {searchQuery && (
             <button
@@ -107,12 +108,12 @@ export function ResourceList({ resources }: ResourceListProps) {
           )}
         </div>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center sm:gap-1.5">
           <DropdownMenu>
             <DropdownMenuTrigger
               render={
                 <Button variant="outline" className="gap-2">
-                  <Filter className="h-4 w-4" />
+                  <FunnelIcon className="h-4 w-4" />
                   <span>Filter</span>
                   {selectedCategories.length > 0 && (
                     <Badge variant="secondary" className="ml-1">
@@ -142,11 +143,11 @@ export function ResourceList({ resources }: ResourceListProps) {
           {hasActiveFilters && (
             <Button
               variant="ghost"
-              size="sm"
+              size="icon"
               onClick={handleClearAll}
               className="text-muted-foreground hover:text-foreground"
             >
-              Clear all
+              <FunnelXIcon />
             </Button>
           )}
         </div>
