@@ -1,6 +1,6 @@
 "use client";
 
-import { Download, Eye, FileText, Filter, Search, X } from "lucide-react";
+import { Download, Eye, FileText, Filter, Search } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import { useMemo, useState } from "react";
 import { Badge } from "@/components/ui/badge";

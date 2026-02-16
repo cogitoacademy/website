@@ -1,6 +1,6 @@
 "use client";
 
-import { Instagram, Linkedin, MapPin, X } from "lucide-react";
+import { Instagram, Linkedin, MapPin } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import Image from "next/image";
 import { useLocale } from "next-intl";

@@ -1,6 +1,6 @@
 "use client";
 
-import { ChevronDown, Menu } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import Image from "next/image";
 import { useLocale } from "next-intl";
 import { useEffect, useState } from "react";
