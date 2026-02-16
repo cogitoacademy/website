@@ -15,7 +15,6 @@ import { Button } from "@/components/ui/button";
 import { Link } from "@/i18n/routing";
 import LanguageToggle from "./lang-toggle";
 import { XIcon } from "@phosphor-icons/react/dist/ssr";
-import NextLink from "next/link";
 
 interface MobileMenuProps {
   isOpen: boolean;
@@ -140,7 +139,10 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
               </Link>
 
               <div className="flex items-center gap-2">
-                <LanguageToggle variant="cream" className="h-9 px-3 text-primary-500" />
+                <LanguageToggle
+                  variant="cream"
+                  className="h-9 px-3 text-primary-500"
+                />
                 <Button
                   size="icon-lg"
                   variant="cream"
@@ -153,7 +155,10 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
             </div>
           </div>
 
-          <motion.div className="flex-1 overflow-y-auto p-4" variants={containerVariants}>
+          <motion.div
+            className="flex-1 overflow-y-auto p-4"
+            variants={containerVariants}
+          >
             <div className="flex flex-col gap-4">
               <div className="flex flex-col gap-4">
                 {navItems.map((item) => (
@@ -202,14 +207,14 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                 </h3>
                 <div className="grid grid-cols-2 gap-x-4 gap-y-3">
                   {quickNavItems.map((item) => (
-                    <NextLink
+                    <a
                       key={item.label}
                       href={item.href}
                       onClick={onClose}
                       className="font-medium text-neutral-700 text-sm"
                     >
                       {item.label}
-                    </NextLink>
+                    </a>
                   ))}
                 </div>
               </motion.div>
@@ -219,7 +224,9 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
           <div className="bg-primary-500 p-4">
             <div className="flex flex-col gap-6">
               <div className="flex flex-col gap-2">
-                <span className="font-medium text-sm text-white/90">Follow Us on</span>
+                <span className="font-medium text-sm text-white/90">
+                  Follow Us on
+                </span>
                 <div className="flex gap-4">
                   <Link href="#" className="text-white hover:text-white/80">
                     <MapPin className="size-6" />
@@ -233,7 +240,11 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                 </div>
               </div>
 
-              <Link href="/contact" onClick={onClose} className="w-full cursor-pointer">
+              <Link
+                href="/contact"
+                onClick={onClose}
+                className="w-full cursor-pointer"
+              >
                 <Button variant="gray" size="md" className="w-full text-sm">
                   {isId ? "Hubungi Kami" : "Contact Us"}
                 </Button>
