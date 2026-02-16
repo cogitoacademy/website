@@ -14,6 +14,8 @@ import {
 import { Button } from "@/components/ui/button";
 import { Link } from "@/i18n/routing";
 import LanguageToggle from "./lang-toggle";
+import { XIcon } from "@phosphor-icons/react/dist/ssr";
+import NextLink from "next/link";
 
 interface MobileMenuProps {
   isOpen: boolean;
@@ -23,13 +25,13 @@ interface MobileMenuProps {
 const NAV_ITEMS_ID = [
   { label: "#TutorJuara", href: "/tutors" },
   { label: "Kalender Lomba", href: "/calendar" },
-  { label: "Playground", href: "/playground" },
+  { label: "Materi Siswa", href: "/student-resources" },
 ];
 
 const NAV_ITEMS_EN = [
   { label: "#ChampionTutors", href: "/tutors" },
   { label: "Competition Calendar", href: "/calendar" },
-  { label: "Playground", href: "/playground" },
+  { label: "Student Resources", href: "/student-resources" },
 ];
 
 const KEGIATAN_ITEMS_ID = [
@@ -44,20 +46,20 @@ const KEGIATAN_ITEMS_EN = [
 
 const QUICK_NAV_ITEMS_ID = [
   { label: "Acara Publik", href: "#" },
-  { label: "Tutor Cogito", href: "/tutors" },
-  { label: "Kenapa Kita", href: "#" },
+  { label: "#TutorJuara", href: "/tutors" },
+  { label: "Kenapa Kita?", href: "#" },
   { label: "Testimoni", href: "#" },
   { label: "Jenis Perlombaan", href: "#" },
-  { label: "Frequently Asked Question", href: "#" },
+  { label: "FAQ", href: "#faq" },
 ];
 
 const QUICK_NAV_ITEMS_EN = [
   { label: "Public Events", href: "#" },
   { label: "Cogito Tutors", href: "/tutors" },
-  { label: "Why Us", href: "#" },
+  { label: "Why Us?", href: "#" },
   { label: "Testimonials", href: "#" },
   { label: "Types of Competitions", href: "#" },
-  { label: "Frequently Asked Questions", href: "#" },
+  { label: "FAQ", href: "#faq" },
 ];
 
 export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
@@ -131,26 +133,27 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                     alt="Cogito Academy"
                     width={120}
                     height={56}
+                    priority
                     className="h-full w-auto object-contain brightness-0 invert"
                   />
                 </div>
               </Link>
 
               <div className="flex items-center gap-2">
-                <LanguageToggle variant="cream" className="h-10 px-3 text-primary-500" />
+                <LanguageToggle variant="cream" className="h-9 px-3 text-primary-500" />
                 <Button
-                  size="icon-xl"
+                  size="icon-lg"
                   variant="cream"
                   onClick={onClose}
                   className="rounded-md text-primary-500 hover:bg-background-cream/90"
                 >
-                  <X className="size-6" />
+                  <XIcon weight="bold" />
                 </Button>
               </div>
             </div>
           </div>
 
-          <motion.div className="flex-1 overflow-y-auto px-6 py-8" variants={containerVariants}>
+          <motion.div className="flex-1 overflow-y-auto p-4" variants={containerVariants}>
             <div className="flex flex-col gap-4">
               <div className="flex flex-col gap-4">
                 {navItems.map((item) => (
@@ -158,7 +161,7 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                     <Link
                       href={item.href}
                       onClick={onClose}
-                      className="font-bold text-neutral-1000"
+                      className="font-bold text-neutral-1000 text-sm"
                     >
                       {item.label}
                     </Link>
@@ -172,17 +175,17 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                     value="kegiatan"
                     className="border-none bg-transparent shadow-none"
                   >
-                    <AccordionTrigger className="bg-transparent p-0 font-bold text-base text-neutral-1000 shadow-none hover:bg-transparent hover:no-underline hover:shadow-none focus-visible:ring-0 [&>svg]:ml-2 [&>svg]:size-5 [&>svg]:text-neutral-1000">
+                    <AccordionTrigger className="bg-transparent p-0 font-bold text-sm text-neutral-1000 shadow-none hover:bg-transparent hover:no-underline hover:shadow-none focus-visible:ring-0 [&>svg]:ml-2 [&>svg]:size-5 [&>svg]:text-neutral-1000">
                       {isId ? "Kegiatan" : "Activities"}
                     </AccordionTrigger>
-                    <AccordionContent className="pb-0 pl-10">
+                    <AccordionContent className="pb-0 pl-5">
                       <div className="flex flex-col gap-3 pt-3">
                         {kegiatanItems.map((item) => (
                           <Link
                             key={item.label}
                             href={item.href}
                             onClick={onClose}
-                            className="font-medium"
+                            className="text-sm"
                           >
                             {item.label}
                           </Link>
@@ -194,26 +197,26 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
               </motion.div>
 
               <motion.div variants={itemVariants} className="mt-4">
-                <h3 className="mb-4 font-bold text-base text-neutral-1000">
+                <h3 className="mb-4 font-bold text-sm text-neutral-1000">
                   {isId ? "Navigasi Cepat" : "Quick Navigation"}
                 </h3>
                 <div className="grid grid-cols-2 gap-x-4 gap-y-3">
                   {quickNavItems.map((item) => (
-                    <Link
+                    <NextLink
                       key={item.label}
                       href={item.href}
                       onClick={onClose}
                       className="font-medium text-neutral-700 text-sm"
                     >
                       {item.label}
-                    </Link>
+                    </NextLink>
                   ))}
                 </div>
               </motion.div>
             </div>
           </motion.div>
 
-          <div className="bg-primary-500 px-6 py-8">
+          <div className="bg-primary-500 p-4">
             <div className="flex flex-col gap-6">
               <div className="flex flex-col gap-2">
                 <span className="font-medium text-sm text-white/90">Follow Us on</span>
@@ -230,8 +233,8 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                 </div>
               </div>
 
-              <Link href="/contact" onClick={onClose} className="w-full">
-                <Button variant="gray" size="lg" className="w-full text-base">
+              <Link href="/contact" onClick={onClose} className="w-full cursor-pointer">
+                <Button variant="gray" size="md" className="w-full text-sm">
                   {isId ? "Hubungi Kami" : "Contact Us"}
                 </Button>
               </Link>

@@ -14,6 +14,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
+import { ListIcon } from "@phosphor-icons/react/dist/ssr";
 
 const NAV_ITEMS_ID = [
   { label: "#TutorJuara", href: "/tutors" },
@@ -66,9 +67,7 @@ export default function Header() {
     <>
       <header
         className={`fixed top-0 right-0 left-0 z-40 transition-colors duration-300 ${
-          isScrolled
-            ? "rounded-b-2xl bg-neutral-100 shadow-sm"
-            : "bg-transparent"
+          isScrolled ? "rounded-b-2xl bg-neutral-100 shadow-sm" : "bg-transparent"
         }`}
       >
         <div className="mx-auto max-w-7xl px-4 py-4">
@@ -77,7 +76,7 @@ export default function Header() {
               <Link href="/" className="flex items-center">
                 <div
                   className={
-                    "flex h-[50px] w-[106px] items-center justify-center rounded transition-all duration-300"
+                    "flex h-10 w-fit sm:h-12.5 sm:w-26.5 items-center justify-center rounded transition-all duration-300"
                   }
                 >
                   <Image
@@ -85,6 +84,7 @@ export default function Header() {
                     alt="Cogito Academy"
                     width={424}
                     height={200}
+                    className="h-full w-auto object-contain"
                   />
                 </div>
               </Link>
@@ -97,10 +97,7 @@ export default function Header() {
                         {item.label}
                         <ChevronDown className="h-4 w-4" />
                       </DropdownMenuTrigger>
-                      <DropdownMenuContent
-                        align="start"
-                        className="w-48 bg-background-cream"
-                      >
+                      <DropdownMenuContent align="start" className="w-48 bg-background-cream">
                         {item.items.map((subItem) => (
                           <DropdownMenuItem
                             key={subItem.href}
@@ -144,16 +141,13 @@ export default function Header() {
                 onClick={() => setIsMobileMenuOpen(true)}
                 aria-label="Open menu"
               >
-                <Menu />
+                <ListIcon weight="bold" />
               </Button>
             </div>
           </div>
         </div>
       </header>
-      <MobileMenu
-        isOpen={isMobileMenuOpen}
-        onClose={() => setIsMobileMenuOpen(false)}
-      />
+      <MobileMenu isOpen={isMobileMenuOpen} onClose={() => setIsMobileMenuOpen(false)} />
     </>
   );
 }

@@ -57,10 +57,7 @@ export default function Footer() {
           preserveAspectRatio="none"
           className="absolute top-0 left-0 lg:h-60 w-full -translate-y-full z-1"
         >
-          <path
-            d="M0,160 C240,0 1200,0 1440,160 L1440,160 L0,160 Z"
-            className="fill-primary-200"
-          />
+          <path d="M0,160 C240,0 1200,0 1440,160 L1440,160 L0,160 Z" className="fill-primary-200" />
         </svg>
       )}
 
@@ -88,17 +85,8 @@ export default function Footer() {
           </p>
           <div className="flex gap-3">
             {SOCIALS.map((social) => (
-              <a
-                key={social.name}
-                href={social.href}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Button
-                  size="icon-xl"
-                  variant="cream"
-                  className="cursor-pointer"
-                >
+              <a key={social.name} href={social.href} target="_blank" rel="noopener noreferrer">
+                <Button size="icon-xl" variant="cream" className="cursor-pointer">
                   {social.icon}
                 </Button>
               </a>
