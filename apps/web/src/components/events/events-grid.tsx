@@ -53,7 +53,7 @@ export function EventsGrid({ events, lang }: EventsGridProps) {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        className="grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
+        className="grid grid-cols-1 gap-5 min-[500px]:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
       >
         {visibleEvents.map((event, index) => (
           <motion.div

@@ -110,7 +110,7 @@ export default async function EventCategoryPage({ params }: Props) {
       <NavbarResolver />
       <main className="relative z-3 mx-auto max-w-7xl px-4 pb-20 sm:px-6 lg:px-8">
         {/* Hero Section */}
-        <section className="py-8 sm:py-12 md:py-16">
+        <section className="pb-8 sm:pb-12 md:pb-16">
           <div className="max-w-2xl space-y-3">
             <h1 className="font-bold text-2xl text-neutral-1000 tracking-tight sm:text-3xl md:text-4xl lg:text-5xl">
               {headline.before}
