@@ -42,20 +42,16 @@ export default async function CompetitionCalendarPage({ params }: Props) {
       <NavbarResolver />
       <main className="relative z-3 mx-auto max-w-7xl gap-y-15 space-y-15 px-4 overflow-x-clip">
         <div className="space-y-2">
-          <h1 className="font-semibold text-4xl">
+          <h1 className="font-semibold text-2xl text-neutral-1000 sm:text-3xl md:text-4xl lg:text-5xl">
             {locale === "en" ? (
               <>
                 Discover Your Next{" "}
-                <span className="font-extrabold text-primary-500 italic">
-                  World Stage
-                </span>
+                <span className="font-extrabold text-primary-500 italic">World Stage</span>
               </>
             ) : (
               <>
                 Temukan{" "}
-                <span className="font-extrabold text-primary-500 italic">
-                  Panggung Duniamu
-                </span>{" "}
+                <span className="font-extrabold text-primary-500 italic">Panggung Duniamu</span>{" "}
                 Selanjutnya
               </>
             )}
