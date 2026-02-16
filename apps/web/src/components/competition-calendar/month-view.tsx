@@ -99,7 +99,7 @@ export function MonthView({
 
   return (
     <div
-      className="overflow-x-auto lg:overflow-x-visible"
+      className="overflow-x-auto lg:overflow-x-visible overscroll-x-none"
       data-slot="month-view"
     >
       <div className="min-w-[800px] lg:min-w-0">
