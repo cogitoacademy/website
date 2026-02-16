@@ -43,7 +43,7 @@ async function TutorContent({ params }: Props) {
         <div className="max-w-4xl space-y-2">
           {/*<h1 className="font-bold text-4xl">{t("title")}</h1>*/}
 
-          <h1 className="font-semibold text-2xl text-neutral-1000 sm:text-3xl md:text-4xl lg:text-5xl">
+          <h1 className="font-semibold text-2xl text-neutral-1000 sm:text-3xl md:text-4xl lg:text-5xl min-[450px]:max-w-[420px] sm:max-w-[500px] md:max-w-2xl lg:max-w-3xl">
             {headline.before}
             <span className="font-extrabold text-primary-500">{headline.highlight}</span>
             {headline.after}
