@@ -60,9 +60,13 @@ export function WordRotateHighlighter({
   }, [words, duration]);
 
   return (
-    <div className="overflow-hidden py-2">
+    <span className="inline overflow-hidden py-2">
       <AnimatePresence mode="wait">
-        <motion.h1 key={words[index]} className={cn("relative", className)} {...motionProps}>
+        <motion.span
+          key={words[index]}
+          className={cn("relative inline-block", className)}
+          {...motionProps}
+        >
           <Highlighter
             action={action}
             color={color}
@@ -76,8 +80,8 @@ export function WordRotateHighlighter({
           >
             {words[index]}
           </Highlighter>
-        </motion.h1>
+        </motion.span>
       </AnimatePresence>
-    </div>
+    </span>
   );
 }
