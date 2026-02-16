@@ -28,10 +28,12 @@ export default async function StudentResourcesPage({ params }: Props) {
   return (
     <main className="bg-background-cream">
       <NavbarResolver />
-      <div className="relative z-3 mx-auto min-h-screen max-w-7xl px-4 py-12">
+      <div className="relative z-3 mx-auto min-h-screen max-w-7xl px-4">
         <div className="mb-8">
-          <h1 className="font-bold text-3xl tracking-tight">Student Resources</h1>
-          <p className="mt-2 text-muted-foreground">
+          <h1 className="font-semibold text-2xl text-neutral-1000 sm:text-3xl md:text-4xl lg:text-5xl min-[450px]:max-w-[420px] sm:max-w-[500px] md:max-w-2xl lg:max-w-3xl">
+            Student Resources
+          </h1>
+          <p className="mt-2">
             Access exclusive materials including Position Papers and Resolution Banks.
           </p>
         </div>
