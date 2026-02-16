@@ -139,10 +139,7 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
               </Link>
 
               <div className="flex items-center gap-2">
-                <LanguageToggle
-                  variant="cream"
-                  className="h-9 px-3 text-primary-500"
-                />
+                <LanguageToggle variant="cream" className="h-9 px-3 text-primary-500" />
                 <Button
                   size="icon-lg"
                   variant="cream"
@@ -155,10 +152,7 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
             </div>
           </div>
 
-          <motion.div
-            className="flex-1 overflow-y-auto p-4"
-            variants={containerVariants}
-          >
+          <motion.div className="flex-1 overflow-y-auto p-4" variants={containerVariants}>
             <div className="flex flex-col gap-4">
               <div className="flex flex-col gap-4">
                 {navItems.map((item) => (
@@ -166,7 +160,7 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                     <Link
                       href={item.href}
                       onClick={onClose}
-                      className="font-bold text-neutral-1000 text-sm"
+                      className="font-bold text-neutral-1000 text-sm min-[550px]:text-base"
                     >
                       {item.label}
                     </Link>
@@ -180,7 +174,7 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                     value="kegiatan"
                     className="border-none bg-transparent shadow-none"
                   >
-                    <AccordionTrigger className="bg-transparent p-0 font-bold text-sm text-neutral-1000 shadow-none hover:bg-transparent hover:no-underline hover:shadow-none focus-visible:ring-0 [&>svg]:ml-2 [&>svg]:size-5 [&>svg]:text-neutral-1000">
+                    <AccordionTrigger className="bg-transparent p-0 font-bold text-sm min-[550px]:text-base text-neutral-1000 shadow-none hover:bg-transparent hover:no-underline hover:shadow-none focus-visible:ring-0 [&>svg]:ml-2 [&>svg]:size-5 [&>svg]:text-neutral-1000">
                       {isId ? "Kegiatan" : "Activities"}
                     </AccordionTrigger>
                     <AccordionContent className="pb-0 pl-5">
@@ -190,7 +184,7 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                             key={item.label}
                             href={item.href}
                             onClick={onClose}
-                            className="text-sm"
+                            className="text-sm min-[550px]:text-base"
                           >
                             {item.label}
                           </Link>
@@ -202,7 +196,7 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
               </motion.div>
 
               <motion.div variants={itemVariants} className="mt-4">
-                <h3 className="mb-4 font-bold text-sm text-neutral-1000">
+                <h3 className="mb-4 font-bold text-sm text-neutral-1000 min-[550px]:text-base">
                   {isId ? "Navigasi Cepat" : "Quick Navigation"}
                 </h3>
                 <div className="grid grid-cols-2 gap-x-4 gap-y-3">
@@ -211,7 +205,7 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                       key={item.label}
                       href={item.href}
                       onClick={onClose}
-                      className="font-medium text-neutral-700 text-sm"
+                      className="font-medium text-neutral-700 text-sm min-[550px]:text-base"
                     >
                       {item.label}
                     </a>
@@ -224,9 +218,7 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
           <div className="bg-primary-500 p-4">
             <div className="flex flex-col gap-6">
               <div className="flex flex-col gap-2">
-                <span className="font-medium text-sm text-white/90">
-                  Follow Us on
-                </span>
+                <span className="font-medium text-sm text-white/90">Follow Us on</span>
                 <div className="flex gap-4">
                   <Link href="#" className="text-white hover:text-white/80">
                     <MapPin className="size-6" />
@@ -240,11 +232,7 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                 </div>
               </div>
 
-              <Link
-                href="/contact"
-                onClick={onClose}
-                className="w-full cursor-pointer"
-              >
+              <Link href="/contact" onClick={onClose} className="w-full cursor-pointer">
                 <Button variant="gray" size="md" className="w-full text-sm">
                   {isId ? "Hubungi Kami" : "Contact Us"}
                 </Button>
