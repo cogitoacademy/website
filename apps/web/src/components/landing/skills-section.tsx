@@ -83,28 +83,14 @@ export async function SkillsSection() {
         />
 
         <div className="absolute top-20 left-0 w-full aspect-[500/520] lg:aspect-16/5">
-          <svg
-            viewBox="0 0 1000 120"
-            preserveAspectRatio="none"
-            className="w-full h-full"
-          >
-            <polygon
-              points="0,0 1000,0 1000,80 500,120 0,80"
-              className="fill-tertiary-pink-300"
-            />
+          <svg viewBox="0 0 1000 120" preserveAspectRatio="none" className="w-full h-full">
+            <polygon points="0,0 1000,0 1000,80 500,120 0,80" className="fill-tertiary-pink-300" />
           </svg>
         </div>
 
         <div className="absolute top-0 left-0 w-full aspect-[500/520] lg:aspect-16/5">
-          <svg
-            viewBox="0 0 1000 120"
-            preserveAspectRatio="none"
-            className="w-full h-full"
-          >
-            <polygon
-              points="0,0 1000,0 1000,80 500,120 0,80"
-              className="fill-neutral-100"
-            />
+          <svg viewBox="0 0 1000 120" preserveAspectRatio="none" className="w-full h-full">
+            <polygon points="0,0 1000,0 1000,80 500,120 0,80" className="fill-neutral-100" />
           </svg>
         </div>
 

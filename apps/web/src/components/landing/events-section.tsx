@@ -1,7 +1,4 @@
-import {
-  ArrowRightIcon,
-  CalendarDotsIcon,
-} from "@phosphor-icons/react/dist/ssr";
+import { ArrowRightIcon, CalendarDotsIcon } from "@phosphor-icons/react/dist/ssr";
 import Image from "next/image";
 import { useLocale } from "next-intl";
 import { Link } from "@/i18n/routing";
@@ -47,20 +44,16 @@ export function EventsSection() {
         preserveAspectRatio="none"
         className="absolute top-0 left-0 h-30 w-full -translate-y-full"
       >
-        <path
-          d="M0,160 C240,0 1200,0 1440,160 L1440,160 L0,160 Z"
-          className="fill-primary-100"
-        />
+        <path d="M0,160 C240,0 1200,0 1440,160 L1440,160 L0,160 Z" className="fill-primary-100" />
       </svg>
       <section className="bg-primary-100 pt-5 pb-20">
         <div className="mx-auto max-w-7xl">
-          <div className="flex flex-col items-center gap-8">
-            <div className="flex flex-col items-center space-y-2">
+          <div className="flex flex-col items-center gap-4 lg:gap-8">
+            <div className="flex flex-col items-center space-y-2 px-4 xl:px-10">
               <Badge variant={"headline-primary"}>
-                <CalendarDotsIcon />{" "}
-                <span>{isId ? "Acara Publik" : "Public Events"}</span>
+                <CalendarDotsIcon /> <span>{isId ? "Acara Publik" : "Public Events"}</span>
               </Badge>
-              <h2 className="font-extrabold text-3xl text-neutral-1000 text-center">
+              <h2 className="font-extrabold text-2xl lg:text-3xl text-neutral-1000 text-center">
                 {isId ? (
                   <>
                     Satu <span className="text-primary-500">Bulan</span>, Satu{" "}
@@ -74,7 +67,7 @@ export function EventsSection() {
                 )}
               </h2>
             </div>
-            <div className="grid w-full grid-cols-1 gap-8 px-4 xl:px-10 md:grid-cols-2">
+            <div className="grid w-full grid-cols-1 gap-4 lg:gap-5 xl:gap-8 px-4 xl:px-10 md:grid-cols-2 justify-center items-center">
               {EVENT_DUMMY.slice(0, 2).map((event) => (
                 <EventCard
                   key={event.titleId}
@@ -107,23 +100,23 @@ function EventCard({
   isId: boolean;
 }) {
   return (
-    <div className="relative flex h-45 overflow-hidden rounded-2xl bg-background-cream p-6 xl:h-68 xl:p-10">
+    <div className="relative flex h-45 overflow-hidden rounded-2xl bg-background-cream p-6 lg:h-68 lg:p-10 min-[450px]:w-100 mx-auto lg:mx-0 md:w-auto">
       <div className="flex h-full flex-col items-start">
         <div>
-          <p className="font-bold text-lg lg:text-2xl text-primary-500 leading-tight">
+          <p className="font-bold text-lg min-[380px]:text-xl lg:text-2xl text-primary-500 leading-tight">
             {title}
           </p>
-          <p className="text-2xs lg:text-base">{desc}</p>
+          <p className="text-2xs min-[380px]:text-xs sm:text-sm lg:text-base">{desc}</p>
         </div>
 
         <Link href={link} className="mt-auto mb-0 ">
-          <Button className="cursor-pointer hidden md:inline-flex">
+          <Button size="md" className="cursor-pointer hidden md:inline-flex">
             <span>{isId ? "Lihat Selengkapnya" : "View More"}</span>
             <ArrowRightIcon color="#ffffff" className="size-5" />
           </Button>
-          <Button size="icon-sm" className="cursor-pointer md:hidden">
+          <Button size="icon" className="cursor-pointer md:hidden">
             {/*<span>{isId ? "Lihat Selengkapnya" : "View More"}</span>*/}
-            <ArrowRightIcon color="#ffffff"/>
+            <ArrowRightIcon color="#ffffff" weight="bold" />
           </Button>
         </Link>
       </div>

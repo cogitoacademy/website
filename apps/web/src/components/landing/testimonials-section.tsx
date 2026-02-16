@@ -50,10 +50,10 @@ export async function TestimonialsSection() {
             <Badge variant={"headline-primary"}>
               <UserSoundIcon /> <span>{isId ? "Testimoni" : "Testimonials"}</span>
             </Badge>
-            <h2 className="font-extrabold text-[32px] text-neutral-1000">
+            <h2 className="font-bold text-2xl lg:text-3xl text-pretty text-neutral-1000 mx-auto lg:max-w-none">
               {isId ? (
                 <>
-                  Dapatkan Strategi Langsung dari{" "}
+                  Dapatkan Strategi Langsung <br /> dari{" "}
                   <span className="text-primary-500">Tangan Pertama</span>
                 </>
               ) : (
@@ -62,7 +62,7 @@ export async function TestimonialsSection() {
                 </>
               )}
             </h2>
-            <p className="mx-auto max-w-3xl font-medium text-lg text-neutral-1000">
+            <p className="mx-auto max-w-3xl font-medium text-xs md:text-sm xl:text-base text-neutral-1000 md:max-w-none">
               {isId
                 ? "Para ahli dan praktisi global yang siap mendampingimu meraih standar juara dunia di setiap kompetisi."
                 : "Global experts and practitioners ready to accompany you in achieving world champion standards in every competition."}

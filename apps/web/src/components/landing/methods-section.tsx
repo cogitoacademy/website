@@ -19,7 +19,7 @@ export async function MethodsSection() {
             <>
               Di Balik Setiap Medali,
               <br />
-              <span className="text-3xl">
+              <span className="text-2xl md:text-3xl">
                 Inilah <span className="font-bold text-primary-500">Metode Kami</span>
               </span>
             </>
@@ -27,7 +27,7 @@ export async function MethodsSection() {
             <>
               Behind Every Medal,
               <br />
-              <span className="text-3xl">
+              <span className="text-2xl md:text-3xl">
                 Here is Our <span className="font-bold text-primary-500">Method</span>
               </span>
             </>
