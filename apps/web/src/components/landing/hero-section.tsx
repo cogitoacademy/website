@@ -10,32 +10,32 @@ const sampleLogos = [
   {
     id: "1",
     name: "Framer Motion",
-    url: "https://cdn.worldvectorlogo.com/logos/framer-2.svg",
+    url: "/logos/sekolah_victory_plus_bekasi.webp",
   },
   {
     id: "2",
     name: "Next.js",
-    url: "https://cdn.worldvectorlogo.com/logos/next-js.svg",
+    url: "/logos/sma_al_hikmah_surabaya.webp",
   },
   {
     id: "3",
     name: "TypeScript",
-    url: "https://cdn.worldvectorlogo.com/logos/typescript.svg",
+    url: "/logos/sman_16_surabaya.webp",
   },
   {
     id: "4",
     name: "Tailwind CSS",
-    url: "https://cdn.worldvectorlogo.com/logos/tailwindcss.svg",
+    url: "/logos/sman_16_surabaya.webp",
   },
   {
     id: "5",
     name: "Framer Motion",
-    url: "https://cdn.worldvectorlogo.com/logos/framer-2.svg",
+    url: "/logos/sman_16_surabaya.webp",
   },
   {
     id: "6",
     name: "Node.js",
-    url: "https://cdn.worldvectorlogo.com/logos/nodejs-icon.svg",
+    url: "/logos/sman_16_surabaya.webp",
   },
 ];
 
