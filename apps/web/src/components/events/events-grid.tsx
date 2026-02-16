@@ -41,9 +41,7 @@ export function EventsGrid({ events, lang }: EventsGridProps) {
     return (
       <section className="py-20 text-center">
         <p className="text-lg text-neutral-500">
-          {lang === "id"
-            ? "Belum ada kegiatan yang terdaftar."
-            : "No events available yet."}
+          {lang === "id" ? "Belum ada kegiatan yang terdaftar." : "No events available yet."}
         </p>
       </section>
     );
@@ -108,15 +106,11 @@ function EventCard({ event, lang }: { event: SerializedEvent; lang: string }) {
         {/* Status badge overlay */}
         {event.status === "upcoming" ? (
           <div className="absolute bottom-7 left-3">
-            <Badge variant="upcoming">
-              {lang === "id" ? "Acara Terbaru" : "Upcoming"}
-            </Badge>
+            <Badge variant="upcoming">{lang === "id" ? "Acara Terbaru" : "Upcoming"}</Badge>
           </div>
         ) : (
           <div className="absolute bottom-7 left-3">
-            <Badge variant="completed">
-              {lang === "id" ? "Sudah Lewat" : "Completed"}
-            </Badge>
+            <Badge variant="completed">{lang === "id" ? "Sudah Lewat" : "Completed"}</Badge>
           </div>
         )}
 
