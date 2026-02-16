@@ -5,13 +5,7 @@ import { AnimatePresence, motion } from "motion/react";
 import { useMemo, useState } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Button, buttonVariants } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
@@ -22,13 +16,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
-import {
-  Sheet,
-  SheetContent,
-  SheetFooter,
-  SheetHeader,
-  SheetTitle,
-} from "@/components/ui/sheet";
+import { Sheet, SheetContent, SheetFooter, SheetHeader, SheetTitle } from "@/components/ui/sheet";
 import { FunnelIcon, FunnelXIcon, XIcon } from "@phosphor-icons/react/dist/ssr";
 
 interface Resource {
@@ -58,9 +46,7 @@ const categoryColors: Record<string, string> = {
 };
 
 export function ResourceList({ resources }: ResourceListProps) {
-  const [selectedResource, setSelectedResource] = useState<Resource | null>(
-    null,
-  );
+  const [selectedResource, setSelectedResource] = useState<Resource | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
 
@@ -75,16 +61,13 @@ export function ResourceList({ resources }: ResourceListProps) {
     return resources.filter((resource) => {
       const category = resource.category || "other";
       const categoryMatch =
-        selectedCategories.length === 0 ||
-        selectedCategories.includes(category);
+        selectedCategories.length === 0 || selectedCategories.includes(category);
 
       const searchMatch =
         searchQuery === "" ||
         resource.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
         (resource.description &&
-          resource.description
-            .toLowerCase()
-            .includes(searchQuery.toLowerCase()));
+          resource.description.toLowerCase().includes(searchQuery.toLowerCase()));
 
       return categoryMatch && searchMatch;
     });
@@ -92,9 +75,7 @@ export function ResourceList({ resources }: ResourceListProps) {
 
   const handleCategoryToggle = (category: string) => {
     setSelectedCategories((prev) =>
-      prev.includes(category)
-        ? prev.filter((c) => c !== category)
-        : [...prev, category],
+      prev.includes(category) ? prev.filter((c) => c !== category) : [...prev, category],
     );
   };
 
@@ -181,12 +162,8 @@ export function ResourceList({ resources }: ResourceListProps) {
       {filteredResources.length === 0 ? (
         <div className="flex flex-col items-center justify-center rounded-2xl border border-dashed py-16">
           <FileText className="mb-4 h-12 w-12 text-muted-foreground/50" />
-          <p className="font-medium text-lg text-muted-foreground">
-            No resources found
-          </p>
-          <p className="text-muted-foreground/70 text-sm">
-            Try adjusting your search or filters
-          </p>
+          <p className="font-medium text-lg text-muted-foreground">No resources found</p>
+          <p className="text-muted-foreground/70 text-sm">Try adjusting your search or filters</p>
         </div>
       ) : (
         <motion.div
@@ -216,9 +193,7 @@ export function ResourceList({ resources }: ResourceListProps) {
                         </Badge>
                         <FileText className="h-4 w-4 text-muted-foreground" />
                       </div>
-                      <CardTitle className="line-clamp-2 text-lg">
-                        {resource.title}
-                      </CardTitle>
+                      <CardTitle className="line-clamp-2 text-lg">{resource.title}</CardTitle>
                       {resource.description && (
                         <CardDescription className="line-clamp-2">
                           {resource.description}
@@ -257,18 +232,14 @@ export function ResourceList({ resources }: ResourceListProps) {
       )}
 
       {/* Preview Sheet */}
-      <Sheet
-        open={!!selectedResource}
-        onOpenChange={(open) => !open && setSelectedResource(null)}
-      >
+      <Sheet open={!!selectedResource} onOpenChange={(open) => !open && setSelectedResource(null)}>
         <SheetContent className="w-[95vw] sm:max-w-2xl" side="right">
           <SheetHeader className="border-b pb-4">
             <div className="flex items-start gap-3">
               <div
                 className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border ${
-                  categoryColors[selectedResource?.category || "other"]?.split(
-                    " ",
-                  )[0] || "bg-gray-100"
+                  categoryColors[selectedResource?.category || "other"]?.split(" ")[0] ||
+                  "bg-gray-100"
                 }`}
               >
                 <FileText className={"h-5 w-5"} />
@@ -289,8 +260,7 @@ export function ResourceList({ resources }: ResourceListProps) {
 
               {selectedResource?.category && (
                 <Badge variant="secondary" className="mr-8">
-                  {categoryLabels[selectedResource.category] ||
-                    selectedResource.category}
+                  {categoryLabels[selectedResource.category] || selectedResource.category}
                 </Badge>
               )}
             </div>
