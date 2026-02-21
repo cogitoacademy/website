@@ -9,6 +9,7 @@ import {
   type CalendarCompetition,
   getBorderRadiusClasses,
   getCompetitionColorClasses,
+  useDateLocale,
 } from "@/components/competition-calendar";
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "../ui/button";
@@ -65,16 +66,11 @@ function EventWrapper({
   // Get the inset shadow color based on event color
   // Blue: 500, Yellow: 400, Orange(KTI/primary): 400, Pink: 500, Green: 600, Red: 500, Purple: 500
   const getInsetShadowColor = () => {
-    if (event.color?.startsWith("tertiary-blue"))
-      return "rgba(59, 130, 246, 0.6)"; // Blue 500
-    if (event.color?.startsWith("tertiary-pink"))
-      return "rgba(236, 72, 153, 0.6)"; // Pink 500
-    if (event.color?.startsWith("tertiary-red"))
-      return "rgba(239, 68, 68, 0.6)"; // Red 500
-    if (event.color?.startsWith("tertiary-yellow"))
-      return "rgba(250, 204, 21, 0.6)"; // Yellow 400
-    if (event.color?.startsWith("tertiary-green"))
-      return "rgba(22, 163, 74, 0.6)"; // Green 600
+    if (event.color?.startsWith("tertiary-blue")) return "rgba(59, 130, 246, 0.6)"; // Blue 500
+    if (event.color?.startsWith("tertiary-pink")) return "rgba(236, 72, 153, 0.6)"; // Pink 500
+    if (event.color?.startsWith("tertiary-red")) return "rgba(239, 68, 68, 0.6)"; // Red 500
+    if (event.color?.startsWith("tertiary-yellow")) return "rgba(250, 204, 21, 0.6)"; // Yellow 400
+    if (event.color?.startsWith("tertiary-green")) return "rgba(22, 163, 74, 0.6)"; // Green 600
     if (event.color?.startsWith("primary")) return "rgba(255, 134, 52, 1)"; // Primary 400 (Orange/KTI)
     if (event.color?.startsWith("secondary")) return "rgba(168, 85, 247, 0.6)"; // Purple 500
     if (event.color === "sky") return "rgba(14, 165, 233, 0.6)";
@@ -99,11 +95,7 @@ function EventWrapper({
       onClick={onClick}
       onMouseDown={onMouseDown}
       onTouchStart={onTouchStart}
-      style={
-        isFirstDay
-          ? { boxShadow: `inset 6px 0 0 0 ${getInsetShadowColor()}` }
-          : undefined
-      }
+      style={isFirstDay ? { boxShadow: `inset 6px 0 0 0 ${getInsetShadowColor()}` } : undefined}
       type="button"
       {...dndListeners}
       {...dndAttributes}
@@ -146,6 +138,7 @@ export function EventItem({
   onMouseDown,
   onTouchStart,
 }: EventItemProps) {
+  const { isId, dateLocale } = useDateLocale();
   const eventColor = event.color;
 
   // Use the provided currentTime (for dragging) or the event's actual time
@@ -168,7 +161,7 @@ export function EventItem({
   }, [displayStart, displayEnd]);
 
   const _getEventTime = () => {
-    if (event.allDay) return "All day";
+    if (event.allDay) return isId ? "Seharian" : "All day";
 
     // For short events (less than 45 minutes), only show start time
     if (durationMinutes < 45) {
@@ -234,16 +227,11 @@ export function EventItem({
   // Get the inset shadow color for agenda view
   // Blue: 500, Yellow: 400, Orange(KTI/primary): 400, Pink: 500, Green: 600, Red: 500, Purple: 500
   const getAgendaInsetShadowColor = () => {
-    if (event.color?.startsWith("tertiary-blue"))
-      return "rgba(59, 130, 246, 0.6)"; // Blue 500
-    if (event.color?.startsWith("tertiary-pink"))
-      return "rgba(236, 72, 153, 0.6)"; // Pink 500
-    if (event.color?.startsWith("tertiary-red"))
-      return "rgba(239, 68, 68, 0.6)"; // Red 500
-    if (event.color?.startsWith("tertiary-yellow"))
-      return "rgba(250, 204, 21, 0.6)"; // Yellow 400
-    if (event.color?.startsWith("tertiary-green"))
-      return "rgba(22, 163, 74, 0.6)"; // Green 600
+    if (event.color?.startsWith("tertiary-blue")) return "rgba(59, 130, 246, 0.6)"; // Blue 500
+    if (event.color?.startsWith("tertiary-pink")) return "rgba(236, 72, 153, 0.6)"; // Pink 500
+    if (event.color?.startsWith("tertiary-red")) return "rgba(239, 68, 68, 0.6)"; // Red 500
+    if (event.color?.startsWith("tertiary-yellow")) return "rgba(250, 204, 21, 0.6)"; // Yellow 400
+    if (event.color?.startsWith("tertiary-green")) return "rgba(22, 163, 74, 0.6)"; // Green 600
     if (event.color?.startsWith("primary")) return "rgba(255, 134, 52, 1)"; // Primary 400 (Orange/KTI)
     if (event.color?.startsWith("secondary")) return "rgba(168, 85, 247, 0.6)"; // Purple 500
     if (event.color === "sky") return "rgba(14, 165, 233, 0.6)";
@@ -268,9 +256,7 @@ export function EventItem({
       onMouseDown={onMouseDown}
       onTouchStart={onTouchStart}
       style={
-        isFirstDay
-          ? { boxShadow: `inset 10px 0 0 0 ${getAgendaInsetShadowColor()}` }
-          : undefined
+        isFirstDay ? { boxShadow: `inset 10px 0 0 0 ${getAgendaInsetShadowColor()}` } : undefined
       }
       type="button"
       {...dndListeners}
@@ -293,24 +279,22 @@ export function EventItem({
 
       {/* Event Title */}
       <div className="flex justify-between">
-        <div className="font-bold text-neutral-1000 text-xl">{event.title}</div>
-        <div
-          className={cn(buttonVariants({ variant: "ghost", size: "icon-sm" }))}
-        >
+        <div className="font-bold text-base text-neutral-1000 sm:text-lg md:text-xl">
+          {event.title}
+        </div>
+        <div className={cn(buttonVariants({ variant: "ghost", size: "icon-sm" }))}>
           <ArrowUpRightIcon className="size-5 text-neutral-1000" />
         </div>
       </div>
 
-      <div className="flex justify-between flex-wrap gap-1">
+      <div className="flex flex-wrap justify-between gap-1">
         {/* Location */}
-        <div className="flex items-center justify-start gap-x-2 *:text-neutral-1000">
+        <div className="flex flex-wrap items-center justify-start gap-x-2 *:text-neutral-1000">
           {event.organizer && <div className="text-sm">{event.organizer}</div>}
 
           <Separator orientation="vertical" />
 
-          {event.scale && (
-            <div className="text-sm capitalize">{event.scale}</div>
-          )}
+          {event.scale && <div className="text-sm capitalize">{event.scale}</div>}
 
           <Separator orientation="vertical" />
 
@@ -332,9 +316,10 @@ export function EventItem({
             <div className="my-1 text-xs opacity-90">{event.description}</div>
           )}*/}
         </div>
-        <p className="text-sm text-neutral-1000">
-          Tanggal Pelaksanaan {format(new Date(event.start), "dd MMM")} -{" "}
-          {format(new Date(event.end), "d MMM yyyy")}
+        <p className="text-neutral-1000 text-sm">
+          {isId ? "Tanggal Pelaksanaan" : "Event Date"}{" "}
+          {format(new Date(event.start), "dd MMM", { locale: dateLocale })} -{" "}
+          {format(new Date(event.end), "d MMM yyyy", { locale: dateLocale })}
         </p>
       </div>
     </button>

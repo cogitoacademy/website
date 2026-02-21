@@ -12,7 +12,13 @@ import {
   subMonths,
   subWeeks,
 } from "date-fns";
-import { ChevronDownIcon, ChevronLeftIcon, ChevronRightIcon, PlusIcon } from "lucide-react";
+import {
+  ChevronDownIcon,
+  ChevronLeftIcon,
+  ChevronRightIcon,
+  PlusIcon,
+} from "lucide-react";
+import { useLocale } from "next-intl";
 import { useEffect, useMemo, useState } from "react";
 
 import {
@@ -60,8 +66,12 @@ export function EventCalendar({
 }: EventCalendarProps) {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [view, setView] = useState<CalendarView>(initialView);
-  const [isEventDetailsDialogOpen, setIsEventDetailsDialogOpen] = useState(false);
-  const [selectedEvent, setSelectedEvent] = useState<CalendarCompetition | null>(null);
+  const [isEventDetailsDialogOpen, setIsEventDetailsDialogOpen] =
+    useState(false);
+  const [selectedEvent, setSelectedEvent] =
+    useState<CalendarCompetition | null>(null);
+  const locale = useLocale();
+  const isId = locale === "id";
 
   // Add keyboard shortcuts for view switching
   useEffect(() => {
@@ -133,6 +143,13 @@ export function EventCalendar({
     setIsEventDetailsDialogOpen(true);
   };
 
+  const viewLabels = useMemo(() => {
+    const labels: Record<CalendarView, string> = isId
+      ? { month: "Bulan", week: "Minggu", day: "Hari", agenda: "Agenda" }
+      : { month: "Month", week: "Week", day: "Day", agenda: "Agenda" };
+    return labels;
+  }, [isId]);
+
   const viewTitle = useMemo(() => {
     if (view === "month") {
       return format(currentDate, "MMMM yyyy");
@@ -154,7 +171,9 @@ export function EventCalendar({
           <span aria-hidden="true" className="max-[479px]:hidden min-md:hidden">
             {format(currentDate, "MMMM d, yyyy")}
           </span>
-          <span className="max-md:hidden">{format(currentDate, "EEE MMMM d, yyyy")}</span>
+          <span className="max-md:hidden">
+            {format(currentDate, "EEE MMMM d, yyyy")}
+          </span>
         </>
       );
     }
@@ -173,7 +192,7 @@ export function EventCalendar({
 
   return (
     <div
-      className="flex flex-col rounded-xl xl:rounded-3xl border bg-neutral-100"
+      className="flex flex-col rounded-xl border bg-neutral-100 xl:rounded-3xl"
       style={
         {
           "--event-gap": `${EventGap}px`,
@@ -182,10 +201,12 @@ export function EventCalendar({
         } as React.CSSProperties
       }
     >
-      <CalendarDndProvider onEventUpdate={readOnly || !onEventUpdate ? () => {} : onEventUpdate}>
+      <CalendarDndProvider
+        onEventUpdate={readOnly || !onEventUpdate ? () => {} : onEventUpdate}
+      >
         <div
           className={cn(
-            "flex items-center justify-between rounded-t-xl xl:rounded-t-3xl bg-tertiary-pink-200 p-2 sm:p-4",
+            "flex items-center justify-between rounded-t-xl bg-tertiary-pink-200 p-2 sm:p-4 xl:rounded-t-3xl",
             className,
           )}
         >
@@ -194,39 +215,68 @@ export function EventCalendar({
               className="text-neutral-1000 max-[479px]:aspect-square max-[479px]:p-0!"
               onClick={handleToday}
               variant="cream"
-              // size="lg"
+              size="md"
             >
-              <RiCalendarCheckLine aria-hidden="true" className="min-[480px]:hidden" size={16} />
-              <span className="max-[479px]:sr-only">Today</span>
+              <RiCalendarCheckLine
+                aria-hidden="true"
+                className="min-[480px]:hidden"
+                size={16}
+              />
+              <span className="max-[479px]:sr-only">
+                {isId ? "Hari Ini" : "Today"}
+              </span>
             </Button>
             <div className="flex items-center sm:gap-2">
-              <Button aria-label="Previous" onClick={handlePrevious} size="icon" variant="ghost">
+              <Button
+                aria-label="Previous"
+                onClick={handlePrevious}
+                size="icon"
+                variant="ghost"
+              >
                 <ChevronLeftIcon aria-hidden="true" size={16} />
               </Button>
-              <Button aria-label="Next" onClick={handleNext} size="icon" variant="ghost">
+              <Button
+                aria-label="Next"
+                onClick={handleNext}
+                size="icon"
+                variant="ghost"
+              >
                 <ChevronRightIcon aria-hidden="true" size={16} />
               </Button>
             </div>
-            <h2 className="font-semibold text-sm sm:text-lg md:text-xl">{viewTitle}</h2>
+            <h2 className="font-semibold text-sm sm:text-lg md:text-xl">
+              {viewTitle}
+            </h2>
           </div>
           <div className="flex items-center gap-2">
             <DropdownMenu>
               <DropdownMenuTrigger
-                render={<Button className="gap-1.5 max-[479px]:h-8" variant="outline" />}
+                render={
+                  <Button
+                    className="gap-1.5 max-[479px]:h-8 text-neutral-1000"
+                    variant="cream"
+                    size="md"
+                  />
+                }
               >
                 <span>
                   <span aria-hidden="true" className="min-[480px]:hidden">
-                    {view.charAt(0).toUpperCase()}
+                    {viewLabels[view].charAt(0).toUpperCase()}
                   </span>
                   <span className="max-[479px]:sr-only">
-                    {view.charAt(0).toUpperCase() + view.slice(1)}
+                    {viewLabels[view]}
                   </span>
                 </span>
-                <ChevronDownIcon aria-hidden="true" className="-me-1 opacity-60" size={16} />
+                <ChevronDownIcon
+                  aria-hidden="true"
+                  className="-me-1 opacity-60"
+                  size={16}
+                />
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end" className="min-w-32">
                 <DropdownMenuItem onClick={() => setView("month")}>
-                  Month <DropdownMenuShortcut>M</DropdownMenuShortcut>
+                  {viewLabels.month}{" "}
+                  <DropdownMenuShortcut>M</DropdownMenuShortcut>
                 </DropdownMenuItem>
                 {/*<DropdownMenuItem onClick={() => setView("week")}>
                   Week <DropdownMenuShortcut>W</DropdownMenuShortcut>
@@ -235,7 +285,8 @@ export function EventCalendar({
                   Day <DropdownMenuShortcut>D</DropdownMenuShortcut>
                 </DropdownMenuItem>*/}
                 <DropdownMenuItem onClick={() => setView("agenda")}>
-                  Agenda <DropdownMenuShortcut>A</DropdownMenuShortcut>
+                  {viewLabels.agenda}{" "}
+                  <DropdownMenuShortcut>A</DropdownMenuShortcut>
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
@@ -247,8 +298,14 @@ export function EventCalendar({
                 }}
                 size="sm"
               >
-                <PlusIcon aria-hidden="true" className="opacity-60 sm:-ms-1" size={16} />
-                <span className="max-sm:sr-only">New event</span>
+                <PlusIcon
+                  aria-hidden="true"
+                  className="opacity-60 sm:-ms-1"
+                  size={16}
+                />
+                <span className="max-sm:sr-only">
+                  {isId ? "Acara baru" : "New event"}
+                </span>
               </Button>
             )}
           </div>

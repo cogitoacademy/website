@@ -69,7 +69,7 @@ export default function TutorCard({ tutor }: TutorCardProps) {
                       getCoreCategoryBadgeColor(field.coreCategory),
                     )}
                   >
-                    {field.name || "Unknown Field"}
+                    {field.name || (locale === "id" ? "Bidang Tidak Diketahui" : "Unknown Field")}
                   </Badge>
                 ))}
               </div>

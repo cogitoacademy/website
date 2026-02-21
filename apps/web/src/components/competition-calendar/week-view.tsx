@@ -27,6 +27,7 @@ import {
   isMultiDayEvent,
   StartHour,
   useCurrentTimeIndicator,
+  useDateLocale,
   WeekCellsHeight,
 } from "@/components/competition-calendar";
 import { cn } from "@/lib/utils";
@@ -48,6 +49,8 @@ interface PositionedEvent {
 }
 
 export function WeekView({ currentDate, events, onEventSelect, readOnly = false }: WeekViewProps) {
+  const { isId, dateLocale } = useDateLocale();
+
   const days = useMemo(() => {
     const weekStart = startOfWeek(currentDate, { weekStartsOn: 0 });
     const weekEnd = endOfWeek(currentDate, { weekStartsOn: 0 });
@@ -216,9 +219,9 @@ export function WeekView({ currentDate, events, onEventSelect, readOnly = false 
             key={day.toString()}
           >
             <span aria-hidden="true" className="sm:hidden">
-              {format(day, "E")[0]} {format(day, "d")}
+              {format(day, "E", { locale: dateLocale })[0]} {format(day, "d")}
             </span>
-            <span className="max-sm:hidden">{format(day, "EEE dd")}</span>
+            <span className="max-sm:hidden">{format(day, "EEE dd", { locale: dateLocale })}</span>
           </div>
         ))}
       </div>
@@ -228,7 +231,7 @@ export function WeekView({ currentDate, events, onEventSelect, readOnly = false 
           <div className="grid grid-cols-8">
             <div className="relative border-border/70 border-r">
               <span className="absolute bottom-0 left-0 h-6 w-16 max-w-full pe-2 text-right text-[10px] text-muted-foreground/70 sm:pe-4 sm:text-xs">
-                All day
+                {isId ? "Seharian" : "All day"}
               </span>
             </div>
             {days.map((day, dayIndex) => {
@@ -293,7 +296,7 @@ export function WeekView({ currentDate, events, onEventSelect, readOnly = false 
             >
               {index > 0 && (
                 <span className="absolute -top-3 left-0 flex h-6 w-16 max-w-full items-center justify-end bg-background pe-2 text-[10px] text-muted-foreground/70 sm:pe-4 sm:text-xs">
-                  {format(hour, "h a")}
+                  {format(hour, "h a", { locale: dateLocale })}
                 </span>
               )}
             </div>

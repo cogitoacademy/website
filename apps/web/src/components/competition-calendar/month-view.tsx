@@ -26,6 +26,7 @@ import {
   getEventsForDay,
   getSpanningEventsForDay,
   sortEvents,
+  useDateLocale,
   useEventVisibility,
 } from "@/components/competition-calendar";
 import { DefaultStartHour } from "@/components/competition-calendar/constants";
@@ -44,6 +45,8 @@ export function MonthView({
   onEventSelect,
   readOnly = false,
 }: MonthViewProps) {
+  const { isId, dateLocale } = useDateLocale();
+
   const days = useMemo(() => {
     const monthStart = startOfMonth(currentDate);
     const monthEnd = endOfMonth(monthStart);
@@ -56,9 +59,9 @@ export function MonthView({
   const weekdays = useMemo(() => {
     return Array.from({ length: 7 }).map((_, i) => {
       const date = addDays(startOfWeek(new Date()), i);
-      return format(date, "EEE");
+      return format(date, "EEE", { locale: dateLocale });
     });
-  }, []);
+  }, [dateLocale]);
 
   const weeks = useMemo(() => {
     const result = [];
@@ -213,7 +216,8 @@ export function MonthView({
                               }
                             >
                               <span>
-                                + {remainingCount} <span className="max-sm:sr-only">more</span>
+                                + {remainingCount}{" "}
+                                <span className="max-sm:sr-only">{isId ? "lagi" : "more"}</span>
                               </span>
                             </PopoverTrigger>
                             <PopoverContent

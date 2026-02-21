@@ -21,6 +21,7 @@ import {
   EventItem,
   isMultiDayEvent,
   useCurrentTimeIndicator,
+  useDateLocale,
   WeekCellsHeight,
 } from "@/components/competition-calendar";
 import { EndHour, StartHour } from "@/components/competition-calendar/constants";
@@ -43,6 +44,8 @@ interface PositionedEvent {
 }
 
 export function DayView({ currentDate, events, onEventSelect, readOnly = false }: DayViewProps) {
+  const { isId, dateLocale } = useDateLocale();
+
   const hours = useMemo(() => {
     const dayStart = startOfDay(currentDate);
     return eachHourOfInterval({
@@ -183,7 +186,7 @@ export function DayView({ currentDate, events, onEventSelect, readOnly = false }
           <div className="grid grid-cols-[3rem_1fr] sm:grid-cols-[4rem_1fr]">
             <div className="relative">
               <span className="absolute bottom-0 left-0 h-6 w-16 max-w-full pe-2 text-right text-[10px] text-muted-foreground/70 sm:pe-4 sm:text-xs">
-                All day
+                {isId ? "Seharian" : "All day"}
               </span>
             </div>
             <div className="relative border-border/70 border-r p-1 last:border-r-0">
@@ -221,7 +224,7 @@ export function DayView({ currentDate, events, onEventSelect, readOnly = false }
             >
               {index > 0 && (
                 <span className="absolute -top-3 left-0 flex h-6 w-16 max-w-full items-center justify-end bg-background pe-2 text-[10px] text-muted-foreground/70 sm:pe-4 sm:text-xs">
-                  {format(hour, "h a")}
+                  {format(hour, "h a", { locale: dateLocale })}
                 </span>
               )}
             </div>

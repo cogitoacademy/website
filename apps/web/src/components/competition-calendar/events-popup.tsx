@@ -4,7 +4,11 @@ import { format, isSameDay } from "date-fns";
 import { XIcon } from "lucide-react";
 import { useEffect, useMemo, useRef } from "react";
 
-import { type CalendarCompetition, EventItem } from "@/components/competition-calendar";
+import {
+  type CalendarCompetition,
+  EventItem,
+  useDateLocale,
+} from "@/components/competition-calendar";
 
 interface EventsPopupProps {
   date: Date;
@@ -16,6 +20,7 @@ interface EventsPopupProps {
 
 export function EventsPopup({ date, events, position, onClose, onEventSelect }: EventsPopupProps) {
   const popupRef = useRef<HTMLDivElement>(null);
+  const { isId, dateLocale } = useDateLocale();
 
   // Handle click outside to close popup
   useEffect(() => {
@@ -84,9 +89,9 @@ export function EventsPopup({ date, events, position, onClose, onEventSelect }: 
       }}
     >
       <div className="sticky top-0 flex items-center justify-between border-b bg-background p-3">
-        <h3 className="font-medium">{format(date, "d MMMM yyyy")}</h3>
+        <h3 className="font-medium">{format(date, "d MMMM yyyy", { locale: dateLocale })}</h3>
         <button
-          aria-label="Close"
+          aria-label={isId ? "Tutup" : "Close"}
           className="rounded-full p-1 hover:bg-muted"
           onClick={onClose}
           type="button"
@@ -97,7 +102,9 @@ export function EventsPopup({ date, events, position, onClose, onEventSelect }: 
 
       <div className="space-y-2 p-3">
         {events.length === 0 ? (
-          <div className="py-2 text-muted-foreground text-sm">No events</div>
+          <div className="py-2 text-muted-foreground text-sm">
+            {isId ? "Tidak ada acara" : "No events"}
+          </div>
         ) : (
           events.map((event) => {
             const eventStart = new Date(event.start);

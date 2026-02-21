@@ -7,12 +7,12 @@ import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { getCoreCategoryBadgeColor } from "@/lib/colors/brandColors";
 import type { Tutor } from "@/types/tutor";
+import { Badge } from "./ui/badge";
 import {
   ResponsiveModal,
   ResponsiveModalContent,
   ResponsiveModalTitle,
 } from "./ui/responsive-modal";
-import { Badge } from "./ui/badge";
 
 interface TutorDetailModalProps {
   tutor: Tutor;
@@ -60,7 +60,7 @@ export default function TutorDetailModal({ tutor, open, onOpenChange }: TutorDet
       variant={"tutor"}
       className={`${getCoreCategoryBadgeColor(field.coreCategory)}`}
     >
-      {field.name || "Unknown Field"}
+      {field.name || (locale === "id" ? "Bidang Tidak Diketahui" : "Unknown Field")}
     </Badge>
   ));
 
@@ -101,7 +101,7 @@ export default function TutorDetailModal({ tutor, open, onOpenChange }: TutorDet
             onClick={() => onOpenChange(false)}
           >
             <XIcon className="h-4 w-4" />
-            <span className="sr-only">Close</span>
+            <span className="sr-only">{locale === "id" ? "Tutup" : "Close"}</span>
           </Button>
         </div>
 
@@ -111,7 +111,7 @@ export default function TutorDetailModal({ tutor, open, onOpenChange }: TutorDet
             {/* Header Info */}
             <div className="space-y-3">
               <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
-                <ResponsiveModalTitle className="font-bold text-2xl text-foreground tracking-tight sm:text-3xl leading-none">
+                <ResponsiveModalTitle className="font-bold text-2xl text-foreground leading-none tracking-tight sm:text-3xl">
                   {tutor.name}
                 </ResponsiveModalTitle>
 
@@ -122,7 +122,7 @@ export default function TutorDetailModal({ tutor, open, onOpenChange }: TutorDet
               </div>
 
               {affiliation && (
-                <p className="font-medium text-base text-neutral-1000 leading -none">
+                <p className="leading -none font-medium text-base text-neutral-1000">
                   {affiliation}
                 </p>
               )}
@@ -143,16 +143,18 @@ export default function TutorDetailModal({ tutor, open, onOpenChange }: TutorDet
             {/* Content Columns */}
             <div className="grid grid-cols-1 gap-4 pt-3 sm:grid-cols-2">
               <div className="h-full space-y-1 rounded-xl bg-background-primary px-3 py-2">
-                <h3 className="font-semibold text-base text-foreground pb-0.5">
-                  Rekam Jejak Prestasi
+                <h3 className="pb-0.5 font-semibold text-base text-foreground">
+                  {t("achievements")}
                 </h3>
                 {achievements.length == 0 && (
                   <p className="text-muted-foreground/90 text-sm leading-relaxed">
-                    isinya sedang diracik, ditunggu ya!
+                    {locale === "id"
+                      ? "isinya sedang diracik, ditunggu ya!"
+                      : "Content is being prepared, stay tuned!"}
                   </p>
                 )}
                 {achievements.length > 0 && (
-                  <ul className="list-outside list-disc space-y-2 px-4 text-muted-foreground/90 text-sm leading-relaxed overflow-y-auto max-h-[200px]">
+                  <ul className="max-h-[200px] list-outside list-disc space-y-2 overflow-y-auto px-4 text-muted-foreground/90 text-sm leading-relaxed">
                     {achievements.map((item, index) => (
                       <li key={index}>{item}</li>
                     ))}
@@ -161,16 +163,18 @@ export default function TutorDetailModal({ tutor, open, onOpenChange }: TutorDet
               </div>
 
               <div className="h-full space-y-1 rounded-xl bg-background-primary px-3 py-2">
-                <h3 className="font-semibold text-base text-foreground pb-0.5">
-                  {t("experiences") || "Pengalaman"}
+                <h3 className="pb-0.5 font-semibold text-base text-foreground">
+                  {t("experiences")}
                 </h3>
                 {experiences.length == 0 && (
                   <p className="text-muted-foreground/90 text-sm leading-relaxed">
-                    isinya sedang diracik, ditunggu ya!
+                    {locale === "id"
+                      ? "isinya sedang diracik, ditunggu ya!"
+                      : "Content is being prepared, stay tuned!"}
                   </p>
                 )}
                 {experiences.length > 0 && (
-                  <ul className="list-outside list-disc space-y-2 px-4 text-muted-foreground/90 text-sm leading-relaxed overflow-y-auto max-h-[200px]">
+                  <ul className="max-h-[200px] list-outside list-disc space-y-2 overflow-y-auto px-4 text-muted-foreground/90 text-sm leading-relaxed">
                     {experiences.map((item, index) => (
                       <li key={index}>{item}</li>
                     ))}
