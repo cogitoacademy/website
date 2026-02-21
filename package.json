@@ -18,7 +18,8 @@
     "check-types": "turbo check-types",
     "dev:native": "turbo -F native dev",
     "dev:web": "turbo -F web dev",
-    "check": "oxlint && oxfmt --write"
+    "check": "oxlint && oxfmt --write",
+    "deploy": "turbo -F studio deploy"
   },
   "dependencies": {
     "@phosphor-icons/react": "^2.1.10",
