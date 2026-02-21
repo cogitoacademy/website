@@ -1,6 +1,6 @@
 "use client";
 
-import { MapPinIcon, RadioIcon, XIcon } from "lucide-react";
+import { MapPinIcon, XIcon } from "lucide-react";
 import Image from "next/image";
 import { useLocale, useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
@@ -12,6 +12,7 @@ import {
   ResponsiveModalContent,
   ResponsiveModalTitle,
 } from "./ui/responsive-modal";
+import { Badge } from "./ui/badge";
 
 interface TutorDetailModalProps {
   tutor: Tutor;
@@ -54,14 +55,13 @@ export default function TutorDetailModal({ tutor, open, onOpenChange }: TutorDet
   const experiences = tutor.experiences?.map((e) => getLocalizedValue(e.text, locale)) || [];
 
   const badges = tutor.competitionFields?.map((field) => (
-    <span
+    <Badge
       key={field._id}
-      className={`inline-flex items-center rounded px-2.5 py-0.5 font-medium text-xs ${getCoreCategoryBadgeColor(
-        field.coreCategory,
-      )}`}
+      variant={"tutor"}
+      className={`${getCoreCategoryBadgeColor(field.coreCategory)}`}
     >
       {field.name || "Unknown Field"}
-    </span>
+    </Badge>
   ));
 
   return (
@@ -107,11 +107,11 @@ export default function TutorDetailModal({ tutor, open, onOpenChange }: TutorDet
 
         {/* Right/Bottom: Content Section */}
         <div className="min-h-0 flex-1 overflow-y-auto bg-background">
-          <div className="space-y-6 p-6">
+          <div className="p-6">
             {/* Header Info */}
             <div className="space-y-3">
               <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
-                <ResponsiveModalTitle className="font-bold text-2xl text-foreground tracking-tight sm:text-3xl">
+                <ResponsiveModalTitle className="font-bold text-2xl text-foreground tracking-tight sm:text-3xl leading-none">
                   {tutor.name}
                 </ResponsiveModalTitle>
 
@@ -122,17 +122,15 @@ export default function TutorDetailModal({ tutor, open, onOpenChange }: TutorDet
               </div>
 
               {affiliation && (
-                <p className="font-medium text-base text-muted-foreground">{affiliation}</p>
+                <p className="font-medium text-base text-neutral-1000 leading -none">
+                  {affiliation}
+                </p>
               )}
 
               {/* Locations / Status */}
-              <div className="flex flex-wrap gap-3 pt-1">
-                <div className="inline-flex items-center gap-2 rounded-md bg-muted/50 px-3 py-1.5 font-medium text-muted-foreground text-sm">
-                  <RadioIcon className="h-4 w-4" />
-                  <span>Online</span>
-                </div>
+              <div className="flex flex-wrap gap-3">
                 {tutor.locations && tutor.locations.length > 0 && (
-                  <div className="inline-flex items-center gap-2 rounded-md bg-muted/50 px-3 py-1.5 font-medium text-muted-foreground text-sm">
+                  <div className="inline-flex items-center gap-2 rounded-md bg-background-primary px-3 py-1.5 font-medium text-neutral-1000 text-sm">
                     <MapPinIcon className="h-4 w-4" />
                     <span className="capitalize">
                       {tutor.locations.map((loc) => loc.replace(/_/g, " ")).join(", ")}
@@ -143,16 +141,18 @@ export default function TutorDetailModal({ tutor, open, onOpenChange }: TutorDet
             </div>
 
             {/* Content Columns */}
-            <div className="grid grid-cols-1 gap-4 pt-2 sm:grid-cols-2">
-              <div className="h-full space-y-3 rounded-xl bg-[#FFF5EB] p-5">
-                <h3 className="font-semibold text-base text-foreground">Rekam Jejak Prestasi</h3>
+            <div className="grid grid-cols-1 gap-4 pt-3 sm:grid-cols-2">
+              <div className="h-full space-y-1 rounded-xl bg-background-primary px-3 py-2">
+                <h3 className="font-semibold text-base text-foreground pb-0.5">
+                  Rekam Jejak Prestasi
+                </h3>
                 {achievements.length == 0 && (
                   <p className="text-muted-foreground/90 text-sm leading-relaxed">
                     isinya sedang diracik, ditunggu ya!
                   </p>
                 )}
                 {achievements.length > 0 && (
-                  <ul className="list-outside list-disc space-y-2 pl-4 text-muted-foreground/90 text-sm leading-relaxed">
+                  <ul className="list-outside list-disc space-y-2 px-4 text-muted-foreground/90 text-sm leading-relaxed overflow-y-auto max-h-[200px]">
                     {achievements.map((item, index) => (
                       <li key={index}>{item}</li>
                     ))}
@@ -160,8 +160,8 @@ export default function TutorDetailModal({ tutor, open, onOpenChange }: TutorDet
                 )}
               </div>
 
-              <div className="h-full space-y-3 rounded-xl bg-[#FFF5EB] p-5">
-                <h3 className="font-semibold text-base text-foreground">
+              <div className="h-full space-y-1 rounded-xl bg-background-primary px-3 py-2">
+                <h3 className="font-semibold text-base text-foreground pb-0.5">
                   {t("experiences") || "Pengalaman"}
                 </h3>
                 {experiences.length == 0 && (
@@ -170,7 +170,7 @@ export default function TutorDetailModal({ tutor, open, onOpenChange }: TutorDet
                   </p>
                 )}
                 {experiences.length > 0 && (
-                  <ul className="list-outside list-disc space-y-2 pl-4 text-muted-foreground/90 text-sm leading-relaxed">
+                  <ul className="list-outside list-disc space-y-2 px-4 text-muted-foreground/90 text-sm leading-relaxed overflow-y-auto max-h-[200px]">
                     {experiences.map((item, index) => (
                       <li key={index}>{item}</li>
                     ))}

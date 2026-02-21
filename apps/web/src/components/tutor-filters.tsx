@@ -61,6 +61,15 @@ export default function TutorFilters({
         </div>
       </div>
       <div className="flex flex-wrap gap-3">
+        {(selectedLocations.length > 0 || selectedCategories.length > 0) && (
+          <Button
+            variant="ghost"
+            onClick={onClearAll}
+            className="text-muted-foreground hover:text-foreground md:inline-flex hidden"
+          >
+            {t("clearFilters")}
+          </Button>
+        )}
         <DropdownMenu>
           <DropdownMenuTrigger render={<Button variant="outline" />}>
             <span>{t("location")}</span>
@@ -109,7 +118,7 @@ export default function TutorFilters({
           <Button
             variant="ghost"
             onClick={onClearAll}
-            className="text-muted-foreground hover:text-foreground"
+            className="text-muted-foreground hover:text-foreground md:hidden"
           >
             {t("clearFilters")}
           </Button>
