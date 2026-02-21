@@ -1,9 +1,11 @@
 "use client";
 
 import {
+    EnvelopeSimpleIcon,
   InstagramLogoIcon,
   LinkedinLogoIcon,
   MapPinLineIcon,
+  WhatsappLogoIcon,
   XLogoIcon,
 } from "@phosphor-icons/react/dist/ssr";
 import Image from "next/image";
@@ -16,7 +18,7 @@ import { Button } from "./ui/button";
 const SOCIALS = [
   {
     name: "Location",
-    href: "https://www.instagram.com/cogitoacademy/",
+    href: "https://maps.app.goo.gl/or7SSBb39RZQUC298",
     icon: <MapPinLineIcon className="size-6" />,
   },
   {
@@ -25,14 +27,14 @@ const SOCIALS = [
     icon: <InstagramLogoIcon className="size-6" />,
   },
   {
-    name: "Twitter",
-    href: "https://twitter.com/cogitoacademy",
-    icon: <XLogoIcon className="size-6" />,
+    name: "WhatsApp",
+    href: "https://wa.me/62881011990195",
+    icon: <WhatsappLogoIcon className="size-6" />,
   },
   {
-    name: "LinkedIn",
-    href: "https://www.linkedin.com/company/cogitoacademy/",
-    icon: <LinkedinLogoIcon className="size-6" />,
+    name: "Email",
+    href: "mailto:cogitoacademy.id@gmail.com",
+    icon: <EnvelopeSimpleIcon className="size-6" />,
   },
 ];
 
