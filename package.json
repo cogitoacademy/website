@@ -22,7 +22,9 @@
   },
   "dependencies": {
     "@phosphor-icons/react": "^2.1.10",
+    "@sanity/vision": "^5.11.0",
     "dotenv": "catalog:",
+    "sanity": "^5.11.0",
     "zod": "catalog:"
   },
   "devDependencies": {
