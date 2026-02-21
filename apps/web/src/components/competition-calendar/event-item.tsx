@@ -10,8 +10,6 @@ import {
   getBorderRadiusClasses,
   getCompetitionColorClasses,
 } from "@/components/competition-calendar";
-import { Badge } from "@/components/ui/badge";
-import { getBrandColorClass } from "@/lib/colors/brandColors";
 import { cn } from "@/lib/utils";
 import { Separator } from "../ui/separator";
 
@@ -66,16 +64,11 @@ function EventWrapper({
   // Get the inset shadow color based on event color
   // Blue: 500, Yellow: 400, Orange(KTI/primary): 400, Pink: 500, Green: 600, Red: 500, Purple: 500
   const getInsetShadowColor = () => {
-    if (event.color?.startsWith("tertiary-blue"))
-      return "rgba(59, 130, 246, 0.6)"; // Blue 500
-    if (event.color?.startsWith("tertiary-pink"))
-      return "rgba(236, 72, 153, 0.6)"; // Pink 500
-    if (event.color?.startsWith("tertiary-red"))
-      return "rgba(239, 68, 68, 0.6)"; // Red 500
-    if (event.color?.startsWith("tertiary-yellow"))
-      return "rgba(250, 204, 21, 0.6)"; // Yellow 400
-    if (event.color?.startsWith("tertiary-green"))
-      return "rgba(22, 163, 74, 0.6)"; // Green 600
+    if (event.color?.startsWith("tertiary-blue")) return "rgba(59, 130, 246, 0.6)"; // Blue 500
+    if (event.color?.startsWith("tertiary-pink")) return "rgba(236, 72, 153, 0.6)"; // Pink 500
+    if (event.color?.startsWith("tertiary-red")) return "rgba(239, 68, 68, 0.6)"; // Red 500
+    if (event.color?.startsWith("tertiary-yellow")) return "rgba(250, 204, 21, 0.6)"; // Yellow 400
+    if (event.color?.startsWith("tertiary-green")) return "rgba(22, 163, 74, 0.6)"; // Green 600
     if (event.color?.startsWith("primary")) return "rgba(255, 134, 52, 1)"; // Primary 400 (Orange/KTI)
     if (event.color?.startsWith("secondary")) return "rgba(168, 85, 247, 0.6)"; // Purple 500
     if (event.color === "sky") return "rgba(14, 165, 233, 0.6)";
@@ -100,11 +93,7 @@ function EventWrapper({
       onClick={onClick}
       onMouseDown={onMouseDown}
       onTouchStart={onTouchStart}
-      style={
-        isFirstDay
-          ? { boxShadow: `inset 6px 0 0 0 ${getInsetShadowColor()}` }
-          : undefined
-      }
+      style={isFirstDay ? { boxShadow: `inset 6px 0 0 0 ${getInsetShadowColor()}` } : undefined}
       type="button"
       {...dndListeners}
       {...dndAttributes}
@@ -235,16 +224,11 @@ export function EventItem({
   // Get the inset shadow color for agenda view
   // Blue: 500, Yellow: 400, Orange(KTI/primary): 400, Pink: 500, Green: 600, Red: 500, Purple: 500
   const getAgendaInsetShadowColor = () => {
-    if (event.color?.startsWith("tertiary-blue"))
-      return "rgba(59, 130, 246, 0.6)"; // Blue 500
-    if (event.color?.startsWith("tertiary-pink"))
-      return "rgba(236, 72, 153, 0.6)"; // Pink 500
-    if (event.color?.startsWith("tertiary-red"))
-      return "rgba(239, 68, 68, 0.6)"; // Red 500
-    if (event.color?.startsWith("tertiary-yellow"))
-      return "rgba(250, 204, 21, 0.6)"; // Yellow 400
-    if (event.color?.startsWith("tertiary-green"))
-      return "rgba(22, 163, 74, 0.6)"; // Green 600
+    if (event.color?.startsWith("tertiary-blue")) return "rgba(59, 130, 246, 0.6)"; // Blue 500
+    if (event.color?.startsWith("tertiary-pink")) return "rgba(236, 72, 153, 0.6)"; // Pink 500
+    if (event.color?.startsWith("tertiary-red")) return "rgba(239, 68, 68, 0.6)"; // Red 500
+    if (event.color?.startsWith("tertiary-yellow")) return "rgba(250, 204, 21, 0.6)"; // Yellow 400
+    if (event.color?.startsWith("tertiary-green")) return "rgba(22, 163, 74, 0.6)"; // Green 600
     if (event.color?.startsWith("primary")) return "rgba(255, 134, 52, 1)"; // Primary 400 (Orange/KTI)
     if (event.color?.startsWith("secondary")) return "rgba(168, 85, 247, 0.6)"; // Purple 500
     if (event.color === "sky") return "rgba(14, 165, 233, 0.6)";
@@ -269,9 +253,7 @@ export function EventItem({
       onMouseDown={onMouseDown}
       onTouchStart={onTouchStart}
       style={
-        isFirstDay
-          ? { boxShadow: `inset 10px 0 0 0 ${getAgendaInsetShadowColor()}` }
-          : undefined
+        isFirstDay ? { boxShadow: `inset 10px 0 0 0 ${getAgendaInsetShadowColor()}` } : undefined
       }
       type="button"
       {...dndListeners}

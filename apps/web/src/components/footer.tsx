@@ -1,12 +1,10 @@
 "use client";
 
 import {
-    EnvelopeSimpleIcon,
+  EnvelopeSimpleIcon,
   InstagramLogoIcon,
-  LinkedinLogoIcon,
   MapPinLineIcon,
   WhatsappLogoIcon,
-  XLogoIcon,
 } from "@phosphor-icons/react/dist/ssr";
 import Image from "next/image";
 import { usePathname } from "next/navigation";

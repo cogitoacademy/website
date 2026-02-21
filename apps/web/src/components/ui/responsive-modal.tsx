@@ -31,18 +31,27 @@ function ResponsiveModalRoot({ ...props }: DialogPrimitive.Root.Props) {
 }
 
 function ResponsiveModalTrigger({ ...props }: DialogPrimitive.Trigger.Props) {
-  return <DialogPrimitive.Trigger data-slot="responsive-modal-trigger" {...props} />;
+  return (
+    <DialogPrimitive.Trigger data-slot="responsive-modal-trigger" {...props} />
+  );
 }
 
 function ResponsiveModalPortal({ ...props }: DialogPrimitive.Portal.Props) {
-  return <DialogPrimitive.Portal data-slot="responsive-modal-portal" {...props} />;
+  return (
+    <DialogPrimitive.Portal data-slot="responsive-modal-portal" {...props} />
+  );
 }
 
 function ResponsiveModalClose({ ...props }: DialogPrimitive.Close.Props) {
-  return <DialogPrimitive.Close data-slot="responsive-modal-close" {...props} />;
+  return (
+    <DialogPrimitive.Close data-slot="responsive-modal-close" {...props} />
+  );
 }
 
-function ResponsiveModalOverlay({ className, ...props }: DialogPrimitive.Backdrop.Props) {
+function ResponsiveModalOverlay({
+  className,
+  ...props
+}: DialogPrimitive.Backdrop.Props) {
   return (
     <DialogPrimitive.Backdrop
       data-slot="responsive-modal-overlay"
@@ -77,7 +86,13 @@ function ResponsiveModalContent({
         {showCloseButton && (
           <ResponsiveModalClose
             data-slot="responsive-modal-close"
-            render={<Button variant="ghost" className="absolute top-4 right-4" size="icon-sm" />}
+            render={
+              <Button
+                variant="outline"
+                className="absolute top-6 right-6 sm:size-[26px]"
+                size="icon-sm"
+              />
+            }
           >
             <XIcon />
             <span className="sr-only">Close</span>
@@ -88,7 +103,10 @@ function ResponsiveModalContent({
   );
 }
 
-function ResponsiveModalHeader({ className, ...props }: React.ComponentProps<"div">) {
+function ResponsiveModalHeader({
+  className,
+  ...props
+}: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="responsive-modal-header"
@@ -98,17 +116,26 @@ function ResponsiveModalHeader({ className, ...props }: React.ComponentProps<"di
   );
 }
 
-function ResponsiveModalFooter({ className, ...props }: React.ComponentProps<"div">) {
+function ResponsiveModalFooter({
+  className,
+  ...props
+}: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="responsive-modal-footer"
-      className={cn("flex flex-col-reverse gap-2 sm:flex-row sm:justify-end", className)}
+      className={cn(
+        "flex flex-col-reverse gap-2 sm:flex-row sm:justify-end",
+        className,
+      )}
       {...props}
     />
   );
 }
 
-function ResponsiveModalTitle({ className, ...props }: DialogPrimitive.Title.Props) {
+function ResponsiveModalTitle({
+  className,
+  ...props
+}: DialogPrimitive.Title.Props) {
   return (
     <DialogPrimitive.Title
       data-slot="responsive-modal-title"
@@ -118,7 +145,10 @@ function ResponsiveModalTitle({ className, ...props }: DialogPrimitive.Title.Pro
   );
 }
 
-function ResponsiveModalDescription({ className, ...props }: DialogPrimitive.Description.Props) {
+function ResponsiveModalDescription({
+  className,
+  ...props
+}: DialogPrimitive.Description.Props) {
   return (
     <DialogPrimitive.Description
       data-slot="responsive-modal-description"

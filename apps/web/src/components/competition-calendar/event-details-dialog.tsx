@@ -1,15 +1,15 @@
 "use client";
 
 import { format } from "date-fns";
+import { ArrowRight } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
 import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
+  ResponsiveModal,
+  ResponsiveModalContent,
+  ResponsiveModalDescription,
+  ResponsiveModalTitle,
+} from "@/components/ui/responsive-modal";
 import { getBrandColorClass } from "@/lib/colors/brandColors";
 import { cn } from "@/lib/utils";
 import type { CalendarCompetition } from "./types";
@@ -20,121 +20,199 @@ interface EventDetailsDialogProps {
   onClose: () => void;
 }
 
-export function EventDetailsDialog({ event, isOpen, onClose }: EventDetailsDialogProps) {
+export function EventDetailsDialog({
+  event,
+  isOpen,
+  onClose,
+}: EventDetailsDialogProps) {
   if (!event) return null;
 
   // Check if this is a Sanity competition (has categories) or manual competition (has color)
   const isSanityCompetition = event.categories && event.categories.length > 0;
 
-  return (
-    <Dialog onOpenChange={(open) => !open && onClose()} open={isOpen}>
-      <DialogContent className="max-h-[90vh] max-w-2xl overflow-y-auto">
-        <DialogHeader>
-          <DialogTitle className="text-xl">{event.title}</DialogTitle>
-          <DialogDescription className="sr-only">
-            Competition details and information
-          </DialogDescription>
-        </DialogHeader>
+  const timelineStart = format(event.start, "dd");
+  const timelineEnd = format(event.end, "dd MMMM yyyy");
+  const timeline = `${timelineStart} - ${timelineEnd}`;
 
-        <div className="space-y-6">
-          {/* Categories Section - Only for Sanity competitions */}
-          {isSanityCompetition && event.categories && event.categories.length > 0 && (
-            <div>
-              <h4 className="mb-2 font-semibold">Categories</h4>
-              <div className="flex flex-wrap gap-2">
+  return (
+    <ResponsiveModal onOpenChange={(open) => !open && onClose()} open={isOpen}>
+      <ResponsiveModalContent
+        side="bottom"
+        className="flex max-h-[90vh] w-full max-w-full flex-col overflow-y-auto rounded-t-2xl sm:max-h-[85vh] sm:max-w-2xl sm:rounded-lg gap-0"
+      >
+        {/* Header */}
+        <div className="flex items-start justify-between gap-4">
+          <div>
+            <ResponsiveModalTitle className="font-bold text-2xl tracking-tight mr-9">
+              {event.title}
+            </ResponsiveModalTitle>
+            <ResponsiveModalDescription className="sr-only">
+              Competition details and information
+            </ResponsiveModalDescription>
+
+            {/* Mobile: subtitle + badge below title */}
+            {isSanityCompetition &&
+              event.categories &&
+              event.categories.length > 0 && (
+                <div className="sm:hidden mt-3">
+                  <div className="flex flex-wrap gap-2">
+                    {event.categories.map((category, index) => (
+                      <Badge
+                        key={index}
+                        variant="tutor"
+                        className={getBrandColorClass(category.color)}
+                      >
+                        {category.name}
+                      </Badge>
+                    ))}
+                  </div>
+                </div>
+              )}
+          </div>
+
+          {/* Desktop: badge to the right of title */}
+          {isSanityCompetition &&
+            event.categories &&
+            event.categories.length > 0 && (
+              <div className="hidden shrink-0 flex-wrap gap-2 sm:flex mr-9">
                 {event.categories.map((category, index) => (
-                  <Badge key={index} className={getBrandColorClass(category.color)}>
+                  <Badge
+                    key={index}
+                    variant="tutor"
+                    className={getBrandColorClass(category.color)}
+                  >
                     {category.name}
                   </Badge>
                 ))}
               </div>
-            </div>
-          )}
+            )}
+        </div>
 
-          {/* Education Levels */}
-          {event.educationLevels && event.educationLevels.length > 0 && (
-            <div>
-              <h4 className="mb-2 font-semibold">Jenjang Pendidikan</h4>
-              <div className="flex flex-wrap gap-2">
-                {event.educationLevels.map((level, index) => (
-                  <Badge key={index} variant="outline">
-                    {level}
-                  </Badge>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {/* Event Details */}
-          <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-            <div className="space-y-2">
+        {/* Info Cards */}
+        <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2">
+          {/* Mobile: single combined card */}
+          <div className="rounded-lg bg-background-primary p-4 sm:hidden">
+            <div className="space-y-1 text-sm">
+              {event.educationLevels && event.educationLevels.length > 0 && (
+                <p>
+                  <strong>Jenjang Lomba:</strong>{" "}
+                  {event.educationLevels.join(", ")}
+                </p>
+              )}
               {event.scale && (
-                <div>
+                <p>
                   <strong>Scale:</strong> {event.scale}
-                </div>
+                </p>
               )}
               {event.organizer && (
-                <div>
+                <p>
                   <strong>Organizer:</strong> {event.organizer}
-                </div>
+                </p>
               )}
               {event.location && (
-                <div>
+                <p>
                   <strong>Location:</strong> {event.location}
-                </div>
+                </p>
               )}
-            </div>
-            <div className="space-y-2">
-              <div>
-                <strong>Start:</strong> {format(event.start, "dd MMM yyyy")}
-              </div>
-              <div>
-                <strong>End:</strong> {format(event.end, "dd MMM yyyy")}
-              </div>
+              <p>
+                <strong>Timeline Lomba:</strong> {timeline}
+              </p>
               {event.registrationDeadline && (
-                <div>
-                  <strong>Registration Deadline:</strong>{" "}
-                  {format(event.registrationDeadline, "dd MMM yyyy")}
-                </div>
+                <p>
+                  <strong>Close Registration:</strong>{" "}
+                  {format(event.registrationDeadline, "dd MMMM yyyy")}
+                </p>
               )}
             </div>
           </div>
 
-          {/* Description */}
-          {event.description && (
-            <div>
-              <h4 className="mb-2 font-semibold">Description</h4>
-              <p className="text-sm opacity-80">{event.description}</p>
+          {/* Desktop: left card */}
+          <div className="hidden rounded-lg bg-background-primary p-4 sm:block">
+            <div className="space-y-1 text-sm">
+              {event.educationLevels && event.educationLevels.length > 0 && (
+                <p>
+                  <strong>Jenjang Lomba:</strong>{" "}
+                  <span className="uppercase">
+                    {event.educationLevels.join(", ")}
+                  </span>
+                </p>
+              )}
+              {event.scale && (
+                <p>
+                  <strong>Scale:</strong>{" "}
+                  <span className="capitalize">{event.scale}</span>
+                </p>
+              )}
+              {event.organizer && (
+                <p>
+                  <strong>Organizer:</strong> {event.organizer}
+                </p>
+              )}
             </div>
-          )}
+          </div>
 
-          {/* Actions */}
-          {(event.registrationLink || event.socialMediaLink) && (
-            <div className="flex flex-wrap gap-3 border-t pt-4">
-              {event.registrationLink && (
-                <a
-                  href={event.registrationLink}
-                  rel="noopener noreferrer"
-                  target="_blank"
-                  className={cn(buttonVariants({ variant: "outline" }), "min-w-37.5 flex-1")}
-                >
-                  Register Now
-                </a>
+          {/* Desktop: right card */}
+          <div className="hidden rounded-lg bg-background-primary p-4 sm:block">
+            <div className="space-y-1 text-sm">
+              {event.location && (
+                <p>
+                  <strong>Location:</strong> {event.location}
+                </p>
               )}
-              {event.socialMediaLink && (
-                <a
-                  href={event.socialMediaLink}
-                  rel="noopener noreferrer"
-                  target="_blank"
-                  className={cn(buttonVariants({ variant: "outline" }), "min-w-37.5 flex-1")}
-                >
-                  Social Media
-                </a>
+              <p>
+                <strong>Tanggal Pelaksanaan:</strong> {timeline}
+              </p>
+              {event.registrationDeadline && (
+                <p>
+                  <strong>Close Registration:</strong>{" "}
+                  {format(event.registrationDeadline, "dd MMMM yyyy")}
+                </p>
               )}
             </div>
-          )}
+          </div>
         </div>
-      </DialogContent>
-    </Dialog>
+
+        {/* Description Card */}
+        {event.description && (
+          <div className="rounded-lg bg-background-primary p-4 mt-4">
+            <h4 className="mb-1 font-semibold text-sm">Description</h4>
+            <p className="text-sm opacity-80">{event.description}</p>
+          </div>
+        )}
+
+        {/* Action Buttons */}
+        {(event.registrationLink || event.socialMediaLink) && (
+          <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
+            {event.socialMediaLink && (
+              <a
+                href={event.socialMediaLink}
+                rel="noopener noreferrer"
+                target="_blank"
+                className={cn(
+                  buttonVariants({ variant: "outline" }),
+                  "w-full justify-center",
+                )}
+              >
+                Social Media Post
+              </a>
+            )}
+            {event.registrationLink && (
+              <a
+                href={event.registrationLink}
+                rel="noopener noreferrer"
+                target="_blank"
+                className={cn(
+                  buttonVariants({ variant: "default", size: "md" }),
+                  "w-full justify-center gap-2 bg-orange-500 text-white hover:bg-orange-600",
+                )}
+              >
+                Registration Link
+                <ArrowRight className="size-4" />
+              </a>
+            )}
+          </div>
+        )}
+      </ResponsiveModalContent>
+    </ResponsiveModal>
   );
 }
