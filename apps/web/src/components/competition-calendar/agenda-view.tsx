@@ -50,7 +50,7 @@ export function AgendaView({ currentDate, events, onEventSelect }: AgendaViewPro
           if (dayEvents.length === 0) return null;
 
           return (
-            <div className="relative my-12 border-border/70 border-t" key={day.toString()}>
+            <div className="relative my-6 border-border/70 border-t" key={day.toString()}>
               <span
                 className="absolute -top-3 left-0 flex h-6 items-center bg-background pe-4 text-[10px] uppercase data-today:font-medium sm:pe-4 sm:text-xs"
                 data-today={isToday(day) || undefined}

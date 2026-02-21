@@ -79,12 +79,12 @@ export function EventCalendar({
         case "m":
           setView("month");
           break;
-        case "w":
-          setView("week");
-          break;
-        case "d":
-          setView("day");
-          break;
+        // case "w":
+        //   setView("week");
+        //   break;
+        // case "d":
+        //   setView("day");
+        //   break;
         case "a":
           setView("agenda");
           break;
@@ -228,12 +228,12 @@ export function EventCalendar({
                 <DropdownMenuItem onClick={() => setView("month")}>
                   Month <DropdownMenuShortcut>M</DropdownMenuShortcut>
                 </DropdownMenuItem>
-                <DropdownMenuItem onClick={() => setView("week")}>
+                {/*<DropdownMenuItem onClick={() => setView("week")}>
                   Week <DropdownMenuShortcut>W</DropdownMenuShortcut>
                 </DropdownMenuItem>
                 <DropdownMenuItem onClick={() => setView("day")}>
                   Day <DropdownMenuShortcut>D</DropdownMenuShortcut>
-                </DropdownMenuItem>
+                </DropdownMenuItem>*/}
                 <DropdownMenuItem onClick={() => setView("agenda")}>
                   Agenda <DropdownMenuShortcut>A</DropdownMenuShortcut>
                 </DropdownMenuItem>

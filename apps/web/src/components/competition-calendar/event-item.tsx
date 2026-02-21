@@ -13,6 +13,7 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { getBrandColorClass } from "@/lib/colors/brandColors";
 import { cn } from "@/lib/utils";
+import { Separator } from "../ui/separator";
 
 // Using date-fns format with custom formatting:
 // 'h' - hours (1-12)
@@ -65,11 +66,16 @@ function EventWrapper({
   // Get the inset shadow color based on event color
   // Blue: 500, Yellow: 400, Orange(KTI/primary): 400, Pink: 500, Green: 600, Red: 500, Purple: 500
   const getInsetShadowColor = () => {
-    if (event.color?.startsWith("tertiary-blue")) return "rgba(59, 130, 246, 0.6)"; // Blue 500
-    if (event.color?.startsWith("tertiary-pink")) return "rgba(236, 72, 153, 0.6)"; // Pink 500
-    if (event.color?.startsWith("tertiary-red")) return "rgba(239, 68, 68, 0.6)"; // Red 500
-    if (event.color?.startsWith("tertiary-yellow")) return "rgba(250, 204, 21, 0.6)"; // Yellow 400
-    if (event.color?.startsWith("tertiary-green")) return "rgba(22, 163, 74, 0.6)"; // Green 600
+    if (event.color?.startsWith("tertiary-blue"))
+      return "rgba(59, 130, 246, 0.6)"; // Blue 500
+    if (event.color?.startsWith("tertiary-pink"))
+      return "rgba(236, 72, 153, 0.6)"; // Pink 500
+    if (event.color?.startsWith("tertiary-red"))
+      return "rgba(239, 68, 68, 0.6)"; // Red 500
+    if (event.color?.startsWith("tertiary-yellow"))
+      return "rgba(250, 204, 21, 0.6)"; // Yellow 400
+    if (event.color?.startsWith("tertiary-green"))
+      return "rgba(22, 163, 74, 0.6)"; // Green 600
     if (event.color?.startsWith("primary")) return "rgba(255, 134, 52, 1)"; // Primary 400 (Orange/KTI)
     if (event.color?.startsWith("secondary")) return "rgba(168, 85, 247, 0.6)"; // Purple 500
     if (event.color === "sky") return "rgba(14, 165, 233, 0.6)";
@@ -94,7 +100,11 @@ function EventWrapper({
       onClick={onClick}
       onMouseDown={onMouseDown}
       onTouchStart={onTouchStart}
-      style={isFirstDay ? { boxShadow: `inset 6px 0 0 0 ${getInsetShadowColor()}` } : undefined}
+      style={
+        isFirstDay
+          ? { boxShadow: `inset 6px 0 0 0 ${getInsetShadowColor()}` }
+          : undefined
+      }
       type="button"
       {...dndListeners}
       {...dndAttributes}
@@ -225,19 +235,24 @@ export function EventItem({
   // Get the inset shadow color for agenda view
   // Blue: 500, Yellow: 400, Orange(KTI/primary): 400, Pink: 500, Green: 600, Red: 500, Purple: 500
   const getAgendaInsetShadowColor = () => {
-    if (eventColor?.startsWith("tertiary-blue")) return "rgba(59, 130, 246, 0.6)"; // Blue 500
-    if (eventColor?.startsWith("tertiary-pink")) return "rgba(236, 72, 153, 0.6)"; // Pink 500
-    if (eventColor?.startsWith("tertiary-red")) return "rgba(239, 68, 68, 0.6)"; // Red 500
-    if (eventColor?.startsWith("tertiary-yellow")) return "rgba(250, 204, 21, 0.6)"; // Yellow 400
-    if (eventColor?.startsWith("tertiary-green")) return "rgba(22, 163, 74, 0.6)"; // Green 600
-    if (eventColor?.startsWith("primary")) return "rgba(96, 165, 250, 0.6)"; // Primary 400 (Orange/KTI)
-    if (eventColor?.startsWith("secondary")) return "rgba(168, 85, 247, 0.6)"; // Purple 500
-    if (eventColor === "sky") return "rgba(14, 165, 233, 0.6)";
-    if (eventColor === "amber") return "rgba(245, 158, 11, 0.6)";
-    if (eventColor === "violet") return "rgba(139, 92, 246, 0.6)";
-    if (eventColor === "rose") return "rgba(244, 63, 94, 0.6)";
-    if (eventColor === "emerald") return "rgba(16, 185, 129, 0.6)";
-    if (eventColor === "orange") return "rgba(249, 115, 22, 0.6)";
+    if (event.color?.startsWith("tertiary-blue"))
+      return "rgba(59, 130, 246, 0.6)"; // Blue 500
+    if (event.color?.startsWith("tertiary-pink"))
+      return "rgba(236, 72, 153, 0.6)"; // Pink 500
+    if (event.color?.startsWith("tertiary-red"))
+      return "rgba(239, 68, 68, 0.6)"; // Red 500
+    if (event.color?.startsWith("tertiary-yellow"))
+      return "rgba(250, 204, 21, 0.6)"; // Yellow 400
+    if (event.color?.startsWith("tertiary-green"))
+      return "rgba(22, 163, 74, 0.6)"; // Green 600
+    if (event.color?.startsWith("primary")) return "rgba(255, 134, 52, 1)"; // Primary 400 (Orange/KTI)
+    if (event.color?.startsWith("secondary")) return "rgba(168, 85, 247, 0.6)"; // Purple 500
+    if (event.color === "sky") return "rgba(14, 165, 233, 0.6)";
+    if (event.color === "amber") return "rgba(245, 158, 11, 0.6)";
+    if (event.color === "violet") return "rgba(139, 92, 246, 0.6)";
+    if (event.color === "rose") return "rgba(244, 63, 94, 0.6)";
+    if (event.color === "emerald") return "rgba(16, 185, 129, 0.6)";
+    if (event.color === "orange") return "rgba(249, 115, 22, 0.6)";
     return "rgba(59, 130, 246, 0.6)"; // Default Blue 500
   };
 
@@ -245,7 +260,7 @@ export function EventItem({
   return (
     <button
       className={cn(
-        "flex w-full flex-col gap-2 rounded p-2 text-left outline-none transition focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 data-past-event:line-through data-past-event:opacity-90",
+        "flex w-full flex-col gap-1 rounded-2xl p-3 text-left outline-none transition focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 data-past-event:line-through data-past-event:opacity-90 pl-7",
         getCompetitionColorClasses(eventColor),
         className,
       )}
@@ -254,42 +269,60 @@ export function EventItem({
       onMouseDown={onMouseDown}
       onTouchStart={onTouchStart}
       style={
-        isFirstDay ? { boxShadow: `inset 5px 0 0 0 ${getAgendaInsetShadowColor()}` } : undefined
+        isFirstDay
+          ? { boxShadow: `inset 10px 0 0 0 ${getAgendaInsetShadowColor()}` }
+          : undefined
       }
       type="button"
       {...dndListeners}
       {...dndAttributes}
     >
       {/* Category Badges */}
-      {event.categories && event.categories.length > 0 && (
+      {/*{event.categories && event.categories.length > 0 && (
         <div className="flex flex-wrap gap-1">
           {event.categories.map((category, index) => (
-            <Badge key={index} className={cn("text-xs", getBrandColorClass(category.color))}>
+            <Badge
+              key={index}
+              variant={"tutor"}
+              className={cn(getBrandColorClass(category.color))}
+            >
               {category.name}
             </Badge>
           ))}
         </div>
-      )}
+      )}*/}
 
       {/* Event Title */}
-      <div className="font-medium text-sm">{event.title}</div>
+      <div className="font-bold text-neutral-1000 text-xl">{event.title}</div>
 
       {/* Location */}
-      {event.location && <div className="text-xs opacity-70">{event.location}</div>}
+      <div className="flex items-center justify-start gap-x-2 *:text-neutral-1000">
+        {event.organizer && <div className="text-sm">{event.organizer}</div>}
 
-      {/* Education Levels */}
-      {event.educationLevels && event.educationLevels.length > 0 && (
-        <div className="flex flex-wrap gap-1">
-          {event.educationLevels.map((level, index) => (
-            <Badge key={index} variant="outline" className="text-xs">
-              {level}
-            </Badge>
-          ))}
-        </div>
-      )}
+        <Separator orientation="vertical" />
 
-      {/* Description */}
-      {event.description && <div className="my-1 text-xs opacity-90">{event.description}</div>}
+        {event.scale && <div className="text-sm capitalize">{event.scale}</div>}
+
+        <Separator orientation="vertical" />
+
+        {event.location && <div className="text-sm">{event.location}</div>}
+
+        {/* Education Levels */}
+        {/*{event.educationLevels && event.educationLevels.length > 0 && (
+          <div className="flex flex-wrap gap-1">
+            {event.educationLevels.map((level, index) => (
+              <Badge key={index} variant="outline" className="text-xs">
+                {level}
+              </Badge>
+            ))}
+          </div>
+        )}*/}
+
+        {/* Description */}
+        {/*{event.description && (
+          <div className="my-1 text-xs opacity-90">{event.description}</div>
+        )}*/}
+      </div>
     </button>
   );
 }
