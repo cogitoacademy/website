@@ -6,11 +6,14 @@ import { verifyPassword } from "@/actions/auth";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
+import { useRouter } from "@/i18n/routing";
 
 export function PasswordGate() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+
+  const router = useRouter();
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -20,7 +23,7 @@ export function PasswordGate() {
     try {
       const result = await verifyPassword(password);
       if (result.success) {
-        window.location.reload();
+        router.refresh();
       } else {
         setError(true);
       }
@@ -70,7 +73,7 @@ export function PasswordGate() {
             {/* Background Circle Decoration */}
             <div
               className={cn(
-                "absolute -left-10 -bottom-10 z-0 size-48 rounded-full opacity-80 sm:size-64 lg:-left-20 lg:-bottom-20 lg:size-80",
+                "absolute -bottom-10 -left-10 z-0 size-48 rounded-full opacity-80 sm:size-64 lg:-bottom-20 lg:-left-20 lg:size-80",
                 "bg-tertiary-blue-200",
               )}
             />
@@ -82,7 +85,7 @@ export function PasswordGate() {
                 alt="Student Resources"
                 width={287}
                 height={399}
-                className="absolute left-0 bottom-0 h-[120%] w-auto object-contain object-right-bottom"
+                className="absolute bottom-0 left-0 h-[120%] w-auto object-contain object-right-bottom"
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 50vw"
               />
             </div>

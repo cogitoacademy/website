@@ -23,14 +23,19 @@ export default async function StudentResourcesPage({ params }: Props) {
     return <PasswordGate />;
   }
 
-  const resources = await client.fetch(STUDENT_RESOURCES_QUERY);
+  let resources;
+  try {
+    resources = await client.fetch(STUDENT_RESOURCES_QUERY);
+  } catch {
+    resources = [];
+  }
 
   return (
     <main className="bg-background-cream">
       <NavbarResolver />
       <div className="relative z-3 mx-auto min-h-screen max-w-7xl px-4">
         <div className="mb-8">
-          <h1 className="font-semibold text-2xl text-neutral-1000 sm:text-3xl md:text-4xl lg:text-5xl min-[450px]:max-w-[420px] sm:max-w-[500px] md:max-w-2xl lg:max-w-3xl">
+          <h1 className="font-semibold text-2xl text-neutral-1000 sm:max-w-[500px] sm:text-3xl md:max-w-2xl md:text-4xl lg:max-w-3xl lg:text-5xl min-[450px]:max-w-[420px]">
             Student Resources
           </h1>
           <p className="mt-2">
