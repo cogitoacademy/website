@@ -11,7 +11,6 @@ export { DraggableEvent } from "./draggable-event";
 export { DroppableCell } from "./droppable-cell";
 export { EventCalendar } from "./event-calendar";
 export { EventDetailsDialog } from "./event-details-dialog";
-export { EventDialog } from "./event-dialog";
 export { EventItem } from "./event-item";
 export { EventsPopup } from "./events-popup";
 // Hook exports
@@ -20,6 +19,10 @@ export * from "./hooks/use-date-locale";
 export * from "./hooks/use-event-visibility";
 export { MonthView } from "./month-view";
 // Type exports
-export type { CalendarCompetition, CalendarView, CompetitionColor } from "./types";
+export type {
+	CalendarCompetition,
+	CalendarView,
+	CompetitionColor,
+} from "./types";
 export * from "./utils";
 export { WeekView } from "./week-view";

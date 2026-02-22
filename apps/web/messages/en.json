@@ -1,55 +1,129 @@
 {
-  "nav": {
-    "home": "Home",
-    "tutors": "Tutors",
-    "activities": "Activities",
-    "calendar": "Competition Calendar",
-    "about": "About",
-    "faq": "FAQ"
-  },
-  "hero": {
-    "title": "Join the Best Tutors",
-    "subtitle": "Master competition skills with experienced mentors",
-    "cta": "Start Learning"
-  },
-  "tutors": {
-    "title": "Our Tutor Team",
-    "description": "Join our experienced tutors who are experts in various competition fields",
-    "location": "Location",
-    "competitionField": "Competition Field",
-    "selectLocation": "Select Location",
-    "selectCategory": "Select Category",
-    "searchPlaceholder": "Search tutors...",
-    "clearFilters": "Clear Filters",
-    "noTutorsTitle": "Ups, no tutors match the selected filters",
-    "noTutors": "Try searching with other keywords or reset the filter!",
-    "loading": "Loading tutors...",
-    "achievements": "Achievements",
-    "experiences": "Experiences"
-  },
-  "events": {
-    "upcoming": "Upcoming",
-    "past": "Past Events",
-    "done": "Past",
-    "noEvents": "No events available yet.",
-    "registerNow": "Register Now"
-  },
-  "common": {
-    "loading": "Loading...",
-    "error": "An error occurred",
-    "readMore": "Read More"
-  },
-  "error": {
-    "404": {
-      "title": "Page not found.",
-      "description": "This page does not exist, please head back home and try again.",
-      "button": "Back to homepage"
-    },
-    "generic": {
-      "title": "Something went wrong.",
-      "description": "We're sorry, but something went wrong. Please try again or contact support if the problem persists.",
-      "button": "Try again",
-      "backButton": "Back to homepage"
-    }
-  }
+	"nav": {
+		"home": "Home",
+		"tutors": "Tutors",
+		"activities": "Activities",
+		"calendar": "Competition Calendar",
+		"about": "About",
+		"faq": "FAQ"
+	},
+	"hero": {
+		"title": "Join the Best Tutors",
+		"subtitle": "Master competition skills with experienced mentors",
+		"cta": "Start Learning"
+	},
+	"tutors": {
+		"title": "Our Tutor Team",
+		"description": "Join our experienced tutors who are experts in various competition fields",
+		"location": "Location",
+		"competitionField": "Competition Field",
+		"selectLocation": "Select Location",
+		"selectCategory": "Select Category",
+		"searchPlaceholder": "Search tutors...",
+		"clearFilters": "Clear Filters",
+		"noTutorsTitle": "Ups, no tutors match the selected filters",
+		"noTutors": "Try searching with other keywords or reset the filter!",
+		"loading": "Loading tutors...",
+		"achievements": "Achievements",
+		"experiences": "Experiences"
+	},
+	"events": {
+		"upcoming": "Upcoming",
+		"past": "Past Events",
+		"done": "Past",
+		"noEvents": "No events available yet.",
+		"registerNow": "Register Now"
+	},
+	"studentResources": {
+		"title": "Student Resources",
+		"subtitle": "Access exclusive materials including Position Papers and Resolution Banks.",
+		"passwordGate": {
+			"title": "Deepen Knowledge Through Practice",
+			"description": "A collection of selected problems to sharpen your understanding and competition readiness.",
+			"placeholder": "Enter password",
+			"error": "Incorrect password. Please try again.",
+			"verifying": "Verifying...",
+			"button": "Access Resources"
+		},
+		"searchPlaceholder": "Search resources...",
+		"filter": "Filter",
+		"categories": "Categories",
+		"showing": "Showing {count} of {total} resources",
+		"noResources": "No resources found",
+		"noResourcesHint": "Try adjusting your search or filters",
+		"view": "View",
+		"download": "Download",
+		"downloadPdf": "Download PDF",
+		"categoryLabels": {
+			"position-paper": "Position Papers",
+			"resolution-bank": "Resolution Bank",
+			"study-guide": "Study Guides",
+			"other": "Other Resources"
+		}
+	},
+	"faq": {
+		"header": {
+			"badge": "FAQ",
+			"title": "Frequently Asked ",
+			"titleHighlight": "Questions",
+			"subtitle": "Find answers to common questions about our programs and services."
+		},
+		"v2": {
+			"badge": "FAQ",
+			"title": "Everything You Need to Know to ",
+			"titleHighlight": "Get Started",
+			"subtitle": "We're also ready to help discuss your achievement plans in depth."
+		},
+		"items": {
+			"q1": "What is Cogito Academy?",
+			"a1": "More than a tutoring institution, Cogito Academy is a talent incubator with a mission to shape world-class scholar-champions. Founded on the simple principle that to be the best, one must learn directly from the best. Cogito Academy aims to systematically transform student potential into measurable achievement through proven training methods on the global stage.",
+			"q2": "What sets Cogito Academy apart from other tutoring centers?",
+			"a2Title": "Cogito Academy's excellence is built on three main pillars:",
+			"a2p1Title": "Champion Tutors and Practitioners",
+			"a2p1": "Our tutors are not just teachers, but competition champions and practitioners with diverse real-world experience, from national olympiad winners to legal practitioners who have worked at the United Nations. They train students with deep field understanding, beyond just theory.",
+			"a2p2Title": "Holistic and Battle-Tested Curriculum",
+			"a2p2": "Our curriculum is specially designed by champion tutors and curriculum specialists to build winner abilities and mentality in students. Our methodology covers preparation before, during, and after learning sessions to ensure maximum material mastery.",
+			"a2p3Title": "Personal Approach and Measurable Progress",
+			"a2p3": "Class sizes are limited to ensure each individual gets adequate attention from tutors. Students routinely receive detailed feedback, and parents receive progress reports from Cogito Academy to monitor their child's development.",
+			"q3": "What class programs are offered?",
+			"a3Title": "Cogito Academy offers three types of class programs that can be tailored to needs:",
+			"a3p1Title": "Regular Classes",
+			"a3p1": "Structured courses with a holistic curriculum from introduction to skill refinement. Programs offered include World Scholar's Cup (36 sessions), Model United Nations (24 sessions), and Debate (18 sessions).",
+			"a3p2Title": "Intensive Classes",
+			"a3p2": "On-demand preparation programs specifically designed for one particular competition. Available topics include Speech, Scientific Writing & Essays, Business Plans, Olympiads, and many more.",
+			"a3p3Title": "Extracurricular Classes",
+			"a3p3": "Regular training programs designed specifically based on a school's needs.",
+			"q4": "How does the learning cycle work at Cogito Academy?",
+			"a4Title": "Our learning cycle is designed for maximum material mastery and divided into several stages:",
+			"a4p1Title": "Foundation Stage (Pre-Session)",
+			"a4p1": "Students receive materials such as case studies or journal articles to analyze first. This ensures face-to-face sessions can focus on strategic discussions, not just basic theory.",
+			"a4p2Title": "Acceleration Stage (Interactive Session)",
+			"a4p2": "Class sessions focus on practical application through simulations, role-playing, and pressure-testing. In this stage, tutors act as sparring partners for students.",
+			"a4p3Title": "Reinforcement Stage (Post-Session)",
+			"a4p3": "After sessions end, students complete application tasks like writing position papers or resolution drafts. This exercise aims to internalize skills contextually.",
+			"a4p4Title": "Evaluation Stage (Feedback)",
+			"a4p4": "Detailed feedback is provided for each task completed by students. Additionally, regular consultation sessions with parents are conducted to monitor student progress.",
+			"q5": "What are the prices and course fee schemes?",
+			"a5p1": "Due to Cogito Academy's personalized class scheme based on each student or group's needs, class package prices vary considering competition type, number of classes in the package, and number of students participating in one class.",
+			"a5p2": "We implement a flexible payment system where parents and/or schools can choose to pay in full upfront or in installments up to three times without additional fees."
+		}
+	},
+	"common": {
+		"loading": "Loading...",
+		"error": "An error occurred",
+		"readMore": "Read More"
+	},
+	"error": {
+		"404": {
+			"title": "Page not found.",
+			"description": "This page does not exist, please head back home and try again.",
+			"button": "Back to homepage"
+		},
+		"generic": {
+			"title": "Something went wrong.",
+			"description": "We're sorry, but something went wrong. Please try again or contact support if the problem persists.",
+			"button": "Try again",
+			"backButton": "Back to homepage"
+		}
+	}
 }
