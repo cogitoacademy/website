@@ -14,11 +14,11 @@ export default function Error({ error: _error, reset }: ErrorProps) {
   const t = useTranslations("error.generic");
 
   return (
-    <div className="flex min-h-[calc(100vh-200px)] flex-col items-center justify-center bg-tertiary-red-500 px-4 py-16">
-      <div className="max-w-lg text-center">
-        <AlertCircle className="mx-auto mb-6 h-12 w-12 text-white" strokeWidth={1.5} />
+    <div className="flex min-h-[calc(100vh-200px)] flex-col items-center justify-center px-4 py-16">
+      <div className="max-w-lg text-center relative z-50 bg-tertiary-red-400 rounded-3xl p-6">
+        <AlertCircle className="mx-auto mb-3 mt-3 h-12 w-12 text-white" strokeWidth={1.5} />
 
-        <h1 className="mb-4 font-[family-name:var(--font-lexend-deca)] font-medium text-4xl text-white md:text-5xl">
+        <h1 className="mb-4 font-[family-name:var(--font-lexend-deca)] font-medium text-4xl text-white md:text-3xl">
           {t("title")}
         </h1>
 
