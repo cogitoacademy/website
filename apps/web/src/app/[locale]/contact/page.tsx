@@ -71,12 +71,12 @@ export default async function ContactPage({ params }: Props) {
         <h1 className="font-semibold text-3xl sm:text-4xl lg:text-5xl">
           {isId ? (
             <>
-              Berkolaborasi dengan <br className="hidden sm:block" />
+              Berkolaborasi dengan <br className="block sm:hidden" />
               <span className="font-extrabold text-primary-500 italic">Cogito Academy</span>
             </>
           ) : (
             <>
-              Collaborate with <br className="hidden sm:block" />
+              Collaborate with <br className="block sm:hidden" />
               <span className="font-extrabold text-primary-500 italic">Cogito Academy</span>
             </>
           )}
@@ -104,6 +104,7 @@ export default async function ContactPage({ params }: Props) {
             image={{
               src: "/contact-1.webp",
               alt: isId ? "Tutor Juana" : "Champion Tutor",
+              className: "h-[140%]",
             }}
             theme="pink"
           />
@@ -121,6 +122,7 @@ export default async function ContactPage({ params }: Props) {
             image={{
               src: "/contact-2.webp",
               alt: isId ? "Konsultasi" : "Consultation",
+              className: "h-[100%]",
             }}
             theme="blue"
           />

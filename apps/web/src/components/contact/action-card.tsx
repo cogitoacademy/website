@@ -18,6 +18,7 @@ interface ActionCardProps extends ComponentProps<typeof Card> {
   image: {
     src: string;
     alt: string;
+    className?: string;
   };
   theme?: "pink" | "blue";
 }
@@ -45,7 +46,7 @@ export function ActionCard({
   return (
     <Card
       className={cn(
-        "relative overflow-hidden rounded-2xl border-none bg-neutral-100 p-0 shadow-sm min-h-[350px]",
+        "relative overflow-hidden rounded-2xl border-none bg-neutral-100 p-0 shadow-sm min-[405px]:min-h-[250px]",
         className,
       )}
       {...props}
@@ -101,13 +102,17 @@ export function ActionCard({
           />
 
           {/* Main Image */}
-          <div className="absolute right-0 bottom-0 z-10 h-full w-full">
+          <div className=" right-0 bottom-0 z-10 h-full w-full min-[405px]:block absolute hidden">
             <Image
               src={image.src}
               alt={image.alt}
-              width={287}
+              width={1000}
+              quality={100}
               height={399}
-              className="absolute right-0 bottom-0 h-[120%] w-auto object-contain object-right-bottom"
+              className={cn(
+                "absolute right-0 bottom-0 w-auto object-contain object-right-bottom",
+                image.className,
+              )}
               sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 50vw"
             />
           </div>
