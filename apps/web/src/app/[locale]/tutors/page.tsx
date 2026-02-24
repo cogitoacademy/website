@@ -11,12 +11,12 @@ import type { CompetitionCategory } from "@/types/tutor";
 
 const HEADLINE = {
   id: {
-    before: "Asah Kapasitas Diri dan Kemampuan Berpikir Bersama ",
+    before: "Dapatkan Strategi Langsung dari ",
     highlight: "#TutorJuara",
     after: "",
   },
   en: {
-    before: "Sharpen Your Potential and Thinking Skills with ",
+    before: "Get Direct Strategies from ",
     highlight: "#TutorJuara",
     after: "",
   },
@@ -48,7 +48,6 @@ async function TutorContent({ params }: Props) {
             <span className="font-extrabold text-primary-500">{headline.highlight}</span>
             {headline.after}
           </h1>
-          {/*<p className="text-muted-foreground">{t("description")}</p>z*/}
         </div>
 
         <TutorList tutors={tutors} categories={categories} />
@@ -75,21 +74,30 @@ export default async function TutorsPage({ params }: Props) {
           <div className="min-h-screen bg-background-primary">
             <div className="mx-auto max-w-7xl px-4">
               <div className="mb-8 space-y-2">
-                <Skeleton className="h-12 w-64" />
-                <Skeleton className="h-6 w-96" />
+                <Skeleton className="h-12 w-80" />
+                <Skeleton className="h-12 w-80" />
               </div>
-              <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-                {[...Array(6)].map((_, i) => (
-                  <div key={i} className="space-y-4 p-6">
-                    <div className="flex items-start gap-4">
-                      <Skeleton className="h-24 w-24 shrink-0 rounded-full" />
-                      <div className="flex-1 space-y-2">
-                        <Skeleton className="h-6 w-32" />
-                        <Skeleton className="h-4 w-full" />
+              <div className="mt-8 mb-4 space-y-2 flex justify-between">
+                <Skeleton className="h-8 w-72" />
+                <Skeleton className="h-8 w-72" />
+              </div>
+              <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                {[...Array(8)].map((_, i) => (
+                  <div
+                    key={i}
+                    className="flex h-full flex-col overflow-hidden rounded-xl bg-card shadow-sm"
+                  >
+                    <div className="relative h-60 w-full shrink-0 bg-muted">
+                      <Skeleton className="absolute top-5 right-5 z-2 h-10 w-10 rounded-full" />
+                    </div>
+                    <div className="relative -mt-2 flex flex-1 flex-col rounded-xl bg-neutral-100 p-2.5">
+                      <Skeleton className="h-6 w-3/4 rounded-md" />
+                      <Skeleton className="mt-1 mb-2.5 h-3 w-full rounded-md" />
+                      <div className="mt-auto mb-0 flex flex-wrap gap-2">
+                        <Skeleton className="h-5 w-16 rounded-md" />
+                        <Skeleton className="h-5 w-20 rounded-md" />
                       </div>
                     </div>
-                    <Skeleton className="h-4 w-40" />
-                    <Skeleton className="h-4 w-24" />
                   </div>
                 ))}
               </div>
