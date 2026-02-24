@@ -19,10 +19,6 @@ export * from "./hooks/use-date-locale";
 export * from "./hooks/use-event-visibility";
 export { MonthView } from "./month-view";
 // Type exports
-export type {
-	CalendarCompetition,
-	CalendarView,
-	CompetitionColor,
-} from "./types";
+export type { CalendarCompetition, CalendarView, CompetitionColor } from "./types";
 export * from "./utils";
 export { WeekView } from "./week-view";
