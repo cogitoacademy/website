@@ -88,7 +88,7 @@ export async function HeroSection() {
     <>
       <div className="absolute inset-0 bottom-50 z-0 w-full bg-neutral-100 [clip-path:polygon(0_0,100%_0,100%_70%,50%_100%,0%_70%)] sm:bottom-120 md:bottom-90" />
       <Container className="relative z-1 flex-col items-center pt-28 pb-0 sm:pt-36 md:pt-42 lg:pt-50">
-        <section className="flex flex-col items-center justify-center">
+        <section className="flex flex-col items-center justify-center z-99 relative">
           {/* Badge / Tagline */}
           <div className="mb-2 rounded-[12px] bg-background-primary px-2.5 py-2 text-center text-2xs leading-snug sm:text-sm">
             {isId ? (
@@ -107,7 +107,7 @@ export async function HeroSection() {
 
           {/* Headline */}
 
-          <div className="mb-4 inline font-bold text-2xl text-neutral-1000 transition-normal sm:text-3xl md:text-4xl lg:text-5xl text-center sm:max-w-lg max-w-100 md:max-w-xl lg:max-w-3xl lg:leading-snug">
+          <div className="inline font-bold text-2xl text-neutral-1000 transition-normal sm:text-3xl md:text-4xl lg:text-5xl text-center sm:max-w-lg max-w-100 md:max-w-xl lg:max-w-3xl lg:leading-snug">
             {isId ? (
               <>
                 Mulai Perjalananmu Menjadi Pelajar yang
@@ -136,20 +136,24 @@ export async function HeroSection() {
           </div>
 
           {/* Subtitle */}
-          <p className="max-w-xs text-center text-neutral-1000 text-xs sm:max-w-md sm:text-sm mt-4">
+          <p className="max-w-xs text-center text-neutral-1000 text-xs sm:max-w-md sm:text-sm mt-2 sm:mt-4">
             {isId
               ? "Menjadi ahli yang siap berprestasi, lebih dari sekadar kompetisi, bersama Cogito Academy melalui materi mendalam."
               : "Become an expert ready to excel, beyond just competitions, with Cogito Academy's in-depth materials."}
           </p>
 
           {/* CTA Buttons */}
-          <div className="my-6 flex w-full flex-col items-center gap-4 sm:w-auto sm:flex-row">
-            <Button size="md" className="w-full sm:w-auto">
+          <div className="my-2 sm:my-6 flex w-full flex-col items-center gap-2 sm:gap-4 sm:w-auto sm:flex-row">
+            <Button size="md" className="w-full max-w-[214px] sm:max-w-none sm:w-auto">
               <span>{isId ? "Jadwalkan Konsultasi Gratis" : "Schedule Free Consultation"}</span>
               <ChatsCircleIcon weight="duotone" color="#ffffff" className="size-5" />
             </Button>
 
-            <Button size="md" variant="gray">
+            <Button
+              size="md"
+              variant="gray"
+              className="w-full max-w-[214px] sm:max-w-none sm:w-auto"
+            >
               <span>{isId ? "Lihat Program" : "View Programs"}</span>
               <ArrowRight className="size-4" />
             </Button>
