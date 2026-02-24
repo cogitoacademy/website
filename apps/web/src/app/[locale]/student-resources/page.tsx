@@ -9,41 +9,45 @@ import { client } from "@/sanity/client";
 export const dynamic = "force-dynamic";
 
 type Props = {
-	params: Promise<{
-		locale: string;
-	}>;
+  params: Promise<{
+    locale: string;
+  }>;
 };
 
 export default async function StudentResourcesPage({ params }: Props) {
-	const { locale } = await params;
-	setRequestLocale(locale);
-	const t = await getTranslations("studentResources");
-	const hasAccess = await checkAccess();
+  const { locale } = await params;
+  setRequestLocale(locale);
+  const t = await getTranslations("studentResources");
+  const hasAccess = await checkAccess();
 
-	if (!hasAccess) {
-		return <PasswordGate />;
-	}
+  if (!hasAccess) {
+    return (
+      <main className="bg-background-cream">
+        <PasswordGate />
+      </main>
+    );
+  }
 
-	let resources;
-	try {
-		resources = await client.fetch(STUDENT_RESOURCES_QUERY);
-	} catch {
-		resources = [];
-	}
+  let resources;
+  try {
+    resources = await client.fetch(STUDENT_RESOURCES_QUERY);
+  } catch {
+    resources = [];
+  }
 
-	return (
-		<main className="bg-background-cream">
-			<NavbarResolver />
-			<div className="relative z-3 mx-auto min-h-screen max-w-7xl px-4">
-				<div className="mb-8">
-					<h1 className="font-semibold text-2xl text-neutral-1000 sm:max-w-[500px] sm:text-3xl md:max-w-2xl md:text-4xl lg:max-w-3xl lg:text-5xl min-[450px]:max-w-[420px]">
-						{t("title")}
-					</h1>
-					<p className="mt-2">{t("subtitle")}</p>
-				</div>
+  return (
+    <main className="bg-background-cream">
+      <NavbarResolver />
+      <div className="relative z-3 mx-auto min-h-screen max-w-7xl px-4">
+        <div className="mb-8">
+          <h1 className="font-semibold text-2xl text-neutral-1000 sm:max-w-[500px] sm:text-3xl md:max-w-2xl md:text-4xl lg:max-w-3xl lg:text-5xl min-[450px]:max-w-[420px]">
+            {t("title")}
+          </h1>
+          <p className="mt-2">{t("subtitle")}</p>
+        </div>
 
-				<ResourceList resources={resources} />
-			</div>
-		</main>
-	);
+        <ResourceList resources={resources} />
+      </div>
+    </main>
+  );
 }
