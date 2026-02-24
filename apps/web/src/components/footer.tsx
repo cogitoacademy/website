@@ -21,7 +21,7 @@ const SOCIALS = [
   },
   {
     name: "Instagram",
-    href: "https://www.instagram.com/cogitoacademy/",
+    href: "https://www.instagram.com/cogitoacademy.id/",
     icon: <InstagramLogoIcon className="size-6" />,
   },
   {
