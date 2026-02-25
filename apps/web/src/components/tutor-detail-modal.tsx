@@ -3,7 +3,6 @@
 import { MapPinIcon, XIcon } from "lucide-react";
 import Image from "next/image";
 import { useLocale, useTranslations } from "next-intl";
-import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { getCoreCategoryBadgeColor } from "@/lib/colors/brandColors";
 import type { Tutor } from "@/types/tutor";
@@ -30,24 +29,6 @@ const getLocalizedValue = (arr?: { _key: string; value: string }[], locale?: str
 export default function TutorDetailModal({ tutor, open, onOpenChange }: TutorDetailModalProps) {
   const locale = useLocale();
   const t = useTranslations("tutors");
-  const [maxHeight, setMaxHeight] = useState<string>("85vh");
-
-  // Use window.innerHeight for reliable mobile viewport height
-  // This accounts for address bar, notch, safe areas etc.
-  useEffect(() => {
-    const SM_BREAKPOINT = 640;
-    function updateHeight() {
-      if (window.innerWidth < SM_BREAKPOINT) {
-        const vh = window.innerHeight;
-        setMaxHeight(`${vh * 0.85}px`);
-      } else {
-        setMaxHeight("85vh");
-      }
-    }
-    updateHeight();
-    window.addEventListener("resize", updateHeight);
-    return () => window.removeEventListener("resize", updateHeight);
-  }, []);
 
   // Normalized data
   const affiliation = getLocalizedValue(tutor.affiliation, locale);
@@ -69,7 +50,7 @@ export default function TutorDetailModal({ tutor, open, onOpenChange }: TutorDet
       <ResponsiveModalContent
         side="bottom"
         className="flex w-full max-w-full flex-col gap-0 overflow-hidden rounded-t-2xl border-none bg-background p-0 sm:max-h-[85vh] sm:w-[calc(100%-2rem)] sm:max-w-5xl sm:flex-row sm:rounded-lg"
-        style={{ maxHeight }}
+        style={{ maxHeight: "85dvh" }}
         showCloseButton={false}
       >
         {/* Left/Top: Image Section */}
