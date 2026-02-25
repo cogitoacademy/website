@@ -90,16 +90,14 @@ function EventCard({ event, lang }: { event: SerializedEvent; lang: string }) {
 
   return (
     <>
-      <div className="group relative flex flex-col overflow-hidden rounded-2xl bg-neutral-100 transition-shadow hover:shadow-md">
-        {/* Modal trigger button */}
-        <Button
-          className="absolute top-3 right-3 z-2"
-          variant="gray"
-          size="icon-lg"
-          onClick={() => setIsModalOpen(true)}
-        >
+      <div
+        className="group relative flex cursor-pointer flex-col overflow-hidden rounded-2xl bg-neutral-100 transition-shadow hover:shadow-md"
+        onClick={() => setIsModalOpen(true)}
+      >
+        {/* Arrow icon indicator */}
+        <div className="absolute top-3 right-3 z-2 flex h-10 w-10 items-center justify-center rounded-lg bg-neutral-200/80 transition-colors group-hover:bg-neutral-300/80">
           <ArrowUpRightIcon className="h-4 w-4" />
-        </Button>
+        </div>
 
         {/* Image */}
         <div className="relative aspect-[4/4] bg-neutral-300">

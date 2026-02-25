@@ -12,20 +12,20 @@ The official website for **Cogito Academy**, an Indonesian educational organizat
 
 ## Tech Stack
 
-| Category | Technology |
-|---|---|
-| Framework | Next.js 16 (App Router) |
-| React | React 19 + React Compiler |
-| Language | TypeScript 5 |
-| CSS | Tailwind CSS v4 |
-| Components | shadcn/ui + Base UI primitives |
-| CMS | Sanity v5 (with next-sanity) |
-| i18n | next-intl (Indonesian + English) |
-| Animation | Motion (Framer Motion) |
-| Monorepo | Turborepo |
-| Package Manager | Bun |
-| Linting | Oxlint + Biome |
-| Formatting | Oxfmt + Biome |
+| Category        | Technology                       |
+| --------------- | -------------------------------- |
+| Framework       | Next.js 16 (App Router)          |
+| React           | React 19 + React Compiler        |
+| Language        | TypeScript 5                     |
+| CSS             | Tailwind CSS v4                  |
+| Components      | shadcn/ui + Base UI primitives   |
+| CMS             | Sanity v5 (with next-sanity)     |
+| i18n            | next-intl (Indonesian + English) |
+| Animation       | Motion (Framer Motion)           |
+| Monorepo        | Turborepo                        |
+| Package Manager | Bun                              |
+| Linting         | Oxlint + Biome                   |
+| Formatting      | Oxfmt + Biome                    |
 
 ## Project Structure
 
@@ -51,14 +51,14 @@ cogito-acad/
 
 ## Pages
 
-| Route | Description |
-|---|---|
-| `/` | Landing page (hero, events, methods, tutors, testimonials, FAQ) |
-| `/tutors` | Filterable tutor directory with detail modals |
-| `/calendar` | Interactive competition calendar (month/week/day/agenda views) |
-| `/events/[category]` | Event listings by category (upcoming + past) |
-| `/student-resources` | Password-gated study materials |
-| `/contact` | Contact info, collaboration, tutor recruitment |
+| Route                | Description                                                     |
+| -------------------- | --------------------------------------------------------------- |
+| `/`                  | Landing page (hero, events, methods, tutors, testimonials, FAQ) |
+| `/tutors`            | Filterable tutor directory with detail modals                   |
+| `/calendar`          | Interactive competition calendar (month/week/day/agenda views)  |
+| `/events/[category]` | Event listings by category (upcoming + past)                    |
+| `/student-resources` | Password-gated study materials                                  |
+| `/contact`           | Contact info, collaboration, tutor recruitment                  |
 
 All routes are prefixed with locale: `/id/...` (Indonesian, default) or `/en/...` (English).
 
@@ -106,24 +106,24 @@ bun run build
 
 ## Available Scripts
 
-| Command | Description |
-|---|---|
-| `bun run dev` | Start all apps in development mode |
-| `bun run dev:web` | Start only the web app |
-| `bun run build` | Build all apps |
+| Command               | Description                              |
+| --------------------- | ---------------------------------------- |
+| `bun run dev`         | Start all apps in development mode       |
+| `bun run dev:web`     | Start only the web app                   |
+| `bun run build`       | Build all apps                           |
 | `bun run check-types` | TypeScript type checking across all apps |
-| `bun run check` | Run Oxlint + Oxfmt |
-| `bun run deploy` | Deploy Sanity Studio |
+| `bun run check`       | Run Oxlint + Oxfmt                       |
+| `bun run deploy`      | Deploy Sanity Studio                     |
 
 ## Content Model (Sanity)
 
-| Schema | Description |
-|---|---|
-| `tutor` | Tutor profiles (name, affiliation, achievements, competition fields) |
-| `competition` | Competitions displayed on the calendar |
-| `competitionCategory` | Competition category taxonomy |
-| `event` | Events with registration links (upcoming/past) |
-| `studentResource` | Password-protected study materials |
+| Schema                | Description                                                          |
+| --------------------- | -------------------------------------------------------------------- |
+| `tutor`               | Tutor profiles (name, affiliation, achievements, competition fields) |
+| `competition`         | Competitions displayed on the calendar                               |
+| `competitionCategory` | Competition category taxonomy                                        |
+| `event`               | Events with registration links (upcoming/past)                       |
+| `studentResource`     | Password-protected study materials                                   |
 
 Content supports field-level bilingual input (Indonesian + English) via `sanity-plugin-internationalized-array`.
 

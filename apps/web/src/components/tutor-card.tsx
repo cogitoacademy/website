@@ -9,7 +9,6 @@ import { cn } from "@/lib/utils";
 import type { Tutor } from "@/types/tutor";
 import TutorDetailModal from "./tutor-detail-modal";
 import { Badge, badgeVariants } from "./ui/badge";
-import { Button } from "./ui/button";
 
 interface TutorCardProps {
   tutor: Tutor;
@@ -31,16 +30,14 @@ export default function TutorCard({ tutor }: TutorCardProps) {
 
   return (
     <>
-      <div className="group relative flex h-full flex-col overflow-hidden rounded-xl bg-card text-card-foreground shadow-sm transition-all hover:shadow-md">
-        {/* Button as modal trigger */}
-        <Button
-          className={"absolute top-5 right-5 z-2"}
-          variant="gray"
-          size="icon-lg"
-          onClick={() => setIsModalOpen(true)}
-        >
+      <div
+        className="group relative flex h-full cursor-pointer flex-col overflow-hidden rounded-xl bg-card text-card-foreground shadow-sm transition-all hover:shadow-md"
+        onClick={() => setIsModalOpen(true)}
+      >
+        {/* Arrow icon indicator */}
+        <div className="absolute top-5 right-5 z-2 flex h-10 w-10 items-center justify-center rounded-lg bg-neutral-200/80 transition-colors group-hover:bg-neutral-300/80">
           <ArrowUpRightIcon weight="bold" />
-        </Button>
+        </div>
 
         {/* Header */}
         <div className="flex min-h-0 flex-1 flex-col">
