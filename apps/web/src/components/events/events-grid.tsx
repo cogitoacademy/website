@@ -95,9 +95,9 @@ function EventCard({ event, lang }: { event: SerializedEvent; lang: string }) {
         onClick={() => setIsModalOpen(true)}
       >
         {/* Arrow icon indicator */}
-        <div className="absolute top-3 right-3 z-2 flex h-10 w-10 items-center justify-center rounded-lg bg-neutral-200/80 transition-colors group-hover:bg-neutral-300/80">
-          <ArrowUpRightIcon className="h-4 w-4" />
-        </div>
+        <Button className="absolute top-3 right-3 z-2" variant="gray" size="icon-lg">
+          <ArrowUpRightIcon strokeWidth={2.5} className="size-5" />
+        </Button>
 
         {/* Image */}
         <div className="relative aspect-[4/4] bg-neutral-300">

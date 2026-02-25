@@ -1,6 +1,5 @@
 "use client";
 
-import { ArrowUpRightIcon } from "@phosphor-icons/react/dist/ssr";
 import Image from "next/image";
 import { useLocale } from "next-intl";
 import { useState } from "react";
@@ -9,6 +8,8 @@ import { cn } from "@/lib/utils";
 import type { Tutor } from "@/types/tutor";
 import TutorDetailModal from "./tutor-detail-modal";
 import { Badge, badgeVariants } from "./ui/badge";
+import { Button } from "./ui/button";
+import { ArrowUpRightIcon } from "lucide-react";
 
 interface TutorCardProps {
   tutor: Tutor;
@@ -35,9 +36,9 @@ export default function TutorCard({ tutor }: TutorCardProps) {
         onClick={() => setIsModalOpen(true)}
       >
         {/* Arrow icon indicator */}
-        <div className="absolute top-5 right-5 z-2 flex h-10 w-10 items-center justify-center rounded-lg bg-neutral-200/80 transition-colors group-hover:bg-neutral-300/80">
-          <ArrowUpRightIcon weight="bold" />
-        </div>
+        <Button className="absolute top-3 right-3 z-2" variant="gray" size="icon-lg">
+          <ArrowUpRightIcon strokeWidth={2.5} className="size-5" />
+        </Button>
 
         {/* Header */}
         <div className="flex min-h-0 flex-1 flex-col">
