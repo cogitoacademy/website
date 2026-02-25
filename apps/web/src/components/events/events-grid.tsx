@@ -1,149 +1,177 @@
 "use client";
 
-import { ExternalLinkIcon } from "lucide-react";
+import { ArrowUpRightIcon } from "lucide-react";
 import { motion } from "motion/react";
 import Image from "next/image";
 import { useState } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Button, buttonVariants } from "@/components/ui/button";
+import EventDetailModal from "./event-detail-modal";
 
 /** Change this value to control how many events show per page (5 or 10) */
 const PAGE_SIZE = 10;
 
 /** Serializable version of Event (date as ISO string instead of Date object) */
 export type SerializedEvent = {
-  id: string;
-  title: string;
-  slug: string;
-  category: string;
-  imageUrl?: string;
-  description?: string;
-  date: string;
-  time?: string;
-  place?: string;
-  summary?: string;
-  registrationLink?: string;
-  status: "upcoming" | "past";
+	id: string;
+	title: string;
+	slug: string;
+	category: string;
+	imageUrl?: string;
+	description?: string;
+	date: string;
+	time?: string;
+	place?: string;
+	summary?: string;
+	registrationLink?: string;
+	status: "upcoming" | "past";
 };
 
 type EventsGridProps = {
-  events: SerializedEvent[];
-  lang: string;
+	events: SerializedEvent[];
+	lang: string;
 };
 
 export function EventsGrid({ events, lang }: EventsGridProps) {
-  const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
+	const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
 
-  const visibleEvents = events.slice(0, visibleCount);
-  const hasMore = visibleCount < events.length;
+	const visibleEvents = events.slice(0, visibleCount);
+	const hasMore = visibleCount < events.length;
 
-  if (events.length === 0) {
-    return (
-      <section className="py-20 text-center">
-        <p className="text-lg text-neutral-500">
-          {lang === "id" ? "Belum ada kegiatan yang terdaftar." : "No events available yet."}
-        </p>
-      </section>
-    );
-  }
+	if (events.length === 0) {
+		return (
+			<section className="py-20 text-center">
+				<p className="text-lg text-neutral-500">
+					{lang === "id"
+						? "Belum ada kegiatan yang terdaftar."
+						: "No events available yet."}
+				</p>
+			</section>
+		);
+	}
 
-  return (
-    <div className="space-y-10">
-      {/* Events Grid */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        className="grid grid-cols-1 gap-5 min-[500px]:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
-      >
-        {visibleEvents.map((event, index) => (
-          <motion.div
-            key={event.id}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.95 }}
-            transition={{ duration: 0.3, delay: index * 0.05 }}
-          >
-            <EventCard event={event} lang={lang} />
-          </motion.div>
-        ))}
-      </motion.div>
+	return (
+		<div className="space-y-10">
+			{/* Events Grid */}
+			<motion.div
+				initial={{ opacity: 0 }}
+				animate={{ opacity: 1 }}
+				className="grid grid-cols-1 gap-5 md:grid-cols-3 lg:grid-cols-4 min-[500px]:grid-cols-2"
+			>
+				{visibleEvents.map((event, index) => (
+					<motion.div
+						key={event.id}
+						initial={{ opacity: 0, y: 20 }}
+						animate={{ opacity: 1, y: 0 }}
+						exit={{ opacity: 0, scale: 0.95 }}
+						transition={{ duration: 0.3, delay: index * 0.05 }}
+					>
+						<EventCard event={event} lang={lang} />
+					</motion.div>
+				))}
+			</motion.div>
 
-      {/* Load More Button */}
-      {hasMore && (
-        <div className="flex justify-center">
-          <Button
-            variant="subtle"
-            size="lg"
-            onClick={() => setVisibleCount((prev) => prev + PAGE_SIZE)}
-          >
-            <span>{lang === "id" ? "Lihat yang lain" : "View more"}</span>
-          </Button>
-        </div>
-      )}
-    </div>
-  );
+			{/* Load More Button */}
+			{hasMore && (
+				<div className="flex justify-center">
+					<Button
+						variant="subtle"
+						size="lg"
+						onClick={() => setVisibleCount((prev) => prev + PAGE_SIZE)}
+					>
+						<span>{lang === "id" ? "Lihat yang lain" : "View more"}</span>
+					</Button>
+				</div>
+			)}
+		</div>
+	);
 }
 
 function EventCard({ event, lang }: { event: SerializedEvent; lang: string }) {
-  return (
-    <div className="group relative flex flex-col overflow-hidden rounded-2xl bg-neutral-100 transition-shadow hover:shadow-md">
-      {/* Image */}
-      <div className="relative aspect-[4/4] bg-neutral-300">
-        {event.imageUrl ? (
-          <Image
-            src={event.imageUrl}
-            alt={event.title}
-            fill
-            className="object-cover"
-            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-          />
-        ) : (
-          <div className="flex h-full w-full items-center justify-center bg-neutral-200">
-            <span className="text-neutral-400 text-sm">No image</span>
-          </div>
-        )}
+	const [isModalOpen, setIsModalOpen] = useState(false);
 
-        {/* Status badge overlay */}
-        {event.status === "upcoming" ? (
-          <div className="absolute bottom-7 left-3">
-            <Badge variant="upcoming">{lang === "id" ? "Acara Terbaru" : "Upcoming"}</Badge>
-          </div>
-        ) : (
-          <div className="absolute bottom-7 left-3">
-            <Badge variant="completed">{lang === "id" ? "Sudah Lewat" : "Completed"}</Badge>
-          </div>
-        )}
+	return (
+		<>
+			<div className="group relative flex flex-col overflow-hidden rounded-2xl bg-neutral-100 transition-shadow hover:shadow-md">
+				{/* Modal trigger button */}
+				<Button
+					className="absolute top-3 right-3 z-2"
+					variant="gray"
+					size="icon-lg"
+					onClick={() => setIsModalOpen(true)}
+				>
+					<ArrowUpRightIcon className="h-4 w-4" />
+				</Button>
 
-        {/* Registration link overlay */}
-        {event.registrationLink && event.status === "upcoming" && (
-          <div className="absolute right-3 bottom-3">
-            <a
-              href={event.registrationLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={buttonVariants({
-                variant: "default",
-                size: "sm",
-              })}
-            >
-              {lang === "id" ? "Daftar" : "Register"}
-              <ExternalLinkIcon className="ml-1 h-3 w-3" />
-            </a>
-          </div>
-        )}
-      </div>
+				{/* Image */}
+				<div className="relative aspect-[4/4] bg-neutral-300">
+					{event.imageUrl ? (
+						<Image
+							src={event.imageUrl}
+							alt={event.title}
+							fill
+							className="object-cover"
+							sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+						/>
+					) : (
+						<div className="flex h-full w-full items-center justify-center bg-neutral-200">
+							<span className="text-neutral-400 text-sm">No image</span>
+						</div>
+					)}
 
-      {/* Content */}
-      <div className="relative z-2 -mt-4 flex flex-1 flex-col gap-1.5 rounded-xl bg-neutral-100 p-4">
-        <h3 className="line-clamp-2 font-bold text-neutral-1000 text-sm leading-snug">
-          {event.title}
-        </h3>
-        {event.description && (
-          <p className="line-clamp-3 text-neutral-600 text-xs leading-relaxed">
-            {event.description}
-          </p>
-        )}
-      </div>
-    </div>
-  );
+					{/* Status badge overlay */}
+					{event.status === "upcoming" ? (
+						<div className="absolute bottom-7 left-3">
+							<Badge variant="upcoming">
+								{lang === "id" ? "Acara Terbaru" : "Upcoming"}
+							</Badge>
+						</div>
+					) : (
+						<div className="absolute bottom-7 left-3">
+							<Badge variant="completed">
+								{lang === "id" ? "Sudah Lewat" : "Completed"}
+							</Badge>
+						</div>
+					)}
+
+					{/* Registration link overlay */}
+					{event.registrationLink && event.status === "upcoming" && (
+						<div className="absolute right-3 bottom-3">
+							<a
+								href={event.registrationLink}
+								target="_blank"
+								rel="noopener noreferrer"
+								className={buttonVariants({
+									variant: "default",
+									size: "sm",
+								})}
+								onClick={(e) => e.stopPropagation()}
+							>
+								{lang === "id" ? "Daftar" : "Register"}
+							</a>
+						</div>
+					)}
+				</div>
+
+				{/* Content */}
+				<div className="relative z-2 -mt-4 flex flex-1 flex-col gap-1.5 rounded-xl bg-neutral-100 p-4">
+					<h3 className="line-clamp-2 font-bold text-neutral-1000 text-sm leading-snug">
+						{event.title}
+					</h3>
+					{event.description && (
+						<p className="line-clamp-3 text-neutral-600 text-xs leading-relaxed">
+							{event.description}
+						</p>
+					)}
+				</div>
+			</div>
+
+			<EventDetailModal
+				event={event}
+				lang={lang}
+				open={isModalOpen}
+				onOpenChange={setIsModalOpen}
+			/>
+		</>
+	);
 }
