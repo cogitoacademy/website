@@ -1,7 +1,7 @@
 "use client";
 
 import { ArrowLeftIcon, ArrowRightIcon } from "@phosphor-icons/react";
-import { Image } from "@unpic/react";
+import Image from "next/image";
 import type React from "react";
 import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
@@ -28,7 +28,11 @@ interface CarouselProps {
   autoPlay?: boolean;
   autoPlayInterval?: number;
   onItemClick?: (item: CarouselItem, index: number) => void;
-  renderCard?: (item: CarouselItem, index?: number, isActive?: boolean) => React.ReactNode;
+  renderCard?: (
+    item: CarouselItem,
+    index?: number,
+    isActive?: boolean,
+  ) => React.ReactNode;
 }
 
 const Carousel: React.FC<CarouselProps> = ({
@@ -193,7 +197,9 @@ const Carousel: React.FC<CarouselProps> = ({
   const defaultRenderCard = (item: CarouselItem) => {
     // Alternate between 2 colors based on item id
     const itemId =
-      typeof item.id === "number" ? item.id : Number.parseInt(item.id as string, 10) || 0;
+      typeof item.id === "number"
+        ? item.id
+        : Number.parseInt(item.id as string, 10) || 0;
     const bgColor =
       itemId % 2 === 0
         ? "bg-neutral-100 border-neutral-200 *:text-black "
@@ -215,11 +221,15 @@ const Carousel: React.FC<CarouselProps> = ({
               />
             </div>
             <div>
-              <h3 className={cn("font-medium text-sm lg:text-base")}>{item.name}</h3>
+              <h3 className={cn("font-medium text-sm lg:text-base")}>
+                {item.name}
+              </h3>
               <h4 className="line-clamp-2 text-xs lg:text-sm">{item.title}</h4>
             </div>
           </div>
-          <p className="max-h-full overflow-y-auto font-light text-xs lg:text-base">{item.desc}</p>
+          <p className="max-h-full overflow-y-auto font-light text-xs lg:text-base">
+            {item.desc}
+          </p>
         </div>
       </div>
     );
@@ -328,7 +338,9 @@ const Carousel: React.FC<CarouselProps> = ({
                 onClick={() => goToSlide(index)}
                 disabled={isTransitioning}
                 className={`size-2 rounded-full transition-all duration-200 disabled:cursor-not-allowed ${
-                  index === activeIndex ? "scale-125 bg-dot-active" : "scale-125 bg-dot-inactive"
+                  index === activeIndex
+                    ? "scale-125 bg-dot-active"
+                    : "scale-125 bg-dot-inactive"
                 }`}
               />
             );
