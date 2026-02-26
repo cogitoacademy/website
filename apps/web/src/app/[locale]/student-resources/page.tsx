@@ -59,7 +59,7 @@ export default async function StudentResourcesPage({ params }: Props) {
           </div>
         }
       >
-        <main className="bg-background-cream">
+        <main className="bg-background-cream min-h-screen">
           <PasswordGate />
         </main>
       </Suspense>
