@@ -11,6 +11,8 @@ import { sanityToEvent } from "@/lib/transforms/eventTransform";
 import { EVENTS_BY_CATEGORY_QUERY } from "@/queries/events";
 import { client } from "@/sanity/client";
 import type { Event, SanityEvent } from "@/types/sanity/event";
+import { Suspense } from "react";
+import Loading from "../../loading";
 
 const VALID_CATEGORIES = ["monthly-townhall", "cogito-101-series"] as const;
 type CategorySlug = (typeof VALID_CATEGORIES)[number];
@@ -159,25 +161,33 @@ export default async function EventCategoryPage({ params }: Props) {
 
   return (
     <>
-      <NavbarResolver />
-      <main className="relative z-3 mx-auto max-w-7xl px-4 pb-20 sm:px-6 lg:px-8">
-        {/* Hero Section */}
-        <section className="pb-8 sm:pb-12 md:pb-16">
-          <div className="max-w-2xl space-y-3">
-            <h1 className="font-bold text-2xl text-neutral-1000 tracking-tight sm:text-3xl md:text-4xl lg:text-5xl">
-              {headline.before}
-              <em className="text-primary-500">{headline.highlight}</em>
-              {headline.after}
-            </h1>
-            <p className="text-neutral-600 text-sm leading-relaxed sm:text-base">
-              {meta.subtitle[lang]}
-            </p>
+      <Suspense
+        fallback={
+          <div className="w-full overflow-x-clip bg-background-cream min-h-screen flex items-center justify-center">
+            <Loading />
           </div>
-        </section>
+        }
+      >
+        <NavbarResolver />
+        <main className="relative z-3 mx-auto max-w-7xl px-4 pb-20 sm:px-6 lg:px-8">
+          {/* Hero Section */}
+          <section className="pb-8 sm:pb-12 md:pb-16">
+            <div className="max-w-2xl space-y-3">
+              <h1 className="font-bold text-2xl text-neutral-1000 tracking-tight sm:text-3xl md:text-4xl lg:text-5xl">
+                {headline.before}
+                <em className="text-primary-500">{headline.highlight}</em>
+                {headline.after}
+              </h1>
+              <p className="text-neutral-600 text-sm leading-relaxed sm:text-base">
+                {meta.subtitle[lang]}
+              </p>
+            </div>
+          </section>
 
-        {/* Events Grid with Pagination */}
-        <EventsGrid events={serializedEvents} lang={lang} />
-      </main>
+          {/* Events Grid with Pagination */}
+          <EventsGrid events={serializedEvents} lang={lang} />
+        </main>
+      </Suspense>
     </>
   );
 }

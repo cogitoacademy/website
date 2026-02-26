@@ -9,32 +9,32 @@ import { LogoCloud } from "./logo-cloud";
 const sampleLogos = [
   {
     id: "1",
-    name: "Framer Motion",
+    name: "Sekolah Victory Plus Bekasi",
     url: "/logos/sekolah_victory_plus_bekasi.webp",
   },
   {
     id: "2",
-    name: "Next.js",
+    name: "SMA Al Hikmah Surabaya",
     url: "/logos/sma_al_hikmah_surabaya.webp",
   },
   {
     id: "3",
-    name: "TypeScript",
+    name: "SMAN 16 Surabaya",
     url: "/logos/sman_16_surabaya.webp",
   },
   {
     id: "4",
-    name: "Tailwind CSS",
-    url: "/logos/sman_16_surabaya.webp",
+    name: "Sekolah Victory Plus Bekasi",
+    url: "/logos/sekolah_victory_plus_bekasi.webp",
   },
   {
     id: "5",
-    name: "Framer Motion",
-    url: "/logos/sman_16_surabaya.webp",
+    name: "SMA Al Hikmah Surabaya",
+    url: "/logos/sma_al_hikmah_surabaya.webp",
   },
   {
     id: "6",
-    name: "Node.js",
+    name: "SMAN 16 Surabaya",
     url: "/logos/sman_16_surabaya.webp",
   },
 ];
@@ -43,34 +43,40 @@ const classCardsData = {
   id: [
     {
       title: "Kelas Intensif",
-      description: "Persiapan kilat menuju satu ajang juara dengan strategi taktis yang teruji.",
+      description:
+        "Persiapan kilat menuju satu ajang juara dengan strategi taktis yang teruji.",
       tags: ["Individu & Kelompok", "Semua Lomba"],
     },
     {
       title: "Kelas Ekstrakurikuler",
-      description: "Bentuk ekosistem juara di sekolahmu dengan program rutin yang fleksibel.",
+      description:
+        "Bentuk ekosistem juara di sekolahmu dengan program rutin yang fleksibel.",
       tags: ["Individu", "MUN & WSC & Debate"],
     },
     {
       title: "Kelas Reguler",
-      description: "Bentuk ekosistem juara di sekolahmu dengan program rutin yang fleksibel.",
+      description:
+        "Bentuk ekosistem juara di sekolahmu dengan program rutin yang fleksibel.",
       tags: ["Kelompok", "Semua Lomba"],
     },
   ],
   en: [
     {
       title: "Intensive Class",
-      description: "Quick preparation towards a championship with proven tactical strategies.",
+      description:
+        "Quick preparation towards a championship with proven tactical strategies.",
       tags: ["Individual & Group", "All Competitions"],
     },
     {
       title: "Extracurricular Class",
-      description: "Build a champion ecosystem in your school with flexible routine programs.",
+      description:
+        "Build a champion ecosystem in your school with flexible routine programs.",
       tags: ["Individual", "MUN & WSC & Debate"],
     },
     {
       title: "Extracurricular Class",
-      description: "Build a champion ecosystem in your school with flexible routine programs.",
+      description:
+        "Build a champion ecosystem in your school with flexible routine programs.",
       tags: ["Group", "All Competitions"],
     },
   ],
@@ -93,14 +99,19 @@ export async function HeroSection() {
           <div className="mb-2 rounded-[12px] bg-background-primary px-2.5 py-2 text-center text-2xs leading-snug sm:text-sm">
             {isId ? (
               <>
-                Didukung oleh <span className="font-bold text-secondary-600">200+</span> prestasi
-                tutor di <span className="font-bold text-secondary-600">9</span> bidang keilmuan
+                Didukung oleh{" "}
+                <span className="font-bold text-secondary-600">200+</span>{" "}
+                prestasi tutor di{" "}
+                <span className="font-bold text-secondary-600">9</span> bidang
+                keilmuan
               </>
             ) : (
               <>
-                Supported by <span className="font-bold text-secondary-600">200+</span> tutor
-                achievements in <span className="font-bold text-secondary-600">9</span> fields of
-                study
+                Supported by{" "}
+                <span className="font-bold text-secondary-600">200+</span> tutor
+                achievements in{" "}
+                <span className="font-bold text-secondary-600">9</span> fields
+                of study
               </>
             )}
           </div>
@@ -144,9 +155,20 @@ export async function HeroSection() {
 
           {/* CTA Buttons */}
           <div className="my-2 sm:my-6 flex w-full flex-col items-center gap-2 sm:gap-4 sm:w-auto sm:flex-row">
-            <Button size="md" className="w-full max-w-[214px] sm:max-w-none sm:w-auto">
-              <span>{isId ? "Jadwalkan Konsultasi Gratis" : "Schedule Free Consultation"}</span>
-              <ChatsCircleIcon weight="duotone" color="#ffffff" className="size-5" />
+            <Button
+              size="md"
+              className="w-full max-w-[214px] sm:max-w-none sm:w-auto"
+            >
+              <span>
+                {isId
+                  ? "Jadwalkan Konsultasi Gratis"
+                  : "Schedule Free Consultation"}
+              </span>
+              <ChatsCircleIcon
+                weight="duotone"
+                color="#ffffff"
+                className="size-5"
+              />
             </Button>
 
             <Button
@@ -163,7 +185,9 @@ export async function HeroSection() {
         {/* Trust Section */}
         <section className="flex flex-col items-center">
           <p className="text-neutral-700 text-xs sm:text-sm">
-            {isId ? "Cogito telah dipercaya oleh" : "Cogito has been trusted by"}
+            {isId
+              ? "Cogito telah dipercaya oleh"
+              : "Cogito has been trusted by"}
           </p>
           <LogoCloud logos={sampleLogos} interval={3000} displayCount={3} />
         </section>
@@ -224,7 +248,9 @@ function ClassCard({
       <div
         className={`mt-6 flex min-h-full flex-col gap-3 rounded-2xl px-5 py-5 sm:px-8 sm:py-6 ${innerClassName ?? ""}`}
       >
-        <h2 className="font-bold text-neutral-1000 text-xl sm:text-2xl">{title}</h2>
+        <h2 className="font-bold text-neutral-1000 text-xl sm:text-2xl">
+          {title}
+        </h2>
         <p className="text-neutral-1000 text-sm">{description}</p>
         <div className="flex flex-wrap gap-2">
           {tags.map((tag) => (
