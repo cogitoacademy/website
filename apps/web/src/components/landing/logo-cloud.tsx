@@ -1,6 +1,7 @@
 "use client";
 
-import { motion } from "motion/react";
+import { m } from "motion/react";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 
 interface Logo {
@@ -20,6 +21,7 @@ export function LogoCloud({ logos, interval = 3000, displayCount = 3 }: LogoClou
   const [key, setKey] = useState(0);
 
   useEffect(() => {
+    /* eslint-disable react-compiler/react-compiler -- Synchronized setState calls for carousel animation */
     const timer = setInterval(() => {
       setCurrentIndex((prev) => (prev + displayCount) % logos.length);
       setKey((prev) => prev + 1);
@@ -69,29 +71,31 @@ export function LogoCloud({ logos, interval = 3000, displayCount = 3 }: LogoClou
   return (
     <div className="flex w-full flex-col items-center justify-center pb-6">
       <div className="w-full max-w-4xl px-4">
-        <motion.div
+        <m.div
           className="grid grid-cols-3 gap-3 sm:gap-4 md:gap-6"
           variants={containerVariants}
           initial="hidden"
           animate="visible"
           key={key}
         >
-          {visibleLogos.map((logo, idx) => (
-            <motion.div
-              key={`${logo.id}-${currentIndex}-${idx}`}
+          {visibleLogos.map((logo, _idx) => (
+            <m.div
+              key={`${logo.id}-${currentIndex}`}
               variants={itemVariants}
               className="flex items-center justify-center"
             >
               <div className="flex h-16 w-full items-center justify-center rounded-lg transition-all duration-300 sm:h-20 md:h-24">
-                <img
+                <Image
                   src={logo.url || "/placeholder.svg"}
                   alt={logo.name}
-                  className="h-8 w-auto object-contain px-3 sm:h-10 sm:px-4 md:h-12"
+                  fill
+                  sizes="(max-width: 640px) 33vw, (max-width: 1024px) 25vw, 20vw"
+                  className="object-contain px-3 sm:px-4"
                 />
               </div>
-            </motion.div>
+            </m.div>
           ))}
-        </motion.div>
+        </m.div>
       </div>
 
       {/* Indicator dots */}
@@ -100,7 +104,7 @@ export function LogoCloud({ logos, interval = 3000, displayCount = 3 }: LogoClou
           (_, idx) => {
             const isActive = Math.floor(currentIndex / displayCount) === idx;
             return (
-              <motion.div
+              <m.div
                 key={idx}
                 layoutId={`dot-${idx}`}
                 className={`rounded-full transition-all duration-300 ${

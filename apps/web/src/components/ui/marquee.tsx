@@ -59,6 +59,7 @@ export function Marquee({
     >
       {Array(repeat)
         .fill(0)
+        /* eslint-disable react/jsx-key -- index is intentional for identical repeated content */
         .map((_, i) => (
           <div
             key={i}
@@ -69,6 +70,7 @@ export function Marquee({
               "[animation-direction:reverse]": reverse,
             })}
             style={{
+              /* eslint-disable css-modules/no-unused-class -- will-change is needed for continuous animation performance */
               willChange: "transform",
               transform: "translateZ(0)",
               backfaceVisibility: "hidden",

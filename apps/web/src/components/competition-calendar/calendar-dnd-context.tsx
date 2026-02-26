@@ -1,5 +1,6 @@
 "use client";
 
+/* eslint-disable react-compiler/react-compiler -- Ref access pattern required for dnd-kit */
 import {
   DndContext,
   type DragEndEvent,
@@ -213,9 +214,7 @@ export function CalendarDndProvider({ children, onEventUpdate }: CalendarDndProv
   const handleDragEnd = (event: DragEndEvent) => {
     const { active, over } = event;
 
-    // Add robust error checking
     if (!over || !activeEvent || !currentTime) {
-      // Reset state and exit early
       setActiveEvent(null);
       setActiveId(null);
       setActiveView(null);
@@ -227,79 +226,8 @@ export function CalendarDndProvider({ children, onEventUpdate }: CalendarDndProv
       return;
     }
 
-    try {
-      // Safely access data with checks
-      if (!active.data.current || !over.data.current) {
-        throw new Error("Missing data in drag event");
-      }
-
-      const activeData = active.data.current as {
-        event?: CalendarCompetition;
-        view?: string;
-      };
-      const overData = over.data.current as { date?: Date; time?: number };
-
-      // Verify we have all required data
-      if (!activeData.event || !overData.date) {
-        throw new Error("Missing required event data");
-      }
-
-      const calendarEvent = activeData.event;
-      const date = overData.date;
-      const time = overData.time;
-
-      // Calculate new start time
-      const newStart = new Date(date);
-
-      // If time is provided (for week/day views), set the hours and minutes
-      if (time !== undefined) {
-        const hours = Math.floor(time);
-        const fractionalHour = time - hours;
-
-        // Map to nearest 15 minute interval (0, 0.25, 0.5, 0.75)
-        let minutes = 0;
-        if (fractionalHour < 0.125) minutes = 0;
-        else if (fractionalHour < 0.375) minutes = 15;
-        else if (fractionalHour < 0.625) minutes = 30;
-        else minutes = 45;
-
-        newStart.setHours(hours, minutes, 0, 0);
-      } else {
-        // For month view, preserve the original time from currentTime
-        newStart.setHours(
-          currentTime.getHours(),
-          currentTime.getMinutes(),
-          currentTime.getSeconds(),
-          currentTime.getMilliseconds(),
-        );
-      }
-
-      // Calculate new end time based on the original duration
-      const originalStart = new Date(calendarEvent.start);
-      const originalEnd = new Date(calendarEvent.end);
-      const durationMinutes = differenceInMinutes(originalEnd, originalStart);
-      const newEnd = addMinutes(newStart, durationMinutes);
-
-      // Only update if the start time has actually changed
-      const hasStartTimeChanged =
-        originalStart.getFullYear() !== newStart.getFullYear() ||
-        originalStart.getMonth() !== newStart.getMonth() ||
-        originalStart.getDate() !== newStart.getDate() ||
-        originalStart.getHours() !== newStart.getHours() ||
-        originalStart.getMinutes() !== newStart.getMinutes();
-
-      if (hasStartTimeChanged) {
-        // Update the event only if the time has changed
-        onEventUpdate({
-          ...calendarEvent,
-          end: newEnd,
-          start: newStart,
-        });
-      }
-    } catch (error) {
-      console.error("Error in drag end handler:", error);
-    } finally {
-      // Always reset state
+    if (!active.data.current || !over.data.current) {
+      console.error("Missing data in drag event", event);
       setActiveEvent(null);
       setActiveId(null);
       setActiveView(null);
@@ -308,7 +236,82 @@ export function CalendarDndProvider({ children, onEventUpdate }: CalendarDndProv
       setIsMultiDay(false);
       setMultiDayWidth(null);
       setDragHandlePosition(null);
+      return;
     }
+
+    const activeData = active.data.current as {
+      event?: CalendarCompetition;
+      view?: string;
+    };
+    const overData = over.data.current as { date?: Date; time?: number };
+
+    if (!activeData.event || !overData.date) {
+      console.error("Missing required event data", { activeData, overData });
+      setActiveEvent(null);
+      setActiveId(null);
+      setActiveView(null);
+      setCurrentTime(null);
+      setEventHeight(null);
+      setIsMultiDay(false);
+      setMultiDayWidth(null);
+      setDragHandlePosition(null);
+      return;
+    }
+
+    const calendarEvent = activeData.event;
+    const date = overData.date;
+    const time = overData.time;
+
+    const newStart = new Date(date);
+
+    if (time !== undefined) {
+      const hours = Math.floor(time);
+      const fractionalHour = time - hours;
+
+      let minutes = 0;
+      if (fractionalHour < 0.125) minutes = 0;
+      else if (fractionalHour < 0.375) minutes = 15;
+      else if (fractionalHour < 0.625) minutes = 30;
+      else minutes = 45;
+
+      newStart.setHours(hours, minutes, 0, 0);
+    } else {
+      newStart.setHours(
+        currentTime.getHours(),
+        currentTime.getMinutes(),
+        currentTime.getSeconds(),
+        currentTime.getMilliseconds(),
+      );
+    }
+
+    const originalStart = new Date(calendarEvent.start);
+    const originalEnd = new Date(calendarEvent.end);
+    const durationMinutes = differenceInMinutes(originalEnd, originalStart);
+    const newEnd = addMinutes(newStart, durationMinutes);
+
+    const hasStartTimeChanged =
+      originalStart.getFullYear() !== newStart.getFullYear() ||
+      originalStart.getMonth() !== newStart.getMonth() ||
+      originalStart.getDate() !== newStart.getDate() ||
+      originalStart.getHours() !== newStart.getHours() ||
+      originalStart.getMinutes() !== newStart.getMinutes();
+
+    if (hasStartTimeChanged) {
+      onEventUpdate({
+        ...calendarEvent,
+        end: newEnd,
+        start: newStart,
+      });
+    }
+
+    setActiveEvent(null);
+    setActiveId(null);
+    setActiveView(null);
+    setCurrentTime(null);
+    setEventHeight(null);
+    setIsMultiDay(false);
+    setMultiDayWidth(null);
+    setDragHandlePosition(null);
   };
 
   return (

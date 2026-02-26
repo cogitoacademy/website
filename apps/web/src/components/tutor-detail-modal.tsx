@@ -136,8 +136,8 @@ export default function TutorDetailModal({ tutor, open, onOpenChange }: TutorDet
                 )}
                 {achievements.length > 0 && (
                   <ul className="max-h-[200px] list-outside list-disc space-y-2 overflow-y-auto px-4 text-muted-foreground/90 text-sm leading-relaxed">
-                    {achievements.map((item, index) => (
-                      <li key={index}>{item}</li>
+                    {achievements.map((item) => (
+                      <li key={item}>{item}</li>
                     ))}
                   </ul>
                 )}
@@ -156,8 +156,8 @@ export default function TutorDetailModal({ tutor, open, onOpenChange }: TutorDet
                 )}
                 {experiences.length > 0 && (
                   <ul className="max-h-[200px] list-outside list-disc space-y-2 overflow-y-auto px-4 text-muted-foreground/90 text-sm leading-relaxed">
-                    {experiences.map((item, index) => (
-                      <li key={index}>{item}</li>
+                    {experiences.map((item) => (
+                      <li key={item}>{item}</li>
                     ))}
                   </ul>
                 )}

@@ -82,14 +82,14 @@ export async function SkillsSection() {
           className="absolute inset-0 bottom-0 z-3 mt-auto w-full"
         />
 
-        <div className="absolute top-20 left-0 w-full aspect-[500/520] lg:aspect-16/5">
-          <svg viewBox="0 0 1000 120" preserveAspectRatio="none" className="w-full h-full">
+        <div className="absolute top-20 left-0 aspect-[500/520] w-full lg:aspect-16/5">
+          <svg viewBox="0 0 1000 120" preserveAspectRatio="none" className="h-full w-full">
             <polygon points="0,0 1000,0 1000,80 500,120 0,80" className="fill-tertiary-pink-300" />
           </svg>
         </div>
 
-        <div className="absolute top-0 left-0 w-full aspect-[500/520] lg:aspect-16/5">
-          <svg viewBox="0 0 1000 120" preserveAspectRatio="none" className="w-full h-full">
+        <div className="absolute top-0 left-0 aspect-[500/520] w-full lg:aspect-16/5">
+          <svg viewBox="0 0 1000 120" preserveAspectRatio="none" className="h-full w-full">
             <polygon points="0,0 1000,0 1000,80 500,120 0,80" className="fill-neutral-100" />
           </svg>
         </div>
@@ -112,9 +112,9 @@ export async function SkillsSection() {
           </h2>
         </div>
         <div className="relative z-3 flex w-full flex-wrap items-center justify-center gap-6">
-          {skills.map((skill, index) => (
+          {skills.map((skill) => (
             <FieldCard
-              key={index}
+              key={skill.titleEn}
               title={isId ? skill.titleId : skill.titleEn}
               description={isId ? skill.descriptionId : skill.descriptionEn}
               color={skill.color}

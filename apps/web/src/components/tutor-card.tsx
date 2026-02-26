@@ -1,5 +1,6 @@
 "use client";
 
+import { ArrowUpRightIcon } from "lucide-react";
 import Image from "next/image";
 import { useLocale } from "next-intl";
 import { useState } from "react";
@@ -9,7 +10,6 @@ import type { Tutor } from "@/types/tutor";
 import TutorDetailModal from "./tutor-detail-modal";
 import { Badge, badgeVariants } from "./ui/badge";
 import { Button } from "./ui/button";
-import { ArrowUpRightIcon } from "lucide-react";
 
 interface TutorCardProps {
   tutor: Tutor;
@@ -29,11 +29,21 @@ export default function TutorCard({ tutor }: TutorCardProps) {
 
   const affiliation = getLocalizedValue(tutor.affiliation, locale);
 
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      setIsModalOpen(true);
+    }
+  };
+
   return (
     <>
       <div
         className="group relative flex h-full cursor-pointer flex-col overflow-hidden rounded-xl bg-card text-card-foreground shadow-sm transition-all hover:shadow-md"
         onClick={() => setIsModalOpen(true)}
+        onKeyDown={handleKeyDown}
+        role="button"
+        tabIndex={0}
       >
         {/* Arrow icon indicator */}
         <Button className="absolute top-3 right-3 z-2" variant="gray" size="icon-lg">
@@ -48,6 +58,7 @@ export default function TutorCard({ tutor }: TutorCardProps) {
               alt={tutor.profilePicture.asset.altText || tutor.name}
               fill
               className="object-cover"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             />
           </div>
 

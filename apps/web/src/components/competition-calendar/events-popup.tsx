@@ -2,7 +2,7 @@
 
 import { format, isSameDay } from "date-fns";
 import { XIcon } from "lucide-react";
-import { useEffect, useMemo, useRef } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 import {
   type CalendarCompetition,
@@ -55,29 +55,32 @@ export function EventsPopup({ date, events, position, onClose, onEventSelect }: 
     onClose();
   };
 
-  // Adjust position to ensure popup stays within viewport
+  const [popupRect, setPopupRect] = useState<DOMRect | null>(null);
+
+  useEffect(() => {
+    if (popupRef.current) {
+      setPopupRect(popupRef.current.getBoundingClientRect());
+    }
+  }, []);
+
   const adjustedPosition = useMemo(() => {
     const positionCopy = { ...position };
 
-    // Check if we need to adjust the position to fit in the viewport
-    if (popupRef.current) {
-      const rect = popupRef.current.getBoundingClientRect();
+    if (popupRect) {
       const viewportWidth = window.innerWidth;
       const viewportHeight = window.innerHeight;
 
-      // Adjust horizontally if needed
-      if (positionCopy.left + rect.width > viewportWidth) {
-        positionCopy.left = Math.max(0, viewportWidth - rect.width);
+      if (positionCopy.left + popupRect.width > viewportWidth) {
+        positionCopy.left = Math.max(0, viewportWidth - popupRect.width);
       }
 
-      // Adjust vertically if needed
-      if (positionCopy.top + rect.height > viewportHeight) {
-        positionCopy.top = Math.max(0, viewportHeight - rect.height);
+      if (positionCopy.top + popupRect.height > viewportHeight) {
+        positionCopy.top = Math.max(0, viewportHeight - popupRect.height);
       }
     }
 
     return positionCopy;
-  }, [position]);
+  }, [position, popupRect]);
 
   return (
     <div
@@ -117,6 +120,14 @@ export function EventsPopup({ date, events, position, onClose, onEventSelect }: 
                 className="cursor-pointer"
                 key={event.id}
                 onClick={() => handleEventClick(event)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    handleEventClick(event);
+                  }
+                }}
+                role="button"
+                tabIndex={0}
               >
                 <EventItem
                   event={event}

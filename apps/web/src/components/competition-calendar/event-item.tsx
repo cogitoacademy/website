@@ -265,9 +265,9 @@ export function EventItem({
       {/* Category Badges */}
       {/*{event.categories && event.categories.length > 0 && (
         <div className="flex flex-wrap gap-1">
-          {event.categories.map((category, index) => (
+          {event.categories.map((category, idx) => (
             <Badge
-              key={index}
+              key={category.id ?? idx}
               variant={"tutor"}
               className={cn(getBrandColorClass(category.color))}
             >
@@ -303,8 +303,8 @@ export function EventItem({
           {/* Education Levels */}
           {/*{event.educationLevels && event.educationLevels.length > 0 && (
             <div className="flex flex-wrap gap-1">
-              {event.educationLevels.map((level, index) => (
-                <Badge key={index} variant="outline" className="text-xs">
+              {event.educationLevels.map((level, idx) => (
+                <Badge key={level ?? idx} variant="outline" className="text-xs">
                   {level}
                 </Badge>
               ))}

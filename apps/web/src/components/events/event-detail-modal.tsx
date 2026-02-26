@@ -2,6 +2,7 @@
 
 import { ArrowRight, CalendarDays, Clock, MapPin, XIcon } from "lucide-react";
 import Image from "next/image";
+import { useMemo } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -24,20 +25,18 @@ export default function EventDetailModal({
   open,
   onOpenChange,
 }: EventDetailModalProps) {
-  // Format the ISO date string into a readable format
-  const formattedDate = (() => {
-    try {
-      const d = new Date(event.date);
-      return d.toLocaleDateString(lang === "id" ? "id-ID" : "en-US", {
-        weekday: "long",
-        day: "numeric",
-        month: "long",
-        year: "numeric",
-      });
-    } catch {
+  const formattedDate = useMemo(() => {
+    const d = new Date(event.date);
+    if (Number.isNaN(d.getTime())) {
       return event.date;
     }
-  })();
+    return d.toLocaleDateString(lang === "id" ? "id-ID" : "en-US", {
+      weekday: "long",
+      day: "numeric",
+      month: "long",
+      year: "numeric",
+    });
+  }, [event.date, lang]);
 
   const statusBadge =
     event.status === "upcoming" ? (
@@ -57,7 +56,7 @@ export default function EventDetailModal({
         showCloseButton={false}
       >
         {/* Left/Top: Image Section */}
-        <div className="relative h-[35svh] sm:h-[300px] shrink-0 overflow-hidden bg-neutral-300 sm:h-auto sm:w-2/5">
+        <div className="relative h-[35svh] shrink-0 overflow-hidden bg-neutral-300 sm:h-[300px] sm:h-auto sm:w-2/5">
           {event.imageUrl ? (
             <Image
               src={event.imageUrl}

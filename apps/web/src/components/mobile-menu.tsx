@@ -1,7 +1,8 @@
 "use client";
 
+import { XIcon } from "@phosphor-icons/react/dist/ssr";
 import { Instagram, Linkedin, MapPin } from "lucide-react";
-import { AnimatePresence, motion } from "motion/react";
+import { AnimatePresence, m } from "motion/react";
 import Image from "next/image";
 import { useLocale } from "next-intl";
 import { useEffect } from "react";
@@ -14,7 +15,6 @@ import {
 import { Button } from "@/components/ui/button";
 import { Link } from "@/i18n/routing";
 import LanguageToggle from "./lang-toggle";
-import { XIcon } from "@phosphor-icons/react/dist/ssr";
 
 interface MobileMenuProps {
   isOpen: boolean;
@@ -116,7 +116,7 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
   return (
     <AnimatePresence>
       {isOpen && (
-        <motion.div
+        <m.div
           initial="closed"
           animate="open"
           exit="closed"
@@ -152,11 +152,11 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
             </div>
           </div>
 
-          <motion.div className="flex-1 overflow-y-auto p-4" variants={containerVariants}>
+          <m.div className="flex-1 overflow-y-auto p-4" variants={containerVariants}>
             <div className="flex flex-col gap-4">
               <div className="flex flex-col gap-4">
                 {navItems.map((item) => (
-                  <motion.div key={item.label} variants={itemVariants}>
+                  <m.div key={item.label} variants={itemVariants}>
                     <Link
                       href={item.href}
                       onClick={onClose}
@@ -164,17 +164,17 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                     >
                       {item.label}
                     </Link>
-                  </motion.div>
+                  </m.div>
                 ))}
               </div>
 
-              <motion.div variants={itemVariants}>
+              <m.div variants={itemVariants}>
                 <Accordion className="w-full">
                   <AccordionItem
                     value="kegiatan"
                     className="border-none bg-transparent shadow-none"
                   >
-                    <AccordionTrigger className="bg-transparent p-0 font-bold text-sm min-[550px]:text-base text-neutral-1000 shadow-none hover:bg-transparent hover:no-underline hover:shadow-none focus-visible:ring-0 [&>svg]:ml-2 [&>svg]:size-5 [&>svg]:text-neutral-1000">
+                    <AccordionTrigger className="bg-transparent p-0 font-bold text-neutral-1000 text-sm shadow-none hover:bg-transparent hover:no-underline hover:shadow-none focus-visible:ring-0 min-[550px]:text-base [&>svg]:ml-2 [&>svg]:size-5 [&>svg]:text-neutral-1000">
                       {isId ? "Kegiatan" : "Activities"}
                     </AccordionTrigger>
                     <AccordionContent className="pb-0 pl-5">
@@ -193,10 +193,10 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                     </AccordionContent>
                   </AccordionItem>
                 </Accordion>
-              </motion.div>
+              </m.div>
 
-              <motion.div variants={itemVariants} className="mt-4">
-                <h3 className="mb-4 font-bold text-sm text-neutral-1000 min-[550px]:text-base">
+              <m.div variants={itemVariants} className="mt-4">
+                <h3 className="mb-4 font-bold text-neutral-1000 text-sm min-[550px]:text-base">
                   {isId ? "Navigasi Cepat" : "Quick Navigation"}
                 </h3>
                 <div className="grid grid-cols-2 gap-x-4 gap-y-3">
@@ -211,9 +211,9 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                     </a>
                   ))}
                 </div>
-              </motion.div>
+              </m.div>
             </div>
-          </motion.div>
+          </m.div>
 
           <div className="bg-primary-500 p-4">
             <div className="flex flex-col gap-6">
@@ -239,7 +239,7 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
               </Link>
             </div>
           </div>
-        </motion.div>
+        </m.div>
       )}
     </AnimatePresence>
   );

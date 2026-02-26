@@ -3,16 +3,19 @@ import { Marquee } from "../ui/marquee";
 
 export function PartnersCarousel() {
   // Array of partner logos (using placeholder for now)
-  const partners = Array(13).fill("/images/landing/favicon porto.png");
+  const partners = Array.from({ length: 13 }, (_, i) => ({
+    id: i,
+    src: "/images/landing/favicon porto.png",
+  }));
 
   return (
     <section className="overflow-hidden bg-tertiary-yellow-200 py-5">
       <div className="overflow-hidden">
         <Marquee className="[--duration:120s]" repeat={5}>
-          {partners.map((partner, index) => (
-            <span key={index.toString()} className="flex items-center">
+          {partners.map((partner) => (
+            <span key={partner.id} className="flex items-center">
               <Image
-                src={partner}
+                src={partner.src}
                 alt={"a"}
                 width={3500}
                 height={1445}

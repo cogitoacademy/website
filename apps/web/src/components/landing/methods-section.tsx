@@ -33,7 +33,7 @@ export async function MethodsSection() {
             </>
           )}
         </h2>
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-4 items-center justify-center">
+        <div className="grid grid-cols-1 items-center justify-center gap-6 md:grid-cols-2 xl:grid-cols-4">
           <TutorJuaraDuniaCard isId={isId} />
           <PersonalTerukurCard isId={isId} />
           <KurikulumHolistikCard isId={isId} />
@@ -58,7 +58,7 @@ function MethodCard({
   return (
     <div
       className={cn(
-        "relative flex max-w-[400px] md:max-w-[293px] flex-col items-center overflow-hidden rounded-2xl px-6 pt-8 text-center aspect-312/220 md:aspect-[312/280]",
+        "relative flex aspect-312/220 max-w-[400px] flex-col items-center overflow-hidden rounded-2xl px-6 pt-8 text-center md:aspect-[312/280] md:max-w-[293px]",
         className,
       )}
     >
@@ -80,7 +80,7 @@ function TutorJuaraDuniaCard({ isId }: { isId: boolean }) {
       }
       className="bg-tertiary-red-200"
     >
-      <div className="absolute translate-y-1/2 -bottom-30 md:-bottom-12 left-1/2 aspect-square w-[150%] -translate-x-1/2 rounded-full bg-white/40" />
+      <div className="absolute -bottom-30 left-1/2 aspect-square w-[150%] -translate-x-1/2 translate-y-1/2 rounded-full bg-white/40 md:-bottom-12" />
       <div className="relative z-10 flex w-full items-end justify-center gap-x-8 px-2 pb-6">
         <div className="text-center">
           <p className="font-bold text-2xl text-primary-600">200+</p>
@@ -181,9 +181,9 @@ function KurikulumHolistikCard({ isId }: { isId: boolean }) {
     >
       <div className="w-full translate-y-2 px-2">
         <div className="mx-auto w-full max-w-[90%] space-y-2 rounded-t-xl bg-white p-3 pb-6 shadow-sm">
-          {(isId ? itemsId : itemsEn).map((item, i) => (
+          {(isId ? itemsId : itemsEn).map((item) => (
             <div
-              key={i}
+              key={item}
               className="flex items-center gap-2 rounded border border-neutral-100 bg-neutral-50 p-1.5"
             >
               <div className="flex-shrink-0 rounded-full bg-green-100 p-0.5 text-green-600">

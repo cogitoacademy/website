@@ -3,7 +3,7 @@
 import { SealQuestionIcon } from "@phosphor-icons/react/dist/ssr";
 import { clsx } from "clsx";
 import { ArrowUpRight } from "lucide-react";
-import { motion } from "motion/react";
+import { m } from "motion/react";
 import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 import { twMerge } from "tailwind-merge";
@@ -14,14 +14,22 @@ function cn(...inputs: (string | undefined | null | false)[]) {
 }
 
 function useIsMobile(breakpoint = 768) {
-  const [isMobile, setIsMobile] = useState(false);
+  const getMatches = (query: string) => {
+    if (typeof window !== "undefined") {
+      return window.matchMedia(query).matches;
+    }
+    return false;
+  };
+
+  const [isMobile, setIsMobile] = useState(() => getMatches(`(max-width: ${breakpoint - 1}px)`));
+
   useEffect(() => {
     const mql = window.matchMedia(`(max-width: ${breakpoint - 1}px)`);
-    setIsMobile(mql.matches);
     const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches);
     mql.addEventListener("change", handler);
     return () => mql.removeEventListener("change", handler);
   }, [breakpoint]);
+
   return isMobile;
 }
 
@@ -81,7 +89,7 @@ export default function FaqSectionV2() {
               const isActive = activeIndex === index;
 
               return (
-                <motion.div
+                <m.div
                   key={item.id}
                   animate={
                     isMobile
@@ -125,7 +133,7 @@ export default function FaqSectionV2() {
                     </div>
 
                     {/* ACTIVE STATE CONTENT */}
-                    <motion.div
+                    <m.div
                       initial={false}
                       animate={{
                         opacity: isActive ? 1 : 0,
@@ -147,10 +155,10 @@ export default function FaqSectionV2() {
                           </div>
                         </div>
                       </div>
-                    </motion.div>
+                    </m.div>
 
                     {/* INACTIVE STATE CONTENT */}
-                    <motion.div
+                    <m.div
                       initial={false}
                       animate={{
                         opacity: isActive ? 0 : 1,
@@ -167,9 +175,9 @@ export default function FaqSectionV2() {
                       <div className="ml-6 md:self-end">
                         <ArrowUpRight className="h-6 w-6 text-gray-800" />
                       </div>
-                    </motion.div>
+                    </m.div>
                   </div>
-                </motion.div>
+                </m.div>
               );
             })}
           </div>

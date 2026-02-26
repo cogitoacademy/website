@@ -3,7 +3,7 @@
 import { useDraggable } from "@dnd-kit/core";
 import { CSS } from "@dnd-kit/utilities";
 import { differenceInDays } from "date-fns";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import {
   type CalendarCompetition,
@@ -38,12 +38,18 @@ export function DraggableEvent({
 }: DraggableEventProps) {
   const { activeId } = useCalendarDnd();
   const elementRef = useRef<HTMLDivElement>(null);
+  const [elementHeight, setElementHeight] = useState<number | null>(null);
   const [dragHandlePosition, setDragHandlePosition] = useState<{
     x: number;
     y: number;
   } | null>(null);
 
-  // Check if this is a multi-day event
+  useEffect(() => {
+    if (elementRef.current) {
+      setElementHeight(elementRef.current.offsetHeight);
+    }
+  }, []);
+
   const eventStart = new Date(event.start);
   const eventEnd = new Date(event.end);
   const isMultiDayEvent = isMultiDay || event.allDay || differenceInDays(eventEnd, eventStart) >= 1;
@@ -52,7 +58,7 @@ export function DraggableEvent({
     data: {
       dragHandlePosition,
       event,
-      height: height || elementRef.current?.offsetHeight || null,
+      height: height || elementHeight || null,
       isFirstDay,
       isLastDay,
       isMultiDay: isMultiDayEvent,

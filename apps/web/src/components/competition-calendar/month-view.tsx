@@ -84,14 +84,15 @@ export function MonthView({
   };
 
   const [isMounted, setIsMounted] = useState(false);
-  const { contentRef, getVisibleEventCount } = useEventVisibility({
-    eventGap: EventGap,
-    eventHeight: EventHeight,
-  });
 
   useEffect(() => {
     setIsMounted(true);
   }, []);
+
+  const { contentRef, getVisibleEventCount } = useEventVisibility({
+    eventGap: EventGap,
+    eventHeight: EventHeight,
+  });
 
   return (
     <div className="overflow-x-auto overscroll-x-none lg:overflow-x-visible" data-slot="month-view">

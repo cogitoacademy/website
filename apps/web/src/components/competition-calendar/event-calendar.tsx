@@ -40,6 +40,8 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { cn } from "@/lib/utils";
 
+const EMPTY_EVENTS: CalendarCompetition[] = [];
+
 export interface EventCalendarProps {
   events?: CalendarCompetition[];
   readOnly?: boolean;
@@ -51,7 +53,7 @@ export interface EventCalendarProps {
 }
 
 export function EventCalendar({
-  events = [],
+  events = EMPTY_EVENTS,
   readOnly = false,
   className,
   initialView = "month",
@@ -60,6 +62,7 @@ export function EventCalendar({
   onEventUpdate,
 }: EventCalendarProps) {
   const [currentDate, setCurrentDate] = useState(new Date());
+  /* eslint-disable react-compiler/react-compiler -- View state initialized from prop but managed independently */
   const [view, setView] = useState<CalendarView>(initialView);
   const [isEventDetailsDialogOpen, setIsEventDetailsDialogOpen] = useState(false);
   const [selectedEvent, setSelectedEvent] = useState<CalendarCompetition | null>(null);
@@ -224,7 +227,7 @@ export function EventCalendar({
               <DropdownMenuTrigger
                 render={
                   <Button
-                    className="gap-1.5 max-[479px]:h-8 text-neutral-1000"
+                    className="gap-1.5 text-neutral-1000 max-[479px]:h-8"
                     variant="cream"
                     size="md"
                   />

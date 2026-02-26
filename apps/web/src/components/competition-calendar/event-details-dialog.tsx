@@ -53,9 +53,9 @@ export function EventDetailsDialog({ event, isOpen, onClose }: EventDetailsDialo
             {isSanityCompetition && event.categories && event.categories.length > 0 && (
               <div className="mt-3 sm:hidden">
                 <div className="flex flex-wrap gap-2">
-                  {event.categories.map((category, index) => (
+                  {event.categories.map((category) => (
                     <Badge
-                      key={index}
+                      key={category.name}
                       variant="tutor"
                       className={getBrandColorClass(category.color)}
                     >
@@ -70,8 +70,12 @@ export function EventDetailsDialog({ event, isOpen, onClose }: EventDetailsDialo
           {/* Desktop: badge to the right of title */}
           {isSanityCompetition && event.categories && event.categories.length > 0 && (
             <div className="mr-9 hidden shrink-0 flex-wrap gap-2 sm:flex">
-              {event.categories.map((category, index) => (
-                <Badge key={index} variant="tutor" className={getBrandColorClass(category.color)}>
+              {event.categories.map((category) => (
+                <Badge
+                  key={category.name}
+                  variant="tutor"
+                  className={getBrandColorClass(category.color)}
+                >
                   {category.name}
                 </Badge>
               ))}
@@ -175,37 +179,61 @@ export function EventDetailsDialog({ event, isOpen, onClose }: EventDetailsDialo
 
         {/* Action Buttons */}
         <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
-          <a
-            href={event.socialMediaLink || "#"}
-            rel="noopener noreferrer"
-            target="_blank"
-            className={cn(
-              buttonVariants({
-                variant: "outline",
-                size: "md",
-              }),
-              "w-full justify-center",
-              !event.socialMediaLink && "pointer-events-none opacity-50",
-            )}
-            onClick={(e) => !event.socialMediaLink && e.preventDefault()}
-          >
-            {isId ? "Postingan Media Sosial" : "Social Media Post"}
-          </a>
+          {event.socialMediaLink ? (
+            <a
+              href={event.socialMediaLink}
+              rel="noopener noreferrer"
+              target="_blank"
+              className={cn(
+                buttonVariants({
+                  variant: "outline",
+                  size: "md",
+                }),
+                "w-full justify-center",
+              )}
+            >
+              {isId ? "Postingan Media Sosial" : "Social Media Post"}
+            </a>
+          ) : (
+            <button
+              className={cn(
+                buttonVariants({
+                  variant: "outline",
+                  size: "md",
+                }),
+                "pointer-events-none w-full justify-center opacity-50",
+              )}
+              disabled
+            >
+              {isId ? "Postingan Media Sosial" : "Social Media Post"}
+            </button>
+          )}
 
-          <a
-            href={event.registrationLink || "#"}
-            rel="noopener noreferrer"
-            target="_blank"
-            className={cn(
-              buttonVariants({ variant: "default", size: "md" }),
-              "w-full justify-center gap-2 bg-orange-500 text-white hover:bg-orange-600",
-              !event.registrationLink && "pointer-events-none opacity-50",
-            )}
-            onClick={(e) => !event.registrationLink && e.preventDefault()}
-          >
-            {isId ? "Link Pendaftaran" : "Registration Link"}
-            <ArrowRight className="size-4" />
-          </a>
+          {event.registrationLink ? (
+            <a
+              href={event.registrationLink}
+              rel="noopener noreferrer"
+              target="_blank"
+              className={cn(
+                buttonVariants({ variant: "default", size: "md" }),
+                "w-full justify-center gap-2 bg-orange-500 text-white hover:bg-orange-600",
+              )}
+            >
+              {isId ? "Link Pendaftaran" : "Registration Link"}
+              <ArrowRight className="size-4" />
+            </a>
+          ) : (
+            <button
+              className={cn(
+                buttonVariants({ variant: "default", size: "md" }),
+                "pointer-events-none w-full justify-center gap-2 bg-orange-500 text-white opacity-50 hover:bg-orange-600",
+              )}
+              disabled
+            >
+              {isId ? "Link Pendaftaran" : "Registration Link"}
+              <ArrowRight className="size-4" />
+            </button>
+          )}
         </div>
       </ResponsiveModalContent>
     </ResponsiveModal>

@@ -40,15 +40,26 @@ export function DroppableCell({
           .padStart(2, "0")}`
       : null;
 
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (onClick && (e.key === "Enter" || e.key === " ")) {
+      e.preventDefault();
+      onClick();
+    }
+  };
+
+  /* eslint-disable jsx-a11y/no-static-element-interactions -- div with onClick for droppable cell */
   return (
     <div
       className={cn(
-        "flex h-full flex-col 2xl:min-h-50 overflow-hidden px-0.5 py-1 data-dragging:bg-accent sm:px-1 rounded-b-3xl",
+        "flex h-full flex-col overflow-hidden rounded-b-3xl px-0.5 py-1 data-dragging:bg-accent sm:px-1 2xl:min-h-50",
         className,
       )}
       data-dragging={isOver && activeEvent ? true : undefined}
       onClick={onClick}
+      onKeyDown={onClick ? handleKeyDown : undefined}
       ref={setNodeRef}
+      role={onClick ? "button" : undefined}
+      tabIndex={onClick ? 0 : undefined}
       title={formattedTime ? `${formattedTime}` : undefined}
     >
       {children}

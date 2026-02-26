@@ -315,6 +315,14 @@ export function WeekView({ currentDate, events, onEventSelect, readOnly = false 
                 className="absolute z-10 px-0.5"
                 key={positionedEvent.event.id}
                 onClick={(e) => e.stopPropagation()}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    e.stopPropagation();
+                  }
+                }}
+                role="button"
+                tabIndex={0}
                 style={{
                   height: `${positionedEvent.height}px`,
                   left: `${positionedEvent.left * 100}%`,

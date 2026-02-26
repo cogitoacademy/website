@@ -1,6 +1,6 @@
 "use client";
 
-import { AnimatePresence, type MotionProps, motion } from "motion/react";
+import { AnimatePresence, type MotionProps, m } from "motion/react";
 import { useEffect, useState } from "react";
 
 import { cn } from "@/lib/utils";
@@ -62,7 +62,7 @@ export function WordRotateHighlighter({
   return (
     <span className="inline overflow-hidden py-2">
       <AnimatePresence mode="wait">
-        <motion.span
+        <m.span
           key={words[index]}
           className={cn("relative inline-block", className)}
           {...motionProps}
@@ -80,7 +80,7 @@ export function WordRotateHighlighter({
           >
             {words[index]}
           </Highlighter>
-        </motion.span>
+        </m.span>
       </AnimatePresence>
     </span>
   );

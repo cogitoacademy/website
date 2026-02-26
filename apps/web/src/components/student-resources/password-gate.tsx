@@ -1,5 +1,6 @@
 "use client";
 
+/* eslint-disable react-compiler/react-compiler -- try/finally required for loading state */
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
@@ -40,12 +41,12 @@ export function PasswordGate() {
   return (
     <div className="flex min-h-screen flex-col items-center justify-start bg-background-primary px-4">
       <NavbarResolver />
-      <div className="mx-auto w-full max-w-7xl overflow-hidden rounded-xl border bg-background-cream lg:rounded-3xl relative z-30">
+      <div className="relative z-30 mx-auto w-full max-w-7xl overflow-hidden rounded-xl border bg-background-cream lg:rounded-3xl">
         <div className="flex h-full flex-col lg:flex-row-reverse">
           {/* Content Section */}
           <div className="relative z-10 h-full flex-1 justify-start p-5 sm:p-6 lg:p-8">
             <div className="text-left">
-              <h1 className="font-bold text-2xl leading-none lg:leading-normal tracking-tight lg:text-5xl">
+              <h1 className="font-bold text-2xl leading-none tracking-tight lg:text-5xl lg:leading-normal">
                 {t("title")}
               </h1>
               <p className="my-2 text-sm lg:text-lg">{t("description")}</p>
@@ -53,7 +54,11 @@ export function PasswordGate() {
 
             <form onSubmit={handleSubmit} className="mt-6 space-y-4">
               <div>
+                <label className="sr-only" htmlFor="password">
+                  {t("placeholder")}
+                </label>
                 <Input
+                  id="password"
                   type="password"
                   placeholder={t("placeholder")}
                   value={password}
@@ -69,7 +74,7 @@ export function PasswordGate() {
           </div>
 
           {/* Image Section */}
-          <div className="relative w-full lg:w-1/2 flex items-end overflow-hidden min-h-[300px] sm:min-h-[350px] md:min-h-[400px] lg:min-h-[500px]">
+          <div className="relative flex min-h-[300px] w-full items-end overflow-hidden sm:min-h-[350px] md:min-h-[400px] lg:min-h-[500px] lg:w-1/2">
             {/* Background Circle Decoration */}
             <div
               className={cn(

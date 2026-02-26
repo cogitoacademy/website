@@ -1,7 +1,7 @@
 "use client";
 
 import { ArrowUpRightIcon } from "lucide-react";
-import { motion } from "motion/react";
+import { m } from "motion/react";
 import Image from "next/image";
 import { useState } from "react";
 import { Badge } from "@/components/ui/badge";
@@ -51,13 +51,13 @@ export function EventsGrid({ events, lang }: EventsGridProps) {
   return (
     <div className="space-y-10">
       {/* Events Grid */}
-      <motion.div
+      <m.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         className="grid grid-cols-1 gap-5 md:grid-cols-3 lg:grid-cols-4 min-[500px]:grid-cols-2"
       >
         {visibleEvents.map((event, index) => (
-          <motion.div
+          <m.div
             key={event.id}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -65,9 +65,9 @@ export function EventsGrid({ events, lang }: EventsGridProps) {
             transition={{ duration: 0.3, delay: index * 0.05 }}
           >
             <EventCard event={event} lang={lang} />
-          </motion.div>
+          </m.div>
         ))}
-      </motion.div>
+      </m.div>
 
       {/* Load More Button */}
       {hasMore && (
@@ -88,11 +88,21 @@ export function EventsGrid({ events, lang }: EventsGridProps) {
 function EventCard({ event, lang }: { event: SerializedEvent; lang: string }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      setIsModalOpen(true);
+    }
+  };
+
   return (
     <>
       <div
         className="group relative flex cursor-pointer flex-col overflow-hidden rounded-2xl bg-neutral-100 transition-shadow hover:shadow-md"
         onClick={() => setIsModalOpen(true)}
+        onKeyDown={handleKeyDown}
+        role="button"
+        tabIndex={0}
       >
         {/* Arrow icon indicator */}
         <Button className="absolute top-3 right-3 z-2" variant="gray" size="icon-lg">

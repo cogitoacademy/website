@@ -2,7 +2,7 @@
 
 import { FunnelIcon, FunnelXIcon, XIcon } from "@phosphor-icons/react/dist/ssr";
 import { Download, Eye, FileText, Search } from "lucide-react";
-import { AnimatePresence, motion } from "motion/react";
+import { AnimatePresence, m } from "motion/react";
 import { useTranslations } from "next-intl";
 import { useMemo, useState } from "react";
 import { Badge } from "@/components/ui/badge";
@@ -169,7 +169,7 @@ export function ResourceList({ resources }: ResourceListProps) {
           <p className="text-muted-foreground/70 text-sm">{t("noResourcesHint")}</p>
         </div>
       ) : (
-        <motion.div
+        <m.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
@@ -178,7 +178,7 @@ export function ResourceList({ resources }: ResourceListProps) {
             {filteredResources.map((resource, index) => {
               const category = resource.category || "other";
               return (
-                <motion.div
+                <m.div
                   key={resource._id}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -227,11 +227,11 @@ export function ResourceList({ resources }: ResourceListProps) {
                       </a>
                     </CardContent>
                   </Card>
-                </motion.div>
+                </m.div>
               );
             })}
           </AnimatePresence>
-        </motion.div>
+        </m.div>
       )}
 
       {/* Preview Sheet */}
