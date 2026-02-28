@@ -46,41 +46,41 @@ const sampleLogos = [
 const classCardsData = {
 	id: [
 		{
+			title: "Kelas Reguler",
+			description:
+				"Belajar semua tentang suatu jenis perlombaan dari dasar sampai mahir dengan kurikulum yang dirancang oleh para Tutor secara holistik.",
+			tags: ["Individu", "MUN & WSC & Debate"],
+		},
+		{
 			title: "Kelas Intensif",
 			description:
-				"Persiapan kilat menuju satu ajang juara dengan strategi taktis yang teruji.",
+				"Pelatihan yang dapat dilakukan sesuai kebutuhan untuk mempersiapkan diri dalam mengikuti satu ajang perlombaan tertentu dengan memaksimalkan pengetahuan yang sudah ada.",
 			tags: ["Individu & Kelompok", "Semua Lomba"],
 		},
 		{
 			title: "Kelas Ekstrakurikuler",
 			description:
-				"Bentuk ekosistem juara di sekolahmu dengan program rutin yang fleksibel.",
-			tags: ["Individu", "MUN & WSC & Debate"],
-		},
-		{
-			title: "Kelas Reguler",
-			description:
-				"Bentuk ekosistem juara di sekolahmu dengan program rutin yang fleksibel.",
+				"Pelatihan rutin untuk klub minat dan bakat di sekolah dengan kurikulum yang dapat disesuaikan dengan kebutuhan dan tujuan sekolah dalam bidang prestasi tersebut.",
 			tags: ["Kelompok", "Semua Lomba"],
 		},
 	],
 	en: [
 		{
+			title: "Regular Class",
+			description:
+				"Learn all about a type of competition from scratch to advanced with a holistically designed curriculum by Tutors.",
+			tags: ["Individual", "MUN & WSC & Debate"],
+		},
+		{
 			title: "Intensive Class",
 			description:
-				"Quick preparation towards a championship with proven tactical strategies.",
+				"Training that can be done as needed to prepare for a specific competition by maximizing existing knowledge.",
 			tags: ["Individual & Group", "All Competitions"],
 		},
 		{
 			title: "Extracurricular Class",
 			description:
-				"Build a champion ecosystem in your school with flexible routine programs.",
-			tags: ["Individual", "MUN & WSC & Debate"],
-		},
-		{
-			title: "Extracurricular Class",
-			description:
-				"Build a champion ecosystem in your school with flexible routine programs.",
+				"Routine training for school interest and talent clubs with a curriculum that can be adjusted to the school's needs and goals in that field of achievement.",
 			tags: ["Group", "All Competitions"],
 		},
 	],
