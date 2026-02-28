@@ -1,4 +1,5 @@
 import { setRequestLocale } from "next-intl/server";
+import { Suspense } from "react";
 import { EventsSection } from "@/components/landing/events-section";
 // import { FaqSection } from "@/components/landing/faq-section";
 import { HeroSection } from "@/components/landing/hero-section";
@@ -9,36 +10,36 @@ import { TestimonialsSection } from "@/components/landing/testimonials-section";
 import { TutorsSection } from "@/components/landing/tutors-section";
 import Cta from "../../components/landing/cta";
 import FaqSectionV2 from "../../components/landing/faq-v2";
-import { Suspense } from "react";
 import Loading from "./loading";
 
 export default async function HomePage({
-  params,
+	params,
 }: {
-  params: Promise<{ locale: string }>;
+	params: Promise<{ locale: string }>;
 }) {
-  const { locale } = await params;
-  setRequestLocale(locale);
-  return (
-    <Suspense
-      fallback={
-        <div className="w-full overflow-x-clip bg-background-cream min-h-screen flex items-center justify-center">
-          <Loading />
-        </div>
-      }
-    >
-      <div className="w-full overflow-x-clip bg-background-cream">
-        <HeroSection />
-        {/*<PartnersCarousel />*/}
-        <EventsSection />
-        <MethodsSection />
-        <SkillsSection />
-        <TutorsSection />
-        <TestimonialsSection />
-        {/*<FaqSection />*/}
-        <FaqSectionV2 />
-        <Cta />
-      </div>
-    </Suspense>
-  );
+	const { locale } = await params;
+	setRequestLocale(locale);
+	const isId = locale === "id";
+	return (
+		<Suspense
+			fallback={
+				<div className="flex min-h-screen w-full items-center justify-center overflow-x-clip bg-background-cream">
+					<Loading />
+				</div>
+			}
+		>
+			<div className="w-full overflow-x-clip bg-background-cream">
+				<HeroSection />
+				{/*<PartnersCarousel />*/}
+				<EventsSection />
+				<MethodsSection />
+				<SkillsSection isId={isId} />
+				<TutorsSection />
+				<TestimonialsSection />
+				{/*<FaqSection />*/}
+				<FaqSectionV2 />
+				<Cta />
+			</div>
+		</Suspense>
+	);
 }
