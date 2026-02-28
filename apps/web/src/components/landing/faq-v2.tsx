@@ -69,7 +69,7 @@ export default function FaqSectionV2() {
         aria-hidden="true"
       />
 
-      <section className="bg-background-primary">
+      <section className="bg-background-primary relative z-30">
         <div className="mx-auto flex w-full max-w-7xl flex-col gap-y-7.5 px-4 py-20">
           <div className="flex flex-col items-center justify-center space-y-2 *:max-w-[335px] *:text-center *:min-[580px]:max-w-none">
             <Badge variant={"headline-cream"}>

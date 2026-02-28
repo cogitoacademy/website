@@ -21,7 +21,7 @@ interface CarouselProps {
   cardWidth?: number;
   cardHeight?: number;
   gap?: number;
-  responsiveGap?: boolean; // New prop for responsive gap
+  responsiveGap?: boolean;
   className?: string;
   showNavigation?: boolean;
   showDots?: boolean;
@@ -37,10 +37,10 @@ interface CarouselProps {
 
 const Carousel: React.FC<CarouselProps> = ({
   items,
-  cardWidth = 360, // 72 * 4 = 288px
-  cardHeight = 251, // 96 * 4 = 384px
+  cardWidth = 450,
+  cardHeight = 225,
   gap = 32,
-  responsiveGap = false, // New prop
+  responsiveGap = false,
   className = "",
   showNavigation = true,
   showDots = true,
@@ -53,7 +53,6 @@ const Carousel: React.FC<CarouselProps> = ({
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [currentGap, setCurrentGap] = useState(gap);
 
-  // Responsive gap calculation
   useEffect(() => {
     if (!responsiveGap) {
       setCurrentGap(gap);
@@ -63,42 +62,21 @@ const Carousel: React.FC<CarouselProps> = ({
     const updateGap = () => {
       const width = window.innerWidth;
       let newGap: number;
-
-      if (width < 640) {
-        // sm
-        newGap = Math.min(16, gap * 0.5);
-      } else if (width < 768) {
-        // md
-        newGap = Math.max(24, gap * 0.75);
-      } else if (width < 1024) {
-        // lg
-        newGap = gap;
-      } else if (width < 1280) {
-        // xl
-        newGap = gap * 1.25;
-      } else {
-        // 2xl+
-        newGap = gap * 1.5;
-      }
-
+      if (width < 640) newGap = Math.min(16, gap * 0.5);
+      else if (width < 768) newGap = Math.max(24, gap * 0.75);
+      else if (width < 1024) newGap = gap;
+      else if (width < 1280) newGap = gap * 1.25;
+      else newGap = gap * 1.5;
       setCurrentGap(newGap);
     };
 
     updateGap();
     window.addEventListener("resize", updateGap);
-
     return () => window.removeEventListener("resize", updateGap);
   }, [gap, responsiveGap]);
 
-  // Create extended array for infinite scroll effect
   const extendedItems =
-    items.length > 0
-      ? [
-          items[items.length - 1], // Last item at beginning
-          ...items,
-          items[0], // First item at end
-        ]
-      : [];
+    items.length > 0 ? [items[items.length - 1], ...items, items[0]] : [];
 
   const nextSlide = () => {
     if (isTransitioning) return;
@@ -115,113 +93,109 @@ const Carousel: React.FC<CarouselProps> = ({
   const goToSlide = (index: number) => {
     if (isTransitioning) return;
     setIsTransitioning(true);
-    setCurrentIndex(index + 1); // +1 because of the extended array
+    setCurrentIndex(index + 1);
   };
 
-  // Handle infinite scroll reset
   useEffect(() => {
     const timer = setTimeout(
       () => {
         if (currentIndex === 0) {
-          // Jumped to fake last item, now go to real last item
           setCurrentIndex(items.length);
         } else if (currentIndex === extendedItems.length - 1) {
-          // Jumped to fake first item, now go to real first item
           setCurrentIndex(1);
         }
         setIsTransitioning(false);
       },
       isTransitioning ? 500 : 0,
     );
-
     return () => clearTimeout(timer);
   }, [currentIndex, items.length, extendedItems.length, isTransitioning]);
 
-  // Auto-play functionality
   useEffect(() => {
     if (!autoPlay) return;
-
     const interval = setInterval(() => {
-      if (!isTransitioning) {
-        setCurrentIndex((prev) => prev + 1);
-      }
+      if (!isTransitioning) setCurrentIndex((prev) => prev + 1);
     }, autoPlayInterval);
-
     return () => clearInterval(interval);
   }, [autoPlay, autoPlayInterval, isTransitioning]);
 
-  const getCardStyle = (index: number) => {
+  /**
+   * Arc/fan layout — cards are arranged in a downward-opening arc:
+   *   - position  0: center top, no rotation
+   *   - position ±1: dropped down, rotated ±15°, shifted horizontally
+   *   - position ±2: dropped further, rotated ±30°, shifted further (hidden)
+   *   - beyond ±2 : fully hidden
+   *
+   * The transform-origin is set to the bottom-center of the card so that
+   * rotation pivots from the bottom, creating a natural fan effect.
+   */
+  const getCardStyle = (index: number): React.CSSProperties => {
     const position = index - currentIndex;
-    const translateX = position * (cardWidth - 50);
 
-    const isVisible = Math.abs(position) <= 1;
+    // Arc parameters
+    const ARC_TRANSLATE_X = cardWidth * 0.85; // horizontal spread per step
+    const ARC_TRANSLATE_Y = 80; // vertical drop per step
+    const ARC_ROTATE_DEG = 15; // rotation per step (degrees)
 
-    let scale = 1;
-    let blur = 0;
-    let opacity = isVisible ? 1 : 0;
-    let translateY = 0;
-    let zIndex = 1;
-    let rotateY = 0;
-    // let translateX = 0;
+    const absPos = Math.abs(position);
+    const sign = Math.sign(position);
 
-    if (position === 0) {
-      scale = 1;
-      blur = 0;
-      opacity = 1;
-      translateY = 0;
-      rotateY = 0;
-      zIndex = 10;
-    } else if (position === -1 || position === -2) {
-      // scale = 0.85;
-      blur = 0;
-      opacity = 1;
-      translateY = 80;
-      rotateY = -15;
-      zIndex = 5;
-      // translateX = -20;
-    } else if (position === 1 || position === 2) {
-      // scale = 0.85;
-      blur = 0;
-      opacity = 1;
-      translateY = 80;
-      rotateY = 15;
-      zIndex = 5;
-      // translateX = 20;
+    // Render up to ±2 for smooth circular transition, but only show ±1 and 0
+    const isRendered = absPos <= 2;
+
+    if (!isRendered) {
+      return {
+        opacity: 0,
+        visibility: "hidden",
+        zIndex: 0,
+        pointerEvents: "none",
+      };
     }
 
+    const translateX = sign * absPos * ARC_TRANSLATE_X;
+    const translateY = absPos * ARC_TRANSLATE_Y * absPos;
+    const rotate = sign * absPos * ARC_ROTATE_DEG;
+    const zIndex = 10 - absPos * 3;
+    // ±2 cards are fully invisible — only used as ghost frames for smooth animation
+    const opacity = absPos <= 1 ? 1 : 0;
+    const pointerEvents = absPos <= 1 ? "auto" : ("none" as const);
+
+    const isJumpFrame =
+      (currentIndex === 0 && index === items.length) ||
+      (currentIndex === extendedItems.length - 1 && index === 1);
+
     return {
-      transform: `translateX(${translateX}px) translateY(${translateY}px) scale(${scale}) rotate(${rotateY}deg)`,
-      filter: `blur(${blur}px)`,
+      transform: `translateX(${translateX}px) translateY(${translateY}px) rotate(${rotate}deg)`,
+      transformOrigin: "bottom center",
       opacity,
       zIndex,
-      visibility: isVisible ? ("visible" as const) : ("hidden" as const),
+      visibility: "visible",
+      pointerEvents,
       transition:
-        isTransitioning &&
-        !(
-          (currentIndex === 0 && index === items.length) ||
-          (currentIndex === extendedItems.length - 1 && index === 1)
-        )
+        isTransitioning && !isJumpFrame
           ? "all 0.5s cubic-bezier(0.4, 0, 0.2, 1)"
           : "none",
     };
   };
 
   const defaultRenderCard = (item: CarouselItem) => {
-    // Alternate between 2 colors based on item id
     const itemId =
       typeof item.id === "number"
         ? item.id
         : Number.parseInt(item.id as string, 10) || 0;
     const bgColor =
       itemId % 2 === 0
-        ? "bg-neutral-100 border-neutral-200 *:text-black "
-        : "bg-primary-300 *:text-neutral-1000 border-primary-400";
+        ? "bg-tertiary-yellow-200 border-neutral-200 *:text-black"
+        : "bg-secondary-200 *:text-neutral-1000 border-neutral-200";
 
     return (
       <div
         className={`mx-auto flex aspect-video w-full max-w-[90vw] flex-col overflow-hidden rounded-[20px] border shadow-sm transition sm:max-w-none ${bgColor}`}
       >
         <div className="flex flex-1 flex-col justify-between text-pretty p-4 text-left">
+          <p className="max-h-full overflow-y-auto font-light text-xs lg:text-sm">
+            {item.desc}
+          </p>
           <div className="flex items-center space-x-2">
             <div className="flex size-10 shrink-0 items-center justify-center overflow-hidden rounded-full bg-primary-100 lg:size-13">
               <Image
@@ -239,9 +213,6 @@ const Carousel: React.FC<CarouselProps> = ({
               <h4 className="line-clamp-2 text-xs lg:text-sm">{item.title}</h4>
             </div>
           </div>
-          <p className="max-h-full overflow-y-auto font-light text-xs lg:text-sm">
-            {item.desc}
-          </p>
         </div>
       </div>
     );
@@ -250,32 +221,9 @@ const Carousel: React.FC<CarouselProps> = ({
   return (
     <div className={`flex flex-col items-center justify-center ${className}`}>
       {/* Main carousel container */}
-      <div className="relative z-30 flex h-54 w-full max-w-280 items-center justify-center overflow-visible">
-        {/* Navigasi kiri-kanan untuk xl ke atas */}
-        {showNavigation && (
-          <>
-            {/* XL ke atas: tombol di kiri-kanan card aktif */}
-            {/*<button
-              type="button"
-              onClick={prevSlide}
-              disabled={isTransitioning}
-              className="absolute top-1/2 z-30 hidden -translate-x-49.5 -translate-y-1/2 rounded-[10px] bg-secondary-800 p-2.5 text-neutral-100 shadow transition-all duration-300 ease-out hover:scale-105 hover:bg-secondary-700 active:scale-95 disabled:cursor-not-allowed disabled:opacity-50 lg:flex xl:-translate-x-53.75"
-            >
-              <ArrowLeftIcon size={24} />
-            </button>
-            <button
-              type="button"
-              onClick={nextSlide}
-              disabled={isTransitioning}
-              className="absolute top-1/2 z-30 hidden translate-x-49.5 -translate-y-1/2 rounded-[10px] bg-secondary-800 p-2.5 text-neutral-100 shadow transition-all duration-300 ease-out hover:scale-105 hover:bg-secondary-700 active:scale-95 disabled:cursor-not-allowed disabled:opacity-50 lg:flex xl:translate-x-53.75"
-            >
-              <ArrowRightIcon size={24} />
-            </button>*/}
-          </>
-        )}
-
+      <div className="relative z-30 flex h-80 w-full max-w-280 items-start justify-center overflow-visible">
         {/* Cards */}
-        <div className="relative flex items-center justify-center">
+        <div className="relative flex items-start justify-center">
           {extendedItems.map((item, index) => {
             if (!item) return null;
             return (
@@ -289,7 +237,7 @@ const Carousel: React.FC<CarouselProps> = ({
                   ...getCardStyle(index),
                 }}
                 onClick={() => {
-                  const actualIndex = index - 1; // Account for extended array
+                  const actualIndex = index - 1;
                   if (
                     actualIndex >= 0 &&
                     actualIndex < items.length &&
@@ -317,7 +265,7 @@ const Carousel: React.FC<CarouselProps> = ({
               type="button"
               onClick={prevSlide}
               disabled={isTransitioning}
-              className="z-30 rounded-[10px] bg-secondary-800 p-2.5 text-neutral-100 transition-all duration-300 hover:scale-110 hover:bg-secondary-700 active:scale-95 disabled:cursor-not-allowed disabled:opacity-50"
+              className="z-30 rounded-[10px] bg-primary-500 hover:bg-primary-400 p-2.5 text-neutral-100 transition-all duration-300 hover:scale-110 active:scale-95 disabled:cursor-not-allowed disabled:opacity-50"
             >
               <ArrowLeftIcon size={24} />
             </button>
@@ -326,7 +274,7 @@ const Carousel: React.FC<CarouselProps> = ({
               type="button"
               onClick={nextSlide}
               disabled={isTransitioning}
-              className="z-30 rounded-[10px] bg-secondary-800 p-2.5 text-neutral-100 transition-all duration-300 hover:scale-110 hover:bg-secondary-700 active:scale-95 disabled:cursor-not-allowed disabled:opacity-50"
+              className="z-30 rounded-[10px] bg-primary-500 hover:bg-primary-400 p-2.5 text-neutral-100 transition-all duration-300 hover:scale-110 active:scale-95 disabled:cursor-not-allowed disabled:opacity-50"
             >
               <ArrowRightIcon size={24} />
             </button>
@@ -336,9 +284,8 @@ const Carousel: React.FC<CarouselProps> = ({
 
       {/* Dots indicator */}
       {showDots && (
-        <div className="-mt-13 flex gap-2 lg:mt-8">
+        <div className="mt-8 flex gap-2">
           {items.map((item, index) => {
-            // Calculate the actual active item index (accounting for extended array and wrapping)
             let activeIndex = currentIndex - 1;
             if (activeIndex < 0) activeIndex = items.length - 1;
             if (activeIndex >= items.length) activeIndex = 0;
