@@ -9,10 +9,10 @@ import { Container } from "./ui/container";
 
 export interface CarouselItem {
   id: string | number;
+  img: string;
   desc: string;
   name: string;
   title: string;
-  [key: string]: unknown; // Replace 'any' with 'unknown'
   avatar: string;
 }
 
@@ -38,7 +38,7 @@ interface CarouselProps {
 const Carousel: React.FC<CarouselProps> = ({
   items,
   cardWidth = 360, // 72 * 4 = 288px
-  cardHeight = 211, // 96 * 4 = 384px
+  cardHeight = 251, // 96 * 4 = 384px
   gap = 32,
   responsiveGap = false, // New prop
   className = "",
@@ -152,9 +152,8 @@ const Carousel: React.FC<CarouselProps> = ({
 
   const getCardStyle = (index: number) => {
     const position = index - currentIndex;
-    const translateX = position * (cardWidth + currentGap);
+    const translateX = position * (cardWidth - 50);
 
-    // Only show cards within position -1, 0, 1 (3 cards total)
     const isVisible = Math.abs(position) <= 1;
 
     let scale = 1;
@@ -162,23 +161,36 @@ const Carousel: React.FC<CarouselProps> = ({
     let opacity = isVisible ? 1 : 0;
     let translateY = 0;
     let zIndex = 1;
+    let rotateY = 0;
+    // let translateX = 0;
 
     if (position === 0) {
       scale = 1;
       blur = 0;
       opacity = 1;
       translateY = 0;
+      rotateY = 0;
       zIndex = 10;
-    } else if (Math.abs(position) === 1) {
-      scale = 0.9;
+    } else if (position === -1 || position === -2) {
+      // scale = 0.85;
       blur = 0;
       opacity = 1;
-      translateY = 0;
+      translateY = 80;
+      rotateY = -15;
       zIndex = 5;
+      // translateX = -20;
+    } else if (position === 1 || position === 2) {
+      // scale = 0.85;
+      blur = 0;
+      opacity = 1;
+      translateY = 80;
+      rotateY = 15;
+      zIndex = 5;
+      // translateX = 20;
     }
 
     return {
-      transform: `translateX(${translateX}px) translateY(${translateY}px) scale(${scale})`,
+      transform: `translateX(${translateX}px) translateY(${translateY}px) scale(${scale}) rotate(${rotateY}deg)`,
       filter: `blur(${blur}px)`,
       opacity,
       zIndex,
@@ -227,7 +239,7 @@ const Carousel: React.FC<CarouselProps> = ({
               <h4 className="line-clamp-2 text-xs lg:text-sm">{item.title}</h4>
             </div>
           </div>
-          <p className="max-h-full overflow-y-auto font-light text-xs lg:text-base">
+          <p className="max-h-full overflow-y-auto font-light text-xs lg:text-sm">
             {item.desc}
           </p>
         </div>
@@ -243,7 +255,7 @@ const Carousel: React.FC<CarouselProps> = ({
         {showNavigation && (
           <>
             {/* XL ke atas: tombol di kiri-kanan card aktif */}
-            <button
+            {/*<button
               type="button"
               onClick={prevSlide}
               disabled={isTransitioning}
@@ -258,7 +270,7 @@ const Carousel: React.FC<CarouselProps> = ({
               className="absolute top-1/2 z-30 hidden translate-x-49.5 -translate-y-1/2 rounded-[10px] bg-secondary-800 p-2.5 text-neutral-100 shadow transition-all duration-300 ease-out hover:scale-105 hover:bg-secondary-700 active:scale-95 disabled:cursor-not-allowed disabled:opacity-50 lg:flex xl:translate-x-53.75"
             >
               <ArrowRightIcon size={24} />
-            </button>
+            </button>*/}
           </>
         )}
 
@@ -300,7 +312,7 @@ const Carousel: React.FC<CarouselProps> = ({
       {/* Navigation buttons */}
       {showNavigation && (
         <Container className="pt-5 pb-0">
-          <div className="mb-6 flex w-full items-center justify-between gap-8 lg:hidden">
+          <div className="mb-6 flex w-full items-center justify-between gap-8">
             <button
               type="button"
               onClick={prevSlide}
