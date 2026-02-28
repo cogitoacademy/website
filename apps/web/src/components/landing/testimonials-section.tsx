@@ -36,7 +36,9 @@ export async function TestimonialsSection() {
     {
       id: 3,
       name: "Raffi Ahmad",
-      title: isId ? "Delegasi RI di Geneva Model UN" : "Indonesian Delegate at Geneva Model UN",
+      title: isId
+        ? "Delegasi RI di Geneva Model UN"
+        : "Indonesian Delegate at Geneva Model UN",
       desc: isId
         ? "Pengalaman di Cogito Academy memberikan saya fondasi yang kuat untuk bersaing di level internasional. Tim mentor yang beranggotakan praktisi PBB nyata memberikan insight yang tidak bisa saya temukan di tempat lain. Ini adalah investasi terbaik untuk masa depan saya di dunia diplomat."
         : "My experience at Cogito Academy gave me a strong foundation to compete at the international level. The mentoring team consisting of real UN practitioners provided insights I couldn't find elsewhere. This is the best investment for my future in the diplomatic world.",
@@ -46,7 +48,9 @@ export async function TestimonialsSection() {
     {
       id: 4,
       name: "Nadira Amira",
-      title: isId ? "Best Position Paper THIMUN 2024" : "Best Position Paper at THIMUN 2024",
+      title: isId
+        ? "Best Position Paper THIMUN 2024"
+        : "Best Position Paper at THIMUN 2024",
       desc: isId
         ? "Cogito Academy bukan hanya tentang menang kompetisi, tetapi tentang membentuk karakter pemimpin masa depan. Saya belajar bagaimana mengartikulasikan posisi dengan argumen yang kuat sambil tetap menghormati pendapat berbeda. Proses pembelajaran yang personal membuat saya berkembang dengan cepat."
         : "Cogito Academy is not just about winning competitions, but about shaping future leaders. I learned how to articulate positions with strong arguments while respecting different opinions. The personalized learning process helped me grow quickly.",
@@ -56,12 +60,13 @@ export async function TestimonialsSection() {
   ];
 
   return (
-    <section className="bg-background-cream py-16">
+    <section className="bg-background-cream py-16 overflow-hidden">
       <div className="container mx-auto max-w-7xl px-4">
         <div className="flex flex-col items-center gap-12">
           <div className="space-y-2 text-center">
             <Badge variant={"headline-primary"}>
-              <UserSoundIcon /> <span>{isId ? "Testimoni" : "Testimonials"}</span>
+              <UserSoundIcon />{" "}
+              <span>{isId ? "Testimoni" : "Testimonials"}</span>
             </Badge>
             <h2 className="mx-auto text-pretty font-bold text-2xl text-neutral-1000 lg:max-w-none lg:text-3xl">
               {isId ? (
@@ -71,7 +76,8 @@ export async function TestimonialsSection() {
                 </>
               ) : (
                 <>
-                  Get Direct Strategies from <span className="text-primary-500">First Hand</span>
+                  Get Direct Strategies from{" "}
+                  <span className="text-primary-500">First Hand</span>
                 </>
               )}
             </h2>
