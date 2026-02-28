@@ -236,7 +236,7 @@ export function HeroSection() {
             tutorType="Tutor Kelas Ekstrakurikuler"
           />
           <ClassCard
-            className="order-2 min-h-84 bg-tertiary-pink-300 md:order-3 md:translate-y-20"
+            className="order-3 min-h-84 bg-tertiary-pink-300 md:order-3 md:translate-y-20"
             innerClassName="bg-tertiary-pink-100"
             title={cards[2].title}
             description={cards[2].description}
