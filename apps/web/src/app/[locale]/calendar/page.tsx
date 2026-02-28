@@ -76,16 +76,12 @@ export default async function CompetitionCalendarPage({ params }: Props) {
             {locale === "en" ? (
               <>
                 Discover Your Next{" "}
-                <span className="font-extrabold text-primary-500 italic">
-                  World Stage
-                </span>
+                <span className="font-extrabold text-primary-500 italic">World Stage</span>
               </>
             ) : (
               <>
                 Temukan{" "}
-                <span className="font-extrabold text-primary-500 italic">
-                  Panggung Duniamu
-                </span>{" "}
+                <span className="font-extrabold text-primary-500 italic">Panggung Duniamu</span>{" "}
                 Selanjutnya
               </>
             )}

@@ -12,34 +12,30 @@ import Cta from "../../components/landing/cta";
 import FaqSectionV2 from "../../components/landing/faq-v2";
 import Loading from "./loading";
 
-export default async function HomePage({
-	params,
-}: {
-	params: Promise<{ locale: string }>;
-}) {
-	const { locale } = await params;
-	setRequestLocale(locale);
-	const isId = locale === "id";
-	return (
-		<Suspense
-			fallback={
-				<div className="flex min-h-screen w-full items-center justify-center overflow-x-clip bg-background-cream">
-					<Loading />
-				</div>
-			}
-		>
-			<div className="w-full overflow-x-clip bg-background-cream">
-				<HeroSection />
-				{/*<PartnersCarousel />*/}
-				<EventsSection />
-				<MethodsSection />
-				<SkillsSection isId={isId} />
-				<TutorsSection />
-				<TestimonialsSection />
-				{/*<FaqSection />*/}
-				<FaqSectionV2 />
-				<Cta />
-			</div>
-		</Suspense>
-	);
+export default async function HomePage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+  const isId = locale === "id";
+  return (
+    <Suspense
+      fallback={
+        <div className="flex min-h-screen w-full items-center justify-center overflow-x-clip bg-background-cream">
+          <Loading />
+        </div>
+      }
+    >
+      <div className="w-full overflow-x-clip bg-background-cream">
+        <HeroSection />
+        {/*<PartnersCarousel />*/}
+        <EventsSection />
+        <MethodsSection />
+        <SkillsSection isId={isId} />
+        <TutorsSection />
+        <TestimonialsSection />
+        {/*<FaqSection />*/}
+        <FaqSectionV2 />
+        <Cta />
+      </div>
+    </Suspense>
+  );
 }

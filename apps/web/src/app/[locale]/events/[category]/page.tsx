@@ -1,10 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { setRequestLocale } from "next-intl/server";
-import {
-  EventsGrid,
-  type SerializedEvent,
-} from "@/components/events/events-grid";
+import { EventsGrid, type SerializedEvent } from "@/components/events/events-grid";
 import NavbarResolver from "@/components/navbar-resolver";
 import { routing } from "@/i18n/routing";
 import { sanityToEvent } from "@/lib/transforms/eventTransform";
@@ -47,8 +44,7 @@ export async function generateMetadata({
     },
   };
 
-  const title =
-    titles[category]?.[isId ? "id" : "en"] || "Events | Cogito Academy";
+  const title = titles[category]?.[isId ? "id" : "en"] || "Events | Cogito Academy";
   const description = descriptions[category]?.[isId ? "id" : "en"] || "";
 
   return {

@@ -28,11 +28,7 @@ interface CarouselProps {
   autoPlay?: boolean;
   autoPlayInterval?: number;
   onItemClick?: (item: CarouselItem, index: number) => void;
-  renderCard?: (
-    item: CarouselItem,
-    index?: number,
-    isActive?: boolean,
-  ) => React.ReactNode;
+  renderCard?: (item: CarouselItem, index?: number, isActive?: boolean) => React.ReactNode;
 }
 
 const Carousel: React.FC<CarouselProps> = ({
@@ -51,7 +47,7 @@ const Carousel: React.FC<CarouselProps> = ({
 }) => {
   const [currentIndex, setCurrentIndex] = useState(1);
   const [isTransitioning, setIsTransitioning] = useState(false);
-  const [currentGap, setCurrentGap] = useState(gap);
+  const [_currentGap, setCurrentGap] = useState(gap);
 
   useEffect(() => {
     if (!responsiveGap) {
@@ -75,8 +71,7 @@ const Carousel: React.FC<CarouselProps> = ({
     return () => window.removeEventListener("resize", updateGap);
   }, [gap, responsiveGap]);
 
-  const extendedItems =
-    items.length > 0 ? [items[items.length - 1], ...items, items[0]] : [];
+  const extendedItems = items.length > 0 ? [items[items.length - 1], ...items, items[0]] : [];
 
   const nextSlide = () => {
     if (isTransitioning) return;
@@ -172,17 +167,13 @@ const Carousel: React.FC<CarouselProps> = ({
       visibility: "visible",
       pointerEvents,
       transition:
-        isTransitioning && !isJumpFrame
-          ? "all 0.5s cubic-bezier(0.4, 0, 0.2, 1)"
-          : "none",
+        isTransitioning && !isJumpFrame ? "all 0.5s cubic-bezier(0.4, 0, 0.2, 1)" : "none",
     };
   };
 
   const defaultRenderCard = (item: CarouselItem) => {
     const itemId =
-      typeof item.id === "number"
-        ? item.id
-        : Number.parseInt(item.id as string, 10) || 0;
+      typeof item.id === "number" ? item.id : Number.parseInt(item.id as string, 10) || 0;
     const bgColor =
       itemId % 2 === 0
         ? "bg-tertiary-yellow-200 border-neutral-200 *:text-black"
@@ -193,9 +184,7 @@ const Carousel: React.FC<CarouselProps> = ({
         className={`mx-auto flex aspect-video w-full max-w-[90vw] flex-col overflow-hidden rounded-[20px] border shadow-sm transition sm:max-w-none ${bgColor}`}
       >
         <div className="flex flex-1 flex-col justify-between text-pretty p-4 text-left">
-          <p className="max-h-full overflow-y-auto font-light text-xs lg:text-sm">
-            {item.desc}
-          </p>
+          <p className="max-h-full overflow-y-auto font-light text-xs lg:text-sm">{item.desc}</p>
           <div className="flex items-center space-x-2">
             <div className="flex size-10 shrink-0 items-center justify-center overflow-hidden rounded-full bg-primary-100 lg:size-13">
               <Image
@@ -207,9 +196,7 @@ const Carousel: React.FC<CarouselProps> = ({
               />
             </div>
             <div>
-              <h3 className={cn("font-medium text-sm lg:text-base")}>
-                {item.name}
-              </h3>
+              <h3 className={cn("font-medium text-sm lg:text-base")}>{item.name}</h3>
               <h4 className="line-clamp-2 text-xs lg:text-sm">{item.title}</h4>
             </div>
           </div>
@@ -297,9 +284,7 @@ const Carousel: React.FC<CarouselProps> = ({
                 onClick={() => goToSlide(index)}
                 disabled={isTransitioning}
                 className={`size-2 rounded-full transition-all duration-200 disabled:cursor-not-allowed ${
-                  index === activeIndex
-                    ? "scale-125 bg-dot-active"
-                    : "scale-125 bg-dot-inactive"
+                  index === activeIndex ? "scale-125 bg-dot-active" : "scale-125 bg-dot-inactive"
                 }`}
               />
             );
