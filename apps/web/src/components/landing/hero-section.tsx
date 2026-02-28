@@ -113,14 +113,19 @@ export function HeroSection() {
           <div className="mb-2 rounded-[12px] bg-background-primary px-2.5 py-2 text-center text-2xs leading-snug sm:text-sm">
             {isId ? (
               <>
-                Didukung oleh <span className="font-bold text-secondary-600">200+</span> prestasi
-                tutor di <span className="font-bold text-secondary-600">9</span> bidang keilmuan
+                Didukung oleh{" "}
+                <span className="font-bold text-secondary-600">200+</span>{" "}
+                prestasi tutor di{" "}
+                <span className="font-bold text-secondary-600">9</span> bidang
+                keilmuan
               </>
             ) : (
               <>
-                Supported by <span className="font-bold text-secondary-600">200+</span> tutor
-                achievements in <span className="font-bold text-secondary-600">9</span> fields of
-                study
+                Supported by{" "}
+                <span className="font-bold text-secondary-600">200+</span> tutor
+                achievements in{" "}
+                <span className="font-bold text-secondary-600">9</span> fields
+                of study
               </>
             )}
           </div>
@@ -164,9 +169,20 @@ export function HeroSection() {
 
           {/* CTA Buttons */}
           <div className="my-2 flex w-full flex-col items-center gap-2 sm:my-6 sm:w-auto sm:flex-row sm:gap-4">
-            <Button size="md" className="w-full max-w-[214px] sm:w-auto sm:max-w-none">
-              <span>{isId ? "Jadwalkan Konsultasi Gratis" : "Schedule Free Consultation"}</span>
-              <ChatsCircleIcon weight="duotone" color="#ffffff" className="size-5" />
+            <Button
+              size="md"
+              className="w-full max-w-[214px] sm:w-auto sm:max-w-none"
+            >
+              <span>
+                {isId
+                  ? "Jadwalkan Konsultasi Gratis"
+                  : "Schedule Free Consultation"}
+              </span>
+              <ChatsCircleIcon
+                weight="duotone"
+                color="#ffffff"
+                className="size-5"
+              />
             </Button>
 
             <Button
@@ -183,7 +199,9 @@ export function HeroSection() {
         {/* Trust Section */}
         <section className="flex flex-col items-center">
           <p className="text-neutral-700 text-xs sm:text-sm">
-            {isId ? "Cogito telah dipercaya oleh" : "Cogito has been trusted by"}
+            {isId
+              ? "Cogito telah dipercaya oleh"
+              : "Cogito has been trusted by"}
           </p>
           <LogoCloud logos={sampleLogos} interval={3000} displayCount={3} />
         </section>
@@ -200,7 +218,7 @@ export function HeroSection() {
         <section className="-mt-70 grid w-full grid-cols-1 gap-5 md:mt-0 md:grid-cols-3 md:gap-4">
           {/* Kuning */}
           <ClassCard
-            className="order-2 min-h-90 translate-y-20 bg-tertiary-yellow-400 md:order-1 md:translate-y-20"
+            className="order-2 min-h-90 translate-y-20 bg-tertiary-yellow-400 md:order-1 md:translate-y-20 relative z-1"
             innerClassName="bg-tertiary-yellow-100"
             title={cards[0].title}
             description={cards[0].description}
@@ -209,7 +227,7 @@ export function HeroSection() {
             tutorType="Tutor Kelas Intensif"
           />
           <ClassCard
-            className="order-1 min-h-120 translate-y-70 bg-tertiary-blue-300 md:order-2 md:translate-y-0"
+            className="order-1 min-h-120 translate-y-70 bg-tertiary-blue-300 md:order-2 md:translate-y-0 relative z-3"
             innerClassName="bg-tertiary-blue-100"
             title={cards[1].title}
             description={cards[1].description}
@@ -218,7 +236,7 @@ export function HeroSection() {
             tutorType="Tutor Kelas Ekstrakurikuler"
           />
           <ClassCard
-            className="order-2 min-h-84 bg-tertiary-pink-300 md:order-3 md:translate-y-20"
+            className="order-2 min-h-84 bg-tertiary-pink-300 md:order-3 md:translate-y-20 relative z-2"
             innerClassName="bg-tertiary-pink-100"
             title={cards[2].title}
             description={cards[2].description}
