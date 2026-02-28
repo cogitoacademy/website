@@ -218,7 +218,7 @@ export function HeroSection() {
         <section className="-mt-70 grid w-full grid-cols-1 gap-5 md:mt-0 md:grid-cols-3 md:gap-4">
           {/* Kuning */}
           <ClassCard
-            className="order-2 min-h-90 translate-y-20 bg-tertiary-yellow-400 md:order-1 md:translate-y-20 relative z-1"
+            className="order-2 min-h-90 translate-y-20 bg-tertiary-yellow-400 md:order-1 md:translate-y-20"
             innerClassName="bg-tertiary-yellow-100"
             title={cards[0].title}
             description={cards[0].description}
@@ -227,7 +227,7 @@ export function HeroSection() {
             tutorType="Tutor Kelas Intensif"
           />
           <ClassCard
-            className="order-1 min-h-120 translate-y-70 bg-tertiary-blue-300 md:order-2 md:translate-y-0 relative z-3"
+            className="order-1 min-h-120 translate-y-70 bg-tertiary-blue-300 md:order-2 md:translate-y-0"
             innerClassName="bg-tertiary-blue-100"
             title={cards[1].title}
             description={cards[1].description}
@@ -236,7 +236,7 @@ export function HeroSection() {
             tutorType="Tutor Kelas Ekstrakurikuler"
           />
           <ClassCard
-            className="order-2 min-h-84 bg-tertiary-pink-300 md:order-3 md:translate-y-20 relative z-2"
+            className="order-2 min-h-84 bg-tertiary-pink-300 md:order-3 md:translate-y-20"
             innerClassName="bg-tertiary-pink-100"
             title={cards[2].title}
             description={cards[2].description}

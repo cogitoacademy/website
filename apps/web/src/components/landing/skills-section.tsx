@@ -88,22 +88,37 @@ export function SkillsSection({ isId }: { isId: boolean }) {
         />
 
         <div className="absolute top-20 left-0 aspect-[500/520] w-full lg:aspect-16/5">
-          <svg viewBox="0 0 1000 120" preserveAspectRatio="none" className="h-full w-full">
-            <polygon points="0,0 1000,0 1000,80 500,120 0,80" className="fill-tertiary-pink-300" />
+          <svg
+            viewBox="0 0 1000 120"
+            preserveAspectRatio="none"
+            className="h-full w-full"
+          >
+            <polygon
+              points="0,0 1000,0 1000,80 500,120 0,80"
+              className="fill-tertiary-pink-300"
+            />
           </svg>
         </div>
 
         <div className="absolute top-0 left-0 aspect-[500/520] w-full lg:aspect-16/5">
-          <svg viewBox="0 0 1000 120" preserveAspectRatio="none" className="h-full w-full">
-            <polygon points="0,0 1000,0 1000,80 500,120 0,80" className="fill-neutral-100" />
+          <svg
+            viewBox="0 0 1000 120"
+            preserveAspectRatio="none"
+            className="h-full w-full"
+          >
+            <polygon
+              points="0,0 1000,0 1000,80 500,120 0,80"
+              className="fill-neutral-100"
+            />
           </svg>
         </div>
 
         <div className="relative z-3 flex flex-col items-center justify-center">
           <Badge variant={"headline-cream"}>
-            <MedalIcon className="size-5" />{" "}
+            <MedalIcon className="size-5" />
             <span>{isId ? "Jenis Perlombaan" : "Types of Competitions"}</span>
           </Badge>
+
           <h2 className="relative z-1 text-center font-bold text-3xl">
             {isId ? (
               <>
@@ -116,7 +131,9 @@ export function SkillsSection({ isId }: { isId: boolean }) {
             )}
           </h2>
         </div>
-        <div className="relative z-3 flex w-full flex-wrap items-center justify-center gap-6">
+
+        {/* MOBILE = full width stack | SM+ = flex wrap cards */}
+        <div className="relative z-3 mt-8 flex w-full flex-col gap-3 sm:gap-6 sm:flex-row sm:flex-wrap sm:justify-center">
           {skills.map((skill) => (
             <FieldCard
               key={skill.titleEn}
@@ -144,33 +161,39 @@ function FieldCard({
     <ResponsiveModal>
       <ResponsiveModalTrigger>
         <div
-          className={cn("h-fit max-h-25 w-88 cursor-pointer rounded-xl pt-4", {
-            "bg-tertiary-blue-500": color === "tertiary-blue-500",
-            "bg-tertiary-red-600": color === "tertiary-red-600",
-
-            "bg-tertiary-yellow-600": color === "tertiary-yellow-600",
-            "bg-primary-500": color === "primary-500",
-            "bg-secondary-500": color === "secondary-500",
-            "bg-tertiary-green-600": color === "tertiary-green-600",
-            "bg-tertiary-pink-300": color === "tertiary-pink-300",
-          })}
+          className={cn(
+            // ✅ mobile full width → desktop fixed card width
+            "h-fit w-full cursor-pointer rounded-xl pt-4 sm:w-88 sm:flex-none",
+            {
+              "bg-tertiary-blue-500": color === "tertiary-blue-500",
+              "bg-tertiary-red-600": color === "tertiary-red-600",
+              "bg-tertiary-yellow-600": color === "tertiary-yellow-600",
+              "bg-primary-500": color === "primary-500",
+              "bg-secondary-500": color === "secondary-500",
+              "bg-tertiary-green-600": color === "tertiary-green-600",
+              "bg-tertiary-pink-300": color === "tertiary-pink-300",
+            },
+          )}
         >
-          <div className="flex items-center justify-center rounded-xl bg-neutral-100 p-5 shadow-inset-top">
+          <div className="flex items-center justify-between rounded-xl bg-neutral-100 p-5 shadow-inset-top">
             <div className="w-full text-start">
               <h4 className="font-semibold text-lg leading-none">{title}</h4>
               <p className="text-sm">{description}</p>
             </div>
+
             <Button variant="gray" size="icon-lg">
               <ArrowRightIcon weight="bold" className="text-neutral-1000" />
             </Button>
           </div>
         </div>
       </ResponsiveModalTrigger>
+
       <ResponsiveModalContent side="bottom" className="w-full sm:max-w-lg">
         <ResponsiveModalHeader>
           <ResponsiveModalTitle>{title}</ResponsiveModalTitle>
           <ResponsiveModalDescription>{description}</ResponsiveModalDescription>
         </ResponsiveModalHeader>
+
         <div className="mt-4">
           <p className="text-muted-foreground text-sm">
             [Placeholder for {title} content - More details coming soon...]
