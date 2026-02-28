@@ -1,9 +1,13 @@
+"use client";
+
 import { ChatsCircleIcon } from "@phosphor-icons/react/dist/ssr";
-import { ArrowRight } from "lucide-react";
-import { getLocale } from "next-intl/server";
+import { ArrowRight, ArrowRightIcon } from "lucide-react";
+import { useLocale } from "next-intl";
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Container } from "../ui/container";
 import { WordRotateHighlighter } from "../ui/word-rotate-highlighter";
+import { ClassCard } from "./hero-class-card";
 import { LogoCloud } from "./logo-cloud";
 
 const sampleLogos = [
@@ -82,19 +86,29 @@ const classCardsData = {
   ],
 };
 
-export async function HeroSection() {
-  const locale = await getLocale();
+export function HeroSection() {
+  const locale = useLocale();
   const isId = locale === "id";
 
   const rotatingWordsId = ["Kompeten", "Tangguh", "Mendunia"];
   const rotatingWordsEn = ["Competent", "Resilient", "Global"];
   const cards = isId ? classCardsData.id : classCardsData.en;
 
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % 3);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <>
       <div className="absolute inset-0 bottom-50 z-0 w-full bg-neutral-100 [clip-path:polygon(0_0,100%_0,100%_70%,50%_100%,0%_70%)] sm:bottom-120 md:bottom-90" />
+
       <Container className="relative z-1 flex-col items-center pt-28 pb-0 sm:pt-36 md:pt-42 lg:pt-50">
-        <section className="flex flex-col items-center justify-center z-99 relative">
+        <section className="relative z-99 flex flex-col items-center justify-center">
           {/* Badge / Tagline */}
           <div className="mb-2 rounded-[12px] bg-background-primary px-2.5 py-2 text-center text-2xs leading-snug sm:text-sm">
             {isId ? (
@@ -118,7 +132,7 @@ export async function HeroSection() {
 
           {/* Headline */}
 
-          <div className="inline font-bold text-2xl text-neutral-1000 transition-normal sm:text-3xl md:text-4xl lg:text-5xl text-center sm:max-w-lg max-w-100 md:max-w-xl lg:max-w-3xl lg:leading-snug">
+          <div className="inline max-w-100 text-center font-bold text-2xl text-neutral-1000 transition-normal sm:max-w-lg sm:text-3xl md:max-w-xl md:text-4xl lg:max-w-3xl lg:text-5xl lg:leading-snug">
             {isId ? (
               <>
                 Mulai Perjalananmu Menjadi Pelajar yang
@@ -147,17 +161,17 @@ export async function HeroSection() {
           </div>
 
           {/* Subtitle */}
-          <p className="max-w-xs text-center text-neutral-1000 text-xs sm:max-w-md sm:text-sm mt-2 sm:mt-4">
+          <p className="mt-2 max-w-xs text-center text-neutral-1000 text-xs sm:mt-4 sm:max-w-md sm:text-sm">
             {isId
               ? "Menjadi ahli yang siap berprestasi, lebih dari sekadar kompetisi, bersama Cogito Academy melalui materi mendalam."
               : "Become an expert ready to excel, beyond just competitions, with Cogito Academy's in-depth materials."}
           </p>
 
           {/* CTA Buttons */}
-          <div className="my-2 sm:my-6 flex w-full flex-col items-center gap-2 sm:gap-4 sm:w-auto sm:flex-row">
+          <div className="my-2 flex w-full flex-col items-center gap-2 sm:my-6 sm:w-auto sm:flex-row sm:gap-4">
             <Button
               size="md"
-              className="w-full max-w-[214px] sm:max-w-none sm:w-auto"
+              className="w-full max-w-[214px] sm:w-auto sm:max-w-none"
             >
               <span>
                 {isId
@@ -174,7 +188,7 @@ export async function HeroSection() {
             <Button
               size="md"
               variant="gray"
-              className="w-full max-w-[214px] sm:max-w-none sm:w-auto"
+              className="w-full max-w-[214px] sm:w-auto sm:max-w-none"
             >
               <span>{isId ? "Lihat Program" : "View Programs"}</span>
               <ArrowRight className="size-4" />
@@ -204,11 +218,12 @@ export async function HeroSection() {
         <section className="-mt-70 grid w-full grid-cols-1 gap-5 md:mt-0 md:grid-cols-3 md:gap-4">
           {/* Kuning */}
           <ClassCard
-            className="order-2 min-h-90 translate-y-20 -rotate-3 bg-tertiary-yellow-500 md:order-1 md:translate-y-20 md:-rotate-10"
+            className="order-2 min-h-90 translate-y-20 bg-tertiary-yellow-500 md:order-1 md:translate-y-20"
             innerClassName="bg-tertiary-yellow-400"
             title={cards[0].title}
             description={cards[0].description}
             tags={cards[0].tags}
+            isActiveTrigger={activeIndex === 0}
           />
           <ClassCard
             className="order-1 min-h-120 translate-y-70 bg-tertiary-blue-600 md:order-2 md:translate-y-0"
@@ -216,53 +231,18 @@ export async function HeroSection() {
             title={cards[1].title}
             description={cards[1].description}
             tags={cards[1].tags}
+            isActiveTrigger={activeIndex === 1}
           />
           <ClassCard
-            className="order-2 min-h-84 rotate-2 bg-tertiary-pink-400 md:order-3 md:translate-y-20 md:rotate-10"
+            className="order-2 min-h-84 bg-tertiary-pink-400 md:order-3 md:translate-y-20"
             innerClassName="bg-tertiary-pink-300"
             title={cards[2].title}
             description={cards[2].description}
             tags={cards[2].tags}
+            isActiveTrigger={activeIndex === 2}
           />
         </section>
       </Container>
     </>
-  );
-}
-
-function ClassCard({
-  className,
-  innerClassName,
-  title,
-  description,
-  tags,
-}: {
-  className?: string;
-  innerClassName?: string;
-  title: string;
-  description: string;
-  tags: string[];
-}) {
-  return (
-    <div className={`overflow-hidden rounded-2xl ${className} md:min-h-100`}>
-      <div
-        className={`mt-6 flex min-h-full flex-col gap-3 rounded-2xl px-5 py-5 sm:px-8 sm:py-6 ${innerClassName ?? ""}`}
-      >
-        <h2 className="font-bold text-neutral-1000 text-xl sm:text-2xl">
-          {title}
-        </h2>
-        <p className="text-neutral-1000 text-sm">{description}</p>
-        <div className="flex flex-wrap gap-2">
-          {tags.map((tag) => (
-            <span
-              key={tag}
-              className="inline-flex items-center rounded-full bg-neutral-100/80 px-3 py-1.5 font-medium text-neutral-1000 text-xs"
-            >
-              {tag}
-            </span>
-          ))}
-        </div>
-      </div>
-    </div>
   );
 }
