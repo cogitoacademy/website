@@ -218,15 +218,6 @@ export function HeroSection() {
         <section className="grid w-full grid-cols-1 gap-5 md:mt-0 md:grid-cols-3 md:gap-4 -mb-100">
           {/* Kuning */}
           <ClassCard
-            className="order-2 min-h-90 bg-tertiary-yellow-400 md:order-1 md:translate-y-20 -translate-y-70"
-            innerClassName="bg-tertiary-yellow-100"
-            title={cards[0].title}
-            description={cards[0].description}
-            tags={cards[0].tags}
-            isActiveTrigger={activeIndex === 0}
-            tutorType="Tutor Kelas Reguler"
-          />
-          <ClassCard
             className="order-1 min-h-120 bg-tertiary-blue-300 md:order-2 md:translate-y-0"
             innerClassName="bg-tertiary-blue-100"
             title={cards[1].title}
@@ -234,6 +225,15 @@ export function HeroSection() {
             tags={cards[1].tags}
             isActiveTrigger={activeIndex === 1}
             tutorType="Tutor Kelas Insentif"
+          />
+          <ClassCard
+            className="order-2 min-h-90 bg-tertiary-yellow-400 md:order-1 md:translate-y-20 -translate-y-70"
+            innerClassName="bg-tertiary-yellow-100"
+            title={cards[0].title}
+            description={cards[0].description}
+            tags={cards[0].tags}
+            isActiveTrigger={activeIndex === 0}
+            tutorType="Tutor Kelas Reguler"
           />
           <ClassCard
             className="order-3 min-h-84 bg-tertiary-pink-300 md:order-3 md:translate-y-20  -translate-y-100"
