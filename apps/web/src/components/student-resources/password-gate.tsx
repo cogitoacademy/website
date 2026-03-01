@@ -46,7 +46,7 @@ export function PasswordGate() {
           {/* Content Section */}
           <div className="relative z-10 h-full flex-1 justify-start p-5 sm:p-6 lg:p-8">
             <div className="text-left">
-              <h1 className="font-bold text-2xl leading-none tracking-tight lg:text-5xl lg:leading-normal">
+              <h1 className="font-bold text-2xl leading-tight tracking-tight lg:text-5xl lg:leading-normal">
                 {t("title")}
               </h1>
               <p className="my-2 text-sm lg:text-lg">{t("description")}</p>
@@ -81,7 +81,7 @@ export function PasswordGate() {
           </div>
 
           {/* Image Section */}
-          <div className="relative flex min-h-[300px] w-full items-end overflow-hidden sm:min-h-[350px] md:min-h-[400px] lg:min-h-[500px] lg:w-1/2">
+          <div className="relative flex min-h-[200px] w-full items-end overflow-hidden sm:min-h-[350px] md:min-h-[400px] lg:min-h-[500px] lg:w-1/2">
             {/* Background Circle Decoration */}
             <div
               className={cn(

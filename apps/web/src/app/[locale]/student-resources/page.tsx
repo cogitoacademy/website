@@ -7,7 +7,6 @@ import { ResourceList } from "@/components/student-resources/resource-list";
 import { STUDENT_RESOURCES_QUERY } from "@/queries/studentResources";
 import { client } from "@/sanity/client";
 import { Suspense } from "react";
-import Loading from "../loading";
 
 export const dynamic = "force-dynamic";
 
@@ -52,17 +51,9 @@ export default async function StudentResourcesPage({ params }: Props) {
 
   if (!hasAccess) {
     return (
-      <Suspense
-        fallback={
-          <div className="w-full overflow-x-clip bg-background-cream min-h-screen flex items-center justify-center">
-            <Loading />
-          </div>
-        }
-      >
-        <main className="bg-background-cream min-h-screen">
-          <PasswordGate />
-        </main>
-      </Suspense>
+      <main className="min-h-screen bg-background-cream">
+        <PasswordGate />
+      </main>
     );
   }
 
@@ -74,26 +65,18 @@ export default async function StudentResourcesPage({ params }: Props) {
   }
 
   return (
-    <Suspense
-      fallback={
-        <div className="w-full overflow-x-clip bg-background-cream min-h-screen flex items-center justify-center">
-          <Loading />
+    <main className="bg-background-cream">
+      <NavbarResolver />
+      <div className="relative z-3 mx-auto min-h-screen max-w-7xl px-4">
+        <div className="mb-8">
+          <h1 className="font-semibold text-2xl text-neutral-1000 sm:max-w-[500px] sm:text-3xl md:max-w-2xl md:text-4xl lg:max-w-3xl lg:text-5xl min-[450px]:max-w-[420px]">
+            {t("title")}
+          </h1>
+          <p className="mt-2">{t("subtitle")}</p>
         </div>
-      }
-    >
-      <main className="bg-background-cream">
-        <NavbarResolver />
-        <div className="relative z-3 mx-auto min-h-screen max-w-7xl px-4">
-          <div className="mb-8">
-            <h1 className="font-semibold text-2xl text-neutral-1000 sm:max-w-[500px] sm:text-3xl md:max-w-2xl md:text-4xl lg:max-w-3xl lg:text-5xl min-[450px]:max-w-[420px]">
-              {t("title")}
-            </h1>
-            <p className="mt-2">{t("subtitle")}</p>
-          </div>
 
-          <ResourceList resources={resources} />
-        </div>
-      </main>
-    </Suspense>
+        <ResourceList resources={resources} />
+      </div>
+    </main>
   );
 }
