@@ -12,7 +12,7 @@ export default async function p() {
   return (
     <section className="relative bg-primary-100 px-4 py-20">
       {/*<Container>*/}
-      <div className="relative z-2 mx-auto h-[383px] max-w-[calc(80rem-2rem)] overflow-visible rounded-3xl bg-neutral-100 p-10">
+      <div className="relative z-2 mx-auto h-[520px] min-[540px]:h-[383px] max-w-[calc(80rem-2rem)] overflow-visible rounded-3xl bg-neutral-100 p-10">
         <div className="flex h-full flex-col items-start sm:justify-between">
           <div>
             <h2 className="font-bold text-3xl text-gray-900 leading-tight sm:text-4xl xl:text-5xl">
@@ -35,7 +35,7 @@ export default async function p() {
             </p>
           </div>
           <div className="hidden sm:flex-1 h-full" />
-          <Link href="/contact" className="relative z-1 mt-2 sm:mt-auto sm:mb-0">
+          <Link href="/contact" className="relative z-1 mt-3 sm:mt-auto sm:mb-0">
             <Button size="lg">
               <span>{isId ? "Jadwalkan Konsultasi gratis" : "Schedule Free Consultation"}</span>
               <ChatsCircleIcon weight="duotone" color="#ffffff" className="size-5" />
