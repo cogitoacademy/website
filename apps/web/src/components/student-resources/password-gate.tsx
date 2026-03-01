@@ -65,16 +65,9 @@ export function PasswordGate() {
                   onChange={(e) => setPassword(e.target.value)}
                   className={cn("h-10.5 text-base", error && "border-red-500")}
                 />
-                {error && (
-                  <p className="mt-2 text-red-500 text-sm">{t("error")}</p>
-                )}
+                {error && <p className="mt-2 text-red-500 text-sm">{t("error")}</p>}
               </div>
-              <Button
-                type="submit"
-                size="md"
-                className="w-full"
-                disabled={isLoading}
-              >
+              <Button type="submit" size="md" className="w-full" disabled={isLoading}>
                 {isLoading ? t("verifying") : t("button")}
               </Button>
             </form>

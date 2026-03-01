@@ -10,26 +10,22 @@ import { TutorsSection } from "@/components/landing/tutors-section";
 import Cta from "../../components/landing/cta";
 import FaqSectionV2 from "../../components/landing/faq-v2";
 
-export default async function HomePage({
-	params,
-}: {
-	params: Promise<{ locale: string }>;
-}) {
-	const { locale } = await params;
-	setRequestLocale(locale);
+export default async function HomePage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  setRequestLocale(locale);
 
-	return (
-		<div className="w-full overflow-x-clip bg-background-cream">
-			<HeroSection />
-			{/*<PartnersCarousel />*/}
-			<EventsSection />
-			<MethodsSection />
-			<SkillsSection />
-			<TutorsSection />
-			<TestimonialsSection />
-			{/*<FaqSection />*/}
-			<FaqSectionV2 />
-			<Cta />
-		</div>
-	);
+  return (
+    <div className="w-full overflow-x-clip bg-background-cream">
+      <HeroSection />
+      {/*<PartnersCarousel />*/}
+      <EventsSection />
+      <MethodsSection />
+      <SkillsSection />
+      <TutorsSection />
+      <TestimonialsSection />
+      {/*<FaqSection />*/}
+      <FaqSectionV2 />
+      <Cta />
+    </div>
+  );
 }

@@ -113,19 +113,14 @@ export function HeroSection() {
           <div className="mb-2 rounded-[12px] bg-background-primary px-2.5 py-2 text-center text-2xs leading-snug sm:text-sm">
             {isId ? (
               <>
-                Didukung oleh{" "}
-                <span className="font-bold text-secondary-600">200+</span>{" "}
-                prestasi tutor di{" "}
-                <span className="font-bold text-secondary-600">9</span> bidang
-                keilmuan
+                Didukung oleh <span className="font-bold text-secondary-600">200+</span> prestasi
+                tutor di <span className="font-bold text-secondary-600">9</span> bidang keilmuan
               </>
             ) : (
               <>
-                Supported by{" "}
-                <span className="font-bold text-secondary-600">200+</span> tutor
-                achievements in{" "}
-                <span className="font-bold text-secondary-600">9</span> fields
-                of study
+                Supported by <span className="font-bold text-secondary-600">200+</span> tutor
+                achievements in <span className="font-bold text-secondary-600">9</span> fields of
+                study
               </>
             )}
           </div>
@@ -169,20 +164,9 @@ export function HeroSection() {
 
           {/* CTA Buttons */}
           <div className="my-2 flex w-full flex-col items-center gap-2 sm:my-6 sm:w-auto sm:flex-row sm:gap-4">
-            <Button
-              size="md"
-              className="w-full max-w-[214px] sm:w-auto sm:max-w-none"
-            >
-              <span>
-                {isId
-                  ? "Jadwalkan Konsultasi Gratis"
-                  : "Schedule Free Consultation"}
-              </span>
-              <ChatsCircleIcon
-                weight="duotone"
-                color="#ffffff"
-                className="size-5"
-              />
+            <Button size="md" className="w-full max-w-[214px] sm:w-auto sm:max-w-none">
+              <span>{isId ? "Jadwalkan Konsultasi Gratis" : "Schedule Free Consultation"}</span>
+              <ChatsCircleIcon weight="duotone" color="#ffffff" className="size-5" />
             </Button>
 
             <Button
@@ -199,9 +183,7 @@ export function HeroSection() {
         {/* Trust Section */}
         <section className="flex flex-col items-center">
           <p className="text-neutral-700 text-xs sm:text-sm">
-            {isId
-              ? "Cogito telah dipercaya oleh"
-              : "Cogito has been trusted by"}
+            {isId ? "Cogito telah dipercaya oleh" : "Cogito has been trusted by"}
           </p>
           <LogoCloud logos={sampleLogos} interval={3000} displayCount={3} />
         </section>

@@ -67,9 +67,7 @@ export default function Header() {
     <>
       <header
         className={`fixed top-0 right-0 left-0 z-40 transition-colors duration-300 ${
-          isScrolled
-            ? "rounded-b-2xl bg-neutral-100 shadow-sm"
-            : "bg-transparent"
+          isScrolled ? "rounded-b-2xl bg-neutral-100 shadow-sm" : "bg-transparent"
         }`}
       >
         <div className="mx-auto max-w-7xl px-4 py-4">
@@ -102,10 +100,7 @@ export default function Header() {
                         {item.label}
                         <ChevronDown className="h-4 w-4" />
                       </DropdownMenuTrigger>
-                      <DropdownMenuContent
-                        align="start"
-                        className="w-48 bg-background-cream"
-                      >
+                      <DropdownMenuContent align="start" className="w-48 bg-background-cream">
                         {item.items.map((subItem) => (
                           <DropdownMenuItem
                             key={subItem.href}
@@ -155,10 +150,7 @@ export default function Header() {
           </div>
         </div>
       </header>
-      <MobileMenu
-        isOpen={isMobileMenuOpen}
-        onClose={() => setIsMobileMenuOpen(false)}
-      />
+      <MobileMenu isOpen={isMobileMenuOpen} onClose={() => setIsMobileMenuOpen(false)} />
     </>
   );
 }

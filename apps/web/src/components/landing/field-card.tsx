@@ -22,7 +22,7 @@ const colorBgMap: Record<string, string> = {
   "tertiary-pink-300": "bg-tertiary-pink-300",
 };
 
-const colorOverlayMap: Record<string, string> = {
+const _colorOverlayMap: Record<string, string> = {
   "tertiary-blue-500": "from-tertiary-blue-500/90",
   "tertiary-red-600": "from-tertiary-red-600/90",
   "tertiary-yellow-600": "from-tertiary-yellow-600/90",
@@ -42,19 +42,11 @@ const colorTextMap: Record<string, string> = {
   "tertiary-pink-300": "text-tertiary-pink-300!",
 };
 
-export default function FieldCard({
-  skill,
-  isId,
-}: {
-  skill: Skill;
-  isId: boolean;
-}) {
+export default function FieldCard({ skill, isId }: { skill: Skill; isId: boolean }) {
   const { color } = skill;
   const title = isId ? skill.titleId : skill.titleEn;
   const description = isId ? skill.descriptionId : skill.descriptionEn;
-  const longDescription = isId
-    ? skill.longDescriptionId
-    : skill.longDescriptionEn;
+  const longDescription = isId ? skill.longDescriptionId : skill.longDescriptionEn;
 
   return (
     <ResponsiveModal>
@@ -71,11 +63,7 @@ export default function FieldCard({
               <p className="text-sm">{description}</p>
             </div>
 
-            <div
-              className={cn(
-                buttonVariants({ variant: "gray", size: "icon-lg" }),
-              )}
-            >
+            <div className={cn(buttonVariants({ variant: "gray", size: "icon-lg" }))}>
               <ArrowRightIcon weight="bold" className="text-neutral-1000" />
             </div>
           </div>
@@ -93,12 +81,7 @@ export default function FieldCard({
         <div className="rounded-2xl overflow-hidden">
           {/* ── Header: image + color overlay ── */}
           <div className="relative h-48 w-full overflow-hidden">
-            <Image
-              src="/modal-banner.webp"
-              alt={title}
-              fill
-              className="object-cover grayscale"
-            />
+            <Image src="/modal-banner.webp" alt={title} fill className="object-cover grayscale" />
 
             {/* gradient overlay */}
             <div
@@ -144,9 +127,7 @@ export default function FieldCard({
 
           {/* ── Body ── */}
           <div className="bg-background p-5">
-            <p className="text-neutral-700 text-sm leading-relaxed">
-              {longDescription}
-            </p>
+            <p className="text-neutral-700 text-sm leading-relaxed">{longDescription}</p>
 
             <div className="mt-5">
               <p className="font-semibold text-neutral-900 text-sm">

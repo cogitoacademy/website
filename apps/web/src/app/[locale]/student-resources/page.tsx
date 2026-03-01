@@ -6,7 +6,6 @@ import { PasswordGate } from "@/components/student-resources/password-gate";
 import { ResourceList } from "@/components/student-resources/resource-list";
 import { STUDENT_RESOURCES_QUERY } from "@/queries/studentResources";
 import { client } from "@/sanity/client";
-import { Suspense } from "react";
 
 export const dynamic = "force-dynamic";
 
