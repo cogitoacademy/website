@@ -110,8 +110,8 @@ export function ClassCard({
               style={{ overflow: "hidden" }}
             >
               <div className="my-3 flex w-full items-center justify-between px-5 sm:px-6">
-                <p>Baca Selengkapnya</p>
-                <ArrowRightIcon />
+                <p className="text-sm lg:text-base">Baca Selengkapnya</p>
+                <ArrowRightIcon className="size-4 lg:size-5" />
               </div>
             </motion.div>
           )}
