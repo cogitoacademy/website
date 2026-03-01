@@ -12,10 +12,14 @@ import Cta from "../../components/landing/cta";
 import FaqSectionV2 from "../../components/landing/faq-v2";
 import Loading from "./loading";
 
-export default async function HomePage({ params }: { params: Promise<{ locale: string }> }) {
+export default async function HomePage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
   const { locale } = await params;
   setRequestLocale(locale);
-  const isId = locale === "id";
+
   return (
     <Suspense
       fallback={
@@ -29,7 +33,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         {/*<PartnersCarousel />*/}
         <EventsSection />
         <MethodsSection />
-        <SkillsSection isId={isId} />
+        <SkillsSection />
         <TutorsSection />
         <TestimonialsSection />
         {/*<FaqSection />*/}

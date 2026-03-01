@@ -215,7 +215,7 @@ export function HeroSection() {
         </section>*/}
 
         {/* Class Cards */}
-        <section className="grid w-full grid-cols-1 gap-5 md:mt-0 md:grid-cols-3 md:gap-4 -mb-100">
+        <section className="grid w-full grid-cols-1 gap-5 md:mt-0 md:grid-cols-3 md:gap-4 -mb-100 md:mb-0">
           {/* Kuning */}
           <ClassCard
             className="order-1 min-h-120 bg-tertiary-blue-300 md:order-2 md:translate-y-0"

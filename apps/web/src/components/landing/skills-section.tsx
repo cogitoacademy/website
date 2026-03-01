@@ -4,7 +4,7 @@ import { ArrowRightIcon, MedalIcon } from "@phosphor-icons/react/dist/ssr";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { Badge } from "../ui/badge";
-import { Button } from "../ui/button";
+import { Button, buttonVariants } from "../ui/button";
 import { Container } from "../ui/container";
 import {
   ResponsiveModal,
@@ -14,6 +14,7 @@ import {
   ResponsiveModalTitle,
   ResponsiveModalTrigger,
 } from "../ui/responsive-modal";
+import { useLocale } from "next-intl";
 
 type Skill = {
   titleId: string;
@@ -75,7 +76,10 @@ const skills: Skill[] = [
   },
 ];
 
-export function SkillsSection({ isId }: { isId: boolean }) {
+export function SkillsSection() {
+  const locale = useLocale();
+  const isId = locale === "id";
+
   return (
     <section className="bg-primary-100 px-4 py-20">
       <Container className="relative max-w-[calc(80rem-2rem)] overflow-hidden rounded-2xl border bg-tertiary-pink-500 pt-9 pb-20">
@@ -88,14 +92,28 @@ export function SkillsSection({ isId }: { isId: boolean }) {
         />
 
         <div className="absolute top-20 left-0 aspect-[500/520] w-full lg:aspect-16/5">
-          <svg viewBox="0 0 1000 120" preserveAspectRatio="none" className="h-full w-full">
-            <polygon points="0,0 1000,0 1000,80 500,120 0,80" className="fill-tertiary-pink-300" />
+          <svg
+            viewBox="0 0 1000 120"
+            preserveAspectRatio="none"
+            className="h-full w-full"
+          >
+            <polygon
+              points="0,0 1000,0 1000,80 500,120 0,80"
+              className="fill-tertiary-pink-300"
+            />
           </svg>
         </div>
 
         <div className="absolute top-0 left-0 aspect-[500/520] w-full lg:aspect-16/5">
-          <svg viewBox="0 0 1000 120" preserveAspectRatio="none" className="h-full w-full">
-            <polygon points="0,0 1000,0 1000,80 500,120 0,80" className="fill-neutral-100" />
+          <svg
+            viewBox="0 0 1000 120"
+            preserveAspectRatio="none"
+            className="h-full w-full"
+          >
+            <polygon
+              points="0,0 1000,0 1000,80 500,120 0,80"
+              className="fill-neutral-100"
+            />
           </svg>
         </div>
 
@@ -167,9 +185,13 @@ function FieldCard({
               <p className="text-sm">{description}</p>
             </div>
 
-            <Button variant="gray" size="icon-lg">
+            <div
+              className={cn(
+                buttonVariants({ variant: "gray", size: "icon-lg" }),
+              )}
+            >
               <ArrowRightIcon weight="bold" className="text-neutral-1000" />
-            </Button>
+            </div>
           </div>
         </div>
       </ResponsiveModalTrigger>
