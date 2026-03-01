@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 const responsiveModalVariants = cva(
-	"data-closed:fade-out-0 data-open:fade-in-0 data-closed:zoom-out-95 data-open:zoom-in-95 fixed z-50 gap-4 bg-background p-6 shadow-lg outline-none ring-1 ring-foreground/10 duration-300 data-closed:animate-out data-open:animate-in",
+	"data-closed:fade-out-0 data-open:fade-in-0 data-closed:zoom-out-95 data-open:zoom-in-95 fixed z-50 gap-4 bg-background p-6 shadow-lg outline-none ring-1 ring-foreground/10 duration-100 data-closed:animate-out data-open:animate-in",
 	{
 		variants: {
 			side: {
@@ -56,7 +56,7 @@ function ResponsiveModalOverlay({
 		<DialogPrimitive.Backdrop
 			data-slot="responsive-modal-overlay"
 			className={cn(
-				"data-closed:fade-out-0 data-open:fade-in-0 fixed inset-0 z-50 bg-black/50 duration-300 data-closed:animate-out data-open:animate-in",
+				"data-closed:fade-out-0 data-open:fade-in-0 fixed inset-0 z-50 bg-black/50 backdrop-blur-xs duration-100 data-closed:animate-out data-open:animate-in",
 				className,
 			)}
 			{...props}
