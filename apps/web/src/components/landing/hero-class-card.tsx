@@ -35,7 +35,8 @@ export function ClassCard({
     if (tutorType === "Tutor Kelas Intensif") {
       return {
         title: "Kelas Intensif",
-        description: "Persiapan kilat menuju satu ajang juara dengan strategi taktis yang teruji.",
+        description:
+          "Persiapan kilat menuju satu ajang juara dengan strategi taktis yang teruji.",
         features: [
           "Fokus pada satu kompetisi target",
           "Durasi intensif 2-4 minggu",
@@ -51,7 +52,8 @@ export function ClassCard({
     if (tutorType === "Tutor Kelas Ekstrakurikuler") {
       return {
         title: "Kelas Ekstrakurikuler",
-        description: "Bentuk ekosistem juara di sekolahmu dengan program rutin yang fleksibel.",
+        description:
+          "Bentuk ekosistem juara di sekolahmu dengan program rutin yang fleksibel.",
         features: [
           "Program rutin mingguan",
           "Kurikulum disesuaikan sekolah",
@@ -123,7 +125,9 @@ export function ClassCard({
             innerClassName ?? "",
           )}
         >
-          <h2 className="font-bold text-neutral-1000 text-xl sm:text-2xl">{title}</h2>
+          <h2 className="font-bold text-neutral-1000 text-xl sm:text-2xl">
+            {title}
+          </h2>
           <p className="text-neutral-1000 text-sm">{description}</p>
           <div className="flex flex-wrap gap-2">
             {tags.map((tag) => (
@@ -141,10 +145,11 @@ export function ClassCard({
       <ResponsiveModal open={open} onOpenChange={setOpen}>
         <ResponsiveModalContent
           side={"bottom"}
-          className="overflow-hidden border-none p-0 sm:max-w-[600px] max-h-[70svh]"
+          style={{ maxHeight: "75dvh" }}
+          className="overflow-hidden border-none p-0 sm:max-w-[600px] rounded-t-2xl sm:rounded-lg flex flex-col"
         >
           {/* Top: Image Section */}
-          <div className="relative h-[300px] shrink-0 overflow-hidden bg-[#A855F7] md:h-50">
+          <div className="relative h-[200px] shrink-0 overflow-hidden bg-[#A855F7] md:h-50">
             {/* Main Image */}
             <Image
               src="/placeholder.jpg"
@@ -194,10 +199,15 @@ export function ClassCard({
 
               {/* Features List */}
               <div className="mt-6 space-y-3">
-                <h3 className="font-semibold text-lg text-neutral-1000">Apa yang kamu dapatkan:</h3>
+                <h3 className="font-semibold text-lg text-neutral-1000">
+                  Apa yang kamu dapatkan:
+                </h3>
                 <ul className="space-y-2">
                   {modalContent.features.map((feature, index) => (
-                    <li key={index} className="flex items-center gap-3 text-neutral-700">
+                    <li
+                      key={index}
+                      className="flex items-center gap-3 text-neutral-700"
+                    >
                       <div className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-primary-100">
                         <svg
                           className="h-3 w-3 text-primary-500"
