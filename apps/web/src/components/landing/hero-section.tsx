@@ -224,7 +224,7 @@ export function HeroSection() {
             description={cards[1].description}
             tags={cards[1].tags}
             isActiveTrigger={activeIndex === 1}
-            tutorType="Tutor Kelas Insentif"
+            tutorType="Tutor Kelas Intensif"
           />
           <ClassCard
             className="order-2 min-h-90 bg-tertiary-yellow-400 md:order-1 md:translate-y-20 -translate-y-70"
