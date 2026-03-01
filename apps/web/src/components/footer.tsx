@@ -69,11 +69,11 @@ export default function Footer() {
       >
         <div className="flex w-full flex-col items-center md:items-start">
           <Image
-            src="/cogito-academy-logo.webp"
+            src="/logo extended.png"
             alt="Cogito Academy"
             width={424}
             height={200}
-            className="h-auto w-full sm:h-30 sm:w-auto"
+            className="h-auto w-full sm:h-40 sm:w-auto -mt-3"
             priority
             sizes="(max-width: 768px) 200px, 300px"
           />
