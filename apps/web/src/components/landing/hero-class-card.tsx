@@ -104,7 +104,7 @@ const COLOR_TEXT_MAP: Record<string, string> = {
   'secondary-500': 'text-secondary-500',
 };
 
-const COLOR_BORDER_HEX: Record<string, string> = {
+const _COLOR_BORDER_HEX: Record<string, string> = {
   'tertiary-blue-500': '#29aae1',
   'tertiary-yellow-600': '#ffd600',
   'secondary-500': '#a64ac9',
@@ -284,11 +284,11 @@ export function ClassCard({
                         key={subject.slug}
                         value={subject.slug}
                         className="min-w-[110px] shrink-0 px-4 py-3 text-sm lg:w-full lg:min-w-full justify-between bg-background-cream shadow-xs"
-                        style={
-                          {
-                            '--active-color': COLOR_BORDER_HEX[subject.color],
-                          } as React.CSSProperties
-                        }
+                        // style={
+                        //   {
+                        //     '--active-color': COLOR_BORDER_HEX[subject.color],
+                        //   } as React.CSSProperties
+                        // }
                       >
                         {isId ? subject.labelId : subject.labelEn}
                         <ArrowRightIcon className="" />
