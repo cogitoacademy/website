@@ -3,11 +3,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 
 import { cn } from "@/lib/utils";
 
-function Tabs({
-  className,
-  orientation = "horizontal",
-  ...props
-}: TabsPrimitive.Root.Props) {
+function Tabs({ className, orientation = "horizontal", ...props }: TabsPrimitive.Root.Props) {
   return (
     <TabsPrimitive.Root
       data-slot="tabs"
@@ -19,7 +15,7 @@ function Tabs({
 }
 
 const tabsListVariants = cva(
-  "group/tabs-list inline-flex w-fit items-center justify-center rounded-none p-[3px] text-muted-foreground data-[variant=line]:rounded-none space-y-4",
+  "group/tabs-list inline-flex w-fit items-center justify-center rounded-none p-[3px] text-muted-foreground data-[variant=line]:rounded-none lg:space-y-4",
   {
     variants: {
       variant: {

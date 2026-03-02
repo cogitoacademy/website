@@ -19,8 +19,7 @@ const REGULER_SUBJECTS = [
     slug: "mun",
     labelId: "Model United Nations",
     labelEn: "Model United Nations",
-    sessionsId:
-      "24 sesi pembelajaran intensif dengan jadwal satu pertemuan setiap minggu.",
+    sessionsId: "24 sesi pembelajaran intensif dengan jadwal satu pertemuan setiap minggu.",
     sessionsEn: "24 intensive learning sessions with one meeting every week.",
     topicsId: [
       "Dasar-dasar MUN dan menguasai prosedur",
@@ -43,8 +42,7 @@ const REGULER_SUBJECTS = [
     slug: "wsc",
     labelId: "World Scholar's Cup",
     labelEn: "World Scholar's Cup",
-    sessionsId:
-      "36 sesi pembelajaran intensif dengan jadwal satu pertemuan setiap minggu.",
+    sessionsId: "36 sesi pembelajaran intensif dengan jadwal satu pertemuan setiap minggu.",
     sessionsEn: "36 intensive learning sessions with one meeting every week.",
     topicsId: [
       "Teknik Scholar's Bowl",
@@ -67,8 +65,7 @@ const REGULER_SUBJECTS = [
     slug: "debat",
     labelId: "Debat",
     labelEn: "Debate",
-    sessionsId:
-      "18 sesi pembelajaran intensif dengan jadwal satu pertemuan setiap minggu.",
+    sessionsId: "18 sesi pembelajaran intensif dengan jadwal satu pertemuan setiap minggu.",
     sessionsEn: "18 intensive learning sessions with one meeting every week.",
     topicsId: [
       "Fundamentasi argumentasi",
@@ -89,7 +86,7 @@ const REGULER_SUBJECTS = [
   },
 ] as const;
 
-const COLOR_BORDER_MAP: Record<string, string> = {
+const _COLOR_BORDER_MAP: Record<string, string> = {
   "tertiary-blue-500": "border-l-tertiary-blue-500",
   "tertiary-yellow-600": "border-l-tertiary-yellow-600",
   "secondary-500": "border-l-secondary-500",
@@ -138,8 +135,7 @@ export function ClassCard({
     if (tutorType === "Tutor Kelas Intensif") {
       return {
         title: "Kelas Intensif",
-        description:
-          "Persiapan kilat menuju satu ajang juara dengan strategi taktis yang teruji.",
+        description: "Persiapan kilat menuju satu ajang juara dengan strategi taktis yang teruji.",
         features: [
           "Fokus pada satu kompetisi target",
           "Durasi intensif 2-4 minggu",
@@ -155,8 +151,7 @@ export function ClassCard({
     if (tutorType === "Tutor Kelas Ekstrakurikuler") {
       return {
         title: "Kelas Ekstrakurikuler",
-        description:
-          "Bentuk ekosistem juara di sekolahmu dengan program rutin yang fleksibel.",
+        description: "Bentuk ekosistem juara di sekolahmu dengan program rutin yang fleksibel.",
         features: [
           "Program rutin mingguan",
           "Kurikulum disesuaikan sekolah",
@@ -228,9 +223,7 @@ export function ClassCard({
             innerClassName ?? "",
           )}
         >
-          <h2 className="font-bold text-neutral-1000 text-xl sm:text-2xl">
-            {title}
-          </h2>
+          <h2 className="font-bold text-neutral-1000 text-xl sm:text-2xl">{title}</h2>
           <p className="text-neutral-1000 text-sm line-clamp-2 lg:line-clamp-none">{description}</p>
           <div className="flex flex-wrap gap-2">
             {tags.map((tag) => (
@@ -279,21 +272,18 @@ export function ClassCard({
           <div className="min-h-0 flex-1 overflow-y-auto p-4 pt-0">
             {/* Kelas Reguler: Tabbed Layout */}
             {tutorType === "Tutor Kelas Reguler" ? (
-              <Tabs
-                defaultValue={REGULER_SUBJECTS[0].slug}
-                className="flex-col sm:flex-row"
-              >
+              <Tabs defaultValue={REGULER_SUBJECTS[0].slug} className="flex-col lg:flex-row">
                 {/* Left Panel: Tabs List */}
-                <div className="shrink-0 sm:w-60">
+                <div className="shrink-0 lg:w-60">
                   <TabsList
                     variant="sidebar"
-                    className="flex w-full flex-row overflow-x-auto sm:flex-col"
+                    className="flex justify-start items-center w-full flex-row overflow-x-auto lg:flex-col"
                   >
                     {REGULER_SUBJECTS.map((subject) => (
                       <TabsTrigger
                         key={subject.slug}
                         value={subject.slug}
-                        className="min-w-[110px] shrink-0 px-4 py-3 text-sm sm:w-full sm:min-w-full justify-between bg-background-cream shadow-xs"
+                        className="min-w-[110px] shrink-0 px-4 py-3 text-sm lg:w-full lg:min-w-full justify-between bg-background-cream shadow-xs"
                         style={
                           {
                             "--active-color": COLOR_BORDER_HEX[subject.color],
@@ -327,27 +317,23 @@ export function ClassCard({
                             : "What You Will Learn and Master!"}
                         </h3>
                         <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-                          {(isId ? subject.topicsId : subject.topicsEn).map(
-                            (topic, index) => (
-                              <div
-                                key={index}
+                          {(isId ? subject.topicsId : subject.topicsEn).map((topic, index) => (
+                            <div
+                              key={index}
+                              className={cn(
+                                "flex items-start gap-3 rounded-lg p-3",
+                                COLOR_BG_LIGHT_MAP[subject.color],
+                              )}
+                            >
+                              <Trophy
                                 className={cn(
-                                  "flex items-start gap-3 rounded-lg p-3",
-                                  COLOR_BG_LIGHT_MAP[subject.color],
+                                  "mt-0.5 h-4 w-4 shrink-0",
+                                  COLOR_TEXT_MAP[subject.color],
                                 )}
-                              >
-                                <Trophy
-                                  className={cn(
-                                    "mt-0.5 h-4 w-4 shrink-0",
-                                    COLOR_TEXT_MAP[subject.color],
-                                  )}
-                                />
-                                <span className="text-neutral-700 text-sm">
-                                  {topic}
-                                </span>
-                              </div>
-                            ),
-                          )}
+                              />
+                              <span className="text-neutral-700 text-sm">{topic}</span>
+                            </div>
+                          ))}
                         </div>
                       </div>
                     </TabsContent>
@@ -356,7 +342,7 @@ export function ClassCard({
               </Tabs>
             ) : (
               /* Intensif & Ekstrakurikuler: Original Feature List */
-              <div className="p-6">
+              <div className="">
                 {/* Header Info */}
                 <div className="space-y-3">
                   <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
@@ -386,10 +372,7 @@ export function ClassCard({
                   </h3>
                   <ul className="space-y-2">
                     {modalContent.features.map((feature, index) => (
-                      <li
-                        key={index}
-                        className="flex items-center gap-3 text-neutral-700"
-                      >
+                      <li key={index} className="flex items-center gap-3 text-neutral-700">
                         <div className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-primary-100">
                           <svg
                             className="h-3 w-3 text-primary-500"

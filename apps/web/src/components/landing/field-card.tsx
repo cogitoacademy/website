@@ -8,7 +8,7 @@ import {
   ResponsiveModalTrigger,
 } from "../ui/responsive-modal";
 import type { Skill } from "./skills-section";
-import { Button, buttonVariants } from "../ui/button";
+import { buttonVariants } from "../ui/button";
 import { ArrowRightIcon, XIcon } from "@phosphor-icons/react/dist/ssr";
 import Image from "next/image";
 import { Badge } from "../ui/badge";
