@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import {
   addHours,
@@ -10,9 +10,9 @@ import {
   getMinutes,
   isSameDay,
   startOfDay,
-} from "date-fns";
-import type React from "react";
-import { useMemo } from "react";
+} from 'date-fns';
+import type React from 'react';
+import { useMemo } from 'react';
 
 import {
   type CalendarCompetition,
@@ -23,9 +23,9 @@ import {
   useCurrentTimeIndicator,
   useDateLocale,
   WeekCellsHeight,
-} from "@/components/competition-calendar";
-import { EndHour, StartHour } from "@/components/competition-calendar/constants";
-import { cn } from "@/lib/utils";
+} from '@/components/competition-calendar';
+import { EndHour, StartHour } from '@/components/competition-calendar/constants';
+import { cn } from '@/lib/utils';
 
 interface DayViewProps {
   currentDate: Date;
@@ -177,7 +177,7 @@ export function DayView({ currentDate, events, onEventSelect, readOnly = false }
   };
 
   const showAllDaySection = allDayEvents.length > 0;
-  const { currentTimePosition, currentTimeVisible } = useCurrentTimeIndicator(currentDate, "day");
+  const { currentTimePosition, currentTimeVisible } = useCurrentTimeIndicator(currentDate, 'day');
 
   return (
     <div className="contents" data-slot="day-view">
@@ -186,7 +186,7 @@ export function DayView({ currentDate, events, onEventSelect, readOnly = false }
           <div className="grid grid-cols-[3rem_1fr] sm:grid-cols-[4rem_1fr]">
             <div className="relative">
               <span className="absolute bottom-0 left-0 h-6 w-16 max-w-full pe-2 text-right text-[10px] text-muted-foreground/70 sm:pe-4 sm:text-xs">
-                {isId ? "Seharian" : "All day"}
+                {isId ? 'Seharian' : 'All day'}
               </span>
             </div>
             <div className="relative border-border/70 border-r p-1 last:border-r-0">
@@ -224,7 +224,7 @@ export function DayView({ currentDate, events, onEventSelect, readOnly = false }
             >
               {index > 0 && (
                 <span className="absolute -top-3 left-0 flex h-6 w-16 max-w-full items-center justify-end bg-background pe-2 text-[10px] text-muted-foreground/70 sm:pe-4 sm:text-xs">
-                  {format(hour, "h a", { locale: dateLocale })}
+                  {format(hour, 'h a', { locale: dateLocale })}
                 </span>
               )}
             </div>
@@ -284,11 +284,11 @@ export function DayView({ currentDate, events, onEventSelect, readOnly = false }
                   return (
                     <DroppableCell
                       className={cn(
-                        "absolute h-[calc(var(--week-cells-height)/4)] w-full",
-                        quarter === 0 && "top-0",
-                        quarter === 1 && "top-[calc(var(--week-cells-height)/4)]",
-                        quarter === 2 && "top-[calc(var(--week-cells-height)/4*2)]",
-                        quarter === 3 && "top-[calc(var(--week-cells-height)/4*3)]",
+                        'absolute h-[calc(var(--week-cells-height)/4)] w-full',
+                        quarter === 0 && 'top-0',
+                        quarter === 1 && 'top-[calc(var(--week-cells-height)/4)]',
+                        quarter === 2 && 'top-[calc(var(--week-cells-height)/4*2)]',
+                        quarter === 3 && 'top-[calc(var(--week-cells-height)/4*3)]',
                       )}
                       date={currentDate}
                       id={`day-cell-${currentDate.toISOString()}-${quarterHourTime}`}

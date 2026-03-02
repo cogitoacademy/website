@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import { RiCalendarEventLine } from "@remixicon/react";
-import { addDays, format, isToday } from "date-fns";
-import { useMemo } from "react";
+import { RiCalendarEventLine } from '@remixicon/react';
+import { addDays, format, isToday } from 'date-fns';
+import { useMemo } from 'react';
 
 import {
   AgendaDaysToShow,
@@ -10,7 +10,7 @@ import {
   EventItem,
   getAgendaEventsForDay,
   useDateLocale,
-} from "@/components/competition-calendar";
+} from '@/components/competition-calendar';
 
 interface AgendaViewProps {
   currentDate: Date;
@@ -23,13 +23,13 @@ export function AgendaView({ currentDate, events, onEventSelect }: AgendaViewPro
 
   // Show events for the next days based on constant
   const days = useMemo(() => {
-    console.log("Agenda view updating with date:", currentDate.toISOString());
+    console.log('Agenda view updating with date:', currentDate.toISOString());
     return Array.from({ length: AgendaDaysToShow }, (_, i) => addDays(new Date(currentDate), i));
   }, [currentDate]);
 
   const handleEventClick = (event: CalendarCompetition, e: React.MouseEvent) => {
     e.stopPropagation();
-    console.log("Agenda view event clicked:", event);
+    console.log('Agenda view event clicked:', event);
     onEventSelect(event);
   };
 
@@ -41,11 +41,11 @@ export function AgendaView({ currentDate, events, onEventSelect }: AgendaViewPro
       {!hasEvents ? (
         <div className="flex min-h-[70svh] flex-col items-center justify-center py-16 text-center">
           <RiCalendarEventLine className="mb-2 text-muted-foreground/50" size={32} />
-          <h3 className="font-medium text-lg">{isId ? "Tidak ada acara" : "No events found"}</h3>
+          <h3 className="font-medium text-lg">{isId ? 'Tidak ada acara' : 'No events found'}</h3>
           <p className="text-muted-foreground">
             {isId
-              ? "Tidak ada acara yang dijadwalkan untuk periode ini."
-              : "There are no events scheduled for this time period."}
+              ? 'Tidak ada acara yang dijadwalkan untuk periode ini.'
+              : 'There are no events scheduled for this time period.'}
           </p>
         </div>
       ) : (
@@ -60,7 +60,7 @@ export function AgendaView({ currentDate, events, onEventSelect }: AgendaViewPro
                 className="absolute -top-3 left-0 flex h-6 items-center bg-background pe-4 text-[10px] uppercase data-today:font-medium sm:pe-4 sm:text-xs"
                 data-today={isToday(day) || undefined}
               >
-                {format(day, "d MMM, EEEE", { locale: dateLocale })}
+                {format(day, 'd MMM, EEEE', { locale: dateLocale })}
               </span>
               <div className="mt-6 space-y-2">
                 {dayEvents.map((event) => (

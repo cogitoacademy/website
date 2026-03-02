@@ -1,11 +1,11 @@
-import type { Event, SanityEvent } from "@/types/sanity/event";
+import type { Event, SanityEvent } from '@/types/sanity/event';
 
 /**
  * Extract localized value from Sanity internationalized array
  */
 function getLocalizedValue(
   arr?: Array<{ _key: string; value: string }>,
-  locale = "id",
+  locale = 'id',
 ): string | undefined {
   if (!arr || arr.length === 0) return undefined;
 
@@ -18,20 +18,20 @@ function getLocalizedValue(
 /**
  * Compute event status based on date vs today
  */
-function computeStatus(date: Date): "upcoming" | "past" {
+function computeStatus(date: Date): 'upcoming' | 'past' {
   const today = new Date();
   today.setHours(0, 0, 0, 0);
 
   const eventDate = new Date(date);
   eventDate.setHours(0, 0, 0, 0);
 
-  return eventDate >= today ? "upcoming" : "past";
+  return eventDate >= today ? 'upcoming' : 'past';
 }
 
 /**
  * Transform a Sanity Event document to a frontend Event
  */
-export function sanityToEvent(sanityEvent: SanityEvent, locale = "id"): Event {
+export function sanityToEvent(sanityEvent: SanityEvent, locale = 'id'): Event {
   const title = getLocalizedValue(sanityEvent.title, locale);
   const description = getLocalizedValue(sanityEvent.description, locale);
   const place = getLocalizedValue(sanityEvent.place, locale);
@@ -40,7 +40,7 @@ export function sanityToEvent(sanityEvent: SanityEvent, locale = "id"): Event {
 
   return {
     id: sanityEvent._id,
-    title: title || "Untitled Event",
+    title: title || 'Untitled Event',
     slug: sanityEvent.slug.current,
     category: sanityEvent.category,
     imageUrl: sanityEvent.imageUrl,

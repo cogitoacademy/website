@@ -1,26 +1,26 @@
-import type { Metadata } from "next";
-import { Inter, Lexend_Deca } from "next/font/google";
-import { hasLocale, NextIntlClientProvider } from "next-intl";
-import { getMessages, setRequestLocale } from "next-intl/server";
+import type { Metadata } from 'next';
+import { Inter, Lexend_Deca } from 'next/font/google';
+import { hasLocale, NextIntlClientProvider } from 'next-intl';
+import { getMessages, setRequestLocale } from 'next-intl/server';
 
-import "../../index.css";
-import Footer from "@/components/footer";
-import Header from "@/components/header";
-import Providers from "@/components/providers";
-import JsonLdProvider from "@/components/seo/json-ld-provider";
-import { routing } from "@/i18n/routing";
-import NotFound from "./not-found";
+import '../../index.css';
+import Footer from '@/components/footer';
+import Header from '@/components/header';
+import Providers from '@/components/providers';
+import JsonLdProvider from '@/components/seo/json-ld-provider';
+import { routing } from '@/i18n/routing';
+import NotFound from './not-found';
 
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://cogitoacademy.id";
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://cogitoacademy.id';
 
 const lexendDeca = Lexend_Deca({
-  variable: "--font-lexend-deca",
-  subsets: ["latin"],
+  variable: '--font-lexend-deca',
+  subsets: ['latin'],
 });
 
 const inter = Inter({
-  variable: "--font-sans",
-  subsets: ["latin"],
+  variable: '--font-sans',
+  subsets: ['latin'],
 });
 
 export function generateStaticParams() {
@@ -33,15 +33,15 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
-  const isId = locale === "id";
+  const isId = locale === 'id';
 
   const title = isId
-    ? "Cogito Academy - Talent Incubator & Competition Training"
-    : "Cogito Academy - Talent Incubator & Competition Training";
+    ? 'Cogito Academy - Talent Incubator & Competition Training'
+    : 'Cogito Academy - Talent Incubator & Competition Training';
 
   const description = isId
-    ? "Cogito Academy adalah talent incubator yang memiliki misi untuk membentuk cendekiawan-juara kelas dunia. transformation potensi siswa menjadi prestasi terukur melalui metode pelatihan yang telah teruji."
-    : "Cogito Academy is a talent incubator with a mission to shape world-class scholar-champions. We systematically transform student potential into measurable achievements through proven training methods.";
+    ? 'Cogito Academy adalah talent incubator yang memiliki misi untuk membentuk cendekiawan-juara kelas dunia. transformation potensi siswa menjadi prestasi terukur melalui metode pelatihan yang telah teruji.'
+    : 'Cogito Academy is a talent incubator with a mission to shape world-class scholar-champions. We systematically transform student potential into measurable achievements through proven training methods.';
 
   return {
     metadataBase: new URL(BASE_URL),
@@ -51,30 +51,30 @@ export async function generateMetadata({
     },
     description,
     keywords: [
-      "Cogito Academy",
-      "bimbel kompetisi",
-      "talent incubator",
-      "MUN",
-      "Model United Nations",
+      'Cogito Academy',
+      'bimbel kompetisi',
+      'talent incubator',
+      'MUN',
+      'Model United Nations',
       "World Scholar's Cup",
-      "Debate",
-      "Olympiad",
-      "champion tutors",
-      "competition training",
-      "Indonesia",
+      'Debate',
+      'Olympiad',
+      'champion tutors',
+      'competition training',
+      'Indonesia',
     ],
-    authors: [{ name: "Cogito Academy" }],
-    creator: "Cogito Academy",
-    publisher: "Cogito Academy",
+    authors: [{ name: 'Cogito Academy' }],
+    creator: 'Cogito Academy',
+    publisher: 'Cogito Academy',
     formatDetection: {
       email: false,
       address: false,
     },
     openGraph: {
-      type: "website",
-      locale: isId ? "id_ID" : "en_US",
+      type: 'website',
+      locale: isId ? 'id_ID' : 'en_US',
       url: BASE_URL,
-      siteName: "Cogito Academy",
+      siteName: 'Cogito Academy',
       title,
       description,
       images: [
@@ -82,16 +82,16 @@ export async function generateMetadata({
           url: `${BASE_URL}/og-image.png`,
           width: 1200,
           height: 630,
-          alt: "Cogito Academy",
+          alt: 'Cogito Academy',
         },
       ],
     },
     twitter: {
-      card: "summary_large_image",
+      card: 'summary_large_image',
       title,
       description,
       images: [`${BASE_URL}/og-image.png`],
-      creator: "@cogitoacademy.id",
+      creator: '@cogitoacademy.id',
     },
     robots: {
       index: true,
@@ -99,9 +99,9 @@ export async function generateMetadata({
       googleBot: {
         index: true,
         follow: true,
-        "max-video-preview": -1,
-        "max-image-preview": "large",
-        "max-snippet": -1,
+        'max-video-preview': -1,
+        'max-image-preview': 'large',
+        'max-snippet': -1,
       },
     },
   };
@@ -128,7 +128,7 @@ export default async function LocaleLayout({
           href="#main-content"
           className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:rounded-md focus:bg-primary-500 focus:px-4 focus:py-2 focus:text-white focus:outline-none"
         >
-          {locale === "id" ? "Lewati ke konten utama" : "Skip to main content"}
+          {locale === 'id' ? 'Lewati ke konten utama' : 'Skip to main content'}
         </a>
         <NextIntlClientProvider messages={messages}>
           <Providers>

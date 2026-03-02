@@ -1,5 +1,5 @@
-import { cn } from "@/lib/utils";
-import { cloneElement, isValidElement, type ReactElement } from "react";
+import { cn } from '@/lib/utils';
+import { cloneElement, isValidElement, type ReactElement } from 'react';
 
 type ContainerProps = {
   className?: string;
@@ -8,7 +8,7 @@ type ContainerProps = {
 };
 
 export const Container = ({ className, asChild = false, children }: ContainerProps) => {
-  const baseClassName = "mx-auto flex w-full container flex-col gap-4 px-4 py-8";
+  const baseClassName = 'mx-auto flex w-full container flex-col gap-4 px-4 py-8';
 
   if (asChild && isValidElement(children)) {
     const child = children as ReactElement<{ className?: string }>;

@@ -1,17 +1,17 @@
-"use client";
+'use client';
 
-import { Inter, Lexend_Deca } from "next/font/google";
+import { Inter, Lexend_Deca } from 'next/font/google';
 
-import "@/index.css";
+import '@/index.css';
 
 const lexendDeca = Lexend_Deca({
-  variable: "--font-lexend-deca",
-  subsets: ["latin"],
+  variable: '--font-lexend-deca',
+  subsets: ['latin'],
 });
 
 const inter = Inter({
-  variable: "--font-sans",
-  subsets: ["latin"],
+  variable: '--font-sans',
+  subsets: ['latin'],
 });
 
 interface GlobalErrorProps {

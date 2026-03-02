@@ -1,4 +1,4 @@
-export type CalendarView = "month" | "week" | "day" | "agenda";
+export type CalendarView = 'month' | 'week' | 'day' | 'agenda';
 
 export interface CalendarCompetition {
   id: string;
@@ -27,18 +27,18 @@ export interface CalendarCompetition {
 }
 
 export type CompetitionColor =
-  | "sky"
-  | "amber"
-  | "violet"
-  | "rose"
-  | "emerald"
-  | "orange"
-  | "tertiary-blue-300"
-  | "tertiary-blue-400"
-  | "tertiary-blue-500"
-  | "tertiary-pink-300"
-  | "tertiary-red-600"
-  | "tertiary-yellow-600"
-  | "primary-500"
-  | "secondary-500"
-  | "tertiary-green-600";
+  | 'sky'
+  | 'amber'
+  | 'violet'
+  | 'rose'
+  | 'emerald'
+  | 'orange'
+  | 'tertiary-blue-300'
+  | 'tertiary-blue-400'
+  | 'tertiary-blue-500'
+  | 'tertiary-pink-300'
+  | 'tertiary-red-600'
+  | 'tertiary-yellow-600'
+  | 'primary-500'
+  | 'secondary-500'
+  | 'tertiary-green-600';

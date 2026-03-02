@@ -1,17 +1,17 @@
-"use client";
+'use client';
 
-import { MapPinIcon, XIcon } from "lucide-react";
-import Image from "next/image";
-import { useLocale, useTranslations } from "next-intl";
-import { Button } from "@/components/ui/button";
-import { getCoreCategoryBadgeColor } from "@/lib/colors/brandColors";
-import type { Tutor } from "@/types/tutor";
-import { Badge } from "./ui/badge";
+import { MapPinIcon, XIcon } from 'lucide-react';
+import Image from 'next/image';
+import { useLocale, useTranslations } from 'next-intl';
+import { Button } from '@/components/ui/button';
+import { getCoreCategoryBadgeColor } from '@/lib/colors/brandColors';
+import type { Tutor } from '@/types/tutor';
+import { Badge } from './ui/badge';
 import {
   ResponsiveModal,
   ResponsiveModalContent,
   ResponsiveModalTitle,
-} from "./ui/responsive-modal";
+} from './ui/responsive-modal';
 
 interface TutorDetailModalProps {
   tutor: Tutor;
@@ -24,11 +24,11 @@ interface TutorDetailModalProps {
  * fallback ke item pertama kalau locale ga ketemu
  */
 const getLocalizedValue = (arr?: { _key: string; value: string }[], locale?: string) =>
-  arr?.find((item) => item._key === locale)?.value || arr?.[0]?.value || "";
+  arr?.find((item) => item._key === locale)?.value || arr?.[0]?.value || '';
 
 export default function TutorDetailModal({ tutor, open, onOpenChange }: TutorDetailModalProps) {
   const locale = useLocale();
-  const t = useTranslations("tutors");
+  const t = useTranslations('tutors');
 
   // Normalized data
   const affiliation = getLocalizedValue(tutor.affiliation, locale);
@@ -38,10 +38,10 @@ export default function TutorDetailModal({ tutor, open, onOpenChange }: TutorDet
   const badges = tutor.competitionFields?.map((field) => (
     <Badge
       key={field._id}
-      variant={"tutor"}
+      variant={'tutor'}
       className={`${getCoreCategoryBadgeColor(field.coreCategory)}`}
     >
-      {field.name || (locale === "id" ? "Bidang Tidak Diketahui" : "Unknown Field")}
+      {field.name || (locale === 'id' ? 'Bidang Tidak Diketahui' : 'Unknown Field')}
     </Badge>
   ));
 
@@ -50,7 +50,7 @@ export default function TutorDetailModal({ tutor, open, onOpenChange }: TutorDet
       <ResponsiveModalContent
         side="bottom"
         className="flex w-full max-w-full flex-col gap-0 overflow-hidden rounded-t-2xl border-none bg-background p-0 sm:max-h-[85vh] sm:w-[calc(100%-2rem)] sm:max-w-5xl sm:flex-row sm:rounded-lg"
-        style={{ maxHeight: "85dvh" }}
+        style={{ maxHeight: '85dvh' }}
         showCloseButton={false}
       >
         {/* Left/Top: Image Section */}
@@ -82,7 +82,7 @@ export default function TutorDetailModal({ tutor, open, onOpenChange }: TutorDet
             onClick={() => onOpenChange(false)}
           >
             <XIcon className="h-4 w-4" />
-            <span className="sr-only">{locale === "id" ? "Tutup" : "Close"}</span>
+            <span className="sr-only">{locale === 'id' ? 'Tutup' : 'Close'}</span>
           </Button>
         </div>
 
@@ -114,7 +114,7 @@ export default function TutorDetailModal({ tutor, open, onOpenChange }: TutorDet
                   <div className="inline-flex items-center gap-2 rounded-md bg-background-primary px-3 py-1.5 font-medium text-neutral-1000 text-sm">
                     <MapPinIcon className="h-4 w-4" />
                     <span className="capitalize">
-                      {tutor.locations.map((loc) => loc.replace(/_/g, " ")).join(", ")}
+                      {tutor.locations.map((loc) => loc.replace(/_/g, ' ')).join(', ')}
                     </span>
                   </div>
                 )}
@@ -125,13 +125,13 @@ export default function TutorDetailModal({ tutor, open, onOpenChange }: TutorDet
             <div className="grid grid-cols-1 gap-4 pt-3 sm:grid-cols-2">
               <div className="h-full space-y-1 rounded-xl bg-background-primary px-3 py-2">
                 <h3 className="pb-0.5 font-semibold text-base text-foreground">
-                  {t("achievements")}
+                  {t('achievements')}
                 </h3>
                 {achievements.length == 0 && (
                   <p className="text-muted-foreground/90 text-sm leading-relaxed">
-                    {locale === "id"
-                      ? "isinya sedang diracik, ditunggu ya!"
-                      : "Content is being prepared, stay tuned!"}
+                    {locale === 'id'
+                      ? 'isinya sedang diracik, ditunggu ya!'
+                      : 'Content is being prepared, stay tuned!'}
                   </p>
                 )}
                 {achievements.length > 0 && (
@@ -145,13 +145,13 @@ export default function TutorDetailModal({ tutor, open, onOpenChange }: TutorDet
 
               <div className="h-full space-y-1 rounded-xl bg-background-primary px-3 py-2">
                 <h3 className="pb-0.5 font-semibold text-base text-foreground">
-                  {t("experiences")}
+                  {t('experiences')}
                 </h3>
                 {experiences.length == 0 && (
                   <p className="text-muted-foreground/90 text-sm leading-relaxed">
-                    {locale === "id"
-                      ? "isinya sedang diracik, ditunggu ya!"
-                      : "Content is being prepared, stay tuned!"}
+                    {locale === 'id'
+                      ? 'isinya sedang diracik, ditunggu ya!'
+                      : 'Content is being prepared, stay tuned!'}
                   </p>
                 )}
                 {experiences.length > 0 && (

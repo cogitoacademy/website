@@ -1,4 +1,4 @@
-import { defineQuery } from "next-sanity";
+import { defineQuery } from 'next-sanity';
 
 export const COMPETITIONS_QUERY = defineQuery(`
   *[_type == "competition"] | order(eventDate.startDate asc) {

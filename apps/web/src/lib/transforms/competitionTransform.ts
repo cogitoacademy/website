@@ -1,13 +1,13 @@
-import type { CalendarCompetition } from "@/components/competition-calendar/types";
-import { CORE_CATEGORIES, type CoreCategorySlug } from "@/lib/config/coreCategories";
-import type { SanityCompetition } from "@/types/sanity/competition";
+import type { CalendarCompetition } from '@/components/competition-calendar/types';
+import { CORE_CATEGORIES, type CoreCategorySlug } from '@/lib/config/coreCategories';
+import type { SanityCompetition } from '@/types/sanity/competition';
 
 /**
  * Extract localized value from Sanity internationalized array
  */
 function getLocalizedValue(
   arr?: Array<{ _key: string; value: string }>,
-  locale = "id",
+  locale = 'id',
 ): string | undefined {
   if (!arr || arr.length === 0) return undefined;
 
@@ -24,7 +24,7 @@ function getLocalizedValue(
  */
 export function sanityToCalendarCompetition(
   sanityCompetition: SanityCompetition,
-  locale = "id",
+  locale = 'id',
 ): CalendarCompetition | null {
   // Validate that competition has at least one category with core category
   const firstCategory = sanityCompetition.categories?.[0];
@@ -40,7 +40,7 @@ export function sanityToCalendarCompetition(
       const coreData = CORE_CATEGORIES[coreSlug];
 
       // Get color from core category config
-      const color = coreData?.brandColor || "primary-500";
+      const color = coreData?.brandColor || 'primary-500';
 
       return {
         name: cat.name,
@@ -49,7 +49,7 @@ export function sanityToCalendarCompetition(
       };
     }) || [];
 
-  const eventColor = categories.length > 0 ? categories[0].color : "primary-500";
+  const eventColor = categories.length > 0 ? categories[0].color : 'primary-500';
 
   // Extract localized strings
   const title = getLocalizedValue(sanityCompetition.title, locale);
@@ -71,15 +71,15 @@ export function sanityToCalendarCompetition(
 
   return {
     id: sanityCompetition._id,
-    title: title || "Untitled Competition",
+    title: title || 'Untitled Competition',
     description,
     start: startDate,
     end: endDate,
     allDay: isAllDay,
     location,
     categories: categories.map((cat) => ({
-      name: cat.name || "",
-      coreCategory: cat.coreCategory || "",
+      name: cat.name || '',
+      coreCategory: cat.coreCategory || '',
       color: cat.color,
     })),
     color: eventColor as any, // Use first category's color as main event color

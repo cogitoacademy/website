@@ -1,102 +1,102 @@
-import { defineArrayMember, defineField, defineType } from "sanity";
+import { defineArrayMember, defineField, defineType } from 'sanity';
 
 export default defineType({
-  name: "competition",
-  title: "Competition Calendar",
-  type: "document",
+  name: 'competition',
+  title: 'Competition Calendar',
+  type: 'document',
   fields: [
     defineField({
-      name: "title",
-      title: "Title",
-      type: "internationalizedArrayString",
+      name: 'title',
+      title: 'Title',
+      type: 'internationalizedArrayString',
       validation: (Rule: any) => Rule.required(),
     }),
     defineField({
-      name: "description",
-      title: "Description",
-      type: "internationalizedArrayString",
+      name: 'description',
+      title: 'Description',
+      type: 'internationalizedArrayString',
     }),
     defineField({
-      name: "categories",
-      title: "Categories",
-      type: "array",
+      name: 'categories',
+      title: 'Categories',
+      type: 'array',
       of: [
         defineArrayMember({
-          type: "reference",
-          to: [{ type: "competitionCategory" }],
+          type: 'reference',
+          to: [{ type: 'competitionCategory' }],
         }),
       ],
     }),
     defineField({
-      name: "scale",
-      title: "Scale",
-      type: "string",
+      name: 'scale',
+      title: 'Scale',
+      type: 'string',
       options: {
         list: [
-          { title: "International", value: "international" },
-          { title: "National", value: "national" },
+          { title: 'International', value: 'international' },
+          { title: 'National', value: 'national' },
         ],
       },
     }),
     defineField({
-      name: "registrationDeadline",
-      title: "Registration Deadline",
-      type: "datetime",
+      name: 'registrationDeadline',
+      title: 'Registration Deadline',
+      type: 'datetime',
       validation: (Rule: any) => Rule.required(),
     }),
     defineField({
-      name: "eventDate",
-      title: "Event Date",
-      type: "object",
+      name: 'eventDate',
+      title: 'Event Date',
+      type: 'object',
       fields: [
         defineField({
-          name: "startDate",
-          title: "Start Date",
-          type: "datetime",
+          name: 'startDate',
+          title: 'Start Date',
+          type: 'datetime',
           validation: (Rule: any) => Rule.required(),
         }),
         defineField({
-          name: "endDate",
-          title: "End Date",
-          type: "datetime",
+          name: 'endDate',
+          title: 'End Date',
+          type: 'datetime',
           validation: (Rule: any) => Rule.required(),
         }),
       ],
       validation: (Rule: any) => Rule.required(),
     }),
     defineField({
-      name: "socialMediaLink",
-      title: "Social Media Link",
-      type: "url",
+      name: 'socialMediaLink',
+      title: 'Social Media Link',
+      type: 'url',
     }),
     defineField({
-      name: "registrationLink",
-      title: "Registration Link",
-      type: "url",
+      name: 'registrationLink',
+      title: 'Registration Link',
+      type: 'url',
       validation: (Rule: any) => Rule.required(),
     }),
     defineField({
-      name: "location",
-      title: "Location",
-      type: "internationalizedArrayString",
+      name: 'location',
+      title: 'Location',
+      type: 'internationalizedArrayString',
     }),
     defineField({
-      name: "organizer",
-      title: "Organizer",
-      type: "string",
+      name: 'organizer',
+      title: 'Organizer',
+      type: 'string',
     }),
     defineField({
-      name: "educationLevels",
-      title: "Jenjang",
-      type: "array",
+      name: 'educationLevels',
+      title: 'Jenjang',
+      type: 'array',
       of: [
         defineArrayMember({
-          type: "string",
+          type: 'string',
           options: {
             list: [
-              { title: "SMP", value: "smp" },
-              { title: "SMA", value: "sma" },
-              { title: "Mahasiswa", value: "mahasiswa" },
+              { title: 'SMP', value: 'smp' },
+              { title: 'SMA', value: 'sma' },
+              { title: 'Mahasiswa', value: 'mahasiswa' },
             ],
           },
         }),
@@ -105,14 +105,14 @@ export default defineType({
   ],
   preview: {
     select: {
-      title: "title",
-      deadline: "registrationDeadline",
+      title: 'title',
+      deadline: 'registrationDeadline',
     },
     prepare(selection: any) {
       const { title, deadline } = selection;
-      const date = new Date(deadline).toLocaleDateString("id-ID");
+      const date = new Date(deadline).toLocaleDateString('id-ID');
       return {
-        title: title ? title.find((item: any) => item._key === "id")?.value : "",
+        title: title ? title.find((item: any) => item._key === 'id')?.value : '',
         subtitle: `Deadline: ${date}`,
       };
     },

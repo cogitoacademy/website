@@ -1,14 +1,14 @@
-import type { Metadata } from "next";
-import { setRequestLocale } from "next-intl/server";
-import { Suspense } from "react";
-import NavbarResolver from "@/components/navbar-resolver";
-import TutorList from "@/components/tutor-list";
-import { Container } from "@/components/ui/container";
-import { Skeleton } from "@/components/ui/skeleton";
-import { getTutors } from "@/lib/tutors";
-import { COMPETITION_CATEGORIES_QUERY } from "@/queries/tutors";
-import { client } from "@/sanity/client";
-import type { CompetitionCategory } from "@/types/tutor";
+import type { Metadata } from 'next';
+import { setRequestLocale } from 'next-intl/server';
+import { Suspense } from 'react';
+import NavbarResolver from '@/components/navbar-resolver';
+import TutorList from '@/components/tutor-list';
+import { Container } from '@/components/ui/container';
+import { Skeleton } from '@/components/ui/skeleton';
+import { getTutors } from '@/lib/tutors';
+import { COMPETITION_CATEGORIES_QUERY } from '@/queries/tutors';
+import { client } from '@/sanity/client';
+import type { CompetitionCategory } from '@/types/tutor';
 
 export async function generateMetadata({
   params,
@@ -16,12 +16,12 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
-  const isId = locale === "id";
+  const isId = locale === 'id';
 
-  const title = isId ? "#TutorJuara" : "#ChampionsTutor";
+  const title = isId ? '#TutorJuara' : '#ChampionsTutor';
   const description = isId
-    ? "Bertemu dengan tim tutor berpengalaman kami yang ahli dalam berbagai bidang perlombaan termasuk MUN, WSC, Debat, dan Olympiad."
-    : "Meet our experienced tutor team who are experts in various competition fields including MUN, WSC, Debate, and Olympiads.";
+    ? 'Bertemu dengan tim tutor berpengalaman kami yang ahli dalam berbagai bidang perlombaan termasuk MUN, WSC, Debat, dan Olympiad.'
+    : 'Meet our experienced tutor team who are experts in various competition fields including MUN, WSC, Debate, and Olympiads.';
 
   return {
     title,
@@ -39,21 +39,21 @@ export async function generateMetadata({
 
 const HEADLINE = {
   id: {
-    before: "Dapatkan Strategi Langsung dari ",
-    highlight: "#TutorJuara",
-    after: "",
+    before: 'Dapatkan Strategi Langsung dari ',
+    highlight: '#TutorJuara',
+    after: '',
   },
   en: {
-    before: "Get Direct Strategies from ",
-    highlight: "#TutorJuara",
-    after: "",
+    before: 'Get Direct Strategies from ',
+    highlight: '#TutorJuara',
+    after: '',
   },
 };
 
 async function TutorContent({ params }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);
-  const lang = locale === "en" ? "en" : "id";
+  const lang = locale === 'en' ? 'en' : 'id';
   const headline = HEADLINE[lang];
 
   const [tutors, categories] = await Promise.all([

@@ -1,113 +1,113 @@
-"use client";
+'use client';
 
-import { ArrowRightIcon, Trophy } from "lucide-react";
-import { AnimatePresence, motion } from "motion/react";
-import Image from "next/image";
-import { useLocale } from "next-intl";
-import { useState } from "react";
+import { ArrowRightIcon, Trophy } from 'lucide-react';
+import { AnimatePresence, motion } from 'motion/react';
+import Image from 'next/image';
+import { useLocale } from 'next-intl';
+import { useState } from 'react';
 import {
   ResponsiveModal,
   ResponsiveModalContent,
   ResponsiveModalTitle,
-} from "@/components/ui/responsive-modal";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { cn } from "@/lib/utils";
-import { Button } from "../ui/button";
+} from '@/components/ui/responsive-modal';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { cn } from '@/lib/utils';
+import { Button } from '../ui/button';
 
 const REGULER_SUBJECTS = [
   {
-    slug: "mun",
-    labelId: "Model United Nations",
-    labelEn: "Model United Nations",
-    sessionsId: "24 sesi pembelajaran intensif dengan jadwal satu pertemuan setiap minggu.",
-    sessionsEn: "24 intensive learning sessions with one meeting every week.",
+    slug: 'mun',
+    labelId: 'Model United Nations',
+    labelEn: 'Model United Nations',
+    sessionsId: '24 sesi pembelajaran intensif dengan jadwal satu pertemuan setiap minggu.',
+    sessionsEn: '24 intensive learning sessions with one meeting every week.',
     topicsId: [
-      "Dasar-dasar MUN dan menguasai prosedur",
-      "Riset negara, dewan, dan topik",
-      "Menulis position paper yang kuat",
-      "Public speaking dan retorika",
-      "Strategi diplomasi dan negosiasi",
-      "Menulis draft resolusi",
+      'Dasar-dasar MUN dan menguasai prosedur',
+      'Riset negara, dewan, dan topik',
+      'Menulis position paper yang kuat',
+      'Public speaking dan retorika',
+      'Strategi diplomasi dan negosiasi',
+      'Menulis draft resolusi',
     ],
     topicsEn: [
-      "MUN basics and mastering rules of procedure",
-      "Country, council, and topic research methods",
-      "Writing a strong position paper",
-      "Public speaking and rhetorics",
-      "Diplomacy and negotiation strategies",
-      "Writing draft resolution",
+      'MUN basics and mastering rules of procedure',
+      'Country, council, and topic research methods',
+      'Writing a strong position paper',
+      'Public speaking and rhetorics',
+      'Diplomacy and negotiation strategies',
+      'Writing draft resolution',
     ],
   },
   {
-    slug: "wsc",
+    slug: 'wsc',
     labelId: "World Scholar's Cup",
     labelEn: "World Scholar's Cup",
-    sessionsId: "36 sesi pembelajaran intensif dengan jadwal satu pertemuan setiap minggu.",
-    sessionsEn: "36 intensive learning sessions with one meeting every week.",
+    sessionsId: '36 sesi pembelajaran intensif dengan jadwal satu pertemuan setiap minggu.',
+    sessionsEn: '36 intensive learning sessions with one meeting every week.',
     topicsId: [
       "Teknik Scholar's Bowl",
-      "Penguasaan materi lintas disiplin",
-      "Menulis esai akademik",
-      "Analisis dan evaluasi sumber",
-      "Strategi dan kolaborasi tim",
-      "Taktik soal pilihan ganda",
+      'Penguasaan materi lintas disiplin',
+      'Menulis esai akademik',
+      'Analisis dan evaluasi sumber',
+      'Strategi dan kolaborasi tim',
+      'Taktik soal pilihan ganda',
     ],
     topicsEn: [
       "Scholar's Bowl techniques",
-      "Cross-disciplinary subject mastery",
-      "Academic essay writing",
-      "Source analysis and evaluation",
-      "Team strategy and collaboration",
-      "Multiple-choice question tactics",
+      'Cross-disciplinary subject mastery',
+      'Academic essay writing',
+      'Source analysis and evaluation',
+      'Team strategy and collaboration',
+      'Multiple-choice question tactics',
     ],
   },
   {
-    slug: "debat",
-    labelId: "Debat",
-    labelEn: "Debate",
-    sessionsId: "18 sesi pembelajaran intensif dengan jadwal satu pertemuan setiap minggu.",
-    sessionsEn: "18 intensive learning sessions with one meeting every week.",
+    slug: 'debat',
+    labelId: 'Debat',
+    labelEn: 'Debate',
+    sessionsId: '18 sesi pembelajaran intensif dengan jadwal satu pertemuan setiap minggu.',
+    sessionsEn: '18 intensive learning sessions with one meeting every week.',
     topicsId: [
-      "Fundamentasi argumentasi",
-      "Analisis mosi",
-      "Peran narasumber (1, 2, 3)",
-      "Teknik rebuttal",
-      "Cross-examination",
-      "Penyampaian final focus",
+      'Fundamentasi argumentasi',
+      'Analisis mosi',
+      'Peran narasumber (1, 2, 3)',
+      'Teknik rebuttal',
+      'Cross-examination',
+      'Penyampaian final focus',
     ],
     topicsEn: [
-      "Argumentation fundamentals",
-      "Motion analysis",
-      "Speaker roles (first, second, third)",
-      "Rebuttal techniques",
-      "Cross-examination",
-      "Final focus delivery",
+      'Argumentation fundamentals',
+      'Motion analysis',
+      'Speaker roles (first, second, third)',
+      'Rebuttal techniques',
+      'Cross-examination',
+      'Final focus delivery',
     ],
   },
 ] as const;
 
 const _COLOR_BORDER_MAP: Record<string, string> = {
-  "tertiary-blue-500": "border-l-tertiary-blue-500",
-  "tertiary-yellow-600": "border-l-tertiary-yellow-600",
-  "secondary-500": "border-l-secondary-500",
+  'tertiary-blue-500': 'border-l-tertiary-blue-500',
+  'tertiary-yellow-600': 'border-l-tertiary-yellow-600',
+  'secondary-500': 'border-l-secondary-500',
 };
 
 const COLOR_BG_LIGHT_MAP: Record<string, string> = {
-  "tertiary-blue-500": "bg-tertiary-blue-100",
-  "tertiary-yellow-600": "bg-tertiary-yellow-100",
-  "secondary-500": "bg-secondary-100",
+  'tertiary-blue-500': 'bg-tertiary-blue-100',
+  'tertiary-yellow-600': 'bg-tertiary-yellow-100',
+  'secondary-500': 'bg-secondary-100',
 };
 
 const COLOR_TEXT_MAP: Record<string, string> = {
-  "tertiary-blue-500": "text-tertiary-blue-500",
-  "tertiary-yellow-600": "text-tertiary-yellow-600",
-  "secondary-500": "text-secondary-500",
+  'tertiary-blue-500': 'text-tertiary-blue-500',
+  'tertiary-yellow-600': 'text-tertiary-yellow-600',
+  'secondary-500': 'text-secondary-500',
 };
 
 const COLOR_BORDER_HEX: Record<string, string> = {
-  "tertiary-blue-500": "#29aae1",
-  "tertiary-yellow-600": "#ffd600",
-  "secondary-500": "#a64ac9",
+  'tertiary-blue-500': '#29aae1',
+  'tertiary-yellow-600': '#ffd600',
+  'secondary-500': '#a64ac9',
 };
 
 export function ClassCard({
@@ -129,55 +129,55 @@ export function ClassCard({
 }) {
   const [open, setOpen] = useState(false);
   const locale = useLocale();
-  const isId = locale === "id";
+  const isId = locale === 'id';
 
   const getModalContent = () => {
-    if (tutorType === "Tutor Kelas Intensif") {
+    if (tutorType === 'Tutor Kelas Intensif') {
       return {
-        title: "Kelas Intensif",
-        description: "Persiapan kilat menuju satu ajang juara dengan strategi taktis yang teruji.",
+        title: 'Kelas Intensif',
+        description: 'Persiapan kilat menuju satu ajang juara dengan strategi taktis yang teruji.',
         features: [
-          "Fokus pada satu kompetisi target",
-          "Durasi intensif 2-4 minggu",
-          "Mentor berpengalaman di bidangnya",
-          "Simulasi langsung (mock competition)",
-          "Strategi dan teknik winning",
+          'Fokus pada satu kompetisi target',
+          'Durasi intensif 2-4 minggu',
+          'Mentor berpengalaman di bidangnya',
+          'Simulasi langsung (mock competition)',
+          'Strategi dan teknik winning',
         ],
-        ctaText: "Daftar Kelas Intensif",
-        badge: "Best for Competition",
-        badgeColor: "bg-yellow-400",
+        ctaText: 'Daftar Kelas Intensif',
+        badge: 'Best for Competition',
+        badgeColor: 'bg-yellow-400',
       };
     }
-    if (tutorType === "Tutor Kelas Ekstrakurikuler") {
+    if (tutorType === 'Tutor Kelas Ekstrakurikuler') {
       return {
-        title: "Kelas Ekstrakurikuler",
-        description: "Bentuk ekosistem juara di sekolahmu dengan program rutin yang fleksibel.",
+        title: 'Kelas Ekstrakurikuler',
+        description: 'Bentuk ekosistem juara di sekolahmu dengan program rutin yang fleksibel.',
         features: [
-          "Program rutin mingguan",
-          "Kurikulum disesuaikan sekolah",
-          "Pengembangan skill jangka panjang",
-          "Latihan kolaboratif",
-          "Monitoring progress berkala",
+          'Program rutin mingguan',
+          'Kurikulum disesuaikan sekolah',
+          'Pengembangan skill jangka panjang',
+          'Latihan kolaboratif',
+          'Monitoring progress berkala',
         ],
-        ctaText: "Daftar Kelas Ekstrakurikuler",
-        badge: "For Schools",
-        badgeColor: "bg-blue-400",
+        ctaText: 'Daftar Kelas Ekstrakurikuler',
+        badge: 'For Schools',
+        badgeColor: 'bg-blue-400',
       };
     }
     return {
-      title: "Kelas Reguler",
+      title: 'Kelas Reguler',
       description:
-        "Belajar semua tentang suatu jenis perlombaan dari dasar sampai mahir dengan kurikulum holistik.",
+        'Belajar semua tentang suatu jenis perlombaan dari dasar sampai mahir dengan kurikulum holistik.',
       features: [
-        "Kurikulum komprehensif",
-        "Belajar dari dasar hingga mahir",
-        "Tutor profesional berpengalaman",
-        "Fleksibel (Individu & Kelompok)",
-        "Sertifikat completion",
+        'Kurikulum komprehensif',
+        'Belajar dari dasar hingga mahir',
+        'Tutor profesional berpengalaman',
+        'Fleksibel (Individu & Kelompok)',
+        'Sertifikat completion',
       ],
-      ctaText: "Daftar Kelas Reguler",
-      badge: "Most Popular",
-      badgeColor: "bg-pink-400",
+      ctaText: 'Daftar Kelas Reguler',
+      badge: 'Most Popular',
+      badgeColor: 'bg-pink-400',
     };
   };
 
@@ -193,7 +193,7 @@ export function ClassCard({
     <>
       <div
         className={`overflow-hidden rounded-2xl ${className} relative md:min-h-100 ${
-          tutorType ? "cursor-pointer" : ""
+          tutorType ? 'cursor-pointer' : ''
         }`}
         onClick={handleClick}
       >
@@ -202,10 +202,10 @@ export function ClassCard({
             <motion.div
               key="trigger"
               initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
+              animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
-              style={{ overflow: "hidden" }}
+              style={{ overflow: 'hidden' }}
             >
               <div className="my-3 flex w-full items-center justify-between px-5 sm:px-6">
                 <p className="text-sm lg:text-base">Baca Selengkapnya</p>
@@ -219,8 +219,8 @@ export function ClassCard({
           animate={{ marginTop: isActiveTrigger ? 0 : 12 }}
           transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
           className={cn(
-            "flex min-h-full flex-col gap-3 rounded-2xl p-5 sm:p-6",
-            innerClassName ?? "",
+            'flex min-h-full flex-col gap-3 rounded-2xl p-5 sm:p-6',
+            innerClassName ?? '',
           )}
         >
           <h2 className="font-bold text-neutral-1000 text-xl sm:text-2xl">{title}</h2>
@@ -240,8 +240,8 @@ export function ClassCard({
 
       <ResponsiveModal open={open} onOpenChange={setOpen}>
         <ResponsiveModalContent
-          side={"bottom"}
-          style={{ maxHeight: "75dvh" }}
+          side={'bottom'}
+          style={{ maxHeight: '75dvh' }}
           className="flex flex-col overflow-hidden rounded-t-2xl border-none p-0 sm:max-w-[600px] lg:max-w-4xl sm:rounded-lg"
         >
           {/* Top: Image Section */}
@@ -271,7 +271,7 @@ export function ClassCard({
           {/* Right/Bottom: Content Section */}
           <div className="min-h-0 flex-1 overflow-y-auto p-4 pt-0">
             {/* Kelas Reguler: Tabbed Layout */}
-            {tutorType === "Tutor Kelas Reguler" ? (
+            {tutorType === 'Tutor Kelas Reguler' ? (
               <Tabs defaultValue={REGULER_SUBJECTS[0].slug} className="flex-col lg:flex-row">
                 {/* Left Panel: Tabs List */}
                 <div className="shrink-0 lg:w-60">
@@ -286,7 +286,7 @@ export function ClassCard({
                         className="min-w-[110px] shrink-0 px-4 py-3 text-sm lg:w-full lg:min-w-full justify-between bg-background-cream shadow-xs"
                         style={
                           {
-                            "--active-color": COLOR_BORDER_HEX[subject.color],
+                            '--active-color': COLOR_BORDER_HEX[subject.color],
                           } as React.CSSProperties
                         }
                       >
@@ -313,21 +313,21 @@ export function ClassCard({
                         </p>
                         <h3 className="font-semibold text-lg text-neutral-1000">
                           {isId
-                            ? "Apa yang Akan Kamu Pelajari dan Kuasai!"
-                            : "What You Will Learn and Master!"}
+                            ? 'Apa yang Akan Kamu Pelajari dan Kuasai!'
+                            : 'What You Will Learn and Master!'}
                         </h3>
                         <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
                           {(isId ? subject.topicsId : subject.topicsEn).map((topic, index) => (
                             <div
                               key={index}
                               className={cn(
-                                "flex items-start gap-3 rounded-lg p-3",
+                                'flex items-start gap-3 rounded-lg p-3',
                                 COLOR_BG_LIGHT_MAP[subject.color],
                               )}
                             >
                               <Trophy
                                 className={cn(
-                                  "mt-0.5 h-4 w-4 shrink-0",
+                                  'mt-0.5 h-4 w-4 shrink-0',
                                   COLOR_TEXT_MAP[subject.color],
                                 )}
                               />

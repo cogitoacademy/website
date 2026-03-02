@@ -1,26 +1,26 @@
-"use client";
+'use client';
 
-import type { DraggableAttributes } from "@dnd-kit/core";
-import type { SyntheticListenerMap } from "@dnd-kit/core/dist/hooks/utilities";
-import { differenceInMinutes, format, getMinutes, isPast } from "date-fns";
-import { ArrowUpRightIcon } from "lucide-react";
-import { useMemo } from "react";
+import type { DraggableAttributes } from '@dnd-kit/core';
+import type { SyntheticListenerMap } from '@dnd-kit/core/dist/hooks/utilities';
+import { differenceInMinutes, format, getMinutes, isPast } from 'date-fns';
+import { ArrowUpRightIcon } from 'lucide-react';
+import { useMemo } from 'react';
 import {
   type CalendarCompetition,
   getBorderRadiusClasses,
   getCompetitionColorClasses,
   useDateLocale,
-} from "@/components/competition-calendar";
-import { cn } from "@/lib/utils";
-import { buttonVariants } from "../ui/button";
-import { Separator } from "../ui/separator";
+} from '@/components/competition-calendar';
+import { cn } from '@/lib/utils';
+import { buttonVariants } from '../ui/button';
+import { Separator } from '../ui/separator';
 
 // Using date-fns format with custom formatting:
 // 'h' - hours (1-12)
 // 'a' - am/pm
 // ':mm' - minutes with leading zero (only if the token 'mm' is present)
 const formatTimeWithOptionalMinutes = (date: Date) => {
-  return format(date, getMinutes(date) === 0 ? "ha" : "h:mma").toLowerCase();
+  return format(date, getMinutes(date) === 0 ? 'ha' : 'h:mma').toLowerCase();
 };
 
 interface EventWrapperProps {
@@ -66,26 +66,26 @@ function EventWrapper({
   // Get the inset shadow color based on event color
   // Blue: 500, Yellow: 400, Orange(KTI/primary): 400, Pink: 500, Green: 600, Red: 500, Purple: 500
   const getInsetShadowColor = () => {
-    if (event.color?.startsWith("tertiary-blue")) return "rgba(59, 130, 246, 0.6)"; // Blue 500
-    if (event.color?.startsWith("tertiary-pink")) return "rgba(236, 72, 153, 0.6)"; // Pink 500
-    if (event.color?.startsWith("tertiary-red")) return "rgba(239, 68, 68, 0.6)"; // Red 500
-    if (event.color?.startsWith("tertiary-yellow")) return "rgba(250, 204, 21, 0.6)"; // Yellow 400
-    if (event.color?.startsWith("tertiary-green")) return "rgba(22, 163, 74, 0.6)"; // Green 600
-    if (event.color?.startsWith("primary")) return "rgba(255, 134, 52, 1)"; // Primary 400 (Orange/KTI)
-    if (event.color?.startsWith("secondary")) return "rgba(168, 85, 247, 0.6)"; // Purple 500
-    if (event.color === "sky") return "rgba(14, 165, 233, 0.6)";
-    if (event.color === "amber") return "rgba(245, 158, 11, 0.6)";
-    if (event.color === "violet") return "rgba(139, 92, 246, 0.6)";
-    if (event.color === "rose") return "rgba(244, 63, 94, 0.6)";
-    if (event.color === "emerald") return "rgba(16, 185, 129, 0.6)";
-    if (event.color === "orange") return "rgba(249, 115, 22, 0.6)";
-    return "rgba(59, 130, 246, 0.6)"; // Default Blue 500
+    if (event.color?.startsWith('tertiary-blue')) return 'rgba(59, 130, 246, 0.6)'; // Blue 500
+    if (event.color?.startsWith('tertiary-pink')) return 'rgba(236, 72, 153, 0.6)'; // Pink 500
+    if (event.color?.startsWith('tertiary-red')) return 'rgba(239, 68, 68, 0.6)'; // Red 500
+    if (event.color?.startsWith('tertiary-yellow')) return 'rgba(250, 204, 21, 0.6)'; // Yellow 400
+    if (event.color?.startsWith('tertiary-green')) return 'rgba(22, 163, 74, 0.6)'; // Green 600
+    if (event.color?.startsWith('primary')) return 'rgba(255, 134, 52, 1)'; // Primary 400 (Orange/KTI)
+    if (event.color?.startsWith('secondary')) return 'rgba(168, 85, 247, 0.6)'; // Purple 500
+    if (event.color === 'sky') return 'rgba(14, 165, 233, 0.6)';
+    if (event.color === 'amber') return 'rgba(245, 158, 11, 0.6)';
+    if (event.color === 'violet') return 'rgba(139, 92, 246, 0.6)';
+    if (event.color === 'rose') return 'rgba(244, 63, 94, 0.6)';
+    if (event.color === 'emerald') return 'rgba(16, 185, 129, 0.6)';
+    if (event.color === 'orange') return 'rgba(249, 115, 22, 0.6)';
+    return 'rgba(59, 130, 246, 0.6)'; // Default Blue 500
   };
 
   return (
     <button
       className={cn(
-        "relative flex size-full select-none overflow-hidden px-3 text-left font-medium outline-none backdrop-blur-md transition focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 data-dragging:cursor-grabbing data-past-event:line-through data-dragging:shadow-lg",
+        'relative flex size-full select-none overflow-hidden px-3 text-left font-medium outline-none backdrop-blur-md transition focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 data-dragging:cursor-grabbing data-past-event:line-through data-dragging:shadow-lg',
         getCompetitionColorClasses(event.color),
         getBorderRadiusClasses(isFirstDay, isLastDay),
         className,
@@ -107,7 +107,7 @@ function EventWrapper({
 
 interface EventItemProps {
   event: CalendarCompetition;
-  view: "month" | "week" | "day" | "agenda";
+  view: 'month' | 'week' | 'day' | 'agenda';
   isDragging?: boolean;
   onClick?: (e: React.MouseEvent) => void;
   showTime?: boolean;
@@ -161,7 +161,7 @@ export function EventItem({
   }, [displayStart, displayEnd]);
 
   const _getEventTime = () => {
-    if (event.allDay) return isId ? "Seharian" : "All day";
+    if (event.allDay) return isId ? 'Seharian' : 'All day';
 
     // For short events (less than 45 minutes), only show start time
     if (durationMinutes < 45) {
@@ -172,11 +172,11 @@ export function EventItem({
     return `${formatTimeWithOptionalMinutes(displayStart)} - ${formatTimeWithOptionalMinutes(displayEnd)}`;
   };
 
-  if (view === "month") {
+  if (view === 'month') {
     return (
       <EventWrapper
         className={cn(
-          "mt-[var(--event-gap)] h-[var(--event-height)] items-center text-[10px] text-neutral-1000 sm:text-xs",
+          'mt-[var(--event-gap)] h-[var(--event-height)] items-center text-[10px] text-neutral-1000 sm:text-xs',
           className,
         )}
         currentTime={currentTime}
@@ -195,13 +195,13 @@ export function EventItem({
     );
   }
 
-  if (view === "week" || view === "day") {
+  if (view === 'week' || view === 'day') {
     return (
       <EventWrapper
         className={cn(
-          "py-1",
-          durationMinutes < 45 ? "items-center" : "flex-col",
-          view === "week" ? "text-[10px] sm:text-xs" : "text-xs",
+          'py-1',
+          durationMinutes < 45 ? 'items-center' : 'flex-col',
+          view === 'week' ? 'text-[10px] sm:text-xs' : 'text-xs',
           className,
         )}
         currentTime={currentTime}
@@ -227,27 +227,27 @@ export function EventItem({
   // Get the inset shadow color for agenda view
   // Blue: 500, Yellow: 400, Orange(KTI/primary): 400, Pink: 500, Green: 600, Red: 500, Purple: 500
   const getAgendaInsetShadowColor = () => {
-    if (event.color?.startsWith("tertiary-blue")) return "rgba(59, 130, 246, 0.6)"; // Blue 500
-    if (event.color?.startsWith("tertiary-pink")) return "rgba(236, 72, 153, 0.6)"; // Pink 500
-    if (event.color?.startsWith("tertiary-red")) return "rgba(239, 68, 68, 0.6)"; // Red 500
-    if (event.color?.startsWith("tertiary-yellow")) return "rgba(250, 204, 21, 0.6)"; // Yellow 400
-    if (event.color?.startsWith("tertiary-green")) return "rgba(22, 163, 74, 0.6)"; // Green 600
-    if (event.color?.startsWith("primary")) return "rgba(255, 134, 52, 1)"; // Primary 400 (Orange/KTI)
-    if (event.color?.startsWith("secondary")) return "rgba(168, 85, 247, 0.6)"; // Purple 500
-    if (event.color === "sky") return "rgba(14, 165, 233, 0.6)";
-    if (event.color === "amber") return "rgba(245, 158, 11, 0.6)";
-    if (event.color === "violet") return "rgba(139, 92, 246, 0.6)";
-    if (event.color === "rose") return "rgba(244, 63, 94, 0.6)";
-    if (event.color === "emerald") return "rgba(16, 185, 129, 0.6)";
-    if (event.color === "orange") return "rgba(249, 115, 22, 0.6)";
-    return "rgba(59, 130, 246, 0.6)"; // Default Blue 500
+    if (event.color?.startsWith('tertiary-blue')) return 'rgba(59, 130, 246, 0.6)'; // Blue 500
+    if (event.color?.startsWith('tertiary-pink')) return 'rgba(236, 72, 153, 0.6)'; // Pink 500
+    if (event.color?.startsWith('tertiary-red')) return 'rgba(239, 68, 68, 0.6)'; // Red 500
+    if (event.color?.startsWith('tertiary-yellow')) return 'rgba(250, 204, 21, 0.6)'; // Yellow 400
+    if (event.color?.startsWith('tertiary-green')) return 'rgba(22, 163, 74, 0.6)'; // Green 600
+    if (event.color?.startsWith('primary')) return 'rgba(255, 134, 52, 1)'; // Primary 400 (Orange/KTI)
+    if (event.color?.startsWith('secondary')) return 'rgba(168, 85, 247, 0.6)'; // Purple 500
+    if (event.color === 'sky') return 'rgba(14, 165, 233, 0.6)';
+    if (event.color === 'amber') return 'rgba(245, 158, 11, 0.6)';
+    if (event.color === 'violet') return 'rgba(139, 92, 246, 0.6)';
+    if (event.color === 'rose') return 'rgba(244, 63, 94, 0.6)';
+    if (event.color === 'emerald') return 'rgba(16, 185, 129, 0.6)';
+    if (event.color === 'orange') return 'rgba(249, 115, 22, 0.6)';
+    return 'rgba(59, 130, 246, 0.6)'; // Default Blue 500
   };
 
   // Agenda view - kept separate since it's significantly different
   return (
     <button
       className={cn(
-        "flex w-full flex-col gap-1 rounded-2xl p-3 pl-7 text-left outline-none transition focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 data-past-event:line-through data-past-event:opacity-90",
+        'flex w-full flex-col gap-1 rounded-2xl p-3 pl-7 text-left outline-none transition focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 data-past-event:line-through data-past-event:opacity-90',
         getCompetitionColorClasses(eventColor),
         className,
       )}
@@ -282,7 +282,7 @@ export function EventItem({
         <div className="font-bold text-base text-neutral-1000 sm:text-lg md:text-xl">
           {event.title}
         </div>
-        <div className={cn(buttonVariants({ variant: "ghost", size: "icon-sm" }))}>
+        <div className={cn(buttonVariants({ variant: 'ghost', size: 'icon-sm' }))}>
           <ArrowUpRightIcon className="size-5 text-neutral-1000" />
         </div>
       </div>
@@ -317,9 +317,9 @@ export function EventItem({
           )}*/}
         </div>
         <p className="text-neutral-1000 text-sm">
-          {isId ? "Tanggal Pelaksanaan" : "Event Date"}{" "}
-          {format(new Date(event.start), "dd MMM", { locale: dateLocale })} -{" "}
-          {format(new Date(event.end), "d MMM yyyy", { locale: dateLocale })}
+          {isId ? 'Tanggal Pelaksanaan' : 'Event Date'}{' '}
+          {format(new Date(event.start), 'dd MMM', { locale: dateLocale })} -{' '}
+          {format(new Date(event.end), 'd MMM yyyy', { locale: dateLocale })}
         </p>
       </div>
     </button>

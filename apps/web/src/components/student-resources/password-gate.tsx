@@ -1,19 +1,19 @@
-"use client";
+'use client';
 
 /* eslint-disable react-compiler/react-compiler -- try/finally required for loading state */
-import Image from "next/image";
-import { useTranslations } from "next-intl";
-import { useState } from "react";
-import { verifyPassword } from "@/actions/auth";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { useRouter } from "@/i18n/routing";
-import { cn } from "@/lib/utils";
-import NavbarResolver from "../navbar-resolver";
+import Image from 'next/image';
+import { useTranslations } from 'next-intl';
+import { useState } from 'react';
+import { verifyPassword } from '@/actions/auth';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { useRouter } from '@/i18n/routing';
+import { cn } from '@/lib/utils';
+import NavbarResolver from '../navbar-resolver';
 
 export function PasswordGate() {
-  const t = useTranslations("studentResources.passwordGate");
-  const [password, setPassword] = useState("");
+  const t = useTranslations('studentResources.passwordGate');
+  const [password, setPassword] = useState('');
   const [error, setError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -47,28 +47,28 @@ export function PasswordGate() {
           <div className="relative z-10 h-full flex-1 justify-start p-5 sm:p-6 lg:p-8">
             <div className="text-left">
               <h1 className="font-bold text-2xl leading-tight tracking-tight lg:text-5xl lg:leading-normal">
-                {t("title")}
+                {t('title')}
               </h1>
-              <p className="my-2 text-sm lg:text-lg">{t("description")}</p>
+              <p className="my-2 text-sm lg:text-lg">{t('description')}</p>
             </div>
 
             <form onSubmit={handleSubmit} className="mt-6 space-y-4">
               <div>
                 <label className="sr-only" htmlFor="password">
-                  {t("placeholder")}
+                  {t('placeholder')}
                 </label>
                 <Input
                   id="password"
                   type="password"
-                  placeholder={t("placeholder")}
+                  placeholder={t('placeholder')}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className={cn("h-10.5 text-base", error && "border-red-500")}
+                  className={cn('h-10.5 text-base', error && 'border-red-500')}
                 />
-                {error && <p className="mt-2 text-red-500 text-sm">{t("error")}</p>}
+                {error && <p className="mt-2 text-red-500 text-sm">{t('error')}</p>}
               </div>
               <Button type="submit" size="md" className="w-full" disabled={isLoading}>
-                {isLoading ? t("verifying") : t("button")}
+                {isLoading ? t('verifying') : t('button')}
               </Button>
             </form>
           </div>
@@ -78,8 +78,8 @@ export function PasswordGate() {
             {/* Background Circle Decoration */}
             <div
               className={cn(
-                "absolute -bottom-10 -left-10 z-0 size-48 rounded-full opacity-80 sm:size-64 lg:-bottom-20 lg:-left-20 lg:size-80",
-                "bg-tertiary-blue-200",
+                'absolute -bottom-10 -left-10 z-0 size-48 rounded-full opacity-80 sm:size-64 lg:-bottom-20 lg:-left-20 lg:size-80',
+                'bg-tertiary-blue-200',
               )}
             />
 

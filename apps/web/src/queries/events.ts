@@ -1,4 +1,4 @@
-import { defineQuery } from "next-sanity";
+import { defineQuery } from 'next-sanity';
 
 export const EVENTS_BY_CATEGORY_QUERY = defineQuery(`
   *[_type == "event" && category == $category] | order(date desc) {

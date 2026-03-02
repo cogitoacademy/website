@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import { useDroppable } from "@dnd-kit/core";
+import { useDroppable } from '@dnd-kit/core';
 
-import { useCalendarDnd } from "@/components/competition-calendar";
-import { cn } from "@/lib/utils";
+import { useCalendarDnd } from '@/components/competition-calendar';
+import { cn } from '@/lib/utils';
 
 interface DroppableCellProps {
   id: string;
@@ -37,11 +37,11 @@ export function DroppableCell({
     time !== undefined
       ? `${Math.floor(time)}:${Math.round((time - Math.floor(time)) * 60)
           .toString()
-          .padStart(2, "0")}`
+          .padStart(2, '0')}`
       : null;
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (onClick && (e.key === "Enter" || e.key === " ")) {
+    if (onClick && (e.key === 'Enter' || e.key === ' ')) {
       e.preventDefault();
       onClick();
     }
@@ -51,14 +51,14 @@ export function DroppableCell({
   return (
     <div
       className={cn(
-        "flex h-full flex-col overflow-hidden rounded-b-3xl px-0.5 py-1 data-dragging:bg-accent sm:px-1 2xl:min-h-50",
+        'flex h-full flex-col overflow-hidden rounded-b-3xl px-0.5 py-1 data-dragging:bg-accent sm:px-1 2xl:min-h-50',
         className,
       )}
       data-dragging={isOver && activeEvent ? true : undefined}
       onClick={onClick}
       onKeyDown={onClick ? handleKeyDown : undefined}
       ref={setNodeRef}
-      role={onClick ? "button" : undefined}
+      role={onClick ? 'button' : undefined}
       tabIndex={onClick ? 0 : undefined}
       title={formattedTime ? `${formattedTime}` : undefined}
     >

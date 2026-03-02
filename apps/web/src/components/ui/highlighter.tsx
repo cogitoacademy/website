@@ -1,19 +1,19 @@
-"use client";
+'use client';
 
-import { useInView } from "motion/react";
-import type React from "react";
-import { useEffect, useRef } from "react";
-import { annotate } from "rough-notation";
-import type { RoughAnnotation } from "rough-notation/lib/model";
+import { useInView } from 'motion/react';
+import type React from 'react';
+import { useEffect, useRef } from 'react';
+import { annotate } from 'rough-notation';
+import type { RoughAnnotation } from 'rough-notation/lib/model';
 
 type AnnotationAction =
-  | "highlight"
-  | "underline"
-  | "box"
-  | "circle"
-  | "strike-through"
-  | "crossed-off"
-  | "bracket";
+  | 'highlight'
+  | 'underline'
+  | 'box'
+  | 'circle'
+  | 'strike-through'
+  | 'crossed-off'
+  | 'bracket';
 
 interface HighlighterProps {
   children: React.ReactNode;
@@ -30,8 +30,8 @@ interface HighlighterProps {
 
 export function Highlighter({
   children,
-  action = "highlight",
-  color = "#ffd1dc",
+  action = 'highlight',
+  color = '#ffd1dc',
   strokeWidth = 1.5,
   animationDuration = 600,
   iterations = 2,
@@ -45,7 +45,7 @@ export function Highlighter({
 
   const isInView = useInView(elementRef, {
     once: true,
-    margin: "-10%",
+    margin: '-10%',
   });
 
   // If isView is false, always show. If isView is true, wait for inView

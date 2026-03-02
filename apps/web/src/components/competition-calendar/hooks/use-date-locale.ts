@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import { id } from "date-fns/locale/id";
-import { useLocale } from "next-intl";
-import { useMemo } from "react";
+import { id } from 'date-fns/locale/id';
+import { useLocale } from 'next-intl';
+import { useMemo } from 'react';
 
 /**
  * Returns the date-fns locale object based on the current app locale.
@@ -11,7 +11,7 @@ import { useMemo } from "react";
  */
 export function useDateLocale() {
   const locale = useLocale();
-  const isId = locale === "id";
+  const isId = locale === 'id';
 
   const dateLocale = useMemo(() => (isId ? id : undefined), [isId]);
 

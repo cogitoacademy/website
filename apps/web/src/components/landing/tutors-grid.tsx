@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import { AnimatePresence, m } from "motion/react";
-import { useEffect, useState } from "react";
-import type { Tutor } from "@/types/tutor";
-import TutorCard from "../tutor-card";
+import { AnimatePresence, m } from 'motion/react';
+import { useEffect, useState } from 'react';
+import type { Tutor } from '@/types/tutor';
+import TutorCard from '../tutor-card';
 
 function useVisibleCount() {
   const [count, setCount] = useState(1);
@@ -23,8 +23,8 @@ function useVisibleCount() {
     }
 
     update();
-    window.addEventListener("resize", update);
-    return () => window.removeEventListener("resize", update);
+    window.addEventListener('resize', update);
+    return () => window.removeEventListener('resize', update);
   }, []);
 
   return count;

@@ -1,6 +1,6 @@
-"use client";
+'use client';
 
-import { type CalendarCompetition, EventCalendar } from "@/components/competition-calendar";
+import { type CalendarCompetition, EventCalendar } from '@/components/competition-calendar';
 
 interface CalendarClientProps {
   initialCompetitions: CalendarCompetition[];

@@ -1,20 +1,20 @@
-"use client";
+'use client';
 
-import { XIcon } from "@phosphor-icons/react/dist/ssr";
-import { Instagram, Linkedin, MapPin } from "lucide-react";
-import { AnimatePresence, m } from "motion/react";
-import Image from "next/image";
-import { useLocale } from "next-intl";
-import { useEffect } from "react";
+import { XIcon } from '@phosphor-icons/react/dist/ssr';
+import { Instagram, Linkedin, MapPin } from 'lucide-react';
+import { AnimatePresence, m } from 'motion/react';
+import Image from 'next/image';
+import { useLocale } from 'next-intl';
+import { useEffect } from 'react';
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "@/components/ui/accordion";
-import { Button } from "@/components/ui/button";
-import { Link } from "@/i18n/routing";
-import LanguageToggle from "./lang-toggle";
+} from '@/components/ui/accordion';
+import { Button } from '@/components/ui/button';
+import { Link } from '@/i18n/routing';
+import LanguageToggle from './lang-toggle';
 
 interface MobileMenuProps {
   isOpen: boolean;
@@ -22,48 +22,48 @@ interface MobileMenuProps {
 }
 
 const NAV_ITEMS_ID = [
-  { label: "#TutorJuara", href: "/tutors" },
-  { label: "Kalender Lomba", href: "/calendar" },
-  { label: "Materi Siswa", href: "/student-resources" },
+  { label: '#TutorJuara', href: '/tutors' },
+  { label: 'Kalender Lomba', href: '/calendar' },
+  { label: 'Materi Siswa', href: '/student-resources' },
 ];
 
 const NAV_ITEMS_EN = [
-  { label: "#ChampionTutors", href: "/tutors" },
-  { label: "Competition Calendar", href: "/calendar" },
-  { label: "Student Resources", href: "/student-resources" },
+  { label: '#ChampionTutors', href: '/tutors' },
+  { label: 'Competition Calendar', href: '/calendar' },
+  { label: 'Student Resources', href: '/student-resources' },
 ];
 
 const KEGIATAN_ITEMS_ID = [
-  { label: "Monthly Townhall", href: "/events/monthly-townhall" },
-  { label: "Cogito 101 Series", href: "/events/cogito-101-series" },
+  { label: 'Monthly Townhall', href: '/events/monthly-townhall' },
+  { label: 'Cogito 101 Series', href: '/events/cogito-101-series' },
 ];
 
 const KEGIATAN_ITEMS_EN = [
-  { label: "Monthly Townhall", href: "/events/monthly-townhall" },
-  { label: "Cogito 101 Series", href: "/events/cogito-101-series" },
+  { label: 'Monthly Townhall', href: '/events/monthly-townhall' },
+  { label: 'Cogito 101 Series', href: '/events/cogito-101-series' },
 ];
 
 const QUICK_NAV_ITEMS_ID = [
-  { label: "Acara Publik", href: "#" },
-  { label: "#TutorJuara", href: "/tutors" },
-  { label: "Kenapa Kita?", href: "#" },
-  { label: "Testimoni", href: "#" },
-  { label: "Jenis Perlombaan", href: "#" },
-  { label: "FAQ", href: "#faq" },
+  { label: 'Acara Publik', href: '#' },
+  { label: '#TutorJuara', href: '/tutors' },
+  { label: 'Kenapa Kita?', href: '#' },
+  { label: 'Testimoni', href: '#' },
+  { label: 'Jenis Perlombaan', href: '#' },
+  { label: 'FAQ', href: '#faq' },
 ];
 
 const QUICK_NAV_ITEMS_EN = [
-  { label: "Public Events", href: "#" },
-  { label: "Cogito Tutors", href: "/tutors" },
-  { label: "Why Us?", href: "#" },
-  { label: "Testimonials", href: "#" },
-  { label: "Types of Competitions", href: "#" },
-  { label: "FAQ", href: "#faq" },
+  { label: 'Public Events', href: '#' },
+  { label: 'Cogito Tutors', href: '/tutors' },
+  { label: 'Why Us?', href: '#' },
+  { label: 'Testimonials', href: '#' },
+  { label: 'Types of Competitions', href: '#' },
+  { label: 'FAQ', href: '#faq' },
 ];
 
 export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
   const locale = useLocale();
-  const isId = locale === "id";
+  const isId = locale === 'id';
 
   const navItems = isId ? NAV_ITEMS_ID : NAV_ITEMS_EN;
   const kegiatanItems = isId ? KEGIATAN_ITEMS_ID : KEGIATAN_ITEMS_EN;
@@ -71,25 +71,25 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
 
   useEffect(() => {
     if (isOpen) {
-      document.body.style.overflow = "hidden";
+      document.body.style.overflow = 'hidden';
     } else {
-      document.body.style.overflow = "unset";
+      document.body.style.overflow = 'unset';
     }
     return () => {
-      document.body.style.overflow = "unset";
+      document.body.style.overflow = 'unset';
     };
   }, [isOpen]);
 
   const menuVariants = {
     closed: {
-      y: "-100%",
+      y: '-100%',
       transition: {
         duration: 0.4,
         ease: [0.32, 0.72, 0, 1] as const,
       },
     },
     open: {
-      y: "0%",
+      y: '0%',
       transition: {
         duration: 0.5,
         ease: [0.32, 0.72, 0, 1] as const,
@@ -175,7 +175,7 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                     className="border-none bg-transparent shadow-none"
                   >
                     <AccordionTrigger className="bg-transparent p-0 font-bold text-neutral-1000 text-sm shadow-none hover:bg-transparent hover:no-underline hover:shadow-none focus-visible:ring-0 min-[550px]:text-base [&>svg]:ml-2 [&>svg]:size-5 [&>svg]:text-neutral-1000">
-                      {isId ? "Kegiatan" : "Activities"}
+                      {isId ? 'Kegiatan' : 'Activities'}
                     </AccordionTrigger>
                     <AccordionContent className="pb-0 pl-5">
                       <div className="flex flex-col gap-3 pt-3">
@@ -197,7 +197,7 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
 
               <m.div variants={itemVariants} className="mt-4">
                 <h3 className="mb-4 font-bold text-neutral-1000 text-sm min-[550px]:text-base">
-                  {isId ? "Navigasi Cepat" : "Quick Navigation"}
+                  {isId ? 'Navigasi Cepat' : 'Quick Navigation'}
                 </h3>
                 <div className="grid grid-cols-2 gap-x-4 gap-y-3">
                   {quickNavItems.map((item) => (
@@ -234,7 +234,7 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
 
               <Link href="/contact" onClick={onClose} className="w-full cursor-pointer">
                 <Button variant="gray" size="md" className="w-full text-sm">
-                  {isId ? "Hubungi Kami" : "Contact Us"}
+                  {isId ? 'Hubungi Kami' : 'Contact Us'}
                 </Button>
               </Link>
             </div>

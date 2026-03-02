@@ -1,13 +1,13 @@
 // import { Container } from "../ui/container";
-import { ChatsCircleIcon } from "@phosphor-icons/react/dist/ssr";
-import Image from "next/image";
-import Link from "next/link";
-import { getLocale } from "next-intl/server";
-import { Button } from "../ui/button";
+import { ChatsCircleIcon } from '@phosphor-icons/react/dist/ssr';
+import Image from 'next/image';
+import Link from 'next/link';
+import { getLocale } from 'next-intl/server';
+import { Button } from '../ui/button';
 
 export default async function p() {
   const locale = await getLocale();
-  const isId = locale === "id";
+  const isId = locale === 'id';
 
   return (
     <section className="relative bg-primary-100 px-4 py-20">
@@ -30,14 +30,14 @@ export default async function p() {
             </h2>
             <p className="mt-2 md:max-w-md text-base text-gray-700 max-w-[380px]">
               {isId
-                ? "Sampaikan pertanyaanmu langsung kepada konsultan ahli kami melalui sesi diskusi gratis."
-                : "Ask your questions directly to our expert consultants through free discussion sessions."}
+                ? 'Sampaikan pertanyaanmu langsung kepada konsultan ahli kami melalui sesi diskusi gratis.'
+                : 'Ask your questions directly to our expert consultants through free discussion sessions.'}
             </p>
           </div>
           <div className="hidden sm:flex-1 h-full" />
           <Link href="/contact" className="relative z-1 mt-3 sm:mt-auto sm:mb-0">
             <Button size="lg">
-              <span>{isId ? "Jadwalkan Konsultasi gratis" : "Schedule Free Consultation"}</span>
+              <span>{isId ? 'Jadwalkan Konsultasi gratis' : 'Schedule Free Consultation'}</span>
               <ChatsCircleIcon weight="duotone" color="#ffffff" className="size-5" />
             </Button>
           </Link>

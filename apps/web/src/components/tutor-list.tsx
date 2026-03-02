@@ -1,19 +1,19 @@
-"use client";
+'use client';
 
-import { IdentificationBadgeIcon } from "@phosphor-icons/react/dist/ssr";
-import { useTranslations } from "next-intl";
-import { useMemo, useState } from "react";
-import TutorFilters from "@/components/tutor-filters";
+import { IdentificationBadgeIcon } from '@phosphor-icons/react/dist/ssr';
+import { useTranslations } from 'next-intl';
+import { useMemo, useState } from 'react';
+import TutorFilters from '@/components/tutor-filters';
 import {
   Empty,
   EmptyDescription,
   EmptyHeader,
   EmptyMedia,
   EmptyTitle,
-} from "@/components/ui/empty";
-import { LOCATIONS } from "@/lib/config/locations";
-import type { CompetitionCategory, Tutor } from "@/types/tutor";
-import { TutorsGrid } from "./landing/tutors-grid";
+} from '@/components/ui/empty';
+import { LOCATIONS } from '@/lib/config/locations';
+import type { CompetitionCategory, Tutor } from '@/types/tutor';
+import { TutorsGrid } from './landing/tutors-grid';
 
 interface TutorListProps {
   tutors: Tutor[];
@@ -21,10 +21,10 @@ interface TutorListProps {
 }
 
 export default function TutorList({ tutors, categories }: TutorListProps) {
-  const t = useTranslations("tutors");
+  const t = useTranslations('tutors');
   const [selectedLocations, setSelectedLocations] = useState<string[]>([]);
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
-  const [searchQuery, setSearchQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useState('');
 
   const filteredTutors = useMemo(() => {
     return tutors.filter((tutor) => {
@@ -38,7 +38,7 @@ export default function TutorList({ tutors, categories }: TutorListProps) {
           tutor.competitionFields.some((cat) => selectedCategories.includes(cat._id)));
 
       const searchMatch =
-        searchQuery === "" || tutor.name.toLowerCase().includes(searchQuery.toLowerCase());
+        searchQuery === '' || tutor.name.toLowerCase().includes(searchQuery.toLowerCase());
 
       return locationMatch && categoryMatch && searchMatch;
     });
@@ -59,7 +59,7 @@ export default function TutorList({ tutors, categories }: TutorListProps) {
   const handleClearAll = () => {
     setSelectedLocations([]);
     setSelectedCategories([]);
-    setSearchQuery("");
+    setSearchQuery('');
   };
 
   return (
@@ -82,9 +82,9 @@ export default function TutorList({ tutors, categories }: TutorListProps) {
             <EmptyMedia variant="icon">
               <IdentificationBadgeIcon />
             </EmptyMedia>
-            <EmptyTitle>{t("noTutorsTitle")}</EmptyTitle>
+            <EmptyTitle>{t('noTutorsTitle')}</EmptyTitle>
             <EmptyDescription className="text-pretty">
-              {tutors.length === 0 ? t("loading") : t("noTutors")}
+              {tutors.length === 0 ? t('loading') : t('noTutors')}
             </EmptyDescription>
           </EmptyHeader>
         </Empty>

@@ -1,15 +1,15 @@
-import type { Metadata } from "next";
-import { notFound } from "next/navigation";
-import { setRequestLocale } from "next-intl/server";
-import { EventsGrid, type SerializedEvent } from "@/components/events/events-grid";
-import NavbarResolver from "@/components/navbar-resolver";
-import { routing } from "@/i18n/routing";
-import { sanityToEvent } from "@/lib/transforms/eventTransform";
-import { EVENTS_BY_CATEGORY_QUERY } from "@/queries/events";
-import { client } from "@/sanity/client";
-import type { Event, SanityEvent } from "@/types/sanity/event";
+import type { Metadata } from 'next';
+import { notFound } from 'next/navigation';
+import { setRequestLocale } from 'next-intl/server';
+import { EventsGrid, type SerializedEvent } from '@/components/events/events-grid';
+import NavbarResolver from '@/components/navbar-resolver';
+import { routing } from '@/i18n/routing';
+import { sanityToEvent } from '@/lib/transforms/eventTransform';
+import { EVENTS_BY_CATEGORY_QUERY } from '@/queries/events';
+import { client } from '@/sanity/client';
+import type { Event, SanityEvent } from '@/types/sanity/event';
 
-const VALID_CATEGORIES = ["monthly-townhall", "cogito-101-series"] as const;
+const VALID_CATEGORIES = ['monthly-townhall', 'cogito-101-series'] as const;
 type CategorySlug = (typeof VALID_CATEGORIES)[number];
 
 export async function generateMetadata({
@@ -18,32 +18,32 @@ export async function generateMetadata({
   params: Promise<{ locale: string; category: string }>;
 }): Promise<Metadata> {
   const { locale, category } = await params;
-  const isId = locale === "id";
+  const isId = locale === 'id';
 
   const titles: Record<string, { id: string; en: string }> = {
-    "monthly-townhall": {
-      id: "Monthly Townhall",
-      en: "Monthly Townhall",
+    'monthly-townhall': {
+      id: 'Monthly Townhall',
+      en: 'Monthly Townhall',
     },
-    "cogito-101-series": {
-      id: "Cogito 101 Series",
-      en: "Cogito 101 Series",
+    'cogito-101-series': {
+      id: 'Cogito 101 Series',
+      en: 'Cogito 101 Series',
     },
   };
 
   const descriptions: Record<string, { id: string; en: string }> = {
-    "monthly-townhall": {
-      id: "Perdalam penguasaan ilmumu melalui dialog langsung bersama para ahli di setiap sesi bulanan Cogito Academy.",
-      en: "Deepen your knowledge through direct dialogue with experts in every monthly session at Cogito Academy.",
+    'monthly-townhall': {
+      id: 'Perdalam penguasaan ilmumu melalui dialog langsung bersama para ahli di setiap sesi bulanan Cogito Academy.',
+      en: 'Deepen your knowledge through direct dialogue with experts in every monthly session at Cogito Academy.',
     },
-    "cogito-101-series": {
-      id: "Seri pengenalan untuk kamu yang ingin memahami lebih dalam tentang dunia kompetisi dan peluang prestasi.",
-      en: "Introduction series for those who want to understand more about the world of competition and achievement opportunities.",
+    'cogito-101-series': {
+      id: 'Seri pengenalan untuk kamu yang ingin memahami lebih dalam tentang dunia kompetisi dan peluang prestasi.',
+      en: 'Introduction series for those who want to understand more about the world of competition and achievement opportunities.',
     },
   };
 
-  const title = titles[category]?.[isId ? "id" : "en"] || "Events | Cogito Academy";
-  const description = descriptions[category]?.[isId ? "id" : "en"] || "";
+  const title = titles[category]?.[isId ? 'id' : 'en'] || 'Events | Cogito Academy';
+  const description = descriptions[category]?.[isId ? 'id' : 'en'] || '';
 
   return {
     title,
@@ -69,40 +69,40 @@ const CATEGORY_META: Record<
     subtitle: { id: string; en: string };
   }
 > = {
-  "monthly-townhall": {
+  'monthly-townhall': {
     headline: {
       id: {
-        before: "Gali ",
-        highlight: "Wawasan Baru",
-        after: " dalam Diskusi Bulanan Kami",
+        before: 'Gali ',
+        highlight: 'Wawasan Baru',
+        after: ' dalam Diskusi Bulanan Kami',
       },
       en: {
-        before: "Discover ",
-        highlight: "New Insights",
-        after: " in Our Monthly Discussions",
+        before: 'Discover ',
+        highlight: 'New Insights',
+        after: ' in Our Monthly Discussions',
       },
     },
     subtitle: {
-      id: "Perdalam penguasaan ilmumu melalui dialog langsung bersama para ahli di setiap sesi bulanan.",
-      en: "Deepen your knowledge through direct dialogue with experts in every monthly session.",
+      id: 'Perdalam penguasaan ilmumu melalui dialog langsung bersama para ahli di setiap sesi bulanan.',
+      en: 'Deepen your knowledge through direct dialogue with experts in every monthly session.',
     },
   },
-  "cogito-101-series": {
+  'cogito-101-series': {
     headline: {
       id: {
-        before: "Kenali ",
-        highlight: "Ragam Peluang",
-        after: " Prestasi Global",
+        before: 'Kenali ',
+        highlight: 'Ragam Peluang',
+        after: ' Prestasi Global',
       },
       en: {
-        before: "Discover ",
-        highlight: "Global Achievement",
-        after: " Opportunities",
+        before: 'Discover ',
+        highlight: 'Global Achievement',
+        after: ' Opportunities',
       },
     },
     subtitle: {
-      id: "Seri pengenalan untuk kamu yang ingin memahami lebih dalam tentang dunia kompetisi dan peluang prestasi.",
-      en: "An introductory series for those who want to dive deeper into competitions and achievement opportunities.",
+      id: 'Seri pengenalan untuk kamu yang ingin memahami lebih dalam tentang dunia kompetisi dan peluang prestasi.',
+      en: 'An introductory series for those who want to dive deeper into competitions and achievement opportunities.',
     },
   },
 };
@@ -130,7 +130,7 @@ export default async function EventCategoryPage({ params }: Props) {
 
   const categorySlug = category as CategorySlug;
   const meta = CATEGORY_META[categorySlug];
-  const lang = locale === "en" ? "en" : "id";
+  const lang = locale === 'en' ? 'en' : 'id';
   const headline = meta.headline[lang];
 
   // Fetch events from Sanity
@@ -144,7 +144,7 @@ export default async function EventCategoryPage({ params }: Props) {
 
     events = sanityEvents.map((e) => sanityToEvent(e, lang));
   } catch (error) {
-    console.error("Failed to fetch events:", error);
+    console.error('Failed to fetch events:', error);
   }
 
   // Serialize events for client component (Date -> ISO string)

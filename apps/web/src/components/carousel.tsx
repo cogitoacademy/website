@@ -1,11 +1,11 @@
-"use client";
+'use client';
 
-import { ArrowLeftIcon, ArrowRightIcon } from "@phosphor-icons/react";
-import Image from "next/image";
-import type React from "react";
-import { useEffect, useState } from "react";
-import { cn } from "@/lib/utils";
-import { Container } from "./ui/container";
+import { ArrowLeftIcon, ArrowRightIcon } from '@phosphor-icons/react';
+import Image from 'next/image';
+import type React from 'react';
+import { useEffect, useState } from 'react';
+import { cn } from '@/lib/utils';
+import { Container } from './ui/container';
 
 export interface CarouselItem {
   id: string | number;
@@ -37,7 +37,7 @@ const Carousel: React.FC<CarouselProps> = ({
   cardHeight = 225,
   gap = 32,
   responsiveGap = false,
-  className = "",
+  className = '',
   showNavigation = true,
   showDots = true,
   autoPlay = false,
@@ -67,8 +67,8 @@ const Carousel: React.FC<CarouselProps> = ({
     };
 
     updateGap();
-    window.addEventListener("resize", updateGap);
-    return () => window.removeEventListener("resize", updateGap);
+    window.addEventListener('resize', updateGap);
+    return () => window.removeEventListener('resize', updateGap);
   }, [gap, responsiveGap]);
 
   const extendedItems = items.length > 0 ? [items[items.length - 1], ...items, items[0]] : [];
@@ -141,9 +141,9 @@ const Carousel: React.FC<CarouselProps> = ({
     if (!isRendered) {
       return {
         opacity: 0,
-        visibility: "hidden",
+        visibility: 'hidden',
         zIndex: 0,
-        pointerEvents: "none",
+        pointerEvents: 'none',
       };
     }
 
@@ -153,7 +153,7 @@ const Carousel: React.FC<CarouselProps> = ({
     const zIndex = 10 - absPos * 3;
     // ±2 cards are fully invisible — only used as ghost frames for smooth animation
     const opacity = absPos <= 1 ? 1 : 0;
-    const pointerEvents = absPos <= 1 ? "auto" : ("none" as const);
+    const pointerEvents = absPos <= 1 ? 'auto' : ('none' as const);
 
     const isJumpFrame =
       (currentIndex === 0 && index === items.length) ||
@@ -161,23 +161,23 @@ const Carousel: React.FC<CarouselProps> = ({
 
     return {
       transform: `translateX(${translateX}px) translateY(${translateY}px) rotate(${rotate}deg)`,
-      transformOrigin: "bottom center",
+      transformOrigin: 'bottom center',
       opacity,
       zIndex,
-      visibility: "visible",
+      visibility: 'visible',
       pointerEvents,
       transition:
-        isTransitioning && !isJumpFrame ? "all 0.5s cubic-bezier(0.4, 0, 0.2, 1)" : "none",
+        isTransitioning && !isJumpFrame ? 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)' : 'none',
     };
   };
 
   const defaultRenderCard = (item: CarouselItem) => {
     const itemId =
-      typeof item.id === "number" ? item.id : Number.parseInt(item.id as string, 10) || 0;
+      typeof item.id === 'number' ? item.id : Number.parseInt(item.id as string, 10) || 0;
     const bgColor =
       itemId % 2 === 0
-        ? "bg-tertiary-yellow-200 border-neutral-200 *:text-black"
-        : "bg-secondary-200 *:text-neutral-1000 border-neutral-200";
+        ? 'bg-tertiary-yellow-200 border-neutral-200 *:text-black'
+        : 'bg-secondary-200 *:text-neutral-1000 border-neutral-200';
 
     return (
       <div
@@ -196,7 +196,7 @@ const Carousel: React.FC<CarouselProps> = ({
               />
             </div>
             <div>
-              <h3 className={cn("font-medium text-sm lg:text-base")}>{item.name}</h3>
+              <h3 className={cn('font-medium text-sm lg:text-base')}>{item.name}</h3>
               <h4 className="line-clamp-2 text-xs lg:text-sm">{item.title}</h4>
             </div>
           </div>
@@ -284,7 +284,7 @@ const Carousel: React.FC<CarouselProps> = ({
                 onClick={() => goToSlide(index)}
                 disabled={isTransitioning}
                 className={`size-2 rounded-full transition-all duration-200 disabled:cursor-not-allowed ${
-                  index === activeIndex ? "scale-125 bg-dot-active" : "scale-125 bg-dot-inactive"
+                  index === activeIndex ? 'scale-125 bg-dot-active' : 'scale-125 bg-dot-inactive'
                 }`}
               />
             );

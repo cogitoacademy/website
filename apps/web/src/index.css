@@ -1,6 +1,6 @@
-@import "tailwindcss";
-@import "tw-animate-css";
-@import "shadcn/tailwind.css";
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import 'shadcn/tailwind.css';
 
 @custom-variant dark (&:is(.dark *));
 
@@ -382,8 +382,8 @@
    */
 
   /* Accordion icon rotation */
-  [data-slot="accordion-item"]:has([data-slot="accordion-panel"]:not([hidden]))
-    [data-slot="accordion-trigger"]
+  [data-slot='accordion-item']:has([data-slot='accordion-panel']:not([hidden]))
+    [data-slot='accordion-trigger']
     svg {
     transform: rotate(135deg);
   }

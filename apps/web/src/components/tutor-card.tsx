@@ -1,15 +1,15 @@
-"use client";
+'use client';
 
-import { ArrowUpRightIcon } from "lucide-react";
-import Image from "next/image";
-import { useLocale } from "next-intl";
-import { useState } from "react";
-import { getCoreCategoryBadgeColor } from "@/lib/colors/brandColors";
-import { cn } from "@/lib/utils";
-import type { Tutor } from "@/types/tutor";
-import TutorDetailModal from "./tutor-detail-modal";
-import { Badge, badgeVariants } from "./ui/badge";
-import { Button } from "./ui/button";
+import { ArrowUpRightIcon } from 'lucide-react';
+import Image from 'next/image';
+import { useLocale } from 'next-intl';
+import { useState } from 'react';
+import { getCoreCategoryBadgeColor } from '@/lib/colors/brandColors';
+import { cn } from '@/lib/utils';
+import type { Tutor } from '@/types/tutor';
+import TutorDetailModal from './tutor-detail-modal';
+import { Badge, badgeVariants } from './ui/badge';
+import { Button } from './ui/button';
 
 interface TutorCardProps {
   tutor: Tutor;
@@ -21,7 +21,7 @@ interface TutorCardProps {
  * fallback ke item pertama kalau locale ga ketemu
  */
 const getLocalizedValue = (arr?: { _key: string; value: string }[], locale?: string) =>
-  arr?.find((item) => item._key === locale)?.value || arr?.[0]?.value || "";
+  arr?.find((item) => item._key === locale)?.value || arr?.[0]?.value || '';
 
 export default function TutorCard({ tutor }: TutorCardProps) {
   const locale = useLocale();
@@ -30,7 +30,7 @@ export default function TutorCard({ tutor }: TutorCardProps) {
   const affiliation = getLocalizedValue(tutor.affiliation, locale);
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === "Enter" || e.key === " ") {
+    if (e.key === 'Enter' || e.key === ' ') {
       e.preventDefault();
       setIsModalOpen(true);
     }
@@ -74,11 +74,11 @@ export default function TutorCard({ tutor }: TutorCardProps) {
                   <Badge
                     key={field._id}
                     className={cn(
-                      badgeVariants({ variant: "tutor" }),
+                      badgeVariants({ variant: 'tutor' }),
                       getCoreCategoryBadgeColor(field.coreCategory),
                     )}
                   >
-                    {field.name || (locale === "id" ? "Bidang Tidak Diketahui" : "Unknown Field")}
+                    {field.name || (locale === 'id' ? 'Bidang Tidak Diketahui' : 'Unknown Field')}
                   </Badge>
                 ))}
               </div>

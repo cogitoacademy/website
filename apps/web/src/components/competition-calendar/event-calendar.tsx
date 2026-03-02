@@ -1,6 +1,6 @@
-"use client";
+'use client';
 
-import { RiCalendarCheckLine } from "@remixicon/react";
+import { RiCalendarCheckLine } from '@remixicon/react';
 import {
   addDays,
   addMonths,
@@ -11,10 +11,10 @@ import {
   startOfWeek,
   subMonths,
   subWeeks,
-} from "date-fns";
-import { ChevronDownIcon, ChevronLeftIcon, ChevronRightIcon, PlusIcon } from "lucide-react";
-import { useLocale } from "next-intl";
-import { useEffect, useMemo, useState } from "react";
+} from 'date-fns';
+import { ChevronDownIcon, ChevronLeftIcon, ChevronRightIcon, PlusIcon } from 'lucide-react';
+import { useLocale } from 'next-intl';
+import { useEffect, useMemo, useState } from 'react';
 
 import {
   AgendaDaysToShow,
@@ -29,16 +29,16 @@ import {
   MonthView,
   WeekCellsHeight,
   WeekView,
-} from "@/components/competition-calendar";
-import { Button } from "@/components/ui/button";
+} from '@/components/competition-calendar';
+import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuShortcut,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { cn } from "@/lib/utils";
+} from '@/components/ui/dropdown-menu';
+import { cn } from '@/lib/utils';
 
 const EMPTY_EVENTS: CalendarCompetition[] = [];
 
@@ -56,7 +56,7 @@ export function EventCalendar({
   events = EMPTY_EVENTS,
   readOnly = false,
   className,
-  initialView = "month",
+  initialView = 'month',
   onEventAdd: _onEventAdd,
   onEventDelete: _onEventDelete,
   onEventUpdate,
@@ -67,7 +67,7 @@ export function EventCalendar({
   const [isEventDetailsDialogOpen, setIsEventDetailsDialogOpen] = useState(false);
   const [selectedEvent, setSelectedEvent] = useState<CalendarCompetition | null>(null);
   const locale = useLocale();
-  const isId = locale === "id";
+  const isId = locale === 'id';
 
   // Add keyboard shortcuts for view switching
   useEffect(() => {
@@ -82,8 +82,8 @@ export function EventCalendar({
       }
 
       switch (e.key.toLowerCase()) {
-        case "m":
-          setView("month");
+        case 'm':
+          setView('month');
           break;
         // case "w":
         //   setView("week");
@@ -91,40 +91,40 @@ export function EventCalendar({
         // case "d":
         //   setView("day");
         //   break;
-        case "a":
-          setView("agenda");
+        case 'a':
+          setView('agenda');
           break;
       }
     };
 
-    window.addEventListener("keydown", handleKeyDown);
+    window.addEventListener('keydown', handleKeyDown);
 
     return () => {
-      window.removeEventListener("keydown", handleKeyDown);
+      window.removeEventListener('keydown', handleKeyDown);
     };
   }, []);
 
   const handlePrevious = () => {
-    if (view === "month") {
+    if (view === 'month') {
       setCurrentDate(subMonths(currentDate, 1));
-    } else if (view === "week") {
+    } else if (view === 'week') {
       setCurrentDate(subWeeks(currentDate, 1));
-    } else if (view === "day") {
+    } else if (view === 'day') {
       setCurrentDate(addDays(currentDate, -1));
-    } else if (view === "agenda") {
+    } else if (view === 'agenda') {
       // For agenda view, go back 30 days (a full month)
       setCurrentDate(addDays(currentDate, -AgendaDaysToShow));
     }
   };
 
   const handleNext = () => {
-    if (view === "month") {
+    if (view === 'month') {
       setCurrentDate(addMonths(currentDate, 1));
-    } else if (view === "week") {
+    } else if (view === 'week') {
       setCurrentDate(addWeeks(currentDate, 1));
-    } else if (view === "day") {
+    } else if (view === 'day') {
       setCurrentDate(addDays(currentDate, 1));
-    } else if (view === "agenda") {
+    } else if (view === 'agenda') {
       // For agenda view, go forward 30 days (a full month)
       setCurrentDate(addDays(currentDate, AgendaDaysToShow));
     }
@@ -141,47 +141,47 @@ export function EventCalendar({
 
   const viewLabels = useMemo(() => {
     const labels: Record<CalendarView, string> = isId
-      ? { month: "Bulan", week: "Minggu", day: "Hari", agenda: "Agenda" }
-      : { month: "Month", week: "Week", day: "Day", agenda: "Agenda" };
+      ? { month: 'Bulan', week: 'Minggu', day: 'Hari', agenda: 'Agenda' }
+      : { month: 'Month', week: 'Week', day: 'Day', agenda: 'Agenda' };
     return labels;
   }, [isId]);
 
   const viewTitle = useMemo(() => {
-    if (view === "month") {
-      return format(currentDate, "MMMM yyyy");
+    if (view === 'month') {
+      return format(currentDate, 'MMMM yyyy');
     }
-    if (view === "week") {
+    if (view === 'week') {
       const start = startOfWeek(currentDate, { weekStartsOn: 0 });
       const end = endOfWeek(currentDate, { weekStartsOn: 0 });
       if (isSameMonth(start, end)) {
-        return format(start, "MMMM yyyy");
+        return format(start, 'MMMM yyyy');
       }
-      return `${format(start, "MMM")} - ${format(end, "MMM yyyy")}`;
+      return `${format(start, 'MMM')} - ${format(end, 'MMM yyyy')}`;
     }
-    if (view === "day") {
+    if (view === 'day') {
       return (
         <>
           <span aria-hidden="true" className="min-[480px]:hidden">
-            {format(currentDate, "MMM d, yyyy")}
+            {format(currentDate, 'MMM d, yyyy')}
           </span>
           <span aria-hidden="true" className="max-[479px]:hidden min-md:hidden">
-            {format(currentDate, "MMMM d, yyyy")}
+            {format(currentDate, 'MMMM d, yyyy')}
           </span>
-          <span className="max-md:hidden">{format(currentDate, "EEE MMMM d, yyyy")}</span>
+          <span className="max-md:hidden">{format(currentDate, 'EEE MMMM d, yyyy')}</span>
         </>
       );
     }
-    if (view === "agenda") {
+    if (view === 'agenda') {
       // Show the month range for agenda view
       const start = currentDate;
       const end = addDays(currentDate, AgendaDaysToShow - 1);
 
       if (isSameMonth(start, end)) {
-        return format(start, "MMMM yyyy");
+        return format(start, 'MMMM yyyy');
       }
-      return `${format(start, "MMM")} - ${format(end, "MMM yyyy")}`;
+      return `${format(start, 'MMM')} - ${format(end, 'MMM yyyy')}`;
     }
-    return format(currentDate, "MMMM yyyy");
+    return format(currentDate, 'MMMM yyyy');
   }, [currentDate, view]);
 
   return (
@@ -189,16 +189,16 @@ export function EventCalendar({
       className="flex flex-col rounded-xl border bg-neutral-100 xl:rounded-3xl"
       style={
         {
-          "--event-gap": `${EventGap}px`,
-          "--event-height": `${EventHeight}px`,
-          "--week-cells-height": `${WeekCellsHeight}px`,
+          '--event-gap': `${EventGap}px`,
+          '--event-height': `${EventHeight}px`,
+          '--week-cells-height': `${WeekCellsHeight}px`,
         } as React.CSSProperties
       }
     >
       <CalendarDndProvider onEventUpdate={readOnly || !onEventUpdate ? () => {} : onEventUpdate}>
         <div
           className={cn(
-            "flex items-center justify-between rounded-t-xl bg-tertiary-pink-200 p-2 sm:p-4 xl:rounded-t-3xl",
+            'flex items-center justify-between rounded-t-xl bg-tertiary-pink-200 p-2 sm:p-4 xl:rounded-t-3xl',
             className,
           )}
         >
@@ -210,7 +210,7 @@ export function EventCalendar({
               size="md"
             >
               <RiCalendarCheckLine aria-hidden="true" className="min-[480px]:hidden" size={16} />
-              <span className="max-[479px]:sr-only">{isId ? "Hari Ini" : "Today"}</span>
+              <span className="max-[479px]:sr-only">{isId ? 'Hari Ini' : 'Today'}</span>
             </Button>
             <div className="flex items-center sm:gap-2">
               <Button aria-label="Previous" onClick={handlePrevious} size="icon" variant="ghost">
@@ -242,7 +242,7 @@ export function EventCalendar({
                 <ChevronDownIcon aria-hidden="true" className="-me-1 opacity-60" size={16} />
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end" className="min-w-32">
-                <DropdownMenuItem onClick={() => setView("month")}>
+                <DropdownMenuItem onClick={() => setView('month')}>
                   {viewLabels.month} <DropdownMenuShortcut>M</DropdownMenuShortcut>
                 </DropdownMenuItem>
                 {/*<DropdownMenuItem onClick={() => setView("week")}>
@@ -251,7 +251,7 @@ export function EventCalendar({
                 <DropdownMenuItem onClick={() => setView("day")}>
                   Day <DropdownMenuShortcut>D</DropdownMenuShortcut>
                 </DropdownMenuItem>*/}
-                <DropdownMenuItem onClick={() => setView("agenda")}>
+                <DropdownMenuItem onClick={() => setView('agenda')}>
                   {viewLabels.agenda} <DropdownMenuShortcut>A</DropdownMenuShortcut>
                 </DropdownMenuItem>
               </DropdownMenuContent>
@@ -265,14 +265,14 @@ export function EventCalendar({
                 size="sm"
               >
                 <PlusIcon aria-hidden="true" className="opacity-60 sm:-ms-1" size={16} />
-                <span className="max-sm:sr-only">{isId ? "Acara baru" : "New event"}</span>
+                <span className="max-sm:sr-only">{isId ? 'Acara baru' : 'New event'}</span>
               </Button>
             )}
           </div>
         </div>
 
         <div className="flex flex-1 flex-col">
-          {view === "month" && (
+          {view === 'month' && (
             <MonthView
               currentDate={currentDate}
               events={events}
@@ -280,7 +280,7 @@ export function EventCalendar({
               readOnly={readOnly}
             />
           )}
-          {view === "week" && (
+          {view === 'week' && (
             <WeekView
               currentDate={currentDate}
               events={events}
@@ -288,7 +288,7 @@ export function EventCalendar({
               readOnly={readOnly}
             />
           )}
-          {view === "day" && (
+          {view === 'day' && (
             <DayView
               currentDate={currentDate}
               events={events}
@@ -296,7 +296,7 @@ export function EventCalendar({
               readOnly={readOnly}
             />
           )}
-          {view === "agenda" && (
+          {view === 'agenda' && (
             <AgendaView
               currentDate={currentDate}
               events={events}

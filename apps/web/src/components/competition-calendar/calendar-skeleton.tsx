@@ -1,14 +1,14 @@
-import { Skeleton } from "@/components/ui/skeleton";
+import { Skeleton } from '@/components/ui/skeleton';
 
-const WEEKDAYS_EN = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-const WEEKDAYS_ID = ["Min", "Sen", "Sel", "Rab", "Kam", "Jum", "Sab"];
+const WEEKDAYS_EN = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+const WEEKDAYS_ID = ['Min', 'Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab'];
 
 interface CalendarSkeletonProps {
   locale?: string;
 }
 
 export function CalendarSkeleton({ locale }: CalendarSkeletonProps) {
-  const weekdays = locale === "id" ? WEEKDAYS_ID : WEEKDAYS_EN;
+  const weekdays = locale === 'id' ? WEEKDAYS_ID : WEEKDAYS_EN;
   return (
     <div className="flex flex-col rounded-xl border bg-neutral-100 xl:rounded-3xl">
       {/* Header toolbar */}

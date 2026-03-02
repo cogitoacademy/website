@@ -1,54 +1,54 @@
-"use client";
+'use client';
 
-import { ListIcon } from "@phosphor-icons/react/dist/ssr";
-import { ChevronDown } from "lucide-react";
-import Image from "next/image";
-import { useLocale } from "next-intl";
-import { useEffect, useState } from "react";
-import { Link } from "@/i18n/routing";
-import LanguageToggle from "./lang-toggle";
-import MobileMenu from "./mobile-menu";
-import { Button } from "./ui/button";
+import { ListIcon } from '@phosphor-icons/react/dist/ssr';
+import { ChevronDown } from 'lucide-react';
+import Image from 'next/image';
+import { useLocale } from 'next-intl';
+import { useEffect, useState } from 'react';
+import { Link } from '@/i18n/routing';
+import LanguageToggle from './lang-toggle';
+import MobileMenu from './mobile-menu';
+import { Button } from './ui/button';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "./ui/dropdown-menu";
+} from './ui/dropdown-menu';
 
 const NAV_ITEMS_ID = [
-  { label: "#TutorJuara", href: "/tutors" },
-  { label: "Kalender Lomba", href: "/calendar" },
+  { label: '#TutorJuara', href: '/tutors' },
+  { label: 'Kalender Lomba', href: '/calendar' },
   // { label: "Playground", href: "/playground" },
   {
-    label: "Kegiatan",
-    href: "#",
+    label: 'Kegiatan',
+    href: '#',
     items: [
-      { label: "Monthly Townhall", href: "/events/monthly-townhall" },
-      { label: "Cogito 101 Series", href: "/events/cogito-101-series" },
+      { label: 'Monthly Townhall', href: '/events/monthly-townhall' },
+      { label: 'Cogito 101 Series', href: '/events/cogito-101-series' },
     ],
   },
-  { label: "Materi Siswa", href: "/student-resources" },
+  { label: 'Materi Siswa', href: '/student-resources' },
 ];
 
 const NAV_ITEMS_EN = [
-  { label: "#ChampionTutors", href: "/tutors" },
-  { label: "Competition Calendar", href: "/calendar" },
+  { label: '#ChampionTutors', href: '/tutors' },
+  { label: 'Competition Calendar', href: '/calendar' },
   // { label: "Playground", href: "/playground" },
   {
-    label: "Activities",
-    href: "#",
+    label: 'Activities',
+    href: '#',
     items: [
-      { label: "Monthly Townhall", href: "/events/monthly-townhall" },
-      { label: "Cogito 101 Series", href: "/events/cogito-101-series" },
+      { label: 'Monthly Townhall', href: '/events/monthly-townhall' },
+      { label: 'Cogito 101 Series', href: '/events/cogito-101-series' },
     ],
   },
-  { label: "Student Resources", href: "/student-resources" },
+  { label: 'Student Resources', href: '/student-resources' },
 ];
 
 export default function Header() {
   const locale = useLocale();
-  const isId = locale === "id";
+  const isId = locale === 'id';
   const navItems = isId ? NAV_ITEMS_ID : NAV_ITEMS_EN;
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -59,15 +59,15 @@ export default function Header() {
       setIsScrolled(window.scrollY > 0);
     };
 
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (
     <>
       <header
         className={`fixed top-0 right-0 left-0 z-40 transition-colors duration-300 ${
-          isScrolled ? "rounded-b-2xl bg-neutral-100 shadow-sm" : "bg-transparent"
+          isScrolled ? 'rounded-b-2xl bg-neutral-100 shadow-sm' : 'bg-transparent'
         }`}
       >
         <div className="mx-auto max-w-7xl px-4 py-4">
@@ -76,7 +76,7 @@ export default function Header() {
               <Link href="/" className="flex items-center">
                 <div
                   className={
-                    "flex h-10 w-fit items-center justify-center rounded transition-all duration-300 sm:h-12.5 sm:w-26.5"
+                    'flex h-10 w-fit items-center justify-center rounded transition-all duration-300 sm:h-12.5 sm:w-26.5'
                   }
                 >
                   <Image
@@ -133,7 +133,7 @@ export default function Header() {
               <LanguageToggle />
               <Link href="/contact">
                 <Button size="lg">
-                  <span>{isId ? "Hubungi Kami" : "Contact Us"}</span>
+                  <span>{isId ? 'Hubungi Kami' : 'Contact Us'}</span>
                 </Button>
               </Link>
             </div>

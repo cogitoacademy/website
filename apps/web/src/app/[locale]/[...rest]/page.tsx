@@ -1,7 +1,7 @@
-import NotFound from "../not-found";
+import NotFound from '../not-found';
 
 export function generateStaticParams() {
-  return [{ locale: "en" }, { locale: "id" }];
+  return [{ locale: 'en' }, { locale: 'id' }];
 }
 
 export default function CatchAllPage() {

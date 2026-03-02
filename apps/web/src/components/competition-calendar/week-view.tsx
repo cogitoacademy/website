@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import {
   addHours,
@@ -15,9 +15,9 @@ import {
   isToday,
   startOfDay,
   startOfWeek,
-} from "date-fns";
-import type React from "react";
-import { useMemo } from "react";
+} from 'date-fns';
+import type React from 'react';
+import { useMemo } from 'react';
 import {
   type CalendarCompetition,
   DraggableEvent,
@@ -29,8 +29,8 @@ import {
   useCurrentTimeIndicator,
   useDateLocale,
   WeekCellsHeight,
-} from "@/components/competition-calendar";
-import { cn } from "@/lib/utils";
+} from '@/components/competition-calendar';
+import { cn } from '@/lib/utils';
 
 interface WeekViewProps {
   currentDate: Date;
@@ -204,13 +204,13 @@ export function WeekView({ currentDate, events, onEventSelect, readOnly = false 
   };
 
   const showAllDaySection = allDayEvents.length > 0;
-  const { currentTimePosition, currentTimeVisible } = useCurrentTimeIndicator(currentDate, "week");
+  const { currentTimePosition, currentTimeVisible } = useCurrentTimeIndicator(currentDate, 'week');
 
   return (
     <div className="flex h-full flex-col" data-slot="week-view">
       <div className="sticky top-0 z-30 grid grid-cols-8 border-border/70 border-b bg-background/80 backdrop-blur-md">
         <div className="py-2 text-center text-muted-foreground/70 text-sm">
-          <span className="max-[479px]:sr-only">{format(new Date(), "O")}</span>
+          <span className="max-[479px]:sr-only">{format(new Date(), 'O')}</span>
         </div>
         {days.map((day) => (
           <div
@@ -219,9 +219,9 @@ export function WeekView({ currentDate, events, onEventSelect, readOnly = false 
             key={day.toString()}
           >
             <span aria-hidden="true" className="sm:hidden">
-              {format(day, "E", { locale: dateLocale })[0]} {format(day, "d")}
+              {format(day, 'E', { locale: dateLocale })[0]} {format(day, 'd')}
             </span>
-            <span className="max-sm:hidden">{format(day, "EEE dd", { locale: dateLocale })}</span>
+            <span className="max-sm:hidden">{format(day, 'EEE dd', { locale: dateLocale })}</span>
           </div>
         ))}
       </div>
@@ -231,7 +231,7 @@ export function WeekView({ currentDate, events, onEventSelect, readOnly = false 
           <div className="grid grid-cols-8">
             <div className="relative border-border/70 border-r">
               <span className="absolute bottom-0 left-0 h-6 w-16 max-w-full pe-2 text-right text-[10px] text-muted-foreground/70 sm:pe-4 sm:text-xs">
-                {isId ? "Seharian" : "All day"}
+                {isId ? 'Seharian' : 'All day'}
               </span>
             </div>
             {days.map((day, dayIndex) => {
@@ -273,7 +273,7 @@ export function WeekView({ currentDate, events, onEventSelect, readOnly = false 
                         {/* Show title if it's the first day of the event or the first visible day in the week */}
                         <div
                           aria-hidden={!shouldShowTitle}
-                          className={cn("truncate", !shouldShowTitle && "invisible")}
+                          className={cn('truncate', !shouldShowTitle && 'invisible')}
                         >
                           {event.title}
                         </div>
@@ -296,7 +296,7 @@ export function WeekView({ currentDate, events, onEventSelect, readOnly = false 
             >
               {index > 0 && (
                 <span className="absolute -top-3 left-0 flex h-6 w-16 max-w-full items-center justify-end bg-background pe-2 text-[10px] text-muted-foreground/70 sm:pe-4 sm:text-xs">
-                  {format(hour, "h a", { locale: dateLocale })}
+                  {format(hour, 'h a', { locale: dateLocale })}
                 </span>
               )}
             </div>
@@ -316,7 +316,7 @@ export function WeekView({ currentDate, events, onEventSelect, readOnly = false 
                 key={positionedEvent.event.id}
                 onClick={(e) => e.stopPropagation()}
                 onKeyDown={(e) => {
-                  if (e.key === "Enter" || e.key === " ") {
+                  if (e.key === 'Enter' || e.key === ' ') {
                     e.preventDefault();
                     e.stopPropagation();
                   }
@@ -368,11 +368,11 @@ export function WeekView({ currentDate, events, onEventSelect, readOnly = false 
                     return (
                       <DroppableCell
                         className={cn(
-                          "absolute h-[calc(var(--week-cells-height)/4)] w-full",
-                          quarter === 0 && "top-0",
-                          quarter === 1 && "top-[calc(var(--week-cells-height)/4)]",
-                          quarter === 2 && "top-[calc(var(--week-cells-height)/4*2)]",
-                          quarter === 3 && "top-[calc(var(--week-cells-height)/4*3)]",
+                          'absolute h-[calc(var(--week-cells-height)/4)] w-full',
+                          quarter === 0 && 'top-0',
+                          quarter === 1 && 'top-[calc(var(--week-cells-height)/4)]',
+                          quarter === 2 && 'top-[calc(var(--week-cells-height)/4*2)]',
+                          quarter === 3 && 'top-[calc(var(--week-cells-height)/4*3)]',
                         )}
                         date={day}
                         id={`week-cell-${day.toISOString()}-${quarterHourTime}`}

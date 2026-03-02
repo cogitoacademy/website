@@ -1,19 +1,19 @@
-"use client";
+'use client';
 
-import { useDraggable } from "@dnd-kit/core";
-import { CSS } from "@dnd-kit/utilities";
-import { differenceInDays } from "date-fns";
-import { useEffect, useRef, useState } from "react";
+import { useDraggable } from '@dnd-kit/core';
+import { CSS } from '@dnd-kit/utilities';
+import { differenceInDays } from 'date-fns';
+import { useEffect, useRef, useState } from 'react';
 
 import {
   type CalendarCompetition,
   EventItem,
   useCalendarDnd,
-} from "@/components/competition-calendar";
+} from '@/components/competition-calendar';
 
 interface DraggableEventProps {
   event: CalendarCompetition;
-  view: "month" | "week" | "day";
+  view: 'month' | 'week' | 'day';
   showTime?: boolean;
   onClick?: (e: React.MouseEvent) => void;
   height?: number;
@@ -21,7 +21,7 @@ interface DraggableEventProps {
   multiDayWidth?: number;
   isFirstDay?: boolean;
   isLastDay?: boolean;
-  "aria-hidden"?: boolean | "true" | "false";
+  'aria-hidden'?: boolean | 'true' | 'false';
 }
 
 export function DraggableEvent({
@@ -34,7 +34,7 @@ export function DraggableEvent({
   multiDayWidth,
   isFirstDay = true,
   isLastDay = true,
-  "aria-hidden": ariaHidden,
+  'aria-hidden': ariaHidden,
 }: DraggableEventProps) {
   const { activeId } = useCalendarDnd();
   const elementRef = useRef<HTMLDivElement>(null);
@@ -81,17 +81,17 @@ export function DraggableEvent({
 
   // Don't render if this event is being dragged
   if (isDragging || activeId === `${event.id}-${view}`) {
-    return <div className="opacity-0" ref={setNodeRef} style={{ height: height || "auto" }} />;
+    return <div className="opacity-0" ref={setNodeRef} style={{ height: height || 'auto' }} />;
   }
 
   const style = transform
     ? {
-        height: height || "auto",
+        height: height || 'auto',
         transform: CSS.Translate.toString(transform),
         width: isMultiDayEvent && multiDayWidth ? `${multiDayWidth}%` : undefined,
       }
     : {
-        height: height || "auto",
+        height: height || 'auto',
         width: isMultiDayEvent && multiDayWidth ? `${multiDayWidth}%` : undefined,
       };
 

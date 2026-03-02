@@ -1,12 +1,12 @@
-"use client";
+'use client';
 
-import { ArrowUpRightIcon } from "lucide-react";
-import { m } from "motion/react";
-import Image from "next/image";
-import { useState } from "react";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import EventDetailModal from "./event-detail-modal";
+import { ArrowUpRightIcon } from 'lucide-react';
+import { m } from 'motion/react';
+import Image from 'next/image';
+import { useState } from 'react';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import EventDetailModal from './event-detail-modal';
 
 /** Change this value to control how many events show per page (5 or 10) */
 const PAGE_SIZE = 10;
@@ -24,7 +24,7 @@ export type SerializedEvent = {
   place?: string;
   summary?: string;
   registrationLink?: string;
-  status: "upcoming" | "past";
+  status: 'upcoming' | 'past';
 };
 
 type EventsGridProps = {
@@ -42,7 +42,7 @@ export function EventsGrid({ events, lang }: EventsGridProps) {
     return (
       <section className="py-20 text-center">
         <p className="text-lg text-neutral-500">
-          {lang === "id" ? "Belum ada kegiatan yang terdaftar." : "No events available yet."}
+          {lang === 'id' ? 'Belum ada kegiatan yang terdaftar.' : 'No events available yet.'}
         </p>
       </section>
     );
@@ -77,7 +77,7 @@ export function EventsGrid({ events, lang }: EventsGridProps) {
             size="lg"
             onClick={() => setVisibleCount((prev) => prev + PAGE_SIZE)}
           >
-            <span>{lang === "id" ? "Lihat yang lain" : "View more"}</span>
+            <span>{lang === 'id' ? 'Lihat yang lain' : 'View more'}</span>
           </Button>
         </div>
       )}
@@ -89,7 +89,7 @@ function EventCard({ event, lang }: { event: SerializedEvent; lang: string }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === "Enter" || e.key === " ") {
+    if (e.key === 'Enter' || e.key === ' ') {
       e.preventDefault();
       setIsModalOpen(true);
     }
@@ -126,13 +126,13 @@ function EventCard({ event, lang }: { event: SerializedEvent; lang: string }) {
           )}
 
           {/* Status badge overlay */}
-          {event.status === "upcoming" ? (
+          {event.status === 'upcoming' ? (
             <div className="absolute bottom-7 left-3">
-              <Badge variant="upcoming">{lang === "id" ? "Acara Terbaru" : "Upcoming"}</Badge>
+              <Badge variant="upcoming">{lang === 'id' ? 'Acara Terbaru' : 'Upcoming'}</Badge>
             </div>
           ) : (
             <div className="absolute bottom-7 left-3">
-              <Badge variant="completed">{lang === "id" ? "Sudah Lewat" : "Completed"}</Badge>
+              <Badge variant="completed">{lang === 'id' ? 'Sudah Lewat' : 'Completed'}</Badge>
             </div>
           )}
         </div>

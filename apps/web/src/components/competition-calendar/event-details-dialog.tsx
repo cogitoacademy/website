@@ -1,19 +1,19 @@
-"use client";
+'use client';
 
-import { format } from "date-fns";
-import { ArrowRight } from "lucide-react";
-import { useDateLocale } from "@/components/competition-calendar";
-import { Badge } from "@/components/ui/badge";
-import { buttonVariants } from "@/components/ui/button";
+import { format } from 'date-fns';
+import { ArrowRight } from 'lucide-react';
+import { useDateLocale } from '@/components/competition-calendar';
+import { Badge } from '@/components/ui/badge';
+import { buttonVariants } from '@/components/ui/button';
 import {
   ResponsiveModal,
   ResponsiveModalContent,
   ResponsiveModalDescription,
   ResponsiveModalTitle,
-} from "@/components/ui/responsive-modal";
-import { getBrandColorClass } from "@/lib/colors/brandColors";
-import { cn } from "@/lib/utils";
-import type { CalendarCompetition } from "./types";
+} from '@/components/ui/responsive-modal';
+import { getBrandColorClass } from '@/lib/colors/brandColors';
+import { cn } from '@/lib/utils';
+import type { CalendarCompetition } from './types';
 
 interface EventDetailsDialogProps {
   event: CalendarCompetition | null;
@@ -29,8 +29,8 @@ export function EventDetailsDialog({ event, isOpen, onClose }: EventDetailsDialo
   // Check if this is a Sanity competition (has categories) or manual competition (has color)
   const isSanityCompetition = event.categories && event.categories.length > 0;
 
-  const timelineStart = format(event.start, "dd");
-  const timelineEnd = format(event.end, "dd MMMM yyyy", { locale: dateLocale });
+  const timelineStart = format(event.start, 'dd');
+  const timelineEnd = format(event.end, 'dd MMMM yyyy', { locale: dateLocale });
   const timeline = `${timelineStart} - ${timelineEnd}`;
 
   return (
@@ -46,7 +46,7 @@ export function EventDetailsDialog({ event, isOpen, onClose }: EventDetailsDialo
               {event.title}
             </ResponsiveModalTitle>
             <ResponsiveModalDescription className="sr-only">
-              {isId ? "Detail dan informasi kompetisi" : "Competition details and information"}
+              {isId ? 'Detail dan informasi kompetisi' : 'Competition details and information'}
             </ResponsiveModalDescription>
 
             {/* Mobile: subtitle + badge below title */}
@@ -90,32 +90,32 @@ export function EventDetailsDialog({ event, isOpen, onClose }: EventDetailsDialo
             <div className="space-y-1 text-sm">
               {event.educationLevels && event.educationLevels.length > 0 && (
                 <p>
-                  <strong>{isId ? "Jenjang Lomba:" : "Competition Level:"}</strong>{" "}
-                  {event.educationLevels.join(", ")}
+                  <strong>{isId ? 'Jenjang Lomba:' : 'Competition Level:'}</strong>{' '}
+                  {event.educationLevels.join(', ')}
                 </p>
               )}
               {event.scale && (
                 <p>
-                  <strong>{isId ? "Skala:" : "Scale:"}</strong> {event.scale}
+                  <strong>{isId ? 'Skala:' : 'Scale:'}</strong> {event.scale}
                 </p>
               )}
               {event.organizer && (
                 <p>
-                  <strong>{isId ? "Penyelenggara:" : "Organizer:"}</strong> {event.organizer}
+                  <strong>{isId ? 'Penyelenggara:' : 'Organizer:'}</strong> {event.organizer}
                 </p>
               )}
               {event.location && (
                 <p>
-                  <strong>{isId ? "Lokasi:" : "Location:"}</strong> {event.location}
+                  <strong>{isId ? 'Lokasi:' : 'Location:'}</strong> {event.location}
                 </p>
               )}
               <p>
-                <strong>{isId ? "Timeline Lomba:" : "Competition Timeline:"}</strong> {timeline}
+                <strong>{isId ? 'Timeline Lomba:' : 'Competition Timeline:'}</strong> {timeline}
               </p>
               {event.registrationDeadline && (
                 <p>
-                  <strong>{isId ? "Tutup Pendaftaran:" : "Close Registration:"}</strong>{" "}
-                  {format(event.registrationDeadline, "dd MMMM yyyy", {
+                  <strong>{isId ? 'Tutup Pendaftaran:' : 'Close Registration:'}</strong>{' '}
+                  {format(event.registrationDeadline, 'dd MMMM yyyy', {
                     locale: dateLocale,
                   })}
                 </p>
@@ -128,19 +128,19 @@ export function EventDetailsDialog({ event, isOpen, onClose }: EventDetailsDialo
             <div className="space-y-1 text-sm">
               {event.educationLevels && event.educationLevels.length > 0 && (
                 <p>
-                  <strong>{isId ? "Jenjang Lomba:" : "Competition Level:"}</strong>{" "}
-                  <span className="uppercase">{event.educationLevels.join(", ")}</span>
+                  <strong>{isId ? 'Jenjang Lomba:' : 'Competition Level:'}</strong>{' '}
+                  <span className="uppercase">{event.educationLevels.join(', ')}</span>
                 </p>
               )}
               {event.scale && (
                 <p>
-                  <strong>{isId ? "Skala:" : "Scale:"}</strong>{" "}
+                  <strong>{isId ? 'Skala:' : 'Scale:'}</strong>{' '}
                   <span className="capitalize">{event.scale}</span>
                 </p>
               )}
               {event.organizer && (
                 <p>
-                  <strong>{isId ? "Penyelenggara:" : "Organizer:"}</strong> {event.organizer}
+                  <strong>{isId ? 'Penyelenggara:' : 'Organizer:'}</strong> {event.organizer}
                 </p>
               )}
             </div>
@@ -151,16 +151,16 @@ export function EventDetailsDialog({ event, isOpen, onClose }: EventDetailsDialo
             <div className="space-y-1 text-sm">
               {event.location && (
                 <p>
-                  <strong>{isId ? "Lokasi:" : "Location:"}</strong> {event.location}
+                  <strong>{isId ? 'Lokasi:' : 'Location:'}</strong> {event.location}
                 </p>
               )}
               <p>
-                <strong>{isId ? "Tanggal Pelaksanaan:" : "Event Date:"}</strong> {timeline}
+                <strong>{isId ? 'Tanggal Pelaksanaan:' : 'Event Date:'}</strong> {timeline}
               </p>
               {event.registrationDeadline && (
                 <p>
-                  <strong>{isId ? "Tutup Pendaftaran:" : "Close Registration:"}</strong>{" "}
-                  {format(event.registrationDeadline, "dd MMMM yyyy", {
+                  <strong>{isId ? 'Tutup Pendaftaran:' : 'Close Registration:'}</strong>{' '}
+                  {format(event.registrationDeadline, 'dd MMMM yyyy', {
                     locale: dateLocale,
                   })}
                 </p>
@@ -172,7 +172,7 @@ export function EventDetailsDialog({ event, isOpen, onClose }: EventDetailsDialo
         {/* Description Card */}
         {event.description && (
           <div className="mt-4 rounded-lg bg-background-primary p-4">
-            <h4 className="mb-1 font-semibold text-sm">{isId ? "Deskripsi" : "Description"}</h4>
+            <h4 className="mb-1 font-semibold text-sm">{isId ? 'Deskripsi' : 'Description'}</h4>
             <p className="text-sm opacity-80">{event.description}</p>
           </div>
         )}
@@ -186,26 +186,26 @@ export function EventDetailsDialog({ event, isOpen, onClose }: EventDetailsDialo
               target="_blank"
               className={cn(
                 buttonVariants({
-                  variant: "outline",
-                  size: "md",
+                  variant: 'outline',
+                  size: 'md',
                 }),
-                "w-full justify-center",
+                'w-full justify-center',
               )}
             >
-              {isId ? "Postingan Media Sosial" : "Social Media Post"}
+              {isId ? 'Postingan Media Sosial' : 'Social Media Post'}
             </a>
           ) : (
             <button
               className={cn(
                 buttonVariants({
-                  variant: "outline",
-                  size: "md",
+                  variant: 'outline',
+                  size: 'md',
                 }),
-                "pointer-events-none w-full justify-center opacity-50",
+                'pointer-events-none w-full justify-center opacity-50',
               )}
               disabled
             >
-              {isId ? "Postingan Media Sosial" : "Social Media Post"}
+              {isId ? 'Postingan Media Sosial' : 'Social Media Post'}
             </button>
           )}
 
@@ -215,22 +215,22 @@ export function EventDetailsDialog({ event, isOpen, onClose }: EventDetailsDialo
               rel="noopener noreferrer"
               target="_blank"
               className={cn(
-                buttonVariants({ variant: "default", size: "md" }),
-                "w-full justify-center gap-2 bg-orange-500 text-white hover:bg-orange-600",
+                buttonVariants({ variant: 'default', size: 'md' }),
+                'w-full justify-center gap-2 bg-orange-500 text-white hover:bg-orange-600',
               )}
             >
-              {isId ? "Link Pendaftaran" : "Registration Link"}
+              {isId ? 'Link Pendaftaran' : 'Registration Link'}
               <ArrowRight className="size-4" />
             </a>
           ) : (
             <button
               className={cn(
-                buttonVariants({ variant: "default", size: "md" }),
-                "pointer-events-none w-full justify-center gap-2 bg-orange-500 text-white opacity-50 hover:bg-orange-600",
+                buttonVariants({ variant: 'default', size: 'md' }),
+                'pointer-events-none w-full justify-center gap-2 bg-orange-500 text-white opacity-50 hover:bg-orange-600',
               )}
               disabled
             >
-              {isId ? "Link Pendaftaran" : "Registration Link"}
+              {isId ? 'Link Pendaftaran' : 'Registration Link'}
               <ArrowRight className="size-4" />
             </button>
           )}

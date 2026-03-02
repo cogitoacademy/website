@@ -1,4 +1,4 @@
-import { defineQuery } from "next-sanity";
+import { defineQuery } from 'next-sanity';
 
 export const STUDENT_RESOURCES_QUERY = defineQuery(`
   *[_type == "studentResource"] | order(title asc) {

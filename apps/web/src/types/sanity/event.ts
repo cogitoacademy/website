@@ -6,7 +6,7 @@ export interface SanityEvent {
   _id: string;
   title: Array<{ _key: string; value: string }>;
   slug: { current: string };
-  category: "monthly-townhall" | "cogito-101-series";
+  category: 'monthly-townhall' | 'cogito-101-series';
   imageUrl?: string;
   description?: Array<{ _key: string; value: string }>;
   date: string;
@@ -24,7 +24,7 @@ export interface Event {
   id: string;
   title: string;
   slug: string;
-  category: "monthly-townhall" | "cogito-101-series";
+  category: 'monthly-townhall' | 'cogito-101-series';
   imageUrl?: string;
   description?: string;
   date: Date;
@@ -32,5 +32,5 @@ export interface Event {
   place?: string;
   summary?: string;
   registrationLink?: string;
-  status: "upcoming" | "past";
+  status: 'upcoming' | 'past';
 }

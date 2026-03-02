@@ -1,15 +1,15 @@
-import { BooksIcon } from "@phosphor-icons/react/dist/ssr";
-import { ArrowRight } from "lucide-react";
-import { getLocale } from "next-intl/server";
-import { Button } from "@/components/ui/button";
-import { Link } from "@/i18n/routing";
-import { getFeaturedTutors } from "@/lib/tutors";
-import { Badge } from "../ui/badge";
-import { TutorsGrid } from "./tutors-grid";
+import { BooksIcon } from '@phosphor-icons/react/dist/ssr';
+import { ArrowRight } from 'lucide-react';
+import { getLocale } from 'next-intl/server';
+import { Button } from '@/components/ui/button';
+import { Link } from '@/i18n/routing';
+import { getFeaturedTutors } from '@/lib/tutors';
+import { Badge } from '../ui/badge';
+import { TutorsGrid } from './tutors-grid';
 
 export async function TutorsSection() {
   const locale = await getLocale();
-  const isId = locale === "id";
+  const isId = locale === 'id';
   const tutors = await getFeaturedTutors();
 
   return (
@@ -17,27 +17,27 @@ export async function TutorsSection() {
       <div className="container mx-auto max-w-7xl px-4">
         <div className="flex flex-col items-center gap-8">
           <div className="space-y-2 text-center *:text-pretty *:max-w-[335px]">
-            <Badge variant={"headline-cream"}>
-              <BooksIcon className="size-5" />{" "}
-              <span>{isId ? "Tutor Cogito" : "Cogito Tutors"}</span>
+            <Badge variant={'headline-cream'}>
+              <BooksIcon className="size-5" />{' '}
+              <span>{isId ? 'Tutor Cogito' : 'Cogito Tutors'}</span>
             </Badge>
             <h2 className="font-bold text-2xl lg:text-3xl text-pretty text-neutral-1000 mx-auto lg:max-w-none">
               {isId ? (
                 <>
-                  Dapatkan Strategi Langsung dari{" "}
+                  Dapatkan Strategi Langsung dari{' '}
                   <span className="text-primary-500">#TutorJuara</span>
                 </>
               ) : (
                 <>
-                  Get Direct Strategies from{" "}
+                  Get Direct Strategies from{' '}
                   <span className="text-primary-500">#ChampionsTutor</span>
                 </>
               )}
             </h2>
             <p className="mx-auto max-w-3xl font-medium text-xs md:text-sm xl:text-base text-neutral-1000 md:max-w-none">
               {isId
-                ? "Para tutor siap mendampingimu untuk meraih juara di setiap kompetisi."
-                : "Tutors are ready to accompany you to achieve champion status in every competition."}
+                ? 'Para tutor siap mendampingimu untuk meraih juara di setiap kompetisi.'
+                : 'Tutors are ready to accompany you to achieve champion status in every competition.'}
             </p>
           </div>
 
@@ -46,7 +46,7 @@ export async function TutorsSection() {
           <Link href="/tutors">
             <Button size="lg">
               <span className="text-sm">
-                {isId ? "Lihat Semua Tutor Unggul Kami" : "View All Our Excellent Tutors"}
+                {isId ? 'Lihat Semua Tutor Unggul Kami' : 'View All Our Excellent Tutors'}
               </span>
               <ArrowRight className="ml-2 size-5" />
             </Button>

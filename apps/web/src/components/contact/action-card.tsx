@@ -1,11 +1,11 @@
-import { ChatCircleDots } from "@phosphor-icons/react/dist/ssr";
-import Image from "next/image";
-import Link from "next/link";
-import type { ComponentProps } from "react";
+import { ChatCircleDots } from '@phosphor-icons/react/dist/ssr';
+import Image from 'next/image';
+import Link from 'next/link';
+import type { ComponentProps } from 'react';
 
-import { cn } from "@/lib/utils";
-import { buttonVariants } from "../ui/button";
-import { Card } from "../ui/card";
+import { cn } from '@/lib/utils';
+import { buttonVariants } from '../ui/button';
+import { Card } from '../ui/card';
 
 interface ActionCardProps extends ComponentProps<typeof Card> {
   title: string;
@@ -20,7 +20,7 @@ interface ActionCardProps extends ComponentProps<typeof Card> {
     alt: string;
     className?: string;
   };
-  theme?: "pink" | "blue";
+  theme?: 'pink' | 'blue';
 }
 
 export function ActionCard({
@@ -29,13 +29,13 @@ export function ActionCard({
   description,
   action,
   image,
-  theme = "pink",
+  theme = 'pink',
   className,
   ...props
 }: ActionCardProps) {
   const themeColors = {
-    pink: "bg-tertiary-pink-200",
-    blue: "bg-tertiary-blue-200",
+    pink: 'bg-tertiary-pink-200',
+    blue: 'bg-tertiary-blue-200',
   };
 
   const circleColor = themeColors[theme];
@@ -46,7 +46,7 @@ export function ActionCard({
   return (
     <Card
       className={cn(
-        "relative overflow-hidden rounded-2xl border-none bg-neutral-100 p-0 shadow-sm min-[405px]:min-h-[250px]",
+        'relative overflow-hidden rounded-2xl border-none bg-neutral-100 p-0 shadow-sm min-[405px]:min-h-[250px]',
         className,
       )}
       {...props}
@@ -69,20 +69,20 @@ export function ActionCard({
             {description}
           </p>
           <div className="mt-auto mb-0">
-            {action.href.startsWith("http") ? (
+            {action.href.startsWith('http') ? (
               <a
                 href={action.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={cn(buttonVariants({ size: "md" }), "gap-2 text-sm sm:text-base")}
+                className={cn(buttonVariants({ size: 'md' }), 'gap-2 text-sm sm:text-base')}
               >
                 <ChatCircleDots className="size-4 sm:size-5" />
                 {action.label}
               </a>
             ) : (
               <Link
-                href={action.href as import("next").Route}
-                className={cn(buttonVariants({ size: "md" }), "gap-2 text-sm sm:text-base")}
+                href={action.href as import('next').Route}
+                className={cn(buttonVariants({ size: 'md' }), 'gap-2 text-sm sm:text-base')}
               >
                 <ChatCircleDots className="size-4 sm:size-5" />
                 {action.label}
@@ -96,7 +96,7 @@ export function ActionCard({
           {/* Background Circle Decoration */}
           <div
             className={cn(
-              "absolute -right-10 -bottom-10 z-0 size-48 rounded-full opacity-80 sm:size-64 lg:-right-20 lg:-bottom-20 lg:size-80",
+              'absolute -right-10 -bottom-10 z-0 size-48 rounded-full opacity-80 sm:size-64 lg:-right-20 lg:-bottom-20 lg:size-80',
               circleColor,
             )}
           />
@@ -110,7 +110,7 @@ export function ActionCard({
               quality={100}
               height={399}
               className={cn(
-                "absolute right-0 bottom-0 w-auto object-contain object-right-bottom",
+                'absolute right-0 bottom-0 w-auto object-contain object-right-bottom',
                 image.className,
               )}
               sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 50vw"

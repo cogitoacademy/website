@@ -1,16 +1,16 @@
-"use client";
+'use client';
 
-import { ArrowRight, CalendarDays, Clock, MapPin, XIcon } from "lucide-react";
-import Image from "next/image";
-import { useMemo } from "react";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
+import { ArrowRight, CalendarDays, Clock, MapPin, XIcon } from 'lucide-react';
+import Image from 'next/image';
+import { useMemo } from 'react';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
 import {
   ResponsiveModal,
   ResponsiveModalContent,
   ResponsiveModalTitle,
-} from "@/components/ui/responsive-modal";
-import type { SerializedEvent } from "./events-grid";
+} from '@/components/ui/responsive-modal';
+import type { SerializedEvent } from './events-grid';
 
 interface EventDetailModalProps {
   event: SerializedEvent;
@@ -30,29 +30,29 @@ export default function EventDetailModal({
     if (Number.isNaN(d.getTime())) {
       return event.date;
     }
-    return d.toLocaleDateString(lang === "id" ? "id-ID" : "en-US", {
-      weekday: "long",
-      day: "numeric",
-      month: "long",
-      year: "numeric",
+    return d.toLocaleDateString(lang === 'id' ? 'id-ID' : 'en-US', {
+      weekday: 'long',
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric',
     });
   }, [event.date, lang]);
 
   const statusBadge =
-    event.status === "upcoming" ? (
-      <Badge variant="upcoming">{lang === "id" ? "Acara Terbaru" : "Upcoming"}</Badge>
+    event.status === 'upcoming' ? (
+      <Badge variant="upcoming">{lang === 'id' ? 'Acara Terbaru' : 'Upcoming'}</Badge>
     ) : (
-      <Badge variant="completed">{lang === "id" ? "Sudah Lewat" : "Completed"}</Badge>
+      <Badge variant="completed">{lang === 'id' ? 'Sudah Lewat' : 'Completed'}</Badge>
     );
 
-  const showRegistration = !!(event.registrationLink && event.status === "upcoming");
+  const showRegistration = !!(event.registrationLink && event.status === 'upcoming');
 
   return (
     <ResponsiveModal open={open} onOpenChange={onOpenChange}>
       <ResponsiveModalContent
         side="bottom"
         className="flex w-full max-w-full flex-col gap-0 overflow-hidden rounded-t-2xl border-none bg-background p-0 sm:max-h-[85vh] sm:w-[calc(100%-2rem)] sm:max-w-5xl sm:flex-row sm:rounded-lg"
-        style={{ maxHeight: "85dvh" }}
+        style={{ maxHeight: '85dvh' }}
         showCloseButton={false}
       >
         {/* Left/Top: Image Section */}
@@ -87,7 +87,7 @@ export default function EventDetailModal({
             onClick={() => onOpenChange(false)}
           >
             <XIcon className="h-4 w-4" />
-            <span className="sr-only">{lang === "id" ? "Tutup" : "Close"}</span>
+            <span className="sr-only">{lang === 'id' ? 'Tutup' : 'Close'}</span>
           </Button>
         </div>
 

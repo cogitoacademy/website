@@ -1,97 +1,97 @@
-"use client";
+'use client';
 
-import { ChatsCircleIcon } from "@phosphor-icons/react/dist/ssr";
-import { ArrowRight } from "lucide-react";
-import { useLocale } from "next-intl";
-import { useEffect, useState } from "react";
-import { Button } from "@/components/ui/button";
-import { Container } from "../ui/container";
-import { WordRotateHighlighter } from "../ui/word-rotate-highlighter";
-import { ClassCard } from "./hero-class-card";
-import { LogoCloud } from "./logo-cloud";
+import { ChatsCircleIcon } from '@phosphor-icons/react/dist/ssr';
+import { ArrowRight } from 'lucide-react';
+import { useLocale } from 'next-intl';
+import { useEffect, useState } from 'react';
+import { Button } from '@/components/ui/button';
+import { Container } from '../ui/container';
+import { WordRotateHighlighter } from '../ui/word-rotate-highlighter';
+import { ClassCard } from './hero-class-card';
+import { LogoCloud } from './logo-cloud';
 
 const sampleLogos = [
   {
-    id: "1",
-    name: "Sekolah Victory Plus Bekasi",
-    url: "/logos/sekolah_victory_plus_bekasi.webp",
+    id: '1',
+    name: 'Sekolah Victory Plus Bekasi',
+    url: '/logos/sekolah_victory_plus_bekasi.webp',
   },
   {
-    id: "2",
-    name: "SMA Al Hikmah Surabaya",
-    url: "/logos/sma_al_hikmah_surabaya.webp",
+    id: '2',
+    name: 'SMA Al Hikmah Surabaya',
+    url: '/logos/sma_al_hikmah_surabaya.webp',
   },
   {
-    id: "3",
-    name: "SMAN 16 Surabaya",
-    url: "/logos/sman_16_surabaya.webp",
+    id: '3',
+    name: 'SMAN 16 Surabaya',
+    url: '/logos/sman_16_surabaya.webp',
   },
   {
-    id: "4",
-    name: "Sekolah Victory Plus Bekasi",
-    url: "/logos/sekolah_victory_plus_bekasi.webp",
+    id: '4',
+    name: 'Sekolah Victory Plus Bekasi',
+    url: '/logos/sekolah_victory_plus_bekasi.webp',
   },
   {
-    id: "5",
-    name: "SMA Al Hikmah Surabaya",
-    url: "/logos/sma_al_hikmah_surabaya.webp",
+    id: '5',
+    name: 'SMA Al Hikmah Surabaya',
+    url: '/logos/sma_al_hikmah_surabaya.webp',
   },
   {
-    id: "6",
-    name: "SMAN 16 Surabaya",
-    url: "/logos/sman_16_surabaya.webp",
+    id: '6',
+    name: 'SMAN 16 Surabaya',
+    url: '/logos/sman_16_surabaya.webp',
   },
 ];
 
 const classCardsData = {
   id: [
     {
-      title: "Kelas Reguler",
+      title: 'Kelas Reguler',
       description:
-        "Belajar semua tentang suatu jenis perlombaan dari dasar sampai mahir dengan kurikulum yang dirancang oleh para Tutor secara holistik.",
-      tags: ["Individu", "MUN & WSC & Debate"],
+        'Belajar semua tentang suatu jenis perlombaan dari dasar sampai mahir dengan kurikulum yang dirancang oleh para Tutor secara holistik.',
+      tags: ['Individu', 'MUN & WSC & Debate'],
     },
     {
-      title: "Kelas Intensif",
+      title: 'Kelas Intensif',
       description:
-        "Pelatihan yang dapat dilakukan sesuai kebutuhan untuk mempersiapkan diri dalam mengikuti satu ajang perlombaan tertentu dengan memaksimalkan pengetahuan yang sudah ada.",
-      tags: ["Individu & Kelompok", "Semua Lomba"],
+        'Pelatihan yang dapat dilakukan sesuai kebutuhan untuk mempersiapkan diri dalam mengikuti satu ajang perlombaan tertentu dengan memaksimalkan pengetahuan yang sudah ada.',
+      tags: ['Individu & Kelompok', 'Semua Lomba'],
     },
     {
-      title: "Kelas Ekstrakurikuler",
+      title: 'Kelas Ekstrakurikuler',
       description:
-        "Pelatihan rutin untuk klub minat dan bakat di sekolah dengan kurikulum yang dapat disesuaikan dengan kebutuhan dan tujuan sekolah dalam bidang prestasi tersebut.",
-      tags: ["Kelompok", "Semua Lomba"],
+        'Pelatihan rutin untuk klub minat dan bakat di sekolah dengan kurikulum yang dapat disesuaikan dengan kebutuhan dan tujuan sekolah dalam bidang prestasi tersebut.',
+      tags: ['Kelompok', 'Semua Lomba'],
     },
   ],
   en: [
     {
-      title: "Regular Class",
+      title: 'Regular Class',
       description:
-        "Learn all about a type of competition from scratch to advanced with a holistically designed curriculum by Tutors.",
-      tags: ["Individual", "MUN & WSC & Debate"],
+        'Learn all about a type of competition from scratch to advanced with a holistically designed curriculum by Tutors.',
+      tags: ['Individual', 'MUN & WSC & Debate'],
     },
     {
-      title: "Intensive Class",
+      title: 'Intensive Class',
       description:
-        "Training that can be done as needed to prepare for a specific competition by maximizing existing knowledge.",
-      tags: ["Individual & Group", "All Competitions"],
+        'Training that can be done as needed to prepare for a specific competition by maximizing existing knowledge.',
+      tags: ['Individual & Group', 'All Competitions'],
     },
     {
-      title: "Extracurricular Class",
+      title: 'Extracurricular Class',
       description:
         "Routine training for school interest and talent clubs with a curriculum that can be adjusted to the school's needs and goals in that field of achievement.",
-      tags: ["Group", "All Competitions"],
+      tags: ['Group', 'All Competitions'],
     },
   ],
 };
 
 export function HeroSection() {
   const locale = useLocale();
-  const isId = locale === "id";
+  const isId = locale === 'id';
 
-  const rotatingWordsId = ["Kompeten", "Tangguh", "Mendunia"];
-  const rotatingWordsEn = ["Competent", "Resilient", "Global"];
+  const rotatingWordsId = ['Kompeten', 'Tangguh', 'Mendunia'];
+  const rotatingWordsEn = ['Competent', 'Resilient', 'Global'];
   const cards = isId ? classCardsData.id : classCardsData.en;
 
   const [activeIndex, setActiveIndex] = useState(0);
@@ -138,7 +138,7 @@ export function HeroSection() {
                   action="highlight"
                   color="#f8eaa4"
                   highlightDelay={500}
-                />{" "}
+                />{' '}
               </>
             ) : (
               <>
@@ -150,7 +150,7 @@ export function HeroSection() {
                   action="highlight"
                   color="#f8eaa4"
                   highlightDelay={500}
-                />{" "}
+                />{' '}
               </>
             )}
           </div>
@@ -158,14 +158,14 @@ export function HeroSection() {
           {/* Subtitle */}
           <p className="mt-2 max-w-xs text-center text-neutral-1000 text-xs sm:mt-4 sm:max-w-md sm:text-sm">
             {isId
-              ? "Menjadi ahli yang siap berprestasi, lebih dari sekadar kompetisi, bersama Cogito Academy melalui materi mendalam."
+              ? 'Menjadi ahli yang siap berprestasi, lebih dari sekadar kompetisi, bersama Cogito Academy melalui materi mendalam.'
               : "Become an expert ready to excel, beyond just competitions, with Cogito Academy's in-depth materials."}
           </p>
 
           {/* CTA Buttons */}
           <div className="my-2 flex w-full flex-col items-center gap-2 sm:my-6 sm:w-auto sm:flex-row sm:gap-4">
             <Button size="md" className="w-full max-w-[214px] sm:w-auto sm:max-w-none">
-              <span>{isId ? "Jadwalkan Konsultasi Gratis" : "Schedule Free Consultation"}</span>
+              <span>{isId ? 'Jadwalkan Konsultasi Gratis' : 'Schedule Free Consultation'}</span>
               <ChatsCircleIcon weight="duotone" color="#ffffff" className="size-5" />
             </Button>
 
@@ -174,7 +174,7 @@ export function HeroSection() {
               variant="gray"
               className="w-full max-w-[214px] sm:w-auto sm:max-w-none"
             >
-              <span>{isId ? "Lihat Program" : "View Programs"}</span>
+              <span>{isId ? 'Lihat Program' : 'View Programs'}</span>
               <ArrowRight className="size-4" />
             </Button>
           </div>
@@ -183,7 +183,7 @@ export function HeroSection() {
         {/* Trust Section */}
         <section className="flex flex-col items-center">
           <p className="text-neutral-700 text-xs sm:text-sm">
-            {isId ? "Cogito telah dipercaya oleh" : "Cogito has been trusted by"}
+            {isId ? 'Cogito telah dipercaya oleh' : 'Cogito has been trusted by'}
           </p>
           <LogoCloud logos={sampleLogos} interval={3000} displayCount={3} />
         </section>

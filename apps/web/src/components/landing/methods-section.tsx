@@ -1,18 +1,18 @@
-import { Check, ListMagnifyingGlassIcon } from "@phosphor-icons/react/dist/ssr";
-import { getLocale } from "next-intl/server";
-import { cn } from "@/lib/utils";
-import { Badge } from "../ui/badge";
+import { Check, ListMagnifyingGlassIcon } from '@phosphor-icons/react/dist/ssr';
+import { getLocale } from 'next-intl/server';
+import { cn } from '@/lib/utils';
+import { Badge } from '../ui/badge';
 
 export async function MethodsSection() {
   const locale = await getLocale();
-  const isId = locale === "id";
+  const isId = locale === 'id';
 
   return (
     <section className="mx-auto max-w-7xl px-4 py-20">
       <div className="flex flex-col items-center justify-center space-y-2">
-        <Badge variant={"headline-primary"}>
-          <ListMagnifyingGlassIcon />{" "}
-          <span>{isId ? "Kenali Mengapa Kami" : "Discover Why Us"}</span>
+        <Badge variant={'headline-primary'}>
+          <ListMagnifyingGlassIcon />{' '}
+          <span>{isId ? 'Kenali Mengapa Kami' : 'Discover Why Us'}</span>
         </Badge>
         <h2 className="mb-4 text-center font-bold text-xl leading-tight">
           {isId ? (
@@ -58,7 +58,7 @@ function MethodCard({
   return (
     <div
       className={cn(
-        "relative flex aspect-312/220 max-w-[400px] flex-col items-center overflow-hidden rounded-2xl px-6 pt-8 text-center md:aspect-[312/280] md:max-w-[293px]",
+        'relative flex aspect-312/220 max-w-[400px] flex-col items-center overflow-hidden rounded-2xl px-6 pt-8 text-center md:aspect-[312/280] md:max-w-[293px]',
         className,
       )}
     >
@@ -72,11 +72,11 @@ function MethodCard({
 function TutorJuaraDuniaCard({ isId }: { isId: boolean }) {
   return (
     <MethodCard
-      title={isId ? "Tutor Juana Dunia" : "World Champion Tutors"}
+      title={isId ? 'Tutor Juana Dunia' : 'World Champion Tutors'}
       description={
         isId
-          ? "Strategi rahasia dari mereka yang sudah berdiri di podium dunia."
-          : "Secret strategies from those who have stood on the world podium."
+          ? 'Strategi rahasia dari mereka yang sudah berdiri di podium dunia.'
+          : 'Secret strategies from those who have stood on the world podium.'
       }
       className="bg-tertiary-red-200"
     >
@@ -126,11 +126,11 @@ function TutorJuaraDuniaCard({ isId }: { isId: boolean }) {
 function PersonalTerukurCard({ isId }: { isId: boolean }) {
   return (
     <MethodCard
-      title={isId ? "Personal dan Terukur" : "Personal and Measurable"}
+      title={isId ? 'Personal dan Terukur' : 'Personal and Measurable'}
       description={
         isId
-          ? "Pantau progresmu lewat laporan detail dan personal di tiap sesi."
-          : "Monitor your progress through detailed and personal reports in each session."
+          ? 'Pantau progresmu lewat laporan detail dan personal di tiap sesi.'
+          : 'Monitor your progress through detailed and personal reports in each session.'
       }
       className="bg-tertiary-blue-200"
     >
@@ -148,7 +148,7 @@ function PersonalTerukurCard({ isId }: { isId: boolean }) {
             <span className="font-extrabold text-[10px] text-primary-500">cogito</span>
           </div>
           <p className="mb-1 font-bold text-[6px] text-neutral-800 uppercase">
-            {isId ? "Laporan Hasil Belajar" : "Learning Progress Report"}
+            {isId ? 'Laporan Hasil Belajar' : 'Learning Progress Report'}
           </p>
           <div className="space-y-1">
             <div className="h-[2px] w-full rounded-full bg-neutral-200" />
@@ -166,16 +166,16 @@ function PersonalTerukurCard({ isId }: { isId: boolean }) {
 }
 
 function KurikulumHolistikCard({ isId }: { isId: boolean }) {
-  const itemsId = ["Riset Strategis", "Teknik Orasi Persuasif", "Analisis Isu Global"];
-  const itemsEn = ["Strategic Research", "Persuasive Oratory Techniques", "Global Issue Analysis"];
+  const itemsId = ['Riset Strategis', 'Teknik Orasi Persuasif', 'Analisis Isu Global'];
+  const itemsEn = ['Strategic Research', 'Persuasive Oratory Techniques', 'Global Issue Analysis'];
 
   return (
     <MethodCard
-      title={isId ? "Kurikulum Holistik" : "Holistic Curriculum"}
+      title={isId ? 'Kurikulum Holistik' : 'Holistic Curriculum'}
       description={
         isId
-          ? "Kurikulum kami dirancang khusus oleh tutor untuk mendapatkan hasil optimal."
-          : "Our curriculum is specially designed by tutors to achieve optimal results."
+          ? 'Kurikulum kami dirancang khusus oleh tutor untuk mendapatkan hasil optimal.'
+          : 'Our curriculum is specially designed by tutors to achieve optimal results.'
       }
       className="bg-primary-200"
     >
@@ -203,11 +203,11 @@ function KurikulumHolistikCard({ isId }: { isId: boolean }) {
 function PembelajaranFleksibelCard({ isId }: { isId: boolean }) {
   return (
     <MethodCard
-      title={isId ? "Pembelajaran yang Fleksibel" : "Flexible Learning"}
+      title={isId ? 'Pembelajaran yang Fleksibel' : 'Flexible Learning'}
       description={
         isId
-          ? "Cogito dapat menyesuaikan jadwal belajarmu, baik secara tatap muka atau online."
-          : "Cogito can adjust your learning schedule, whether face-to-face or online."
+          ? 'Cogito dapat menyesuaikan jadwal belajarmu, baik secara tatap muka atau online.'
+          : 'Cogito can adjust your learning schedule, whether face-to-face or online.'
       }
       className="bg-secondary-200"
     >
@@ -217,7 +217,7 @@ function PembelajaranFleksibelCard({ isId }: { isId: boolean }) {
             <div className="h-2 w-2 rounded-full bg-secondary-500" />
           </div>
           <p className="font-bold text-[10px] text-neutral-800 leading-tight">
-            {isId ? "Kelas Tatap Muka" : "Offline Classes"}
+            {isId ? 'Kelas Tatap Muka' : 'Offline Classes'}
           </p>
         </div>
         <div className="relative z-10 flex h-28 w-1/2 flex-col items-center justify-center gap-2 rounded-t-lg border-secondary-500 border-t-4 bg-white p-3 text-center shadow-md">
@@ -225,7 +225,7 @@ function PembelajaranFleksibelCard({ isId }: { isId: boolean }) {
             <div className="h-2 w-2 animate-pulse rounded-full bg-secondary-500" />
           </div>
           <p className="font-bold text-[10px] text-neutral-800 leading-tight">
-            {isId ? "Kelas Online" : "Online Classes"}
+            {isId ? 'Kelas Online' : 'Online Classes'}
           </p>
         </div>
       </div>

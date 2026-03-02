@@ -1,11 +1,11 @@
-import { ArrowRightIcon } from "@phosphor-icons/react/dist/ssr";
-import { setRequestLocale } from "next-intl/server";
-import NavbarResolver from "@/components/navbar-resolver";
-import { Badge, badgeVariants } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Container } from "@/components/ui/container";
-import { getCoreCategoryBadgeColor } from "@/lib/colors/brandColors";
-import { cn } from "@/lib/utils";
+import { ArrowRightIcon } from '@phosphor-icons/react/dist/ssr';
+import { setRequestLocale } from 'next-intl/server';
+import NavbarResolver from '@/components/navbar-resolver';
+import { Badge, badgeVariants } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { Container } from '@/components/ui/container';
+import { getCoreCategoryBadgeColor } from '@/lib/colors/brandColors';
+import { cn } from '@/lib/utils';
 
 export default async function Page({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -26,30 +26,30 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
           <Badge variant="link">Badge</Badge>
           {/*<Badge variant="mun">Badge</Badge>*/}
           <Badge
-            className={cn(badgeVariants({ variant: "tutor" }), getCoreCategoryBadgeColor("wsc"))}
+            className={cn(badgeVariants({ variant: 'tutor' }), getCoreCategoryBadgeColor('wsc'))}
           >
             WSC
           </Badge>
           <Badge
-            className={cn(badgeVariants({ variant: "tutor" }), getCoreCategoryBadgeColor("kti"))}
+            className={cn(badgeVariants({ variant: 'tutor' }), getCoreCategoryBadgeColor('kti'))}
           >
             KTI/Esai
           </Badge>
           <Badge
-            className={cn(badgeVariants({ variant: "tutor" }), getCoreCategoryBadgeColor("debat"))}
+            className={cn(badgeVariants({ variant: 'tutor' }), getCoreCategoryBadgeColor('debat'))}
           >
             Debat
           </Badge>
           <Badge
             className={cn(
-              badgeVariants({ variant: "tutor" }),
-              getCoreCategoryBadgeColor("business"),
+              badgeVariants({ variant: 'tutor' }),
+              getCoreCategoryBadgeColor('business'),
             )}
           >
             Bisnis
           </Badge>
           <Badge
-            className={cn(badgeVariants({ variant: "tutor" }), getCoreCategoryBadgeColor("pidato"))}
+            className={cn(badgeVariants({ variant: 'tutor' }), getCoreCategoryBadgeColor('pidato'))}
           >
             Pidato
           </Badge>

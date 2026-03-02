@@ -21,4 +21,4 @@ export interface CompetitionCategory {
   coreCategory: string;
 }
 
-export type Location = "online" | "offline_surabaya" | "offline_semarang" | "offline_jakarta";
+export type Location = 'online' | 'offline_surabaya' | 'offline_semarang' | 'offline_jakarta';

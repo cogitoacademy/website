@@ -1,11 +1,11 @@
-import Image from "next/image";
-import { Marquee } from "../ui/marquee";
+import Image from 'next/image';
+import { Marquee } from '../ui/marquee';
 
 export function PartnersCarousel() {
   // Array of partner logos (using placeholder for now)
   const partners = Array.from({ length: 13 }, (_, i) => ({
     id: i,
-    src: "/images/landing/favicon porto.png",
+    src: '/images/landing/favicon porto.png',
   }));
 
   return (
@@ -16,7 +16,7 @@ export function PartnersCarousel() {
             <span key={partner.id} className="flex items-center">
               <Image
                 src={partner.src}
-                alt={"a"}
+                alt={'a'}
                 width={3500}
                 height={1445}
                 sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"

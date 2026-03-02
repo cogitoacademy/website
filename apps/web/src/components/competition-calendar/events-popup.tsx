@@ -1,14 +1,14 @@
-"use client";
+'use client';
 
-import { format, isSameDay } from "date-fns";
-import { XIcon } from "lucide-react";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { format, isSameDay } from 'date-fns';
+import { XIcon } from 'lucide-react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 
 import {
   type CalendarCompetition,
   EventItem,
   useDateLocale,
-} from "@/components/competition-calendar";
+} from '@/components/competition-calendar';
 
 interface EventsPopupProps {
   date: Date;
@@ -30,23 +30,23 @@ export function EventsPopup({ date, events, position, onClose, onEventSelect }: 
       }
     };
 
-    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener('mousedown', handleClickOutside);
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener('mousedown', handleClickOutside);
     };
   }, [onClose]);
 
   // Handle escape key to close popup
   useEffect(() => {
     const handleEscKey = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
+      if (event.key === 'Escape') {
         onClose();
       }
     };
 
-    document.addEventListener("keydown", handleEscKey);
+    document.addEventListener('keydown', handleEscKey);
     return () => {
-      document.removeEventListener("keydown", handleEscKey);
+      document.removeEventListener('keydown', handleEscKey);
     };
   }, [onClose]);
 
@@ -92,9 +92,9 @@ export function EventsPopup({ date, events, position, onClose, onEventSelect }: 
       }}
     >
       <div className="sticky top-0 flex items-center justify-between border-b bg-background p-3">
-        <h3 className="font-medium">{format(date, "d MMMM yyyy", { locale: dateLocale })}</h3>
+        <h3 className="font-medium">{format(date, 'd MMMM yyyy', { locale: dateLocale })}</h3>
         <button
-          aria-label={isId ? "Tutup" : "Close"}
+          aria-label={isId ? 'Tutup' : 'Close'}
           className="rounded-full p-1 hover:bg-muted"
           onClick={onClose}
           type="button"
@@ -106,7 +106,7 @@ export function EventsPopup({ date, events, position, onClose, onEventSelect }: 
       <div className="space-y-2 p-3">
         {events.length === 0 ? (
           <div className="py-2 text-muted-foreground text-sm">
-            {isId ? "Tidak ada acara" : "No events"}
+            {isId ? 'Tidak ada acara' : 'No events'}
           </div>
         ) : (
           events.map((event) => {
@@ -121,7 +121,7 @@ export function EventsPopup({ date, events, position, onClose, onEventSelect }: 
                 key={event.id}
                 onClick={() => handleEventClick(event)}
                 onKeyDown={(e) => {
-                  if (e.key === "Enter" || e.key === " ") {
+                  if (e.key === 'Enter' || e.key === ' ') {
                     e.preventDefault();
                     handleEventClick(event);
                   }

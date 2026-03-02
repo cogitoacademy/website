@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import { motion } from "motion/react";
-import { useEffect, useState } from "react";
+import { motion } from 'motion/react';
+import { useEffect, useState } from 'react';
 
 interface Logo {
   id: string;
@@ -53,15 +53,15 @@ export function LogoCloud({ logos, interval = 3000, displayCount = 3 }: LogoClou
     hidden: {
       opacity: 0,
       y: 40,
-      filter: "blur(10px)",
+      filter: 'blur(10px)',
     },
     visible: {
       opacity: 1,
       y: 0,
-      filter: "blur(0px)",
+      filter: 'blur(0px)',
       transition: {
         duration: 0.5,
-        ease: "easeOut",
+        ease: 'easeOut',
       },
     },
   } as const;
@@ -84,7 +84,7 @@ export function LogoCloud({ logos, interval = 3000, displayCount = 3 }: LogoClou
             >
               <div className="flex h-16 w-full items-center justify-center rounded-lg transition-all duration-300 sm:h-20 md:h-24">
                 <img
-                  src={logo.url || "/placeholder.svg"}
+                  src={logo.url || '/placeholder.svg'}
                   alt={logo.name}
                   className="h-8 w-auto object-contain px-3 sm:h-10 sm:px-4 md:h-12"
                 />

@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import {
   addDays,
@@ -11,9 +11,9 @@ import {
   isToday,
   startOfMonth,
   startOfWeek,
-} from "date-fns";
-import type React from "react";
-import { useEffect, useMemo, useState } from "react";
+} from 'date-fns';
+import type React from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 import {
   type CalendarCompetition,
@@ -28,9 +28,9 @@ import {
   sortEvents,
   useDateLocale,
   useEventVisibility,
-} from "@/components/competition-calendar";
-import { DefaultStartHour } from "@/components/competition-calendar/constants";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+} from '@/components/competition-calendar';
+import { DefaultStartHour } from '@/components/competition-calendar/constants';
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 
 interface MonthViewProps {
   currentDate: Date;
@@ -59,7 +59,7 @@ export function MonthView({
   const weekdays = useMemo(() => {
     return Array.from({ length: 7 }).map((_, i) => {
       const date = addDays(startOfWeek(new Date()), i);
-      return format(date, "EEE", { locale: dateLocale });
+      return format(date, 'EEE', { locale: dateLocale });
     });
   }, [dateLocale]);
 
@@ -147,7 +147,7 @@ export function MonthView({
                       }
                     >
                       <div className="mt-1 inline-flex size-6 items-center justify-center rounded-full text-sm group-data-today:font-bold">
-                        {format(day, "d")}
+                        {format(day, 'd')}
                       </div>
                       <div
                         className="min-h-[calc((var(--event-height)+var(--event-gap))*3)] lg:min-h-[calc((var(--event-height)+var(--event-gap))*4)]"
@@ -166,7 +166,7 @@ export function MonthView({
                           if (!isFirstDay) {
                             return (
                               <div
-                                aria-hidden={isHidden ? "true" : undefined}
+                                aria-hidden={isHidden ? 'true' : undefined}
                                 className="aria-hidden:hidden"
                                 key={`spanning-${event.id}-${day.toISOString().slice(0, 10)}`}
                               >
@@ -179,7 +179,7 @@ export function MonthView({
                                 >
                                   <div aria-hidden={true} className="invisible">
                                     {!event.allDay && (
-                                      <span>{format(new Date(event.start), "h:mm")} </span>
+                                      <span>{format(new Date(event.start), 'h:mm')} </span>
                                     )}
                                     {event.title}
                                   </div>
@@ -190,7 +190,7 @@ export function MonthView({
 
                           return (
                             <div
-                              aria-hidden={isHidden ? "true" : undefined}
+                              aria-hidden={isHidden ? 'true' : undefined}
                               className="aria-hidden:hidden"
                               key={event.id}
                             >
@@ -217,8 +217,8 @@ export function MonthView({
                               }
                             >
                               <span>
-                                + {remainingCount}{" "}
-                                <span className="max-sm:sr-only">{isId ? "lagi" : "more"}</span>
+                                + {remainingCount}{' '}
+                                <span className="max-sm:sr-only">{isId ? 'lagi' : 'more'}</span>
                               </span>
                             </PopoverTrigger>
                             <PopoverContent
@@ -226,12 +226,12 @@ export function MonthView({
                               className="max-w-52 p-3"
                               style={
                                 {
-                                  "--event-height": `${EventHeight}px`,
+                                  '--event-height': `${EventHeight}px`,
                                 } as Record<string, string>
                               }
                             >
                               <div className="space-y-2">
-                                <div className="font-medium text-sm">{format(day, "EEE d")}</div>
+                                <div className="font-medium text-sm">{format(day, 'EEE d')}</div>
                                 <div className="space-y-1">
                                   {sortEvents(allEvents).map((event) => {
                                     const eventStart = new Date(event.start);
