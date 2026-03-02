@@ -116,12 +116,9 @@ export default function FieldCard({
                   "absolute top-4 right-4 z-20 h-8 w-8 rounded-md sm:right-auto sm:left-4",
                   buttonVariants({ variant: "secondary", size: "icon" }),
                 )}
-                // onClick={() => onOpenChange(false)}
               >
                 <XIcon className="h-4 w-4" weight="bold" />
-                <span className="sr-only">
-                  {/*{locale === "id" ? "Tutup" : "Close"}*/}a
-                </span>
+                <span className="sr-only">{isId ? "Tutup" : "Close"}</span>
               </div>
             </ResponsiveModalClose>
 
