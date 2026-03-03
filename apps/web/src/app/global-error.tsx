@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import { AlertCircle } from "lucide-react";
-import { Inter, Lexend_Deca } from "next/font/google";
+import { AlertCircle } from 'lucide-react';
+import { Inter, Lexend_Deca } from 'next/font/google';
 
-import "@/index.css";
+import '@/index.css';
 import {
   Empty,
   EmptyContent,
@@ -11,18 +11,18 @@ import {
   EmptyHeader,
   EmptyMedia,
   EmptyTitle,
-} from "@/components/ui/empty";
-import { cn } from "@/lib/utils";
-import { buttonVariants } from "@/components/ui/button";
+} from '@/components/ui/empty';
+import { cn } from '@/lib/utils';
+import { buttonVariants } from '@/components/ui/button';
 
 const lexendDeca = Lexend_Deca({
-  variable: "--font-lexend-deca",
-  subsets: ["latin"],
+  variable: '--font-lexend-deca',
+  subsets: ['latin'],
 });
 
 const inter = Inter({
-  variable: "--font-sans",
-  subsets: ["latin"],
+  variable: '--font-sans',
+  subsets: ['latin'],
 });
 
 interface GlobalErrorProps {
@@ -30,10 +30,7 @@ interface GlobalErrorProps {
   reset: () => void;
 }
 
-export default function GlobalError({
-  error: _error,
-  reset,
-}: GlobalErrorProps) {
+export default function GlobalError({ error: _error, reset }: GlobalErrorProps) {
   return (
     <html lang="id">
       <body className={`${lexendDeca.variable} ${inter.variable} antialiased`}>
@@ -51,16 +48,13 @@ export default function GlobalError({
             </EmptyTitle>
 
             <EmptyDescription className="text-muted-foreground text-sm md:text-base">
-              Maaf, terjadi kesalahan. Silakan coba lagi atau hubungi dukungan
-              jika masalah berlanjut.
+              Maaf, terjadi kesalahan. Silakan coba lagi atau hubungi dukungan jika masalah
+              berlanjut.
             </EmptyDescription>
           </EmptyHeader>
 
           <EmptyContent className="mt-2">
-            <button
-              onClick={reset}
-              className={cn(buttonVariants({ size: "md", variant: "gray" }))}
-            >
+            <button onClick={reset} className={cn(buttonVariants({ size: 'md', variant: 'gray' }))}>
               Coba lagi
             </button>
           </EmptyContent>
