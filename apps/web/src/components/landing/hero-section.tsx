@@ -188,14 +188,6 @@ export function HeroSection() {
           <LogoCloud logos={sampleLogos} interval={3000} displayCount={3} />
         </section>
 
-        {/* Baca Selengkapnya Link */}
-        {/*<section className="flex w-full items-center justify-between rounded-2xl bg-neutral-100 px-5 py-4">
-          <span className="font-semibold text-neutral-1000 text-sm">
-            {isId ? "Baca Selengkapnya" : "Read More"}
-          </span>
-          <ArrowRight className="size-5 text-primary-500" />
-        </section>*/}
-
         {/* Class Cards */}
         <section className="grid w-full grid-cols-1 gap-5 md:mt-0 md:grid-cols-3 md:gap-4 -mb-100 md:mb-0">
           {/* Kuning */}

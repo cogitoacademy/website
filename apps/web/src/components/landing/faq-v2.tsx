@@ -168,7 +168,7 @@ export default function FaqSectionV2() {
                       style={{ pointerEvents: isActive ? 'none' : 'auto' }}
                     >
                       <div>
-                        <p className="line-clamp-10 font-medium text-gray-600 leading-snug">
+                        <p className="line-clamp-10 font-medium text-gray-600 leading-snug text-sm">
                           {item.question}
                         </p>
                       </div>

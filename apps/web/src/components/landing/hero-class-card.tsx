@@ -37,6 +37,8 @@ const REGULER_SUBJECTS = [
       'Diplomacy and negotiation strategies',
       'Writing draft resolution',
     ],
+    color: 'bg-tertiary-blue-500',
+    secondaryColor: 'bg-tertiary-blue-300',
   },
   {
     slug: 'wsc',
@@ -60,6 +62,8 @@ const REGULER_SUBJECTS = [
       'Team strategy and collaboration',
       'Multiple-choice question tactics',
     ],
+    color: 'bg-tertiary-yellow-600',
+    secondaryColor: 'bg-tertiaty-yellow-300',
   },
   {
     slug: 'debat',
@@ -83,6 +87,8 @@ const REGULER_SUBJECTS = [
       'Cross-examination',
       'Final focus delivery',
     ],
+    color: 'bg-secondary-500',
+    secondaryColor: 'bg-secondary-100',
   },
 ] as const;
 
@@ -93,9 +99,9 @@ const _COLOR_BORDER_MAP: Record<string, string> = {
 };
 
 const COLOR_BG_LIGHT_MAP: Record<string, string> = {
-  'tertiary-blue-500': 'bg-tertiary-blue-100',
-  'tertiary-yellow-600': 'bg-tertiary-yellow-100',
-  'secondary-500': 'bg-secondary-100',
+  'bg-tertiary-blue-500': 'bg-tertiary-blue-100',
+  'bg-tertiary-yellow-600': 'bg-tertiary-yellow-100',
+  'bg-secondary-500': 'bg-secondary-100',
 };
 
 const COLOR_TEXT_MAP: Record<string, string> = {
@@ -242,7 +248,7 @@ export function ClassCard({
         <ResponsiveModalContent
           side={'bottom'}
           style={{ maxHeight: '75dvh' }}
-          className="flex flex-col overflow-hidden rounded-t-2xl border-none p-0 sm:max-w-[600px] lg:max-w-4xl sm:rounded-lg"
+          className="flex flex-col overflow-hidden rounded-t-2xl border-none p-0 sm:max-w-[600px] lg:max-w-4xl xl:max-w-5xl sm:rounded-lg"
         >
           {/* Top: Image Section */}
           <div className="relative h-[200px] shrink-0 overflow-hidden bg-[#A855F7] md:h-50">
@@ -283,7 +289,10 @@ export function ClassCard({
                       <TabsTrigger
                         key={subject.slug}
                         value={subject.slug}
-                        className="min-w-[110px] shrink-0 px-4 py-3 text-sm lg:w-full lg:min-w-full justify-between bg-background-cream shadow-xs"
+                        className={cn(
+                          'min-w-[110px] shrink-0 px-4 py-3 text-sm lg:w-full lg:min-w-full justify-between bg-background-cream shadow-xs',
+                          `data-active:${subject.secondaryColor}`,
+                        )}
                         // style={
                         //   {
                         //     '--active-color': COLOR_BORDER_HEX[subject.color],
