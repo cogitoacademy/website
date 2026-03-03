@@ -75,7 +75,7 @@ export default function FieldCard({ skill, isId }: { skill: Skill; isId: boolean
         side="bottom"
         showCloseButton={false}
         className={cn(
-          'w-full gap-0 overflow-hidden rounded-t-2xl border-none p-0 sm:max-w-lg lg:max-w-5xl sm:rounded-2xl pt-4',
+          'w-full gap-0 overflow-hidden rounded-t-2xl border-none p-0 sm:max-w-lg lg:max-w-5xl sm:rounded-t-2xl pt-4',
           `bg-${color}`,
         )}
       >
