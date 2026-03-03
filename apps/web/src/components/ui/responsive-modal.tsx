@@ -4,6 +4,7 @@ import { Dialog as DialogPrimitive } from "@base-ui/react/dialog";
 import { cva, type VariantProps } from "class-variance-authority";
 import { XIcon } from "lucide-react";
 import type * as React from "react";
+import { RemoveScroll } from "react-remove-scroll";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
@@ -27,13 +28,7 @@ const responsiveModalVariants = cva(
 );
 
 function ResponsiveModalRoot({ ...props }: DialogPrimitive.Root.Props) {
-	return (
-		<DialogPrimitive.Root
-			data-slot="responsive-modal"
-			modal={true}
-			{...props}
-		/>
-	);
+	return <DialogPrimitive.Root data-slot="responsive-modal" {...props} />;
 }
 
 function ResponsiveModalTrigger({ ...props }: DialogPrimitive.Trigger.Props) {
@@ -82,29 +77,31 @@ function ResponsiveModalContent({
 	}) {
 	return (
 		<ResponsiveModalPortal>
-			<ResponsiveModalOverlay />
-			<DialogPrimitive.Popup
-				data-slot="responsive-modal-content"
-				className={cn(responsiveModalVariants({ side }), className)}
-				{...props}
-			>
-				{children}
-				{showCloseButton && (
-					<ResponsiveModalClose
-						data-slot="responsive-modal-close"
-						render={
-							<Button
-								variant="outline"
-								className="absolute top-6 right-6 sm:size-[26px]"
-								size="icon-sm"
-							/>
-						}
-					>
-						<XIcon />
-						<span className="sr-only">Close</span>
-					</ResponsiveModalClose>
-				)}
-			</DialogPrimitive.Popup>
+			<RemoveScroll>
+				<ResponsiveModalOverlay />
+				<DialogPrimitive.Popup
+					data-slot="responsive-modal-content"
+					className={cn(responsiveModalVariants({ side }), className)}
+					{...props}
+				>
+					{children}
+					{showCloseButton && (
+						<ResponsiveModalClose
+							data-slot="responsive-modal-close"
+							render={
+								<Button
+									variant="outline"
+									className="absolute top-6 right-6 sm:size-[26px]"
+									size="icon-sm"
+								/>
+							}
+						>
+							<XIcon />
+							<span className="sr-only">Close</span>
+						</ResponsiveModalClose>
+					)}
+				</DialogPrimitive.Popup>
+			</RemoveScroll>
 		</ResponsiveModalPortal>
 	);
 }
