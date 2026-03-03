@@ -79,7 +79,7 @@ export default function FieldCard({ skill, isId }: { skill: Skill; isId: boolean
           `bg-${color}`,
         )}
       >
-        <div className="rounded-2xl overflow-hidden">
+        <div className="rounded-t-2xl overflow-hidden">
           {/* ── Header: image + color overlay ── */}
           <div className="relative h-40 md:h-36 w-full overflow-hidden">
             <Image src="/modal-banner.webp" alt={title} fill className="object-cover grayscale" />
