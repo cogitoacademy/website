@@ -1,17 +1,28 @@
-'use client';
+"use client";
 
-import { Inter, Lexend_Deca } from 'next/font/google';
+import { AlertCircle } from "lucide-react";
+import { Inter, Lexend_Deca } from "next/font/google";
 
-import '@/index.css';
+import "@/index.css";
+import {
+  Empty,
+  EmptyContent,
+  EmptyDescription,
+  EmptyHeader,
+  EmptyMedia,
+  EmptyTitle,
+} from "@/components/ui/empty";
+import { cn } from "@/lib/utils";
+import { buttonVariants } from "@/components/ui/button";
 
 const lexendDeca = Lexend_Deca({
-  variable: '--font-lexend-deca',
-  subsets: ['latin'],
+  variable: "--font-lexend-deca",
+  subsets: ["latin"],
 });
 
 const inter = Inter({
-  variable: '--font-sans',
-  subsets: ['latin'],
+  variable: "--font-sans",
+  subsets: ["latin"],
 });
 
 interface GlobalErrorProps {
@@ -19,29 +30,41 @@ interface GlobalErrorProps {
   reset: () => void;
 }
 
-export default function GlobalError({ error: _error, reset }: GlobalErrorProps) {
+export default function GlobalError({
+  error: _error,
+  reset,
+}: GlobalErrorProps) {
   return (
     <html lang="id">
       <body className={`${lexendDeca.variable} ${inter.variable} antialiased`}>
-        <div className="flex min-h-screen flex-col items-center justify-center bg-tertiary-red-100 px-4 py-16">
-          <div className="max-w-lg text-center">
-            <h1 className="mb-4 font-medium text-4xl text-white md:text-5xl">Terjadi kesalahan.</h1>
+        <Empty className="min-h-screen bg-tertiary-red-50 px-4 py-16">
+          <EmptyHeader>
+            <EmptyMedia
+              variant="icon"
+              className="size-16 bg-tertiary-red-100 text-tertiary-red-400 lg:size-20"
+            >
+              <AlertCircle className="size-8 lg:size-10" strokeWidth={1.5} />
+            </EmptyMedia>
 
-            <p className="mb-8 text-base text-white/90 leading-relaxed md:text-lg">
-              Maaf, terjadi kesalahan. Silakan coba lagi atau hubungi dukungan jika masalah
-              berlanjut.
-            </p>
+            <EmptyTitle className="font-[family-name:var(--font-lexend-deca)] font-medium text-2xl text-tertiary-red-400 md:text-3xl">
+              Terjadi kesalahan
+            </EmptyTitle>
 
-            <div className="flex flex-col justify-center gap-3 sm:flex-row">
-              <button
-                onClick={reset}
-                className="inline-flex items-center justify-center rounded-full bg-white px-6 py-3 font-medium text-neutral-1000 transition-colors duration-200 hover:bg-white/90"
-              >
-                Coba lagi
-              </button>
-            </div>
-          </div>
-        </div>
+            <EmptyDescription className="text-muted-foreground text-sm md:text-base">
+              Maaf, terjadi kesalahan. Silakan coba lagi atau hubungi dukungan
+              jika masalah berlanjut.
+            </EmptyDescription>
+          </EmptyHeader>
+
+          <EmptyContent className="mt-2">
+            <button
+              onClick={reset}
+              className={cn(buttonVariants({ size: "md", variant: "gray" }))}
+            >
+              Coba lagi
+            </button>
+          </EmptyContent>
+        </Empty>
       </body>
     </html>
   );

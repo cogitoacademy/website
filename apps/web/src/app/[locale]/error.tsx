@@ -1,9 +1,18 @@
-'use client';
+"use client";
 
-import { AlertCircle } from 'lucide-react';
-import { useTranslations } from 'next-intl';
-
-import { Link } from '@/i18n/routing';
+import { AlertCircle } from "lucide-react";
+import { useTranslations } from "next-intl";
+import {
+  Empty,
+  EmptyContent,
+  EmptyDescription,
+  EmptyHeader,
+  EmptyMedia,
+  EmptyTitle,
+} from "@/components/ui/empty";
+import { Link } from "@/i18n/routing";
+import { buttonVariants } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 interface ErrorProps {
   error: Error & { digest?: string };
@@ -11,37 +20,39 @@ interface ErrorProps {
 }
 
 export default function Error({ error: _error, reset }: ErrorProps) {
-  const t = useTranslations('error.generic');
+  const t = useTranslations("error.generic");
 
   return (
-    <div className="flex min-h-[calc(100vh-200px)] flex-col items-center justify-center px-4 py-16">
-      <div className="max-w-lg text-center relative z-50 bg-tertiary-red-400 rounded-3xl p-6">
-        <AlertCircle className="mx-auto mb-3 mt-3 h-12 w-12 text-white" strokeWidth={1.5} />
+    <Empty className="min-h-[calc(100vh-200px)] px-4 py-16">
+      <EmptyHeader>
+        <EmptyMedia
+          variant="icon"
+          className="size-12 bg-tertiary-red-100 text-tertiary-red-400"
+        >
+          <AlertCircle className="size-6" strokeWidth={1.5} />
+        </EmptyMedia>
 
-        <h1 className="mb-4 font-[family-name:var(--font-lexend-deca)] font-medium text-4xl text-white md:text-3xl">
-          {t('title')}
-        </h1>
+        <EmptyTitle className="font-[family-name:var(--font-lexend-deca)] font-medium text-2xl text-tertiary-red-400 md:text-3xl">
+          {t("title")}
+        </EmptyTitle>
 
-        <p className="mb-8 text-base text-white/90 leading-relaxed md:text-lg">
-          {t('description')}
-        </p>
+        <EmptyDescription className="text-muted-foreground text-sm md:text-base">
+          {t("description")}
+        </EmptyDescription>
+      </EmptyHeader>
 
-        <div className="flex flex-col justify-center gap-3 sm:flex-row">
-          <button
-            onClick={reset}
-            className="inline-flex items-center justify-center rounded-full bg-white px-6 py-3 font-medium text-neutral-1000 transition-colors duration-200 hover:bg-white/90"
-          >
-            {t('button')}
-          </button>
+      <EmptyContent className="mt-2 flex-row items-center justify-center">
+        <button onClick={reset} className={cn(buttonVariants({ size: "md" }))}>
+          {t("button")}
+        </button>
 
-          <Link
-            href="/"
-            className="inline-flex items-center justify-center rounded-full bg-white/20 px-6 py-3 font-medium text-white transition-colors duration-200 hover:bg-white/30"
-          >
-            {t('backButton')}
-          </Link>
-        </div>
-      </div>
-    </div>
+        <Link
+          href="/"
+          className={cn(buttonVariants({ size: "md", variant: "gray" }))}
+        >
+          {t("backButton")}
+        </Link>
+      </EmptyContent>
+    </Empty>
   );
 }
