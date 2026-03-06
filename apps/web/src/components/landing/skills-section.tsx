@@ -253,6 +253,11 @@ export function SkillsSection() {
 
   return (
     <section className="bg-primary-100 px-4 py-20">
+      <div
+        id="skills"
+        className="invisible h-0 scroll-mt-8 md:scroll-mt-[6.5rem]"
+        aria-hidden="true"
+      />
       <Container className="relative max-w-[calc(80rem-2rem)] overflow-hidden rounded-2xl border bg-tertiary-pink-500 pt-9 pb-20">
         <Image
           src="/images/landing/fields-background.webp"

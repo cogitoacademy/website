@@ -83,6 +83,11 @@ export function HeroSection() {
 
   return (
     <section className="relative">
+      <div
+        id="hero"
+        className="invisible h-0 scroll-mt-8 md:scroll-mt-[6.5rem]"
+        aria-hidden="true"
+      />
       <div className="absolute inset-0 bottom-50 z-0 w-full bg-neutral-100 [clip-path:polygon(0_0,100%_0,100%_70%,50%_100%,0%_70%)] sm:bottom-120 md:bottom-90" />
 
       <Container className="relative z-1 max-w-7xl flex-col items-center pt-28 pb-0 sm:pt-36 md:pt-42 lg:pt-50">

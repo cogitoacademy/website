@@ -1,7 +1,11 @@
 'use client';
 
-import { XIcon } from '@phosphor-icons/react/dist/ssr';
-import { Instagram, Linkedin, MapPin } from 'lucide-react';
+import {
+  InstagramLogoIcon,
+  MapPinLineIcon,
+  WhatsappLogoIcon,
+  XIcon,
+} from '@phosphor-icons/react/dist/ssr';
 import { AnimatePresence, m } from 'motion/react';
 import Image from 'next/image';
 import { useLocale } from 'next-intl';
@@ -44,20 +48,20 @@ const KEGIATAN_ITEMS_EN = [
 ];
 
 const QUICK_NAV_ITEMS_ID = [
-  { label: 'Acara Publik', href: '#' },
-  { label: '#TutorJuara', href: '/tutors' },
-  { label: 'Kenapa Kita?', href: '#' },
-  { label: 'Testimoni', href: '#' },
-  { label: 'Jenis Perlombaan', href: '#' },
+  { label: 'Acara Publik', href: '#events' },
+  { label: '#TutorJuara', href: '#tutors' },
+  { label: 'Kenapa Kita?', href: '#methods' },
+  { label: 'Testimoni', href: '#testimonials' },
+  { label: 'Jenis Perlombaan', href: '#skills' },
   { label: 'FAQ', href: '#faq' },
 ];
 
 const QUICK_NAV_ITEMS_EN = [
-  { label: 'Public Events', href: '#' },
-  { label: 'Cogito Tutors', href: '/tutors' },
-  { label: 'Why Us?', href: '#' },
-  { label: 'Testimonials', href: '#' },
-  { label: 'Types of Competitions', href: '#' },
+  { label: 'Public Events', href: '#events' },
+  { label: 'Cogito Tutors', href: '#tutors' },
+  { label: 'Why Us?', href: '#methods' },
+  { label: 'Testimonials', href: '#testimonials' },
+  { label: 'Types of Competitions', href: '#skills' },
   { label: 'FAQ', href: '#faq' },
 ];
 
@@ -220,14 +224,29 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
               <div className="flex flex-col gap-2">
                 <span className="font-medium text-sm text-white/90">Follow Us on</span>
                 <div className="flex gap-4">
-                  <Link href="#" className="text-white hover:text-white/80">
-                    <MapPin className="size-6" />
+                  <Link
+                    href="https://maps.app.goo.gl/or7SSBb39RZQUC298"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-white hover:text-white/80"
+                  >
+                    <MapPinLineIcon className="size-6" />
                   </Link>
-                  <Link href="#" className="text-white hover:text-white/80">
-                    <Instagram className="size-6" />
+                  <Link
+                    href="https://www.instagram.com/cogitoacademy.id/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-white hover:text-white/80"
+                  >
+                    <InstagramLogoIcon className="size-6" />
                   </Link>
-                  <Link href="#" className="text-white hover:text-white/80">
-                    <Linkedin className="size-6" />
+                  <Link
+                    href="https://wa.me/62881011990195"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-white hover:text-white/80"
+                  >
+                    <WhatsappLogoIcon className="size-6" />
                   </Link>
                 </div>
               </div>

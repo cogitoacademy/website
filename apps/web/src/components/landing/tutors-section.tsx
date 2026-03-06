@@ -14,14 +14,19 @@ export async function TutorsSection() {
 
   return (
     <section className="bg-background-primary py-16">
+      <div
+        id="tutors"
+        className="invisible h-0 scroll-mt-8 md:scroll-mt-[6.5rem]"
+        aria-hidden="true"
+      />
       <div className="container mx-auto max-w-7xl px-4">
         <div className="flex flex-col items-center gap-8">
-          <div className="space-y-2 text-center *:text-pretty *:max-w-[335px]">
+          <div className="space-y-2 text-center *:max-w-[335px] *:text-pretty">
             <Badge variant={'headline-cream'}>
               <BooksIcon className="size-5" />{' '}
               <span>{isId ? 'Tutor Cogito' : 'Cogito Tutors'}</span>
             </Badge>
-            <h2 className="font-bold text-2xl lg:text-3xl text-pretty text-neutral-1000 mx-auto lg:max-w-none">
+            <h2 className="mx-auto text-pretty font-bold text-2xl text-neutral-1000 lg:max-w-none lg:text-3xl">
               {isId ? (
                 <>
                   Dapatkan Strategi Langsung dari{' '}
@@ -34,7 +39,7 @@ export async function TutorsSection() {
                 </>
               )}
             </h2>
-            <p className="mx-auto max-w-3xl font-medium text-xs md:text-sm xl:text-base text-neutral-1000 md:max-w-none">
+            <p className="mx-auto max-w-3xl font-medium text-neutral-1000 text-xs md:max-w-none md:text-sm xl:text-base">
               {isId
                 ? 'Para tutor siap mendampingimu untuk meraih juara di setiap kompetisi.'
                 : 'Tutors are ready to accompany you to achieve champion status in every competition.'}

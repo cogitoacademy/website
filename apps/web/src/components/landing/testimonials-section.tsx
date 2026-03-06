@@ -56,7 +56,12 @@ export async function TestimonialsSection() {
   ];
 
   return (
-    <section className="bg-background-cream py-16 overflow-hidden">
+    <section className="overflow-hidden bg-background-cream py-16">
+      <div
+        id="testimonials"
+        className="invisible h-0 scroll-mt-8 md:scroll-mt-[6.5rem]"
+        aria-hidden="true"
+      />
       <div className="container mx-auto max-w-7xl px-4">
         <div className="flex flex-col items-center gap-12">
           <div className="space-y-2 text-center">

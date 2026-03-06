@@ -22,7 +22,6 @@ const NAV_ITEMS_ID = [
   // { label: "Playground", href: "/playground" },
   {
     label: 'Kegiatan',
-    href: '#',
     items: [
       { label: 'Monthly Townhall', href: '/events/monthly-townhall' },
       { label: 'Cogito 101 Series', href: '/events/cogito-101-series' },
@@ -37,7 +36,6 @@ const NAV_ITEMS_EN = [
   // { label: "Playground", href: "/playground" },
   {
     label: 'Activities',
-    href: '#',
     items: [
       { label: 'Monthly Townhall', href: '/events/monthly-townhall' },
       { label: 'Cogito 101 Series', href: '/events/cogito-101-series' },
