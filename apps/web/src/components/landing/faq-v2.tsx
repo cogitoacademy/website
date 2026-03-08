@@ -148,7 +148,7 @@ export default function FaqSectionV2() {
                         </h3>
 
                         <div className="flex-1 overflow-hidden rounded-2xl bg-white p-6 shadow-sm">
-                          <div className="custom-scrollbar h-full overflow-y-auto pr-2">
+                          <div className="custom-scrollbar h-full overflow-y-scroll pr-2">
                             <p className="whitespace-pre-line text-gray-600 text-sm leading-relaxed">
                               {item.answer}
                             </p>
