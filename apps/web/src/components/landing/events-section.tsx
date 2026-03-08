@@ -41,7 +41,7 @@ export function EventsSection() {
     <div className="relative z-1">
       <div
         id="events"
-        className="invisible h-0 scroll-mt-8 md:scroll-mt-[6.5rem]"
+        className="invisible h-0 scroll-mt-20 md:scroll-mt-[6.5rem]"
         aria-hidden="true"
       />
       <svg

@@ -255,7 +255,7 @@ export function SkillsSection() {
     <section className="bg-primary-100 px-4 py-20">
       <div
         id="skills"
-        className="invisible h-0 scroll-mt-8 md:scroll-mt-[6.5rem]"
+        className="invisible h-0 scroll-mt-24 md:scroll-mt-[6.5rem]"
         aria-hidden="true"
       />
       <Container className="relative max-w-[calc(80rem-2rem)] overflow-hidden rounded-2xl border bg-tertiary-pink-500 pt-9 pb-20">
@@ -299,7 +299,7 @@ export function SkillsSection() {
         </div>
 
         {/* MOBILE = full width stack | SM+ = flex wrap cards */}
-        <div className="relative z-3 mt-8 flex w-full flex-col gap-3 sm:flex-row sm:flex-wrap sm:justify-center sm:gap-6">
+        <div className="relative z-3 md:mt-8 flex w-full flex-col gap-3 sm:flex-row sm:flex-wrap sm:justify-center sm:gap-6">
           {skills.map((skill) => (
             <FieldCard key={skill.titleEn} skill={skill} isId={isId} />
           ))}

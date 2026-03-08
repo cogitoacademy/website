@@ -16,7 +16,7 @@ export async function TutorsSection() {
     <section className="bg-background-primary py-16">
       <div
         id="tutors"
-        className="invisible h-0 scroll-mt-8 md:scroll-mt-[6.5rem]"
+        className="invisible h-0 scroll-mt-24 md:scroll-mt-[6.5rem]"
         aria-hidden="true"
       />
       <div className="container mx-auto max-w-7xl px-4">

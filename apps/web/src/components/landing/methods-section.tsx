@@ -11,7 +11,7 @@ export async function MethodsSection() {
     <section className="mx-auto max-w-7xl px-4 py-20">
       <div
         id="methods"
-        className="invisible h-0 scroll-mt-8 md:scroll-mt-[6.5rem]"
+        className="invisible h-0 scroll-mt-24 md:scroll-mt-[6.5rem]"
         aria-hidden="true"
       />
       <div className="flex flex-col items-center justify-center space-y-2">
