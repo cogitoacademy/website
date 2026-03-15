@@ -1,7 +1,7 @@
 {
   "$schema": "https://v2-8-0.turborepo.dev/schema.json",
   "ui": "tui",
-  "globalEnv": ["NODE_ENV", "BASE_URL"],
+  "globalEnv": ["NODE_ENV", "BASE_URL", "STUDENT_RESOURCES_PASSWORD"],
   "tasks": {
     "build": {
       "dependsOn": ["^build"],
