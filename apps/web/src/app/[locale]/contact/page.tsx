@@ -3,6 +3,7 @@ import {
   InstagramLogoIcon,
   MapPinLineIcon,
 } from '@phosphor-icons/react/dist/ssr';
+import type { ReactNode } from 'react';
 import type { Metadata } from 'next';
 import { setRequestLocale } from 'next-intl/server';
 import { ActionCard } from '@/components/contact/action-card';
@@ -58,7 +59,7 @@ type Props = {
 type Locale = 'id' | 'en';
 
 type ButtonItem = {
-  icon: React.ReactNode;
+  icon: ReactNode;
   label: string;
   href: string;
 };

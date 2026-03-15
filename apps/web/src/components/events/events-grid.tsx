@@ -1,5 +1,6 @@
 'use client';
 
+import type { KeyboardEvent as ReactKeyboardEvent } from 'react';
 import { ArrowUpRightIcon } from 'lucide-react';
 import { m } from 'motion/react';
 import Image from 'next/image';
@@ -88,7 +89,7 @@ export function EventsGrid({ events, lang }: EventsGridProps) {
 function EventCard({ event, lang }: { event: SerializedEvent; lang: string }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const handleKeyDown = (e: React.KeyboardEvent) => {
+  const handleKeyDown = (e: ReactKeyboardEvent) => {
     if (e.key === 'Enter' || e.key === ' ') {
       e.preventDefault();
       setIsModalOpen(true);

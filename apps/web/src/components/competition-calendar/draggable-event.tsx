@@ -1,5 +1,6 @@
 'use client';
 
+import type { MouseEvent as ReactMouseEvent, TouchEvent as ReactTouchEvent } from 'react';
 import { useDraggable } from '@dnd-kit/core';
 import { CSS } from '@dnd-kit/utilities';
 import { differenceInDays } from 'date-fns';
@@ -15,7 +16,7 @@ interface DraggableEventProps {
   event: CalendarCompetition;
   view: 'month' | 'week' | 'day';
   showTime?: boolean;
-  onClick?: (e: React.MouseEvent) => void;
+  onClick?: (e: ReactMouseEvent) => void;
   height?: number;
   isMultiDay?: boolean;
   multiDayWidth?: number;
@@ -69,7 +70,7 @@ export function DraggableEvent({
   });
 
   // Handle mouse down to track where on the event the user clicked
-  const handleMouseDown = (e: React.MouseEvent) => {
+  const handleMouseDown = (e: ReactMouseEvent) => {
     if (elementRef.current) {
       const rect = elementRef.current.getBoundingClientRect();
       setDragHandlePosition({
@@ -96,7 +97,7 @@ export function DraggableEvent({
       };
 
   // Handle touch start to track where on the event the user touched
-  const handleTouchStart = (e: React.TouchEvent) => {
+  const handleTouchStart = (e: ReactTouchEvent) => {
     if (elementRef.current) {
       const rect = elementRef.current.getBoundingClientRect();
       const touch = e.touches[0];

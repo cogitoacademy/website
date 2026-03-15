@@ -1,5 +1,6 @@
 'use client';
 
+import type { MouseEvent as ReactMouseEvent, ReactNode, TouchEvent as ReactTouchEvent } from 'react';
 import type { DraggableAttributes } from '@dnd-kit/core';
 import type { SyntheticListenerMap } from '@dnd-kit/core/dist/hooks/utilities';
 import { differenceInMinutes, format, getMinutes, isPast } from 'date-fns';
@@ -28,14 +29,14 @@ interface EventWrapperProps {
   isFirstDay?: boolean;
   isLastDay?: boolean;
   isDragging?: boolean;
-  onClick?: (e: React.MouseEvent) => void;
+  onClick?: (e: ReactMouseEvent) => void;
   className?: string;
-  children: React.ReactNode;
+  children: ReactNode;
   currentTime?: Date;
   dndListeners?: SyntheticListenerMap;
   dndAttributes?: DraggableAttributes;
-  onMouseDown?: (e: React.MouseEvent) => void;
-  onTouchStart?: (e: React.TouchEvent) => void;
+  onMouseDown?: (e: ReactMouseEvent) => void;
+  onTouchStart?: (e: ReactTouchEvent) => void;
 }
 
 // Shared wrapper component for event styling
@@ -109,17 +110,17 @@ interface EventItemProps {
   event: CalendarCompetition;
   view: 'month' | 'week' | 'day' | 'agenda';
   isDragging?: boolean;
-  onClick?: (e: React.MouseEvent) => void;
+  onClick?: (e: ReactMouseEvent) => void;
   showTime?: boolean;
   currentTime?: Date; // For updating time during drag
   isFirstDay?: boolean;
   isLastDay?: boolean;
-  children?: React.ReactNode;
+  children?: ReactNode;
   className?: string;
   dndListeners?: SyntheticListenerMap;
   dndAttributes?: DraggableAttributes;
-  onMouseDown?: (e: React.MouseEvent) => void;
-  onTouchStart?: (e: React.TouchEvent) => void;
+  onMouseDown?: (e: ReactMouseEvent) => void;
+  onTouchStart?: (e: ReactTouchEvent) => void;
 }
 
 export function EventItem({

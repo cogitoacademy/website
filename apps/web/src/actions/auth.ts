@@ -2,7 +2,10 @@
 
 import { cookies } from 'next/headers';
 
-const PASSWORD = process.env.STUDENT_RESOURCES_PASSWORD || 'cogito2024';
+const PASSWORD = process.env.STUDENT_RESOURCES_PASSWORD;
+if (!PASSWORD) {
+  throw new Error('STUDENT_RESOURCES_PASSWORD environment variable is not set');
+}
 const COOKIE_NAME = 'student_access';
 
 export async function verifyPassword(password: string) {

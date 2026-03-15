@@ -140,7 +140,9 @@ export default async function LocaleLayout({
           <Providers>
             <JsonLdProvider />
             <Header />
-            {children}
+            <div id="main-content" tabIndex={-1}>
+              {children}
+            </div>
             <Footer />
           </Providers>
         </NextIntlClientProvider>
