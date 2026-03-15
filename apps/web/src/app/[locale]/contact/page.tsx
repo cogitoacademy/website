@@ -67,34 +67,34 @@ const BUTTON_CONTENT: Record<Locale, ButtonItem[]> = {
     {
       icon: <MapPinLineIcon className="size-5" />,
       label: 'Lokasi Cogito Campus',
-      href: 'https://goo.gl/maps/1234567890',
+      href: 'https://maps.app.goo.gl/or7SSBb39RZQUC298',
     },
     {
       icon: <EnvelopeSimpleIcon className="size-5" />,
       label: 'cogitoacademy.id@gmail.com',
-      href: 'mailto:info@cogitoacademy.id',
+      href: 'mailto:cogitoacademy.id@gmail.com',
     },
     {
       icon: <InstagramLogoIcon className="size-5" />,
       label: 'cogitoacademy.id',
-      href: 'https://instagram.com/cogitoacademy.id',
+      href: 'https://www.instagram.com/cogitoacademy.id/',
     },
   ],
   en: [
     {
       icon: <MapPinLineIcon className="size-5" />,
       label: 'Cogito Campus Location',
-      href: 'https://goo.gl/maps/1234567890',
+      href: 'https://maps.app.goo.gl/or7SSBb39RZQUC298',
     },
     {
       icon: <EnvelopeSimpleIcon className="size-5" />,
       label: 'cogitoacademy.id@gmail.com',
-      href: 'mailto:info@cogitoacademy.id',
+      href: 'mailto:cogitoacademy.id@gmail.com',
     },
     {
       icon: <InstagramLogoIcon className="size-5" />,
       label: 'cogitoacademy.id',
-      href: 'https://instagram.com/cogitoacademy.id',
+      href: 'https://www.instagram.com/cogitoacademy.id/',
     },
   ],
 };
@@ -138,8 +138,8 @@ export default async function ContactPage({ params }: Props) {
                 : 'Guide young talents to become broadly-minded champions.'
             }
             action={{
-              label: '+62 812-3456-7890',
-              href: 'https://wa.me/6281234567890',
+              label: '+62 8810-1199-0195',
+              href: 'https://wa.me/62881011990195',
             }}
             image={{
               src: '/contact-1.webp',
@@ -156,8 +156,8 @@ export default async function ContactPage({ params }: Props) {
                 : 'Discuss your achievement plans for free and privately.'
             }
             action={{
-              label: '+62 812-3456-7890',
-              href: 'https://wa.me/6281234567890',
+              label: '+62 8810-1199-0195',
+              href: 'https://wa.me/62881011990195',
             }}
             image={{
               src: '/contact-2.webp',
