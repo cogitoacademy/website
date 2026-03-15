@@ -1,5 +1,7 @@
 'use client';
 
+import type React from 'react';
+
 import { useDroppable } from '@dnd-kit/core';
 
 import { useCalendarDnd } from '@/components/competition-calendar';

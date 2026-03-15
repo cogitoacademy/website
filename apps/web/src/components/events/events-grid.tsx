@@ -1,5 +1,7 @@
 'use client';
 
+import type React from 'react';
+
 import { ArrowUpRightIcon } from 'lucide-react';
 import { m } from 'motion/react';
 import Image from 'next/image';

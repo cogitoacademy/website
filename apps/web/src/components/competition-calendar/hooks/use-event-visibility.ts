@@ -1,6 +1,7 @@
 'use client';
 
 import { useLayoutEffect, useMemo, useRef, useState } from 'react';
+import type { RefObject } from 'react';
 
 interface EventVisibilityOptions {
   eventHeight: number;
@@ -8,7 +9,7 @@ interface EventVisibilityOptions {
 }
 
 interface EventVisibilityResult {
-  contentRef: React.RefObject<HTMLDivElement>;
+  contentRef: RefObject<HTMLDivElement>;
   contentHeight: number | null;
   getVisibleEventCount: (totalEvents: number) => number;
 }

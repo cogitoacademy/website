@@ -1,3 +1,5 @@
+import type { ReactNode } from 'react';
+
 import {
   EnvelopeSimpleIcon,
   InstagramLogoIcon,
@@ -58,7 +60,7 @@ type Props = {
 type Locale = 'id' | 'en';
 
 type ButtonItem = {
-  icon: React.ReactNode;
+  icon: ReactNode;
   label: string;
   href: string;
 };

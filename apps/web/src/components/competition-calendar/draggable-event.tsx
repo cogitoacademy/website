@@ -1,5 +1,7 @@
 'use client';
 
+import type React from 'react';
+
 import { useDraggable } from '@dnd-kit/core';
 import { CSS } from '@dnd-kit/utilities';
 import { differenceInDays } from 'date-fns';

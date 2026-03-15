@@ -1,5 +1,7 @@
 'use client';
 
+import type { CSSProperties } from 'react';
+
 import { RiCalendarCheckLine } from '@remixicon/react';
 import {
   addDays,
@@ -192,7 +194,7 @@ export function EventCalendar({
           '--event-gap': `${EventGap}px`,
           '--event-height': `${EventHeight}px`,
           '--week-cells-height': `${WeekCellsHeight}px`,
-        } as React.CSSProperties
+        } as CSSProperties
       }
     >
       <CalendarDndProvider onEventUpdate={readOnly || !onEventUpdate ? () => {} : onEventUpdate}>

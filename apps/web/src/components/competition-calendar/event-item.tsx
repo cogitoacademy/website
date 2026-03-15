@@ -1,5 +1,7 @@
 'use client';
 
+import type React from 'react';
+
 import type { DraggableAttributes } from '@dnd-kit/core';
 import type { SyntheticListenerMap } from '@dnd-kit/core/dist/hooks/utilities';
 import { differenceInMinutes, format, getMinutes, isPast } from 'date-fns';

@@ -1,4 +1,4 @@
-import type { CalendarCompetition } from '@/components/competition-calendar/types';
+import type { CalendarCompetition, CompetitionColor } from '@/components/competition-calendar/types';
 import { CORE_CATEGORIES, type CoreCategorySlug } from '@/lib/config/coreCategories';
 import type { SanityCompetition } from '@/types/sanity/competition';
 
@@ -39,8 +39,8 @@ export function sanityToCalendarCompetition(
       const coreSlug = cat.coreCategory as CoreCategorySlug;
       const coreData = CORE_CATEGORIES[coreSlug];
 
-      // Get color from core category config
-      const color = coreData?.brandColor || 'primary-500';
+      // Get color from core category config (all brandColor values are valid CompetitionColor)
+      const color: CompetitionColor = (coreData?.brandColor as CompetitionColor) || 'primary-500';
 
       return {
         name: cat.name,
@@ -49,7 +49,7 @@ export function sanityToCalendarCompetition(
       };
     }) || [];
 
-  const eventColor = categories.length > 0 ? categories[0].color : 'primary-500';
+  const eventColor: CompetitionColor = categories[0]?.color ?? 'primary-500';
 
   // Extract localized strings
   const title = getLocalizedValue(sanityCompetition.title, locale);
@@ -82,7 +82,7 @@ export function sanityToCalendarCompetition(
       coreCategory: cat.coreCategory || '',
       color: cat.color,
     })),
-    color: eventColor as any, // Use first category's color as main event color
+    color: eventColor, // Use first category's color as main event color
     educationLevels: sanityCompetition.educationLevels || [],
     scale: sanityCompetition.scale,
     organizer: sanityCompetition.organizer,

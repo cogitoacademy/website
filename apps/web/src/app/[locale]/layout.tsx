@@ -140,7 +140,7 @@ export default async function LocaleLayout({
           <Providers>
             <JsonLdProvider />
             <Header />
-            {children}
+            <main id="main-content">{children}</main>
             <Footer />
           </Providers>
         </NextIntlClientProvider>
