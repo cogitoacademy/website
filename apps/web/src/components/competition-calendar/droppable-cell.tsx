@@ -1,5 +1,6 @@
 'use client';
 
+import type { KeyboardEvent, ReactNode } from 'react';
 import { useDroppable } from '@dnd-kit/core';
 
 import { useCalendarDnd } from '@/components/competition-calendar';
@@ -9,7 +10,7 @@ interface DroppableCellProps {
   id: string;
   date: Date;
   time?: number; // For week/day views, represents hours (e.g., 9.25 for 9:15)
-  children?: React.ReactNode;
+  children?: ReactNode;
   className?: string;
   onClick?: () => void;
 }
@@ -40,7 +41,7 @@ export function DroppableCell({
           .padStart(2, '0')}`
       : null;
 
-  const handleKeyDown = (e: React.KeyboardEvent) => {
+  const handleKeyDown = (e: KeyboardEvent) => {
     if (onClick && (e.key === 'Enter' || e.key === ' ')) {
       e.preventDefault();
       onClick();

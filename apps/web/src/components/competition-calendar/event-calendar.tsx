@@ -15,6 +15,7 @@ import {
 import { ChevronDownIcon, ChevronLeftIcon, ChevronRightIcon, PlusIcon } from 'lucide-react';
 import { useLocale } from 'next-intl';
 import { useEffect, useMemo, useState } from 'react';
+import type { CSSProperties } from 'react';
 
 import {
   AgendaDaysToShow,
@@ -192,7 +193,7 @@ export function EventCalendar({
           '--event-gap': `${EventGap}px`,
           '--event-height': `${EventHeight}px`,
           '--week-cells-height': `${WeekCellsHeight}px`,
-        } as React.CSSProperties
+        } as CSSProperties
       }
     >
       <CalendarDndProvider onEventUpdate={readOnly || !onEventUpdate ? () => {} : onEventUpdate}>

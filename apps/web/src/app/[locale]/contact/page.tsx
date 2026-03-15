@@ -4,6 +4,7 @@ import {
   MapPinLineIcon,
 } from '@phosphor-icons/react/dist/ssr';
 import type { Metadata } from 'next';
+import type { ReactNode } from 'react';
 import { setRequestLocale } from 'next-intl/server';
 import { ActionCard } from '@/components/contact/action-card';
 import NavbarResolver from '@/components/navbar-resolver';
@@ -58,7 +59,7 @@ type Props = {
 type Locale = 'id' | 'en';
 
 type ButtonItem = {
-  icon: React.ReactNode;
+  icon: ReactNode;
   label: string;
   href: string;
 };

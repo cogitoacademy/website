@@ -1,5 +1,6 @@
 'use client';
 
+import type { MouseEvent } from 'react';
 import { RiCalendarEventLine } from '@remixicon/react';
 import { addDays, format, isToday } from 'date-fns';
 import { useMemo } from 'react';
@@ -23,13 +24,11 @@ export function AgendaView({ currentDate, events, onEventSelect }: AgendaViewPro
 
   // Show events for the next days based on constant
   const days = useMemo(() => {
-    console.log('Agenda view updating with date:', currentDate.toISOString());
     return Array.from({ length: AgendaDaysToShow }, (_, i) => addDays(new Date(currentDate), i));
   }, [currentDate]);
 
-  const handleEventClick = (event: CalendarCompetition, e: React.MouseEvent) => {
+  const handleEventClick = (event: CalendarCompetition, e: MouseEvent) => {
     e.stopPropagation();
-    console.log('Agenda view event clicked:', event);
     onEventSelect(event);
   };
 
