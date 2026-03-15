@@ -79,7 +79,7 @@ export async function generateMetadata({
       description,
       images: [
         {
-          url: `${BASE_URL}/og-image.png`,
+          url: `${BASE_URL}/og-image-cogito.jpg`,
           width: 1200,
           height: 630,
           alt: 'Cogito Academy',
@@ -90,7 +90,7 @@ export async function generateMetadata({
       card: 'summary_large_image',
       title,
       description,
-      images: [`${BASE_URL}/og-image.png`],
+      images: [`${BASE_URL}/og-image-cogito.jpg`],
       creator: '@cogitoacademy.id',
     },
     robots: {
@@ -102,6 +102,13 @@ export async function generateMetadata({
         'max-video-preview': -1,
         'max-image-preview': 'large',
         'max-snippet': -1,
+      },
+    },
+    alternates: {
+      canonical: `${BASE_URL}/${locale}`,
+      languages: {
+        id: `${BASE_URL}/id`,
+        en: `${BASE_URL}/en`,
       },
     },
   };

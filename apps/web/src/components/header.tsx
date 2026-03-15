@@ -27,7 +27,7 @@ const NAV_ITEMS_ID = [
       { label: 'Cogito 101 Series', href: '/events/cogito-101-series' },
     ],
   },
-  { label: 'Materi Siswa', href: '/student-resources' },
+  { label: 'Sumber Belajar', href: '/student-resources' },
 ];
 
 const NAV_ITEMS_EN = [

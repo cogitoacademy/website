@@ -28,10 +28,22 @@ export async function generateMetadata({
     openGraph: {
       title,
       description,
+      images: [
+        {
+          url: `${BASE_URL}/og-image-cogito.jpg`,
+          width: 1200,
+          height: 630,
+          alt: 'Contact Cogito Academy',
+        },
+      ],
     },
     twitter: {
       title,
       description,
+      images: [`${BASE_URL}/og-image-cogito.jpg`],
+    },
+    alternates: {
+      canonical: `${BASE_URL}/${locale}/contact`,
     },
   };
 }

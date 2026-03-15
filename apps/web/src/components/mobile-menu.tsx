@@ -28,7 +28,7 @@ interface MobileMenuProps {
 const NAV_ITEMS_ID = [
   { label: '#TutorJuara', href: '/tutors' },
   { label: 'Kalender Lomba', href: '/calendar' },
-  { label: 'Materi Siswa', href: '/student-resources' },
+  { label: 'Sumber Belajar', href: '/student-resources' },
 ];
 
 const NAV_ITEMS_EN = [
