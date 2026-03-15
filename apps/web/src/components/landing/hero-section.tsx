@@ -150,26 +150,16 @@ export function HeroSection() {
               href="https://wa.me/62881011990195"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full max-w-[214px] sm:w-auto sm:max-w-none"
+              className="w-full max-w-[218px] sm:w-auto sm:max-w-none"
             >
-              <Button
-                size="md"
-                // className="w-full max-w-[214px] sm:w-auto sm:max-w-none"
-              >
+              <Button size="md" className="w-full">
                 <span>{t('hero.ctaPrimary')}</span>
                 <ChatsCircleIcon weight="duotone" color="#ffffff" className="size-5" />
               </Button>
             </Link>
 
-            <Link
-              href="https://wa.me/62881011990195"
-              className="w-full max-w-[214px] sm:w-auto sm:max-w-none"
-            >
-              <Button
-                size="md"
-                variant="gray"
-                // className="w-full max-w-[214px] sm:w-auto sm:max-w-none"
-              >
+            <Link href="#skills" className="w-full max-w-[221px] sm:w-auto sm:max-w-none">
+              <Button size="md" variant="gray" className="w-full">
                 <span>{t('hero.ctaSecondary')}</span>
                 <ArrowRight className="size-4" />
               </Button>
