@@ -5,6 +5,7 @@ import NavbarResolver from '@/components/navbar-resolver';
 import TutorList from '@/components/tutor-list';
 import { Container } from '@/components/ui/container';
 import { Skeleton } from '@/components/ui/skeleton';
+import { BASE_URL } from '@/lib/constants';
 import { getTutors } from '@/lib/tutors';
 import { COMPETITION_CATEGORIES_QUERY } from '@/queries/tutors';
 import { client } from '@/sanity/client';

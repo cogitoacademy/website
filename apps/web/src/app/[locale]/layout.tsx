@@ -9,9 +9,8 @@ import Header from '@/components/header';
 import Providers from '@/components/providers';
 import JsonLdProvider from '@/components/seo/json-ld-provider';
 import { routing } from '@/i18n/routing';
+import { BASE_URL } from '@/lib/constants';
 import NotFound from './not-found';
-
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://cogitoacademy.id';
 
 const lexendDeca = Lexend_Deca({
   variable: '--font-lexend-deca',
@@ -130,7 +129,7 @@ export default async function LocaleLayout({
 
   return (
     <html lang={locale} suppressHydrationWarning>
-      <body className={`${lexendDeca.variable} ${inter.variable} antialiased min-h-screen`}>
+      <body className={`${lexendDeca.variable} ${inter.variable} min-h-screen antialiased`}>
         <a
           href="#main-content"
           className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:rounded-md focus:bg-primary-500 focus:px-4 focus:py-2 focus:text-white focus:outline-none"

@@ -8,6 +8,7 @@ import { setRequestLocale } from 'next-intl/server';
 import { ActionCard } from '@/components/contact/action-card';
 import NavbarResolver from '@/components/navbar-resolver';
 import { Button } from '@/components/ui/button';
+import { BASE_URL } from '@/lib/constants';
 
 export async function generateMetadata({
   params,

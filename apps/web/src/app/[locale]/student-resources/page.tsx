@@ -4,6 +4,7 @@ import { checkAccess } from '@/actions/auth';
 import NavbarResolver from '@/components/navbar-resolver';
 import { PasswordGate } from '@/components/student-resources/password-gate';
 import { ResourceList } from '@/components/student-resources/resource-list';
+import { BASE_URL } from '@/lib/constants';
 import { STUDENT_RESOURCES_QUERY } from '@/queries/studentResources';
 import { client } from '@/sanity/client';
 

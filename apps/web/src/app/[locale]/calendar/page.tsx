@@ -4,6 +4,7 @@ import { Suspense } from 'react';
 import { CalendarSkeleton } from '@/components/competition-calendar/calendar-skeleton';
 import type { CalendarCompetition } from '@/components/competition-calendar/types';
 import NavbarResolver from '@/components/navbar-resolver';
+import { BASE_URL } from '@/lib/constants';
 import { sanityToCalendarCompetition } from '@/lib/transforms/competitionTransform';
 import { COMPETITIONS_QUERY } from '@/queries/competitions';
 import { client } from '@/sanity/client';

@@ -1,7 +1,6 @@
 import type { MetadataRoute } from 'next';
 import { routing } from '@/i18n/routing';
-
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://cogitoacademy.id';
+import { BASE_URL } from '@/lib/constants';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const locales = routing.locales;

@@ -3,7 +3,7 @@
 /* eslint-disable react-dom/no-dangerously-set-inner-html -- JSON-LD requires stringified JSON for SEO */
 import Script from 'next/script';
 
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://cogitoacademy.id';
+import { BASE_URL } from '@/lib/constants';
 
 interface OrganizationJsonLdProps {
   locale?: string;

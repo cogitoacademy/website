@@ -4,6 +4,7 @@ import { setRequestLocale } from 'next-intl/server';
 import { EventsGrid, type SerializedEvent } from '@/components/events/events-grid';
 import NavbarResolver from '@/components/navbar-resolver';
 import { routing } from '@/i18n/routing';
+import { BASE_URL } from '@/lib/constants';
 import { sanityToEvent } from '@/lib/transforms/eventTransform';
 import { EVENTS_BY_CATEGORY_QUERY } from '@/queries/events';
 import { client } from '@/sanity/client';
