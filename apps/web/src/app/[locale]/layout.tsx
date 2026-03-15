@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import type { ReactNode } from 'react';
 import { Inter, Lexend_Deca } from 'next/font/google';
 import { hasLocale, NextIntlClientProvider } from 'next-intl';
 import { getMessages, setRequestLocale } from 'next-intl/server';
@@ -117,7 +118,7 @@ export default async function LocaleLayout({
   children,
   params,
 }: {
-  children: React.ReactNode;
+  children: ReactNode;
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
@@ -140,7 +141,9 @@ export default async function LocaleLayout({
           <Providers>
             <JsonLdProvider />
             <Header />
-            {children}
+            <main id="main-content">
+              {children}
+            </main>
             <Footer />
           </Providers>
         </NextIntlClientProvider>

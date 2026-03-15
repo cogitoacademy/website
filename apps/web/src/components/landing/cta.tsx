@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { getLocale } from 'next-intl/server';
 import { Button } from '../ui/button';
 
-export default async function p() {
+export default async function CtaSection() {
   const locale = await getLocale();
   const isId = locale === 'id';
 

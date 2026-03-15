@@ -4,6 +4,7 @@ import { ArrowUpRightIcon } from 'lucide-react';
 import { m } from 'motion/react';
 import Image from 'next/image';
 import { useState } from 'react';
+import type { KeyboardEvent } from 'react';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import EventDetailModal from './event-detail-modal';
@@ -88,7 +89,7 @@ export function EventsGrid({ events, lang }: EventsGridProps) {
 function EventCard({ event, lang }: { event: SerializedEvent; lang: string }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const handleKeyDown = (e: React.KeyboardEvent) => {
+  const handleKeyDown = (e: KeyboardEvent) => {
     if (e.key === 'Enter' || e.key === ' ') {
       e.preventDefault();
       setIsModalOpen(true);

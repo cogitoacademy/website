@@ -1,4 +1,4 @@
-import type { CalendarCompetition } from '@/components/competition-calendar/types';
+import type { CalendarCompetition, CompetitionColor } from '@/components/competition-calendar/types';
 import { CORE_CATEGORIES, type CoreCategorySlug } from '@/lib/config/coreCategories';
 import type { SanityCompetition } from '@/types/sanity/competition';
 
@@ -82,7 +82,7 @@ export function sanityToCalendarCompetition(
       coreCategory: cat.coreCategory || '',
       color: cat.color,
     })),
-    color: eventColor as any, // Use first category's color as main event color
+    color: eventColor as CompetitionColor, // Use first category's color as main event color
     educationLevels: sanityCompetition.educationLevels || [],
     scale: sanityCompetition.scale,
     organizer: sanityCompetition.organizer,
