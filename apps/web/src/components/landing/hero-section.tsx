@@ -9,6 +9,7 @@ import { Container } from '../ui/container';
 import { WordRotateHighlighter } from '../ui/word-rotate-highlighter';
 import { ClassCard } from './hero-class-card';
 import { LogoCloud } from './logo-cloud';
+import Link from 'next/link';
 
 const sampleLogos = [
   {
@@ -145,19 +146,34 @@ export function HeroSection() {
 
           {/* CTA Buttons */}
           <div className="my-2 flex w-full flex-col items-center gap-2 sm:my-6 sm:w-auto sm:flex-row sm:gap-4">
-            <Button size="md" className="w-full max-w-[214px] sm:w-auto sm:max-w-none">
-              <span>{t('hero.ctaPrimary')}</span>
-              <ChatsCircleIcon weight="duotone" color="#ffffff" className="size-5" />
-            </Button>
-
-            <Button
-              size="md"
-              variant="gray"
+            <Link
+              href="https://wa.me/62881011990195"
+              target="_blank"
+              rel="noopener noreferrer"
               className="w-full max-w-[214px] sm:w-auto sm:max-w-none"
             >
-              <span>{t('hero.ctaSecondary')}</span>
-              <ArrowRight className="size-4" />
-            </Button>
+              <Button
+                size="md"
+                // className="w-full max-w-[214px] sm:w-auto sm:max-w-none"
+              >
+                <span>{t('hero.ctaPrimary')}</span>
+                <ChatsCircleIcon weight="duotone" color="#ffffff" className="size-5" />
+              </Button>
+            </Link>
+
+            <Link
+              href="https://wa.me/62881011990195"
+              className="w-full max-w-[214px] sm:w-auto sm:max-w-none"
+            >
+              <Button
+                size="md"
+                variant="gray"
+                // className="w-full max-w-[214px] sm:w-auto sm:max-w-none"
+              >
+                <span>{t('hero.ctaSecondary')}</span>
+                <ArrowRight className="size-4" />
+              </Button>
+            </Link>
           </div>
         </section>
 

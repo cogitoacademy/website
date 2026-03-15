@@ -14,6 +14,8 @@ export interface CarouselItem {
   name: string;
   title: string;
   avatar: string;
+  initials?: string;
+  color?: string;
 }
 
 interface CarouselProps {
@@ -179,6 +181,8 @@ const Carousel: React.FC<CarouselProps> = ({
         ? 'bg-tertiary-yellow-200 border-neutral-200 *:text-black'
         : 'bg-secondary-200 *:text-neutral-1000 border-neutral-200';
 
+    const showInitials = item.avatar === '/placeholder.jpg' && item.initials;
+
     return (
       <div
         className={`mx-auto flex aspect-video w-full max-w-[90vw] flex-col overflow-hidden rounded-[20px] border shadow-sm transition sm:max-w-none ${bgColor}`}
@@ -186,14 +190,24 @@ const Carousel: React.FC<CarouselProps> = ({
         <div className="flex flex-1 flex-col justify-between text-pretty p-4 text-left">
           <p className="max-h-full overflow-y-auto font-light text-xs lg:text-sm">{item.desc}</p>
           <div className="flex items-center space-x-2">
-            <div className="flex size-10 shrink-0 items-center justify-center overflow-hidden rounded-full bg-primary-100 lg:size-13">
-              <Image
-                src={item.avatar}
-                alt="Avatar"
-                width={100}
-                height={100}
-                className="h-full w-full"
-              />
+            <div
+              className={`flex size-10 shrink-0 items-center justify-center overflow-hidden rounded-full lg:size-13 ${
+                showInitials
+                  ? `${item.color || 'bg-primary-500'} text-white font-medium text-sm`
+                  : 'bg-primary-100'
+              }`}
+            >
+              {showInitials ? (
+                <span>{item.initials}</span>
+              ) : (
+                <Image
+                  src={item.avatar}
+                  alt="Avatar"
+                  width={100}
+                  height={100}
+                  className="h-full w-full"
+                />
+              )}
             </div>
             <div>
               <h3 className={cn('font-medium text-sm lg:text-base')}>{item.name}</h3>

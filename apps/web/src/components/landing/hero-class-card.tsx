@@ -14,6 +14,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { cn } from '@/lib/utils';
 import { Badge } from '../ui/badge';
 import { Button } from '../ui/button';
+import Link from 'next/link';
 
 const REGULER_SUBJECTS = [
   {
@@ -329,9 +330,16 @@ function IntensifEkstrakurikulerContent({ content }: { content: ModalContent }) 
         </ul>
       </div>
       <div className="mt-6">
-        <Button className="w-full" size="md">
-          {content.ctaText}
-        </Button>
+        <Link
+          href="https://wa.me/62881011990195"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="w-full"
+        >
+          <Button className="w-full" size="md">
+            {content.ctaText}
+          </Button>
+        </Link>
       </div>
     </div>
   );

@@ -35,7 +35,12 @@ export default async function p() {
             </p>
           </div>
           <div className="hidden h-full sm:flex-1" />
-          <Link href="/contact" className="relative z-1 mt-3 sm:mt-auto sm:mb-0">
+          <Link
+            href="https://wa.me/62881011990195"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="relative z-1 mt-3 sm:mt-auto sm:mb-0"
+          >
             <Button size="lg">
               <span>{isId ? 'Jadwalkan Konsultasi gratis' : 'Schedule Free Consultation'}</span>
               <ChatsCircleIcon weight="duotone" color="#ffffff" className="size-5" />
