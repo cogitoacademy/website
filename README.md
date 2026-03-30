@@ -112,7 +112,7 @@ bun run build
 | `bun run dev:web`     | Start only the web app                   |
 | `bun run build`       | Build all apps                           |
 | `bun run check-types` | TypeScript type checking across all apps |
-| `bun run check`       | Run Oxlint + Oxfmt                       |
+| `bun run format`      | Run Oxlint + Oxfmt                       |
 | `bun run deploy`      | Deploy Sanity Studio                     |
 
 ## Content Model (Sanity)
