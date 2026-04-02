@@ -123,13 +123,3 @@ bun run build
 | `studentResource`     | Password-protected study materials                                   |
 
 Content supports field-level bilingual input (Indonesian + English) via `sanity-plugin-internationalized-array`.
-
-## Key Libraries
-
-- **motion** -- Page transitions and scroll animations
-- **lenis** -- Smooth scrolling
-- **@dnd-kit** -- Drag-and-drop in competition calendar
-- **@tanstack/react-form** -- Form handling
-- **next-themes** -- Dark/light mode support
-- **rough-notation** -- Hand-drawn annotation highlights
-- **sonner** -- Toast notifications
