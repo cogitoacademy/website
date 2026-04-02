@@ -1,4 +1,7 @@
-import type { CalendarCompetition, CompetitionColor } from '@/components/competition-calendar/types';
+import type {
+  CalendarCompetition,
+  CompetitionColor,
+} from '@/components/competition-calendar/types';
 import { CORE_CATEGORIES, type CoreCategorySlug } from '@/lib/config/coreCategories';
 import type { SanityCompetition } from '@/types/sanity/competition';
 

@@ -1,8 +1,9 @@
 import type { Metadata } from 'next';
-import type { ReactNode } from 'react';
 import { Inter, Lexend_Deca } from 'next/font/google';
+import { notFound } from 'next/navigation';
 import { hasLocale, NextIntlClientProvider } from 'next-intl';
 import { getMessages, setRequestLocale } from 'next-intl/server';
+import type { ReactNode } from 'react';
 
 import '../../index.css';
 import Footer from '@/components/footer';
@@ -11,7 +12,6 @@ import Providers from '@/components/providers';
 import JsonLdProvider from '@/components/seo/json-ld-provider';
 import { routing } from '@/i18n/routing';
 import { BASE_URL } from '@/lib/constants';
-import NotFound from './not-found';
 
 const lexendDeca = Lexend_Deca({
   variable: '--font-lexend-deca',
@@ -123,7 +123,7 @@ export default async function LocaleLayout({
 }) {
   const { locale } = await params;
   if (!hasLocale(routing.locales, locale)) {
-    return <NotFound />;
+    notFound();
   }
   setRequestLocale(locale);
   const messages = await getMessages();
@@ -141,9 +141,7 @@ export default async function LocaleLayout({
           <Providers>
             <JsonLdProvider />
             <Header />
-            <main id="main-content">
-              {children}
-            </main>
+            <main id="main-content">{children}</main>
             <Footer />
           </Providers>
         </NextIntlClientProvider>

@@ -14,6 +14,7 @@ export async function verifyPassword(password: string) {
     cookieStore.set(COOKIE_NAME, 'true', {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
+      sameSite: 'lax',
       maxAge: 60 * 60 * 24 * 7, // 1 week
       path: '/',
     });

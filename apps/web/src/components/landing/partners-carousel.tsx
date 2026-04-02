@@ -16,7 +16,7 @@ export function PartnersCarousel() {
             <span key={partner.id} className="flex items-center">
               <Image
                 src={partner.src}
-                alt={'a'}
+                alt=""
                 width={3500}
                 height={1445}
                 sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"

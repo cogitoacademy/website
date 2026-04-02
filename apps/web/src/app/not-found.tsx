@@ -32,6 +32,8 @@ const styles = {
   },
 };
 
+// Global not-found: renders outside the root layout when no locale matches.
+// Must include its own <html>/<body> since it has no layout wrapper.
 export default function NotFound() {
   return (
     <html lang="en">

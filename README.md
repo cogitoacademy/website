@@ -94,7 +94,7 @@ STUDENT_RESOURCES_PASSWORD=<password-for-student-resources>
 # Run all apps (web + studio)
 bun run dev
 
-# Run only the web app (localhost:2000)
+# Run only the web app (localhost:2001)
 bun run dev:web
 ```
 

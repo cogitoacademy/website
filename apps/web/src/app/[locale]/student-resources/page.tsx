@@ -63,9 +63,9 @@ export default async function StudentResourcesPage({ params }: Props) {
 
   if (!hasAccess) {
     return (
-      <main className="min-h-screen bg-background-cream">
+      <div className="min-h-screen bg-background-cream">
         <PasswordGate />
-      </main>
+      </div>
     );
   }
 
@@ -77,7 +77,7 @@ export default async function StudentResourcesPage({ params }: Props) {
   }
 
   return (
-    <main className="bg-background-cream">
+    <div className="bg-background-cream">
       <NavbarResolver />
       <div className="relative z-3 mx-auto min-h-screen max-w-7xl px-4">
         <div className="mb-8">
@@ -89,6 +89,6 @@ export default async function StudentResourcesPage({ params }: Props) {
 
         <ResourceList resources={resources} />
       </div>
-    </main>
+    </div>
   );
 }
