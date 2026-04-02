@@ -83,7 +83,7 @@ export default async function CompetitionCalendarPage({ params }: Props) {
   return (
     <>
       <NavbarResolver />
-      <main className="relative z-3 mx-auto max-w-7xl gap-y-15 space-y-15 overflow-x-clip px-4">
+      <div className="relative z-3 mx-auto max-w-7xl gap-y-15 space-y-15 overflow-x-clip px-4">
         <div className="space-y-2">
           <h1 className="font-semibold text-2xl text-neutral-1000 sm:text-3xl md:text-4xl lg:text-5xl">
             {locale === 'en' ? (
@@ -108,7 +108,7 @@ export default async function CompetitionCalendarPage({ params }: Props) {
         <Suspense fallback={<CalendarSkeleton locale={locale} />}>
           <CalendarContent />
         </Suspense>
-      </main>
+      </div>
     </>
   );
 }

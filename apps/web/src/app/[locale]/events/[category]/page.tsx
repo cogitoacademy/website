@@ -169,7 +169,7 @@ export default async function EventCategoryPage({ params }: Props) {
   return (
     <>
       <NavbarResolver />
-      <main className="relative z-3 mx-auto max-w-7xl px-4 pb-20 sm:px-6 lg:px-8">
+      <div className="relative z-3 mx-auto max-w-7xl px-4 pb-20 sm:px-6 lg:px-8">
         {/* Hero Section */}
         <section className="pb-8 sm:pb-12 md:pb-16">
           <div className="max-w-2xl space-y-3">
@@ -186,7 +186,7 @@ export default async function EventCategoryPage({ params }: Props) {
 
         {/* Events Grid with Pagination */}
         <EventsGrid events={serializedEvents} lang={lang} />
-      </main>
+      </div>
     </>
   );
 }
