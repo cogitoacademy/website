@@ -31,22 +31,19 @@ The official website for **Cogito Academy**, an Indonesian educational organizat
 
 ```
 cogito-acad/
-├── apps/
-│   ├── web/                  # Next.js frontend
-│   │   ├── src/
-│   │   │   ├── app/[locale]/ # Locale-based routing (id, en)
-│   │   │   ├── components/   # UI components (landing, events, calendar, etc.)
-│   │   │   ├── queries/      # Sanity GROQ queries
-│   │   │   ├── sanity/       # Sanity client config
-│   │   │   ├── i18n/         # Locale routing + message loading
-│   │   │   ├── lib/          # Utilities, config, transforms
-│   │   │   └── types/        # TypeScript type definitions
-│   │   └── messages/         # Translation files (id.json, en.json)
-│   └── studio/               # Sanity Content Studio (CMS admin)
-│       └── schemaTypes/      # Content schemas (tutor, event, competition, etc.)
-└── packages/
-    ├── config/               # Shared TypeScript config
-    └── env/                  # Shared environment variable validation
+└── apps/
+    ├── web/                  # Next.js frontend
+    │   ├── src/
+    │   │   ├── app/[locale]/ # Locale-based routing (id, en)
+    │   │   ├── components/   # UI components (landing, events, calendar, etc.)
+    │   │   ├── queries/      # Sanity GROQ queries
+    │   │   ├── sanity/       # Sanity client config
+    │   │   ├── i18n/         # Locale routing + message loading
+    │   │   ├── lib/          # Utilities, config, transforms
+    │   │   └── types/        # TypeScript type definitions
+    │   └── messages/         # Translation files (id.json, en.json)
+    └── studio/               # Sanity Content Studio (CMS admin)
+        └── schemaTypes/      # Content schemas (tutor, event, competition, etc.)
 ```
 
 ## Pages
@@ -80,7 +77,7 @@ bun install
 Create `apps/web/.env`:
 
 ```env
-NEXT_PUBLIC_SERVER_URL=http://localhost:2000
+NEXT_PUBLIC_SITE_URL=http://localhost:2001
 NEXT_PUBLIC_SANITY_PROJECT_ID=<your-sanity-project-id>
 NEXT_PUBLIC_SANITY_DATASET=development
 NEXT_PUBLIC_SANITY_API_VERSION=2024-03-01
