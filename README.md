@@ -123,3 +123,8 @@ bun run build
 | `studentResource`     | Password-protected study materials                                   |
 
 Content supports field-level bilingual input (Indonesian + English) via `sanity-plugin-internationalized-array`.
+
+## Credits
+
+- [Andreandhiki Riyanta Putra](https://github.com/Andhiki) (Developer)
+- Melinda Annastasia Budijono (UX Designer & UX Researcher)
