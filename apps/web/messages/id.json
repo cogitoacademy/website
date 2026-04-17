@@ -7,11 +7,6 @@
     "about": "Tentang Kami",
     "faq": "FAQ"
   },
-  "hero": {
-    "title": "Bergabung dengan Tutor Terbaik",
-    "subtitle": "Pelajari keterampilan berkompetisi dengan mentor berpengalaman",
-    "cta": "Mulai Belajar"
-  },
   "tutors": {
     "title": "Tim Tutor Kami",
     "description": "Bergabunglah dengan tutor berpengalaman kami yang ahli dalam berbagai bidang perlombaan",
@@ -109,26 +104,24 @@
     }
   },
   "hero": {
-    "badge": "Didukung oleh {count} prestasi tutor di {fields} bidang keilmuan",
-    "title": "Mulai Perjalananmu Menjadi Pelajar yang",
-    "subtitle": "Menjadi ahli yang siap berprestasi, lebih dari sekadar kompetisi, bersama Cogito Academy melalui materi mendalam.",
-    "ctaPrimary": "Jadwalkan Konsultasi Gratis",
-    "ctaSecondary": "Apa yang Akan Kamu Pelajari",
+    "subtitle": "Belajar dari yang terbaik untuk jadi yang cendekiawan-juara kelas dunia dengan materi yang disusun para pakar.",
+    "ctaPrimary": "Konsultasi Sekarang",
+    "ctaSecondary": "Cek Bidang Lomba",
     "trustedBy": "Cogito telah dipercaya oleh",
     "classCards": {
       "regular": {
         "title": "Kelas Reguler",
-        "description": "Belajar semua tentang suatu jenis perlombaan dari dasar sampai mahir dengan kurikulum yang dirancang oleh para Tutor secara holistik.",
-        "tags": ["Individu", "MUN | WSC | Debate"]
+        "description": "Kuasai perlombaan dari dasar. Nikmati perjalanan belajar yang komprehensif bersama tutor ahli yang akan membimbingmu langkah demi langkah, dari level pemula hingga mahir.",
+        "tags": ["Individu & Kelompok", "MUN | WSC | Debate"]
       },
       "intensive": {
         "title": "Kelas Intensif",
-        "description": "Pelatihan yang dapat dilakukan sesuai kebutuhan untuk mempersiapkan diri dalam mengikuti satu ajang perlombaan tertentu dengan memaksimalkan pengetahuan yang sudah ada.",
+        "description": "Persiapan matang untuk hari kompetisimu. Maksimalkan performa melalui pelatihan terfokus yang dirancang khusus untuk menghadapi tantangan di ajang perlombaan mendatang.",
         "tags": ["Individu & Kelompok", "Semua Lomba"]
       },
       "extracurricular": {
         "title": "Kelas Ekstrakurikuler",
-        "description": "Pelatihan rutin untuk klub minat dan bakat di sekolah dengan kurikulum yang dapat disesuaikan dengan kebutuhan dan tujuan sekolah dalam bidang prestasi tersebut.",
+        "description": "Kembangkan potensi bakat di sekolah. Program pelatihan rutin berkualitas tinggi yang diselaraskan dengan visi serta target prestasi yang ingin dicapai oleh sekolahmu.",
         "tags": ["Kelompok", "Semua Lomba"]
       }
     },

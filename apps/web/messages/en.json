@@ -7,11 +7,6 @@
     "about": "About",
     "faq": "FAQ"
   },
-  "hero": {
-    "title": "Join the Best Tutors",
-    "subtitle": "Master competition skills with experienced mentors",
-    "cta": "Start Learning"
-  },
   "tutors": {
     "title": "Our Tutor Team",
     "description": "Join our experienced tutors who are experts in various competition fields",
@@ -109,26 +104,24 @@
     }
   },
   "hero": {
-    "badge": "Supported by {count} tutor achievements in {fields} fields of study",
-    "title": "Start Your Journey to Become Student who",
-    "subtitle": "Become an expert ready to excel, beyond just competitions, with Cogito Academy's in-depth materials.",
-    "ctaPrimary": "Schedule Free Consultation",
+    "subtitle": "Learn from the best to become a world-class scholar-champion with materials designed by experts.",
+    "ctaPrimary": "Schedule  Consultation",
     "ctaSecondary": "What You Will Learn",
     "trustedBy": "Cogito has been trusted by",
     "classCards": {
       "regular": {
         "title": "Regular Class",
-        "description": "Learn all about a type of competition from scratch to advanced with a holistically designed curriculum by Tutors.",
+        "description": "Master your craft from the ground up. A comprehensive, step-by-step journey led by expert tutors to take you from beginner to pro.",
         "tags": ["Individual", "MUN | WSC | Debate"]
       },
       "intensive": {
         "title": "Intensive Class",
-        "description": "Training that can be done as needed to prepare for a specific competition by maximizing existing knowledge.",
+        "description": "Precision prep for your big day. Maximize your performance with targeted training tailored to your upcoming competition.",
         "tags": ["Individual & Group", "All Competitions"]
       },
       "extracurricular": {
         "title": "Extracurricular Class",
-        "description": "Routine training for school interest and talent clubs with a curriculum that can be adjusted to the school's needs and goals in that field of achievement.",
+        "description": "Elevate your school’s talent. Consistent, high-quality training programs customized to align with your school's unique vision and achievement goals.",
         "tags": ["Group", "All Competitions"]
       }
     },
