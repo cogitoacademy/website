@@ -1,124 +1,108 @@
-import { ChevronLeft, ChevronRight } from "lucide-react";
-import { landingAssets } from "./assets";
+// import { ChevronLeft, ChevronRight } from "lucide-react";
+import { UserSoundIcon } from '@phosphor-icons/react/dist/ssr';
+import { getLocale } from 'next-intl/server';
+import Carousel from '../carousel';
+import { Badge } from '../ui/badge';
 
-export function TestimonialsSection() {
+export async function TestimonialsSection() {
+  const locale = await getLocale();
+  const isId = locale === 'id';
+
   const testimonials = [
     {
-      name: "Ayasha Yesa",
-      role: "Praktisi PBB dan Best Delegate di Harvard National MUN",
-      content:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
-      image: landingAssets.frame339,
-      rotation: "rotate-[-5deg]",
-      bgColor: "neutral-200",
+      id: 1,
+      name: 'Athalla Zhafran',
+      initials: 'AZ',
+      color: 'bg-blue-500',
+      title: isId
+        ? 'Best Delegate di Harvard National MUN 2024'
+        : 'Best Delegate at Harvard National MUN 2024',
+      desc: isId
+        ? 'Cogito Academy mengubah cara saya memahami diplomasi dan negosiasi. Materi yang diberikan sangat komprehensif dan mentor yang berpengalaman membantu saya mengembangkan kemampuan public speaking secara signifikan. Sekarang saya percaya diri untuk mewakili Indonesia di forum internasional.'
+        : 'Cogito Academy transformed the way I understand diplomacy and negotiation. The materials provided were comprehensive, and the experienced mentors helped me develop my public speaking skills significantly. Now I am confident to represent Indonesia at international forums.',
+      avatar: '/placeholder.jpg',
+      img: '/placeholder.jpg',
     },
     {
-      name: "Ayasha Yesa",
-      role: "Praktisi PBB dan Best Delegate di Harvard National MUN",
-      content:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
-      image: landingAssets.frame339,
-      rotation: "rotate-0",
-      bgColor: "primary-300",
-      featured: true,
+      id: 2,
+      name: 'Sarah Putri',
+      initials: 'SP',
+      color: 'bg-pink-500',
+      title: isId
+        ? 'Juara 1 Debat Bahasa Inggris Nasional'
+        : 'National English Debate Championship Winner',
+      desc: isId
+        ? 'Semula saya kesulitan mengekspresikan ide secara sistematis. Setelah mengikuti program di Cogito Academy, saya tidak hanya belajar teknik debat yang efektif, tetapi juga cara berpikir kritis yang sangat berguna dalam kehidupan sehari-hari. Saya sangat merekomendasikan academy ini!'
+        : 'I used to struggle with expressing ideas systematically. After joining Cogito Academy, I not only learned effective debate techniques but also critical thinking skills that are incredibly useful in everyday life. I highly recommend this academy!',
+      avatar: '/placeholder.jpg',
+      img: '/placeholder.jpg',
     },
     {
-      name: "Ayasha Yesa",
-      role: "Praktisi PBB dan Best Delegate di Harvard National MUN",
-      content:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
-      image: landingAssets.frame339,
-      rotation: "rotate-[5deg]",
-      bgColor: "neutral-200",
+      id: 3,
+      name: 'Raffi Ahmad',
+      initials: 'RA',
+      color: 'bg-green-500',
+      title: isId ? 'Delegasi RI di Geneva Model UN' : 'Indonesian Delegate at Geneva Model UN',
+      desc: isId
+        ? 'Pengalaman di Cogito Academy memberikan saya fondasi yang kuat untuk bersaing di level internasional. Tim mentor yang beranggotakan praktisi PBB nyata memberikan insight yang tidak bisa saya temukan di tempat lain. Ini adalah investasi terbaik untuk masa depan saya di dunia diplomat.'
+        : "My experience at Cogito Academy gave me a strong foundation to compete at the international level. The mentoring team consisting of real UN practitioners provided insights I couldn't find elsewhere. This is the best investment for my future in the diplomatic world.",
+      avatar: '/placeholder.jpg',
+      img: '/placeholder.jpg',
+    },
+    {
+      id: 4,
+      name: 'Nadira Amira',
+      initials: 'NA',
+      color: 'bg-purple-500',
+      title: isId ? 'Best Position Paper THIMUN 2024' : 'Best Position Paper at THIMUN 2024',
+      desc: isId
+        ? 'Cogito Academy bukan hanya tentang menang kompetisi, tetapi tentang membentuk karakter pemimpin masa depan. Saya belajar bagaimana mengartikulasikan posisi dengan argumen yang kuat sambil tetap menghormati pendapat berbeda. Proses pembelajaran yang personal membuat saya berkembang dengan cepat.'
+        : 'Cogito Academy is not just about winning competitions, but about shaping future leaders. I learned how to articulate positions with strong arguments while respecting different opinions. The personalized learning process helped me grow quickly.',
+      avatar: '/placeholder.jpg',
+      img: '/placeholder.jpg',
     },
   ];
 
   return (
-    <section className="bg-background-cream py-16">
+    <section className="overflow-hidden bg-background-cream py-16">
+      <div
+        id="testimonials"
+        className="invisible h-0 scroll-mt-24 md:scroll-mt-[6.5rem]"
+        aria-hidden="true"
+      />
       <div className="container mx-auto max-w-7xl px-4">
         <div className="flex flex-col items-center gap-12">
-          {/* Header */}
           <div className="space-y-2 text-center">
-            <h2 className="font-extrabold text-[32px] text-neutral-1000">
-              Dapatkan Strategi Langsung dari{" "}
-              <span className="text-primary-500">Tangan Pertama</span>
+            <Badge variant={'headline-primary'}>
+              <UserSoundIcon /> <span>{isId ? 'Testimoni' : 'Testimonials'}</span>
+            </Badge>
+            <h2 className="mx-auto text-pretty font-bold text-2xl text-neutral-1000 lg:max-w-none lg:text-3xl">
+              {isId ? (
+                <>
+                  Lebih dari Sekadar <span className="text-primary-500">Medali</span>
+                </>
+              ) : (
+                <>
+                  Progress Beyond the <span className="text-primary-500">Podium</span>
+                </>
+              )}
             </h2>
-            <p className="mx-auto max-w-3xl font-medium text-lg text-neutral-1000">
-              Para ahli dan praktisi global yang siap mendampingimu meraih standar juara dunia di
-              setiap kompetisi.
+            <p className="mx-auto max-w-3xl font-medium text-neutral-1000 text-xs md:max-w-none md:text-sm xl:text-base">
+              {isId
+                ? 'Simak cerita mereka yang berhasil menemukan kepercayaan diri dan menguasai keahlian baru.'
+                : 'Hear from students who found their voice and mastered new skills with us.'}
             </p>
           </div>
 
-          {/* Testimonials Carousel */}
-          <div className="relative w-full max-w-6xl">
-            <div className="flex min-h-[400px] items-center justify-center gap-8 lg:gap-12">
-              {testimonials.map((testimonial, index) => (
-                <div
-                  key={index}
-                  className={`
-                    ${testimonial.featured ? "z-20 w-full max-w-[600px]" : "z-10 hidden w-[400px] opacity-70 lg:block"}
-                    ${testimonial.rotation}transition-all duration-300`}
-                >
-                  <div
-                    className={`bg-${testimonial.bgColor} relative rounded-2xl p-6 shadow-lg`}
-                    style={{
-                      backgroundColor: testimonial.featured
-                        ? "var(--primary-300)"
-                        : "var(--neutral-200)",
-                    }}
-                  >
-                    {/* Quote Mark */}
-                    <div className="absolute -top-4 left-6 font-bold text-[150px] text-neutral-400 leading-none">
-                      "
-                    </div>
-                    <div className="absolute right-12 -bottom-8 font-bold text-[150px] text-neutral-400 leading-none">
-                      "
-                    </div>
-
-                    {/* Profile */}
-                    <div className="relative z-10 mb-6 flex items-center gap-4">
-                      <div className="h-[69px] w-[69px] flex-shrink-0 overflow-hidden rounded-lg">
-                        <img
-                          src={testimonial.image}
-                          alt={testimonial.name}
-                          className="h-full w-full object-cover"
-                        />
-                      </div>
-                      <div>
-                        <h4 className="font-black text-lg text-neutral-1000 leading-tight">
-                          {testimonial.name}
-                        </h4>
-                        <p className="text-neutral-1000 text-sm leading-tight">
-                          {testimonial.role}
-                        </p>
-                      </div>
-                    </div>
-
-                    {/* Content */}
-                    <p className="relative z-10 text-base text-neutral-1000 leading-relaxed">
-                      {testimonial.content}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            {/* Navigation Buttons */}
-            <div className="mt-8 flex items-center justify-center gap-16">
-              <button
-                type="button"
-                className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary-500 transition-colors hover:bg-primary-600"
-              >
-                <ChevronLeft className="size-5 text-white" />
-              </button>
-              <button
-                type="button"
-                className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary-500 transition-colors hover:bg-primary-600"
-              >
-                <ChevronRight className="size-5 text-white" />
-              </button>
-            </div>
-          </div>
+          <Carousel
+            items={testimonials}
+            showNavigation={true}
+            showDots={true}
+            autoPlay={false}
+            gap={36}
+            responsiveGap={true}
+            className=""
+          />
         </div>
       </div>
     </section>

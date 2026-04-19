@@ -8,9 +8,9 @@ export interface Tutor {
       altText?: string;
     };
   };
-  jurusan: Array<{ _key: string; value: string }>;
+  affiliation: Array<{ _key: string; value: string }>;
   competitionFields: CompetitionCategory[];
-  location: Location;
+  locations: string[];
   achievements: Array<{ text: Array<{ _key: string; value: string }> }>;
   experiences: Array<{ text: Array<{ _key: string; value: string }> }>;
 }
@@ -18,9 +18,7 @@ export interface Tutor {
 export interface CompetitionCategory {
   _id: string;
   name: string;
+  coreCategory: string;
 }
 
-export interface Location {
-  _id: string;
-  name: string;
-}
+export type Location = 'online' | 'offline_surabaya' | 'offline_semarang' | 'offline_jakarta';

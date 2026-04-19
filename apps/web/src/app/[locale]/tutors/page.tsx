@@ -1,75 +1,154 @@
-import { Suspense } from "react";
-import { getTranslations } from "next-intl/server";
-import TutorList from "@/components/tutor-list";
-import { LOCATIONS_QUERY, COMPETITION_CATEGORIES_QUERY } from "@/queries/tutors";
-import { getTutors } from "@/lib/tutors";
-import { client } from "@/sanity/client";
-import type { CompetitionCategory, Location } from "@/types/tutor";
-import { Skeleton } from "@/components/ui/skeleton";
+import type { Metadata } from 'next';
+import { setRequestLocale } from 'next-intl/server';
+import { Suspense } from 'react';
+import NavbarResolver from '@/components/navbar-resolver';
+import TutorList from '@/components/tutor-list';
+import { Container } from '@/components/ui/container';
+import { Skeleton } from '@/components/ui/skeleton';
+import { BASE_URL } from '@/lib/constants';
+import { getTutors } from '@/lib/tutors';
+import { COMPETITION_CATEGORIES_QUERY } from '@/queries/tutors';
+import { client } from '@/sanity/client';
+import type { CompetitionCategory } from '@/types/tutor';
 
-async function TutorContent() {
-  console.log("🔍 Fetching data from Sanity...");
-  console.log("📊 Sanity Client:", {
-    projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
-    dataset: process.env.NEXT_PUBLIC_SANITY_DATASET,
-  });
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const isId = locale === 'id';
 
-  const [t, tutors, locations, categories] = await Promise.all([
-    getTranslations("tutors"),
+  const title = isId ? '#TutorJuara' : '#ChampionsTutor';
+  const description = isId
+    ? 'Bertemu dengan tim tutor berpengalaman kami yang ahli dalam berbagai bidang perlombaan termasuk MUN, WSC, Debat, dan Olympiad.'
+    : 'Meet our experienced tutor team who are experts in various competition fields including MUN, WSC, Debate, and Olympiads.';
+
+  return {
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      images: [
+        {
+          url: `${BASE_URL}/og-image-cogito.jpg`,
+          width: 1200,
+          height: 630,
+          alt: 'Cogito Academy Tutors',
+        },
+      ],
+    },
+    twitter: {
+      title,
+      description,
+      images: [`${BASE_URL}/og-image-cogito.jpg`],
+    },
+    alternates: {
+      canonical: `${BASE_URL}/${locale}/tutors`,
+    },
+  };
+}
+
+const HEADLINE = {
+  id: {
+    before: 'Belajar Langsung dari Para ',
+    highlight: '#TutorJuara',
+    after: '',
+  },
+  en: {
+    before: 'Learn Directly from the ',
+    highlight: '#ChampionTutors',
+    after: '',
+  },
+};
+
+async function TutorContent({ params }: Props) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+  const lang = locale === 'en' ? 'en' : 'id';
+  const headline = HEADLINE[lang];
+
+  const [tutors, categories] = await Promise.all([
     getTutors(),
-    client.fetch<Location[]>(LOCATIONS_QUERY),
-    client.fetch<CompetitionCategory[]>(COMPETITION_CATEGORIES_QUERY),
+    client.fetch<CompetitionCategory[]>(
+      COMPETITION_CATEGORIES_QUERY,
+      {},
+      { next: { revalidate: 1800 } },
+    ),
   ]);
 
-  console.log("✅ Fetched data:", {
-    tutorsCount: tutors.length,
-    locationsCount: locations.length,
-    categoriesCount: categories.length,
-    tutors: tutors,
-    locations,
-    categories,
-  });
-
   return (
-    <div className="container mx-auto px-4 py-8">
-      <div className="mb-8">
-        <h1 className="text-4xl font-bold mb-2">{t("title")}</h1>
-        <p className="text-muted-foreground">{t("description")}</p>
-      </div>
+    <main className="min-h-screen bg-background-primary">
+      <Container className="relative z-3 max-w-7xl gap-y-15 py-0">
+        <div className="max-w-4xl space-y-2">
+          {/*<h1 className="font-bold text-4xl">{t("title")}</h1>*/}
 
-      <TutorList tutors={tutors} locations={locations} categories={categories} />
-    </div>
+          <h1 className="font-semibold text-2xl text-neutral-1000 sm:max-w-[500px] sm:text-3xl md:max-w-2xl md:text-4xl lg:max-w-4xl lg:text-5xl min-[450px]:max-w-[420px]">
+            {headline.before}
+            <span className="font-extrabold text-primary-500">{headline.highlight}</span>
+            {headline.after}
+          </h1>
+        </div>
+
+        <TutorList tutors={tutors} categories={categories} />
+      </Container>
+    </main>
   );
 }
 
-export default function TutorsPage() {
+type Props = {
+  params: Promise<{
+    locale: string;
+  }>;
+};
+
+export default async function TutorsPage({ params }: Props) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+
   return (
-    <Suspense
-      fallback={
-        <div className="container mx-auto px-4 py-8">
-          <div className="mb-8 space-y-2">
-            <Skeleton className="h-12 w-64" />
-            <Skeleton className="h-6 w-96" />
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[...Array(6)].map((_, i) => (
-              <div key={i} className="p-6 space-y-4">
-                <div className="flex items-start gap-4">
-                  <Skeleton className="w-24 h-24 rounded-full shrink-0" />
-                  <div className="flex-1 space-y-2">
-                    <Skeleton className="h-6 w-32" />
-                    <Skeleton className="h-4 w-full" />
-                  </div>
-                </div>
-                <Skeleton className="h-4 w-40" />
-                <Skeleton className="h-4 w-24" />
+    <>
+      <NavbarResolver className="bg-background-primary" />
+      <Suspense
+        fallback={
+          <div className="min-h-screen bg-background-primary">
+            <div className="mx-auto max-w-7xl px-4">
+              <div className="mb-8 space-y-2">
+                <Skeleton className="h-12 w-80" />
+                <Skeleton className="h-12 w-80" />
               </div>
-            ))}
+              <div className="mt-8 mb-4 flex justify-between space-y-2">
+                <Skeleton className="h-8 w-72" />
+                <Skeleton className="h-8 w-72" />
+              </div>
+              <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                {/* eslint-disable react/jsx-key -- skeleton placeholders intentionally use index */}
+                {[...Array(8)].map((_, i) => (
+                  <div
+                    key={`tutor-skeleton-${i}`}
+                    className="flex h-full flex-col overflow-hidden rounded-xl bg-card shadow-sm"
+                  >
+                    <div className="relative h-60 w-full shrink-0 bg-muted">
+                      <Skeleton className="absolute top-5 right-5 z-2 h-10 w-10 rounded-full" />
+                    </div>
+                    <div className="relative -mt-2 flex flex-1 flex-col rounded-xl bg-neutral-100 p-2.5">
+                      <Skeleton className="h-6 w-3/4 rounded-md" />
+                      <Skeleton className="mt-1 mb-2.5 h-3 w-full rounded-md" />
+                      <div className="mt-auto mb-0 flex flex-wrap gap-2">
+                        <Skeleton className="h-5 w-16 rounded-md" />
+                        <Skeleton className="h-5 w-20 rounded-md" />
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
-        </div>
-      }
-    >
-      <TutorContent />
-    </Suspense>
+        }
+      >
+        <TutorContent params={params} />
+      </Suspense>
+    </>
   );
 }

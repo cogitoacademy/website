@@ -1,10 +1,10 @@
-"use client";
+'use client';
 
-import { AnimatePresence, type MotionProps, motion } from "motion/react";
-import { useEffect, useState } from "react";
+import { AnimatePresence, type MotionProps, m } from 'motion/react';
+import { useEffect, useState } from 'react';
 
-import { cn } from "@/lib/utils";
-import { Highlighter } from "./highlighter";
+import { cn } from '@/lib/utils';
+import { Highlighter } from './highlighter';
 
 interface WordRotateHighlighterProps {
   words: string[];
@@ -12,13 +12,13 @@ interface WordRotateHighlighterProps {
   motionProps?: MotionProps;
   className?: string;
   action?:
-    | "highlight"
-    | "underline"
-    | "box"
-    | "circle"
-    | "strike-through"
-    | "crossed-off"
-    | "bracket";
+    | 'highlight'
+    | 'underline'
+    | 'box'
+    | 'circle'
+    | 'strike-through'
+    | 'crossed-off'
+    | 'bracket';
   color?: string;
   strokeWidth?: number;
   animationDuration?: number;
@@ -36,11 +36,11 @@ export function WordRotateHighlighter({
     initial: { opacity: 0, y: -50 },
     animate: { opacity: 1, y: 0 },
     exit: { opacity: 0, y: 50 },
-    transition: { duration: 0.25, ease: "easeOut" },
+    transition: { duration: 0.25, ease: 'easeOut' },
   },
   className,
-  action = "highlight",
-  color = "#ffd1dc",
+  action = 'highlight',
+  color = '#ffd1dc',
   strokeWidth,
   animationDuration,
   iterations,
@@ -60,9 +60,13 @@ export function WordRotateHighlighter({
   }, [words, duration]);
 
   return (
-    <div className="overflow-hidden py-2">
+    <span className="inline overflow-hidden py-2">
       <AnimatePresence mode="wait">
-        <motion.h1 key={words[index]} className={cn("relative", className)} {...motionProps}>
+        <m.span
+          key={words[index]}
+          className={cn('relative inline-block', className)}
+          {...motionProps}
+        >
           <Highlighter
             action={action}
             color={color}
@@ -76,8 +80,8 @@ export function WordRotateHighlighter({
           >
             {words[index]}
           </Highlighter>
-        </motion.h1>
+        </m.span>
       </AnimatePresence>
-    </div>
+    </span>
   );
 }

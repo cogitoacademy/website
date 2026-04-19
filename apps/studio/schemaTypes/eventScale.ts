@@ -1,16 +1,16 @@
 export default {
-  name: "eventScale",
-  title: "Event Scale",
-  type: "document",
+  name: 'eventScale',
+  title: 'Event Scale',
+  type: 'document',
   fields: [
     {
-      name: "name",
-      title: "Scale",
-      type: "string",
+      name: 'name',
+      title: 'Scale',
+      type: 'string',
       options: {
         list: [
-          { title: "International", value: "international" },
-          { title: "National", value: "national" },
+          { title: 'International', value: 'international' },
+          { title: 'National', value: 'national' },
         ],
       },
     },

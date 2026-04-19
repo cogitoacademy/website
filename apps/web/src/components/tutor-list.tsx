@@ -1,36 +1,48 @@
-"use client";
+'use client';
 
-import { useState, useMemo } from "react";
-import { useTranslations } from "next-intl";
-import TutorFilters from "@/components/tutor-filters";
-import TutorCard from "@/components/tutor-card";
-import type { Tutor, CompetitionCategory, Location } from "@/types/tutor";
+import { IdentificationBadgeIcon } from '@phosphor-icons/react/dist/ssr';
+import { useTranslations } from 'next-intl';
+import { useMemo, useState } from 'react';
+import TutorFilters from '@/components/tutor-filters';
+import {
+  Empty,
+  EmptyDescription,
+  EmptyHeader,
+  EmptyMedia,
+  EmptyTitle,
+} from '@/components/ui/empty';
+import { LOCATIONS } from '@/lib/config/locations';
+import type { CompetitionCategory, Tutor } from '@/types/tutor';
+import { TutorsGrid } from './landing/tutors-grid';
 
 interface TutorListProps {
   tutors: Tutor[];
-  locations: Location[];
   categories: CompetitionCategory[];
 }
 
-export default function TutorList({ tutors, locations, categories }: TutorListProps) {
-  const t = useTranslations("tutors");
+export default function TutorList({ tutors, categories }: TutorListProps) {
+  const t = useTranslations('tutors');
   const [selectedLocations, setSelectedLocations] = useState<string[]>([]);
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
+  const [searchQuery, setSearchQuery] = useState('');
 
   const filteredTutors = useMemo(() => {
     return tutors.filter((tutor) => {
       const locationMatch =
         selectedLocations.length === 0 ||
-        (tutor.location && selectedLocations.includes(tutor.location._id));
+        (tutor.locations && tutor.locations.some((loc) => selectedLocations.includes(loc)));
 
       const categoryMatch =
         selectedCategories.length === 0 ||
         (tutor.competitionFields &&
           tutor.competitionFields.some((cat) => selectedCategories.includes(cat._id)));
 
-      return locationMatch && categoryMatch;
+      const searchMatch =
+        searchQuery === '' || tutor.name.toLowerCase().includes(searchQuery.toLowerCase());
+
+      return locationMatch && categoryMatch && searchMatch;
     });
-  }, [tutors, selectedLocations, selectedCategories]);
+  }, [tutors, selectedLocations, selectedCategories, searchQuery]);
 
   const handleLocationToggle = (id: string) => {
     setSelectedLocations((prev) =>
@@ -47,33 +59,38 @@ export default function TutorList({ tutors, locations, categories }: TutorListPr
   const handleClearAll = () => {
     setSelectedLocations([]);
     setSelectedCategories([]);
+    setSearchQuery('');
   };
 
   return (
-    <>
+    <div>
       <TutorFilters
-        locations={locations}
+        locations={LOCATIONS}
         categories={categories}
         selectedLocations={selectedLocations}
         selectedCategories={selectedCategories}
+        searchQuery={searchQuery}
         onLocationChange={handleLocationToggle}
         onCategoryChange={handleCategoryToggle}
+        onSearchChange={setSearchQuery}
         onClearAll={handleClearAll}
       />
 
       {filteredTutors.length === 0 ? (
-        <div className="text-center py-12">
-          <p className="text-muted-foreground">
-            {tutors.length === 0 ? t("loading") : t("noTutors")}
-          </p>
-        </div>
+        <Empty className="h-full">
+          <EmptyHeader>
+            <EmptyMedia variant="icon">
+              <IdentificationBadgeIcon />
+            </EmptyMedia>
+            <EmptyTitle>{t('noTutorsTitle')}</EmptyTitle>
+            <EmptyDescription className="text-pretty">
+              {tutors.length === 0 ? t('loading') : t('noTutors')}
+            </EmptyDescription>
+          </EmptyHeader>
+        </Empty>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredTutors.map((tutor) => (
-            <TutorCard key={tutor._id} tutor={tutor} />
-          ))}
-        </div>
+        <TutorsGrid tutors={filteredTutors} showAll />
       )}
-    </>
+    </div>
   );
 }

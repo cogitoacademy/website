@@ -1,91 +1,59 @@
-import { ArrowRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { landingAssets } from "./assets";
+import { BooksIcon } from '@phosphor-icons/react/dist/ssr';
+import { ArrowRight } from 'lucide-react';
+import { getLocale } from 'next-intl/server';
+import { Button } from '@/components/ui/button';
+import { Link } from '@/i18n/routing';
+import { getFeaturedTutors } from '@/lib/tutors';
+import { Badge } from '../ui/badge';
+import { TutorsGrid } from './tutors-grid';
 
-export function TutorsSection() {
-  const tutors = [
-    {
-      name: "John Doe",
-      description: "Praktisi PBB dan Best Delegate di Harvard National MUN",
-      bgColor: "primary-300",
-      image: landingAssets.frame339,
-    },
-    {
-      name: "Ayasha",
-      description: "Praktisi PBB dan Best Delegate di Harvard National MUN",
-      bgColor: "secondary-300",
-      image: landingAssets.frame339,
-    },
-    {
-      name: "Betty Bartholomew",
-      description: "Praktisi PBB dan Best Delegate di Harvard National MUN",
-      bgColor: "tertiary-pink-500",
-      image: landingAssets.frame339,
-    },
-    {
-      name: "Pinanazwie Ayesha",
-      description: "Praktisi PBB dan Best Delegate di Harvard National MUN",
-      bgColor: "tertiary-blue-300",
-      image: landingAssets.frame339,
-    },
-    {
-      name: "John Doe",
-      description: "Praktisi PBB dan Best Delegate di Harvard National MUN",
-      bgColor: "tertiary-yellow-300",
-      image: landingAssets.frame339,
-    },
-  ];
+export async function TutorsSection() {
+  const locale = await getLocale();
+  const isId = locale === 'id';
+  const tutors = await getFeaturedTutors();
 
   return (
-    <section className="bg-background-cream py-16">
+    <section className="bg-background-primary py-16">
+      <div
+        id="tutors"
+        className="invisible h-0 scroll-mt-24 md:scroll-mt-[6.5rem]"
+        aria-hidden="true"
+      />
       <div className="container mx-auto max-w-7xl px-4">
         <div className="flex flex-col items-center gap-8">
-          {/* Header */}
-          <div className="space-y-2 text-center">
-            <h2 className="font-extrabold text-[32px] text-neutral-1000">
-              Dapatkan Strategi Langsung dari{" "}
-              <span className="text-primary-500">Tangan Pertama</span>
+          <div className="space-y-2 text-center *:max-w-[335px] *:text-pretty">
+            <Badge variant={'headline-cream'}>
+              <BooksIcon className="size-5" /> <span>{isId ? 'Tim Tutor' : 'Team of Tutors'}</span>
+            </Badge>
+            <h2 className="mx-auto text-pretty font-bold text-2xl text-neutral-1000 lg:max-w-none lg:text-3xl">
+              {isId ? (
+                <>
+                  Kuasai Strategi Pemenang bersama{' '}
+                  <span className="text-primary-500">#TutorJuara</span>
+                </>
+              ) : (
+                <>
+                  Master the Game with <span className="text-primary-500">#ChampionTutors</span>
+                </>
+              )}
             </h2>
-            <p className="mx-auto max-w-3xl font-medium text-lg text-neutral-1000">
-              Para ahli dan praktisi global yang siap mendampingimu meraih standar juara dunia di
-              setiap kompetisi.
+            <p className="mx-auto max-w-3xl font-medium text-neutral-1000 text-xs md:max-w-none md:text-sm xl:text-base">
+              {isId
+                ? 'Dapatkan bimbingan personal dari juara internasional untuk mengasah keunggulan kompetitifmu.'
+                : 'Get personalized mentorship from world-class achievers to sharpen your competitive edge.'}
             </p>
           </div>
 
-          {/* Tutors Grid */}
-          <div className="flex w-full flex-wrap justify-center gap-6">
-            {tutors.map((tutor, index) => (
-              <div
-                key={index}
-                className="h-[359px] w-full overflow-hidden rounded-lg shadow-sm sm:w-[284px]"
-                style={{ backgroundColor: `var(--${tutor.bgColor})` }}
-              >
-                {/* Tutor Image */}
-                <div className="relative h-[258px] overflow-hidden">
-                  <img src={tutor.image} alt={tutor.name} className="h-full w-full object-cover" />
-                  {/* Gradient overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/20" />
-                </div>
+          <TutorsGrid tutors={tutors} />
 
-                {/* Tutor Info */}
-                <div className="h-[101px] bg-white p-3">
-                  <h3 className="mb-1 font-black text-lg text-neutral-1000 leading-tight">
-                    {tutor.name}
-                  </h3>
-                  <p className="text-neutral-1000 text-sm leading-tight">{tutor.description}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* CTA Button */}
-          <Button
-            size="lg"
-            className="h-auto rounded-lg border-primary-600 bg-primary-500 px-5 py-6 text-white shadow-sm hover:bg-primary-600"
-          >
-            <span className="font-normal text-base">Lihat Semua Tutor Unggul Kami</span>
-            <ArrowRight className="ml-2 size-5" />
-          </Button>
+          <Link href="/tutors">
+            <Button size="lg">
+              <span className="text-sm">
+                {isId ? 'Lihat Semua Tutor Unggul Kami' : 'View All Our Excellent Tutors'}
+              </span>
+              <ArrowRight className="ml-2 size-5" />
+            </Button>
+          </Link>
         </div>
       </div>
     </section>

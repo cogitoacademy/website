@@ -1,7 +1,7 @@
-import type { ComponentPropsWithoutRef } from "react";
-import { cn } from "@/lib/utils";
+import type { ComponentPropsWithoutRef } from 'react';
+import { cn } from '@/lib/utils';
 
-interface MarqueeProps extends ComponentPropsWithoutRef<"div"> {
+interface MarqueeProps extends ComponentPropsWithoutRef<'div'> {
   /**
    * Optional CSS class name to apply custom styles
    */
@@ -45,33 +45,35 @@ export function Marquee({
     <div
       {...props}
       className={cn(
-        "group flex overflow-hidden [--duration:100s] [--gap:2rem] gap:[(--gap)] sm:[--gap:3rem] md:[--gap:3.5rem]",
+        'group flex overflow-hidden [--duration:100s] [--gap:2rem] gap:[(--gap)] sm:[--gap:3rem] md:[--gap:3.5rem]',
         {
-          "flex-row": !vertical,
-          "flex-col": vertical,
+          'flex-row': !vertical,
+          'flex-col': vertical,
         },
         className,
       )}
       style={{
-        backfaceVisibility: "hidden",
-        perspective: "1000px",
+        backfaceVisibility: 'hidden',
+        perspective: '1000px',
       }}
     >
       {Array(repeat)
         .fill(0)
+        /* eslint-disable react/jsx-key -- index is intentional for identical repeated content */
         .map((_, i) => (
           <div
             key={i}
-            className={cn("flex shrink-0 justify-around [gap:var(--gap)]", {
-              "animate-marquee flex-row": !vertical,
-              "animate-marquee-vertical flex-col": vertical,
-              "group-hover:[animation-play-state:paused]": pauseOnHover,
-              "[animation-direction:reverse]": reverse,
+            className={cn('flex shrink-0 justify-around [gap:var(--gap)]', {
+              'animate-marquee flex-row': !vertical,
+              'animate-marquee-vertical flex-col': vertical,
+              'group-hover:[animation-play-state:paused]': pauseOnHover,
+              '[animation-direction:reverse]': reverse,
             })}
             style={{
-              willChange: "transform",
-              transform: "translateZ(0)",
-              backfaceVisibility: "hidden",
+              /* eslint-disable css-modules/no-unused-class -- will-change is needed for continuous animation performance */
+              willChange: 'transform',
+              transform: 'translateZ(0)',
+              backfaceVisibility: 'hidden',
             }}
           >
             {children}

@@ -2,14 +2,10 @@
   "nav": {
     "home": "Beranda",
     "tutors": "Tutor",
-    "events": "Event",
+    "activities": "Kegiatan",
+    "calendar": "Kalender Lomba",
     "about": "Tentang Kami",
     "faq": "FAQ"
-  },
-  "hero": {
-    "title": "Bergabung dengan Tutor Terbaik",
-    "subtitle": "Pelajari keterampilan berkompetisi dengan mentor berpengalaman",
-    "cta": "Mulai Belajar"
   },
   "tutors": {
     "title": "Tim Tutor Kami",
@@ -18,15 +14,165 @@
     "competitionField": "Bidang Kompetisi",
     "selectLocation": "Pilih Lokasi",
     "selectCategory": "Pilih Bidang",
+    "searchPlaceholder": "Cari tutor...",
     "clearFilters": "Hapus Filter",
-    "noTutors": "Tidak ada tutor yang cocok dengan filter yang dipilih",
+    "noTutorsTitle": "Duh, Tutor yang kamu cari gada nih.",
+    "noTutors": "Coba cari dengan kata kunci yang lain atau reset filter, ya!",
     "loading": "Memuat tutor...",
     "achievements": "Pencapaian",
     "experiences": "Pengalaman"
+  },
+  "events": {
+    "upcoming": "Akan Datang",
+    "past": "Sudah Berlalu",
+    "done": "Selesai",
+    "noEvents": "Belum ada kegiatan yang terdaftar.",
+    "registerNow": "Daftar Sekarang"
+  },
+  "studentResources": {
+    "title": "Sumber Belajar",
+    "subtitle": "Akses materi eksklusif termasuk Position Paper dan Bank Resolusi.",
+    "passwordGate": {
+      "title": "Asah Keunggulan Kompetitifmu",
+      "description": "Dapatkan keunggulan lebih awal melalui akses eksklusif ke materi latihan dan kumpulan soal pilihan yang dirancang untuk membantumu menang.",
+      "placeholder": "Masukkan kata sandi",
+      "error": "Kata sandi salah. Silakan coba lagi.",
+      "verifying": "Memverifikasi...",
+      "button": "Akses Materi"
+    },
+    "searchPlaceholder": "Cari materi...",
+    "filter": "Filter",
+    "categories": "Kategori",
+    "showing": "Menampilkan {count} dari {total} materi",
+    "noResources": "Tidak ada materi ditemukan",
+    "noResourcesHint": "Coba sesuaikan pencarian atau filter Anda",
+    "view": "Lihat",
+    "download": "Unduh",
+    "downloadPdf": "Unduh PDF",
+    "categoryLabels": {
+      "position-paper": "Position Papers",
+      "resolution-bank": "Bank Resolusi",
+      "study-guide": "Panduan Belajar",
+      "other": "Materi Lainnya"
+    }
+  },
+  "faq": {
+    "header": {
+      "badge": "FAQ",
+      "title": "Pertanyaan yang ",
+      "titleHighlight": "Sering Ditanyakan",
+      "subtitle": "Temukan jawaban atas pertanyaan umum tentang program dan layanan kami."
+    },
+    "v2": {
+      "badge": "FAQ",
+      "title": "Segala yang Perlu Kamu Tahu untuk ",
+      "titleHighlight": "Memulai",
+      "subtitle": "Kami juga siap membantu mendiskusikan rencana prestasimu secara mendalam."
+    },
+    "items": {
+      "q1": "Apa itu Cogito Academy?",
+      "a1": "Lebih dari lembaga bimbingan belajar, Cogito Academy adalah sebuah talent incubator yang memiliki misi untuk membentuk cendekiawan-juara kelas dunia. Didirikan berdasarkan prinsip sederhana bahwa untuk menjadi yang terbaik, seseorang harus belajar langsung dari yang terbaik. Cogito Academy bertujuan untuk secara sistematis mengubah potensi siswa menjadi prestasi yang terukur melalui metode pelatihan yang telah teruji di panggung global.",
+      "q2": "Apa yang membedakan Cogito Academy dari bimbingan belajar lainnya?",
+      "a2Title": "Keunggulan Cogito Academy dibangun di atas tiga pilar utama:",
+      "a2p1Title": "Tutor Praktisi dan Juara",
+      "a2p1": "Tutor kami bukan sekadar pengajar, melainkan para juara kompetisi dan praktisi dengan pengalaman nyata yang beragam, mulai dari juara olimpiade tingkat nasional hingga praktisi hukum yang pernah bekerja di Perserikatan Bangsa-Bangsa. Mereka melatih siswa dengan pemahaman lapangan yang mendalam, lebih dari sekadar teori.",
+      "a2p2Title": "Kurikulum Holistik dan Battle-Tested",
+      "a2p2": "Kurikulum kami dirancang secara khusus oleh para tutor juara dan spesialis kurikulum untuk membentuk kemampuan serta mentalitas pemenang pada siswa. Metodologi kami mencakup persiapan sebelum, saat, dan sesudah sesi pembelajaran untuk memastikan penguasaan materi yang maksimal.",
+      "a2p3Title": "Pendekatan Personal dan Progres Terukur",
+      "a2p3": "Jumlah siswa per kelas dibatasi untuk memastikan setiap individu mendapatkan perhatian yang cukup dari tutor. Siswa secara rutin akan mendapat feedback mendetail, dan orang tua akan menerima laporan progres dari Cogito Academy untuk memantau perkembangan anak.",
+      "q3": "Program kelas apa saja yang ditawarkan?",
+      "a3Title": "Cogito Academy menawarkan tiga jenis program kelas yang dapat disesuaikan dengan kebutuhan:",
+      "a3p1Title": "Kelas Reguler",
+      "a3p1": "Kursus terstruktur dengan kurikulum holistik dari tahap pengenalan hingga penajaman kemampuan. Program yang ditawarkan antara lain World Scholar's Cup (36 pertemuan), Model United Nations (24 pertemuan), dan Debat (18 pertemuan).",
+      "a3p2Title": "Kelas Intensif",
+      "a3p2": "Program persiapan on-demand yang dirancang khusus untuk satu ajang perlombaan tertentu. Topik yang tersedia mencakup Pidato, Karya Tulis Ilmiah & Esai, Business Plan, Olimpiade, dan masih banyak lagi.",
+      "a3p3Title": "Kelas Ekstrakurikuler",
+      "a3p3": "Program pelatihan rutin yang dirancang khusus berdasarkan kebutuhan di sebuah sekolah.",
+      "q4": "Bagaimana siklus pembelajaran di Cogito Academy?",
+      "a4Title": "Siklus pembelajaran kami dirancang untuk penguasaan materi secara maksimal dan dibagi ke dalam beberapa tahap:",
+      "a4p1Title": "Tahap Fondasi (Pra-Sesi)",
+      "a4p1": "Siswa menerima materi seperti studi kasus atau artikel jurnal untuk dianalisis terlebih dahulu. Hal ini memastikan sesi tatap muka dapat berfokus pada diskusi strategis, bukan hanya teori dasar.",
+      "a4p2Title": "Tahap Akselerasi (Sesi Interaktif)",
+      "a4p2": "Sesi di kelas berfokus pada aplikasi praktis melalui simulasi, role-playing, dan pressure-testing. Dalam tahap ini, tutor berperan sebagai sparring partner bagi siswa.",
+      "a4p3Title": "Tahap Penguatan (Pasca-Sesi)",
+      "a4p3": "Setelah sesi selesai, siswa mengerjakan tugas penerapan seperti menulis position paper atau draf resolusi. Latihan ini bertujuan untuk menginternalisasi kemampuan secara kontekstual.",
+      "a4p4Title": "Tahap Evaluasi (Umpan Balik)",
+      "a4p4": "Feedback yang mendetail diberikan untuk setiap tugas yang dikerjakan siswa. Selain itu, sesi konsultasi rutin dengan orang tua juga dilaksanakan untuk memantau progres siswa.",
+      "q5": "Berapa harga dan bagaimana skema biaya kursus?",
+      "a5p1": "Dikarenakan skema kelas Cogito Academy yang dipersonalisasi berdasarkan kebutuhan setiap siswa atau kelompok, harga paket kelas bervariasi dengan mempertimbangkan jenis perlombaan, jumlah kelas yang tercakup pada paket, dan jumlah murid yang ikut serta dalam satu kelas.",
+      "a5p2": "Kami menerapkan sistem pembayaran yang cukup fleksibel di mana orang tua dan/atau sekolah dapat memilih untuk melakukan pembayaran secara lunas di depan atau berkala sebanyak maksimal tiga kali tanpa tambahan pungutan biaya."
+    }
+  },
+  "hero": {
+    "subtitle": "Belajar dari yang terbaik untuk jadi yang cendekiawan-juara kelas dunia dengan materi yang disusun para pakar.",
+    "ctaPrimary": "Konsultasi Sekarang",
+    "ctaSecondary": "Cek Bidang Lomba",
+    "trustedBy": "Cogito Academy telah dipercaya oleh",
+    "classCards": {
+      "regular": {
+        "title": "Kelas Reguler",
+        "description": "Kuasai perlombaan dari dasar. Nikmati perjalanan belajar yang komprehensif bersama tutor ahli yang akan membimbingmu langkah demi langkah, dari level pemula hingga mahir.",
+        "tags": ["Individu & Kelompok", "MUN | WSC | Debate"]
+      },
+      "intensive": {
+        "title": "Kelas Intensif",
+        "description": "Persiapan matang untuk hari kompetisimu. Maksimalkan performa melalui pelatihan terfokus yang dirancang khusus untuk menghadapi tantangan di ajang perlombaan mendatang.",
+        "tags": ["Individu & Kelompok", "Semua Lomba"]
+      },
+      "extracurricular": {
+        "title": "Kelas Ekstrakurikuler",
+        "description": "Kembangkan potensi bakat di sekolah. Program pelatihan rutin berkualitas tinggi yang diselaraskan dengan visi serta target prestasi yang ingin dicapai oleh sekolahmu.",
+        "tags": ["Kelompok", "Semua Lomba"]
+      }
+    },
+    "modal": {
+      "intensive": {
+        "title": "Kelas Intensif",
+        "description": "Persiapan on-demand yang dirancang khusus untuk satu ajang lomba.",
+        "availableFor": "Saat ini telah tersedia untuk semua jenis perlombaan.",
+        "badge": "Best for Competition",
+        "cta": "Konsultasi Gratis sekarang dengan Tim Cogito"
+      },
+      "extracurricular": {
+        "title": "Kelas Ekstrakurikuler",
+        "description": "Pelatihan rutin yang dirancang berdasarkan kebutuhan di suatu sekolah. Yuk, bentuk ekosistem juara di sekolahmu dengan program rutin yang fleksibel.",
+        "badge": "For Schools",
+        "cta": "Konsultasi Gratis sekarang dengan Tim Cogito"
+      },
+      "regular": {
+        "whatYouWillLearn": "Apa yang Akan Kamu Pelajari dan Kuasai!",
+        "title": "Kelas Reguler",
+        "description": "Kuasai perlombaan dari dasar. Nikmati perjalanan belajar yang komprehensif bersama tutor ahli yang akan membimbingmu langkah demi langkah, dari level pemula hingga mahir."
+      },
+      "features": [
+        "World Scholar's Cup",
+        "Model United Nations",
+        "Debat (English/Bahasa)",
+        "Pidato (English/Bahasa)",
+        "Karya Tulis Ilmiah & Esai",
+        "Business Plan",
+        "Olimpiade SMP",
+        "Olimpiade SMA",
+        "...dan masih banyak lagi"
+      ]
+    }
   },
   "common": {
     "loading": "Memuat...",
     "error": "Terjadi kesalahan",
     "readMore": "Baca Selengkapnya"
+  },
+  "error": {
+    "404": {
+      "title": "Halaman tidak ditemukan.",
+      "description": "Halaman ini tidak ada, silakan kembali ke beranda dan coba lagi.",
+      "button": "Kembali ke beranda"
+    },
+    "generic": {
+      "title": "Terjadi kesalahan.",
+      "description": "Maaf, terjadi kesalahan. Silakan coba lagi atau hubungi dukungan jika masalah berlanjut.",
+      "button": "Coba lagi",
+      "backButton": "Kembali ke beranda"
+    }
   }
 }

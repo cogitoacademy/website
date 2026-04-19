@@ -1,0 +1,104 @@
+# Cogito Academy - Comprehensive Information for AI Systems
+
+## Overview
+
+Cogito Academy is a premier educational institution in Indonesia specializing in competition preparation for students. More than a tutoring institution, Cogito Academy is a talent incubator with a mission to shape world-class scholar-champions. Founded on the principle that to be the best, one must learn directly from the best.
+
+## Mission
+
+To systematically transform student potential into measurable achievements through proven training methods on the global stage.
+
+## Programs Offered
+
+### 1. Regular Classes (Kelas Reguler)
+Structured courses with holistic curriculum from introduction to skill refinement.
+- World Scholar's Cup (36 sessions)
+- Model United Nations (24 sessions)
+- Debate (18 sessions)
+
+### 2. Intensive Classes (Kelas Intensif)
+On-demand preparation programs specifically designed for one particular competition.
+- Speech
+- Scientific Writing & Essays
+- Business Plans
+- Olympiads
+
+### 3. Extracurricular Classes (Kelas Ekstrakurikuler)
+Regular training programs designed specifically based on school needs.
+
+## Learning Cycle
+
+### Stage 1: Foundation (Pre-Session)
+Students receive materials such as case studies or journal articles to analyze first.
+
+### Stage 2: Acceleration (Interactive Session)
+Class sessions focus on practical application through simulations, role-playing, and pressure-testing.
+
+### Stage 3: Reinforcement (Post-Session)
+Students complete application tasks like writing position papers or resolution drafts.
+
+### Stage 4: Evaluation (Feedback)
+Detailed feedback is provided for each task, with regular parent consultation sessions.
+
+## Key Differentiators
+
+### Champion Tutors and Practitioners
+Tutors are competition champions and practitioners with real-world experience, from national olympiad winners to UN professionals.
+
+### Holistic and Battle-Tested Curriculum
+Specially designed by champion tutors and curriculum specialists to build winner abilities and mentality.
+
+### Personal Approach and Measurable Progress
+Limited class sizes ensure individual attention, with detailed feedback and progress reports for parents.
+
+## Competition Fields
+
+- Model United Nations (MUN)
+- World Scholar's Cup (WSC)
+- Debate
+- Scientific Writing
+- Business Plan
+- Olympiads
+- Speech
+
+## Student Resources
+
+Exclusive materials available for registered students:
+- Position Papers
+- Resolution Banks
+- Study Guides
+- Practice Questions
+
+## Contact Information
+
+- Website: https://cogitoacademy.id
+- Email: cogitoacademy.id@gmail.com
+- WhatsApp: +62 8810-1199-0195
+- Location: Indonesia
+- Instagram: @cogitoacademy.id
+
+## Site Structure
+
+### Pages
+- `/id` or `/en` - Homepage (available in Indonesian and English)
+- `/id/tutors` or `/en/tutors` - Tutor Team
+- `/id/calendar` or `/en/calendar` - Competition Calendar
+- `/id/contact` or `/en/contact` - Contact Page
+- `/id/student-resources` or `/en/student-resources` - Student Resources (password protected)
+- `/id/events/[category]` or `/en/events/[category]` - Events by Category
+
+### Navigation
+- #ChampionTutors - Tutor Team page
+- Competition Calendar - Calendar of competitions
+- Activities - Dropdown menu with Monthly Townhall and Cogito 101 Series
+- Student Resources - Learning materials
+
+## Language Support
+
+The website supports two languages:
+- Indonesian (id) - Default
+- English (en)
+
+---
+
+This file is designed to help AI systems understand and index Cogito Academy's content accurately. Last updated: February 2026.

@@ -1,116 +1,310 @@
-import { ArrowRight } from "lucide-react";
+'use client';
+
+import {
+  BookOpenIcon,
+  ChartBarIcon,
+  ChatsCircleIcon,
+  HandshakeIcon,
+  LightbulbFilamentIcon,
+  MagnifyingGlassIcon,
+  MedalIcon,
+  MegaphoneSimpleIcon,
+  PencilLineIcon,
+  PresentationChartIcon,
+  TrophyIcon,
+  UsersThreeIcon,
+} from '@phosphor-icons/react/dist/ssr';
+import Image from 'next/image';
+import { useLocale } from 'next-intl';
+import { Badge } from '../ui/badge';
+import { Container } from '../ui/container';
+import FieldCard from './field-card';
+
+type Focus = {
+  icon: React.ComponentType<{
+    className?: string;
+    weight?: 'bold' | 'regular' | 'duotone' | 'fill' | 'thin';
+  }>;
+  labelId: string;
+  labelEn: string;
+};
+
+export type Skill = {
+  titleId: string;
+  titleEn: string;
+  descriptionId: string;
+  descriptionEn: string;
+  longDescriptionId: string;
+  longDescriptionEn: string;
+  color: string;
+  levels: string[];
+  focuses: Focus[];
+};
+
+const skills: Skill[] = [
+  {
+    titleId: 'Model United Nations',
+    titleEn: 'Model United Nations',
+    descriptionId: 'Berdiplomasi dan negosiasikan solusi strategis untuk berbagai isu global.',
+    descriptionEn: 'Negotiate strategic solutions and master the art of global diplomacy.',
+    longDescriptionId:
+      'Model United Nations (MUN) adalah simulasi sidang PBB yang melatih pelajar untuk berperan sebagai diplomat dalam meriset, bernegosiasi, dan merumuskan solusi cerdas atas berbagai isu global.',
+    longDescriptionEn:
+      'Model United Nations (MUN) is a simulation of UN sessions that trains students to act as diplomats in researching, negotiating, and formulating smart solutions to various global issues.',
+    color: 'tertiary-blue-500',
+    levels: ['SD', 'SMP', 'SMA', 'Kuliah'],
+    focuses: [
+      {
+        icon: MagnifyingGlassIcon,
+        labelId: 'Riset dan Penulisan Strategis',
+        labelEn: 'Strategic Research & Writing',
+      },
+      {
+        icon: UsersThreeIcon,
+        labelId: 'Public Speaking dan Persuasi',
+        labelEn: 'Public Speaking & Persuasion',
+      },
+      {
+        icon: HandshakeIcon,
+        labelId: 'Diplomasi dan Negosiasi',
+        labelEn: 'Diplomacy & Negotiation',
+      },
+    ],
+  },
+  {
+    titleId: 'Pidato',
+    titleEn: 'Public Speaking',
+    descriptionId: 'Pikat audiensmu dan sampaikan pesan yang memberikan pengaruh luas.',
+    descriptionEn: 'Captivate your audience and deliver messages with lasting influence.',
+    longDescriptionId:
+      'Pelatihan pidato dirancang untuk membangun kepercayaan diri dan kemampuan komunikasi verbal yang kuat. Peserta berlatih menyampaikan pesan dengan jelas, meyakinkan, dan berkesan di hadapan audiens.',
+    longDescriptionEn:
+      'Public speaking training is designed to build confidence and strong verbal communication skills. Participants practice delivering messages clearly, convincingly, and memorably before an audience.',
+    color: 'tertiary-pink-300',
+    levels: ['SD', 'SMP', 'SMA'],
+    focuses: [
+      {
+        icon: MegaphoneSimpleIcon,
+        labelId: 'Teknik Vokal dan Artikulasi',
+        labelEn: 'Vocal Technique & Articulation',
+      },
+      {
+        icon: PencilLineIcon,
+        labelId: 'Struktur Pidato yang Efektif',
+        labelEn: 'Effective Speech Structure',
+      },
+      {
+        icon: UsersThreeIcon,
+        labelId: 'Penguasaan Panggung',
+        labelEn: 'Stage Presence',
+      },
+    ],
+  },
+  {
+    titleId: 'Olimpiade',
+    titleEn: 'Olympiad',
+    descriptionId: 'Pecahkan persoalan rumit dengan presisi akademik dan kecepatan analisis.',
+    descriptionEn: 'Solve complex problems with academic precision and analytical speed.',
+    longDescriptionId:
+      'Program olimpiade mempersiapkan pelajar berprestasi untuk berkompetisi di bidang matematika, fisika, kimia, biologi, dan informatika di tingkat nasional maupun internasional.',
+    longDescriptionEn:
+      'The olympiad program prepares high-achieving students to compete in mathematics, physics, chemistry, biology, and informatics at national and international levels.',
+    color: 'tertiary-red-600',
+    levels: ['SD', 'SMP', 'SMA'],
+    focuses: [
+      {
+        icon: MagnifyingGlassIcon,
+        labelId: 'Pemahaman Konsep Mendalam',
+        labelEn: 'Deep Concept Understanding',
+      },
+      {
+        icon: PencilLineIcon,
+        labelId: 'Latihan Soal Intensif',
+        labelEn: 'Intensive Problem Practice',
+      },
+      {
+        icon: TrophyIcon,
+        labelId: 'Strategi Kompetisi',
+        labelEn: 'Competition Strategy',
+      },
+    ],
+  },
+  {
+    titleId: "World Scholar's Cup",
+    titleEn: "World Scholar's Cup",
+    descriptionId: 'Hubungkan berbagai bidang ilmu untuk menjawab tantangan multidisipliner.',
+    descriptionEn: 'Connect diverse fields of knowledge to tackle multidisciplinary challenges.',
+    longDescriptionId:
+      "World Scholar's Cup (WSC) adalah kompetisi akademik internasional yang menggabungkan debat, penulisan esai, dan kuis beregu. Peserta mengeksplorasi tema unik lintas disiplin ilmu setiap tahunnya.",
+    longDescriptionEn:
+      "World Scholar's Cup (WSC) is an international academic competition combining debate, essay writing, and team quiz. Participants explore unique cross-disciplinary themes each year.",
+    color: 'tertiary-yellow-600',
+    levels: ['SMP', 'SMA'],
+    focuses: [
+      {
+        icon: BookOpenIcon,
+        labelId: 'Penguasaan Materi Lintas Bidang',
+        labelEn: 'Cross-Disciplinary Mastery',
+      },
+      {
+        icon: ChatsCircleIcon,
+        labelId: 'Debat dan Argumentasi',
+        labelEn: 'Debate & Argumentation',
+      },
+      {
+        icon: PencilLineIcon,
+        labelId: 'Penulisan Esai Akademik',
+        labelEn: 'Academic Essay Writing',
+      },
+    ],
+  },
+  {
+    titleId: 'Esai & Karya Tulis',
+    titleEn: 'Essay & Scientific Writing',
+    descriptionId: 'Ubah data dan ide kompleks menjadi riset berkualitas standar dunia.',
+    descriptionEn: 'Transform complex data into compelling, world-standard research.',
+    longDescriptionId:
+      'Program Karya Tulis Ilmiah (KTI) dan Esai membimbing pelajar dalam menyusun penelitian orisinal dan esai argumentatif sesuai standar akademik internasional, dari perumusan masalah hingga publikasi.',
+    longDescriptionEn:
+      'The Scientific Writing & Essay program guides students in composing original research and argumentative essays according to international academic standards, from problem formulation to publication.',
+    color: 'primary-500',
+    levels: ['SMP', 'SMA', 'Kuliah'],
+    focuses: [
+      {
+        icon: MagnifyingGlassIcon,
+        labelId: 'Metodologi Penelitian',
+        labelEn: 'Research Methodology',
+      },
+      {
+        icon: PencilLineIcon,
+        labelId: 'Penulisan Akademik Terstruktur',
+        labelEn: 'Structured Academic Writing',
+      },
+      {
+        icon: LightbulbFilamentIcon,
+        labelId: 'Analisis dan Sintesis Data',
+        labelEn: 'Data Analysis & Synthesis',
+      },
+    ],
+  },
+  {
+    titleId: 'Debat',
+    titleEn: 'Debate',
+    descriptionId: 'Bangun argumen yang kokoh dan asah kecepatan berpikir kritismu.',
+    descriptionEn: 'Construct unshakeable arguments and outthink your opponents in real-time.',
+    longDescriptionId:
+      'Pelatihan debat mengasah kemampuan berpikir kritis, membangun argumen yang logis, dan merespons lawan secara cepat dan tepat. Program ini mencakup format debat nasional maupun internasional.',
+    longDescriptionEn:
+      'Debate training sharpens critical thinking skills, builds logical arguments, and trains quick and accurate responses. The program covers national and international debate formats.',
+    color: 'secondary-500',
+    levels: ['SMP', 'SMA', 'Kuliah'],
+    focuses: [
+      {
+        icon: LightbulbFilamentIcon,
+        labelId: 'Berpikir Kritis dan Analitis',
+        labelEn: 'Critical & Analytical Thinking',
+      },
+      {
+        icon: ChatsCircleIcon,
+        labelId: 'Konstruksi Argumen',
+        labelEn: 'Argument Construction',
+      },
+      {
+        icon: MegaphoneSimpleIcon,
+        labelId: 'Rebutan dan Sanggahan',
+        labelEn: 'Rebuttal & Counter-Argument',
+      },
+    ],
+  },
+  {
+    titleId: 'Business Plan',
+    titleEn: 'Business Plan',
+    descriptionId: 'Analisis peluang pasar dan hitung risiko bisnis secara strategis.',
+    descriptionEn: 'Analyze market opportunities and calculate strategic business risks.',
+    longDescriptionId:
+      'Program Business Plan melatih pelajar untuk mengidentifikasi peluang bisnis, merancang model usaha yang layak, dan mempresentasikan rencana bisnis secara profesional di hadapan juri dan investor.',
+    longDescriptionEn:
+      'The Business Plan program trains students to identify business opportunities, design viable business models, and professionally present business plans before judges and investors.',
+    color: 'tertiary-green-600',
+    levels: ['SMA', 'Kuliah'],
+    focuses: [
+      {
+        icon: LightbulbFilamentIcon,
+        labelId: 'Inovasi dan Ideasi Bisnis',
+        labelEn: 'Business Innovation & Ideation',
+      },
+      {
+        icon: ChartBarIcon,
+        labelId: 'Analisis Pasar dan Keuangan',
+        labelEn: 'Market & Financial Analysis',
+      },
+      {
+        icon: PresentationChartIcon,
+        labelId: 'Presentasi dan Pitching',
+        labelEn: 'Presentation & Pitching',
+      },
+    ],
+  },
+];
 
 export function SkillsSection() {
-  const skills = [
-    {
-      title: "Model United Nations",
-      description: "Ahli negosiasi dan diplomasi global.",
-      color: "tertiary-blue-400",
-    },
-    {
-      title: "Olimpiade",
-      description: "Juara sains dan matematika dunia.",
-      color: "red-200",
-    },
-    {
-      title: "World Scholar's Cup",
-      description: "Eksplorasi ilmu di panggung dunia.",
-      color: "tertiary-yellow-400",
-    },
-    {
-      title: "Pidato",
-      description: "Bicara publik di berbagai tingkat.",
-      color: "tertiary-pink-400",
-    },
-    {
-      title: "KTI dan Esai",
-      description: "Susun riset ilmiah standar dunia.",
-      color: "primary-400",
-    },
-    {
-      title: "Debat",
-      description: "Latih logika dan argumen kritis.",
-      color: "secondary-400",
-    },
-    {
-      title: "Business Plan",
-      description: "Rancang inovasi bisnis masa depan.",
-      color: "tertiary-green-400",
-    },
-  ];
+  const locale = useLocale();
+  const isId = locale === 'id';
 
   return (
-    <section className="relative overflow-hidden bg-background-cream py-16">
-      {/* Background Decorative Shapes */}
-      <div className="absolute top-0 left-0 h-[400px] w-full rounded-b-[100px] bg-tertiary-pink-100 opacity-30" />
+    <section className="bg-primary-100 px-4 py-20">
+      <div
+        id="skills"
+        className="invisible h-0 scroll-mt-24 md:scroll-mt-[6.5rem]"
+        aria-hidden="true"
+      />
+      <Container className="relative max-w-[calc(80rem-2rem)] overflow-hidden rounded-2xl border bg-tertiary-pink-500 pt-9 pb-20">
+        <Image
+          src="/images/landing/fields-background.webp"
+          alt="Skills Section Image"
+          width={1400}
+          height={422}
+          className="absolute inset-0 bottom-0 z-3 mt-auto w-full"
+        />
 
-      <div className="container relative z-10 mx-auto max-w-7xl px-4">
-        <div className="flex flex-col items-center gap-12">
-          {/* Header */}
-          <div className="text-center">
-            <h2 className="font-extrabold text-[32px] text-neutral-1000">
-              Spektrum <span className="text-primary-500">Keahlian</span> Kami
-            </h2>
-          </div>
-
-          {/* Skills Grid Container */}
-          <div className="relative w-full max-w-6xl overflow-hidden rounded-2xl bg-background-cream p-8 shadow-lg lg:p-12">
-            {/* Background Decorative Shape */}
-            <div className="absolute right-0 bottom-0 left-0 h-[200px] rounded-t-[100px] bg-tertiary-pink-100 opacity-50" />
-
-            {/* Background Image Overlay */}
-            <div className="absolute inset-0 opacity-10">
-              <div className="h-full w-full bg-gradient-to-b from-transparent via-tertiary-blue-100 to-transparent" />
-            </div>
-
-            <div className="relative z-10">
-              {/* Title */}
-              <h3 className="mb-12 text-center font-extrabold text-[32px] text-neutral-1000">
-                Spektrum <span className="text-primary-500">Keahlian</span> Kami
-              </h3>
-
-              {/* Skills Grid - 2 rows, 4 columns */}
-              <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-                {skills.map((skill, index) => (
-                  <div
-                    key={index}
-                    className={`relative flex h-[100px] flex-col justify-between overflow-hidden rounded-lg border-t-[13px] bg-white shadow-sm border-${skill.color}`}
-                  >
-                    {/* Top Border Color */}
-                    <div
-                      className="absolute top-0 right-0 left-0 h-[13px]"
-                      style={{ backgroundColor: `var(--${skill.color})` }}
-                    />
-
-                    {/* Content */}
-                    <div className="flex flex-1 flex-col justify-between p-5 pt-6">
-                      <div>
-                        <h4 className="mb-1 font-bold text-[22px] text-neutral-1000 leading-tight">
-                          {skill.title}
-                        </h4>
-                        <p className="text-neutral-1000 text-sm leading-tight">
-                          {skill.description}
-                        </p>
-                      </div>
-                    </div>
-
-                    {/* Arrow Button */}
-                    <button
-                      type="button"
-                      className="absolute right-4 bottom-4 flex h-9 w-9 items-center justify-center rounded-lg bg-neutral-200 transition-colors hover:bg-neutral-300"
-                    >
-                      <ArrowRight className="size-5 text-white" />
-                    </button>
-                  </div>
-                ))}
-
-                {/* Last empty card placeholder if needed for layout */}
-                <div className="hidden lg:block" />
-              </div>
-            </div>
-          </div>
+        <div className="absolute top-20 left-0 aspect-[500/520] w-full lg:aspect-16/5">
+          <svg viewBox="0 0 1000 120" preserveAspectRatio="none" className="h-full w-full">
+            <polygon points="0,0 1000,0 1000,80 500,120 0,80" className="fill-tertiary-pink-300" />
+          </svg>
         </div>
-      </div>
+
+        <div className="absolute top-0 left-0 aspect-[500/520] w-full lg:aspect-16/5">
+          <svg viewBox="0 0 1000 120" preserveAspectRatio="none" className="h-full w-full">
+            <polygon points="0,0 1000,0 1000,80 500,120 0,80" className="fill-neutral-100" />
+          </svg>
+        </div>
+
+        <div className="relative z-3 flex flex-col items-center justify-center">
+          <Badge variant={'headline-cream'}>
+            <MedalIcon className="size-5" />
+            <span>{isId ? 'Bidang Perlombaan' : 'Field of Competition'}</span>
+          </Badge>
+
+          <h2 className="relative z-1 text-center font-bold text-3xl">
+            {isId ? (
+              <>
+                Temukan <span className="text-primary-500">Arenamu Selanjutnya</span>
+              </>
+            ) : (
+              <>
+                Find Your <span className="text-primary-500">Next Arena</span>
+              </>
+            )}
+          </h2>
+        </div>
+
+        {/* MOBILE = full width stack | SM+ = flex wrap cards */}
+        <div className="relative z-3 md:mt-8 flex w-full flex-col gap-3 sm:flex-row sm:flex-wrap sm:justify-center sm:gap-6">
+          {skills.map((skill) => (
+            <FieldCard key={skill.titleEn} skill={skill} isId={isId} />
+          ))}
+        </div>
+      </Container>
     </section>
   );
 }

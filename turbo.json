@@ -1,11 +1,12 @@
 {
-  "$schema": "https://turbo.build/schema.json",
+  "$schema": "https://v2-8-0.turborepo.dev/schema.json",
   "ui": "tui",
+  "globalEnv": ["NODE_ENV", "BASE_URL", "STUDENT_RESOURCES_PASSWORD"],
   "tasks": {
     "build": {
       "dependsOn": ["^build"],
       "inputs": ["$TURBO_DEFAULT$", ".env*"],
-      "outputs": ["dist/**"]
+      "outputs": ["dist/**", ".next/**"]
     },
     "lint": {
       "dependsOn": ["^lint"]
@@ -16,6 +17,10 @@
     "dev": {
       "cache": false,
       "persistent": true
+    },
+    "deploy": {
+      "dependsOn": ["^deploy"],
+      "cache": false
     }
   }
 }
