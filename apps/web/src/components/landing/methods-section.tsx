@@ -17,7 +17,7 @@ export async function MethodsSection() {
       <div className="flex flex-col items-center justify-center space-y-2">
         <Badge variant={'headline-primary'}>
           <ListMagnifyingGlassIcon />{' '}
-          <span>{isId ? 'Kenali Mengapa Kami' : 'Discover Why Us'}</span>
+          <span>{isId ? 'Kenapa Cogito Academy' : 'Why Cogito Academy'}</span>
         </Badge>
         <h2 className="mb-4 text-center font-bold text-xl leading-tight">
           {isId ? (
@@ -25,7 +25,7 @@ export async function MethodsSection() {
               Di Balik Setiap Medali,
               <br />
               <span className="text-2xl md:text-3xl">
-                Inilah <span className="font-bold text-primary-500">Metode Kami</span>
+                Ada <span className="font-bold text-primary-500">Strategi Teruji</span>
               </span>
             </>
           ) : (
@@ -33,7 +33,7 @@ export async function MethodsSection() {
               Behind Every Medal,
               <br />
               <span className="text-2xl md:text-3xl">
-                Here is Our <span className="font-bold text-primary-500">Method</span>
+                There's a <span className="font-bold text-primary-500">Winning Method</span>
               </span>
             </>
           )}
@@ -77,24 +77,24 @@ function MethodCard({
 function TutorJuaraDuniaCard({ isId }: { isId: boolean }) {
   return (
     <MethodCard
-      title={isId ? 'Tutor Juana Dunia' : 'World Champion Tutors'}
+      title={isId ? 'Belajar dari Ahlinya' : 'Learn from the Best'}
       description={
         isId
-          ? 'Strategi rahasia dari mereka yang sudah berdiri di podium dunia.'
-          : 'Secret strategies from those who have stood on the world podium.'
+          ? 'Dapatkan strategi rahasia langsung dari para juara yang telah menaklukkan podium dunia.'
+          : 'Gain winning strategies directly from champions who have conquered the global stage.'
       }
       className="bg-tertiary-red-200"
     >
-      <div className="absolute -bottom-30 left-1/2 aspect-square w-[150%] -translate-x-1/2 translate-y-1/2 rounded-full bg-white/40 md:-bottom-12" />
+      <div className="absolute -bottom-30 left-1/2 aspect-square w-[150%] -translate-x-1/2 translate-y-1/2 rounded-full bg-white/40 md:-bottom-16" />
       <div className="relative z-10 flex w-full items-end justify-center gap-x-8 px-2 pb-6">
         <div className="text-center">
-          <p className="font-bold text-2xl text-primary-600">200+</p>
+          <p className="font-bold text-2xl text-primary-600">80+</p>
           <p className="font-medium text-[10px] text-neutral-800 leading-tight">
             {isId ? (
               <>
-                Prestasi
+                Kejuaraan
                 <br />
-                National
+                Nasional
               </>
             ) : (
               <>
@@ -106,19 +106,19 @@ function TutorJuaraDuniaCard({ isId }: { isId: boolean }) {
           </p>
         </div>
         <div className="text-center">
-          <p className="font-bold text-2xl text-primary-600">200+</p>
+          <p className="font-bold text-2xl text-primary-600">30+</p>
           <p className="font-medium text-[10px] text-neutral-800 leading-tight">
             {isId ? (
               <>
-                Prestasi
+                Penghargaan
                 <br />
-                International
+                Internasional
               </>
             ) : (
               <>
                 International
                 <br />
-                Achievements
+                Accolades
               </>
             )}
           </p>
@@ -131,11 +131,11 @@ function TutorJuaraDuniaCard({ isId }: { isId: boolean }) {
 function PersonalTerukurCard({ isId }: { isId: boolean }) {
   return (
     <MethodCard
-      title={isId ? 'Personal dan Terukur' : 'Personal and Measurable'}
+      title={isId ? 'Pantau Progresmu' : 'Track Your Growth'}
       description={
         isId
-          ? 'Pantau progresmu lewat laporan detail dan personal di tiap sesi.'
-          : 'Monitor your progress through detailed and personal reports in each session.'
+          ? 'Lihat perkembanganmu secara nyata melalui laporan personal yang detail di setiap sesi.'
+          : 'Monitor your progress through data-driven personal reports after every session.'
       }
       className="bg-tertiary-blue-200"
     >
@@ -150,7 +150,7 @@ function PersonalTerukurCard({ isId }: { isId: boolean }) {
 
         <div className="absolute bottom-[-10px] left-4 z-10 flex h-24 w-36 -rotate-3 flex-col rounded-lg border border-neutral-100 bg-white p-3 shadow-md">
           <div className="mb-2 flex items-center gap-1">
-            <span className="font-extrabold text-[10px] text-primary-500">cogito</span>
+            <span className="font-extrabold text-[10px] text-primary-500">Cogito Academy</span>
           </div>
           <p className="mb-1 font-bold text-[6px] text-neutral-800 uppercase">
             {isId ? 'Laporan Hasil Belajar' : 'Learning Progress Report'}
@@ -176,11 +176,11 @@ function KurikulumHolistikCard({ isId }: { isId: boolean }) {
 
   return (
     <MethodCard
-      title={isId ? 'Kurikulum Holistik' : 'Holistic Curriculum'}
+      title={isId ? 'Kurikulum Menyeluruh' : 'Master the Full Spectrum'}
       description={
         isId
-          ? 'Kurikulum kami dirancang khusus oleh tutor untuk mendapatkan hasil optimal.'
-          : 'Our curriculum is specially designed by tutors to achieve optimal results.'
+          ? 'Kurikulum komprehensif yang dirancang pakar untuk mengasah setiap aspek kemampuanmu.'
+          : 'A comprehensive curriculum expertly crafted to sharpen every skill you need to win.'
       }
       className="bg-primary-200"
     >
@@ -208,21 +208,21 @@ function KurikulumHolistikCard({ isId }: { isId: boolean }) {
 function PembelajaranFleksibelCard({ isId }: { isId: boolean }) {
   return (
     <MethodCard
-      title={isId ? 'Pembelajaran yang Fleksibel' : 'Flexible Learning'}
+      title={isId ? 'Belajar Lebih Fleksibel' : 'Learn on Your Terms'}
       description={
         isId
-          ? 'Cogito dapat menyesuaikan jadwal belajarmu, baik secara tatap muka atau online.'
-          : 'Cogito can adjust your learning schedule, whether face-to-face or online.'
+          ? 'Atur jadwal belajarmu sendiri dengan pilihan kelas daring maupun luring yang nyaman.'
+          : 'Flexible schedules that fit your lifestyle, available both online and offline.'
       }
       className="bg-secondary-200"
     >
-      <div className="flex w-full translate-y-4 items-end justify-center gap-3 px-4">
+      <div className="flex w-full translate-y-2 items-end justify-center gap-3 px-4">
         <div className="flex h-24 w-1/2 flex-col items-center justify-center gap-2 rounded-t-lg border-secondary-300 border-t-4 bg-white p-3 text-center shadow-sm">
           <div className="flex h-6 w-6 items-center justify-center rounded-full bg-secondary-100">
             <div className="h-2 w-2 rounded-full bg-secondary-500" />
           </div>
           <p className="font-bold text-[10px] text-neutral-800 leading-tight">
-            {isId ? 'Kelas Tatap Muka' : 'Offline Classes'}
+            {isId ? 'Kelas Luring' : 'Offline Class'}
           </p>
         </div>
         <div className="relative z-10 flex h-28 w-1/2 flex-col items-center justify-center gap-2 rounded-t-lg border-secondary-500 border-t-4 bg-white p-3 text-center shadow-md">
@@ -230,7 +230,7 @@ function PembelajaranFleksibelCard({ isId }: { isId: boolean }) {
             <div className="h-2 w-2 animate-pulse rounded-full bg-secondary-500" />
           </div>
           <p className="font-bold text-[10px] text-neutral-800 leading-tight">
-            {isId ? 'Kelas Online' : 'Online Classes'}
+            {isId ? 'Kelas Daring' : 'Online Class'}
           </p>
         </div>
       </div>
