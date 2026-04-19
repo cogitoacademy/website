@@ -74,7 +74,7 @@ export function ActionCard({
                 href={action.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={cn(buttonVariants({ size: 'md' }), 'gap-2 text-sm sm:text-base')}
+                className={cn(buttonVariants({ size: 'md' }), 'gap-2')}
               >
                 <ChatCircleDots className="size-4 sm:size-5" />
                 {action.label}
@@ -82,7 +82,7 @@ export function ActionCard({
             ) : (
               <Link
                 href={action.href as import('next').Route}
-                className={cn(buttonVariants({ size: 'md' }), 'gap-2 text-sm sm:text-base')}
+                className={cn(buttonVariants({ size: 'md' }), 'gap-2')}
               >
                 <ChatCircleDots className="size-4 sm:size-5" />
                 {action.label}

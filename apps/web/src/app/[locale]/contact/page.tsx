@@ -140,7 +140,7 @@ export default async function ContactPage({ params }: Props) {
                 : 'Guide young talents to become broadly-minded champions.'
             }
             action={{
-              label: 'Apply to Teach',
+              label: isId ? 'Daftar Jadi Tutor' : 'Apply to Teach',
               href: 'mailto:cogitoacademy.id@gmail.com',
             }}
             image={{
@@ -158,7 +158,7 @@ export default async function ContactPage({ params }: Props) {
                 : 'Co-create events, sponsor programs, or build tailored school partnerships.'
             }
             action={{
-              label: '+62 8810-1199-0195',
+              label: isId ? 'Ajukan Kerja Sama' : 'Start Collaborating',
               href: 'https://wa.me/62881011990195',
             }}
             image={{
