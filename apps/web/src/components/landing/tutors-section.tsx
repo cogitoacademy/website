@@ -23,26 +23,24 @@ export async function TutorsSection() {
         <div className="flex flex-col items-center gap-8">
           <div className="space-y-2 text-center *:max-w-[335px] *:text-pretty">
             <Badge variant={'headline-cream'}>
-              <BooksIcon className="size-5" />{' '}
-              <span>{isId ? 'Tutor Cogito' : 'Cogito Tutors'}</span>
+              <BooksIcon className="size-5" /> <span>{isId ? 'Tim Tutor' : 'Team of Tutors'}</span>
             </Badge>
             <h2 className="mx-auto text-pretty font-bold text-2xl text-neutral-1000 lg:max-w-none lg:text-3xl">
               {isId ? (
                 <>
-                  Dapatkan Strategi Langsung dari{' '}
+                  Kuasai Strategi Pemenang bersama{' '}
                   <span className="text-primary-500">#TutorJuara</span>
                 </>
               ) : (
                 <>
-                  Get Direct Strategies from{' '}
-                  <span className="text-primary-500">#ChampionsTutor</span>
+                  Master the Game with <span className="text-primary-500">#ChampionTutors</span>
                 </>
               )}
             </h2>
             <p className="mx-auto max-w-3xl font-medium text-neutral-1000 text-xs md:max-w-none md:text-sm xl:text-base">
               {isId
-                ? 'Para tutor siap mendampingimu untuk meraih juara di setiap kompetisi.'
-                : 'Tutors are ready to accompany you to achieve champion status in every competition.'}
+                ? 'Dapatkan bimbingan personal dari juara internasional untuk mengasah keunggulan kompetitifmu.'
+                : 'Get personalized mentorship from world-class achievers to sharpen your competitive edge.'}
             </p>
           </div>
 

@@ -79,19 +79,18 @@ export async function TestimonialsSection() {
             <h2 className="mx-auto text-pretty font-bold text-2xl text-neutral-1000 lg:max-w-none lg:text-3xl">
               {isId ? (
                 <>
-                  Dapatkan Strategi Langsung <br /> dari{' '}
-                  <span className="text-primary-500">Tangan Pertama</span>
+                  Lebih dari Sekadar <span className="text-primary-500">Medali</span>
                 </>
               ) : (
                 <>
-                  Get Direct Strategies from <span className="text-primary-500">First Hand</span>
+                  Progress Beyond the <span className="text-primary-500">Podium</span>
                 </>
               )}
             </h2>
             <p className="mx-auto max-w-3xl font-medium text-neutral-1000 text-xs md:max-w-none md:text-sm xl:text-base">
               {isId
-                ? 'Para ahli dan praktisi global yang siap mendampingimu meraih standar juara dunia di setiap kompetisi.'
-                : 'Global experts and practitioners ready to accompany you in achieving world champion standards in every competition.'}
+                ? 'Simak cerita mereka yang berhasil menemukan kepercayaan diri dan menguasai keahlian baru.'
+                : 'Hear from students who found their voice and mastered new skills with us.'}
             </p>
           </div>
 
