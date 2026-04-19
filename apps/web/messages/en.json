@@ -107,7 +107,7 @@
     "subtitle": "Learn from the best to become a world-class scholar-champion with materials designed by experts.",
     "ctaPrimary": "Schedule  Consultation",
     "ctaSecondary": "What You Will Learn",
-    "trustedBy": "Cogito has been trusted by",
+    "trustedBy": "Cogito Acedemy has been trusted by",
     "classCards": {
       "regular": {
         "title": "Regular Class",
@@ -128,19 +128,21 @@
     "modal": {
       "intensive": {
         "title": "Intensive Class",
-        "description": "On-demand preparation specifically designed for one competition.",
+        "description": "Precision prep for your big day. Maximize your performance with targeted training tailored to your upcoming competition.",
         "availableFor": "Currently available for all types of competitions.",
         "badge": "Best for Competition",
         "cta": "Free Consultation with Cogito Team now"
       },
       "extracurricular": {
         "title": "Extracurricular Class",
-        "description": "Regular training designed based on the needs of a school. Let's build a champion ecosystem at your school with a flexible regular program.",
+        "description": "Elevate your school’s talent. Consistent, high-quality training programs customized to align with your school's unique vision and achievement goals.",
         "badge": "For Schools",
         "cta": "Free Consultation with Cogito Team now"
       },
       "regular": {
-        "whatYouWillLearn": "What You Will Learn and Master!"
+        "whatYouWillLearn": "What You Will Learn and Master!",
+        "title": "Regular Class",
+        "description": "Master your craft from the ground up. A comprehensive, step-by-step journey led by expert tutors to take you from beginner to pro."
       },
       "features": [
         "World Scholar's Cup",

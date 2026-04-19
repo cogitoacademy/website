@@ -107,7 +107,7 @@
     "subtitle": "Belajar dari yang terbaik untuk jadi yang cendekiawan-juara kelas dunia dengan materi yang disusun para pakar.",
     "ctaPrimary": "Konsultasi Sekarang",
     "ctaSecondary": "Cek Bidang Lomba",
-    "trustedBy": "Cogito telah dipercaya oleh",
+    "trustedBy": "Cogito Academy telah dipercaya oleh",
     "classCards": {
       "regular": {
         "title": "Kelas Reguler",
@@ -140,7 +140,9 @@
         "cta": "Konsultasi Gratis sekarang dengan Tim Cogito"
       },
       "regular": {
-        "whatYouWillLearn": "Apa yang Akan Kamu Pelajari dan Kuasai!"
+        "whatYouWillLearn": "Apa yang Akan Kamu Pelajari dan Kuasai!",
+        "title": "Kelas Reguler",
+        "description": "Kuasai perlombaan dari dasar. Nikmati perjalanan belajar yang komprehensif bersama tutor ahli yang akan membimbingmu langkah demi langkah, dari level pemula hingga mahir."
       },
       "features": [
         "World Scholar's Cup",

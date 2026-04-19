@@ -164,6 +164,41 @@ function getModalContent(tutorType?: string, t?: (key: string) => string): Modal
       availableFor: t?.('hero.modal.intensive.availableFor'),
     };
   }
+  if (tutorType === 'Tutor Kelas Reguler') {
+    return {
+      title: t?.('hero.modal.regular.title') ?? 'Kelas Intensif',
+      description:
+        t?.('hero.modal.regular.description') ??
+        'Precision prep for your big day. Maximize your performance with targeted training tailored to your upcoming competition.',
+      features: t
+        ? [
+            t('hero.modal.features.0'),
+            t('hero.modal.features.1'),
+            t('hero.modal.features.2'),
+            t('hero.modal.features.3'),
+            t('hero.modal.features.4'),
+            t('hero.modal.features.5'),
+            t('hero.modal.features.6'),
+            t('hero.modal.features.7'),
+            t('hero.modal.features.8'),
+          ]
+        : [
+            "World Scholar's Cup",
+            'Model United Nations',
+            'Debat (English/Bahasa)',
+            'Pidato (English/Bahasa)',
+            'Karya Tulis Ilmiah & Esai',
+            'Business Plan',
+            'Olimpiade SMP',
+            'Olimpiade SMA',
+            '...dan masih banyak lagi',
+          ],
+      ctaText: t?.('hero.modal.intensive.cta') ?? 'Konsultasi Gratis sekarang dengan Tim Cogito',
+      badge: t?.('hero.modal.intensive.badge') ?? 'Best for Competition',
+      badgeColor: 'bg-yellow-400',
+      availableFor: t?.('hero.modal.intensive.availableFor'),
+    };
+  }
   return {
     title: t?.('hero.modal.extracurricular.title') ?? 'Kelas Ekstrakurikuler',
     description:
@@ -217,7 +252,7 @@ function ModalImageHeader({ content }: { content: ModalContent }) {
             {content.title}
           </ResponsiveModalTitle>
           <p className="mt-1 line-clamp-2 max-w-lg text-sm text-white/90 sm:line-clamp-none">
-            {content.description}
+            {content.description ?? 'Deskripsi tidak tersedia'}
           </p>
         </div>
         <Badge variant="headline-primary" className="lg:text-xs">
@@ -348,8 +383,8 @@ function IntensifEkstrakurikulerContent({ content }: { content: ModalContent }) 
 export function ClassCard({
   className,
   innerClassName,
-  title,
-  description,
+  title = 'Judul tidak tersedia',
+  description = 'Deskripsi tidak tersedia',
   tags,
   isActiveTrigger,
   tutorType,
