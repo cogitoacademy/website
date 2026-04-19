@@ -188,7 +188,7 @@ const Carousel: React.FC<CarouselProps> = ({
         className={`mx-auto flex aspect-video w-full max-w-[90vw] flex-col overflow-hidden rounded-[20px] border shadow-sm transition sm:max-w-none ${bgColor}`}
       >
         <div className="flex flex-1 flex-col justify-between text-pretty p-4 text-left">
-          <p className="max-h-full overflow-y-auto font-light text-xs lg:text-sm">{item.desc}</p>
+          <p className="max-h-full overflow-y-auto font-light text-xs sm:text-sm lg:text-sm">{item.desc}</p>
           <div className="flex items-center space-x-2">
             <div
               className={`flex size-10 shrink-0 items-center justify-center overflow-hidden rounded-full lg:size-13 ${
