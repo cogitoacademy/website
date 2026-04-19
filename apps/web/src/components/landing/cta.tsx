@@ -15,31 +15,41 @@ export default async function CtaSection() {
       <div className="relative z-2 mx-auto h-[520px] max-w-[calc(80rem-2rem)] overflow-visible rounded-3xl bg-neutral-100 p-10 min-[540px]:h-[383px]">
         <div className="flex h-full flex-col items-start sm:justify-between">
           <div>
-            <h2 className="font-bold text-3xl text-gray-900 leading-tight sm:text-4xl xl:text-5xl">
+            {isId ? (
+              <h2 className="font-bold text-3xl text-gray-900 leading-tight sm:text-4xl xl:text-5xl">
+                Susun Strategi Juaramu
+              </h2>
+            ) : (
+              <h2 className="font-bold text-3xl text-gray-900 leading-tight sm:text-4xl xl:text-5xl max-w-[80%]">
+                Map Out Your Winning Strategy
+              </h2>
+            )}
+            <div className="mt-2 max-w-[380px] text-base text-gray-700 md:max-w-md">
               {isId ? (
                 <>
-                  Temukan Potensi <br />
-                  Terbesar Dalam Dirimu
+                  <p>Masih bingung mulai dari mana?</p>
+                  <p>
+                    Jadwalkan konsultasi gratis dan biarkan tim ahli kami membantumu menyusun jalur
+                    belajar yang tepat.
+                  </p>
                 </>
               ) : (
                 <>
-                  Discover Your Greatest <br />
-                  Potential Within Yourself
+                  <p>Still unsure where to start?</p>
+                  <p>
+                    Book a free consultation and let our experts help you build a personalized
+                    learning path.
+                  </p>
                 </>
               )}
-            </h2>
-            <p className="mt-2 max-w-[380px] text-base text-gray-700 md:max-w-md">
-              {isId
-                ? 'Sampaikan pertanyaanmu langsung kepada konsultan ahli kami melalui sesi diskusi gratis.'
-                : 'Ask your questions directly to our expert consultants through free discussion sessions.'}
-            </p>
+            </div>
           </div>
           <div className="hidden h-full sm:flex-1" />
           <Link
             href="https://wa.me/62881011990195"
             target="_blank"
             rel="noopener noreferrer"
-            className="relative z-1 mt-3 sm:mt-auto sm:mb-0"
+            className="relative z-50 mt-3 sm:mt-auto sm:mb-0 cursor-pointer"
           >
             <Button size="lg">
               <span>{isId ? 'Jadwalkan Konsultasi gratis' : 'Schedule Free Consultation'}</span>

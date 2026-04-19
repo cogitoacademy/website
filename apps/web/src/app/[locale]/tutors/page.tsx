@@ -52,13 +52,13 @@ export async function generateMetadata({
 
 const HEADLINE = {
   id: {
-    before: 'Dapatkan Strategi Langsung dari ',
+    before: 'Belajar Langsung dari Para ',
     highlight: '#TutorJuara',
     after: '',
   },
   en: {
-    before: 'Get Direct Strategies from ',
-    highlight: '#TutorJuara',
+    before: 'Learn Directly from the ',
+    highlight: '#ChampionTutors',
     after: '',
   },
 };

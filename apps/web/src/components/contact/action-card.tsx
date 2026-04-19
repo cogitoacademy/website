@@ -96,7 +96,7 @@ export function ActionCard({
           {/* Background Circle Decoration */}
           <div
             className={cn(
-              'absolute -right-10 -bottom-10 z-0 size-48 rounded-full opacity-80 sm:size-64 lg:-right-20 lg:-bottom-20 lg:size-80',
+              'absolute -right-10 sm:-right-20 -bottom-10 z-0 size-48 rounded-full opacity-80 sm:size-64 lg:-right-20 lg:-bottom-20 lg:size-80',
               circleColor,
             )}
           />

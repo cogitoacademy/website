@@ -33,12 +33,12 @@
     "title": "Student Resources",
     "subtitle": "Access exclusive materials including Position Papers and Resolution Banks.",
     "passwordGate": {
-      "title": "Deepen Knowledge Through Practice",
-      "description": "A collection of selected problems to sharpen your understanding and competition readiness.",
+      "title": "Sharpen Your Competitive Edge",
+      "description": "Gain an insider’s advantage with our exclusive vault of curated practice materials and high-level problem sets.",
       "placeholder": "Enter password",
       "error": "Incorrect password. Please try again.",
       "verifying": "Verifying...",
-      "button": "Access Resources"
+      "button": "Unlock Resources"
     },
     "searchPlaceholder": "Search resources...",
     "filter": "Filter",

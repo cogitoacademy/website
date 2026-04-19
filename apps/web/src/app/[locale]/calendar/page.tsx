@@ -88,21 +88,20 @@ export default async function CompetitionCalendarPage({ params }: Props) {
           <h1 className="font-semibold text-2xl text-neutral-1000 sm:text-3xl md:text-4xl lg:text-5xl">
             {locale === 'en' ? (
               <>
-                Discover Your Next{' '}
+                Your Gateway to the
                 <span className="font-extrabold text-primary-500 italic">World Stage</span>
               </>
             ) : (
               <>
-                Temukan{' '}
-                <span className="font-extrabold text-primary-500 italic">Panggung Duniamu</span>{' '}
-                Selanjutnya
+                Gerbangmu Menuju{' '}
+                <span className="font-extrabold text-primary-500 italic">Panggung Dunia</span>
               </>
             )}
           </h1>
           <p className="max-w-2xl">
             {locale === 'en'
-              ? 'From national competitions to international stages, we provide access to thousands of achievement opportunities that have been systematically curated for you.'
-              : 'Dari kompetisi nasional hingga panggung internasional, kami menyediakan akses ke ribuan peluang prestasi yang telah dikurasi secara sistematis untukmu.'}
+              ? 'From national challenges to global arenas, access a curated list of opportunities tailored for your next big win.'
+              : 'Dari kompetisi nasional hingga kancah global, temukan daftar peluang terkurasi yang dirancang khusus untuk target prestasimu berikutnya.'}
           </p>
         </div>
         <Suspense fallback={<CalendarSkeleton locale={locale} />}>

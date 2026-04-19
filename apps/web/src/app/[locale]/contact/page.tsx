@@ -113,8 +113,8 @@ export default async function ContactPage({ params }: Props) {
         <h1 className="font-semibold text-3xl sm:text-4xl lg:text-5xl">
           {isId ? (
             <>
-              Berkolaborasi dengan <br className="block sm:hidden" />
-              <span className="font-extrabold text-primary-500 italic">Cogito Academy</span>
+              Mari Jalin <br className="block sm:hidden" />
+              <span className="font-extrabold text-primary-500 italic">Kolaborasi</span>
             </>
           ) : (
             <>
@@ -125,23 +125,23 @@ export default async function ContactPage({ params }: Props) {
         </h1>
         <p className="mt-2 max-w-lg text-sm sm:text-base lg:mt-5">
           {isId
-            ? 'Bergabunglah dalam perjalanan kami mencetak generasi unggul yang beneran jago di bidangnya dan siap berprestasi.'
-            : 'Join our journey in creating an outstanding generation who are truly skilled in their fields and ready to achieve.'}
+            ? 'Bersama mencetak pemimpin global masa depan.'
+            : 'Join the mission to empower the next generation of global leaders.'}
         </p>
       </div>
       <section className="mx-4 w-auto max-w-[calc(80rem-32px)] space-y-4 rounded-4xl bg-primary-100 p-6 pb-60! sm:p-8 md:p-12 lg:space-y-7.5 lg:p-15 xl:mx-auto xl:w-full">
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
           <ActionCard
-            title={isId ? 'Menjadi #TutorJuara' : 'Become #ChampionTutor'}
+            title={isId ? 'Jadi #TutorJuara' : 'Become a #ChampionTutor'}
             highlight={isId ? '#TutorJuara' : '#ChampionTutor'}
             description={
               isId
-                ? 'Bimbing talenta muda menjadi juara yang berwawasan luas.'
+                ? 'Bimbing talenta muda dan bagikan kisah suksesmu di panggung dunia.'
                 : 'Guide young talents to become broadly-minded champions.'
             }
             action={{
-              label: '+62 8810-1199-0195',
-              href: 'https://wa.me/62881011990195',
+              label: 'Apply to Teach',
+              href: 'mailto:cogitoacademy.id@gmail.com',
             }}
             image={{
               src: '/contact-1.webp',
@@ -151,11 +151,11 @@ export default async function ContactPage({ params }: Props) {
             theme="pink"
           />
           <ActionCard
-            title={isId ? 'Konsultasi Sekarang' : 'Consult Now'}
+            title={isId ? 'Kemitraan Strategis' : 'Strategic Partnerships'}
             description={
               isId
-                ? 'Diskusikan rencana prestasimu secara gratis dan privat.'
-                : 'Discuss your achievement plans for free and privately.'
+                ? 'Kolaborasi event, aktivasi sponsor, hingga kemitraan khusus sekolah.'
+                : 'Co-create events, sponsor programs, or build tailored school partnerships.'
             }
             action={{
               label: '+62 8810-1199-0195',
