@@ -136,7 +136,8 @@ export default function Header() {
               </Link>
             </div>
 
-            <div className="relative lg:hidden">
+            <div className="relative lg:hidden flex items-center gap-2">
+              <LanguageToggle className="h-9 px-3" />
               <Button
                 size="icon-lg"
                 onClick={() => setIsMobileMenuOpen(true)}

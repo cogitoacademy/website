@@ -22,7 +22,11 @@ export default function LanguageToggle({ className, variant = 'default' }: Langu
       href={pathname}
       locale={targetLocale}
       scroll={false}
-      className={cn(buttonVariants({ size: 'lg', variant }), 'transition-colors', className)}
+      className={cn(
+        buttonVariants({ size: 'lg', variant }),
+        'transition-colors cursor-default',
+        className,
+      )}
     >
       <GlobeIcon className="size-5" />
       {targetLocale.toUpperCase()}
