@@ -45,8 +45,8 @@ const skills: Skill[] = [
   {
     titleId: 'Model United Nations',
     titleEn: 'Model United Nations',
-    descriptionId: 'Ahli negosiasi dan diplomasi global.',
-    descriptionEn: 'Expert in negotiation and global diplomacy.',
+    descriptionId: 'Berdiplomasi dan negosiasikan solusi strategis untuk berbagai isu global.',
+    descriptionEn: 'Negotiate strategic solutions and master the art of global diplomacy.',
     longDescriptionId:
       'Model United Nations (MUN) adalah simulasi sidang PBB yang melatih pelajar untuk berperan sebagai diplomat dalam meriset, bernegosiasi, dan merumuskan solusi cerdas atas berbagai isu global.',
     longDescriptionEn:
@@ -74,8 +74,8 @@ const skills: Skill[] = [
   {
     titleId: 'Pidato',
     titleEn: 'Public Speaking',
-    descriptionId: 'Bicara publik di berbagai tingkat.',
-    descriptionEn: 'Public speaking at various levels.',
+    descriptionId: 'Pikat audiensmu dan sampaikan pesan yang memberikan pengaruh luas.',
+    descriptionEn: 'Captivate your audience and deliver messages with lasting influence.',
     longDescriptionId:
       'Pelatihan pidato dirancang untuk membangun kepercayaan diri dan kemampuan komunikasi verbal yang kuat. Peserta berlatih menyampaikan pesan dengan jelas, meyakinkan, dan berkesan di hadapan audiens.',
     longDescriptionEn:
@@ -103,8 +103,8 @@ const skills: Skill[] = [
   {
     titleId: 'Olimpiade',
     titleEn: 'Olympiad',
-    descriptionId: 'Juara sains dan matematika dunia.',
-    descriptionEn: 'World science and math champions.',
+    descriptionId: 'Pecahkan persoalan rumit dengan presisi akademik dan kecepatan analisis.',
+    descriptionEn: 'Solve complex problems with academic precision and analytical speed.',
     longDescriptionId:
       'Program olimpiade mempersiapkan pelajar berprestasi untuk berkompetisi di bidang matematika, fisika, kimia, biologi, dan informatika di tingkat nasional maupun internasional.',
     longDescriptionEn:
@@ -132,8 +132,8 @@ const skills: Skill[] = [
   {
     titleId: "World Scholar's Cup",
     titleEn: "World Scholar's Cup",
-    descriptionId: 'Eksplorasi ilmu di panggung dunia.',
-    descriptionEn: 'Explore knowledge on the world stage.',
+    descriptionId: 'Hubungkan berbagai bidang ilmu untuk menjawab tantangan multidisipliner.',
+    descriptionEn: 'Connect diverse fields of knowledge to tackle multidisciplinary challenges.',
     longDescriptionId:
       "World Scholar's Cup (WSC) adalah kompetisi akademik internasional yang menggabungkan debat, penulisan esai, dan kuis beregu. Peserta mengeksplorasi tema unik lintas disiplin ilmu setiap tahunnya.",
     longDescriptionEn:
@@ -159,10 +159,10 @@ const skills: Skill[] = [
     ],
   },
   {
-    titleId: 'KTI dan Esai',
-    titleEn: 'Scientific Writing & Essays',
-    descriptionId: 'Susun riset ilmiah standar dunia.',
-    descriptionEn: 'Compose world-standard scientific research.',
+    titleId: 'Esai & Karya Tulis',
+    titleEn: 'Essay & Scientific Writing',
+    descriptionId: 'Ubah data dan ide kompleks menjadi riset berkualitas standar dunia.',
+    descriptionEn: 'Transform complex data into compelling, world-standard research.',
     longDescriptionId:
       'Program Karya Tulis Ilmiah (KTI) dan Esai membimbing pelajar dalam menyusun penelitian orisinal dan esai argumentatif sesuai standar akademik internasional, dari perumusan masalah hingga publikasi.',
     longDescriptionEn:
@@ -190,8 +190,8 @@ const skills: Skill[] = [
   {
     titleId: 'Debat',
     titleEn: 'Debate',
-    descriptionId: 'Latih logika dan argumen kritis.',
-    descriptionEn: 'Train logic and critical arguments.',
+    descriptionId: 'Bangun argumen yang kokoh dan asah kecepatan berpikir kritismu.',
+    descriptionEn: 'Construct unshakeable arguments and outthink your opponents in real-time.',
     longDescriptionId:
       'Pelatihan debat mengasah kemampuan berpikir kritis, membangun argumen yang logis, dan merespons lawan secara cepat dan tepat. Program ini mencakup format debat nasional maupun internasional.',
     longDescriptionEn:
@@ -219,8 +219,8 @@ const skills: Skill[] = [
   {
     titleId: 'Business Plan',
     titleEn: 'Business Plan',
-    descriptionId: 'Rancang inovasi bisnis masa depan.',
-    descriptionEn: 'Design future business innovations.',
+    descriptionId: 'Analisis peluang pasar dan hitung risiko bisnis secara strategis.',
+    descriptionEn: 'Analyze market opportunities and calculate strategic business risks.',
     longDescriptionId:
       'Program Business Plan melatih pelajar untuk mengidentifikasi peluang bisnis, merancang model usaha yang layak, dan mempresentasikan rencana bisnis secara profesional di hadapan juri dan investor.',
     longDescriptionEn:
@@ -282,17 +282,17 @@ export function SkillsSection() {
         <div className="relative z-3 flex flex-col items-center justify-center">
           <Badge variant={'headline-cream'}>
             <MedalIcon className="size-5" />
-            <span>{isId ? 'Jenis Perlombaan' : 'Types of Competitions'}</span>
+            <span>{isId ? 'Bidang Perlombaan' : 'Field of Competition'}</span>
           </Badge>
 
           <h2 className="relative z-1 text-center font-bold text-3xl">
             {isId ? (
               <>
-                Fokus <span className="text-primary-500">Pembelajaran</span>
+                Temukan <span className="text-primary-500">Arenamu Selanjutnya</span>
               </>
             ) : (
               <>
-                Learning <span className="text-primary-500">Focus</span>
+                Find Your <span className="text-primary-500">Next Arena</span>
               </>
             )}
           </h2>

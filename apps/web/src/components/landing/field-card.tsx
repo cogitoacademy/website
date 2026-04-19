@@ -3,7 +3,7 @@ import {
   ResponsiveModal,
   ResponsiveModalClose,
   ResponsiveModalContent,
-  ResponsiveModalDescription,
+  // ResponsiveModalDescription,
   ResponsiveModalTitle,
   ResponsiveModalTrigger,
 } from '../ui/responsive-modal';
@@ -47,7 +47,9 @@ export default function FieldCard({ skill, isId }: { skill: Skill; isId: boolean
   const { color } = skill;
   const title = isId ? skill.titleId : skill.titleEn;
   const description = isId ? skill.descriptionId : skill.descriptionEn;
-  const longDescription = isId ? skill.longDescriptionId : skill.longDescriptionEn;
+  // const longDescription = isId
+  //   ? skill.longDescriptionId
+  //   : skill.longDescriptionEn;
 
   return (
     <ResponsiveModal>
@@ -60,7 +62,7 @@ export default function FieldCard({ skill, isId }: { skill: Skill; isId: boolean
         >
           <div className="flex items-center justify-between rounded-xl bg-neutral-100 p-5 shadow-inset-top">
             <div className="w-full text-start">
-              <h4 className="font-semibold text-lg leading-none">{title}</h4>
+              <h4 className="font-semibold text-lg leading-tight">{title}</h4>
               <p className="text-xs">{description}</p>
             </div>
 
@@ -116,11 +118,14 @@ export default function FieldCard({ skill, isId }: { skill: Skill; isId: boolean
                 >
                   {title}
                 </ResponsiveModalTitle>
-                <ResponsiveModalDescription
-                  className={cn('text-sm', colorTextMap[color] ?? 'text-white/90')}
+                {/*<ResponsiveModalDescription
+                  className={cn(
+                    "text-sm",
+                    colorTextMap[color] ?? "text-white/90",
+                  )}
                 >
                   {description}
-                </ResponsiveModalDescription>
+                </ResponsiveModalDescription>*/}
               </div>
 
               {/* Level badges — bottom right */}
@@ -136,7 +141,7 @@ export default function FieldCard({ skill, isId }: { skill: Skill; isId: boolean
 
           {/* ── Body ── */}
           <div className="bg-background p-5">
-            <p className="text-neutral-700 text-sm leading-relaxed">{longDescription}</p>
+            <p className="text-neutral-700 text-sm leading-relaxed">{description}</p>
 
             <div className="mt-5">
               <p className="font-semibold text-neutral-900 text-sm">
