@@ -1,65 +1,56 @@
-// import { ChevronLeft, ChevronRight } from "lucide-react";
-import { UserSoundIcon } from '@phosphor-icons/react/dist/ssr';
-import { getLocale } from 'next-intl/server';
-import Carousel from '../carousel';
-import { Badge } from '../ui/badge';
+import { UserSoundIcon } from "@phosphor-icons/react/dist/ssr";
+import Image from "next/image";
+import { getLocale } from "next-intl/server";
+import { cn } from "@/lib/utils";
+import Carousel from "../carousel";
+import { Badge } from "../ui/badge";
 
 export async function TestimonialsSection() {
   const locale = await getLocale();
-  const isId = locale === 'id';
+  const isId = locale === "id";
 
   const testimonials = [
     {
       id: 1,
-      name: 'Athalla Zhafran',
-      initials: 'AZ',
-      color: 'bg-blue-500',
+      name: "Nasywa Gian",
+      initials: "NG",
+      color: "bg-blue-500",
       title: isId
-        ? 'Best Delegate di Harvard National MUN 2024'
-        : 'Best Delegate at Harvard National MUN 2024',
+        ? "Verbal Commendation of UNESCO, CASMUN 2026"
+        : "Verbal Commendation of UNESCO, CASMUN 2026",
       desc: isId
-        ? 'Cogito Academy mengubah cara saya memahami diplomasi dan negosiasi. Materi yang diberikan sangat komprehensif dan mentor yang berpengalaman membantu saya mengembangkan kemampuan public speaking secara signifikan. Sekarang saya percaya diri untuk mewakili Indonesia di forum internasional.'
-        : 'Cogito Academy transformed the way I understand diplomacy and negotiation. The materials provided were comprehensive, and the experienced mentors helped me develop my public speaking skills significantly. Now I am confident to represent Indonesia at international forums.',
-      avatar: '/placeholder.jpg',
-      img: '/placeholder.jpg',
+        ? "When I first got into Cogito, I fell HARD in love. When they explain something to me it just clicks, and somehow makes me think like I'm smart and I can do it.Cogito motivates me so much and is truly a big part of my MUN journey."
+        : "When I first got into Cogito, I fell HARD in love. When they explain something to me it just clicks, and somehow makes me think like I'm smart and I can do it. Cogito motivates me so much and is truly a big part of my MUN journey.",
+      avatar: "/images/testimonials/NG.webp",
+      img: "/images/testimonials/NG.webp",
     },
     {
       id: 2,
-      name: 'Sarah Putri',
-      initials: 'SP',
-      color: 'bg-pink-500',
+      name: "Athaya Praha",
+      initials: "AP",
+      color: "bg-pink-500",
       title: isId
-        ? 'Juara 1 Debat Bahasa Inggris Nasional'
-        : 'National English Debate Championship Winner',
+        ? "Honorable Mention of NBA, MAINMUN 2026"
+        : "Honorable Mention of NBA, MAINMUN 2026",
       desc: isId
-        ? 'Semula saya kesulitan mengekspresikan ide secara sistematis. Setelah mengikuti program di Cogito Academy, saya tidak hanya belajar teknik debat yang efektif, tetapi juga cara berpikir kritis yang sangat berguna dalam kehidupan sehari-hari. Saya sangat merekomendasikan academy ini!'
-        : 'I used to struggle with expressing ideas systematically. After joining Cogito Academy, I not only learned effective debate techniques but also critical thinking skills that are incredibly useful in everyday life. I highly recommend this academy!',
-      avatar: '/placeholder.jpg',
-      img: '/placeholder.jpg',
+        ? "The research and speaking lessons I had learned from just a couple sessions drastically improved my skills and confidence that ultimately helped me win my first award in my second ever MUN."
+        : "The research and speaking lessons I had learned from just a couple sessions drastically improved my skills and confidence that ultimately helped me win my first award in my second ever MUN.",
+      avatar: "/images/testimonials/AP.webp",
+      img: "/images/testimonials/AP.webp",
     },
     {
       id: 3,
-      name: 'Raffi Ahmad',
-      initials: 'RA',
-      color: 'bg-green-500',
-      title: isId ? 'Delegasi RI di Geneva Model UN' : 'Indonesian Delegate at Geneva Model UN',
+      name: "Alicia Ibrahim",
+      initials: "AI",
+      color: "bg-green-500",
+      title: isId
+        ? "Chair of Congress of Olympus, CHEMUN 2026"
+        : "Chair of Congress of Olympus, CHEMUN 2026",
       desc: isId
-        ? 'Pengalaman di Cogito Academy memberikan saya fondasi yang kuat untuk bersaing di level internasional. Tim mentor yang beranggotakan praktisi PBB nyata memberikan insight yang tidak bisa saya temukan di tempat lain. Ini adalah investasi terbaik untuk masa depan saya di dunia diplomat.'
-        : "My experience at Cogito Academy gave me a strong foundation to compete at the international level. The mentoring team consisting of real UN practitioners provided insights I couldn't find elsewhere. This is the best investment for my future in the diplomatic world.",
-      avatar: '/placeholder.jpg',
-      img: '/placeholder.jpg',
-    },
-    {
-      id: 4,
-      name: 'Nadira Amira',
-      initials: 'NA',
-      color: 'bg-purple-500',
-      title: isId ? 'Best Position Paper THIMUN 2024' : 'Best Position Paper at THIMUN 2024',
-      desc: isId
-        ? 'Cogito Academy bukan hanya tentang menang kompetisi, tetapi tentang membentuk karakter pemimpin masa depan. Saya belajar bagaimana mengartikulasikan posisi dengan argumen yang kuat sambil tetap menghormati pendapat berbeda. Proses pembelajaran yang personal membuat saya berkembang dengan cepat.'
-        : 'Cogito Academy is not just about winning competitions, but about shaping future leaders. I learned how to articulate positions with strong arguments while respecting different opinions. The personalized learning process helped me grow quickly.',
-      avatar: '/placeholder.jpg',
-      img: '/placeholder.jpg',
+        ? "Success in a conference requires both strategy and in-depth knowledge. Cogito’s training provided the technical clarity I needed to ensure a smooth flow throughout the council."
+        : "Success in a conference requires both strategy and in-depth knowledge. Cogito’s training provided the technical clarity I needed to ensure a smooth flow throughout the council.",
+      avatar: "/images/testimonials/AI.webp",
+      img: "/images/testimonials/AI.webp",
     },
   ];
 
@@ -71,40 +62,110 @@ export async function TestimonialsSection() {
         aria-hidden="true"
       />
       <div className="container mx-auto max-w-7xl px-4">
-        <div className="flex flex-col items-center gap-12">
+        <div className="flex flex-col items-center gap-6 md:gap-8 lg:gap-12">
           <div className="space-y-2 text-center">
-            <Badge variant={'headline-primary'}>
-              <UserSoundIcon /> <span>{isId ? 'Testimoni' : 'Testimonials'}</span>
+            <Badge variant={"headline-primary"}>
+              <UserSoundIcon />{" "}
+              <span>{isId ? "Testimoni" : "Testimonials"}</span>
             </Badge>
             <h2 className="mx-auto text-pretty font-bold text-2xl text-neutral-1000 lg:max-w-none lg:text-3xl">
               {isId ? (
                 <>
-                  Lebih dari Sekadar <span className="text-primary-500">Medali</span>
+                  Lebih dari Sekadar{" "}
+                  <span className="text-primary-500">Medali</span>
                 </>
               ) : (
                 <>
-                  Progress Beyond the <span className="text-primary-500">Podium</span>
+                  Progress Beyond the{" "}
+                  <span className="text-primary-500">Podium</span>
                 </>
               )}
             </h2>
-            <p className="mx-auto max-w-3xl font-medium text-neutral-1000 text-xs md:max-w-none md:text-sm xl:text-base">
+            <p className="mx-auto max-w-3xl font-medium text-neutral-1000 text-xs md:max-w-none md:text-sm xl:text-base text-pretty">
               {isId
-                ? 'Simak cerita mereka yang berhasil menemukan kepercayaan diri dan menguasai keahlian baru.'
-                : 'Hear from students who found their voice and mastered new skills with us.'}
+                ? "Simak cerita mereka yang berhasil menemukan kepercayaan diri dan menguasai keahlian baru."
+                : "Hear from students who found their voice and mastered new skills with us."}
             </p>
           </div>
 
-          <Carousel
-            items={testimonials}
-            showNavigation={true}
-            showDots={true}
-            autoPlay={false}
-            gap={36}
-            responsiveGap={true}
-            className=""
-          />
+          <div className="hidden min-[470px]:block">
+            <Carousel
+              items={testimonials}
+              showNavigation={true}
+              showDots={true}
+              autoPlay={false}
+              gap={36}
+              responsiveGap={true}
+              className=""
+            />
+          </div>
+
+          <div className="flex flex-col gap-4 max-[469px]:flex min-[470px]:hidden">
+            {testimonials.map((testimonial) => (
+              <MobileCard key={testimonial.id} item={testimonial} />
+            ))}
+          </div>
         </div>
       </div>
     </section>
+  );
+}
+
+interface TestimonialItem {
+  id: number;
+  name: string;
+  initials: string;
+  color: string;
+  title: string;
+  desc: string;
+  avatar: string;
+  img: string;
+}
+
+function MobileCard({ item }: { item: TestimonialItem }) {
+  const bgColor =
+    item.id % 2 === 0
+      ? "bg-tertiary-yellow-200 border-neutral-200 *:text-black"
+      : "bg-secondary-200 *:text-neutral-1000 border-neutral-200";
+
+  const showInitials = item.avatar === "/placeholder.jpg" && item.initials;
+
+  return (
+    <div
+      className={`mx-auto flex aspect-video w-full max-w-[90vw] flex-col overflow-hidden rounded-[20px] border shadow-sm transition sm:max-w-none ${bgColor}`}
+    >
+      <div className="flex flex-1 flex-col justify-between text-pretty p-4 text-left">
+        <p className="max-h-full overflow-y-auto text-xs min-[420px]:text-sm min-[500px]:text-base">
+          {item.desc}
+        </p>
+        <div className="flex items-center space-x-2">
+          <div
+            className={`flex size-10 shrink-0 items-center justify-center overflow-hidden rounded-full lg:size-13 ${
+              showInitials
+                ? `${item.color || "bg-primary-500"} font-medium text-sm text-white`
+                : "bg-primary-100"
+            }`}
+          >
+            {showInitials ? (
+              <span>{item.initials}</span>
+            ) : (
+              <Image
+                src={item.avatar}
+                alt="Avatar"
+                width={100}
+                height={100}
+                className="h-full w-full"
+              />
+            )}
+          </div>
+          <div className="flex flex-col items-start justify-center">
+            <h3 className={cn("font-medium text-base leading-none")}>
+              {item.name}
+            </h3>
+            <h4 className="line-clamp-2 text-xs">{item.title}</h4>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
