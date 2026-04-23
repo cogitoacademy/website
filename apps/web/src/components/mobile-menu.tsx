@@ -28,13 +28,13 @@ interface MobileMenuProps {
 const NAV_ITEMS_ID = [
   { label: '#TutorJuara', href: '/tutors' },
   { label: 'Kalender Lomba', href: '/calendar' },
-  { label: 'Sumber Belajar', href: '/student-resources' },
+  { label: 'Bank Pengetahuan', href: '/student-resources' },
 ];
 
 const NAV_ITEMS_EN = [
   { label: '#ChampionTutors', href: '/tutors' },
   { label: 'Competition Calendar', href: '/calendar' },
-  { label: 'Student Resources', href: '/student-resources' },
+  { label: 'Knowledge Bank', href: '/student-resources' },
 ];
 
 const KEGIATAN_ITEMS_ID = [

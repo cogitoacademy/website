@@ -18,10 +18,10 @@ export async function generateMetadata({
   const { locale } = await params;
   const isId = locale === 'id';
 
-  const title = isId ? 'Sumber Belajar' : 'Student Resources';
+  const title = isId ? 'Bank Pengetahuan' : 'Knowledge Bank';
   const description = isId
-    ? 'Akses materi eksklusif termasuk Position Paper, Bank Resolusi, dan Panduan Belajar untuk persiapan kompetisi Anda.'
-    : 'Access exclusive materials including Position Papers, Resolution Banks, and Study Guides for your competition preparation.';
+    ? 'Akses materi eksklusif untuk memperkuat persiapan kompetisimu dalam Bank Pengetahuan.'
+    : 'Access exclusive materials in the Knowledge Bank to strengthen your competition preparation.';
 
   return {
     title,
@@ -34,7 +34,7 @@ export async function generateMetadata({
           url: `${BASE_URL}/og-image-cogito.jpg`,
           width: 1200,
           height: 630,
-          alt: 'Student Resources',
+          alt: isId ? 'Bank Pengetahuan' : 'Knowledge Bank',
         },
       ],
     },

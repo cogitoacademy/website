@@ -115,7 +115,7 @@ function EventCard({
           <p className="font-bold text-lg text-primary-500 leading-tight lg:text-2xl min-[380px]:text-xl">
             {title}
           </p>
-          <p className="text-2xs sm:text-sm lg:text-base min-[380px]:text-xs">{desc}</p>
+          <p className="text-2xs sm:text-sm min-[380px]:text-xs">{desc}</p>
         </div>
 
         <Link href={link} className="mt-auto mb-0">
