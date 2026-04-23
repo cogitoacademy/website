@@ -1,4 +1,5 @@
 export const EDUCATION_LEVELS = [
+  { value: 'sd', label: 'SD' },
   { value: 'smp', label: 'SMP' },
   { value: 'sma', label: 'SMA' },
   { value: 'mahasiswa', label: 'Mahasiswa' },

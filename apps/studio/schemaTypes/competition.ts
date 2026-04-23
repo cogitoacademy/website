@@ -94,6 +94,7 @@ export default defineType({
           type: 'string',
           options: {
             list: [
+              { title: 'SD', value: 'sd' },
               { title: 'SMP', value: 'smp' },
               { title: 'SMA', value: 'sma' },
               { title: 'Mahasiswa', value: 'mahasiswa' },

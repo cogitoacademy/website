@@ -20,8 +20,8 @@ export default async function CtaSection() {
                 Susun Strategi Juaramu
               </h2>
             ) : (
-              <h2 className="font-bold text-3xl text-gray-900 leading-tight sm:text-4xl xl:text-5xl max-w-[80%]">
-                Map Out Your Winning Strategy
+              <h2 className="font-bold text-3xl text-gray-900 leading-tight sm:text-4xl xl:text-5xl">
+                Map Out Your <br className='lg:hidden' />Winning Strategy
               </h2>
             )}
             <div className="mt-2 max-w-[380px] text-base text-gray-700 md:max-w-md">

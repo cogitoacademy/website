@@ -11,6 +11,7 @@ import {
   ResponsiveModalDescription,
   ResponsiveModalTitle,
 } from '@/components/ui/responsive-modal';
+import { getEducationLevelLabel } from '@/lib/config/educationLevels';
 import { getBrandColorClass } from '@/lib/colors/brandColors';
 import { cn } from '@/lib/utils';
 import type { CalendarCompetition } from './types';
@@ -91,7 +92,7 @@ export function EventDetailsDialog({ event, isOpen, onClose }: EventDetailsDialo
               {event.educationLevels && event.educationLevels.length > 0 && (
                 <p>
                   <strong>{isId ? 'Jenjang Lomba:' : 'Competition Level:'}</strong>{' '}
-                  {event.educationLevels.join(', ')}
+                  {event.educationLevels.map(getEducationLevelLabel).join(', ')}
                 </p>
               )}
               {event.scale && (
@@ -129,7 +130,7 @@ export function EventDetailsDialog({ event, isOpen, onClose }: EventDetailsDialo
               {event.educationLevels && event.educationLevels.length > 0 && (
                 <p>
                   <strong>{isId ? 'Jenjang Lomba:' : 'Competition Level:'}</strong>{' '}
-                  <span className="uppercase">{event.educationLevels.join(', ')}</span>
+                  <span>{event.educationLevels.map(getEducationLevelLabel).join(', ')}</span>
                 </p>
               )}
               {event.scale && (

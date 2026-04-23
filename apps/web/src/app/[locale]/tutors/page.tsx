@@ -19,7 +19,7 @@ export async function generateMetadata({
   const { locale } = await params;
   const isId = locale === 'id';
 
-  const title = isId ? '#TutorJuara' : '#ChampionsTutor';
+  const title = isId ? '#TutorJuara' : '#ChampionTutors';
   const description = isId
     ? 'Bertemu dengan tim tutor berpengalaman kami yang ahli dalam berbagai bidang perlombaan termasuk MUN, WSC, Debat, dan Olympiad.'
     : 'Meet our experienced tutor team who are experts in various competition fields including MUN, WSC, Debate, and Olympiads.';
