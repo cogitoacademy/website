@@ -29,18 +29,28 @@ const sampleLogos = [
   },
   {
     id: '4',
-    name: 'Sekolah Victory Plus Bekasi',
-    url: '/logos/sekolah_victory_plus_bekasi.webp',
+    name: 'Citahati School',
+    url: '/logos/citahati_school.webp',
   },
   {
     id: '5',
-    name: 'SMA Al Hikmah Surabaya',
-    url: '/logos/sma_al_hikmah_surabaya.webp',
+    name: 'SMAN 5 Surabaya',
+    url: '/logos/sman_5_surabaya.webp',
   },
   {
     id: '6',
-    name: 'SMAN 16 Surabaya',
-    url: '/logos/sman_16_surabaya.webp',
+    name: 'SMPN 1 Surabaya',
+    url: '/logos/smpn_1_surabaya.webp',
+  },
+  {
+    id: '7',
+    name: 'YPI Al Azhar',
+    url: '/logos/ypi_al_azhar.webp',
+  },
+  {
+    id: '8',
+    name: 'Sekolah Cikal',
+    url: '/logos/sekolah_cikal.webp',
   },
 ];
 
