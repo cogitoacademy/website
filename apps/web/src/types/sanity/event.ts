@@ -1,12 +1,12 @@
 /**
  * Sanity Event Document Type (Kegiatan)
- * Used for Monthly Townhall and Cogito 101 Series events
+ * Used for Townhall & 101 Series and Simulation Days events
  */
 export interface SanityEvent {
   _id: string;
   title: Array<{ _key: string; value: string }>;
   slug: { current: string };
-  category: 'monthly-townhall' | 'cogito-101-series';
+  category: 'townhall-and-101-series' | 'simulation-days';
   imageUrl?: string;
   description?: Array<{ _key: string; value: string }>;
   date: string;
@@ -24,7 +24,7 @@ export interface Event {
   id: string;
   title: string;
   slug: string;
-  category: 'monthly-townhall' | 'cogito-101-series';
+  category: 'townhall-and-101-series' | 'simulation-days';
   imageUrl?: string;
   description?: string;
   date: Date;

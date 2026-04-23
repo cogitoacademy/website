@@ -38,13 +38,13 @@ const NAV_ITEMS_EN = [
 ];
 
 const KEGIATAN_ITEMS_ID = [
-  { label: 'Monthly Townhall', href: '/events/monthly-townhall' },
-  { label: 'Cogito 101 Series', href: '/events/cogito-101-series' },
+  { label: 'Townhall & 101 Series', href: '/events/townhall-and-101-series' },
+  { label: 'Simulation Days', href: '/events/simulation-days' },
 ];
 
 const KEGIATAN_ITEMS_EN = [
-  { label: 'Monthly Townhall', href: '/events/monthly-townhall' },
-  { label: 'Cogito 101 Series', href: '/events/cogito-101-series' },
+  { label: 'Townhall & 101 Series', href: '/events/townhall-and-101-series' },
+  { label: 'Simulation Days', href: '/events/simulation-days' },
 ];
 
 const QUICK_NAV_ITEMS_ID = [

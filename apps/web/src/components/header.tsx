@@ -23,8 +23,8 @@ const NAV_ITEMS_ID = [
   {
     label: 'Kegiatan',
     items: [
-      { label: 'Monthly Townhall', href: '/events/monthly-townhall' },
-      { label: 'Cogito 101 Series', href: '/events/cogito-101-series' },
+      { label: 'Townhall & 101 Series', href: '/events/townhall-and-101-series' },
+      { label: 'Simulation Days', href: '/events/simulation-days' },
     ],
   },
   { label: 'Sumber Belajar', href: '/student-resources' },
@@ -37,8 +37,8 @@ const NAV_ITEMS_EN = [
   {
     label: 'Activities',
     items: [
-      { label: 'Monthly Townhall', href: '/events/monthly-townhall' },
-      { label: 'Cogito 101 Series', href: '/events/cogito-101-series' },
+      { label: 'Townhall & 101 Series', href: '/events/townhall-and-101-series' },
+      { label: 'Simulation Days', href: '/events/simulation-days' },
     ],
   },
   { label: 'Student Resources', href: '/student-resources' },

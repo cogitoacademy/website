@@ -1,16 +1,22 @@
-import type { Metadata } from 'next';
-import { notFound } from 'next/navigation';
-import { setRequestLocale } from 'next-intl/server';
-import { EventsGrid, type SerializedEvent } from '@/components/events/events-grid';
-import NavbarResolver from '@/components/navbar-resolver';
-import { routing } from '@/i18n/routing';
-import { BASE_URL } from '@/lib/constants';
-import { sanityToEvent } from '@/lib/transforms/eventTransform';
-import { EVENTS_BY_CATEGORY_QUERY } from '@/queries/events';
-import { client } from '@/sanity/client';
-import type { Event, SanityEvent } from '@/types/sanity/event';
+import type { Metadata } from "next";
+import { notFound } from "next/navigation";
+import { setRequestLocale } from "next-intl/server";
+import {
+  EventsGrid,
+  type SerializedEvent,
+} from "@/components/events/events-grid";
+import NavbarResolver from "@/components/navbar-resolver";
+import { routing } from "@/i18n/routing";
+import { BASE_URL } from "@/lib/constants";
+import { sanityToEvent } from "@/lib/transforms/eventTransform";
+import { EVENTS_BY_CATEGORY_QUERY } from "@/queries/events";
+import { client } from "@/sanity/client";
+import type { Event, SanityEvent } from "@/types/sanity/event";
 
-const VALID_CATEGORIES = ['monthly-townhall', 'cogito-101-series'] as const;
+const VALID_CATEGORIES = [
+  "townhall-and-101-series",
+  "simulation-days",
+] as const;
 type CategorySlug = (typeof VALID_CATEGORIES)[number];
 
 export async function generateMetadata({
@@ -19,32 +25,33 @@ export async function generateMetadata({
   params: Promise<{ locale: string; category: string }>;
 }): Promise<Metadata> {
   const { locale, category } = await params;
-  const isId = locale === 'id';
+  const isId = locale === "id";
 
   const titles: Record<string, { id: string; en: string }> = {
-    'monthly-townhall': {
-      id: 'Monthly Townhall',
-      en: 'Monthly Townhall',
+    "townhall-and-101-series": {
+      id: "Townhall & 101 Series",
+      en: "Townhall & 101 Series",
     },
-    'cogito-101-series': {
-      id: 'Cogito 101 Series',
-      en: 'Cogito 101 Series',
+    "simulation-days": {
+      id: "Simulation Days",
+      en: "Simulation Days",
     },
   };
 
   const descriptions: Record<string, { id: string; en: string }> = {
-    'monthly-townhall': {
-      id: 'Perdalam penguasaan ilmumu melalui dialog langsung bersama para ahli di setiap sesi bulanan Cogito Academy.',
-      en: 'Deepen your knowledge through direct dialogue with experts in every monthly session at Cogito Academy.',
+    "townhall-and-101-series": {
+      id: "Dapatkan inspirasi dan wawasan mendasar melalui sesi informatif yang dirancang untuk membantumu memulai perjalanan di dunia kompetisi.",
+      en: "Gain fresh insights and foundational knowledge through inspirational sessions designed to help you kickstart your competitive career.",
     },
-    'cogito-101-series': {
-      id: 'Seri pengenalan untuk kamu yang ingin memahami lebih dalam tentang dunia kompetisi dan peluang prestasi.',
-      en: 'Introduction series for those who want to understand more about the world of competition and achievement opportunities.',
+    "simulation-days": {
+      id: "Uji kemampuanmu dalam simulasi satu hari untuk ajang seperti MUN atau WSC, baik secara daring maupun luring.",
+      en: "Test your skills in a one-day realistic simulation of WSC, MUN, and more-available both online and in-person.",
     },
   };
 
-  const title = titles[category]?.[isId ? 'id' : 'en'] || 'Events | Cogito Academy';
-  const description = descriptions[category]?.[isId ? 'id' : 'en'] || '';
+  const title =
+    titles[category]?.[isId ? "id" : "en"] || "Events | Cogito Academy";
+  const description = descriptions[category]?.[isId ? "id" : "en"] || "";
 
   return {
     title,
@@ -82,40 +89,40 @@ const CATEGORY_META: Record<
     subtitle: { id: string; en: string };
   }
 > = {
-  'monthly-townhall': {
+  "townhall-and-101-series": {
     headline: {
       id: {
-        before: 'Gali ',
-        highlight: 'Wawasan Baru',
-        after: ' dalam Diskusi Bulanan Kami',
+        before: "Perluas ",
+        highlight: "Cakrawalamu",
+        after: ", Asah Kemampuanmu",
       },
       en: {
-        before: 'Discover ',
-        highlight: 'New Insights',
-        after: ' in Our Monthly Discussions',
+        before: "Broaden Your ",
+        highlight: "Horizons",
+        after: ", Sharpen Your Skills",
       },
     },
     subtitle: {
-      id: 'Perdalam penguasaan ilmumu melalui dialog langsung bersama para ahli di setiap sesi bulanan.',
-      en: 'Deepen your knowledge through direct dialogue with experts in every monthly session.',
+      id: "Dapatkan inspirasi dan wawasan mendasar melalui sesi informatif yang dirancang untuk membantumu memulai perjalanan di dunia kompetisi.",
+      en: "Gain fresh insights and foundational knowledge through inspirational sessions designed to help you kickstart your competitive career.",
     },
   },
-  'cogito-101-series': {
+  "simulation-days": {
     headline: {
       id: {
-        before: 'Kenali ',
-        highlight: 'Ragam Peluang',
-        after: ' Prestasi Global',
+        before: "Asah Kemampuanmu dengan ",
+        highlight: "Simulation Days",
+        after: "",
       },
       en: {
-        before: 'Discover ',
-        highlight: 'Global Achievement',
-        after: ' Opportunities',
+        before: "Test Your Skills with ",
+        highlight: "Simulation Days",
+        after: "",
       },
     },
     subtitle: {
-      id: 'Seri pengenalan untuk kamu yang ingin memahami lebih dalam tentang dunia kompetisi dan peluang prestasi.',
-      en: 'An introductory series for those who want to dive deeper into competitions and achievement opportunities.',
+      id: "Uji kemampuanmu dalam simulasi satu hari untuk ajang seperti MUN atau WSC, baik secara daring maupun luring.",
+      en: "Test your skills in a one-day realistic simulation of WSC, MUN, and more-available both online and in-person.",
     },
   },
 };
@@ -143,7 +150,7 @@ export default async function EventCategoryPage({ params }: Props) {
 
   const categorySlug = category as CategorySlug;
   const meta = CATEGORY_META[categorySlug];
-  const lang = locale === 'en' ? 'en' : 'id';
+  const lang = locale === "en" ? "en" : "id";
   const headline = meta.headline[lang];
 
   // Fetch events from Sanity
@@ -157,7 +164,7 @@ export default async function EventCategoryPage({ params }: Props) {
 
     events = sanityEvents.map((e) => sanityToEvent(e, lang));
   } catch (error) {
-    console.error('Failed to fetch events:', error);
+    console.error("Failed to fetch events:", error);
   }
 
   // Serialize events for client component (Date -> ISO string)
@@ -169,7 +176,7 @@ export default async function EventCategoryPage({ params }: Props) {
   return (
     <>
       <NavbarResolver />
-      <div className="relative z-3 mx-auto max-w-7xl px-4 pb-20 sm:px-6 lg:px-8">
+      <div className="relative z-3 mx-auto max-w-7xl px-4 pb-20 sm:px-6 lg:px-8 min-h-[80vh]">
         {/* Hero Section */}
         <section className="pb-8 sm:pb-12 md:pb-16">
           <div className="max-w-2xl space-y-3">
@@ -184,8 +191,17 @@ export default async function EventCategoryPage({ params }: Props) {
           </div>
         </section>
 
-        {/* Events Grid with Pagination */}
-        <EventsGrid events={serializedEvents} lang={lang} />
+        {serializedEvents.length === 0 && (
+          <p>
+            {lang === "en"
+              ? "No events found."
+              : "Tidak ada konten yang ditemukan."}
+          </p>
+        )}
+
+        {serializedEvents.length > 0 && (
+          <EventsGrid events={serializedEvents} lang={lang} />
+        )}
       </div>
     </>
   );
