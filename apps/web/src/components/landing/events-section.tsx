@@ -16,20 +16,24 @@ type EventDummy = {
 
 const EVENT_DUMMY: EventDummy[] = [
   {
-    titleId: 'Monthly Townhall',
-    titleEn: 'Monthly Townhall',
-    descId: 'Gali wawasan baru dalam diskusi bulanan kami.',
-    descEn: 'Explore new insights in our monthly discussions.',
+    titleId: 'Townhall & 101 Series',
+    titleEn: 'Townhall & 101 Series',
+    descId:
+      'Dapatkan inspirasi dan wawasan mendasar melalui sesi informatif yang dirancang untuk membantumu memulai perjalanan di dunia kompetisi.',
+    descEn:
+      'Gain fresh insights and foundational knowledge through inspirational sessions designed to help you kickstart your competitive career.',
     image: '/event.webp',
-    link: '/events/monthly-townhall',
+    link: '/events/townhall-and-101-series',
   },
   {
-    titleId: 'Cogito 101 Series',
-    titleEn: 'Cogito 101 Series',
-    descId: 'Kenali ragam peluang prestasi global dan siapkan dirimu!',
-    descEn: 'Discover global achievement opportunities and prepare yourself!',
+    titleId: 'Simulation Days',
+    titleEn: 'Simulation Days',
+    descId:
+      'Uji kemampuanmu dalam simulasi satu hari untuk ajang seperti MUN atau WSC, baik secara daring maupun luring.',
+    descEn:
+      'Test your skills in a one-day realistic simulation of WSC, MUN, and more-available both online and in-person.',
     image: '/event.webp',
-    link: '/events/cogito-101-series',
+    link: '/events/simulation-days',
   },
 ];
 
@@ -61,13 +65,13 @@ export function EventsSection() {
               <h2 className="text-center font-extrabold text-2xl text-neutral-1000 lg:text-3xl">
                 {isId ? (
                   <>
-                    Satu <span className="text-primary-500">Bulan</span>, Satu{' '}
-                    <span className="text-primary-500">Inspirasi Dunia</span>
+                    Perluas <span className="text-primary-500">Cakrawalamu</span>, Asah{' '}
+                    <span className="text-primary-500">Kemampuanmu</span>
                   </>
                 ) : (
                   <>
-                    One <span className="text-primary-500">Month</span>, One{' '}
-                    <span className="text-primary-500">World Inspiration</span>
+                    Broaden Your <span className="text-primary-500">Horizons</span>, Sharpen Your{' '}
+                    <span className="text-primary-500">Skills</span>
                   </>
                 )}
               </h2>

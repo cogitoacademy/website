@@ -31,10 +31,10 @@ export default defineType({
       type: 'string',
       options: {
         list: [
-          { title: 'Monthly Townhall', value: 'monthly-townhall' },
+          { title: 'Townhall & 101 Series', value: 'townhall-and-101-series' },
           {
-            title: 'Cogito 101 Series',
-            value: 'cogito-101-series',
+            title: 'Simulation Days',
+            value: 'simulation-days',
           },
         ],
       },
@@ -117,10 +117,10 @@ export default defineType({
           })
         : '';
       const categoryLabel =
-        category === 'monthly-townhall'
-          ? 'Monthly Townhall'
-          : category === 'cogito-101-series'
-            ? 'Cogito 101 Series'
+        category === 'townhall-and-101-series'
+          ? 'Townhall & 101 Series'
+          : category === 'simulation-days'
+            ? 'Simulation Days'
             : category;
 
       return {
