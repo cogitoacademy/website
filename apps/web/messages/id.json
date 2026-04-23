@@ -30,15 +30,15 @@
     "registerNow": "Daftar Sekarang"
   },
   "studentResources": {
-    "title": "Sumber Belajar",
-    "subtitle": "Akses materi eksklusif termasuk Position Paper dan Bank Resolusi.",
+    "title": "Bank Pengetahuan",
+    "subtitle": "Akses materi eksklusif di Bank Pengetahuan, termasuk Position Paper dan Bank Resolusi.",
     "passwordGate": {
-      "title": "Asah Keunggulan Kompetitifmu",
+      "title": "Buka Akses Bank Pengetahuan",
       "description": "Dapatkan keunggulan lebih awal melalui akses eksklusif ke materi latihan dan kumpulan soal pilihan yang dirancang untuk membantumu menang.",
       "placeholder": "Masukkan kata sandi",
       "error": "Kata sandi salah. Silakan coba lagi.",
       "verifying": "Memverifikasi...",
-      "button": "Akses Materi"
+      "button": "Akses Bank Pengetahuan"
     },
     "searchPlaceholder": "Cari materi...",
     "filter": "Filter",

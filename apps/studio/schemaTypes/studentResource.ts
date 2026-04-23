@@ -2,7 +2,7 @@ import { defineField, defineType } from 'sanity';
 
 export default defineType({
   name: 'studentResource',
-  title: 'Student Resource',
+  title: 'Knowledge Bank',
   type: 'document',
   fields: [
     defineField({

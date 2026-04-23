@@ -27,7 +27,7 @@ const NAV_ITEMS_ID = [
       { label: 'Simulation Days', href: '/events/simulation-days' },
     ],
   },
-  { label: 'Sumber Belajar', href: '/student-resources' },
+  { label: 'Bank Pengetahuan', href: '/student-resources' },
 ];
 
 const NAV_ITEMS_EN = [
@@ -41,7 +41,7 @@ const NAV_ITEMS_EN = [
       { label: 'Simulation Days', href: '/events/simulation-days' },
     ],
   },
-  { label: 'Student Resources', href: '/student-resources' },
+  { label: 'Knowledge Bank', href: '/student-resources' },
 ];
 
 export default function Header() {
