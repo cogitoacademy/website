@@ -51,7 +51,7 @@ export async function generateMetadata({
 }
 
 /* eslint-disable react-compiler/react-compiler -- Server component with JSX in try/catch is intentional for error boundaries */
-async function CalendarContent() {
+async function CalendarContent({ locale }: { locale: string }) {
   try {
     const sanityCompetitions = await client.fetch<SanityCompetition[]>(
       COMPETITIONS_QUERY,
@@ -60,7 +60,7 @@ async function CalendarContent() {
     );
 
     const calendarCompetitions = sanityCompetitions
-      .map((c) => sanityToCalendarCompetition(c))
+      .map((c) => sanityToCalendarCompetition(c, locale))
       .filter(Boolean) as CalendarCompetition[];
 
     return <CalendarClient initialCompetitions={calendarCompetitions} />;
@@ -83,7 +83,7 @@ export default async function CompetitionCalendarPage({ params }: Props) {
   return (
     <>
       <NavbarResolver />
-      <div className="relative z-3 mx-auto max-w-7xl gap-y-15 space-y-15 overflow-x-clip px-4">
+      <div className="relative z-3 mx-auto max-w-7xl space-y-7 md:space-y-15 overflow-x-clip px-4">
         <div className="space-y-2">
           <h1 className="font-semibold text-2xl text-neutral-1000 sm:text-3xl md:text-4xl lg:text-5xl">
             {locale === 'en' ? (
@@ -98,14 +98,14 @@ export default async function CompetitionCalendarPage({ params }: Props) {
               </>
             )}
           </h1>
-          <p className="max-w-2xl">
+          <p className="max-w-2xl text-sm lg:text-base">
             {locale === 'en'
               ? 'From national challenges to global arenas, access a curated list of opportunities tailored for your next big win.'
               : 'Dari kompetisi nasional hingga kancah global, temukan daftar peluang terkurasi yang dirancang khusus untuk target prestasimu berikutnya.'}
           </p>
         </div>
         <Suspense fallback={<CalendarSkeleton locale={locale} />}>
-          <CalendarContent />
+          <CalendarContent locale={locale} />
         </Suspense>
       </div>
     </>

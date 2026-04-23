@@ -14,20 +14,41 @@ export function CalendarSkeleton({ locale }: CalendarSkeletonProps) {
       {/* Header toolbar */}
       <div className="flex items-center justify-between rounded-t-xl bg-tertiary-pink-200 p-2 sm:p-4 xl:rounded-t-3xl">
         <div className="flex items-center gap-1 sm:gap-4">
-          <Skeleton className="h-10.5 w-20 rounded-md max-[479px]:w-9" />
+          <Skeleton className="h-8 w-20 rounded-full sm:h-10.5 sm:rounded-md" />
           <div className="flex items-center sm:gap-2">
-            <Skeleton className="size-10 rounded-md" />
-            <Skeleton className="size-10 rounded-md" />
+            <Skeleton className="size-8 rounded-md sm:size-10" />
+            <Skeleton className="size-8 rounded-md sm:size-10" />
           </div>
-          <Skeleton className="h-6 w-32 rounded-md sm:w-40" />
+          <Skeleton className="h-5 w-24 rounded-md sm:h-6 sm:w-40" />
         </div>
         <div className="flex items-center gap-2">
-          <Skeleton className="h-10.5 w-20 rounded-md" />
+          <Skeleton className="h-8 w-14 rounded-md sm:h-10.5 sm:w-20" />
         </div>
       </div>
 
-      {/* Month view grid */}
-      <div className="flex flex-1 flex-col">
+      {/* Mobile skeleton */}
+      <div className="space-y-3 bg-background-cream p-3 sm:hidden">
+        {Array.from({ length: 6 }).map((_, index) => (
+          <div
+            className="rounded-xl border border-border/60 bg-background-primary p-3"
+            key={`mobile-skeleton-item-${index}`}
+          >
+            <div className="mb-2 flex items-center justify-between">
+              <Skeleton className="h-5 w-20 rounded-full" />
+              <Skeleton className="h-4 w-14 rounded-md" />
+            </div>
+            <Skeleton className="h-4 w-5/6 rounded-md" />
+            <Skeleton className="mt-2 h-4 w-2/3 rounded-md" />
+            <div className="mt-3 flex gap-2">
+              <Skeleton className="h-6 w-16 rounded-full" />
+              <Skeleton className="h-6 w-20 rounded-full" />
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Tablet/Desktop month view grid */}
+      <div className="hidden flex-1 flex-col sm:flex">
         <div className="overflow-x-auto overscroll-x-none lg:overflow-x-visible">
           <div className="min-w-[800px] lg:min-w-0">
             {/* Weekday headers */}
