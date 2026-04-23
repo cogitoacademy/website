@@ -51,7 +51,7 @@ export async function generateMetadata({
 }
 
 /* eslint-disable react-compiler/react-compiler -- Server component with JSX in try/catch is intentional for error boundaries */
-async function CalendarContent() {
+async function CalendarContent({ locale }: { locale: string }) {
   try {
     const sanityCompetitions = await client.fetch<SanityCompetition[]>(
       COMPETITIONS_QUERY,
@@ -60,7 +60,7 @@ async function CalendarContent() {
     );
 
     const calendarCompetitions = sanityCompetitions
-      .map((c) => sanityToCalendarCompetition(c))
+      .map((c) => sanityToCalendarCompetition(c, locale))
       .filter(Boolean) as CalendarCompetition[];
 
     return <CalendarClient initialCompetitions={calendarCompetitions} />;
@@ -105,7 +105,7 @@ export default async function CompetitionCalendarPage({ params }: Props) {
           </p>
         </div>
         <Suspense fallback={<CalendarSkeleton locale={locale} />}>
-          <CalendarContent />
+          <CalendarContent locale={locale} />
         </Suspense>
       </div>
     </>
