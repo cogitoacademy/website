@@ -98,7 +98,7 @@ export default async function CompetitionCalendarPage({ params }: Props) {
               </>
             )}
           </h1>
-          <p className="max-w-2xl">
+          <p className="max-w-2xl text-sm lg:text-base">
             {locale === 'en'
               ? 'From national challenges to global arenas, access a curated list of opportunities tailored for your next big win.'
               : 'Dari kompetisi nasional hingga kancah global, temukan daftar peluang terkurasi yang dirancang khusus untuk target prestasimu berikutnya.'}

@@ -33,6 +33,9 @@ export function EventDetailsDialog({ event, isOpen, onClose }: EventDetailsDialo
   const timelineStart = format(event.start, 'dd');
   const timelineEnd = format(event.end, 'dd MMMM yyyy', { locale: dateLocale });
   const timeline = `${timelineStart} - ${timelineEnd}`;
+  const formattedScale = event.scale
+    ? event.scale.charAt(0).toUpperCase() + event.scale.slice(1).toLowerCase()
+    : undefined;
 
   return (
     <ResponsiveModal onOpenChange={(open) => !open && onClose()} open={isOpen}>
@@ -97,7 +100,7 @@ export function EventDetailsDialog({ event, isOpen, onClose }: EventDetailsDialo
               )}
               {event.scale && (
                 <p>
-                  <strong>{isId ? 'Skala:' : 'Scale:'}</strong> {event.scale}
+                  <strong>{isId ? 'Skala:' : 'Scale:'}</strong> {formattedScale}
                 </p>
               )}
               {event.organizer && (
@@ -136,7 +139,7 @@ export function EventDetailsDialog({ event, isOpen, onClose }: EventDetailsDialo
               {event.scale && (
                 <p>
                   <strong>{isId ? 'Skala:' : 'Scale:'}</strong>{' '}
-                  <span className="capitalize">{event.scale}</span>
+                  <span>{formattedScale}</span>
                 </p>
               )}
               {event.organizer && (
