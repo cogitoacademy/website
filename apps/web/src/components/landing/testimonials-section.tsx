@@ -54,7 +54,7 @@ export async function TestimonialsSection() {
     },
     {
       id: 4,
-      name: "Farazahdi Dhaniarta|",
+      name: "Farazahdi Dhaniarta",
       initials: "FD",
       color: "bg-green-500",
       title: isId
