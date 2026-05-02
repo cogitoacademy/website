@@ -52,6 +52,20 @@ export async function TestimonialsSection() {
       avatar: "/images/testimonials/AI.webp",
       img: "/images/testimonials/AI.webp",
     },
+    {
+      id: 3,
+      name: "Farazahdi Dhaniarta|",
+      initials: "FD",
+      color: "bg-green-500",
+      title: isId
+        ? "Jac Khor Award, WSC Surabaya Round 2026"
+        : "Jac Khor Award, WSC Surabaya Round 2026",
+      desc: isId
+        ? "Back then, I didn't know how to debate or even speak structurally and empirically to an audience. But Cogito actually managed to assist me in getting tons of medals and even a trophy for the Jac Khor Award in WSC!"
+        : "Back then, I didn't know how to debate or even speak structurally and empirically to an audience. But Cogito actually managed to assist me in getting tons of medals and even a trophy for the Jac Khor Award in WSC!",
+      avatar: "/images/testimonials/AI.webp",
+      img: "/images/testimonials/AI.webp",
+    },
   ];
 
   return (
