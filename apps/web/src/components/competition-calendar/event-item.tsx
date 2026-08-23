@@ -86,7 +86,7 @@ function EventWrapper({
   return (
     <button
       className={cn(
-        'relative flex size-full select-none overflow-hidden px-3 text-left font-medium outline-none backdrop-blur-md transition focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 data-dragging:cursor-grabbing data-past-event:line-through data-dragging:shadow-lg',
+        'relative flex size-full select-none overflow-hidden px-3 text-left font-medium outline-none backdrop-blur-md transition focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 data-dragging:cursor-grabbing data-dragging:shadow-lg',
         getCompetitionColorClasses(event.color),
         getBorderRadiusClasses(isFirstDay, isLastDay),
         className,
