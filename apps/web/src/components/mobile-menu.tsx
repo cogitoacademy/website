@@ -6,6 +6,7 @@ import {
   WhatsappLogoIcon,
   XIcon,
 } from '@phosphor-icons/react/dist/ssr';
+import { MonitorSmartphone } from 'lucide-react';
 import { AnimatePresence, m } from 'motion/react';
 import Image from 'next/image';
 import { useLocale } from 'next-intl';
@@ -18,6 +19,7 @@ import {
 } from '@/components/ui/accordion';
 import { Button } from '@/components/ui/button';
 import { Link } from '@/i18n/routing';
+import { APP_URL } from '@/lib/constants';
 import LanguageToggle from './lang-toggle';
 
 interface MobileMenuProps {
@@ -27,12 +29,18 @@ interface MobileMenuProps {
 
 const NAV_ITEMS_ID = [
   { label: '#TutorJuara', href: '/tutors' },
-  { label: 'Kalender Lomba', href: '/calendar' },
-  { label: 'Bank Pengetahuan', href: '/student-resources' },
 ];
 
 const NAV_ITEMS_EN = [
   { label: '#ChampionTutors', href: '/tutors' },
+];
+
+const RESOURCES_ITEMS_ID = [
+  { label: 'Kalender Lomba', href: '/calendar' },
+  { label: 'Bank Pengetahuan', href: '/student-resources' },
+];
+
+const RESOURCES_ITEMS_EN = [
   { label: 'Competition Calendar', href: '/calendar' },
   { label: 'Knowledge Bank', href: '/student-resources' },
 ];
@@ -70,6 +78,7 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
   const isId = locale === 'id';
 
   const navItems = isId ? NAV_ITEMS_ID : NAV_ITEMS_EN;
+  const resourcesItems = isId ? RESOURCES_ITEMS_ID : RESOURCES_ITEMS_EN;
   const kegiatanItems = isId ? KEGIATAN_ITEMS_ID : KEGIATAN_ITEMS_EN;
   const quickNavItems = isId ? QUICK_NAV_ITEMS_ID : QUICK_NAV_ITEMS_EN;
 
@@ -143,6 +152,18 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
               </Link>
 
               <div className="flex items-center gap-2">
+                <a
+                  href={APP_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={onClose}
+                  className="w-full cursor-pointer"
+                >
+                  <Button variant="primary" size="lg" className="h-9 px-3">
+                    <MonitorSmartphone />
+                    {isId ? 'Buka App' : 'Open App'}
+                  </Button>
+                </a>
                 <LanguageToggle variant="cream" className="h-9 px-3 text-primary-500" />
                 <Button
                   size="icon-lg"
@@ -171,6 +192,33 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                   </m.div>
                 ))}
               </div>
+
+              <m.div variants={itemVariants}>
+                <Accordion defaultValue={['resources']} className="w-full">
+                  <AccordionItem
+                    value="resources"
+                    className="border-none bg-transparent shadow-none"
+                  >
+                    <AccordionTrigger className="bg-transparent p-0 font-bold text-neutral-1000 text-sm shadow-none hover:bg-transparent hover:no-underline hover:shadow-none focus-visible:ring-0 min-[550px]:text-base [&>svg]:ml-2 [&>svg]:size-5 [&>svg]:text-neutral-1000">
+                      {isId ? 'Sumber Daya' : 'Resources'}
+                    </AccordionTrigger>
+                    <AccordionContent className="pb-0 pl-5">
+                      <div className="flex flex-col gap-3 pt-3">
+                        {resourcesItems.map((item) => (
+                          <Link
+                            key={item.label}
+                            href={item.href}
+                            onClick={onClose}
+                            className="text-sm min-[550px]:text-base"
+                          >
+                            {item.label}
+                          </Link>
+                        ))}
+                      </div>
+                    </AccordionContent>
+                  </AccordionItem>
+                </Accordion>
+              </m.div>
 
               <m.div variants={itemVariants}>
                 <Accordion defaultValue={['kegiatan']} className="w-full">

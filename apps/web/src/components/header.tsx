@@ -1,11 +1,12 @@
 'use client';
 
 import { ListIcon } from '@phosphor-icons/react/dist/ssr';
-import { ChevronDown } from 'lucide-react';
+import { ChevronDown, MonitorSmartphone } from 'lucide-react';
 import Image from 'next/image';
 import { useLocale } from 'next-intl';
 import { useEffect, useState } from 'react';
 import { Link } from '@/i18n/routing';
+import { APP_URL } from '@/lib/constants';
 import LanguageToggle from './lang-toggle';
 import MobileMenu from './mobile-menu';
 import { Button } from './ui/button';
@@ -18,8 +19,13 @@ import {
 
 const NAV_ITEMS_ID = [
   { label: '#TutorJuara', href: '/tutors' },
-  { label: 'Kalender Lomba', href: '/calendar' },
-  // { label: "Playground", href: "/playground" },
+  {
+    label: 'Sumber Daya',
+    items: [
+      { label: 'Kalender Lomba', href: '/calendar' },
+      { label: 'Bank Pengetahuan', href: '/student-resources' },
+    ],
+  },
   {
     label: 'Kegiatan',
     items: [
@@ -27,13 +33,17 @@ const NAV_ITEMS_ID = [
       { label: 'Simulation Days', href: '/events/simulation-days' },
     ],
   },
-  { label: 'Bank Pengetahuan', href: '/student-resources' },
 ];
 
 const NAV_ITEMS_EN = [
   { label: '#ChampionTutors', href: '/tutors' },
-  { label: 'Competition Calendar', href: '/calendar' },
-  // { label: "Playground", href: "/playground" },
+  {
+    label: 'Resources',
+    items: [
+      { label: 'Competition Calendar', href: '/calendar' },
+      { label: 'Knowledge Bank', href: '/student-resources' },
+    ],
+  },
   {
     label: 'Activities',
     items: [
@@ -41,7 +51,6 @@ const NAV_ITEMS_EN = [
       { label: 'Simulation Days', href: '/events/simulation-days' },
     ],
   },
-  { label: 'Knowledge Bank', href: '/student-resources' },
 ];
 
 export default function Header() {
@@ -128,6 +137,12 @@ export default function Header() {
             </div>
 
             <div className="hidden items-center gap-3 lg:flex">
+              <a href={APP_URL} target="_blank" rel="noopener noreferrer">
+                <Button size="lg" variant="primary">
+                  <MonitorSmartphone />
+                  <span>{isId ? 'Buka App' : 'Open App'}</span>
+                </Button>
+              </a>
               <LanguageToggle />
               <Link href="/contact">
                 <Button size="lg">
@@ -137,6 +152,12 @@ export default function Header() {
             </div>
 
             <div className="relative lg:hidden flex items-center gap-2">
+              <a href={APP_URL} target="_blank" rel="noopener noreferrer">
+                <Button size="lg" variant="primary" className="h-9 px-3">
+                  <MonitorSmartphone />
+                  <span>{isId ? 'Buka App' : 'Open App'}</span>
+                </Button>
+              </a>
               <LanguageToggle className="h-9 px-3" />
               <Button
                 size="icon-lg"
