@@ -412,14 +412,14 @@ export function LegalDocument({ locale, type }: { locale: Locale; type: LegalDoc
   return (
     <div className="bg-background-cream">
       <NavbarResolver />
-      <article className="mx-auto max-w-4xl px-4 pt-32 pb-32 sm:px-6 lg:px-8">
+      <article className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 pb-72">
         <header className="mb-10 max-w-3xl">
-          <p className="mb-3 font-semibold text-primary-600 text-sm uppercase tracking-[0.18em]">
+          <p className="mb-3 font-semibold text-primary-600 text-sm">
             {content.eyebrow}
           </p>
           <h1 className="font-semibold text-4xl text-neutral-1000 sm:text-5xl">{content.title}</h1>
-          <p className="mt-5 max-w-2xl text-base text-neutral-700 leading-7">{content.intro}</p>
-          <p className="mt-4 text-neutral-600 text-sm">{content.updated}</p>
+          <p className="mt-3 max-w-2xl text-sm text-neutral-700 leading-7">{content.intro}</p>
+          <p className="mt-3 text-neutral-600 text-xs">{content.updated}</p>
         </header>
 
         <div className="rounded-3xl bg-white/85 p-6 shadow-sm sm:p-10">
