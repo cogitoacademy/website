@@ -10,6 +10,7 @@ import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { useLocale } from 'next-intl';
 
+import { Link } from '@/i18n/routing';
 import { cn } from '@/lib/utils';
 import { Button } from './ui/button';
 
@@ -85,6 +86,14 @@ export default function Footer() {
               ? 'Mengubah potensi menjadi prestasi dan kemampuan secara sistematis.'
               : 'Systematically transforming potential into achievements and abilities.'}
           </p>
+          <div className="flex flex-wrap justify-end gap-x-4 gap-y-1 text-gray-700 text-sm sm:justify-center md:justify-end">
+            <Link className="transition-colors hover:text-primary-600" href="/privacy-policy">
+              {isId ? 'Kebijakan Privasi' : 'Privacy Policy'}
+            </Link>
+            <Link className="transition-colors hover:text-primary-600" href="/terms-of-service">
+              {isId ? 'Ketentuan Layanan' : 'Terms of Service'}
+            </Link>
+          </div>
           <div className="flex gap-3">
             {SOCIALS.map((social) => (
               <a
