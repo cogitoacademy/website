@@ -19,6 +19,7 @@ import {
 
 const NAV_ITEMS_ID = [
   { label: '#TutorJuara', href: '/tutors' },
+  { label: 'Prestasi', href: '/achievements' },
   {
     label: 'Sumber Daya',
     items: [
@@ -37,6 +38,7 @@ const NAV_ITEMS_ID = [
 
 const NAV_ITEMS_EN = [
   { label: '#ChampionTutors', href: '/tutors' },
+  { label: 'Achievements', href: '/achievements' },
   {
     label: 'Resources',
     items: [

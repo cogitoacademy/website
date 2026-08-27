@@ -2,6 +2,7 @@
   "nav": {
     "home": "Beranda",
     "tutors": "Tutor",
+    "achievements": "Prestasi",
     "activities": "Kegiatan",
     "calendar": "Kalender Lomba",
     "about": "Tentang Kami",
@@ -21,6 +22,53 @@
     "loading": "Memuat tutor...",
     "achievements": "Pencapaian",
     "experiences": "Pengalaman"
+  },
+  "achievements": {
+    "eyebrow": "Prestasi siswa",
+    "visibilityNote": "Disetujui oleh tim Cogito",
+    "title": "Lihat prestasi siswa",
+    "titleHighlight": "Cogito Academy",
+    "description": "Jelajahi hasil kompetisi, penghargaan, dan pencapaian siswa Cogito yang telah ditinjau oleh tim kami.",
+    "archiveCountLabel": "Entri tercatat",
+    "recordSingular": "prestasi terverifikasi yang dibagikan secara publik",
+    "recordPlural": "prestasi terverifikasi yang dibagikan secara publik",
+    "featuredLabel": "Catatan terbaru yang disetujui",
+    "latestEntry": "Entri terbaru",
+    "archiveTitle": "Daftar prestasi",
+    "searchPlaceholder": "Cari prestasi…",
+    "showing": "Menampilkan {count} dari {total} prestasi",
+    "viewArchive": "Lihat semua prestasi",
+    "publicNote": "Hanya prestasi yang ditandai tampil oleh siswa yang masuk ke catatan publik ini.",
+    "filters": {
+      "category": "Kategori",
+      "level": "Tingkat",
+      "year": "Tahun",
+      "allCategories": "Semua kategori",
+      "allLevels": "Semua tingkat",
+      "allYears": "Semua tahun"
+    },
+    "errorTitle": "Catatan sedang tidak tersedia",
+    "errorDescription": "Arsip tidak dapat dihubungi. Coba lagi sebentar.",
+    "tryAgain": "Coba lagi",
+    "emptyTitle": "Catatan pertama sedang disiapkan",
+    "emptyDescription": "Prestasi publik yang disetujui akan muncul di sini setelah siswa mengirimkannya dan tim Cogito meninjaunya.",
+    "noMatchesTitle": "Tidak ada catatan yang cocok",
+    "noMatchesDescription": "Coba pencarian lain atau reset arsip.",
+    "resetFilters": "Reset filter",
+    "home": {
+      "eyebrow": "Prestasi siswa",
+      "title": "Rayakan setiap",
+      "titleHighlight": "pencapaian.",
+      "description": "Entri ini berasal dari siswa yang memilih membagikan hasilnya setelah diverifikasi oleh tim Cogito."
+    },
+    "category": {
+      "competition": "Kompetisi",
+      "award": "Penghargaan",
+      "certificate": "Sertifikat",
+      "leadership": "Kepemimpinan",
+      "publication": "Publikasi",
+      "other": "Lainnya"
+    }
   },
   "events": {
     "upcoming": "Akan Datang",

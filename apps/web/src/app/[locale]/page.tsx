@@ -1,5 +1,6 @@
 import { setRequestLocale } from 'next-intl/server';
 import { EventsSection } from '@/components/landing/events-section';
+import { AchievementsSection } from '@/components/landing/achievements-section';
 // import { FaqSection } from "@/components/landing/faq-section";
 import { HeroSection } from '@/components/landing/hero-section';
 import { MethodsSection } from '@/components/landing/methods-section';
@@ -22,6 +23,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       <MethodsSection />
       <SkillsSection />
       <TutorsSection />
+      <AchievementsSection />
       <TestimonialsSection />
       {/*<FaqSection />*/}
       <FaqSectionV2 />

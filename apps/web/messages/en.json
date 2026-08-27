@@ -2,6 +2,7 @@
   "nav": {
     "home": "Home",
     "tutors": "Tutors",
+    "achievements": "Achievements",
     "activities": "Activities",
     "calendar": "Competition Calendar",
     "about": "About",
@@ -21,6 +22,53 @@
     "loading": "Loading tutors...",
     "achievements": "Achievements",
     "experiences": "Experiences"
+  },
+  "achievements": {
+    "eyebrow": "Student achievements",
+    "visibilityNote": "Reviewed by the Cogito team",
+    "title": "See what our students",
+    "titleHighlight": "achieve.",
+    "description": "Browse competition results, awards, and milestones shared by Cogito students after review by our team.",
+    "archiveCountLabel": "Entries on record",
+    "recordSingular": "verified achievement shared publicly",
+    "recordPlural": "verified achievements shared publicly",
+    "featuredLabel": "Latest approved record",
+    "latestEntry": "Most recent entry",
+    "archiveTitle": "Achievement list",
+    "searchPlaceholder": "Search achievements…",
+    "showing": "Showing {count} of {total} achievements",
+    "viewArchive": "View all achievements",
+    "publicNote": "Only achievements marked visible by the student are included in this public record.",
+    "filters": {
+      "category": "Category",
+      "level": "Level",
+      "year": "Year",
+      "allCategories": "All categories",
+      "allLevels": "All levels",
+      "allYears": "All years"
+    },
+    "errorTitle": "Records are temporarily unavailable",
+    "errorDescription": "The archive could not be reached. Try again in a moment.",
+    "tryAgain": "Try again",
+    "emptyTitle": "The first record is still taking shape",
+    "emptyDescription": "Approved public achievements will appear here after a student submits one and the Cogito team reviews it.",
+    "noMatchesTitle": "No records match these filters",
+    "noMatchesDescription": "Try another search or reset the archive.",
+    "resetFilters": "Reset filters",
+    "home": {
+      "eyebrow": "Student achievements",
+      "title": "Celebrate every",
+      "titleHighlight": "achievement.",
+      "description": "These entries come from students who chose to share their results after verification by the Cogito team."
+    },
+    "category": {
+      "competition": "Competition",
+      "award": "Award",
+      "certificate": "Certificate",
+      "leadership": "Leadership",
+      "publication": "Publication",
+      "other": "Other"
+    }
   },
   "events": {
     "upcoming": "Upcoming",

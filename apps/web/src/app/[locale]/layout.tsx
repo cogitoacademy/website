@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Script from 'next/script';
 import { Inter, Lexend_Deca } from 'next/font/google';
 import { notFound } from 'next/navigation';
 import { hasLocale, NextIntlClientProvider } from 'next-intl';
@@ -147,6 +148,9 @@ export default async function LocaleLayout({
           </Providers>
         </NextIntlClientProvider>
         <Analytics />
+        {process.env.NODE_ENV !== 'production' && (
+          <Script src="/tweaks-bar.js" strategy="afterInteractive" />
+        )}
       </body>
     </html>
   );

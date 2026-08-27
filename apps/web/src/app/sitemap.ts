@@ -5,7 +5,16 @@ import { BASE_URL } from '@/lib/constants';
 export default function sitemap(): MetadataRoute.Sitemap {
   const locales = routing.locales;
 
-  const staticPages = ['', '/tutors', '/calendar', '/contact', '/student-resources'];
+  const staticPages = [
+    '',
+    '/tutors',
+    '/achievements',
+    '/calendar',
+    '/contact',
+    '/student-resources',
+    '/privacy-policy',
+    '/terms-of-service',
+  ];
 
   const sitemapEntries: MetadataRoute.Sitemap = [];
 

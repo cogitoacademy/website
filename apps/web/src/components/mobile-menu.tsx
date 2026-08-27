@@ -29,10 +29,12 @@ interface MobileMenuProps {
 
 const NAV_ITEMS_ID = [
   { label: '#TutorJuara', href: '/tutors' },
+  { label: 'Prestasi', href: '/achievements' },
 ];
 
 const NAV_ITEMS_EN = [
   { label: '#ChampionTutors', href: '/tutors' },
+  { label: 'Achievements', href: '/achievements' },
 ];
 
 const RESOURCES_ITEMS_ID = [
@@ -58,6 +60,7 @@ const KEGIATAN_ITEMS_EN = [
 const QUICK_NAV_ITEMS_ID = [
   { label: 'Acara Publik', href: '#events' },
   { label: '#TutorJuara', href: '#tutors' },
+  { label: 'Prestasi', href: '/achievements' },
   { label: 'Kenapa Kita?', href: '#methods' },
   { label: 'Testimoni', href: '#testimonials' },
   { label: 'Jenis Perlombaan', href: '#skills' },
@@ -67,6 +70,7 @@ const QUICK_NAV_ITEMS_ID = [
 const QUICK_NAV_ITEMS_EN = [
   { label: 'Public Events', href: '#events' },
   { label: 'Cogito Tutors', href: '#tutors' },
+  { label: 'Achievements', href: '/achievements' },
   { label: 'Why Us?', href: '#methods' },
   { label: 'Testimonials', href: '#testimonials' },
   { label: 'Types of Competitions', href: '#skills' },

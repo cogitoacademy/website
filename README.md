@@ -78,6 +78,7 @@ Create `apps/web/.env`:
 
 ```env
 NEXT_PUBLIC_SITE_URL=http://localhost:2001
+COGITO_APP_API_URL=http://localhost:3001
 NEXT_PUBLIC_SANITY_PROJECT_ID=<your-sanity-project-id>
 NEXT_PUBLIC_SANITY_DATASET=development
 NEXT_PUBLIC_SANITY_API_VERSION=2024-03-01
