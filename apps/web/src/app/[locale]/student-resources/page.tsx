@@ -1,12 +1,6 @@
 import type { Metadata } from 'next';
-import { getTranslations, setRequestLocale } from 'next-intl/server';
-import { checkAccess } from '@/actions/auth';
-import NavbarResolver from '@/components/navbar-resolver';
-import { PasswordGate } from '@/components/student-resources/password-gate';
-import { ResourceList } from '@/components/student-resources/resource-list';
-import { BASE_URL } from '@/lib/constants';
-import { STUDENT_RESOURCES_QUERY } from '@/queries/studentResources';
-import { client } from '@/sanity/client';
+import { redirect } from 'next/navigation';
+import { BASE_URL, KNOWLEDGE_BANK_URL } from '@/lib/constants';
 
 export const dynamic = 'force-dynamic';
 
@@ -44,51 +38,12 @@ export async function generateMetadata({
       images: [`${BASE_URL}/og-image-cogito.jpg`],
     },
     alternates: {
-      canonical: `${BASE_URL}/${locale}/student-resources`,
+      canonical: KNOWLEDGE_BANK_URL,
     },
   };
 }
 
-type Props = {
-  params: Promise<{
-    locale: string;
-  }>;
-};
-
-export default async function StudentResourcesPage({ params }: Props) {
-  const { locale } = await params;
-  setRequestLocale(locale);
-  const t = await getTranslations('studentResources');
-  const hasAccess = await checkAccess();
-
-  if (!hasAccess) {
-    return (
-      <div className="min-h-screen bg-background-cream">
-        <PasswordGate />
-      </div>
-    );
-  }
-
-  let resources;
-  try {
-    resources = await client.fetch(STUDENT_RESOURCES_QUERY);
-  } catch {
-    resources = [];
-  }
-
-  return (
-    <div className="bg-background-cream">
-      <NavbarResolver />
-      <div className="relative z-3 mx-auto min-h-screen max-w-7xl px-4">
-        <div className="mb-8">
-          <h1 className="font-semibold text-2xl text-neutral-1000 sm:max-w-[500px] sm:text-3xl md:max-w-2xl md:text-4xl lg:max-w-3xl lg:text-5xl min-[450px]:max-w-[420px]">
-            {t('title')}
-          </h1>
-          <p className="mt-2">{t('subtitle')}</p>
-        </div>
-
-        <ResourceList resources={resources} />
-      </div>
-    </div>
-  );
+export default async function StudentResourcesPage() {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  redirect(KNOWLEDGE_BANK_URL as any);
 }

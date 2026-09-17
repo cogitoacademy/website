@@ -19,7 +19,7 @@ import {
 } from '@/components/ui/accordion';
 import { Button } from '@/components/ui/button';
 import { Link } from '@/i18n/routing';
-import { APP_URL } from '@/lib/constants';
+import { APP_URL, KNOWLEDGE_BANK_URL } from '@/lib/constants';
 import LanguageToggle from './lang-toggle';
 
 interface MobileMenuProps {
@@ -39,12 +39,12 @@ const NAV_ITEMS_EN = [
 
 const RESOURCES_ITEMS_ID = [
   { label: 'Kalender Lomba', href: '/calendar' },
-  { label: 'Bank Pengetahuan', href: '/student-resources' },
+  { label: 'Bank Pengetahuan', href: KNOWLEDGE_BANK_URL },
 ];
 
 const RESOURCES_ITEMS_EN = [
   { label: 'Competition Calendar', href: '/calendar' },
-  { label: 'Knowledge Bank', href: '/student-resources' },
+  { label: 'Knowledge Bank', href: KNOWLEDGE_BANK_URL },
 ];
 
 const KEGIATAN_ITEMS_ID = [
@@ -208,16 +208,29 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                     </AccordionTrigger>
                     <AccordionContent className="pb-0 pl-5">
                       <div className="flex flex-col gap-3 pt-3">
-                        {resourcesItems.map((item) => (
-                          <Link
-                            key={item.label}
-                            href={item.href}
-                            onClick={onClose}
-                            className="text-sm min-[550px]:text-base"
-                          >
-                            {item.label}
-                          </Link>
-                        ))}
+                        {resourcesItems.map((item) =>
+                          item.href.startsWith('http') ? (
+                            <a
+                              key={item.label}
+                              href={item.href}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              onClick={onClose}
+                              className="text-sm min-[550px]:text-base"
+                            >
+                              {item.label}
+                            </a>
+                          ) : (
+                            <Link
+                              key={item.label}
+                              href={item.href}
+                              onClick={onClose}
+                              className="text-sm min-[550px]:text-base"
+                            >
+                              {item.label}
+                            </Link>
+                          ),
+                        )}
                       </div>
                     </AccordionContent>
                   </AccordionItem>

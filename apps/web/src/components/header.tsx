@@ -6,7 +6,7 @@ import Image from 'next/image';
 import { useLocale } from 'next-intl';
 import { useEffect, useState } from 'react';
 import { Link } from '@/i18n/routing';
-import { APP_URL } from '@/lib/constants';
+import { APP_URL, KNOWLEDGE_BANK_URL } from '@/lib/constants';
 import LanguageToggle from './lang-toggle';
 import MobileMenu from './mobile-menu';
 import { Button } from './ui/button';
@@ -24,7 +24,7 @@ const NAV_ITEMS_ID = [
     label: 'Sumber Daya',
     items: [
       { label: 'Kalender Lomba', href: '/calendar' },
-      { label: 'Bank Pengetahuan', href: '/student-resources' },
+      { label: 'Bank Pengetahuan', href: KNOWLEDGE_BANK_URL },
     ],
   },
   {
@@ -43,7 +43,7 @@ const NAV_ITEMS_EN = [
     label: 'Resources',
     items: [
       { label: 'Competition Calendar', href: '/calendar' },
-      { label: 'Knowledge Bank', href: '/student-resources' },
+      { label: 'Knowledge Bank', href: KNOWLEDGE_BANK_URL },
     ],
   },
   {
@@ -110,19 +110,35 @@ export default function Header() {
                         <ChevronDown className="h-4 w-4" />
                       </DropdownMenuTrigger>
                       <DropdownMenuContent align="start" className="w-48 bg-background-cream">
-                        {item.items.map((subItem) => (
-                          <DropdownMenuItem
-                            key={subItem.href}
-                            render={
-                              <Link
-                                href={subItem.href}
-                                className="w-full cursor-pointer font-medium text-base text-neutral-1000 hover:text-primary-500 focus:text-primary-500"
-                              >
-                                {subItem.label}
-                              </Link>
-                            }
-                          />
-                        ))}
+                        {item.items.map((subItem) =>
+                          subItem.href.startsWith('http') ? (
+                            <DropdownMenuItem
+                              key={subItem.href}
+                              render={
+                                <a
+                                  href={subItem.href}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="w-full cursor-pointer font-medium text-base text-neutral-1000 hover:text-primary-500 focus:text-primary-500"
+                                >
+                                  {subItem.label}
+                                </a>
+                              }
+                            />
+                          ) : (
+                            <DropdownMenuItem
+                              key={subItem.href}
+                              render={
+                                <Link
+                                  href={subItem.href}
+                                  className="w-full cursor-pointer font-medium text-base text-neutral-1000 hover:text-primary-500 focus:text-primary-500"
+                                >
+                                  {subItem.label}
+                                </Link>
+                              }
+                            />
+                          ),
+                        )}
                       </DropdownMenuContent>
                     </DropdownMenu>
                   ) : (

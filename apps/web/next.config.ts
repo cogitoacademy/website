@@ -55,15 +55,21 @@ const nextConfig: NextConfig = {
       },
     ];
   },
-  // async redirects() {
-  //   return [
-  //     {
-  //       source: "/:path*",
-  //       destination: "https://linktr.ee/cogitoacademy.id",
-  //       permanent: false,
-  //     },
-  //   ];
-  // },
+  async redirects() {
+    const appUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://app.cogitoacademy.id';
+    return [
+      {
+        source: '/:locale(id|en)/student-resources/:path*',
+        destination: `${appUrl}/knowledge-bank`,
+        permanent: true,
+      },
+      {
+        source: '/student-resources/:path*',
+        destination: `${appUrl}/knowledge-bank`,
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default withNextIntl(nextConfig);

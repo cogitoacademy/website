@@ -11,7 +11,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/achievements',
     '/calendar',
     '/contact',
-    '/student-resources',
     '/privacy-policy',
     '/terms-of-service',
   ];
