@@ -165,7 +165,7 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                 >
                   <Button variant="primary" size="lg" className="h-9 px-3">
                     <MonitorSmartphone />
-                    {isId ? 'Buka App' : 'Open App'}
+                    {isId ? 'Mulai Belajar' : 'Start Learning'}
                   </Button>
                 </a>
                 <LanguageToggle variant="cream" className="h-9 px-3 text-primary-500" />

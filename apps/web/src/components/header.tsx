@@ -156,9 +156,9 @@ export default function Header() {
 
             <div className="hidden items-center gap-3 lg:flex">
               <a href={APP_URL} target="_blank" rel="noopener noreferrer">
-                <Button size="lg" variant="primary">
+                <Button size="lg">
                   <MonitorSmartphone />
-                  <span>{isId ? 'Buka App' : 'Open App'}</span>
+                  <span>{isId ? 'Mulai Belajar' : 'Start Learning'}</span>
                 </Button>
               </a>
               <LanguageToggle />
@@ -173,7 +173,7 @@ export default function Header() {
               <a href={APP_URL} target="_blank" rel="noopener noreferrer">
                 <Button size="lg" variant="primary" className="h-9 px-3">
                   <MonitorSmartphone />
-                  <span>{isId ? 'Buka App' : 'Open App'}</span>
+                  <span>{isId ? 'Mulai Belajar' : 'Start Learning'}</span>
                 </Button>
               </a>
               <LanguageToggle className="h-9 px-3" />
