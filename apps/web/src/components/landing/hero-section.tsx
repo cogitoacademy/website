@@ -181,7 +181,7 @@ export function HeroSection() {
         {/* Trust Section */}
         <section className="flex flex-col items-center">
           <p className="text-neutral-700 text-xs sm:text-sm">{t('hero.trustedBy')}</p>
-          <LogoCloud logos={sampleLogos} interval={3000} displayCount={3} />
+          <LogoCloud logos={sampleLogos} />
         </section>
 
         {/* Class Cards */}
