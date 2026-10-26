@@ -9,7 +9,7 @@ import { SkillsSection } from '@/components/landing/skills-section';
 import { TestimonialsSection } from '@/components/landing/testimonials-section';
 import { TutorsSection } from '@/components/landing/tutors-section';
 import Cta from '../../components/landing/cta';
-import FaqSectionV2 from '../../components/landing/faq-v2';
+import FaqSectionV2 from '@/components/landing/faq-v2-section';
 
 export default async function HomePage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;

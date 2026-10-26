@@ -117,21 +117,15 @@
       "titleHighlight": "Memulai",
       "subtitle": "Kami juga siap membantu mendiskusikan rencana prestasimu secara mendalam."
     },
-    "items": {
-      "q1": "Apa itu Cogito Academy?",
-      "a1": "Lebih dari sekadar bimbingan belajar, Cogito Academy adalah inkubator talenta yang berfokus membentuk cendekiawan-juara kelas dunia. Kami percaya bahwa untuk menjadi yang terbaik, kamu harus belajar langsung dari yang terbaik. Misi kami adalah mengubah potensimu menjadi prestasi nyata melalui metode yang telah teruji di panggung global.",
-      "q2": "Apa yang membedakan Cogito dari bimbingan belajar lainnya?",
-      "a2": "Keunggulan kami dibangun di atas tiga pilar utama:<ul><li><strong>Tutor Praktisi & Juara:</strong> Mentor kami adalah para juara kompetisi dan praktisi berpengalaman, mulai dari pemenang olimpiade hingga profesional di PBB.</li><li><strong>Kurikulum Teruji Lapangan:</strong> Dirancang khusus untuk membangun keahlian sekaligus mentalitas pemenang di setiap tahap persiapan.</li><li><strong>Progres Terukur:</strong> Jumlah siswa dibatasi agar setiap individu mendapat perhatian penuh, feedback mendetail, serta laporan perkembangan rutin bagi orang tua.</li></ul>",
-      "q3": "Apa saja pilihan kelas yang tersedia?",
-      "a3": "Kami menyediakan tiga program yang disesuaikan dengan kebutuhanmu:<ul><li><strong>Kelas Reguler:</strong> Kursus terstruktur dari tahap dasar hingga mahir (contoh: WSC, MUN, dan Debat).</li><li><strong>Kelas Intensif:</strong> Persiapan khusus on-demand untuk menghadapi ajang lomba tertentu (contoh: Pidato, Business Plan, atau Esai).</li><li><strong>Kelas Ekstrakurikuler:</strong> Program pelatihan rutin yang dipersonalisasi untuk kebutuhan klub sekolah.</li></ul>",
-      "q4": "Kapan kelas dimulai dan bagaimana pengaturan jadwalnya?",
-      "a4": "Kami menggunakan sistem semi-privat berbasis permintaan (on-demand). Kelas tidak terpaku pada tanggal mulai tertentu—kami akan membuka kelas baru kapan pun kamu siap. Kamu bisa memulai belajar secara individu maupun kelompok, dengan jadwal yang fleksibel dan disesuaikan dengan ketersediaan waktumu.",
-      "q5": "Bagaimana siklus belajar di Cogito Academy?",
-      "a5": "Siklus kami dirancang untuk penguasaan materi yang maksimal:<ul><li><strong>Tahap Fondasi (Pra-Sesi):</strong> Analisis studi kasus atau jurnal sebelum kelas agar sesi tatap muka bisa langsung fokus pada diskusi strategis.</li><li><strong>Tahap Akselerasi (Sesi Interaktif):</strong> Praktik langsung melalui simulasi, role-play, dan pressure-testing.</li><li><strong>Tahap Penguatan (Pasca-Sesi):</strong> Internalisasi kemampuan melalui tugas nyata seperti menyusun position paper atau draf resolusi.</li><li><strong>Tahap Evaluasi (Umpan Balik):</strong> Feedback mendetail untuk setiap tugas dan sesi konsultasi rutin untuk memantau perkembanganmu.</li></ul>",
-      "q6": "Bagaimana skema biaya dan sistem pembayarannya?",
-      "a6": "Karena program kami bersifat personal, biaya bervariasi tergantung jenis lomba, jumlah sesi, dan jumlah murid dalam satu kelompok saat pendaftaran. Kami menerapkan sistem pembayaran fleksibel, baik secara lunas maupun cicilan hingga tiga kali tanpa biaya tambahan."
+    "empty": "Belum ada pertanyaan yang tersedia.",
+    "viewAll": "Lihat semua FAQ",
+    "error": {
+      "title": "FAQ sementara tidak tersedia.",
+      "description": "Jawaban belum dapat dimuat. Silakan coba lagi.",
+      "tryAgain": "Coba lagi"
     }
   },
+
   "hero": {
     "subtitle": "Belajar dari yang terbaik untuk jadi yang cendekiawan-juara kelas dunia dengan materi yang disusun para pakar.",
     "ctaPrimary": "Konsultasi Sekarang",

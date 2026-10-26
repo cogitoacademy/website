@@ -117,21 +117,15 @@
       "titleHighlight": "Get Started",
       "subtitle": "We're also ready to help discuss your achievement plans in depth."
     },
-    "items": {
-      "q1": "What exactly is Cogito Academy?",
-      "a1": "More than just a tutoring center, Cogito Academy is a talent incubator dedicated to shaping world-class scholars and champions. We believe that to be the best, you must learn from the best. Our mission is to systematically transform your potential into measurable achievements through methods proven on the global stage.",
-      "q2": "How is Cogito different from other tutoring centers?",
-      "a2": "Our excellence is built on three main pillars:<ul><li><strong>Champion Tutors:</strong> Our mentors are more than teachers—they are practitioners and international champions, from national Olympiad winners to UN professionals.</li><li><strong>Battle-Tested Curriculum:</strong> Expertly designed to build both skill and a winning mentality, covering every stage of competition prep.</li><li><strong>Measurable Growth:</strong> We keep classes small to ensure personalized attention, detailed feedback, and regular progress reports for parents.</li></ul>",
-      "q3": "What class programs can I join?",
-      "a3": "We offer three flexible programs tailored to your goals:<ul><li><strong>Regular Class:</strong> Structured journeys from foundation to mastery (e.g., WSC, MUN, and Debate).</li><li><strong>Intensive Class:</strong> On-demand, specialized prep for a specific upcoming competition (e.g., Speech, Business Plan, or Essay).</li><li><strong>Extracurricular Class:</strong> Routine training programs customized for school clubs.</li></ul>",
-      "q4": "When do classes start and how is scheduling handled?",
-      "a4": "We operate on a semi-private, on-demand basis. This means classes are not bound by specific start dates—we open a new class whenever there is demand. You can start your journey individually or in a small group, and the schedule will be arranged to fit your availability.",
-      "q5": "What does the learning cycle look like?",
-      "a5": "Our cycle is designed for maximum mastery:<ul><li><strong>Foundation (Pre-session):</strong> Analyze case studies or journals before class to prepare for high-level discussion.</li><li><strong>Acceleration (Interactive Session):</strong> Focus on practical application through simulations, role-play, and pressure testing.</li><li><strong>Reinforcement (Post-session):</strong> Internalize skills by crafting position papers, resolutions, or research drafts.</li><li><strong>Evaluation (Feedback):</strong> Receive detailed feedback on every task and regular consultations to track your growth.</li></ul>",
-      "q6": "How do the pricing and fee schemes work?",
-      "a6": "Because our programs are personalized, fees vary based on the competition type, number of sessions, and the number of students in your group at the time of registration. We offer flexible payment plans, including full payment or up to three installments with no hidden fees."
+    "empty": "There are no frequently asked questions available yet.",
+    "viewAll": "View all FAQs",
+    "error": {
+      "title": "Frequently asked questions are temporarily unavailable.",
+      "description": "We could not load the answers just now. Please try again.",
+      "tryAgain": "Try again"
     }
   },
+
   "hero": {
     "subtitle": "Learn from the best to become a world-class scholar-champion with materials designed by experts.",
     "ctaPrimary": "Schedule  Consultation",
