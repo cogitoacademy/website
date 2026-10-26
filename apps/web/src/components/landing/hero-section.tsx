@@ -126,26 +126,24 @@ export function HeroSection() {
             {isId ? (
               <>
                 Mulai Perjalananmu Menjadi Pelajar
-                <span className="w-1 sm:w-2"> </span>
                 <WordRotateHighlighter
                   words={rotatingWordsId}
                   className="italic"
                   action="highlight"
                   color="#f8eaa4"
                   highlightDelay={500}
-                />{' '}
+                />
               </>
             ) : (
               <>
-                Start Your Journey to Become a<span className="w-1 sm:w-2"> </span>
+                Start Your Journey to Become a
                 <WordRotateHighlighter
-                  words={rotatingWordsEn}
+                  words={rotatingWordsEn.map((word) => `${word} Student`)}
                   className="italic"
                   action="highlight"
                   color="#f8eaa4"
                   highlightDelay={500}
-                />{' '}
-                Student
+                />
               </>
             )}
           </div>

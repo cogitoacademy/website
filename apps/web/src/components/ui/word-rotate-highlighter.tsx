@@ -60,11 +60,11 @@ export function WordRotateHighlighter({
   }, [words, duration]);
 
   return (
-    <span className="inline overflow-hidden py-2">
+    <span className="relative flex h-[calc(1lh+1rem)] items-center justify-center">
       <AnimatePresence mode="wait">
         <m.span
           key={words[index]}
-          className={cn('relative inline-block', className)}
+          className={cn('relative inline-block whitespace-nowrap', className)}
           {...motionProps}
         >
           <Highlighter
