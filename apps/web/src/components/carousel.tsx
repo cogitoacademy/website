@@ -116,7 +116,10 @@ const Carousel: React.FC<CarouselProps> = ({
   useEffect(() => {
     if (!autoPlay) return;
     const interval = setInterval(() => {
-      if (!isTransitioning) setCurrentIndex((prev) => prev + 1);
+      if (!isTransitioning) {
+        setIsTransitioning(true);
+        setCurrentIndex((prev) => prev + 1);
+      }
     }, autoPlayInterval);
     return () => clearInterval(interval);
   }, [autoPlay, autoPlayInterval, isTransitioning]);
