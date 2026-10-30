@@ -8,10 +8,10 @@ import { getCoreCategoryBadgeColor } from '@/lib/colors/brandColors';
 import type { Tutor } from '@/types/tutor';
 import { Badge } from './ui/badge';
 import {
-  ResponsiveModal,
-  ResponsiveModalContent,
-  ResponsiveModalTitle,
-} from './ui/responsive-modal';
+  Sheet,
+  SheetContent,
+  SheetTitle,
+} from './ui/sheet';
 
 interface TutorDetailModalProps {
   tutor: Tutor;
@@ -46,15 +46,14 @@ export default function TutorDetailModal({ tutor, open, onOpenChange }: TutorDet
   ));
 
   return (
-    <ResponsiveModal open={open} onOpenChange={onOpenChange}>
-      <ResponsiveModalContent
+    <Sheet open={open} onOpenChange={onOpenChange}>
+      <SheetContent
         side="bottom"
-        className="flex w-full max-w-full flex-col gap-0 overflow-hidden rounded-t-2xl border-none bg-background p-0 sm:max-h-[85vh] sm:w-[calc(100%-2rem)] sm:max-w-5xl sm:flex-row sm:rounded-lg"
-        style={{ maxHeight: '85dvh' }}
+        className="flex w-full max-h-[90dvh] flex-col gap-0 overflow-y-auto rounded-t-2xl border-none bg-background p-0 text-base sm:data-[side=bottom]:inset-x-auto sm:data-[side=bottom]:inset-y-0 sm:data-[side=bottom]:right-0 sm:data-[side=bottom]:h-dvh sm:max-h-dvh sm:w-full sm:max-w-xl sm:rounded-none sm:data-[side=bottom]:data-open:slide-in-from-bottom-0 sm:data-[side=bottom]:data-closed:slide-out-to-bottom-0 sm:data-[side=bottom]:data-open:slide-in-from-right-10 sm:data-[side=bottom]:data-closed:slide-out-to-right-10"
         showCloseButton={false}
       >
         {/* Left/Top: Image Section */}
-        <div className="relative h-[300px] shrink-0 overflow-hidden bg-[#A855F7] sm:h-auto sm:w-2/5">
+        <div className="relative h-[240px] shrink-0 overflow-hidden bg-[#A855F7] sm:h-[280px]">
           {/* Main Image */}
           {tutor.profilePicture?.asset?.url && (
             <Image
@@ -62,7 +61,7 @@ export default function TutorDetailModal({ tutor, open, onOpenChange }: TutorDet
               alt={tutor.profilePicture.asset.altText || tutor.name}
               fill
               className="object-cover object-top"
-              sizes="(max-width: 640px) 100vw, 40vw"
+              sizes="(max-width: 640px) 100vw, 576px"
             />
           )}
 
@@ -78,7 +77,7 @@ export default function TutorDetailModal({ tutor, open, onOpenChange }: TutorDet
           <Button
             variant="secondary"
             size="icon"
-            className="absolute top-4 right-4 z-20 h-8 w-8 rounded-md bg-white/90 text-black shadow-sm hover:bg-white sm:right-auto sm:left-4"
+            className="absolute top-4 right-4 z-20 h-8 w-8 rounded-md bg-white/90 text-black shadow-sm hover:bg-white"
             onClick={() => onOpenChange(false)}
           >
             <XIcon className="h-4 w-4" />
@@ -87,14 +86,14 @@ export default function TutorDetailModal({ tutor, open, onOpenChange }: TutorDet
         </div>
 
         {/* Right/Bottom: Content Section */}
-        <div className="min-h-0 flex-1 overflow-y-auto bg-background">
+        <div className="bg-background">
           <div className="p-6">
             {/* Header Info */}
             <div className="space-y-3">
               <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
-                <ResponsiveModalTitle className="font-bold text-2xl text-foreground leading-none tracking-tight sm:text-3xl">
+                <SheetTitle className="font-bold text-2xl text-foreground leading-none tracking-tight sm:text-3xl">
                   {tutor.name}
-                </ResponsiveModalTitle>
+                </SheetTitle>
 
                 {/* Desktop Badges */}
                 <div className="hidden max-w-[50%] flex-wrap justify-end gap-2 sm:flex">
@@ -122,7 +121,7 @@ export default function TutorDetailModal({ tutor, open, onOpenChange }: TutorDet
             </div>
 
             {/* Content Columns */}
-            <div className="grid grid-cols-1 gap-4 pt-3 sm:grid-cols-2">
+            <div className="grid grid-cols-1 gap-4 pt-4 pb-[env(safe-area-inset-bottom)]">
               <div className="h-full space-y-1 rounded-xl bg-background-primary px-3 py-2">
                 <h3 className="pb-0.5 font-semibold text-base text-foreground">
                   {t('achievements')}
@@ -135,7 +134,7 @@ export default function TutorDetailModal({ tutor, open, onOpenChange }: TutorDet
                   </p>
                 )}
                 {achievements.length > 0 && (
-                  <ul className="max-h-[200px] list-outside list-disc space-y-2 overflow-y-auto px-4 text-muted-foreground/90 text-sm leading-relaxed">
+                  <ul className="list-outside list-disc space-y-2 px-4 text-muted-foreground/90 text-sm leading-relaxed">
                     {achievements.map((item) => (
                       <li key={item}>{item}</li>
                     ))}
@@ -155,7 +154,7 @@ export default function TutorDetailModal({ tutor, open, onOpenChange }: TutorDet
                   </p>
                 )}
                 {experiences.length > 0 && (
-                  <ul className="max-h-[200px] list-outside list-disc space-y-2 overflow-y-auto px-4 text-muted-foreground/90 text-sm leading-relaxed">
+                  <ul className="list-outside list-disc space-y-2 px-4 text-muted-foreground/90 text-sm leading-relaxed">
                     {experiences.map((item) => (
                       <li key={item}>{item}</li>
                     ))}
@@ -165,7 +164,7 @@ export default function TutorDetailModal({ tutor, open, onOpenChange }: TutorDet
             </div>
           </div>
         </div>
-      </ResponsiveModalContent>
-    </ResponsiveModal>
+      </SheetContent>
+    </Sheet>
   );
 }
