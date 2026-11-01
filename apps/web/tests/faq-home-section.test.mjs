@@ -36,6 +36,6 @@ describe('landing FAQ failure state', () => {
     expect(markup).toContain('role="status"');
     expect(markup).not.toContain('Try again');
     expect(markup).toContain('Your questions, answered soon!');
-    expect(markup).toContain('View all FAQs');
+    expect(markup).not.toContain('View all FAQs');
   });
 });

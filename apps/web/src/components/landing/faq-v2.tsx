@@ -84,12 +84,14 @@ export default function FaqSectionV2({
                 ))}
               </Accordion>
             )}
-            <Link
-              href="/faq"
-              className="text-primary-600 underline underline-offset-4 hover:text-primary-700 text-sm self-center lg:self-start mt-4"
-            >
-              {t('viewAll')}
-            </Link>
+            {!hasError && items.length > 0 && (
+              <Link
+                href="/faq"
+                className="text-primary-600 underline underline-offset-4 hover:text-primary-700 text-sm self-center lg:self-start mt-4"
+              >
+                {t('viewAll')}
+              </Link>
+            )}
           </div>
         </div>
       </section>
