@@ -85,3 +85,19 @@ describe('Activities page UI', () => {
     expect(markup).toContain('Connect with the community.');
   });
 });
+
+test('class title uses the same content on both language routes', () => {
+  for (const locale of ['en', 'id']) {
+    const markup = renderToStaticMarkup(
+      createElement(ActivitiesContent, {
+        classes: [{ ...classItem, titleId: 'Unused translated title' }],
+        events: [],
+        classesFailed: false,
+        eventsFailed: false,
+        locale,
+      }),
+    );
+    expect(markup).toContain('MUN Cohort');
+    expect(markup).not.toContain('Unused translated title');
+  }
+});

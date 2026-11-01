@@ -16,8 +16,6 @@ const classSchema = z.object({
   state: z.enum(['published', 'postponed']),
   titleEn: z.string(),
   descriptionEn: z.string(),
-  titleId: z.string().nullable().optional(),
-  descriptionId: z.string().nullable().optional(),
   coverKey: z.string().nullable(),
   cohortFullRateMarks: z.number().nonnegative().nullable(),
   masterclassRateMarks: z.number().nonnegative().nullable(),

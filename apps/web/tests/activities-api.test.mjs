@@ -52,7 +52,7 @@ describe('Activities class adapter', () => {
     }
   });
 
-  test('retains postponed classes and optional Indonesian content', async () => {
+  test('retains postponed classes with one canonical content language', async () => {
     globalThis.fetch = mock(async () =>
       Response.json({
         json: [{ ...item, state: 'postponed', titleId: 'Kelas MUN', descriptionId: 'Latihan MUN' }],
@@ -60,7 +60,9 @@ describe('Activities class adapter', () => {
     );
     const result = await getActivityClasses('http://localhost:3001');
     expect(result[0].state).toBe('postponed');
-    expect(result[0].titleId).toBe('Kelas MUN');
+    expect(result[0].titleEn).toBe('MUN');
+    expect(result[0]).not.toHaveProperty('titleId');
+    expect(result[0]).not.toHaveProperty('descriptionId');
   });
 
   test('allows empty catalog and rejects missing configuration', async () => {

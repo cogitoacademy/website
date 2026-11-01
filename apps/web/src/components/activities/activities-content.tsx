@@ -95,7 +95,7 @@ export default function ActivitiesContent({
         ) : (
           <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
             {visibleClasses.map((item) => {
-              const title = id && item.titleId?.trim() ? item.titleId : item.titleEn;
+              const title = item.titleEn;
               const tutors = [
                 ...new Set(
                   item.sessions.flatMap((session) => (session.tutor ? [session.tutor.name] : [])),
