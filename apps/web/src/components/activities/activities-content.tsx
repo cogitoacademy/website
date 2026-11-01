@@ -60,8 +60,22 @@ export default function ActivitiesContent({
 }: Props) {
   const id = locale === 'id';
   const [kind, setKind] = useState('all');
+  const [now] = useState(() => Date.now());
   const [selectedClass, setSelectedClass] = useState<ActivityClass | null>(null);
   const visibleClasses = classes.filter((item) => kind === 'all' || item.kind === kind);
+  const upcomingCohortSessions = visibleClasses
+    .filter((item) => item.kind === 'cohort')
+    .flatMap((item) =>
+      item.sessions
+        .filter(
+          (session) => session.state !== 'cancelled' && new Date(session.startAt).getTime() > now,
+        )
+        .map((session) => ({ item, session })),
+    )
+    .sort(
+      (left, right) =>
+        new Date(left.session.startAt).getTime() - new Date(right.session.startAt).getTime(),
+    );
 
   return (
     <div className="space-y-16 md:space-y-20">
@@ -88,6 +102,69 @@ export default function ActivitiesContent({
             ]}
           />
         </div>
+        {upcomingCohortSessions.length > 0 ? (
+          <div className="mb-8 space-y-3">
+            <div className="flex flex-wrap items-baseline justify-between gap-2">
+              <h3 className="font-semibold text-lg tracking-tight">
+                {id ? 'Sesi cohort mendatang' : 'Upcoming cohort sessions'}
+              </h3>
+              <p className="text-neutral-800 text-xs">
+                {id
+                  ? 'Setiap sesi terhubung ke cohort induknya.'
+                  : 'Each session is tagged with its parent cohort.'}
+              </p>
+            </div>
+            <ul className="divide-y divide-neutral-200 overflow-hidden rounded-xl border border-neutral-200">
+              {upcomingCohortSessions.map(({ item, session }) => {
+                const start = new Date(session.startAt);
+                const datePart = (options: Intl.DateTimeFormatOptions) =>
+                  new Intl.DateTimeFormat(id ? 'id-ID' : 'en-US', {
+                    ...options,
+                    timeZone: 'Asia/Jakarta',
+                  }).format(start);
+                return (
+                  <li key={session.id} className="min-w-0">
+                    <button
+                      type="button"
+                      className="flex w-full min-w-0 items-center gap-3 px-3 py-3 text-left transition-colors hover:bg-neutral-100"
+                      onClick={() => setSelectedClass(item)}
+                      aria-label={`${id ? 'Lihat kelas' : 'View class'}: ${item.titleEn}`}
+                    >
+                      <time
+                        dateTime={session.startAt}
+                        className="flex aspect-square size-12 shrink-0 flex-col items-center justify-center rounded-md bg-neutral-100 text-center leading-none"
+                      >
+                        <span className="text-[.625rem] font-medium uppercase opacity-80">
+                          {datePart({ month: 'short' })}
+                        </span>
+                        <span className="mt-1 text-lg font-semibold tabular-nums">
+                          {datePart({ day: 'numeric' })}
+                        </span>
+                      </time>
+                      <span className="flex min-w-0 flex-1 flex-col gap-1">
+                        <span className="flex min-w-0 flex-wrap items-center gap-2">
+                          <span className="truncate font-semibold text-sm">{session.titleEn}</span>
+                          <Badge variant="outline" className="shrink-0 px-2 py-0.5 text-[10px]">
+                            {id ? 'Bagian dari' : 'Part of'} {item.titleEn}
+                          </Badge>
+                        </span>
+                        <span className="text-neutral-800 text-xs">
+                          {datePart({ hour: '2-digit', minute: '2-digit' })} WIB ·{' '}
+                          {session.mode === 'online' ? 'Online' : id ? 'Tatap muka' : 'In person'} ·{' '}
+                          {session.tutor?.name ?? (id ? 'Tutor Cogito' : 'Cogito tutor')}
+                        </span>
+                      </span>
+                      <ChevronRight
+                        className="size-4 shrink-0 text-neutral-800"
+                        aria-hidden="true"
+                      />
+                    </button>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        ) : null}
         {classesFailed ? (
           <ClassEmpty id={id} failed />
         ) : visibleClasses.length === 0 ? (
@@ -117,7 +194,10 @@ export default function ActivitiesContent({
               const meta = (
                 <div className="min-w-0 space-y-1 text-xs md:max-w-48">
                   <div className="flex items-center gap-1.5 font-medium">
-                    <Clock aria-hidden="true" className="size-3.5 shrink-0 text-neutral-800 md:size-5" />
+                    <Clock
+                      aria-hidden="true"
+                      className="size-3.5 shrink-0 text-neutral-800 md:size-5"
+                    />
                     <span className="truncate">
                       {datePart({ hour: '2-digit', minute: '2-digit' })} WIB
                     </span>
@@ -147,7 +227,10 @@ export default function ActivitiesContent({
                 </div>
               );
               return (
-                <Card key={item.id} className="flex min-w-0 rounded-xl border border-neutral-200 bg-neutral-100 py-0">
+                <Card
+                  key={item.id}
+                  className="flex min-w-0 rounded-xl border border-neutral-200 bg-neutral-100 py-0"
+                >
                   <CardContent className="flex h-full w-full min-w-0 flex-col gap-4 p-4">
                     <div className="flex min-w-0 items-center gap-3">
                       <time
@@ -167,7 +250,10 @@ export default function ActivitiesContent({
                       <div className="min-w-0 flex-1">{meta}</div>
                     </div>
                     <div className="flex min-w-0 flex-col gap-2">
-                      <h3 className="truncate text-sm font-semibold leading-6 md:text-base" title={title}>
+                      <h3
+                        className="truncate text-sm font-semibold leading-6 md:text-base"
+                        title={title}
+                      >
                         {title}
                       </h3>
                       <div className="flex min-w-0 flex-wrap items-center gap-x-3 gap-y-2 text-xs">
@@ -229,9 +315,7 @@ export default function ActivitiesContent({
             </ResponsiveModalClose>
             {selectedClass ? (
               <Button
-                render={
-                  <a href={`${APP_URL}/classes/${encodeURIComponent(selectedClass.id)}`} />
-                }
+                render={<a href={`${APP_URL}/classes/${encodeURIComponent(selectedClass.id)}`} />}
                 size="default"
               >
                 {id ? 'Lanjut ke aplikasi' : 'Continue to app'}
@@ -246,9 +330,15 @@ export default function ActivitiesContent({
 
 function ClassEmpty({ id, failed = false }: { id: boolean; failed?: boolean }) {
   return (
-    <Empty role={failed ? 'status' : undefined} className="min-h-72 rounded-2xl border border-dashed border-neutral-300 bg-transparent py-20">
+    <Empty
+      role={failed ? 'status' : undefined}
+      className="min-h-72 rounded-2xl border border-dashed border-neutral-300 bg-transparent py-20"
+    >
       <EmptyHeader>
-        <EmptyMedia variant="icon" className="bg-transparent text-muted-foreground lg:size-8 [&_svg]:lg:size-4">
+        <EmptyMedia
+          variant="icon"
+          className="bg-transparent text-muted-foreground lg:size-8 [&_svg]:lg:size-4"
+        >
           <CalendarDays aria-hidden="true" />
         </EmptyMedia>
         <EmptyTitle>
@@ -290,7 +380,9 @@ function ActivitiesFilter({
   return (
     <DropdownMenu>
       <DropdownMenuTrigger render={<Button variant="outline" />}>
-        <span>{value === 'all' ? label : options.find((option) => option.value === value)?.label}</span>
+        <span>
+          {value === 'all' ? label : options.find((option) => option.value === value)?.label}
+        </span>
         <ChevronDown className="size-4" />
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56">
