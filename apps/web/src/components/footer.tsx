@@ -47,19 +47,11 @@ export default function Footer() {
     <footer
       className={cn(
         'relative z-1 -mt-18',
-        isContactPage ? 'bg-background-primary' : 'bg-primary-200',
+        isContactPage ? 'bg-background-primary' : 'bg-background-primary',
       )}
     >
-      {isContactPage ? (
+      {isContactPage && (
         <div className="absolute top-0 left-0 z-1 h-40 w-full -translate-y-full bg-background-primary [clip-path:polygon(0%_0%,0%_100%,100%_100%,100%_0%,100%_20%,50%_100%,0%_20%)] lg:h-60" />
-      ) : (
-        <svg
-          viewBox="0 0 1440 160"
-          preserveAspectRatio="none"
-          className="absolute top-0 left-0 z-1 w-full -translate-y-full lg:h-60"
-        >
-          <path d="M0,160 C240,0 1200,0 1440,160 L1440,160 L0,160 Z" className="fill-primary-200" />
-        </svg>
       )}
 
       <section
