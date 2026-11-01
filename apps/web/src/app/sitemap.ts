@@ -11,6 +11,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/activities',
     '/achievements',
     '/calendar',
+    '/faq',
     '/contact',
     '/privacy-policy',
     '/terms-of-service',
@@ -24,7 +25,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
       sitemapEntries.push({
         url,
-        lastModified: new Date(),
         changeFrequency: staticPage === '' ? 'weekly' : 'monthly',
         priority: staticPage === '' ? 1 : 0.8,
       });

@@ -6,7 +6,62 @@
     "activities": "Events",
     "calendar": "Competition Calendar",
     "about": "About",
-    "faq": "FAQ"
+    "faq": "FAQ",
+    "blog": "Blog"
+  },
+  "blog": {
+    "meta": {
+      "title": "Blog",
+      "description": "Guides, strategies, and learning notes for competition students from the Cogito Academy team."
+    },
+    "home": {
+      "eyebrow": "Cogito Blog",
+      "title": "Learning notes for champion students",
+      "description": "Practical guides, competition strategies, and notes from the Cogito Academy tutor team.",
+      "empty": "No articles are published yet. Check back soon.",
+      "errorTitle": "Articles could not be loaded",
+      "errorDescription": "We could not fetch articles from the server. Reload this page to try again.",
+      "retry": "Try again"
+    },
+    "card": {
+      "readingTime": "{minutes} min read"
+    },
+    "article": {
+      "backToBlog": "Back to blog",
+      "published": "Published",
+      "updated": "Updated",
+      "readingTime": "{minutes} min read",
+      "tableOfContents": "Table of contents",
+      "keyFacts": "Key facts",
+      "faq": "Frequently asked questions",
+      "related": "Related articles",
+      "gallery": "Gallery",
+      "languageSwitch": "Read in Indonesian",
+      "breadcrumbBlog": "Blog",
+      "errorTitle": "Article could not be loaded",
+      "errorDescription": "We could not fetch this article from the server. Try again shortly.",
+      "retry": "Try again"
+    },
+    "category": {
+      "backToBlog": "Back to blog",
+      "articleCount": "{count} articles",
+      "metaDescription": "Articles and guides from Cogito Academy.",
+      "errorTitle": "Category could not be loaded",
+      "errorDescription": "We could not fetch categories from the server. Try again shortly.",
+      "retry": "Try again"
+    },
+    "embed": {
+      "play": "Play video",
+      "privacy": "Content from {provider} loads only after you press play.",
+      "watchOn": "Watch on {provider}"
+    },
+    "consultation": {
+      "eyebrow": "Need guidance?",
+      "title": "Free consultation with the Cogito team",
+      "description": "Tell us your competition goal. We will map the learning steps with you.",
+      "cta": "Consult via WhatsApp",
+      "dismiss": "Dismiss consultation offer"
+    }
   },
   "tutors": {
     "title": "Our Tutor Team",
