@@ -9,7 +9,14 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from '@/components/ui/accordion';
-import { FaqAvailability } from '@/components/faq-availability';
+import { SealQuestionIcon } from '@phosphor-icons/react/dist/ssr';
+import {
+  Empty,
+  EmptyHeader,
+  EmptyMedia,
+  EmptyTitle,
+  EmptyDescription,
+} from '@/components/ui/empty';
 import type { PublicFaq } from '@/types/faq';
 
 export function FaqSection({
@@ -34,20 +41,16 @@ export function FaqSection({
           </p>
         </div>
 
-        {hasError ? (
-          <FaqAvailability
-            status="error"
-            title={t('error.title')}
-            description={t('error.description')}
-            retryLabel={t('error.tryAgain')}
-            className="max-w-xl text-left text-neutral-700 text-sm"
-          />
-        ) : items.length === 0 ? (
-          <FaqAvailability
-            status="empty"
-            emptyMessage={t('empty')}
-            className="rounded-2xl border border-dashed border-neutral-700 bg-transparent p-6 text-left font-medium text-neutral-700 text-sm"
-          />
+        {hasError || items.length === 0 ? (
+          <Empty role="status" className="h-full">
+            <EmptyHeader>
+              <EmptyMedia variant="icon">
+                <SealQuestionIcon aria-hidden="true" />
+              </EmptyMedia>
+              <EmptyTitle>{t('error.title')}</EmptyTitle>
+              <EmptyDescription className="text-pretty">{t('error.description')}</EmptyDescription>
+            </EmptyHeader>
+          </Empty>
         ) : (
           <Accordion className="w-full">
             {items.map((item) => (

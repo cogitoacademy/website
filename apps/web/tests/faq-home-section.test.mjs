@@ -15,15 +15,15 @@ const messages = {
     empty: 'No questions yet.',
     viewAll: 'View all FAQs',
     error: {
-      title: 'FAQ temporarily unavailable.',
-      description: 'Try again shortly.',
+      title: 'Your questions, answered soon!',
+      description: 'Stay tuned for our FAQs right here.',
       tryAgain: 'Try again',
     },
   },
 };
 
 describe('landing FAQ failure state', () => {
-  test('renders the FAQ error and full-page link without replacing the landing section', () => {
+  test('renders the coming-soon state without a retry action', () => {
     const markup = renderToStaticMarkup(
       createElement(
         NextIntlClientProvider,
@@ -33,8 +33,9 @@ describe('landing FAQ failure state', () => {
     );
 
     expect(markup).toContain('<section');
-    expect(markup).toContain('role="alert"');
-    expect(markup).toContain('FAQ temporarily unavailable.');
-    expect(markup).toContain('View all FAQs');
+    expect(markup).toContain('role="status"');
+    expect(markup).not.toContain('Try again');
+    expect(markup).toContain('Your questions, answered soon!');
+    expect(markup).not.toContain('View all FAQs');
   });
 });

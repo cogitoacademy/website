@@ -10,7 +10,6 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from '@/components/ui/accordion';
-import { FaqAvailability } from '@/components/faq-availability';
 import { Badge } from '@/components/ui/badge';
 import type { PublicFaq } from '@/types/faq';
 
@@ -48,19 +47,27 @@ export default function FaqSectionV2({
 
           <div className="w-full flex flex-col">
             {hasError ? (
-              <FaqAvailability
-                status="error"
-                title={t('error.title')}
-                description={t('error.description')}
-                retryLabel={t('error.tryAgain')}
-                className="max-w-xl text-left text-neutral-700 text-sm lg:mx-0"
-              />
+              <div className="relative">
+                <SealQuestionIcon
+                  aria-hidden="true"
+                  className="absolute left-1/2 top-8 size-10 -translate-x-1/2 text-primary-500"
+                />
+                <div
+                  role="status"
+                  className="w-full rounded-2xl border border-neutral-200 bg-white/60 px-6 pb-10 pt-24 text-center text-sm leading-relaxed text-neutral-600 md:pb-12"
+                >
+                  <h4 className="font-semibold text-base">{t('error.title')}</h4>
+                  <p className="mt-2">{t('error.description')}</p>
+                </div>
+              </div>
             ) : items.length === 0 ? (
-              <FaqAvailability
-                status="empty"
-                emptyMessage={t('empty')}
-                className="text-center font-medium text-neutral-700 text-sm lg:text-left"
-              />
+              <div
+                role="status"
+                className="flex w-full flex-col items-center gap-4 rounded-2xl border border-neutral-200 bg-white/60 px-6 py-10 text-center md:py-12"
+              >
+                <SealQuestionIcon aria-hidden="true" className="size-10 text-primary-500" />
+                <p className="max-w-sm text-sm leading-relaxed text-neutral-600">{t('empty')}</p>
+              </div>
             ) : (
               <Accordion className="w-full">
                 {items.map((item) => (
@@ -77,12 +84,14 @@ export default function FaqSectionV2({
                 ))}
               </Accordion>
             )}
-            <Link
-              href="/faq"
-              className="text-primary-600 underline underline-offset-4 hover:text-primary-700 text-sm self-center lg:self-start mt-4"
-            >
-              {t('viewAll')}
-            </Link>
+            {!hasError && items.length > 0 && (
+              <Link
+                href="/faq"
+                className="text-primary-600 underline underline-offset-4 hover:text-primary-700 text-sm self-center lg:self-start mt-4"
+              >
+                {t('viewAll')}
+              </Link>
+            )}
           </div>
         </div>
       </section>

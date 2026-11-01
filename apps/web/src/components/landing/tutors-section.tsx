@@ -50,15 +50,12 @@ export async function TutorsSection() {
           ) : (
             <p
               role={result.status === 'failure' ? 'alert' : 'status'}
-              className="text-center text-muted-foreground"
+              className="flex w-full max-w-3xl flex-col items-center gap-4 rounded-2xl border border-neutral-200 bg-white/60 px-6 py-10 text-center text-sm leading-relaxed text-neutral-600 md:py-12"
             >
-              {result.status === 'failure'
-                ? isId
-                  ? 'Informasi tutor sementara tidak tersedia.'
-                  : 'Tutor information is temporarily unavailable.'
-                : isId
-                  ? 'Profil tutor akan tampil di sini setelah dipublikasikan.'
-                  : 'Tutor profiles will appear here once they are published.'}
+              <BooksIcon aria-hidden="true" className="size-10 text-primary-500" />
+              {isId
+                ? 'Siap kenalan dengan #TutorJuara? Profil mereka segera hadir!'
+                : 'Ready to meet our #ChampionTutors? Their profiles are coming soon!'}
             </p>
           )}
 
