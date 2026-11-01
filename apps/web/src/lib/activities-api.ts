@@ -4,9 +4,11 @@ const sessionSchema = z.object({
   id: z.string(),
   sequenceNumber: z.number(),
   startAt: z.iso.datetime({ offset: true }),
+  endAt: z.iso.datetime({ offset: true }),
   titleEn: z.string(),
   curriculumEn: z.string().nullable(),
   mode: z.enum(['online', 'in_person']),
+  state: z.enum(['scheduled', 'completed', 'cancelled']),
   tutor: z.object({ name: z.string() }).nullable(),
 });
 
@@ -16,7 +18,6 @@ const classSchema = z.object({
   state: z.enum(['published', 'postponed']),
   titleEn: z.string(),
   descriptionEn: z.string(),
-  coverKey: z.string().nullable(),
   cohortFullRateMarks: z.number().nonnegative().nullable(),
   masterclassRateMarks: z.number().nonnegative().nullable(),
   competition: z.object({ name: z.string() }),
