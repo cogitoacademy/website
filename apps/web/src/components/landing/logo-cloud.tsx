@@ -23,7 +23,7 @@ export function LogoCloud({ logos }: { logos: Logo[] }) {
             />
           ),
         }))}
-        speed={22}
+        speed={42}
         gap={12}
         className="[--logo-marquee-gap:4px] sm:[--logo-marquee-gap:12px] border-0 bg-transparent shadow-none dark:bg-transparent dark:shadow-none [&_ul>li>span]:h-16 sm:[&_ul>li>span]:h-20 md:[&_ul>li>span]:h-24"
       />
