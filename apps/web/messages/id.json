@@ -6,7 +6,62 @@
     "activities": "Acara",
     "calendar": "Kalender Lomba",
     "about": "Tentang Kami",
-    "faq": "FAQ"
+    "faq": "FAQ",
+    "blog": "Blog"
+  },
+  "blog": {
+    "meta": {
+      "title": "Blog",
+      "description": "Panduan, strategi, dan catatan belajar untuk pelajar kompetisi dari tim Cogito Academy."
+    },
+    "home": {
+      "eyebrow": "Blog Cogito",
+      "title": "Catatan belajar untuk pelajar juara",
+      "description": "Panduan praktis, strategi kompetisi, dan catatan dari tim tutor Cogito Academy.",
+      "empty": "Belum ada artikel yang terbit. Kembali lagi sebentar lagi.",
+      "errorTitle": "Artikel belum bisa dimuat",
+      "errorDescription": "Kami gagal mengambil artikel dari server. Coba muat ulang halaman ini.",
+      "retry": "Coba lagi"
+    },
+    "card": {
+      "readingTime": "{minutes} menit baca"
+    },
+    "article": {
+      "backToBlog": "Kembali ke blog",
+      "published": "Terbit",
+      "updated": "Diperbarui",
+      "readingTime": "{minutes} menit baca",
+      "tableOfContents": "Daftar isi",
+      "keyFacts": "Poin utama",
+      "faq": "Pertanyaan yang sering diajukan",
+      "related": "Artikel terkait",
+      "gallery": "Galeri",
+      "languageSwitch": "Baca dalam bahasa Inggris",
+      "breadcrumbBlog": "Blog",
+      "errorTitle": "Artikel belum bisa dimuat",
+      "errorDescription": "Kami gagal mengambil artikel dari server. Coba lagi sebentar.",
+      "retry": "Coba lagi"
+    },
+    "category": {
+      "backToBlog": "Kembali ke blog",
+      "articleCount": "{count} artikel",
+      "metaDescription": "Kumpulan artikel dan panduan dari Cogito Academy.",
+      "errorTitle": "Kategori belum bisa dimuat",
+      "errorDescription": "Kami gagal mengambil kategori dari server. Coba lagi sebentar.",
+      "retry": "Coba lagi"
+    },
+    "embed": {
+      "play": "Putar video",
+      "privacy": "Konten dari {provider} dimuat hanya setelah kamu menekan putar.",
+      "watchOn": "Tonton di {provider}"
+    },
+    "consultation": {
+      "eyebrow": "Butuh arahan?",
+      "title": "Konsultasi gratis dengan tim Cogito",
+      "description": "Ceritakan target kompetisimu. Kami bantu petakan langkah belajarnya.",
+      "cta": "Konsultasi via WhatsApp",
+      "dismiss": "Tutup tawaran konsultasi"
+    }
   },
   "tutors": {
     "title": "Tim Tutor Kami",
