@@ -73,7 +73,7 @@ export default function ActivitiesContent({
             </h2>
             <p className="text-neutral-900 text-sm">
               {id
-                ? 'Belajar bertahap dalam cohort atau fokus pada satu topik.'
+                ? 'Ikuti rangkaian kelas atau pelajari satu topik secara mendalam.'
                 : 'Learn over a series of sessions or focus on one topic.'}
             </p>
           </div>
@@ -246,9 +246,9 @@ export default function ActivitiesContent({
 
 function ClassEmpty({ id, failed = false }: { id: boolean; failed?: boolean }) {
   return (
-    <Empty role={failed ? 'status' : undefined} className="min-h-72 rounded-2xl bg-background-cream py-20">
+    <Empty role={failed ? 'status' : undefined} className="min-h-72 rounded-2xl border border-dashed border-neutral-300 bg-transparent py-20">
       <EmptyHeader>
-        <EmptyMedia variant="icon" className="bg-background-primary text-primary-500 lg:size-8 [&_svg]:lg:size-4">
+        <EmptyMedia variant="icon" className="bg-transparent text-muted-foreground lg:size-8 [&_svg]:lg:size-4">
           <CalendarDays aria-hidden="true" />
         </EmptyMedia>
         <EmptyTitle>

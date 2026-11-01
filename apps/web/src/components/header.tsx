@@ -20,13 +20,13 @@ import {
 const NAV_ITEMS_ID = [
   { label: '#TutorJuara', href: '/tutors' },
   { label: 'Prestasi', href: '/achievements' },
-  { label: 'Kegiatan', href: '/activities' },
+  { label: 'Acara', href: '/activities' },
   { label: 'FAQ', href: '/faq' },
   {
-    label: 'Sumber Daya',
+    label: 'Sumber',
     items: [
       { label: 'Kalender Lomba', href: '/calendar' },
-      { label: 'Bank Pengetahuan', href: KNOWLEDGE_BANK_URL },
+      { label: 'Bank Materi', href: KNOWLEDGE_BANK_URL },
     ],
   },
 ];
@@ -34,7 +34,7 @@ const NAV_ITEMS_ID = [
 const NAV_ITEMS_EN = [
   { label: '#ChampionTutors', href: '/tutors' },
   { label: 'Achievements', href: '/achievements' },
-  { label: 'Activities', href: '/activities' },
+  { label: 'Events', href: '/activities' },
   { label: 'FAQ', href: '/faq' },
   {
     label: 'Resources',

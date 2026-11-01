@@ -70,7 +70,7 @@ async function TutorContent({ params }: Props) {
   const result = await tryLoadPublicTutors(getTutors);
 
   return (
-    <main className="min-h-screen bg-background-primary">
+    <main className="min-h-screen bg-background">
       <Container className="relative z-3 max-w-7xl gap-y-15 py-0">
         <div className="max-w-4xl space-y-2">
           {/*<h1 className="font-bold text-4xl">{t("title")}</h1>*/}
@@ -103,10 +103,10 @@ export default async function TutorsPage({ params }: Props) {
 
   return (
     <>
-      <NavbarResolver className="bg-background-primary" />
+      <NavbarResolver className="bg-background" />
       <Suspense
         fallback={
-          <div className="min-h-screen bg-background-primary">
+          <div className="min-h-screen bg-background">
             <div className="mx-auto max-w-7xl px-4">
               <div className="mb-8 space-y-2">
                 <Skeleton className="h-12 w-80" />

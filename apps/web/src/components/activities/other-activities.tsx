@@ -62,16 +62,16 @@ export default function OtherActivities({
           : 'More ways to learn, connect, and put ideas into practice.'}
       </p>
       {failed ? (
-        <Empty role="status" className="min-h-72 rounded-2xl bg-background-cream py-20">
+        <Empty role="status" className="min-h-72 rounded-2xl border border-dashed border-neutral-300 bg-transparent py-20">
           <EmptyHeader>
             <EmptyMedia
               variant="icon"
-              className="bg-background-primary text-primary-500 lg:size-8 [&_svg]:lg:size-4"
+              className="bg-transparent text-muted-foreground lg:size-8 [&_svg]:lg:size-4"
             >
               <CalendarDays aria-hidden="true" />
             </EmptyMedia>
             <EmptyTitle>
-              {id ? 'Kegiatan belum dapat dimuat' : 'Activities could not be loaded'}
+              {id ? 'Acara belum bisa dimuat' : 'Events could not be loaded'}
             </EmptyTitle>
             <EmptyDescription className="max-w-md text-pretty">
               {id ? 'Silakan coba lagi nanti.' : 'Please try again later.'}
@@ -79,17 +79,17 @@ export default function OtherActivities({
           </EmptyHeader>
         </Empty>
       ) : !articles.length ? (
-        <Empty className="min-h-72 rounded-2xl bg-background-cream py-20">
+        <Empty className="min-h-72 rounded-2xl border border-dashed border-neutral-300 bg-transparent py-20">
           <EmptyHeader>
             <EmptyMedia
               variant="icon"
-              className="bg-background-primary text-primary-500 lg:size-8 [&_svg]:lg:size-4"
+              className="bg-transparent text-muted-foreground lg:size-8 [&_svg]:lg:size-4"
             >
               <CalendarDays aria-hidden="true" />
             </EmptyMedia>
-            <EmptyTitle>{id ? 'Belum ada kegiatan' : 'No activities yet'}</EmptyTitle>
+            <EmptyTitle>{id ? 'Belum ada acara' : 'No events yet'}</EmptyTitle>
             <EmptyDescription className="max-w-md text-pretty">
-              {id ? 'Kegiatan baru akan ditampilkan di sini.' : 'New activities will appear here.'}
+              {id ? 'Acara baru akan ditampilkan di sini.' : 'New events will appear here.'}
             </EmptyDescription>
           </EmptyHeader>
         </Empty>

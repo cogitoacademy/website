@@ -29,20 +29,20 @@ interface MobileMenuProps {
 const NAV_ITEMS_ID = [
   { label: '#TutorJuara', href: '/tutors' },
   { label: 'Prestasi', href: '/achievements' },
-  { label: 'Kegiatan', href: '/activities' },
+  { label: 'Acara', href: '/activities' },
   { label: 'FAQ', href: '/faq' },
 ];
 
 const NAV_ITEMS_EN = [
   { label: '#ChampionTutors', href: '/tutors' },
   { label: 'Achievements', href: '/achievements' },
-  { label: 'Activities', href: '/activities' },
+  { label: 'Events', href: '/activities' },
   { label: 'FAQ', href: '/faq' },
 ];
 
 const RESOURCES_ITEMS_ID = [
   { label: 'Kalender Lomba', href: '/calendar' },
-  { label: 'Bank Pengetahuan', href: KNOWLEDGE_BANK_URL },
+  { label: 'Bank Materi', href: KNOWLEDGE_BANK_URL },
 ];
 
 const RESOURCES_ITEMS_EN = [
@@ -53,7 +53,7 @@ const RESOURCES_ITEMS_EN = [
 const QUICK_NAV_ITEMS_ID = [
   { label: '#TutorJuara', href: '#tutors' },
   { label: 'Prestasi', href: '/achievements' },
-  { label: 'Kenapa Kita?', href: '#methods' },
+  { label: 'Kenapa Cogito?', href: '#methods' },
   { label: 'Testimoni', href: '#testimonials' },
   { label: 'Jenis Perlombaan', href: '#skills' },
   { label: 'FAQ', href: '#faq' },
@@ -182,7 +182,7 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                     className="border-none bg-transparent shadow-none"
                   >
                     <AccordionTrigger className="bg-transparent p-0 font-bold text-neutral-1000 text-sm shadow-none hover:bg-transparent hover:no-underline hover:shadow-none focus-visible:ring-0 min-[550px]:text-base [&>svg]:ml-2 [&>svg]:size-5 [&>svg]:text-neutral-1000">
-                      {isId ? 'Sumber Daya' : 'Resources'}
+                      {isId ? 'Sumber' : 'Resources'}
                     </AccordionTrigger>
                     <AccordionContent className="pb-0 pl-5">
                       <div className="flex flex-col gap-3 pt-3">

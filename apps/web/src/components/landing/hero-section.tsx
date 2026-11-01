@@ -192,7 +192,7 @@ export function HeroSection() {
             description={cards[1].description}
             tags={cards[1].tags}
             isActiveTrigger={activeIndex === 1}
-            tutorType="Tutor Kelas Intensif"
+            tutorType="cohort"
           />
           <ClassCard
             className="order-2 min-h-90 -translate-y-70 bg-tertiary-yellow-400 md:order-1 md:translate-y-0"
@@ -201,7 +201,7 @@ export function HeroSection() {
             description={cards[0].description}
             tags={cards[0].tags}
             isActiveTrigger={activeIndex === 0}
-            tutorType="Tutor Kelas Reguler"
+            tutorType="onDemand"
           />
           <ClassCard
             className="order-3 min-h-84 -translate-y-100 bg-tertiary-pink-300 md:order-3 md:translate-y-0"
@@ -210,7 +210,7 @@ export function HeroSection() {
             description={cards[2].description}
             tags={cards[2].tags}
             isActiveTrigger={activeIndex === 2}
-            tutorType="Tutor Kelas Ekstrakurikuler"
+            tutorType="extracurricular"
           />
         </section>
       </Container>

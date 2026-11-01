@@ -410,7 +410,7 @@ export function LegalDocument({ locale, type }: { locale: Locale; type: LegalDoc
   const content = LEGAL_CONTENT[locale][type];
 
   return (
-    <div className="bg-background-cream">
+    <div className="bg-background">
       <NavbarResolver />
       <article className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 pb-72">
         <header className="mb-10 max-w-3xl">

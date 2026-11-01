@@ -67,7 +67,7 @@ export function useLogoMarquee({
 
     const measure = () => {
       const width = group.getBoundingClientRect().width;
-      const loop = width > 0 ? width + gap : 0;
+      const loop = width > 0 ? width + (parseFloat(getComputedStyle(group).columnGap) || 0) : 0;
       const room = viewport.getBoundingClientRect().width;
       span.current = loop;
       offset.current = loop > 0 ? clamp(offset.current, -loop, loop) : 0;
@@ -280,7 +280,7 @@ export function LogoMarquee({
       >
         <div
           ref={trackRef}
-          style={{ gap, willChange: "transform" }}
+          style={{ gap: `var(--logo-marquee-gap, ${gap}px)`, willChange: "transform" }}
           className="flex w-max items-center"
         >
           {Array.from({ length: groups }, (_, copy) => (
@@ -288,7 +288,7 @@ export function LogoMarquee({
               key={copy}
               ref={copy === live ? groupRef : undefined}
               aria-hidden={copy === live ? undefined : true}
-              style={{ gap }}
+              style={{ gap: `var(--logo-marquee-gap, ${gap}px)` }}
               className="flex w-max items-center"
             >
               {items.map((item) => (

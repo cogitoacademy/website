@@ -10,7 +10,7 @@ interface Logo {
 
 export function LogoCloud({ logos }: { logos: Logo[] }) {
   return (
-    <div className="w-full max-w-md px-4 pb-6">
+    <div className="w-full max-w-3xl px-4 pb-6">
       <LogoMarquee
         items={logos.map((logo) => ({
           id: logo.id,
@@ -24,8 +24,8 @@ export function LogoCloud({ logos }: { logos: Logo[] }) {
           ),
         }))}
         speed={22}
-        gap={24}
-        className="border-0 bg-transparent shadow-none dark:bg-transparent dark:shadow-none [&_ul>li>span]:h-16 sm:[&_ul>li>span]:h-20 md:[&_ul>li>span]:h-24"
+        gap={12}
+        className="[--logo-marquee-gap:4px] sm:[--logo-marquee-gap:12px] border-0 bg-transparent shadow-none dark:bg-transparent dark:shadow-none [&_ul>li>span]:h-16 sm:[&_ul>li>span]:h-20 md:[&_ul>li>span]:h-24"
       />
     </div>
   );
