@@ -1,0 +1,139 @@
+/* Animate the illustration layers, leaving the card's readable content in place. */
+@media (prefers-reduced-motion: no-preference) {
+  .scene[data-active='true'] [data-scene='reveal'] {
+    animation: arrive 800ms both cubic-bezier(0.16, 1, 0.3, 1);
+    animation-delay: var(--scene-delay, 0ms);
+  }
+
+  .scene[data-active='true'] [data-scene='portrait'] {
+    transform-origin: bottom center;
+    animation: settle 1100ms 200ms both cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .scene[data-active='true'] [data-scene='halo'] {
+    animation: bloom 1000ms both cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .scene[data-active='true'] [data-scene='halo']:nth-child(2) {
+    animation-delay: 300ms;
+  }
+
+  @keyframes settle {
+    from {
+      opacity: 0;
+      translate: 0 32px;
+      scale: 0.96;
+    }
+    to {
+      opacity: 1;
+      translate: 0 0;
+      scale: 1;
+    }
+  }
+
+  @keyframes bloom {
+    from {
+      opacity: 0;
+      scale: 0.7;
+    }
+    to {
+      opacity: 1;
+      scale: 1;
+    }
+  }
+
+  .scene[data-active='true'] [data-scene='award'] {
+    animation: arrive 700ms both cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .scene[data-active='true'] [data-scene='award']:nth-child(2) {
+    animation-delay: 180ms;
+  }
+
+  .scene[data-active='true'] [data-scene='report-back'] {
+    animation: arrive 800ms both cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .scene[data-active='true'] [data-scene='report-front'] {
+    animation: arrive 900ms 180ms both cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .scene[data-active='true'] [data-scene='report-line'] {
+    transform-origin: left;
+    animation: write 700ms 650ms both ease-out;
+  }
+
+  .scene[data-active='true'] [data-scene='report-line']:nth-child(2) {
+    animation-delay: 850ms;
+  }
+
+  .scene[data-active='true'] [data-scene='report-line']:nth-child(3) {
+    animation-delay: 1050ms;
+  }
+
+  .scene[data-active='true'] [data-scene='lesson'] {
+    animation: arrive 600ms both cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .scene[data-active='true'] [data-scene='lesson']:nth-child(2) {
+    animation-delay: 300ms;
+  }
+
+  .scene[data-active='true'] [data-scene='lesson']:nth-child(3) {
+    animation-delay: 600ms;
+  }
+
+  .scene[data-active='true'] [data-scene='lesson'] svg {
+    animation: check 400ms 400ms both ease-out;
+  }
+
+  .scene[data-active='true'] [data-scene='lesson']:nth-child(2) svg {
+    animation-delay: 700ms;
+  }
+
+  .scene[data-active='true'] [data-scene='lesson']:nth-child(3) svg {
+    animation-delay: 1000ms;
+  }
+
+  .scene[data-active='true'] [data-scene='class'] {
+    animation: arrive 800ms both cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .scene[data-active='true'] [data-scene='class']:nth-child(2) {
+    animation-delay: 250ms;
+  }
+
+  @keyframes arrive {
+    from {
+      opacity: 0;
+      translate: 0 24px;
+    }
+    to {
+      opacity: 1;
+      translate: 0 0;
+    }
+  }
+
+  @keyframes write {
+    from {
+      scale: 0 1;
+    }
+    to {
+      scale: 1 1;
+    }
+  }
+
+  @keyframes check {
+    from {
+      opacity: 0;
+      scale: 0.4;
+    }
+    70% {
+      scale: 1.2;
+    }
+    to {
+      opacity: 1;
+      scale: 1;
+    }
+  }
+}

@@ -1,7 +1,7 @@
 'use client';
 
 import { ChevronDown, Search } from 'lucide-react';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
@@ -13,38 +13,38 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { Input } from '@/components/ui/input';
-import type { LocationValue } from '@/lib/config/locations';
-import type { CompetitionCategory } from '@/types/tutor';
-
-interface LocationOption {
-  value: LocationValue;
-  label: string;
-}
+import { getLocalizedCategoryName } from '@/lib/tutor-directory';
+import type { TutorCategory } from '@/types/tutor';
 
 interface TutorFiltersProps {
-  locations: readonly LocationOption[];
-  categories: CompetitionCategory[];
-  selectedLocations: string[];
+  categories: TutorCategory[];
+  selectedModalities: string[];
   selectedCategories: string[];
   searchQuery: string;
-  onLocationChange: (value: string) => void;
+  onModalityChange: (value: string) => void;
   onCategoryChange: (id: string) => void;
   onSearchChange: (value: string) => void;
   onClearAll: () => void;
 }
 
 export default function TutorFilters({
-  locations,
   categories,
-  selectedLocations,
+  selectedModalities,
   selectedCategories,
   searchQuery,
-  onLocationChange,
+  onModalityChange,
   onCategoryChange,
   onSearchChange,
   onClearAll,
 }: TutorFiltersProps) {
+  const locale = useLocale();
   const t = useTranslations('tutors');
+  const hasFilters =
+    selectedModalities.length > 0 || selectedCategories.length > 0 || searchQuery.trim() !== '';
+  const modalities = [
+    { value: 'online', label: t('online') },
+    { value: 'offline', label: t('offline') },
+  ];
 
   return (
     <div className="mb-8 flex flex-col items-start justify-between gap-4 md:flex-row md:items-center">
@@ -61,7 +61,7 @@ export default function TutorFilters({
         </div>
       </div>
       <div className="flex flex-wrap gap-3">
-        {(selectedLocations.length > 0 || selectedCategories.length > 0) && (
+        {hasFilters && (
           <Button
             variant="ghost"
             onClick={onClearAll}
@@ -72,21 +72,21 @@ export default function TutorFilters({
         )}
         <DropdownMenu>
           <DropdownMenuTrigger render={<Button variant="outline" />}>
-            <span>{t('location')}</span>
+            <span>{t('teachingFormat')}</span>
             <ChevronDown className="h-4 w-4" />
           </DropdownMenuTrigger>
           <DropdownMenuContent className="w-56">
             <DropdownMenuGroup>
-              <DropdownMenuLabel>{t('selectLocation')}</DropdownMenuLabel>
+              <DropdownMenuLabel>{t('selectModality')}</DropdownMenuLabel>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
-            {locations.map((location) => (
+            {modalities.map((modality) => (
               <DropdownMenuCheckboxItem
-                key={location.value}
-                checked={selectedLocations.includes(location.value)}
-                onCheckedChange={() => onLocationChange(location.value)}
+                key={modality.value}
+                checked={selectedModalities.includes(modality.value)}
+                onCheckedChange={() => onModalityChange(modality.value)}
               >
-                {location.label}
+                {modality.label}
               </DropdownMenuCheckboxItem>
             ))}
           </DropdownMenuContent>
@@ -104,17 +104,17 @@ export default function TutorFilters({
             <DropdownMenuSeparator />
             {categories.map((category) => (
               <DropdownMenuCheckboxItem
-                key={category._id}
-                checked={selectedCategories.includes(category._id)}
-                onCheckedChange={() => onCategoryChange(category._id)}
+                key={category.id}
+                checked={selectedCategories.includes(category.id)}
+                onCheckedChange={() => onCategoryChange(category.id)}
               >
-                {category.name}
+                {getLocalizedCategoryName(category, locale)}
               </DropdownMenuCheckboxItem>
             ))}
           </DropdownMenuContent>
         </DropdownMenu>
 
-        {(selectedLocations.length > 0 || selectedCategories.length > 0) && (
+        {hasFilters && (
           <Button
             variant="ghost"
             onClick={onClearAll}

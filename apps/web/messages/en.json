@@ -11,17 +11,25 @@
   "tutors": {
     "title": "Our Tutor Team",
     "description": "Join our experienced tutors who are experts in various competition fields",
-    "location": "Location",
+    "teachingFormat": "Teaching format",
     "competitionField": "Competition Field",
-    "selectLocation": "Select Location",
+    "selectModality": "Select teaching format",
     "selectCategory": "Select Category",
+    "online": "Online",
+    "offline": "Offline",
+    "onlineAndOffline": "Online and offline",
     "searchPlaceholder": "Search tutors...",
     "clearFilters": "Clear Filters",
     "noTutorsTitle": "Ups, no tutors match the selected filters",
     "noTutors": "Try searching with other keywords or reset the filter!",
-    "loading": "Loading tutors...",
+    "emptyDirectory": "Tutor profiles will appear here once they are published.",
+    "unavailableTitle": "Tutor information is temporarily unavailable.",
+    "unavailableDescription": "Please try again shortly.",
+    "education": "Education",
     "achievements": "Achievements",
-    "experiences": "Experiences"
+    "experiences": "Experiences",
+    "noProfileContent": "Content is being prepared, stay tuned!",
+    "present": "Present"
   },
   "achievements": {
     "eyebrow": "Student achievements",
@@ -125,12 +133,15 @@
       "tryAgain": "Try again"
     }
   },
-
   "hero": {
     "subtitle": "Learn from the best to become a world-class scholar-champion with materials designed by experts.",
     "ctaPrimary": "Schedule  Consultation",
     "ctaSecondary": "What You Will Learn",
     "trustedBy": "Cogito Acedemy has been trusted by",
+    "carousel": "carousel",
+    "schoolsCarousel": "Schools that trust us",
+    "previousSchools": "Previous schools",
+    "nextSchools": "Next schools",
     "classCards": {
       "regular": {
         "title": "Regular Class",

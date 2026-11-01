@@ -102,7 +102,7 @@ export default function AchievementArchive({
 
   return (
     <main className="min-h-screen bg-background-primary">
-      <div className="relative z-3 mx-auto max-w-7xl px-4 pb-20 sm:px-6 lg:px-8">
+      <div className="relative z-3 mx-auto max-w-7xl px-4 pb-20">
         <section className="pb-8 sm:pb-12 md:pb-16">
           <div className="max-w-2xl space-y-3">
             <h1 className="font-bold text-2xl text-neutral-1000 tracking-tight sm:text-3xl md:text-4xl lg:text-5xl">
@@ -183,6 +183,7 @@ export default function AchievementArchive({
               icon={<Medal />}
               title={t('emptyTitle')}
               description={t('emptyDescription')}
+              className="border border-dashed border-neutral-700 bg-transparent"
             />
           ) : filteredAchievements.length === 0 ? (
             <ArchiveState
@@ -271,15 +272,19 @@ function ArchiveState({
   description,
   actionLabel,
   onAction,
+  className,
 }: {
   icon: ReactNode;
   title: string;
   description: string;
   actionLabel?: string;
   onAction?: () => void;
+  className?: string;
 }) {
   return (
-    <Empty className="min-h-72 rounded-2xl bg-background-cream py-20">
+    <Empty
+      className={`min-h-72 rounded-2xl py-20 ${className ?? 'bg-background-cream'}`}
+    >
       <EmptyHeader>
         <EmptyMedia variant="icon" className="bg-background-primary text-primary-500">
           {icon}

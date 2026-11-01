@@ -59,6 +59,11 @@ const nextConfig: NextConfig = {
     const appUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://app.cogitoacademy.id';
     return [
       {
+        source: '/:locale(id|en)/events/:category(townhall-and-101-series|simulation-days)',
+        destination: '/:locale/activities',
+        permanent: true,
+      },
+      {
         source: '/:locale(id|en)/student-resources/:path*',
         destination: `${appUrl}/knowledge-bank`,
         permanent: true,

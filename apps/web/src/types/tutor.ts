@@ -1,24 +1,37 @@
+export interface TutorCategory {
+  id: string;
+  slug: string;
+  name: string;
+  nameId: string | null;
+  lightTextColor: string | null;
+  lightBackgroundColor: string | null;
+  darkTextColor: string | null;
+  darkBackgroundColor: string | null;
+}
+
+export interface TutorSubject {
+  id: string;
+  slug: string;
+  name: string;
+  nameId: string | null;
+  parent: TutorCategory;
+}
+
 export interface Tutor {
-  _id: string;
+  id: string;
   name: string;
-  profilePicture: {
-    asset: {
-      _id: string;
-      url: string;
-      altText?: string;
-    };
-  };
-  affiliation: Array<{ _key: string; value: string }>;
-  competitionFields: CompetitionCategory[];
-  locations: string[];
-  achievements: Array<{ text: Array<{ _key: string; value: string }> }>;
-  experiences: Array<{ text: Array<{ _key: string; value: string }> }>;
+  profileImageUrl: string | null;
+  shortBio: string | null;
+  affiliation: string | null;
+  education: Array<{ university: string; degree: string }>;
+  achievements: Array<{ competitionName: string; year: number; awards: string[] }>;
+  experiences: Array<{
+    role: string;
+    organization: string;
+    startYear: number;
+    endYear: number | null;
+    description: string;
+  }>;
+  subjects: TutorSubject[];
+  modality: 'online' | 'offline' | 'both' | null;
 }
-
-export interface CompetitionCategory {
-  _id: string;
-  name: string;
-  coreCategory: string;
-}
-
-export type Location = 'online' | 'offline_surabaya' | 'offline_semarang' | 'offline_jakarta';

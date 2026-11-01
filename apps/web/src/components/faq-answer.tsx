@@ -55,18 +55,18 @@ export function FaqAnswer({
 }) {
   if (rich) {
     return (
-      <div className="space-y-3">
+      <div className="space-y-2!">
         {rich.blocks.map((block, index) =>
           block.type === 'paragraph' ? (
             <p key={index}>{renderRuns(block.content)}</p>
           ) : block.style === 'ordered' ? (
-            <ol key={index} className="ml-4 list-outside list-decimal space-y-2">
+            <ol key={index} className="ml-4 list-outside list-decimal space-y-1">
               {block.items.map((item, itemIndex) => (
                 <li key={itemIndex}>{renderRuns(item)}</li>
               ))}
             </ol>
           ) : (
-            <ul key={index} className="ml-4 list-outside list-disc space-y-2">
+            <ul key={index} className="ml-4 list-outside list-disc space-y-1">
               {block.items.map((item, itemIndex) => (
                 <li key={itemIndex}>{renderRuns(item)}</li>
               ))}
@@ -78,18 +78,18 @@ export function FaqAnswer({
   }
 
   return (
-    <div className="space-y-3">
+    <div className="space-y-2!">
       {blocks.map((block, index) =>
         block.type === 'paragraph' ? (
           <p key={index}>{block.text}</p>
         ) : block.style === 'ordered' ? (
-          <ol key={index} className="ml-4 list-outside list-decimal space-y-2">
+          <ol key={index} className="ml-4 list-outside list-decimal space-y-1">
             {block.items.map((item, itemIndex) => (
               <li key={itemIndex}>{item}</li>
             ))}
           </ol>
         ) : (
-          <ul key={index} className="ml-4 list-outside list-disc space-y-2">
+          <ul key={index} className="ml-4 list-outside list-disc space-y-1">
             {block.items.map((item, itemIndex) => (
               <li key={itemIndex}>{item}</li>
             ))}

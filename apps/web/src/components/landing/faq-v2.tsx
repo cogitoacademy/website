@@ -41,18 +41,12 @@ export default function FaqSectionV2({
               {t('v2.title')}
               <span className="text-primary-500">{t('v2.titleHighlight')}</span>
             </h3>
-            <p className="mx-auto max-w-[335px] font-medium text-neutral-1000 text-xs md:max-w-none md:text-sm xl:text-base lg:mx-0">
+            {/*<p className="mx-auto max-w-[335px] font-medium text-neutral-1000 text-xs md:max-w-none md:text-sm xl:text-base lg:mx-0">
               {t('v2.subtitle')}
-            </p>
-            <Link
-              href="/faq"
-              className="font-semibold text-primary-600 underline underline-offset-4 hover:text-primary-700"
-            >
-              {t('viewAll')}
-            </Link>
+            </p>*/}
           </div>
 
-          <div className="w-full">
+          <div className="w-full flex flex-col">
             {hasError ? (
               <FaqAvailability
                 status="error"
@@ -71,7 +65,7 @@ export default function FaqSectionV2({
               <Accordion className="w-full">
                 {items.map((item) => (
                   <AccordionItem key={item.id} value={item.id}>
-                    <AccordionTrigger>
+                    <AccordionTrigger className="font-semibold">
                       <span>
                         <FaqQuestion question={item.question} rich={item.questionRich} />
                       </span>
@@ -83,6 +77,12 @@ export default function FaqSectionV2({
                 ))}
               </Accordion>
             )}
+            <Link
+              href="/faq"
+              className="text-primary-600 underline underline-offset-4 hover:text-primary-700 text-sm self-center lg:self-start mt-4"
+            >
+              {t('viewAll')}
+            </Link>
           </div>
         </div>
       </section>

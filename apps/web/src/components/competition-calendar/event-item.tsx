@@ -248,7 +248,7 @@ export function EventItem({
   return (
     <button
       className={cn(
-        'flex w-full flex-col gap-1 rounded-2xl p-3 pl-7 text-left outline-none transition focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 data-past-event:line-through data-past-event:opacity-90',
+        'flex w-full flex-col gap-1 rounded-r-2xl p-3 pl-7 text-left outline-none transition focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 data-past-event:line-through data-past-event:opacity-90',
         getCompetitionColorClasses(eventColor),
         className,
       )}

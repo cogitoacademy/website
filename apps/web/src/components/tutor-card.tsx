@@ -4,11 +4,10 @@ import { ArrowUpRightIcon } from 'lucide-react';
 import Image from 'next/image';
 import { useLocale } from 'next-intl';
 import { useState } from 'react';
-import { getCoreCategoryBadgeColor } from '@/lib/colors/brandColors';
-import { cn } from '@/lib/utils';
+import type { TutorSubject } from '@/types/tutor';
 import type { Tutor } from '@/types/tutor';
 import TutorDetailModal from './tutor-detail-modal';
-import { Badge, badgeVariants } from './ui/badge';
+import { Badge } from './ui/badge';
 import { Button } from './ui/button';
 
 interface TutorCardProps {
@@ -16,18 +15,13 @@ interface TutorCardProps {
   index?: number;
 }
 
-/**
- * Helper: ambil value berdasarkan locale
- * fallback ke item pertama kalau locale ga ketemu
- */
-const getLocalizedValue = (arr?: { _key: string; value: string }[], locale?: string) =>
-  arr?.find((item) => item._key === locale)?.value || arr?.[0]?.value || '';
+function subjectName(subject: TutorSubject, locale: string) {
+  return locale === 'id' ? subject.nameId || subject.name : subject.name;
+}
 
 export default function TutorCard({ tutor }: TutorCardProps) {
   const locale = useLocale();
   const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const affiliation = getLocalizedValue(tutor.affiliation, locale);
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter' || e.key === ' ') {
@@ -45,40 +39,47 @@ export default function TutorCard({ tutor }: TutorCardProps) {
         role="button"
         tabIndex={0}
       >
-        {/* Arrow icon indicator */}
         <Button className="absolute top-3 right-3 z-2" variant="gray" size="icon-lg">
           <ArrowUpRightIcon strokeWidth={2.5} className="size-5" />
         </Button>
 
-        {/* Header */}
         <div className="flex min-h-0 flex-1 flex-col">
-          <div className="relative z-1 h-60 w-full shrink-0 bg-muted">
-            <Image
-              src={tutor.profilePicture.asset.url}
-              alt={tutor.profilePicture.asset.altText || tutor.name}
-              fill
-              className="object-cover"
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            />
+          <div className="relative z-1 flex h-60 w-full shrink-0 items-center justify-center overflow-hidden bg-muted">
+            {tutor.profileImageUrl ? (
+              <Image
+                src={tutor.profileImageUrl}
+                alt={tutor.name}
+                fill
+                unoptimized
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              />
+            ) : (
+              <span aria-hidden="true" className="font-semibold text-4xl text-muted-foreground">
+                {tutor.name.slice(0, 1).toUpperCase()}
+              </span>
+            )}
           </div>
 
-          {/* Bawah */}
           <div className="relative z-2 -mt-2 flex min-h-0 flex-1 flex-col rounded-xl bg-neutral-100 p-2.5 shadow-inset-top">
             <h3 className="truncate font-semibold text-lg leading-tight">{tutor.name}</h3>
-            <p className="mt-1 mb-2.5 line-clamp-2 text-muted-foreground text-xs">{affiliation}</p>
+            <p className="mt-1 mb-2.5 line-clamp-2 text-muted-foreground text-xs">
+              {tutor.affiliation || '\u00a0'}
+            </p>
 
-            {/* Tags */}
-            {tutor.competitionFields?.length > 0 && (
+            {tutor.subjects.length > 0 && (
               <div className="mt-auto mb-0 flex flex-wrap gap-2">
-                {tutor.competitionFields.map((field) => (
+                {tutor.subjects.map((subject) => (
                   <Badge
-                    key={field._id}
-                    className={cn(
-                      badgeVariants({ variant: 'tutor' }),
-                      getCoreCategoryBadgeColor(field.coreCategory),
-                    )}
+                    key={subject.id}
+                    variant="tutor"
+                    className="bg-background-cream text-neutral-1000"
+                    style={{
+                      color: subject.parent.lightTextColor ?? undefined,
+                      backgroundColor: subject.parent.lightBackgroundColor ?? undefined,
+                    }}
                   >
-                    {field.name || (locale === 'id' ? 'Bidang Tidak Diketahui' : 'Unknown Field')}
+                    {subjectName(subject, locale)}
                   </Badge>
                 ))}
               </div>

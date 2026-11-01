@@ -3,6 +3,7 @@ import { ArrowRight } from 'lucide-react';
 import { getLocale } from 'next-intl/server';
 import { Button } from '@/components/ui/button';
 import { Link } from '@/i18n/routing';
+import { tryLoadPublicTutors } from '@/lib/tutor-api';
 import { getFeaturedTutors } from '@/lib/tutors';
 import { Badge } from '../ui/badge';
 import { TutorsGrid } from './tutors-grid';
@@ -10,7 +11,7 @@ import { TutorsGrid } from './tutors-grid';
 export async function TutorsSection() {
   const locale = await getLocale();
   const isId = locale === 'id';
-  const tutors = await getFeaturedTutors();
+  const result = await tryLoadPublicTutors(getFeaturedTutors);
 
   return (
     <section className="bg-background-primary py-16">
@@ -44,7 +45,22 @@ export async function TutorsSection() {
             </p>
           </div>
 
-          <TutorsGrid tutors={tutors} />
+          {result.status === 'success' && result.items.length > 0 ? (
+            <TutorsGrid tutors={result.items} />
+          ) : (
+            <p
+              role={result.status === 'failure' ? 'alert' : 'status'}
+              className="text-center text-muted-foreground"
+            >
+              {result.status === 'failure'
+                ? isId
+                  ? 'Informasi tutor sementara tidak tersedia.'
+                  : 'Tutor information is temporarily unavailable.'
+                : isId
+                  ? 'Profil tutor akan tampil di sini setelah dipublikasikan.'
+                  : 'Tutor profiles will appear here once they are published.'}
+            </p>
+          )}
 
           <Link href="/tutors">
             <Button size="lg">

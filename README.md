@@ -125,7 +125,37 @@ bun run build
 
 Content supports field-level bilingual input (Indonesian + English) via `sanity-plugin-internationalized-array`.
 
+## Testimonials
+
+Mobile testimonials advance every five seconds and loop to the first card. Pointer interaction and keyboard focus pause autoplay; reduced-motion preferences disable it. Swiping and dot navigation remain available. Desktop retains its existing autoplay.
+
 ## Credits
 
 - [Andreandhiki Riyanta Putra](https://github.com/Andhiki) (Developer)
 - Melinda Annastasia Budijono (UX Designer & UX Researcher)
+
+## Activities
+
+`/[locale]/activities` combines app-backed Cohorts/Masterclasses and one Others
+article list from published legacy Sanity events. The heading leads directly to
+content, without section shortcuts. `COGITO_APP_API_URL` configures the server-side
+class RPC; `NEXT_PUBLIC_APP_URL` configures class detail links and must be the
+public app origin. Missing/unavailable classes are reported independently of
+Others. Optional Indonesian class title/description falls back to English.
+Both legacy localized event category URLs redirect permanently to Activities.
+Others DB migration/admin authoring is still pending; this page retains the
+existing Sanity content and event detail/registration flow.
+
+Focused adapter checks: `bun test apps/web/tests/activities-api.test.mjs`.
+
+Classes use compact My Bookings-style rows with a date tile, class information,
+price and detail action; there is no class cover or placeholder image slot.
+Others retains its article thumbnails.
+
+## Others articles (30 October 2026)
+
+Others now reads published articles exclusively from the cogito-app API, with
+no Sanity fallback. Edit in app `/activities`: cover URL, localized title and
+summary, WIB schedule, location and rich body. Registration links belong in the
+body. Drafts are private; Upcoming/Completed is derived from end time.
+Migration 0077 must be applied before API deployment.
