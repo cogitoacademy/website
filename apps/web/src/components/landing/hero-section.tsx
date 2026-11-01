@@ -122,7 +122,7 @@ export function HeroSection() {
 
           {/* Headline */}
 
-          <div className="inline max-w-100 text-center font-bold text-2xl text-neutral-1000 transition-normal sm:max-w-lg sm:text-3xl md:max-w-xl md:text-4xl lg:max-w-3xl lg:text-5xl lg:leading-snug">
+          <h1 className="m-0 inline max-w-100 text-center font-bold text-2xl text-neutral-1000 transition-normal sm:max-w-lg sm:text-3xl md:max-w-xl md:text-4xl lg:max-w-3xl lg:text-5xl lg:leading-snug">
             {isId ? (
               <>
                 Mulai Perjalananmu Menjadi
@@ -146,7 +146,7 @@ export function HeroSection() {
                 />
               </>
             )}
-          </div>
+          </h1>
 
           {/* Subtitle */}
           <p className="mt-2 max-w-xs text-center text-neutral-1000 text-xs sm:mt-4 sm:max-w-md sm:text-sm">
