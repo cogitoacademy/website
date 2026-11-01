@@ -1,6 +1,8 @@
 'use client';
 
 import {
+  ArrowRightIcon,
+  ArrowUpRightIcon,
   BookOpenIcon,
   ChartBarIcon,
   ChatsCircleIcon,
@@ -14,12 +16,13 @@ import {
   TrophyIcon,
   UsersThreeIcon,
 } from '@phosphor-icons/react/dist/ssr';
-import Image from 'next/image';
+import Link from 'next/link';
+import { APP_URL, KNOWLEDGE_BANK_URL } from '@/lib/constants';
+import { buttonVariants } from '../ui/button';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '../ui/tabs';
 import { useLocale } from 'next-intl';
 import { Badge } from '../ui/badge';
 import { Container } from '../ui/container';
-import FieldCard from './field-card';
-import { LearningScene } from './learning-scene';
 
 type Focus = {
   icon: React.ComponentType<{
@@ -212,7 +215,7 @@ const skills: Skill[] = [
       },
       {
         icon: MegaphoneSimpleIcon,
-        labelId: 'Rebutan dan Sanggahan',
+        labelId: 'Sanggahan dan Respons',
         labelEn: 'Rebuttal & Counter-Argument',
       },
     ],
@@ -248,65 +251,328 @@ const skills: Skill[] = [
   },
 ];
 
+const sessions = [
+  {
+    heading: ['Latihan diplomasi bersama tutor', 'Practise diplomacy with a tutor'],
+    steps: [
+      [
+        'Diskusi isu',
+        'Bahas isu sidang dan posisi negara yang kamu wakili.',
+        'Discuss the topic',
+        'Explore the committee topic and your country’s position.',
+      ],
+      [
+        'Simulasi sidang',
+        'Latih pidato, negosiasi, dan penyusunan resolusi bersama tutor.',
+        'Committee simulation',
+        'Practise speeches, negotiation, and resolution drafting with your tutor.',
+      ],
+      [
+        'Umpan balik tutor',
+        'Bahas argumen dan strategi yang perlu diperkuat.',
+        'Tutor feedback',
+        'Review your arguments and identify strategies to improve.',
+      ],
+    ],
+  },
+  {
+    heading: ['Lebih percaya diri saat berbicara', 'Speak with more confidence'],
+    steps: [
+      [
+        'Susun pesan',
+        'Diskusikan ide dan struktur pidatomu bersama tutor.',
+        'Shape your message',
+        'Discuss your ideas and speech structure with your tutor.',
+      ],
+      [
+        'Praktik penyampaian',
+        'Latih artikulasi, intonasi, dan cara membawakan pidato.',
+        'Practise delivery',
+        'Work on articulation, intonation, and presenting your speech.',
+      ],
+      [
+        'Umpan balik tutor',
+        'Evaluasi penyampaian dan tentukan fokus latihan berikutnya.',
+        'Tutor feedback',
+        'Review your delivery and choose what to practise next.',
+      ],
+    ],
+  },
+  {
+    heading: ['Pahami konsep, bahas cara berpikirnya', 'Understand the concepts and the reasoning'],
+    steps: [
+      [
+        'Bahas konsep',
+        'Mulai dari materi yang ingin kamu kuasai bersama tutor.',
+        'Explore concepts',
+        'Work with your tutor on the topics you want to master.',
+      ],
+      [
+        'Kerjakan bersama',
+        'Uraikan soal dan diskusikan pendekatan penyelesaiannya.',
+        'Work through problems',
+        'Break down problems and discuss possible approaches.',
+      ],
+      [
+        'Evaluasi cara berpikir',
+        'Kenali kesalahan dan perbaiki langkah penyelesaianmu.',
+        'Review your reasoning',
+        'Identify mistakes and improve your problem-solving process.',
+      ],
+    ],
+  },
+  {
+    heading: ['Persiapan WSC bersama tutor dan tim', 'Prepare for WSC with a tutor and your team'],
+    steps: [
+      [
+        'Diskusi materi',
+        'Hubungkan topik lintas bidang dengan bimbingan tutor.',
+        'Discuss the material',
+        'Connect topics across subjects with tutor guidance.',
+      ],
+      [
+        'Latihan bersama',
+        'Latih debat, penulisan, dan kuis sesuai kebutuhan tim.',
+        'Practise together',
+        'Work on debate, writing, and quizzes around your team’s needs.',
+      ],
+      [
+        'Umpan balik tutor',
+        'Bahas kontribusi tiap anggota dan strategi kerja tim.',
+        'Tutor feedback',
+        'Review individual contributions and teamwork strategies.',
+      ],
+    ],
+  },
+  {
+    heading: ['Kembangkan tulisan lewat diskusi', 'Develop your writing through discussion'],
+    steps: [
+      [
+        'Bahas ide dan draft',
+        'Diskusikan topik, kerangka, atau tulisan yang sudah kamu buat.',
+        'Discuss ideas and drafts',
+        'Bring a topic, outline, or draft to discuss with your tutor.',
+      ],
+      [
+        'Tinjau bersama',
+        'Bedah alur argumen, penggunaan sumber, dan struktur tulisan.',
+        'Review together',
+        'Examine your argument, sources, and writing structure.',
+      ],
+      [
+        'Arah revisi',
+        'Tentukan perbaikan yang bisa kamu kerjakan setelah sesi.',
+        'Plan revisions',
+        'Identify changes you can work on after the session.',
+      ],
+    ],
+  },
+  {
+    heading: ['Bangun argumen bersama tutor', 'Build your arguments with a tutor'],
+    steps: [
+      [
+        'Diskusi mosi',
+        'Bedah topik dan susun posisi bersama tutor.',
+        'Discuss the motion',
+        'Unpack the topic and develop your position with a tutor.',
+      ],
+      [
+        'Simulasi debat',
+        'Praktik menyampaikan argumen dan sanggahan.',
+        'Debate simulation',
+        'Practise presenting arguments and rebuttals.',
+      ],
+      [
+        'Umpan balik tutor',
+        'Bahas bagian yang sudah kuat dan yang perlu dilatih.',
+        'Tutor feedback',
+        'Discuss your strengths and what to work on next.',
+      ],
+    ],
+  },
+  {
+    heading: ['Dari ide bisnis ke presentasi', 'From business idea to presentation'],
+    steps: [
+      [
+        'Diskusi ide',
+        'Bahas masalah, calon pelanggan, dan solusi yang kamu tawarkan.',
+        'Discuss your idea',
+        'Explore the problem, customers, and proposed solution.',
+      ],
+      [
+        'Tinjau rencana',
+        'Bedah model bisnis, analisis pasar, dan perhitungan dasar.',
+        'Review the plan',
+        'Work through the business model, market analysis, and basic financials.',
+      ],
+      [
+        'Latihan presentasi',
+        'Simulasikan presentasi dan tanya jawab bersama tutor.',
+        'Practise your pitch',
+        'Rehearse your presentation and questions with a tutor.',
+      ],
+    ],
+  },
+];
+
+const panelColors = [
+  'bg-tertiary-blue-100',
+  'bg-tertiary-pink-100',
+  'bg-tertiary-green-100',
+  'bg-tertiary-yellow-100',
+  'bg-tertiary-red-100',
+  'bg-secondary-100',
+  'bg-tertiary-blue-100',
+];
+const shortLabels = ['MUN', null, null, 'WSC', null, null, 'Business Plan'];
+
 export function SkillsSection() {
   const locale = useLocale();
   const isId = locale === 'id';
 
   return (
-    <section className="bg-primary-100 px-4 py-20">
-      <div
-        id="skills"
-        className="invisible h-0 scroll-mt-24 md:scroll-mt-[6.5rem]"
-        aria-hidden="true"
-      />
-      <Container className="relative max-w-[calc(80rem-2rem)] overflow-hidden rounded-2xl border bg-neutral-100 lg:bg-tertiary-pink-500 pt-9 pb-20">
-        <Image
-          src="/images/landing/fields-background.webp"
-          alt="Skills Section Image"
-          width={1400}
-          height={422}
-          className="absolute inset-0 bottom-0 z-3 mt-auto w-full"
-        />
-
-        <div className="hidden lg:block absolute top-20 left-0 aspect-[500/520] w-full lg:aspect-16/5">
-          <svg viewBox="0 0 1000 120" preserveAspectRatio="none" className="h-full w-full">
-            <polygon points="0,0 1000,0 1000,80 500,120 0,80" className="fill-tertiary-pink-300" />
-          </svg>
-        </div>
-
-        <div className="hidden lg:block absolute top-0 left-0 aspect-[500/520] w-full lg:aspect-16/5">
-          <svg viewBox="0 0 1000 120" preserveAspectRatio="none" className="h-full w-full">
-            <polygon points="0,0 1000,0 1000,80 500,120 0,80" className="fill-neutral-100" />
-          </svg>
-        </div>
-
-        <div className="relative z-3 flex flex-col items-center justify-center">
-          <Badge variant={'headline-cream'}>
+    <section
+      id="skills"
+      aria-labelledby="skills-title"
+      className="scroll-mt-24 bg-primary-100 px-4 py-16 md:py-24"
+    >
+      <Container className="max-w-7xl gap-8 p-0 md:gap-10">
+        <div className="mx-auto flex max-w-2xl flex-col items-center gap-4 text-center">
+          <Badge variant="headline-cream">
             <MedalIcon className="size-5" />
-            <span>{isId ? 'Bidang Perlombaan' : 'Field of Competition'}</span>
+            {isId ? 'Bidang Lomba' : 'Competition Fields'}
           </Badge>
-
-          <h2 className="relative z-1 text-center font-bold text-3xl">
-            {isId ? (
-              <>
-                Temukan <span className="text-primary-500">Arenamu Selanjutnya</span>
-              </>
-            ) : (
-              <>
-                Find Your <span className="text-primary-500">Next Arena</span>
-              </>
-            )}
+          <h2 id="skills-title" className="text-3xl font-bold tracking-tight md:text-4xl">
+            {isId ? 'Temukan bidang yang ' : 'Find what '}
+            <span className="text-primary-500">
+              {isId ? 'bikin kamu tertantang.' : 'challenges you.'}
+            </span>
           </h2>
+          <p className="text-sm leading-relaxed text-neutral-600 md:text-base">
+            {isId
+              ? 'Pilih bidang dan lihat bagaimana kamu bisa belajar bersama tutor lewat sesi online.'
+              : 'Choose a field and discover how you can learn with a tutor in live online sessions.'}
+          </p>
         </div>
-
-        {/* MOBILE = full width stack | SM+ = flex wrap cards */}
-        <LearningScene className="relative z-3 md:mt-8 flex w-full flex-col gap-3 sm:flex-row sm:flex-wrap sm:justify-center sm:gap-6">
-          {skills.map((skill, index) => (
-            <div key={skill.titleEn} data-scene="reveal" style={{ animationDelay: `${index * 100}ms` }}>
-              <FieldCard skill={skill} isId={isId} />
-            </div>
-          ))}
-        </LearningScene>
+        <Tabs defaultValue={skills[0].titleEn} className="min-w-0 flex-col">
+          <div className="-mx-4 overflow-x-auto px-4 pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:mx-0 sm:px-0">
+            <TabsList
+              aria-label={isId ? 'Pilih bidang lomba' : 'Choose a competition field'}
+              variant="sidebar"
+              className="w-max min-w-full gap-2!"
+            >
+              {skills.map((skill, index) => (
+                <TabsTrigger
+                  key={skill.titleEn}
+                  value={skill.titleEn}
+                  className="shrink-0 border-neutral-300 bg-background-cream px-3 py-1 text-sm transition-colors hover:border-primary-500 data-active:border-primary-500 data-active:bg-primary-500 data-active:text-white focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2"
+                >
+                  {shortLabels[index] ?? (isId ? skill.titleId : skill.titleEn)}
+                </TabsTrigger>
+              ))}
+            </TabsList>
+          </div>
+          {skills.map((skill, index) => {
+            const session = sessions[index];
+            return (
+              <TabsContent
+                key={skill.titleEn}
+                value={skill.titleEn}
+                className="overflow-hidden rounded-3xl border border-neutral-200 bg-background-cream focus-visible:ring-2 focus-visible:ring-primary-500"
+              >
+                <div className="grid md:min-h-[460px] md:grid-cols-2">
+                  <div className="flex flex-col items-start p-6 sm:p-8 lg:p-12">
+                    <p className="mb-4 text-xs font-medium text-neutral-600">
+                      {isId ? 'Kenali bidangnya' : 'Explore the field'}
+                    </p>
+                    <h3 className="text-2xl font-semibold tracking-tight text-neutral-1000 lg:text-3xl">
+                      {isId ? skill.titleId : skill.titleEn}
+                    </h3>
+                    <p className="mt-4 max-w-md text-sm leading-relaxed text-neutral-600 md:text-base">
+                      {isId ? skill.longDescriptionId : skill.longDescriptionEn}
+                    </p>
+                    <ul className="my-6 space-y-3">
+                      {skill.focuses.map((focus) => (
+                        <li
+                          key={focus.labelEn}
+                          className="flex items-center gap-3 text-sm text-neutral-900"
+                        >
+                          <focus.icon className="size-5 shrink-0 text-primary-500" />
+                          {isId ? focus.labelId : focus.labelEn}
+                        </li>
+                      ))}
+                    </ul>
+                    <Link
+                      href={{ pathname: `${APP_URL}/tutors` }}
+                      className={buttonVariants({ size: 'lg', className: 'mt-auto gap-2' })}
+                    >
+                      {isId ? 'Cari Tutor' : 'Find a Tutor'}
+                      <span aria-hidden="true">
+                        <ArrowRightIcon />
+                      </span>
+                    </Link>
+                  </div>
+                  <div
+                    className={`flex flex-col justify-center p-6 sm:p-8 lg:p-10 ${panelColors[index]}`}
+                  >
+                    <div className="mb-4 flex items-center justify-between gap-3 text-xs font-medium text-neutral-700">
+                      <span>{isId ? 'Gambaran sesi belajar' : 'Inside a learning session'}</span>
+                      <span className="rounded-full border border-current/20 px-2.5 py-1">
+                        {isId ? 'Bersama tutor' : 'With a tutor'}
+                      </span>
+                    </div>
+                    <p className="mb-6 text-xl font-semibold leading-snug tracking-tight text-neutral-1000 lg:text-2xl">
+                      {session.heading[isId ? 0 : 1]}
+                    </p>
+                    <ol className="space-y-3">
+                      {session.steps.map((step) => (
+                        <li
+                          key={step[0]}
+                          className="rounded-xl border border-black/5 bg-white/75 px-4 py-3"
+                        >
+                          <p className="text-sm font-semibold text-neutral-1000">
+                            {step[isId ? 0 : 2]}
+                          </p>
+                          <p className="mt-1 text-sm leading-relaxed text-neutral-700">
+                            {step[isId ? 1 : 3]}
+                          </p>
+                        </li>
+                      ))}
+                    </ol>
+                    <div className="mt-6 border-t border-black/10 pt-4">
+                      <p className="mb-3 text-xs font-medium text-neutral-700">
+                        {isId ? 'Lengkapi persiapanmu' : 'Support your preparation'}
+                      </p>
+                      <div className="flex flex-wrap gap-x-5 gap-y-3 text-sm font-medium">
+                        <Link
+                          href={{ pathname: KNOWLEDGE_BANK_URL }}
+                          className="inline-flex items-center gap-1.5 underline underline-offset-4 hover:text-primary-600 focus-visible:outline-2 focus-visible:outline-offset-4"
+                        >
+                          {isId ? 'Bank Materi' : 'Knowledge Bank'}{' '}
+                          <ArrowUpRightIcon aria-hidden="true" className="size-4 shrink-0" />
+                        </Link>
+                        <Link
+                          href={{ pathname: `${APP_URL}/calendar` }}
+                          className="inline-flex items-center gap-1.5 underline underline-offset-4 hover:text-primary-600 focus-visible:outline-2 focus-visible:outline-offset-4"
+                        >
+                          {isId ? 'Kalender Lomba' : 'Competition Calendar'}{' '}
+                          <ArrowUpRightIcon aria-hidden="true" className="size-4 shrink-0" />
+                        </Link>
+                        <Link
+                          href={`/${locale}/activities`}
+                          className="inline-flex items-center gap-1.5 underline underline-offset-4 hover:text-primary-600 focus-visible:outline-2 focus-visible:outline-offset-4"
+                        >
+                          {isId ? 'Kelas & Acara' : 'Classes & Events'}{' '}
+                          <ArrowRightIcon aria-hidden="true" className="size-4 shrink-0" />
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </TabsContent>
+            );
+          })}
+        </Tabs>
       </Container>
     </section>
   );

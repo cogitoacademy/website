@@ -1,6 +1,6 @@
 'use client';
 
-import { ArrowRightIcon, AwardIcon, BadgeCheckIcon, ChevronDownIcon, Users } from 'lucide-react';
+import { ArrowRightIcon, AwardIcon, BadgeCheckIcon, Users } from 'lucide-react';
 import { AnimatePresence, motion } from 'motion/react';
 import Image from 'next/image';
 import { useLocale, useTranslations } from 'next-intl';
@@ -10,114 +10,12 @@ import {
   ResponsiveModalContent,
   ResponsiveModalTitle,
 } from '@/components/ui/responsive-modal';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { APP_URL } from '@/lib/constants';
 import { cn } from '@/lib/utils';
 import { Badge } from '../ui/badge';
 import { Button } from '../ui/button';
 import Link from 'next/link';
 import { LearningScene } from './learning-scene';
-
-const REGULER_SUBJECTS = [
-  {
-    slug: 'mun',
-    labelId: 'Model United Nations',
-    labelEn: 'Model United Nations',
-    sessionsId: '24 sesi pembelajaran intensif dengan jadwal satu pertemuan setiap minggu.',
-    sessionsEn: '24 intensive learning sessions with one meeting every week.',
-    topicsId: [
-      'Dasar-dasar MUN dan menguasai prosedur',
-      'Riset negara, dewan, dan topik',
-      'Menulis position paper yang kuat',
-      'Public speaking dan retorika',
-      'Strategi diplomasi dan negosiasi',
-      'Menulis draft resolusi',
-    ],
-    topicsEn: [
-      'MUN basics and mastering rules of procedure',
-      'Country, council, and topic research methods',
-      'Writing a strong position paper',
-      'Public speaking and rhetorics',
-      'Diplomacy and negotiation strategies',
-      'Writing draft resolution',
-    ],
-    color: 'bg-tertiary-blue-500',
-    secondaryColor: 'bg-tertiary-blue-300',
-  },
-  {
-    slug: 'wsc',
-    labelId: "World Scholar's Cup",
-    labelEn: "World Scholar's Cup",
-    sessionsId: '36 sesi pembelajaran intensif dengan jadwal satu pertemuan setiap minggu.',
-    sessionsEn: '36 intensive learning sessions with one meeting every week.',
-    topicsId: [
-      "Teknik Scholar's Bowl",
-      'Penguasaan materi lintas disiplin',
-      'Menulis esai akademik',
-      'Analisis dan evaluasi sumber',
-      'Strategi dan kolaborasi tim',
-      'Taktik soal pilihan ganda',
-    ],
-    topicsEn: [
-      "Scholar's Bowl techniques",
-      'Cross-disciplinary subject mastery',
-      'Academic essay writing',
-      'Source analysis and evaluation',
-      'Team strategy and collaboration',
-      'Multiple-choice question tactics',
-    ],
-    color: 'bg-tertiary-yellow-600',
-    secondaryColor: 'bg-tertiaty-yellow-300',
-  },
-  {
-    slug: 'debat',
-    labelId: 'Debat',
-    labelEn: 'Debate',
-    sessionsId: '18 sesi pembelajaran intensif dengan jadwal satu pertemuan setiap minggu.',
-    sessionsEn: '18 intensive learning sessions with one meeting every week.',
-    topicsId: [
-      'Fundamentasi argumentasi',
-      'Analisis mosi',
-      'Peran narasumber (1, 2, 3)',
-      'Teknik rebuttal',
-      'Cross-examination',
-      'Penyampaian final focus',
-    ],
-    topicsEn: [
-      'Argumentation fundamentals',
-      'Motion analysis',
-      'Speaker roles (first, second, third)',
-      'Rebuttal techniques',
-      'Cross-examination',
-      'Final focus delivery',
-    ],
-    color: 'bg-secondary-500',
-    secondaryColor: 'bg-secondary-100',
-  },
-] as const;
-
-const COLOR_BG_MAP: Record<string, string> = {
-  'bg-tertiary-blue-500': 'bg-tertiary-blue-500',
-  'bg-tertiary-yellow-600': 'bg-tertiary-yellow-600',
-  'bg-secondary-500': 'bg-secondary-500',
-};
-
-const COLOR_BG_LIGHT_MAP: Record<string, string> = {
-  'bg-tertiary-blue-500': 'bg-tertiary-blue-100',
-  'bg-tertiary-yellow-600': 'bg-tertiary-yellow-100',
-  'bg-secondary-500': 'bg-secondary-100',
-};
-
-const _COLOR_ACTIVE_BG_MAP: Record<string, string> = {
-  'bg-tertiary-blue-500': 'data-active:bg-tertiary-blue-100',
-  'bg-tertiary-yellow-600': 'data-active:bg-tertiary-yellow-100',
-  'bg-secondary-500': 'data-active:bg-secondary-100',
-};
-
-const COLOR_TEXT_MAP: Record<string, string> = {
-  'tertiary-blue-500': 'text-tertiary-blue-500',
-  'tertiary-yellow-600': 'text-tertiary-yellow-600',
-  'secondary-500': 'text-secondary-500',
-};
 
 interface ModalContent {
   title: string;
@@ -125,114 +23,29 @@ interface ModalContent {
   features: string[];
   ctaText: string;
   badge: string;
-  badgeColor: string;
-  availableFor?: string;
+  href: string;
 }
 
-function getModalContent(tutorType?: string, t?: (key: string) => string): ModalContent {
-  if (tutorType === 'Tutor Kelas Intensif') {
-    return {
-      title: t?.('hero.modal.intensive.title') ?? 'Kelas Intensif',
-      description:
-        t?.('hero.modal.intensive.description') ??
-        'Persiapan on-demand yang dirancang khusus untuk satu ajang lomba.',
-      features: t
-        ? [
-            t('hero.modal.features.0'),
-            t('hero.modal.features.1'),
-            t('hero.modal.features.2'),
-            t('hero.modal.features.3'),
-            t('hero.modal.features.4'),
-            t('hero.modal.features.5'),
-            t('hero.modal.features.6'),
-            t('hero.modal.features.7'),
-            t('hero.modal.features.8'),
-          ]
-        : [
-            "World Scholar's Cup",
-            'Model United Nations',
-            'Debat (English/Bahasa)',
-            'Pidato (English/Bahasa)',
-            'Karya Tulis Ilmiah & Esai',
-            'Business Plan',
-            'Olimpiade SMP',
-            'Olimpiade SMA',
-            '...dan masih banyak lagi',
-          ],
-      ctaText: t?.('hero.modal.intensive.cta') ?? 'Konsultasi Gratis sekarang dengan Tim Cogito',
-      badge: t?.('hero.modal.intensive.badge') ?? 'Best for Competition',
-      badgeColor: 'bg-yellow-400',
-      availableFor: t?.('hero.modal.intensive.availableFor'),
-    };
-  }
-  if (tutorType === 'Tutor Kelas Reguler') {
-    return {
-      title: t?.('hero.modal.regular.title') ?? 'Kelas Intensif',
-      description:
-        t?.('hero.modal.regular.description') ??
-        'Precision prep for your big day. Maximize your performance with targeted training tailored to your upcoming competition.',
-      features: t
-        ? [
-            t('hero.modal.features.0'),
-            t('hero.modal.features.1'),
-            t('hero.modal.features.2'),
-            t('hero.modal.features.3'),
-            t('hero.modal.features.4'),
-            t('hero.modal.features.5'),
-            t('hero.modal.features.6'),
-            t('hero.modal.features.7'),
-            t('hero.modal.features.8'),
-          ]
-        : [
-            "World Scholar's Cup",
-            'Model United Nations',
-            'Debat (English/Bahasa)',
-            'Pidato (English/Bahasa)',
-            'Karya Tulis Ilmiah & Esai',
-            'Business Plan',
-            'Olimpiade SMP',
-            'Olimpiade SMA',
-            '...dan masih banyak lagi',
-          ],
-      ctaText: t?.('hero.modal.intensive.cta') ?? 'Konsultasi Gratis sekarang dengan Tim Cogito',
-      badge: t?.('hero.modal.intensive.badge') ?? 'Best for Competition',
-      badgeColor: 'bg-yellow-400',
-      availableFor: t?.('hero.modal.intensive.availableFor'),
-    };
-  }
+function getModalContent(
+  tutorType: string | undefined,
+  t: (key: string) => string,
+  locale: string,
+): ModalContent {
+  const kind =
+    tutorType === 'onDemand' ? 'regular' : tutorType === 'cohort' ? 'intensive' : 'extracurricular';
+  const prefix = `hero.modal.${kind}`;
   return {
-    title: t?.('hero.modal.extracurricular.title') ?? 'Kelas Ekstrakurikuler',
-    description:
-      t?.('hero.modal.extracurricular.description') ??
-      'Pelatihan rutin yang dirancang berdasarkan kebutuhan di suatu sekolah. Yuk, bentuk ekosistem juara di sekolahmu dengan program rutin yang fleksibel.',
-    features: t
-      ? [
-          t('hero.modal.features.0'),
-          t('hero.modal.features.1'),
-          t('hero.modal.features.2'),
-          t('hero.modal.features.3'),
-          t('hero.modal.features.4'),
-          t('hero.modal.features.5'),
-          t('hero.modal.features.6'),
-          t('hero.modal.features.7'),
-          t('hero.modal.features.8'),
-        ]
-      : [
-          "World Scholar's Cup",
-          'Model United Nations',
-          'Debat (English/Bahasa)',
-          'Pidato (English/Bahasa)',
-          'Karya Tulis Ilmiah & Esai',
-          'Business Plan',
-          'Olimpiade SMP',
-          'Olimpiade SMA',
-          '...dan masih banyak lagi',
-        ],
-    ctaText:
-      t?.('hero.modal.extracurricular.cta') ?? 'Konsultasi Gratis sekarang dengan Tim Cogito',
-    badge: t?.('hero.modal.extracurricular.badge') ?? 'For Schools',
-    badgeColor: 'bg-blue-400',
-    availableFor: t?.('hero.modal.intensive.availableFor'),
+    title: t(`${prefix}.title`),
+    description: t(`${prefix}.description`),
+    features: [0, 1, 2].map((index) => t(`${prefix}.features.${index}`)),
+    ctaText: t(`${prefix}.cta`),
+    badge: t(`${prefix}.badge`),
+    href:
+      tutorType === 'onDemand'
+        ? `${APP_URL}/tutors`
+        : tutorType === 'cohort'
+          ? `/${locale}/activities`
+          : 'https://wa.me/62881011990195',
   };
 }
 
@@ -264,119 +77,25 @@ function ModalImageHeader({ content }: { content: ModalContent }) {
   );
 }
 
-function RegulerTabContent({
-  isId,
-  activeTab,
-  onTabChange,
-  t,
-}: {
-  isId: boolean;
-  activeTab: string;
-  onTabChange: (value: string) => void;
-  t: (key: string) => string;
-}) {
-  return (
-    <Tabs value={activeTab} onValueChange={onTabChange} className="flex-col lg:flex-row">
-      <div className="shrink-0 lg:w-60">
-        <TabsList
-          variant="sidebar"
-          className="flex w-full flex-row items-center justify-start overflow-x-auto lg:flex-col"
-        >
-          {REGULER_SUBJECTS.map((subject) => (
-            <TabsTrigger
-              key={subject.slug}
-              value={subject.slug}
-              className={cn(
-                'shrink-0 shadow-xs lg:w-full lg:min-w-full',
-                COLOR_BG_MAP[subject.color],
-              )}
-            >
-              <div
-                className={cn(
-                  'mt-2 inline-flex min-w-[110px] shrink-0 justify-between rounded-t-md px-4 py-3 lg:w-full',
-                  activeTab === subject.slug
-                    ? COLOR_BG_LIGHT_MAP[subject.color]
-                    : 'bg-background-cream',
-                )}
-              >
-                {isId ? subject.labelId : subject.labelEn}
-                <ArrowRightIcon className="hidden lg:block" />
-                <ChevronDownIcon className="ml-2 lg:hidden" />
-              </div>
-            </TabsTrigger>
-          ))}
-        </TabsList>
-      </div>
-      <div className="min-w-0 flex-1 overflow-hidden rounded-lg">
-        {REGULER_SUBJECTS.map((subject) => (
-          <TabsContent
-            key={subject.slug}
-            value={subject.slug}
-            className={cn(subject.color, 'overflow-hidden rounded-xl border')}
-          >
-            <div className="p-4">
-              <ResponsiveModalTitle className="font-semibold text-foreground leading-none tracking-tight sm:text-base lg:text-lg">
-                {isId ? subject.labelId : subject.labelEn}
-              </ResponsiveModalTitle>
-            </div>
-            <div className="space-y-3 overflow-hidden rounded-lg bg-background-cream p-4">
-              <p className="text-neutral-1000 text-sm">
-                {isId ? subject.sessionsId : subject.sessionsEn}
-              </p>
-              <h3 className="font-semibold text-base text-neutral-1000 lg:text-lg">
-                {t('hero.modal.regular.whatYouWillLearn')}
-              </h3>
-              <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-                {(isId ? subject.topicsId : subject.topicsEn).map((topic, index) => (
-                  <div
-                    key={index}
-                    className={cn(
-                      'flex items-start gap-3 rounded-lg p-3',
-                      COLOR_BG_LIGHT_MAP[subject.color],
-                    )}
-                  >
-                    <BadgeCheckIcon
-                      className={cn('size-4 shrink-0', COLOR_TEXT_MAP[subject.color])}
-                    />
-                    <span className="text-black text-xs">{topic}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </TabsContent>
-        ))}
-      </div>
-    </Tabs>
-  );
-}
-
-function IntensifEkstrakurikulerContent({ content }: { content: ModalContent }) {
+function ClassModalContent({ content }: { content: ModalContent }) {
   return (
     <div>
-      <div className="space-y-3">
-        {content.availableFor && <h3 className="text-neutral-1000">{content.availableFor}</h3>}
-        <ul className="flex flex-wrap gap-2">
-          {content.features.map((feature, index) => (
-            <li key={index}>
-              <Badge className="bg-tertiary-blue-200 text-black" variant={'tutor'}>
-                {feature}
-              </Badge>
-            </li>
-          ))}
-        </ul>
-      </div>
-      <div className="mt-6">
-        <Link
-          href="https://wa.me/62881011990195"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="w-full"
-        >
-          <Button className="w-full" size="md">
-            {content.ctaText}
-          </Button>
-        </Link>
-      </div>
+      <ul className="space-y-3">
+        {content.features.map((feature) => (
+          <li key={feature} className="flex items-start gap-3 text-sm text-neutral-1000">
+            <BadgeCheckIcon className="mt-0.5 size-4 shrink-0 text-primary-500" />
+            <span>{feature}</span>
+          </li>
+        ))}
+      </ul>
+      <Button
+        render={<Link href={{ pathname: content.href }} />}
+        nativeButton={false}
+        className="mt-6 w-full"
+        size="md"
+      >
+        {content.ctaText}
+      </Button>
     </div>
   );
 }
@@ -399,11 +118,9 @@ export function ClassCard({
   tutorType?: string;
 }) {
   const [open, setOpen] = useState(false);
-  const [activeRegulerTab, setActiveRegulerTab] = useState<string>(REGULER_SUBJECTS[0].slug);
   const locale = useLocale();
-  const isId = locale === 'id';
   const t = useTranslations();
-  const modalContent = getModalContent(tutorType, t);
+  const modalContent = getModalContent(tutorType, t, locale);
 
   const handleClick = () => {
     if (tutorType) {
@@ -470,21 +187,12 @@ export function ClassCard({
           style={{ maxHeight: '75dvh' }}
           className={cn(
             'flex flex-col overflow-hidden rounded-t-2xl border-none p-0 sm:max-w-[600px] sm:rounded-lg',
-            tutorType === 'Tutor Kelas Reguler' ? 'lg:max-w-4xl xl:max-w-5xl' : 'lg:max-w-2xl',
+            'lg:max-w-2xl',
           )}
         >
           <ModalImageHeader content={modalContent} />
           <div className="min-h-0 flex-1 overflow-y-auto p-4 pt-0">
-            {tutorType === 'Tutor Kelas Reguler' ? (
-              <RegulerTabContent
-                isId={isId}
-                activeTab={activeRegulerTab}
-                onTabChange={setActiveRegulerTab}
-                t={t}
-              />
-            ) : (
-              <IntensifEkstrakurikulerContent content={modalContent} />
-            )}
+            <ClassModalContent content={modalContent} />
           </div>
         </ResponsiveModalContent>
       </ResponsiveModal>

@@ -10,7 +10,7 @@ export default async function CtaSection() {
   const isId = locale === 'id';
 
   return (
-    <section className="relative bg-primary-100 px-4 py-20">
+    <section className="relative bg-background-primary px-4 py-20">
       {/*<Container>*/}
       <div className="relative z-2 mx-auto h-[520px] max-w-[calc(80rem-2rem)] overflow-visible rounded-3xl bg-neutral-100 p-10 min-[540px]:h-[383px]">
         <div className="flex h-full flex-col items-start sm:justify-between">

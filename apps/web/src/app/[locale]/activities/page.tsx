@@ -13,11 +13,11 @@ export const dynamic = 'force-dynamic';
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
   return {
-    title: locale === 'id' ? 'Kegiatan' : 'Activities',
+    title: locale === 'id' ? 'Acara' : 'Events',
     description:
       locale === 'id'
-        ? 'Temukan kelas dan kegiatan komunitas Cogito Academy.'
-        : 'Explore classes and community activities at Cogito Academy.',
+        ? 'Temukan kelas dan acara komunitas Cogito Academy.'
+        : 'Explore classes and community events at Cogito Academy.',
     alternates: {
       canonical: `${BASE_URL}/${locale}/activities`,
       languages: { en: `${BASE_URL}/en/activities`, id: `${BASE_URL}/id/activities` },
@@ -39,8 +39,8 @@ export default async function ActivitiesPage({ params }: Props) {
 
   return (
     <>
-      <NavbarResolver className="bg-background-primary" />
-      <div className="bg-background-primary pb-60 text-neutral-1000 lg:pb-80">
+      <NavbarResolver className="bg-background" />
+      <div className="bg-background pb-60 text-neutral-1000 lg:pb-80">
         <div className="mx-auto max-w-7xl space-y-12 px-4 md:space-y-16">
           <header className="max-w-4xl">
             <h1 className="font-semibold text-3xl leading-tight tracking-tight sm:text-4xl lg:text-5xl">

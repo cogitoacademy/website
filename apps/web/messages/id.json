@@ -3,17 +3,17 @@
     "home": "Beranda",
     "tutors": "Tutor",
     "achievements": "Prestasi",
-    "activities": "Kegiatan",
+    "activities": "Acara",
     "calendar": "Kalender Lomba",
     "about": "Tentang Kami",
     "faq": "FAQ"
   },
   "tutors": {
     "title": "Tim Tutor Kami",
-    "description": "Bergabunglah dengan tutor berpengalaman kami yang ahli dalam berbagai bidang perlombaan",
-    "teachingFormat": "Format pengajaran",
+    "description": "Belajar bersama tutor berpengalaman di berbagai bidang lomba.",
+    "teachingFormat": "Format kelas",
     "competitionField": "Bidang Kompetisi",
-    "selectModality": "Pilih format pengajaran",
+    "selectModality": "Pilih format kelas",
     "selectCategory": "Pilih Bidang",
     "online": "Online",
     "offline": "Offline",
@@ -37,16 +37,16 @@
     "title": "Lihat prestasi siswa",
     "titleHighlight": "Cogito Academy",
     "description": "Jelajahi hasil kompetisi, penghargaan, dan pencapaian siswa Cogito yang telah ditinjau oleh tim kami.",
-    "archiveCountLabel": "Entri tercatat",
+    "archiveCountLabel": "Total prestasi",
     "recordSingular": "prestasi terverifikasi yang dibagikan secara publik",
     "recordPlural": "prestasi terverifikasi yang dibagikan secara publik",
-    "featuredLabel": "Catatan terbaru yang disetujui",
-    "latestEntry": "Entri terbaru",
+    "featuredLabel": "Prestasi terbaru",
+    "latestEntry": "Prestasi terbaru",
     "archiveTitle": "Daftar prestasi",
     "searchPlaceholder": "Cari prestasi…",
     "showing": "Menampilkan {count} dari {total} prestasi",
     "viewArchive": "Lihat semua prestasi",
-    "publicNote": "Hanya prestasi yang ditandai tampil oleh siswa yang masuk ke catatan publik ini.",
+    "publicNote": "Prestasi ditampilkan dengan persetujuan siswa setelah diverifikasi oleh tim Cogito.",
     "filters": {
       "category": "Kategori",
       "level": "Tingkat",
@@ -55,19 +55,19 @@
       "allLevels": "Semua tingkat",
       "allYears": "Semua tahun"
     },
-    "errorTitle": "Catatan sedang tidak tersedia",
-    "errorDescription": "Arsip tidak dapat dihubungi. Coba lagi sebentar.",
+    "errorTitle": "Prestasi belum bisa dimuat",
+    "errorDescription": "Coba muat ulang halaman beberapa saat lagi.",
     "tryAgain": "Coba lagi",
-    "emptyTitle": "Catatan pertama sedang disiapkan",
+    "emptyTitle": "Belum ada prestasi untuk ditampilkan",
     "emptyDescription": "Prestasi publik yang disetujui akan muncul di sini setelah siswa mengirimkannya dan tim Cogito meninjaunya.",
-    "noMatchesTitle": "Tidak ada catatan yang cocok",
-    "noMatchesDescription": "Coba pencarian lain atau reset arsip.",
+    "noMatchesTitle": "Tidak ada prestasi yang cocok",
+    "noMatchesDescription": "Coba kata kunci lain atau hapus filter.",
     "resetFilters": "Reset filter",
     "home": {
       "eyebrow": "Prestasi siswa",
       "title": "Rayakan setiap",
       "titleHighlight": "pencapaian.",
-      "description": "Entri ini berasal dari siswa yang memilih membagikan hasilnya setelah diverifikasi oleh tim Cogito."
+      "description": "Prestasi dibagikan dengan persetujuan siswa dan telah diverifikasi oleh tim Cogito."
     },
     "category": {
       "competition": "Kompetisi",
@@ -82,26 +82,26 @@
     "upcoming": "Akan Datang",
     "past": "Sudah Berlalu",
     "done": "Selesai",
-    "noEvents": "Belum ada kegiatan yang terdaftar.",
+    "noEvents": "Belum ada acara yang tersedia.",
     "registerNow": "Daftar Sekarang"
   },
   "studentResources": {
-    "title": "Bank Pengetahuan",
-    "subtitle": "Akses materi eksklusif di Bank Pengetahuan, termasuk Position Paper dan Bank Resolusi.",
+    "title": "Bank Materi",
+    "subtitle": "Akses materi eksklusif di Bank Materi, termasuk Position Paper dan Bank Resolusi.",
     "passwordGate": {
-      "title": "Buka Akses Bank Pengetahuan",
+      "title": "Buka Akses Bank Materi",
       "description": "Dapatkan keunggulan lebih awal melalui akses eksklusif ke materi latihan dan kumpulan soal pilihan yang dirancang untuk membantumu menang.",
       "placeholder": "Masukkan kata sandi",
       "error": "Kata sandi salah. Silakan coba lagi.",
       "verifying": "Memverifikasi...",
-      "button": "Akses Bank Pengetahuan"
+      "button": "Akses Bank Materi"
     },
     "searchPlaceholder": "Cari materi...",
     "filter": "Filter",
     "categories": "Kategori",
     "showing": "Menampilkan {count} dari {total} materi",
-    "noResources": "Tidak ada materi ditemukan",
-    "noResourcesHint": "Coba sesuaikan pencarian atau filter Anda",
+    "noResources": "Materi tidak ditemukan",
+    "noResourcesHint": "Coba kata kunci lain atau ubah filter.",
     "view": "Lihat",
     "download": "Unduh",
     "downloadPdf": "Unduh PDF",
@@ -123,7 +123,7 @@
       "badge": "FAQ",
       "title": "Segala yang Perlu Kamu Tahu untuk ",
       "titleHighlight": "Memulai",
-      "subtitle": "Kami juga siap membantu mendiskusikan rencana prestasimu secara mendalam."
+      "subtitle": "Diskusikan tujuan belajar dan persiapan lombamu bersama tim Cogito."
     },
     "empty": "Segera hadir! Kenali Cogito Academy lebih dekat lewat jawaban atas pertanyaanmu.",
     "viewAll": "Lihat semua FAQ",
@@ -134,7 +134,7 @@
     }
   },
   "hero": {
-    "subtitle": "Belajar dari yang terbaik untuk jadi yang cendekiawan-juara kelas dunia dengan materi yang disusun para pakar.",
+    "subtitle": "Belajar bersama tutor terbaik dan asah kemampuanmu untuk berprestasi di tingkat dunia dengan materi yang disusun para ahli.",
     "ctaPrimary": "Konsultasi Sekarang",
     "ctaSecondary": "Cek Bidang Lomba",
     "trustedBy": "Cogito Academy telah dipercaya oleh",
@@ -144,51 +144,55 @@
     "nextSchools": "Sekolah berikutnya",
     "classCards": {
       "regular": {
-        "title": "Kelas Reguler",
-        "description": "Kuasai perlombaan dari dasar. Nikmati perjalanan belajar yang komprehensif bersama tutor ahli yang akan membimbingmu langkah demi langkah, dari level pemula hingga mahir.",
-        "tags": ["Individu & Kelompok", "MUN | WSC | Debate"]
+        "title": "On-demand Class",
+        "description": "Belajar sesuai kebutuhanmu, dari mendalami topik tertentu sampai persiapan lomba.",
+        "tags": ["Sesuai kebutuhan", "Persiapan lomba"]
       },
       "intensive": {
-        "title": "Kelas Intensif",
-        "description": "Persiapan matang untuk hari kompetisimu. Maksimalkan performa melalui pelatihan terfokus yang dirancang khusus untuk menghadapi tantangan di ajang perlombaan mendatang.",
-        "tags": ["Individu & Kelompok", "Semua Lomba"]
+        "title": "Cohort Classes",
+        "description": "Belajar bersama satu kelompok lewat rangkaian kelas dengan jadwal dan materi yang terstruktur.",
+        "tags": ["Belajar bersama", "Jadwal terstruktur"]
       },
       "extracurricular": {
         "title": "Kelas Ekstrakurikuler",
-        "description": "Kembangkan potensi bakat di sekolah. Program pelatihan rutin berkualitas tinggi yang diselaraskan dengan visi serta target prestasi yang ingin dicapai oleh sekolahmu.",
-        "tags": ["Kelompok", "Semua Lomba"]
+        "description": "Program belajar rutin untuk mengembangkan kemampuan dan prestasi siswa di sekolah.",
+        "tags": ["Untuk sekolah", "Program rutin"]
       }
     },
     "modal": {
       "intensive": {
-        "title": "Kelas Intensif",
-        "description": "Persiapan on-demand yang dirancang khusus untuk satu ajang lomba.",
-        "availableFor": "Saat ini telah tersedia untuk semua jenis perlombaan.",
-        "badge": "Best for Competition",
-        "cta": "Konsultasi Gratis sekarang dengan Tim Cogito"
+        "title": "Cohort Classes",
+        "description": "Belajar bersama satu kelompok lewat rangkaian kelas dengan jadwal dan materi yang terstruktur.",
+        "features": [
+          "Materi dan jadwal tersedia di setiap program",
+          "Belajar, diskusi, dan latihan bersama peserta lain",
+          "Pilih program sesuai minat dan tujuanmu"
+        ],
+        "cta": "Lihat Kelas Tersedia",
+        "badge": "Belajar bersama"
       },
       "extracurricular": {
         "title": "Kelas Ekstrakurikuler",
-        "description": "Pelatihan rutin yang dirancang berdasarkan kebutuhan di suatu sekolah. Yuk, bentuk ekosistem juara di sekolahmu dengan program rutin yang fleksibel.",
-        "badge": "For Schools",
-        "cta": "Konsultasi Gratis sekarang dengan Tim Cogito"
+        "description": "Program belajar rutin untuk mengembangkan kemampuan dan prestasi siswa di sekolah.",
+        "features": [
+          "Materi disesuaikan dengan kebutuhan sekolah",
+          "Pendampingan tutor untuk latihan dan pengembangan kemampuan",
+          "Diskusikan bidang, jadwal, dan format bersama tim Cogito"
+        ],
+        "cta": "Hubungi Tim Cogito",
+        "badge": "Untuk sekolah"
       },
       "regular": {
-        "whatYouWillLearn": "Apa yang Akan Kamu Pelajari dan Kuasai!",
-        "title": "Kelas Reguler",
-        "description": "Kuasai perlombaan dari dasar. Nikmati perjalanan belajar yang komprehensif bersama tutor ahli yang akan membimbingmu langkah demi langkah, dari level pemula hingga mahir."
-      },
-      "features": [
-        "World Scholar's Cup",
-        "Model United Nations",
-        "Debat (English/Bahasa)",
-        "Pidato (English/Bahasa)",
-        "Karya Tulis Ilmiah & Esai",
-        "Business Plan",
-        "Olimpiade SMP",
-        "Olimpiade SMA",
-        "...dan masih banyak lagi"
-      ]
+        "title": "On-demand Class",
+        "description": "Belajar sesuai kebutuhanmu, dari mendalami topik tertentu sampai persiapan lomba.",
+        "features": [
+          "Pilih topik yang ingin kamu pelajari",
+          "Diskusikan jadwal dan fokus belajar bersama tutor",
+          "Cocok untuk mendalami materi atau persiapan lomba"
+        ],
+        "cta": "Cari Tutor",
+        "badge": "Sesuai kebutuhan"
+      }
     }
   },
   "common": {
@@ -204,7 +208,7 @@
     },
     "generic": {
       "title": "Terjadi kesalahan.",
-      "description": "Maaf, terjadi kesalahan. Silakan coba lagi atau hubungi dukungan jika masalah berlanjut.",
+      "description": "Maaf, terjadi kesalahan. Silakan coba lagi atau hubungi tim Cogito jika masalah berlanjut.",
       "button": "Coba lagi",
       "backButton": "Kembali ke beranda"
     }

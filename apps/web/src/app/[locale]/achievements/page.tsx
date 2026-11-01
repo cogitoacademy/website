@@ -64,7 +64,7 @@ export default async function AchievementsPage({
 
   return (
     <>
-      <NavbarResolver className="bg-background-primary" />
+      <NavbarResolver className="bg-background" />
       <AchievementArchive
         achievements={achievements}
         locale={(locale === 'en' ? 'en' : 'id') as AchievementLocale}

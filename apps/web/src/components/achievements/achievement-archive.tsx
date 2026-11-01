@@ -101,7 +101,7 @@ export default function AchievementArchive({
   };
 
   return (
-    <main className="min-h-screen bg-background-primary">
+    <main className="min-h-screen bg-background">
       <div className="relative z-3 mx-auto max-w-7xl px-4 pb-20">
         <section className="pb-8 sm:pb-12 md:pb-16">
           <div className="max-w-2xl space-y-3">
@@ -286,7 +286,7 @@ function ArchiveState({
       className={`min-h-72 rounded-2xl py-20 ${className ?? 'bg-background-cream'}`}
     >
       <EmptyHeader>
-        <EmptyMedia variant="icon" className="bg-background-primary text-primary-500">
+        <EmptyMedia variant="icon" className="bg-background text-primary-500">
           {icon}
         </EmptyMedia>
         <EmptyTitle>{title}</EmptyTitle>

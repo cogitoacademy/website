@@ -29,7 +29,7 @@ export function FaqSection({
   const t = useTranslations('faq');
 
   return (
-    <main className="min-h-screen bg-background-primary pt-24">
+    <main className="min-h-screen bg-background pt-24">
       <Container className="relative z-3 max-w-7xl gap-y-15 py-12 md:py-16">
         <div className="max-w-3xl space-y-2">
           <h1 className="text-pretty font-semibold text-2xl text-neutral-1000 sm:max-w-3xl md:max-w-2xl md:text-4xl lg:max-w-4xl lg:text-5xl">

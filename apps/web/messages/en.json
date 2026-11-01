@@ -3,7 +3,7 @@
     "home": "Home",
     "tutors": "Tutors",
     "achievements": "Achievements",
-    "activities": "Activities",
+    "activities": "Events",
     "calendar": "Competition Calendar",
     "about": "About",
     "faq": "FAQ"
@@ -144,51 +144,55 @@
     "nextSchools": "Next schools",
     "classCards": {
       "regular": {
-        "title": "Regular Class",
-        "description": "Master your craft from the ground up. A comprehensive, step-by-step journey led by expert tutors to take you from beginner to pro.",
-        "tags": ["Individual", "MUN | WSC | Debate"]
+        "title": "On-demand Class",
+        "description": "Learn at your own pace, from exploring a topic to preparing for a competition.",
+        "tags": ["Flexible learning", "Competition prep"]
       },
       "intensive": {
-        "title": "Intensive Class",
-        "description": "Precision prep for your big day. Maximize your performance with targeted training tailored to your upcoming competition.",
-        "tags": ["Individual & Group", "All Competitions"]
+        "title": "Cohort Classes",
+        "description": "Learn together through a structured series of classes with a shared schedule.",
+        "tags": ["Learn together", "Structured schedule"]
       },
       "extracurricular": {
         "title": "Extracurricular Class",
-        "description": "Elevate your school’s talent. Consistent, high-quality training programs customized to align with your school's unique vision and achievement goals.",
-        "tags": ["Group", "All Competitions"]
+        "description": "A regular learning program to develop skills and achievements at school.",
+        "tags": ["For schools", "Regular program"]
       }
     },
     "modal": {
       "intensive": {
-        "title": "Intensive Class",
-        "description": "Precision prep for your big day. Maximize your performance with targeted training tailored to your upcoming competition.",
-        "availableFor": "Currently available for all types of competitions.",
-        "badge": "Best for Competition",
-        "cta": "Free Consultation with Cogito Team now"
+        "title": "Cohort Classes",
+        "description": "Learn together through a structured series of classes with a shared schedule.",
+        "features": [
+          "See the curriculum and schedule for each program",
+          "Learn, discuss, and practise with other participants",
+          "Choose a program that matches your interests and goals"
+        ],
+        "cta": "View Available Classes",
+        "badge": "Learn together"
       },
       "extracurricular": {
         "title": "Extracurricular Class",
-        "description": "Elevate your school’s talent. Consistent, high-quality training programs customized to align with your school's unique vision and achievement goals.",
-        "badge": "For Schools",
-        "cta": "Free Consultation with Cogito Team now"
+        "description": "A regular learning program to develop skills and achievements at school.",
+        "features": [
+          "Content tailored to your school’s needs",
+          "Tutor guidance for practice and skill development",
+          "Discuss subjects, schedules, and formats with Cogito"
+        ],
+        "cta": "Contact Cogito",
+        "badge": "For schools"
       },
       "regular": {
-        "whatYouWillLearn": "What You Will Learn and Master!",
-        "title": "Regular Class",
-        "description": "Master your craft from the ground up. A comprehensive, step-by-step journey led by expert tutors to take you from beginner to pro."
-      },
-      "features": [
-        "World Scholar's Cup",
-        "Model United Nations",
-        "Debate (English/Bahasa)",
-        "Speech (English/Bahasa)",
-        "Scientific Writing & Essays",
-        "Business Plan",
-        "Junior High Olympiad",
-        "Senior High Olympiad",
-        "...and many more"
-      ]
+        "title": "On-demand Class",
+        "description": "Learn at your own pace, from exploring a topic to preparing for a competition.",
+        "features": [
+          "Choose a topic to explore",
+          "Discuss your schedule and learning goals with a tutor",
+          "Build your knowledge or prepare for a competition"
+        ],
+        "cta": "Find a Tutor",
+        "badge": "Flexible learning"
+      }
     }
   },
   "common": {
