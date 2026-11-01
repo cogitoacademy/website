@@ -4,6 +4,7 @@ import { getLocale } from "next-intl/server";
 import { cn } from "@/lib/utils";
 import Carousel from "../carousel";
 import { Badge } from "../ui/badge";
+import { MobileTestimonialsScroll } from "./mobile-testimonials-scroll";
 
 export async function TestimonialsSection() {
   const locale = await getLocale();
@@ -107,18 +108,18 @@ export async function TestimonialsSection() {
               items={testimonials}
               showNavigation={true}
               showDots={true}
-              autoPlay={false}
+              autoPlay={true}
               gap={36}
               responsiveGap={true}
               className=""
             />
           </div>
 
-          <div className="flex flex-col gap-4 max-[469px]:flex min-[470px]:hidden">
+          <MobileTestimonialsScroll isId={isId}>
             {testimonials.map((testimonial) => (
               <MobileCard key={testimonial.id} item={testimonial} />
             ))}
-          </div>
+          </MobileTestimonialsScroll>
         </div>
       </div>
     </section>
@@ -146,9 +147,9 @@ function MobileCard({ item }: { item: TestimonialItem }) {
 
   return (
     <div
-      className={`mx-auto flex aspect-video w-full max-w-[90vw] flex-col overflow-hidden rounded-[20px] border shadow-sm transition sm:max-w-none ${bgColor}`}
+      className={`mx-auto flex min-h-64 w-full flex-col overflow-hidden rounded-[20px] border shadow-sm ${bgColor}`}
     >
-      <div className="flex flex-1 flex-col justify-between text-pretty p-4 text-left">
+      <div className="flex flex-1 flex-col justify-between gap-6 text-pretty p-4 text-left">
         <p className="max-h-full overflow-y-auto text-xs min-[420px]:text-sm min-[500px]:text-base">
           {item.desc}
         </p>

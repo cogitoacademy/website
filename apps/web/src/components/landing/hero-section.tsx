@@ -93,7 +93,7 @@ export function HeroSection() {
   }, []);
 
   return (
-    <section className="relative">
+    <section className="relative bg-neutral-100">
       <div
         id="hero"
         className="invisible h-0 scroll-mt-8 md:scroll-mt-[6.5rem]"
@@ -125,27 +125,25 @@ export function HeroSection() {
           <div className="inline max-w-100 text-center font-bold text-2xl text-neutral-1000 transition-normal sm:max-w-lg sm:text-3xl md:max-w-xl md:text-4xl lg:max-w-3xl lg:text-5xl lg:leading-snug">
             {isId ? (
               <>
-                Mulai Perjalananmu Menjadi Pelajar
-                <span className="w-1 sm:w-2"> </span>
+                Mulai Perjalananmu Menjadi
                 <WordRotateHighlighter
-                  words={rotatingWordsId}
+                  words={rotatingWordsId.map((word) => `Pelajar ${word}`)}
                   className="italic"
                   action="highlight"
                   color="#f8eaa4"
                   highlightDelay={500}
-                />{' '}
+                />
               </>
             ) : (
               <>
-                Start Your Journey to Become a<span className="w-1 sm:w-2"> </span>
+                Start Your Journey to Become a
                 <WordRotateHighlighter
-                  words={rotatingWordsEn}
+                  words={rotatingWordsEn.map((word) => `${word} Student`)}
                   className="italic"
                   action="highlight"
                   color="#f8eaa4"
                   highlightDelay={500}
-                />{' '}
-                Student
+                />
               </>
             )}
           </div>
@@ -181,7 +179,7 @@ export function HeroSection() {
         {/* Trust Section */}
         <section className="flex flex-col items-center">
           <p className="text-neutral-700 text-xs sm:text-sm">{t('hero.trustedBy')}</p>
-          <LogoCloud logos={sampleLogos} interval={3000} displayCount={3} />
+          <LogoCloud logos={sampleLogos} />
         </section>
 
         {/* Class Cards */}

@@ -60,7 +60,7 @@ export default function FieldCard({ skill, isId }: { skill: Skill; isId: boolean
             colorBgMap[color],
           )}
         >
-          <div className="flex items-center justify-between rounded-xl bg-neutral-100 p-5 shadow-inset-top">
+          <div className="flex items-center justify-between rounded-xl bg-neutral-100 p-5 shadow-inset-top border-px border">
             <div className="w-full text-start">
               <h4 className="font-semibold text-lg leading-tight">{title}</h4>
               <p className="text-xs">{description}</p>

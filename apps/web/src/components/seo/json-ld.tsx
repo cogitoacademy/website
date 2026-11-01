@@ -4,6 +4,7 @@
 import Script from 'next/script';
 
 import { BASE_URL } from '@/lib/constants';
+import type { PublicFaq } from '@/types/faq';
 
 interface OrganizationJsonLdProps {
   locale?: string;
@@ -102,59 +103,27 @@ export function CourseJsonLd({ locale = 'id' }: CourseJsonLdProps) {
   );
 }
 
-interface FAQJsonLdProps {
-  locale?: string;
-}
-
-export function FAQJsonLd({ locale = 'id' }: FAQJsonLdProps) {
+export function FAQJsonLd({ items }: { items: PublicFaq[] }) {
   const faq = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
-    mainEntity: [
-      {
-        '@type': 'Question',
-        name: locale === 'id' ? 'Apa itu Cogito Academy?' : 'What is Cogito Academy?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text:
-            locale === 'id'
-              ? 'Cogito Academy adalah talent incubator yang memiliki misi untuk membentuk cendekiawan-juara kelas dunia.'
-              : 'Cogito Academy is a talent incubator with a mission to shape world-class scholar-champions.',
-        },
+    mainEntity: items.map((item) => ({
+      '@type': 'Question',
+      name: item.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: item.answer
+          .map((block) => (block.type === 'paragraph' ? block.text : block.items.join(' ')))
+          .join('\n\n'),
       },
-      {
-        '@type': 'Question',
-        name:
-          locale === 'id'
-            ? 'Apa yang membedakan Cogito Academy?'
-            : 'What sets Cogito Academy apart?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text:
-            locale === 'id'
-              ? 'Tutor kami adalah para juara kompetisi dan praktisi berpengalaman, kurikulum kami battle-tested, dan kami memberikan pendekatan personal.'
-              : 'Our tutors are competition champions and experienced practitioners, our curriculum is battle-tested, and we provide a personal approach.',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: locale === 'id' ? 'Program apa saja yang ditawarkan?' : 'What programs are offered?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text:
-            locale === 'id'
-              ? 'Kelas Reguler, Kelas Intensif, dan Kelas Ekstrakurikuler.'
-              : 'Regular Classes, Intensive Classes, and Extracurricular Classes.',
-        },
-      },
-    ],
+    })),
   };
 
   return (
     <Script
       id="faq-json-ld"
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(faq) }}
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(faq).replace(/</g, '\\u003c') }}
     />
   );
 }

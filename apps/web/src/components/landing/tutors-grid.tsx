@@ -1,6 +1,6 @@
 'use client';
 
-import { AnimatePresence, m } from 'motion/react';
+import { AnimatePresence, m, useReducedMotion } from 'motion/react';
 import { useEffect, useState } from 'react';
 import type { Tutor } from '@/types/tutor';
 import TutorCard from '../tutor-card';
@@ -37,23 +37,25 @@ interface TutorsGridProps {
 
 export function TutorsGrid({ tutors, showAll = false }: TutorsGridProps) {
   const visibleCount = useVisibleCount();
+  const reducedMotion = useReducedMotion();
 
   const visibleTutors = showAll ? tutors : tutors.slice(0, visibleCount);
 
   return (
     <m.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
+      initial={false}
       className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
     >
       <AnimatePresence mode="popLayout">
         {visibleTutors.map((tutor, index) => (
           <m.div
-            key={tutor._id}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.95 }}
-            transition={{ duration: 0.3, delay: index * 0.05 }}
+            key={tutor.id}
+            initial={showAll && !reducedMotion ? { opacity: 0, y: 20 } : false}
+            animate={showAll ? { opacity: 1, y: 0 } : undefined}
+            whileInView={showAll || reducedMotion ? undefined : { y: [20, 0], opacity: [0, 1] }}
+            viewport={{ once: true, amount: 0.2 }}
+            exit={reducedMotion ? undefined : { opacity: 0, scale: 0.95 }}
+            transition={{ duration: showAll ? 0.3 : 0.65, delay: index * (showAll ? 0.05 : 0.12) }}
           >
             <TutorCard tutor={tutor} index={index} />
           </m.div>

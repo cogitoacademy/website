@@ -1,12 +1,12 @@
 'use client';
 
 import { ListIcon } from '@phosphor-icons/react/dist/ssr';
-import { ChevronDown, MonitorSmartphone } from 'lucide-react';
+import { ChevronDown } from 'lucide-react';
 import Image from 'next/image';
 import { useLocale } from 'next-intl';
 import { useEffect, useState } from 'react';
 import { Link } from '@/i18n/routing';
-import { APP_URL, KNOWLEDGE_BANK_URL } from '@/lib/constants';
+import { KNOWLEDGE_BANK_URL } from '@/lib/constants';
 import LanguageToggle from './lang-toggle';
 import MobileMenu from './mobile-menu';
 import { Button } from './ui/button';
@@ -20,6 +20,8 @@ import {
 const NAV_ITEMS_ID = [
   { label: '#TutorJuara', href: '/tutors' },
   { label: 'Prestasi', href: '/achievements' },
+  { label: 'Kegiatan', href: '/activities' },
+  { label: 'FAQ', href: '/faq' },
   {
     label: 'Sumber Daya',
     items: [
@@ -27,30 +29,18 @@ const NAV_ITEMS_ID = [
       { label: 'Bank Pengetahuan', href: KNOWLEDGE_BANK_URL },
     ],
   },
-  {
-    label: 'Kegiatan',
-    items: [
-      { label: 'Townhall & 101 Series', href: '/events/townhall-and-101-series' },
-      { label: 'Simulation Days', href: '/events/simulation-days' },
-    ],
-  },
 ];
 
 const NAV_ITEMS_EN = [
   { label: '#ChampionTutors', href: '/tutors' },
   { label: 'Achievements', href: '/achievements' },
+  { label: 'Activities', href: '/activities' },
+  { label: 'FAQ', href: '/faq' },
   {
     label: 'Resources',
     items: [
       { label: 'Competition Calendar', href: '/calendar' },
       { label: 'Knowledge Bank', href: KNOWLEDGE_BANK_URL },
-    ],
-  },
-  {
-    label: 'Activities',
-    items: [
-      { label: 'Townhall & 101 Series', href: '/events/townhall-and-101-series' },
-      { label: 'Simulation Days', href: '/events/simulation-days' },
     ],
   },
 ];
@@ -155,12 +145,6 @@ export default function Header() {
             </div>
 
             <div className="hidden items-center gap-3 lg:flex">
-              <a href={APP_URL} target="_blank" rel="noopener noreferrer">
-                <Button size="lg">
-                  <MonitorSmartphone />
-                  <span>{isId ? 'Mulai Belajar' : 'Start Learning'}</span>
-                </Button>
-              </a>
               <LanguageToggle />
               <Link href="/contact">
                 <Button size="lg">
@@ -170,12 +154,6 @@ export default function Header() {
             </div>
 
             <div className="relative lg:hidden flex items-center gap-2">
-              <a href={APP_URL} target="_blank" rel="noopener noreferrer">
-                <Button size="lg" variant="primary" className="h-9 px-3">
-                  <MonitorSmartphone />
-                  <span>{isId ? 'Mulai Belajar' : 'Start Learning'}</span>
-                </Button>
-              </a>
               <LanguageToggle className="h-9 px-3" />
               <Button
                 size="icon-lg"

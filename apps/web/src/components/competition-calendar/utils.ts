@@ -52,10 +52,10 @@ export function getCompetitionColorClasses(color?: CompetitionColor | string): s
  */
 export function getBorderRadiusClasses(isFirstDay: boolean, isLastDay: boolean): string {
   if (isFirstDay && isLastDay) {
-    return 'rounded'; // Both ends rounded
+    return 'rounded-r'; // Both ends rounded
   }
   if (isFirstDay) {
-    return 'rounded-l rounded-r-none'; // Only left end rounded
+    return 'rounded-r-none'; // Only left end rounded
   }
   if (isLastDay) {
     return 'rounded-r rounded-l-none'; // Only right end rounded

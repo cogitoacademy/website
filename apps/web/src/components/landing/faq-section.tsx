@@ -1,161 +1,70 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
+import { Container } from '@/components/ui/container';
+import { FaqAnswer, FaqQuestion } from '@/components/faq-answer';
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from '@/components/ui/accordion';
-import { Container } from '../ui/container';
+import { FaqAvailability } from '@/components/faq-availability';
+import type { PublicFaq } from '@/types/faq';
 
-export function FaqSection() {
+export function FaqSection({
+  items,
+  hasError = false,
+}: {
+  items: PublicFaq[];
+  hasError?: boolean;
+}) {
   const t = useTranslations('faq');
 
-  const faq = [
-    {
-      id: 'faq-1',
-      question: t('items.q1'),
-      answer: (
-        <div className="space-y-3">
-          <p>{t('items.a1')}</p>
-        </div>
-      ),
-    },
-    {
-      id: 'faq-2',
-      question: t('items.q2'),
-      answer: (
-        <div className="space-y-3">
-          <p>{t('items.a2Title')}</p>
-          <ul className="ml-4 list-outside list-disc space-y-2">
-            <li>
-              <strong>{t('items.a2p1Title')}</strong>
-              <br />
-              {t('items.a2p1')}
-            </li>
-            <li>
-              <strong>{t('items.a2p2Title')}</strong>
-              <br />
-              {t('items.a2p2')}
-            </li>
-            <li>
-              <strong>{t('items.a2p3Title')}</strong>
-              <br />
-              {t('items.a2p3')}
-            </li>
-          </ul>
-        </div>
-      ),
-    },
-    {
-      id: 'faq-3',
-      question: t('items.q3'),
-      answer: (
-        <div className="space-y-3">
-          <p>{t('items.a3Title')}</p>
-          <ul className="ml-4 list-outside list-disc space-y-2">
-            <li>
-              <strong>{t('items.a3p1Title')}</strong>
-              <br />
-              {t('items.a3p1')}
-            </li>
-            <li>
-              <strong>{t('items.a3p2Title')}</strong>
-              <br />
-              {t('items.a3p2')}
-            </li>
-            <li>
-              <strong>{t('items.a3p3Title')}</strong>
-              <br />
-              {t('items.a3p3')}
-            </li>
-          </ul>
-        </div>
-      ),
-    },
-    {
-      id: 'faq-4',
-      question: t('items.q4'),
-      answer: (
-        <div className="space-y-3">
-          <p>{t('items.a4Title')}</p>
-          <ul className="ml-4 list-outside list-disc space-y-2">
-            <li>
-              <strong>{t('items.a4p1Title')}</strong>
-              <br />
-              {t('items.a4p1')}
-            </li>
-            <li>
-              <strong>{t('items.a4p2Title')}</strong>
-              <br />
-              {t('items.a4p2')}
-            </li>
-            <li>
-              <strong>{t('items.a4p3Title')}</strong>
-              <br />
-              {t('items.a4p3')}
-            </li>
-            <li>
-              <strong>{t('items.a4p4Title')}</strong>
-              <br />
-              {t('items.a4p4')}
-            </li>
-          </ul>
-        </div>
-      ),
-    },
-    {
-      id: 'faq-5',
-      question: t('items.q5'),
-      answer: (
-        <div className="space-y-3">
-          <p>{t('items.a5p1')}</p>
-          <p>{t('items.a5p2')}</p>
-        </div>
-      ),
-    },
-  ];
-
-  const midPoint = Math.ceil(faq.length / 2);
-
   return (
-    <Container className="max-w-7xl bg-background-cream py-15">
-      {/* Header */}
-      <div className="space-y-2 text-center">
-        <h2 className="font-extrabold text-[32px] text-neutral-1000">
-          {t('header.title')}
-          <span className="text-primary-500">{t('header.titleHighlight')}</span>
-        </h2>
-        <p className="mx-auto max-w-3xl font-medium text-lg text-neutral-1000">
-          {t('header.subtitle')}
-        </p>
-      </div>
-
-      <Accordion>
-        <div className="grid grid-cols-1 gap-4 xl:grid-cols-2 xl:gap-6">
-          <div className="space-y-4 xl:space-y-6">
-            {faq.slice(0, midPoint).map((item) => (
-              <AccordionItem key={item.id} value={item.id.toString()}>
-                <AccordionTrigger className="group">
-                  <span>{item.question}</span>
-                </AccordionTrigger>
-                <AccordionContent>{item.answer}</AccordionContent>
-              </AccordionItem>
-            ))}
-          </div>
-          <div className="space-y-4 xl:space-y-6">
-            {faq.slice(midPoint).map((item) => (
-              <AccordionItem key={item.id} value={item.id.toString()}>
-                <AccordionTrigger className="group">
-                  <span>{item.question}</span>
-                </AccordionTrigger>
-                <AccordionContent>{item.answer}</AccordionContent>
-              </AccordionItem>
-            ))}
-          </div>
+    <main className="min-h-screen bg-background-primary pt-24">
+      <Container className="relative z-3 max-w-7xl gap-y-15 py-12 md:py-16">
+        <div className="max-w-3xl space-y-2">
+          <h1 className="text-pretty font-semibold text-2xl text-neutral-1000 sm:max-w-3xl md:max-w-2xl md:text-4xl lg:max-w-4xl lg:text-5xl">
+            {t('v2.title')}
+            <span className="font-extrabold text-primary-500">{t('v2.titleHighlight')}</span>
+          </h1>
+          <p className="max-w-3xl font-medium text-neutral-600 text-sm md:text-base lg:text-left">
+            {t('v2.subtitle')}
+          </p>
         </div>
-      </Accordion>
-    </Container>
+
+        {hasError ? (
+          <FaqAvailability
+            status="error"
+            title={t('error.title')}
+            description={t('error.description')}
+            retryLabel={t('error.tryAgain')}
+            className="max-w-xl text-left text-neutral-700 text-sm"
+          />
+        ) : items.length === 0 ? (
+          <FaqAvailability
+            status="empty"
+            emptyMessage={t('empty')}
+            className="rounded-2xl border border-dashed border-neutral-700 bg-transparent p-6 text-left font-medium text-neutral-700 text-sm"
+          />
+        ) : (
+          <Accordion className="w-full">
+            {items.map((item) => (
+              <AccordionItem key={item.id} value={item.id}>
+                <AccordionTrigger>
+                  <span>
+                    <FaqQuestion question={item.question} rich={item.questionRich} />
+                  </span>
+                </AccordionTrigger>
+                <AccordionContent>
+                  <FaqAnswer blocks={item.answer} rich={item.answerRich} />
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+        )}
+      </Container>
+    </main>
   );
 }

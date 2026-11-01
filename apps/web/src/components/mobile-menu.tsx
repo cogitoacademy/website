@@ -6,7 +6,6 @@ import {
   WhatsappLogoIcon,
   XIcon,
 } from '@phosphor-icons/react/dist/ssr';
-import { MonitorSmartphone } from 'lucide-react';
 import { AnimatePresence, m } from 'motion/react';
 import Image from 'next/image';
 import { useLocale } from 'next-intl';
@@ -19,7 +18,7 @@ import {
 } from '@/components/ui/accordion';
 import { Button } from '@/components/ui/button';
 import { Link } from '@/i18n/routing';
-import { APP_URL, KNOWLEDGE_BANK_URL } from '@/lib/constants';
+import { KNOWLEDGE_BANK_URL } from '@/lib/constants';
 import LanguageToggle from './lang-toggle';
 
 interface MobileMenuProps {
@@ -30,11 +29,15 @@ interface MobileMenuProps {
 const NAV_ITEMS_ID = [
   { label: '#TutorJuara', href: '/tutors' },
   { label: 'Prestasi', href: '/achievements' },
+  { label: 'Kegiatan', href: '/activities' },
+  { label: 'FAQ', href: '/faq' },
 ];
 
 const NAV_ITEMS_EN = [
   { label: '#ChampionTutors', href: '/tutors' },
   { label: 'Achievements', href: '/achievements' },
+  { label: 'Activities', href: '/activities' },
+  { label: 'FAQ', href: '/faq' },
 ];
 
 const RESOURCES_ITEMS_ID = [
@@ -47,18 +50,7 @@ const RESOURCES_ITEMS_EN = [
   { label: 'Knowledge Bank', href: KNOWLEDGE_BANK_URL },
 ];
 
-const KEGIATAN_ITEMS_ID = [
-  { label: 'Townhall & 101 Series', href: '/events/townhall-and-101-series' },
-  { label: 'Simulation Days', href: '/events/simulation-days' },
-];
-
-const KEGIATAN_ITEMS_EN = [
-  { label: 'Townhall & 101 Series', href: '/events/townhall-and-101-series' },
-  { label: 'Simulation Days', href: '/events/simulation-days' },
-];
-
 const QUICK_NAV_ITEMS_ID = [
-  { label: 'Acara Publik', href: '#events' },
   { label: '#TutorJuara', href: '#tutors' },
   { label: 'Prestasi', href: '/achievements' },
   { label: 'Kenapa Kita?', href: '#methods' },
@@ -68,7 +60,6 @@ const QUICK_NAV_ITEMS_ID = [
 ];
 
 const QUICK_NAV_ITEMS_EN = [
-  { label: 'Public Events', href: '#events' },
   { label: 'Cogito Tutors', href: '#tutors' },
   { label: 'Achievements', href: '/achievements' },
   { label: 'Why Us?', href: '#methods' },
@@ -83,7 +74,6 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
 
   const navItems = isId ? NAV_ITEMS_ID : NAV_ITEMS_EN;
   const resourcesItems = isId ? RESOURCES_ITEMS_ID : RESOURCES_ITEMS_EN;
-  const kegiatanItems = isId ? KEGIATAN_ITEMS_ID : KEGIATAN_ITEMS_EN;
   const quickNavItems = isId ? QUICK_NAV_ITEMS_ID : QUICK_NAV_ITEMS_EN;
 
   useEffect(() => {
@@ -156,18 +146,6 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
               </Link>
 
               <div className="flex items-center gap-2">
-                <a
-                  href={APP_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={onClose}
-                  className="w-full cursor-pointer"
-                >
-                  <Button variant="primary" size="lg" className="h-9 px-3">
-                    <MonitorSmartphone />
-                    {isId ? 'Mulai Belajar' : 'Start Learning'}
-                  </Button>
-                </a>
                 <LanguageToggle variant="cream" className="h-9 px-3 text-primary-500" />
                 <Button
                   size="icon-lg"
@@ -231,33 +209,6 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                             </Link>
                           ),
                         )}
-                      </div>
-                    </AccordionContent>
-                  </AccordionItem>
-                </Accordion>
-              </m.div>
-
-              <m.div variants={itemVariants}>
-                <Accordion defaultValue={['kegiatan']} className="w-full">
-                  <AccordionItem
-                    value="kegiatan"
-                    className="border-none bg-transparent shadow-none"
-                  >
-                    <AccordionTrigger className="bg-transparent p-0 font-bold text-neutral-1000 text-sm shadow-none hover:bg-transparent hover:no-underline hover:shadow-none focus-visible:ring-0 min-[550px]:text-base [&>svg]:ml-2 [&>svg]:size-5 [&>svg]:text-neutral-1000">
-                      {isId ? 'Kegiatan' : 'Activities'}
-                    </AccordionTrigger>
-                    <AccordionContent className="pb-0 pl-5">
-                      <div className="flex flex-col gap-3 pt-3">
-                        {kegiatanItems.map((item) => (
-                          <Link
-                            key={item.label}
-                            href={item.href}
-                            onClick={onClose}
-                            className="text-sm min-[550px]:text-base"
-                          >
-                            {item.label}
-                          </Link>
-                        ))}
                       </div>
                     </AccordionContent>
                   </AccordionItem>

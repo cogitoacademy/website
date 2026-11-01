@@ -6,10 +6,8 @@ import TutorList from '@/components/tutor-list';
 import { Container } from '@/components/ui/container';
 import { Skeleton } from '@/components/ui/skeleton';
 import { BASE_URL } from '@/lib/constants';
+import { tryLoadPublicTutors } from '@/lib/tutor-api';
 import { getTutors } from '@/lib/tutors';
-import { COMPETITION_CATEGORIES_QUERY } from '@/queries/tutors';
-import { client } from '@/sanity/client';
-import type { CompetitionCategory } from '@/types/tutor';
 
 export async function generateMetadata({
   params,
@@ -69,14 +67,7 @@ async function TutorContent({ params }: Props) {
   const lang = locale === 'en' ? 'en' : 'id';
   const headline = HEADLINE[lang];
 
-  const [tutors, categories] = await Promise.all([
-    getTutors(),
-    client.fetch<CompetitionCategory[]>(
-      COMPETITION_CATEGORIES_QUERY,
-      {},
-      { next: { revalidate: 1800 } },
-    ),
-  ]);
+  const result = await tryLoadPublicTutors(getTutors);
 
   return (
     <main className="min-h-screen bg-background-primary">
@@ -91,7 +82,10 @@ async function TutorContent({ params }: Props) {
           </h1>
         </div>
 
-        <TutorList tutors={tutors} categories={categories} />
+        <TutorList
+          tutors={result.status === 'success' ? result.items : []}
+          loadFailed={result.status === 'failure'}
+        />
       </Container>
     </main>
   );

@@ -19,6 +19,7 @@ import { useLocale } from 'next-intl';
 import { Badge } from '../ui/badge';
 import { Container } from '../ui/container';
 import FieldCard from './field-card';
+import { LearningScene } from './learning-scene';
 
 type Focus = {
   icon: React.ComponentType<{
@@ -258,7 +259,7 @@ export function SkillsSection() {
         className="invisible h-0 scroll-mt-24 md:scroll-mt-[6.5rem]"
         aria-hidden="true"
       />
-      <Container className="relative max-w-[calc(80rem-2rem)] overflow-hidden rounded-2xl border bg-tertiary-pink-500 pt-9 pb-20">
+      <Container className="relative max-w-[calc(80rem-2rem)] overflow-hidden rounded-2xl border bg-neutral-100 lg:bg-tertiary-pink-500 pt-9 pb-20">
         <Image
           src="/images/landing/fields-background.webp"
           alt="Skills Section Image"
@@ -267,13 +268,13 @@ export function SkillsSection() {
           className="absolute inset-0 bottom-0 z-3 mt-auto w-full"
         />
 
-        <div className="absolute top-20 left-0 aspect-[500/520] w-full lg:aspect-16/5">
+        <div className="hidden lg:block absolute top-20 left-0 aspect-[500/520] w-full lg:aspect-16/5">
           <svg viewBox="0 0 1000 120" preserveAspectRatio="none" className="h-full w-full">
             <polygon points="0,0 1000,0 1000,80 500,120 0,80" className="fill-tertiary-pink-300" />
           </svg>
         </div>
 
-        <div className="absolute top-0 left-0 aspect-[500/520] w-full lg:aspect-16/5">
+        <div className="hidden lg:block absolute top-0 left-0 aspect-[500/520] w-full lg:aspect-16/5">
           <svg viewBox="0 0 1000 120" preserveAspectRatio="none" className="h-full w-full">
             <polygon points="0,0 1000,0 1000,80 500,120 0,80" className="fill-neutral-100" />
           </svg>
@@ -299,11 +300,13 @@ export function SkillsSection() {
         </div>
 
         {/* MOBILE = full width stack | SM+ = flex wrap cards */}
-        <div className="relative z-3 md:mt-8 flex w-full flex-col gap-3 sm:flex-row sm:flex-wrap sm:justify-center sm:gap-6">
-          {skills.map((skill) => (
-            <FieldCard key={skill.titleEn} skill={skill} isId={isId} />
+        <LearningScene className="relative z-3 md:mt-8 flex w-full flex-col gap-3 sm:flex-row sm:flex-wrap sm:justify-center sm:gap-6">
+          {skills.map((skill, index) => (
+            <div key={skill.titleEn} data-scene="reveal" style={{ animationDelay: `${index * 100}ms` }}>
+              <FieldCard skill={skill} isId={isId} />
+            </div>
           ))}
-        </div>
+        </LearningScene>
       </Container>
     </section>
   );

@@ -1,7 +1,7 @@
 'use client';
 
 import { IdentificationBadgeIcon } from '@phosphor-icons/react/dist/ssr';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { useMemo, useState } from 'react';
 import TutorFilters from '@/components/tutor-filters';
 import {
@@ -11,70 +11,73 @@ import {
   EmptyMedia,
   EmptyTitle,
 } from '@/components/ui/empty';
-import { LOCATIONS } from '@/lib/config/locations';
-import type { CompetitionCategory, Tutor } from '@/types/tutor';
+import { filterTutors, getLocalizedCategoryName, getTutorCategories } from '@/lib/tutor-directory';
+import type { Tutor } from '@/types/tutor';
 import { TutorsGrid } from './landing/tutors-grid';
 
 interface TutorListProps {
   tutors: Tutor[];
-  categories: CompetitionCategory[];
+  loadFailed?: boolean;
 }
 
-export default function TutorList({ tutors, categories }: TutorListProps) {
+export default function TutorList({ tutors, loadFailed = false }: TutorListProps) {
+  const locale = useLocale();
   const t = useTranslations('tutors');
-  const [selectedLocations, setSelectedLocations] = useState<string[]>([]);
+  const [selectedModalities, setSelectedModalities] = useState<string[]>([]);
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const [searchQuery, setSearchQuery] = useState('');
 
-  const filteredTutors = useMemo(() => {
-    return tutors.filter((tutor) => {
-      const locationMatch =
-        selectedLocations.length === 0 ||
-        (tutor.locations && tutor.locations.some((loc) => selectedLocations.includes(loc)));
+  const categories = useMemo(
+    () =>
+      getTutorCategories(tutors).sort((left, right) =>
+        getLocalizedCategoryName(left, locale).localeCompare(
+          getLocalizedCategoryName(right, locale),
+        ),
+      ),
+    [tutors, locale],
+  );
+  const filteredTutors = useMemo(
+    () =>
+      filterTutors(tutors, {
+        modalities: selectedModalities,
+        categoryIds: selectedCategories,
+        searchQuery,
+      }),
+    [tutors, selectedModalities, selectedCategories, searchQuery],
+  );
 
-      const categoryMatch =
-        selectedCategories.length === 0 ||
-        (tutor.competitionFields &&
-          tutor.competitionFields.some((cat) => selectedCategories.includes(cat._id)));
-
-      const searchMatch =
-        searchQuery === '' || tutor.name.toLowerCase().includes(searchQuery.toLowerCase());
-
-      return locationMatch && categoryMatch && searchMatch;
-    });
-  }, [tutors, selectedLocations, selectedCategories, searchQuery]);
-
-  const handleLocationToggle = (id: string) => {
-    setSelectedLocations((prev) =>
-      prev.includes(id) ? prev.filter((loc) => loc !== id) : [...prev, id],
+  const handleModalityToggle = (value: string) => {
+    setSelectedModalities((prev) =>
+      prev.includes(value) ? prev.filter((modality) => modality !== value) : [...prev, value],
     );
   };
 
   const handleCategoryToggle = (id: string) => {
     setSelectedCategories((prev) =>
-      prev.includes(id) ? prev.filter((cat) => cat !== id) : [...prev, id],
+      prev.includes(id) ? prev.filter((categoryId) => categoryId !== id) : [...prev, id],
     );
   };
 
   const handleClearAll = () => {
-    setSelectedLocations([]);
+    setSelectedModalities([]);
     setSelectedCategories([]);
     setSearchQuery('');
   };
 
   return (
     <div>
-      <TutorFilters
-        locations={LOCATIONS}
-        categories={categories}
-        selectedLocations={selectedLocations}
-        selectedCategories={selectedCategories}
-        searchQuery={searchQuery}
-        onLocationChange={handleLocationToggle}
-        onCategoryChange={handleCategoryToggle}
-        onSearchChange={setSearchQuery}
-        onClearAll={handleClearAll}
-      />
+      {tutors.length > 0 && (
+        <TutorFilters
+          categories={categories}
+          selectedModalities={selectedModalities}
+          selectedCategories={selectedCategories}
+          searchQuery={searchQuery}
+          onModalityChange={handleModalityToggle}
+          onCategoryChange={handleCategoryToggle}
+          onSearchChange={setSearchQuery}
+          onClearAll={handleClearAll}
+        />
+      )}
 
       {filteredTutors.length === 0 ? (
         <Empty className="h-full">
@@ -82,9 +85,13 @@ export default function TutorList({ tutors, categories }: TutorListProps) {
             <EmptyMedia variant="icon">
               <IdentificationBadgeIcon />
             </EmptyMedia>
-            <EmptyTitle>{t('noTutorsTitle')}</EmptyTitle>
+            <EmptyTitle>{loadFailed ? t('unavailableTitle') : t('noTutorsTitle')}</EmptyTitle>
             <EmptyDescription className="text-pretty">
-              {tutors.length === 0 ? t('loading') : t('noTutors')}
+              {loadFailed
+                ? t('unavailableDescription')
+                : tutors.length === 0
+                  ? t('emptyDirectory')
+                  : t('noTutors')}
             </EmptyDescription>
           </EmptyHeader>
         </Empty>

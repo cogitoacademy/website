@@ -15,6 +15,7 @@ import { cn } from '@/lib/utils';
 import { Badge } from '../ui/badge';
 import { Button } from '../ui/button';
 import Link from 'next/link';
+import { LearningScene } from './learning-scene';
 
 const REGULER_SUBJECTS = [
   {
@@ -446,10 +447,12 @@ export function ClassCard({
         >
           <h2 className="font-bold text-neutral-1000 text-xl sm:text-2xl">{title}</h2>
           <p className="line-clamp-2 text-neutral-1000 text-sm lg:line-clamp-none">{description}</p>
-          <div className="flex flex-wrap gap-2">
+          <LearningScene className="flex flex-wrap gap-2">
             {tags.map((tag, index) => (
               <span
                 key={tag}
+                data-scene="reveal"
+                style={{ animationDelay: `${index * 180}ms` }}
                 className="inline-flex items-center gap-1.5 rounded-md bg-neutral-100/80 px-3 py-1.5 font-medium text-neutral-1000 text-xs"
               >
                 {index === 0 && <Users className="size-4" />}
@@ -457,7 +460,7 @@ export function ClassCard({
                 {tag}
               </span>
             ))}
-          </div>
+          </LearningScene>
         </motion.div>
       </div>
 

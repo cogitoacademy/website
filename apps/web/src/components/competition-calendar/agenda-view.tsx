@@ -27,17 +27,26 @@ export function AgendaView({ currentDate, events, onEventSelect }: AgendaViewPro
     return Array.from({ length: AgendaDaysToShow }, (_, i) => addDays(new Date(currentDate), i));
   }, [currentDate]);
 
+  const agendaEvents = useMemo(() => {
+    const seenEventIds = new Set<string>();
+
+    return days.flatMap((day) =>
+      getAgendaEventsForDay(events, day).flatMap((event) => {
+        if (seenEventIds.has(event.id)) return [];
+        seenEventIds.add(event.id);
+        return [{ event, day }];
+      }),
+    );
+  }, [days, events]);
+
   const handleEventClick = (event: CalendarCompetition, e: MouseEvent) => {
     e.stopPropagation();
     onEventSelect(event);
   };
 
-  // Check if there are any days with events
-  const hasEvents = days.some((day) => getAgendaEventsForDay(events, day).length > 0);
-
   return (
     <div className="border-border/70 border-t px-4">
-      {!hasEvents ? (
+      {agendaEvents.length === 0 ? (
         <div className="flex min-h-[70svh] flex-col items-center justify-center py-16 text-center">
           <RiCalendarEventLine className="mb-2 text-muted-foreground/50" size={32} />
           <h3 className="font-medium text-lg">{isId ? 'Tidak ada acara' : 'No events found'}</h3>
@@ -48,32 +57,23 @@ export function AgendaView({ currentDate, events, onEventSelect }: AgendaViewPro
           </p>
         </div>
       ) : (
-        days.map((day) => {
-          const dayEvents = getAgendaEventsForDay(events, day);
-
-          if (dayEvents.length === 0) return null;
-
-          return (
-            <div className="relative my-6 border-border/70 border-t" key={day.toString()}>
-              <span
-                className="absolute -top-3 left-0 flex h-6 items-center bg-background pe-4 text-[10px] uppercase data-today:font-medium sm:pe-4 sm:text-xs"
+        <div className="space-y-4 py-6">
+          {agendaEvents.map(({ event, day }) => (
+            <div key={event.id}>
+              <p
+                className="mb-1 text-[10px] uppercase data-today:font-medium sm:text-xs"
                 data-today={isToday(day) || undefined}
               >
                 {format(day, 'd MMM, EEEE', { locale: dateLocale })}
-              </span>
-              <div className="mt-6 space-y-2">
-                {dayEvents.map((event) => (
-                  <EventItem
-                    event={event}
-                    key={event.id}
-                    onClick={(e) => handleEventClick(event, e)}
-                    view="agenda"
-                  />
-                ))}
-              </div>
+              </p>
+              <EventItem
+                event={event}
+                onClick={(e) => handleEventClick(event, e)}
+                view="agenda"
+              />
             </div>
-          );
-        })
+          ))}
+        </div>
       )}
     </div>
   );

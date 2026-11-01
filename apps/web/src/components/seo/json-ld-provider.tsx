@@ -1,7 +1,7 @@
 'use client';
 
 import { useParams } from 'next/navigation';
-import { CourseJsonLd, FAQJsonLd, OrganizationJsonLd } from './json-ld';
+import { CourseJsonLd, OrganizationJsonLd } from './json-ld';
 
 export default function JsonLdProvider() {
   const params = useParams();
@@ -11,7 +11,6 @@ export default function JsonLdProvider() {
     <>
       <OrganizationJsonLd locale={locale} />
       <CourseJsonLd locale={locale} />
-      <FAQJsonLd locale={locale} />
     </>
   );
 }
