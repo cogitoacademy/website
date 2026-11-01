@@ -125,11 +125,11 @@
       "titleHighlight": "Get Started",
       "subtitle": "We're also ready to help discuss your achievement plans in depth."
     },
-    "empty": "There are no frequently asked questions available yet.",
+    "empty": "Coming soon! Get to know Cogito Academy through answers to your questions.",
     "viewAll": "View all FAQs",
     "error": {
-      "title": "Frequently asked questions are temporarily unavailable.",
-      "description": "We could not load the answers just now. Please try again.",
+      "title": "Your questions, answered soon!",
+      "description": "Get to know Cogito Academy better. Stay tuned for our FAQs right here.",
       "tryAgain": "Try again"
     }
   },
