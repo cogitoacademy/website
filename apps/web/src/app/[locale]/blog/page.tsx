@@ -85,89 +85,97 @@ export default async function BlogPage({ params, searchParams }: Props) {
     <>
       <NavbarResolver className="bg-background-cream" />
       <div className="bg-background-cream pb-40 text-neutral-1000">
-        <div className="mx-auto flex max-w-7xl flex-col gap-y-15 px-4">
-          <header className="max-w-3xl space-y-2">
-            <h1 className="text-3xl font-bold sm:text-4xl lg:text-5xl">{t('title')}</h1>
-            <p className="text-neutral-600 leading-relaxed">{t('description')}</p>
-          </header>
-
-          {hubs.length > 0 ? (
-            <nav aria-label={t('categories')} className="flex flex-wrap gap-2">
-              {hubs.map((hub) => (
-                <Link
-                  key={hub.id}
-                  href={`/blog/${locale === 'id' ? 'kategori' : 'category'}/${hub.slug}`}
-                  className="rounded-full bg-neutral-100 px-4 py-2 text-sm font-medium text-neutral-700 ring-1 ring-neutral-200 transition hover:bg-primary-100 hover:text-primary-700"
-                >
-                  {hub.title}
-                </Link>
-              ))}
-            </nav>
-          ) : null}
-
-          {failed ? (
-            <BlogErrorState
-              title={t('errorTitle')}
-              description={t('errorDescription')}
-              retryLabel={t('retry')}
-              retryHref={retryHref}
-            />
-          ) : articles && articles.length > 0 ? (
-            <>
-              <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                {articles.map((article, index) => (
-                  <ArticleCard
-                    key={article.id}
-                    article={article}
-                    locale={locale}
-                    priority={index === 0}
-                  />
-                ))}
-              </div>
-              {page > 1 || hasNext ? (
-                <nav
-                  aria-label={t('pagination')}
-                  className="flex items-center justify-between gap-3"
-                >
-                  {page > 1 ? (
-                    <Link
-                      href={pageHref(locale, page - 1)}
-                      className="rounded-lg bg-neutral-100 px-4 py-2 text-sm font-medium text-neutral-700 ring-1 ring-neutral-200 transition hover:bg-neutral-200"
-                    >
-                      {t('previous')}
-                    </Link>
-                  ) : (
-                    <span />
-                  )}
-                  <span className="text-sm text-neutral-500">{t('page', { page })}</span>
-                  {hasNext ? (
-                    <Link
-                      href={pageHref(locale, page + 1)}
-                      className="rounded-lg bg-primary-500 px-4 py-2 text-sm font-medium text-white transition hover:bg-primary-600"
-                    >
-                      {t('next')}
-                    </Link>
-                  ) : (
-                    <span />
-                  )}
-                </nav>
-              ) : null}
-            </>
-          ) : (
-            <div className="flex flex-col gap-4">
-              <p className="rounded-2xl bg-neutral-100 p-6 text-neutral-600 ring-1 ring-neutral-200">
-                {t('empty')}
+        <div className="relative z-3 mx-auto max-w-7xl px-4 pb-20">
+          <section className="pb-8 sm:pb-12 md:pb-16">
+            <div className="max-w-2xl space-y-3">
+              <h1 className="font-bold text-2xl text-neutral-1000 tracking-tight sm:text-3xl md:text-4xl lg:text-5xl">
+                {t('title')}
+              </h1>
+              <p className="text-neutral-600 text-sm leading-relaxed sm:text-base">
+                {t('description')}
               </p>
-              {page > 1 ? (
-                <Link
-                  href={pageHref(locale, page - 1)}
-                  className="w-fit rounded-lg bg-neutral-100 px-4 py-2 text-sm font-medium text-neutral-700 ring-1 ring-neutral-200 transition hover:bg-neutral-200"
-                >
-                  {t('previous')}
-                </Link>
-              ) : null}
             </div>
-          )}
+          </section>
+
+          <div className="space-y-8">
+            {hubs.length > 0 ? (
+              <nav aria-label={t('categories')} className="flex flex-wrap gap-2">
+                {hubs.map((hub) => (
+                  <Link
+                    key={hub.id}
+                    href={`/blog/${locale === 'id' ? 'kategori' : 'category'}/${hub.slug}`}
+                    className="rounded-full bg-neutral-100 px-4 py-2 text-sm font-medium text-neutral-700 ring-1 ring-neutral-200 transition hover:bg-primary-100 hover:text-primary-700"
+                  >
+                    {hub.title}
+                  </Link>
+                ))}
+              </nav>
+            ) : null}
+
+            {failed ? (
+              <BlogErrorState
+                title={t('errorTitle')}
+                description={t('errorDescription')}
+                retryLabel={t('retry')}
+                retryHref={retryHref}
+              />
+            ) : articles && articles.length > 0 ? (
+              <>
+                <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                  {articles.map((article, index) => (
+                    <ArticleCard
+                      key={article.id}
+                      article={article}
+                      locale={locale}
+                      priority={index === 0}
+                    />
+                  ))}
+                </div>
+                {page > 1 || hasNext ? (
+                  <nav
+                    aria-label={t('pagination')}
+                    className="flex items-center justify-between gap-3"
+                  >
+                    {page > 1 ? (
+                      <Link
+                        href={pageHref(locale, page - 1)}
+                        className="rounded-lg bg-neutral-100 px-4 py-2 text-sm font-medium text-neutral-700 ring-1 ring-neutral-200 transition hover:bg-neutral-200"
+                      >
+                        {t('previous')}
+                      </Link>
+                    ) : (
+                      <span />
+                    )}
+                    <span className="text-sm text-neutral-500">{t('page', { page })}</span>
+                    {hasNext ? (
+                      <Link
+                        href={pageHref(locale, page + 1)}
+                        className="rounded-lg bg-primary-500 px-4 py-2 text-sm font-medium text-white transition hover:bg-primary-600"
+                      >
+                        {t('next')}
+                      </Link>
+                    ) : (
+                      <span />
+                    )}
+                  </nav>
+                ) : null}
+              </>
+            ) : (
+              <div className="flex flex-col gap-4">
+                <p className="rounded-2xl bg-neutral-100 p-6 text-neutral-600 ring-1 ring-neutral-200">
+                  {t('empty')}
+                </p>
+                {page > 1 ? (
+                  <Link
+                    href={pageHref(locale, page - 1)}
+                    className="w-fit rounded-lg bg-neutral-100 px-4 py-2 text-sm font-medium text-neutral-700 ring-1 ring-neutral-200 transition hover:bg-neutral-200"
+                  >
+                    {t('previous')}
+                  </Link>
+                ) : null}
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </>
