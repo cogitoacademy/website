@@ -84,7 +84,7 @@ export default async function BlogPage({ params, searchParams }: Props) {
   return (
     <>
       <NavbarResolver className="bg-background-cream" />
-      <div className="bg-background-cream pb-40 text-neutral-1000">
+      <div className="min-h-screen bg-background-cream pb-40 text-neutral-1000">
         <div className="relative z-3 mx-auto max-w-7xl px-4 pb-20">
           <section className="pb-8 sm:pb-12 md:pb-16">
             <div className="max-w-2xl space-y-3">
