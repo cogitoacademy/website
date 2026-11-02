@@ -14,36 +14,43 @@ export function buildBlogHomeMetadata({
   locale,
   title,
   description,
+  page = 1,
 }: {
   locale: BlogLocale;
   title: string;
   description: string;
+  page?: number;
 }): Metadata {
   const path = blogHomePath(locale);
+  const pageQuery = page > 1 ? `?page=${page}` : '';
+  const pageSuffix = page > 1 ? ` — Page ${page}` : '';
 
   return {
-    title,
+    title: `${title}${pageSuffix}`,
     description,
     alternates: {
-      canonical: `${BASE_URL}${path}`,
+      canonical: `${BASE_URL}${path}${pageQuery}`,
       languages: {
-        id: `${BASE_URL}${blogHomePath('id')}`,
-        en: `${BASE_URL}${blogHomePath('en')}`,
-        'x-default': `${BASE_URL}${blogHomePath('id')}`,
+        id: `${BASE_URL}${blogHomePath('id')}${pageQuery}`,
+        en: `${BASE_URL}${blogHomePath('en')}${pageQuery}`,
+        'x-default': `${BASE_URL}${blogHomePath('id')}${pageQuery}`,
+      },
+      types: {
+        'application/rss+xml': `${BASE_URL}${path}/rss.xml`,
       },
     },
     openGraph: {
       type: 'website',
       locale: openGraphLocale(locale),
-      url: `${BASE_URL}${path}`,
+      url: `${BASE_URL}${path}${pageQuery}`,
       siteName: 'Cogito Academy',
-      title,
+      title: `${title}${pageSuffix}`,
       description,
       images: [{ url: OG_IMAGE, width: 1200, height: 630, alt: title }],
     },
     twitter: {
       card: 'summary_large_image',
-      title,
+      title: `${title}${pageSuffix}`,
       description,
       images: [OG_IMAGE],
     },

@@ -21,7 +21,15 @@
       "empty": "No articles are published yet. Check back soon.",
       "errorTitle": "Articles could not be loaded",
       "errorDescription": "We could not fetch articles from the server. Reload this page to try again.",
-      "retry": "Try again"
+      "retry": "Try again",
+      "latestTitle": "Latest articles",
+      "latestDescription": "Fresh reading from the Cogito tutor and student team.",
+      "viewAll": "View all articles",
+      "categories": "Blog categories",
+      "pagination": "Article pages",
+      "previous": "Previous",
+      "next": "Next",
+      "page": "Page {page}"
     },
     "card": {
       "readingTime": "{minutes} min read"
@@ -38,6 +46,10 @@
       "gallery": "Gallery",
       "languageSwitch": "Read in Indonesian",
       "breadcrumbBlog": "Blog",
+      "ctaEyebrow": "Next step",
+      "ctaTitle": "Ready to start your journey?",
+      "ctaDescription": "Talk through your competition goal with the Cogito team. We will map the right program and tutor for you.",
+      "ctaButton": "Free consultation via WhatsApp",
       "errorTitle": "Article could not be loaded",
       "errorDescription": "We could not fetch this article from the server. Try again shortly.",
       "retry": "Try again"

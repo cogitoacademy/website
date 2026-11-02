@@ -9,7 +9,7 @@ export async function ArticleCard({
   article,
   locale,
   priority = false,
-  headingLevel = 'h3',
+  headingLevel = 'h2',
 }: {
   article: BlogCard;
   locale: BlogLocale;
@@ -25,7 +25,7 @@ export async function ArticleCard({
         href={`/blog/${article.slug}`}
         className="group flex h-full flex-col overflow-hidden rounded-2xl bg-neutral-100 ring-1 ring-neutral-200 transition hover:ring-primary-300 focus-visible:outline-2 focus-visible:outline-primary-500 focus-visible:outline-offset-2"
       >
-        <div className="relative aspect-16/9 w-full overflow-hidden bg-neutral-200">
+        <div className="relative aspect-4/3 w-full overflow-hidden bg-neutral-200">
           {article.hero ? (
             <Image
               src={article.hero.url}

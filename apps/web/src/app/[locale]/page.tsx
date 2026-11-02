@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { setRequestLocale } from 'next-intl/server';
 import { AchievementsSection } from '@/components/landing/achievements-section';
+import { LatestArticlesSection } from '@/components/blog/latest-articles-section';
 import { HeroSection } from '@/components/landing/hero-section';
 import { MethodsSection } from '@/components/landing/methods-section';
 // import { PartnersCarousel } from "@/components/landing/partners-carousel";
@@ -51,6 +52,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       <SkillsSection />
       <TutorsSection />
       <AchievementsSection />
+      <LatestArticlesSection locale={locale === 'en' ? 'en' : 'id'} />
       <TestimonialsSection />
       {/*<FaqSection />*/}
       <FaqSectionV2 />

@@ -21,7 +21,15 @@
       "empty": "Belum ada artikel yang terbit. Kembali lagi sebentar lagi.",
       "errorTitle": "Artikel belum bisa dimuat",
       "errorDescription": "Kami gagal mengambil artikel dari server. Coba muat ulang halaman ini.",
-      "retry": "Coba lagi"
+      "retry": "Coba lagi",
+      "latestTitle": "Artikel terbaru",
+      "latestDescription": "Bacaan baru dari tim tutor dan siswa Cogito.",
+      "viewAll": "Lihat semua artikel",
+      "categories": "Kategori blog",
+      "pagination": "Halaman artikel",
+      "previous": "Sebelumnya",
+      "next": "Berikutnya",
+      "page": "Halaman {page}"
     },
     "card": {
       "readingTime": "{minutes} menit baca"
@@ -38,6 +46,10 @@
       "gallery": "Galeri",
       "languageSwitch": "Baca dalam bahasa Inggris",
       "breadcrumbBlog": "Blog",
+      "ctaEyebrow": "Langkah berikutnya",
+      "ctaTitle": "Siap mulai perjalananmu?",
+      "ctaDescription": "Diskusikan target kompetisimu dengan tim Cogito. Kami bantu petakan program dan tutor yang paling cocok.",
+      "ctaButton": "Konsultasi gratis via WhatsApp",
       "errorTitle": "Artikel belum bisa dimuat",
       "errorDescription": "Kami gagal mengambil artikel dari server. Coba lagi sebentar.",
       "retry": "Coba lagi"
