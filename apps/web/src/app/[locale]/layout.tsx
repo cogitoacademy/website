@@ -42,7 +42,7 @@ export async function generateMetadata({
     : 'Cogito Academy - Talent Incubator & Competition Training';
 
   const description = isId
-    ? 'Cogito Academy adalah talent incubator yang memiliki misi untuk membentuk cendekiawan-juara kelas dunia. transformation potensi siswa menjadi prestasi terukur melalui metode pelatihan yang telah teruji.'
+    ? 'Cogito Academy adalah talent incubator yang memiliki misi untuk membentuk cendekiawan-juara kelas dunia. Transformasi potensi siswa menjadi prestasi terukur melalui metode pelatihan yang telah teruji.'
     : 'Cogito Academy is a talent incubator with a mission to shape world-class scholar-champions. We systematically transform student potential into measurable achievements through proven training methods.';
 
   return {
