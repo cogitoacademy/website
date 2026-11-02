@@ -4,7 +4,7 @@ import { MessageCircle, X } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { useEffect, useState } from 'react';
 
-const WHATSAPP_URL = 'https://wa.me/62881011990195';
+export const WHATSAPP_URL = 'https://wa.me/62881011990195';
 
 export function StickyConsultation() {
   const t = useTranslations('blog.consultation');
@@ -32,7 +32,7 @@ export function StickyConsultation() {
   if (dismissed || !visible) return null;
 
   return (
-    <aside className="fixed right-4 bottom-4 z-30 w-[calc(100%-2rem)] max-w-sm rounded-2xl bg-neutral-100 p-5 shadow-xl ring-1 ring-neutral-200">
+    <aside className="fixed right-4 bottom-4 z-30 w-[calc(100%-2rem)] max-w-sm rounded-2xl bg-neutral-100 p-5 shadow-xl ring-1 ring-neutral-200 sm:hidden">
       <button
         type="button"
         aria-label={t('dismiss')}

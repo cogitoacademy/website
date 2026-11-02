@@ -2,6 +2,7 @@ import Image from 'next/image';
 import type { ReactNode } from 'react';
 
 import type { BlogBlock, BlogRun } from '@/lib/blog-api';
+import { blogHeadingId } from '@/lib/blog-heading-id';
 import { SocialEmbed } from './social-embed';
 
 type Media = Record<
@@ -44,7 +45,7 @@ export function ArticleBody({ body, media }: { body: BlogBlock[]; media: Media }
       {body.map((block, index) => {
         switch (block.type) {
           case 'heading': {
-            const id = `section-${index}`;
+            const id = blogHeadingId(index, block.text);
             if (block.level === 2) {
               return (
                 <h2

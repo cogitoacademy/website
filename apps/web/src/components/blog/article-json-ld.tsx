@@ -37,6 +37,7 @@ export function ArticleJsonLd({ article, locale }: { article: BlogArticle; local
     inLanguage: locale === 'id' ? 'id-ID' : 'en',
     author: PUBLISHER,
     publisher: PUBLISHER,
+    about: article.tutorName ? { '@type': 'Person', name: article.tutorName } : undefined,
     mainEntityOfPage: { '@type': 'WebPage', '@id': url },
   };
 

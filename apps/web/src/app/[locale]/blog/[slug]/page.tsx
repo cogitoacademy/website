@@ -5,6 +5,7 @@ import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { cache } from 'react';
 
 import { ArticleBody } from '@/components/blog/article-body';
+import { ArticleCta } from '@/components/blog/article-cta';
 import { ArticleJsonLd } from '@/components/blog/article-json-ld';
 import { BlogErrorState } from '@/components/blog/blog-error-state';
 import { BlogFaq } from '@/components/blog/blog-faq';
@@ -15,6 +16,7 @@ import NavbarResolver from '@/components/navbar-resolver';
 import { Link } from '@/i18n/routing';
 import { BlogNotFoundError, getBlogArticle, isBlogLocale, type BlogLocale } from '@/lib/blog-api';
 import { formatBlogDate } from '@/lib/blog-format';
+import { blogHeadingId } from '@/lib/blog-heading-id';
 import { buildArticleMetadata } from '@/lib/blog-metadata';
 import { articlePath } from '@/lib/blog-paths';
 
@@ -75,7 +77,7 @@ export default async function BlogArticlePage({ params }: Props) {
 
   const headings = article.body.flatMap((block, index) =>
     block.type === 'heading' && block.level === 2
-      ? [{ id: `section-${index}`, text: block.text }]
+      ? [{ id: blogHeadingId(index, block.text), text: block.text }]
       : [],
   );
 
@@ -86,7 +88,7 @@ export default async function BlogArticlePage({ params }: Props) {
       <div className="bg-background-cream pb-40 text-neutral-1000">
         <div className="mx-auto max-w-7xl px-4">
           <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_260px]">
-            <article className="min-w-0 max-w-3xl">
+            <article className="max-w-3xl min-w-0">
               <nav aria-label={t('breadcrumbBlog')} className="mb-6 text-sm">
                 <ol className="flex flex-wrap items-center gap-2 text-neutral-500">
                   <li>
@@ -118,12 +120,27 @@ export default async function BlogArticlePage({ params }: Props) {
                   ) : null}
                 </div>
 
-                <h1 className="font-bold text-3xl leading-tight sm:text-4xl lg:text-5xl">
+                <h1 className="text-3xl leading-tight font-bold sm:text-4xl lg:text-5xl">
                   {article.title}
                 </h1>
-                <p className="text-lg text-neutral-600 leading-relaxed">{article.lead}</p>
+                <p className="text-lg leading-relaxed text-neutral-600">{article.lead}</p>
 
-                <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-neutral-500 text-sm">
+                <div className="flex flex-wrap gap-x-4 gap-y-1 text-sm text-neutral-600">
+                  <span>
+                    {locale === 'id'
+                      ? 'Ditulis oleh Tim Cogito Academy'
+                      : 'Written by the Cogito Academy team'}
+                    {article.tutorName
+                      ? `${locale === 'id' ? ' bersama ' : ' with '}${article.tutorName}`
+                      : ''}
+                  </span>
+                  {article.reviewerName ? (
+                    <span>
+                      {locale === 'id' ? 'Ditinjau oleh' : 'Reviewed by'} {article.reviewerName}
+                    </span>
+                  ) : null}
+                </div>
+                <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-neutral-500">
                   <span>
                     {t('published')} {formatBlogDate(article.publishedAt, locale)}
                   </span>
@@ -167,11 +184,27 @@ export default async function BlogArticlePage({ params }: Props) {
               {article.keyFacts.length > 0 ? (
                 <section className="mt-10 rounded-2xl bg-secondary-100 p-5 ring-1 ring-secondary-200">
                   <h2 className="font-semibold text-neutral-1000">{t('keyFacts')}</h2>
-                  <ul className="mt-3 flex list-disc flex-col gap-2 pl-5 text-neutral-700 leading-relaxed">
-                    {article.keyFacts.map((fact, index) => (
-                      <li key={index}>{fact.text}</li>
-                    ))}
-                  </ul>
+                  <table className="mt-3 w-full border-collapse text-left leading-relaxed text-neutral-700">
+                    <tbody>
+                      {article.keyFacts.map((fact, index) => {
+                        const separator = fact.text.indexOf(':');
+                        const label = separator > 0 ? fact.text.slice(0, separator).trim() : '';
+                        const value = separator > 0 ? fact.text.slice(separator + 1).trim() : fact.text;
+                        return (
+                          <tr key={index} className="border-t border-secondary-200 first:border-t-0">
+                            {label ? (
+                              <th scope="row" className="w-2/5 py-2 pr-4 align-top font-medium text-neutral-800">
+                                {label}
+                              </th>
+                            ) : null}
+                            <td className={label ? 'py-2 align-top' : 'py-2 align-top'} colSpan={label ? 1 : 2}>
+                              {value}
+                            </td>
+                          </tr>
+                        );
+                      })}
+                    </tbody>
+                  </table>
                 </section>
               ) : null}
 
@@ -181,7 +214,7 @@ export default async function BlogArticlePage({ params }: Props) {
 
               {article.gallery.length > 0 ? (
                 <section className="mt-12 flex flex-col gap-4">
-                  <h2 className="font-bold text-2xl text-neutral-1000">{t('gallery')}</h2>
+                  <h2 className="text-2xl font-bold text-neutral-1000">{t('gallery')}</h2>
                   <div className="grid gap-4 sm:grid-cols-2">
                     {article.gallery.map((image, index) => (
                       <div
@@ -203,9 +236,11 @@ export default async function BlogArticlePage({ params }: Props) {
 
               <BlogFaq items={article.faq} locale={locale} />
 
+              <ArticleCta locale={locale} tutorName={article.tutorName} />
+
               {article.related.length > 0 ? (
                 <section className="mt-12 flex flex-col gap-4">
-                  <h2 className="font-bold text-2xl text-neutral-1000">{t('related')}</h2>
+                  <h2 className="text-2xl font-bold text-neutral-1000">{t('related')}</h2>
                   <div className="grid gap-6 sm:grid-cols-2">
                     {article.related.map((related) => (
                       <ArticleCard key={related.id} article={related} locale={locale} />
@@ -217,7 +252,7 @@ export default async function BlogArticlePage({ params }: Props) {
               <div className="mt-12">
                 <Link
                   href="/blog"
-                  className="font-medium text-primary-600 text-sm underline underline-offset-4"
+                  className="text-sm font-medium text-primary-600 underline underline-offset-4"
                 >
                   {t('backToBlog')}
                 </Link>

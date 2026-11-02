@@ -21,11 +21,11 @@ const NAV_ITEMS_ID = [
   { label: '#TutorJuara', href: '/tutors' },
   { label: 'Prestasi', href: '/achievements' },
   { label: 'Acara', href: '/activities' },
-  { label: 'Blog', href: '/blog' },
   { label: 'FAQ', href: '/faq' },
   {
     label: 'Sumber',
     items: [
+      { label: 'Blog', href: '/blog' },
       { label: 'Kalender Lomba', href: '/calendar' },
       { label: 'Bank Materi', href: KNOWLEDGE_BANK_URL },
     ],
@@ -36,11 +36,11 @@ const NAV_ITEMS_EN = [
   { label: '#ChampionTutors', href: '/tutors' },
   { label: 'Achievements', href: '/achievements' },
   { label: 'Events', href: '/activities' },
-  { label: 'Blog', href: '/blog' },
   { label: 'FAQ', href: '/faq' },
   {
     label: 'Resources',
     items: [
+      { label: 'Blog', href: '/blog' },
       { label: 'Competition Calendar', href: '/calendar' },
       { label: 'Knowledge Bank', href: KNOWLEDGE_BANK_URL },
     ],

@@ -88,6 +88,7 @@ export const blogCardSchema = z.object({
 export type BlogCard = z.infer<typeof blogCardSchema>;
 
 export const blogArticleSchema = blogCardSchema.extend({
+  reviewerName: z.string().nullable().optional(),
   lead: z.string(),
   seoTitle: z.string(),
   metaDescription: z.string(),
@@ -140,7 +141,7 @@ export class BlogApiError extends Error {
 function endpoint(path: string) {
   const apiUrl = process.env.COGITO_APP_API_URL;
   if (!apiUrl) throw new Error('COGITO_APP_API_URL is not configured');
-  return `${apiUrl.replace(/\/+$/, '')}/rpc/public-content/blog/${path}`;
+  return `${apiUrl.replace(/\/+$/, '')}/rpc/publicContent/blog/${path}`;
 }
 
 async function readJson<T>(schema: z.ZodType<T>, response: Response): Promise<T> {
@@ -170,10 +171,10 @@ async function post<T>(path: string, body: Record<string, unknown>, schema: z.Zo
   return readJson(schema, response);
 }
 
-export async function getBlogArticles(locale: BlogLocale, limit = 12) {
+export async function getBlogArticles(locale: BlogLocale, limit = 12, page = 1) {
   return post(
     'list',
-    { locale, limit },
+    { locale, limit, page },
     z.object({ rows: z.array(blogCardSchema), nextCursor: z.string().nullable() }),
   );
 }

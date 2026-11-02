@@ -31,9 +31,11 @@ const card = {
 describe('Blog API adapter', () => {
   test('posts the wrapped payload and reads the JSON envelope', async () => {
     globalThis.fetch = mock(async (url, options) => {
-      expect(url).toBe('http://localhost:3001/rpc/public-content/blog/list');
+      expect(url).toBe('http://localhost:3001/rpc/publicContent/blog/list');
       expect(options.method).toBe('POST');
-      expect(JSON.parse(options.body)).toEqual({ json: { locale: 'id', limit: 12 } });
+      expect(JSON.parse(options.body)).toEqual({
+        json: { locale: 'id', limit: 12, page: 1 },
+      });
       return Response.json({ json: { rows: [card], nextCursor: null } });
     });
 
