@@ -87,9 +87,7 @@ export default async function BlogPage({ params, searchParams }: Props) {
       <div className="bg-background-cream pb-40 text-neutral-1000">
         <div className="mx-auto flex max-w-7xl flex-col gap-y-15 px-4">
           <header className="max-w-3xl space-y-2">
-            <h1 className="text-3xl font-bold leading-tight sm:text-4xl lg:text-5xl">
-              {t('title')}
-            </h1>
+            <h1 className="text-3xl font-bold sm:text-4xl lg:text-5xl">{t('title')}</h1>
             <p className="text-neutral-600 leading-relaxed">{t('description')}</p>
           </header>
 
