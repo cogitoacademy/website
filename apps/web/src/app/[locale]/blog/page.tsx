@@ -85,11 +85,8 @@ export default async function BlogPage({ params, searchParams }: Props) {
     <>
       <NavbarResolver className="bg-background-cream" />
       <div className="bg-background-cream pb-40 text-neutral-1000">
-        <div className="mx-auto flex max-w-7xl flex-col gap-10 px-4">
-          <header className="flex max-w-3xl flex-col gap-4">
-            <p className="text-sm font-semibold uppercase tracking-wide text-primary-600">
-              {t('eyebrow')}
-            </p>
+        <div className="mx-auto flex max-w-7xl flex-col gap-y-15 px-4">
+          <header className="max-w-3xl space-y-2">
             <h1 className="text-3xl font-bold leading-tight sm:text-4xl lg:text-5xl">
               {t('title')}
             </h1>
@@ -130,7 +127,10 @@ export default async function BlogPage({ params, searchParams }: Props) {
                 ))}
               </div>
               {page > 1 || hasNext ? (
-                <nav aria-label={t('pagination')} className="flex items-center justify-between gap-3">
+                <nav
+                  aria-label={t('pagination')}
+                  className="flex items-center justify-between gap-3"
+                >
                   {page > 1 ? (
                     <Link
                       href={pageHref(locale, page - 1)}
