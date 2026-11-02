@@ -41,11 +41,13 @@ const NAV_ITEMS_EN = [
 ];
 
 const RESOURCES_ITEMS_ID = [
+  { label: 'Blog', href: '/blog' },
   { label: 'Kalender Lomba', href: '/calendar' },
   { label: 'Bank Materi', href: KNOWLEDGE_BANK_URL },
 ];
 
 const RESOURCES_ITEMS_EN = [
+  { label: 'Blog', href: '/blog' },
   { label: 'Competition Calendar', href: '/calendar' },
   { label: 'Knowledge Bank', href: KNOWLEDGE_BANK_URL },
 ];

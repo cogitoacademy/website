@@ -6,7 +6,7 @@ The official website for **Cogito Academy**, an Indonesian educational organizat
 
 **Dev Preview:** [cogitoacademy.vercel.app](https://cogitoacademy.vercel.app)
 
-**Production:** [cogitoacademy.id](https://cogitoacademy.id)
+**Production:** [www.cogitoacademy.id](https://www.cogitoacademy.id)
 
 **Repository:** [cogitoacademy/website](https://github.com/cogitoacademy/website)
 
@@ -54,10 +54,32 @@ cogito-acad/
 | `/tutors`            | Filterable tutor directory with detail modals                   |
 | `/calendar`          | Interactive competition calendar (month/week/day/agenda views)  |
 | `/events/[category]` | Event listings by category (upcoming + past)                    |
+| `/blog`              | Bilingual blog index backed by the Cogito app content API        |
 | `/student-resources` | Password-gated study materials                                  |
 | `/contact`           | Contact info, collaboration, tutor recruitment                  |
 
 All routes are prefixed with locale: `/id/...` (Indonesian, default) or `/en/...` (English).
+
+## Blog
+
+`/[locale]/blog` lists published articles from the Cogito app. The article route is
+`/[locale]/blog/[slug]`. Category hubs use `/[locale]/blog/kategori/[slug]` in
+Indonesian and `/[locale]/blog/category/[slug]` in English; a mixed locale and
+segment pair returns 404. `/blog-sitemap.xml` emits one entry per published locale
+version with `xhtml:link` alternates.
+
+Blog content is owned by the Cogito app. Marketing reads it through
+`COGITO_APP_API_URL` at request time with a 60-second revalidation window. There is
+no publish webhook, so updates appear after the ISR window. A failed request renders
+a localized retry state; it never renders an empty article.
+
+Do not add `app/[locale]/loading.tsx`. A route-level loading boundary streams the
+response before `notFound()` runs, which turns real 404s into HTTP 200. The actual
+oRPC paths are `/rpc/publicContent/blog/*`, not `/rpc/public-content/blog/*`.
+
+Image delivery uses the public R2 URL returned by the API. Set
+`NEXT_PUBLIC_R2_HOST` to the bucket's public host so `next/image` can optimize the
+files. Local development also allows `localhost` and `127.0.0.1` image hosts.
 
 ## Getting Started
 
@@ -79,6 +101,7 @@ Create `apps/web/.env`:
 ```env
 NEXT_PUBLIC_SITE_URL=http://localhost:2001
 COGITO_APP_API_URL=http://localhost:3001
+NEXT_PUBLIC_R2_HOST=<public-r2-host>
 NEXT_PUBLIC_SANITY_PROJECT_ID=<your-sanity-project-id>
 NEXT_PUBLIC_SANITY_DATASET=development
 NEXT_PUBLIC_SANITY_API_VERSION=2024-03-01
@@ -163,3 +186,6 @@ Migration 0077 must be applied before API deployment.
 ## Academy class content language
 
 Activities class titles use the same canonical `titleEn` content on the Indonesian and English routes. The class adapter no longer declares alternate `titleId`/`descriptionId` properties. Class/session content is authored once in Cogito app; surrounding website navigation and other content keep their existing localization. This consumer works with the canonical fields already present in the current public API, so it can deploy before the Cogito app change.
+
+
+Blog bylines display the Cogito Academy team, the featured tutor name (linked or manually entered in the app CMS), and an optional reviewerName from the public blog API. Manual names remain plain text and do not create profile links.

@@ -79,6 +79,9 @@ export default function Footer() {
               : 'Systematically transforming potential into achievements and abilities.'}
           </p>
           <div className="flex flex-wrap justify-end gap-x-4 gap-y-1 text-gray-700 text-sm sm:justify-center md:justify-end">
+            <Link className="transition-colors hover:text-primary-600" href="/blog">
+              Blog
+            </Link>
             <Link className="transition-colors hover:text-primary-600" href="/faq">
               FAQ
             </Link>

@@ -19,6 +19,11 @@ const messages = {
       titleHighlight: '.',
       subtitle: 'Answers for families.',
     },
+    categories: {
+      about: 'About Cogito Academy',
+      payments: 'Payments & Billing',
+      uncategorized: 'Other questions',
+    },
     empty: 'No questions yet.',
     viewAll: 'View all FAQs',
     error: {
@@ -98,5 +103,53 @@ describe('FAQ accordion', () => {
     expect(markup).toContain('href="https://example.com/guide"');
     expect(markup).toContain('<ol');
     expect(markup).toContain('<li>Prepare.</li>');
+  });
+
+  test('groups full FAQ entries by fixed category order and keeps landing flat', () => {
+    const items = [
+      { ...item, id: 'faq-payments', category: 'payments' },
+      { ...item, id: 'faq-about', category: 'about' },
+      { ...item, id: 'faq-legacy' },
+    ];
+    const fullMarkup = renderWithMessages(createElement(FaqSection, { items }));
+    const landingMarkup = renderWithMessages(createElement(FaqSectionV2, { items }));
+
+    const aboutIndex = fullMarkup.indexOf('About Cogito Academy');
+    const paymentsIndex = fullMarkup.indexOf('Payments &amp; Billing');
+    const uncategorizedIndex = fullMarkup.indexOf('Other questions');
+
+    expect(fullMarkup).toContain('id="faq-category-about"');
+    expect(fullMarkup).toContain('id="faq-category-payments"');
+    expect(fullMarkup).toContain('id="faq-category-uncategorized"');
+    expect(aboutIndex).toBeGreaterThan(-1);
+    expect(paymentsIndex).toBeGreaterThan(aboutIndex);
+    expect(uncategorizedIndex).toBeGreaterThan(paymentsIndex);
+
+    expect(landingMarkup).not.toContain('About Cogito Academy');
+    expect(landingMarkup).not.toContain('Payments &amp; Billing');
+  });
+
+  test('localizes category headings for the active locale', () => {
+    const indonesianMessages = {
+      faq: {
+        ...messages.faq,
+        categories: {
+          ...messages.faq.categories,
+          about: 'Tentang Cogito Academy',
+        },
+      },
+    };
+    const markup = renderToStaticMarkup(
+      createElement(
+        NextIntlClientProvider,
+        { locale: 'id', messages: indonesianMessages, timeZone: 'UTC' },
+        createElement(FaqSection, {
+          items: [{ ...item, id: 'faq-about', category: 'about' }],
+        }),
+      ),
+    );
+
+    expect(markup).toContain('Tentang Cogito Academy');
+    expect(markup).not.toContain('About Cogito Academy');
   });
 });

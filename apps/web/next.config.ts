@@ -4,6 +4,33 @@ import createNextIntlPlugin from 'next-intl/plugin';
 
 const withNextIntl = createNextIntlPlugin('./src/i18n/request.ts');
 
+type RemotePattern = { protocol: 'http' | 'https'; hostname: string };
+
+function r2RemotePatterns(): RemotePattern[] {
+  const raw = process.env.NEXT_PUBLIC_R2_HOST;
+  if (!raw) return [];
+  try {
+    const url = new URL(raw.includes('://') ? raw : `https://${raw}`);
+    return [
+      {
+        protocol: url.protocol === 'http:' ? 'http' : 'https',
+        hostname: url.hostname,
+      },
+    ];
+  } catch {
+    console.warn('NEXT_PUBLIC_R2_HOST is not a valid URL; blog images will fail.');
+    return [];
+  }
+}
+
+const localImagePatterns: RemotePattern[] =
+  process.env.NODE_ENV === 'production'
+    ? []
+    : [
+        { protocol: 'http', hostname: 'localhost' },
+        { protocol: 'http', hostname: '127.0.0.1' },
+      ];
+
 const nextConfig: NextConfig = {
   typedRoutes: true,
   reactCompiler: true,
@@ -23,6 +50,8 @@ const nextConfig: NextConfig = {
         protocol: 'https',
         hostname: 'images.unsplash.com',
       },
+      ...r2RemotePatterns(),
+      ...localImagePatterns,
     ],
     qualities: [25, 50, 75, 100],
   },
