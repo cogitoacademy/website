@@ -8,6 +8,11 @@ import { getPublicFaq } from '@/lib/faq';
 import { tryLoadPublicFaq } from '@/lib/faq-api';
 import type { FaqLocale } from '@/types/faq';
 
+// FAQ entries live in the app database and change without a marketing deploy.
+// Render on demand so a build-time API failure or an empty result can never be
+// frozen into the prerendered page.
+export const dynamic = 'force-dynamic';
+
 export async function generateMetadata({
   params,
 }: {

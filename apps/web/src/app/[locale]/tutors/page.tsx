@@ -9,6 +9,10 @@ import { BASE_URL } from '@/lib/constants';
 import { tryLoadPublicTutors } from '@/lib/tutor-api';
 import { getTutors } from '@/lib/tutors';
 
+// Tutor profiles are published in the app, not at marketing build time. Render
+// on demand so a transient API failure is never cached as the directory page.
+export const dynamic = 'force-dynamic';
+
 export async function generateMetadata({
   params,
 }: {
