@@ -9,9 +9,11 @@ const session = (sequenceNumber) => ({
   id: `s${sequenceNumber}`,
   sequenceNumber,
   startAt: '2026-11-01T10:00:00.000Z',
+  endAt: '2026-11-01T12:00:00.000Z',
   titleEn: 'Practice',
   curriculumEn: null,
   mode: 'online',
+  state: 'scheduled',
   tutor: { name: 'Tutor' },
 });
 const item = {
@@ -20,7 +22,6 @@ const item = {
   state: 'published',
   titleEn: 'MUN',
   descriptionEn: 'Practice MUN',
-  coverKey: 'covers/mun.webp',
   cohortFullRateMarks: 20,
   masterclassRateMarks: null,
   competition: { name: 'MUN' },
