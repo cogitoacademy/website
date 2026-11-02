@@ -5,6 +5,7 @@ import type {
   FaqRichTextRun,
   PublicFaq,
 } from '@/types/faq';
+import { isFaqCategory } from './faq-categories';
 
 type UnknownRecord = Record<string, unknown>;
 
@@ -177,6 +178,7 @@ export function parseFaqResponse(payload: unknown): PublicFaq[] {
       ...(value.answerRich === undefined
         ? {}
         : { answerRich: parseRichTextDocument(value.answerRich, entryIndex, 'answerRich') }),
+      ...(isFaqCategory(value.category) ? { category: value.category } : {}),
       sortOrder: value.sortOrder as number,
     };
   });

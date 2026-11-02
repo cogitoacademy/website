@@ -62,6 +62,7 @@ describe('public FAQ API', () => {
             id: 'faq-rich',
             question: 'How to join?',
             answer: [{ type: 'paragraph', text: 'Read the guide.' }],
+            category: 'tutor-join',
             questionRich: {
               type: 'doc',
               blocks: [
@@ -97,8 +98,48 @@ describe('public FAQ API', () => {
 
     expect(rich[0].questionRich.blocks[0].content[0].bold).toBe(true);
     expect(rich[0].answerRich.blocks[0].content[1].href).toBe('https://example.com/guide');
+    expect(rich[0].category).toBe('tutor-join');
     expect(rich[1].questionRich).toBeUndefined();
+    expect(rich[1].category).toBeUndefined();
     expect(rich[1].answer).toEqual([{ type: 'paragraph', text: 'Legacy answer.' }]);
+  });
+
+  test('keeps known categories and treats missing or unknown values as uncategorized', async () => {
+    const items = await parsePublicFaqResponse(
+      Response.json({
+        json: [
+          {
+            id: 'faq-about',
+            question: 'About?',
+            answer: [{ type: 'paragraph', text: 'About answer.' }],
+            category: 'about',
+            sortOrder: 0,
+          },
+          {
+            id: 'faq-missing',
+            question: 'Missing?',
+            answer: [{ type: 'paragraph', text: 'Missing answer.' }],
+            sortOrder: 1,
+          },
+          {
+            id: 'faq-unknown',
+            question: 'Unknown?',
+            answer: [{ type: 'paragraph', text: 'Unknown answer.' }],
+            category: 'future-category',
+            sortOrder: 2,
+          },
+          {
+            id: 'faq-invalid',
+            question: 'Invalid?',
+            answer: [{ type: 'paragraph', text: 'Invalid answer.' }],
+            category: 42,
+            sortOrder: 3,
+          },
+        ],
+      }),
+    );
+
+    expect(items.map((item) => item.category)).toEqual(['about', undefined, undefined, undefined]);
   });
 
   test('rejects unsafe links in rich FAQ content', async () => {

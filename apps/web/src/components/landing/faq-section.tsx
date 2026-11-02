@@ -17,6 +17,7 @@ import {
   EmptyTitle,
   EmptyDescription,
 } from '@/components/ui/empty';
+import { groupFaqsByCategory } from '@/lib/faq-categories';
 import type { PublicFaq } from '@/types/faq';
 
 export function FaqSection({
@@ -52,20 +53,34 @@ export function FaqSection({
             </EmptyHeader>
           </Empty>
         ) : (
-          <Accordion className="w-full">
-            {items.map((item) => (
-              <AccordionItem key={item.id} value={item.id}>
-                <AccordionTrigger>
-                  <span>
-                    <FaqQuestion question={item.question} rich={item.questionRich} />
-                  </span>
-                </AccordionTrigger>
-                <AccordionContent>
-                  <FaqAnswer blocks={item.answer} rich={item.answerRich} />
-                </AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
+          <div className="space-y-10">
+            {groupFaqsByCategory(items).map((group) => {
+              const categoryKey = group.category ?? 'uncategorized';
+              const headingId = `faq-category-${categoryKey}`;
+
+              return (
+                <section key={categoryKey} aria-labelledby={headingId} className="space-y-4">
+                  <h2 id={headingId} className="font-semibold text-lg text-neutral-1000 md:text-xl">
+                    {t(`categories.${categoryKey}`)}
+                  </h2>
+                  <Accordion className="w-full">
+                    {group.items.map((item) => (
+                      <AccordionItem key={item.id} value={item.id}>
+                        <AccordionTrigger>
+                          <span>
+                            <FaqQuestion question={item.question} rich={item.questionRich} />
+                          </span>
+                        </AccordionTrigger>
+                        <AccordionContent>
+                          <FaqAnswer blocks={item.answer} rich={item.answerRich} />
+                        </AccordionContent>
+                      </AccordionItem>
+                    ))}
+                  </Accordion>
+                </section>
+              );
+            })}
+          </div>
         )}
       </Container>
     </main>

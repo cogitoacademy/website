@@ -180,6 +180,18 @@
       "titleHighlight": "Get Started",
       "subtitle": "We're also ready to help discuss your achievement plans in depth."
     },
+    "categories": {
+      "about": "About Cogito Academy",
+      "programs": "Programs & Classes",
+      "tutors": "Tutors",
+      "accounts": "Account & Access",
+      "marks": "Grades & Reports",
+      "payments": "Payments & Billing",
+      "progress": "Learning Progress",
+      "offline": "Offline & Recordings",
+      "tutor-join": "Join as a Tutor",
+      "uncategorized": "Other questions"
+    },
     "empty": "Coming soon! Get to know Cogito Academy through answers to your questions.",
     "viewAll": "View all FAQs",
     "error": {

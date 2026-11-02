@@ -180,6 +180,18 @@
       "titleHighlight": "Memulai",
       "subtitle": "Diskusikan tujuan belajar dan persiapan lombamu bersama tim Cogito."
     },
+    "categories": {
+      "about": "Tentang Cogito Academy",
+      "programs": "Program & Kelas",
+      "tutors": "Tutor",
+      "accounts": "Akun & Akses",
+      "marks": "Nilai & Rapor",
+      "payments": "Pembayaran & Tagihan",
+      "progress": "Progres Belajar",
+      "offline": "Offline & Rekaman",
+      "tutor-join": "Bergabung sebagai Tutor",
+      "uncategorized": "Pertanyaan Lainnya"
+    },
     "empty": "Segera hadir! Kenali Cogito Academy lebih dekat lewat jawaban atas pertanyaanmu.",
     "viewAll": "Lihat semua FAQ",
     "error": {
