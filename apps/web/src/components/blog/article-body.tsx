@@ -123,7 +123,7 @@ export function ArticleBody({ body, media }: { body: BlogBlock[]; media: Media }
                   width={item.width ?? 1200}
                   height={item.height ?? 800}
                   sizes="(min-width: 1024px) 720px, 92vw"
-                  className="h-auto w-full rounded-2xl bg-neutral-200 object-cover"
+                  className="h-auto w-full rounded-2xl border border-neutral-200 bg-neutral-200 object-cover"
                 />
                 {block.caption ? (
                   <figcaption className="text-center text-neutral-600 text-xs">

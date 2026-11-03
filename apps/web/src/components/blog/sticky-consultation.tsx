@@ -42,10 +42,7 @@ export function StickyConsultation() {
         <X aria-hidden className="size-4" />
       </button>
 
-      <p className="font-semibold text-primary-600 text-xs uppercase tracking-wide">
-        {t('eyebrow')}
-      </p>
-      <p className="mt-2 font-bold text-lg text-neutral-1000 leading-snug">{t('title')}</p>
+      <p className="font-bold text-lg text-neutral-1000 leading-snug">{t('title')}</p>
       <p className="mt-1 text-neutral-600 text-sm leading-relaxed">{t('description')}</p>
 
       <a

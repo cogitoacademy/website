@@ -85,8 +85,8 @@ export default async function BlogPage({ params, searchParams }: Props) {
     <>
       <NavbarResolver className="bg-background-cream" />
       <div className="min-h-screen bg-background-cream pb-40 text-neutral-1000">
-        <div className="relative z-3 mx-auto max-w-7xl px-4 pb-20">
-          <section className="pb-8 sm:pb-12 md:pb-16">
+        <div className="relative z-3 mx-auto max-w-3xl px-5 pb-20">
+          <section className="pb-6 sm:pb-10">
             <div className="max-w-2xl space-y-3">
               <h1 className="font-bold text-2xl text-neutral-1000 tracking-tight sm:text-3xl md:text-4xl lg:text-5xl">
                 {t('title')}
@@ -97,7 +97,7 @@ export default async function BlogPage({ params, searchParams }: Props) {
             </div>
           </section>
 
-          <div className="space-y-8">
+          <div className="space-y-6">
             {hubs.length > 0 ? (
               <nav aria-label={t('categories')} className="flex flex-wrap gap-2">
                 {hubs.map((hub) => (
@@ -121,7 +121,7 @@ export default async function BlogPage({ params, searchParams }: Props) {
               />
             ) : articles && articles.length > 0 ? (
               <>
-                <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                <div className="grid grid-cols-1 gap-6">
                   {articles.map((article, index) => (
                     <ArticleCard
                       key={article.id}

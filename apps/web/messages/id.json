@@ -16,8 +16,8 @@
     },
     "home": {
       "eyebrow": "Blog Cogito",
-      "title": "Catatan belajar untuk pelajar juara",
-      "description": "Panduan praktis, strategi kompetisi, dan catatan dari tim tutor Cogito Academy.",
+      "title": "Blog",
+      "description": "Catatan belajar untuk pelajar juara",
       "empty": "Belum ada artikel yang terbit. Kembali lagi sebentar lagi.",
       "errorTitle": "Artikel belum bisa dimuat",
       "errorDescription": "Kami gagal mengambil artikel dari server. Coba muat ulang halaman ini.",

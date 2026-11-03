@@ -16,8 +16,8 @@
     },
     "home": {
       "eyebrow": "Cogito Blog",
-      "title": "Learning notes for champion students",
-      "description": "Practical guides, competition strategies, and notes from the Cogito Academy tutor team.",
+      "title": "Blog",
+      "description": "Learning notes for champion students",
       "empty": "No articles are published yet. Check back soon.",
       "errorTitle": "Articles could not be loaded",
       "errorDescription": "We could not fetch articles from the server. Reload this page to try again.",
