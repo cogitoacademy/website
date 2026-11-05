@@ -1,6 +1,7 @@
 'use client';
 
 import {
+  ArrowRight,
   CalendarDays,
   Check,
   FileText,
@@ -12,20 +13,14 @@ import {
   Users,
 } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
+import { Link } from '@/i18n/routing';
 import { cn } from '@/lib/utils';
 import type {
   RecordsStoryData,
   RecordsStoryLocale,
   RecordsStoryStepKey,
 } from '@/types/records-story';
-
-const STAGE_TONES: Record<RecordsStoryStepKey, string> = {
-  tutors: 'bg-tertiary-blue-100',
-  achievements: 'bg-tertiary-yellow-100',
-  knowledge: 'bg-secondary-100',
-  blog: 'bg-tertiary-pink-100',
-  calendar: 'bg-tertiary-green-100',
-};
+import styles from './records-story.module.css';
 
 const APP_PATHS: Record<RecordsStoryStepKey, string> = {
   tutors: 'app.cogitoacademy.id/tutors',
@@ -129,8 +124,14 @@ const STAGE_COPY = {
 type StageCopy = (typeof STAGE_COPY)[RecordsStoryLocale];
 
 interface RecordsStageProps {
+  screenId: string;
   stepKey: RecordsStoryStepKey;
   label: string;
+  title: string;
+  description: string;
+  cta: string;
+  href: string;
+  external?: boolean;
   data: RecordsStoryData;
   locale: RecordsStoryLocale;
   active: boolean;
@@ -138,8 +139,14 @@ interface RecordsStageProps {
 }
 
 export function RecordsStage({
+  screenId,
   stepKey,
   label,
+  title,
+  description,
+  cta,
+  href,
+  external,
   data,
   locale,
   active,
@@ -150,15 +157,16 @@ export function RecordsStage({
   const showVideo = Boolean(videoSrc) && !videoFailed;
 
   return (
-    <div
-      className={cn(
-        'relative rounded-[1.75rem] p-3 transition-colors duration-500 sm:p-4',
-        STAGE_TONES[stepKey],
-      )}
+    <article
+      id={screenId}
+      aria-hidden={!active}
+      inert={!active}
+      className={cn(styles.screen, active && styles.screenActive)}
     >
-      <div className="overflow-hidden rounded-2xl bg-white shadow-[0_26px_70px_-34px_rgba(51,51,51,0.55)] ring-1 ring-black/5">
+      <div className={styles.screenInner}>
         {!showVideo && <BrowserChrome path={APP_PATHS[stepKey]} />}
-        <div className="relative min-h-[330px] p-3 sm:min-h-[370px] sm:p-4">
+
+        <div className={styles.screenBody}>
           {showVideo && videoSrc ? (
             <StoryVideo
               src={videoSrc}
@@ -167,13 +175,46 @@ export function RecordsStage({
               onError={() => setVideoFailed(true)}
             />
           ) : (
-            <div aria-hidden="true">
+            <div aria-hidden="true" className="flex min-h-0 flex-1 flex-col">
               <StagePreview stepKey={stepKey} data={data} locale={locale} copy={copy} />
             </div>
           )}
         </div>
+
+        <div className={styles.screenFooter}>
+          <h3 className={styles.screenTitle}>{title}</h3>
+          <p className={styles.screenDescription}>{description}</p>
+          <StoryCta cta={cta} href={href} external={external} />
+        </div>
       </div>
-    </div>
+    </article>
+  );
+}
+
+function StoryCta({ cta, href, external }: { cta: string; href: string; external?: boolean }) {
+  const className =
+    'group inline-flex w-fit items-center gap-1.5 font-semibold text-neutral-900 text-xs underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2';
+  const arrow = (
+    <ArrowRight
+      className="size-3.5 transition-transform duration-150 group-hover:translate-x-1 motion-reduce:transition-none"
+      aria-hidden="true"
+    />
+  );
+
+  if (external) {
+    return (
+      <a href={href} className={className} target="_blank" rel="noreferrer">
+        {cta}
+        {arrow}
+      </a>
+    );
+  }
+
+  return (
+    <Link href={href as '/tutors' | '/achievements' | '/calendar' | '/blog'} className={className}>
+      {cta}
+      {arrow}
+    </Link>
   );
 }
 
@@ -222,7 +263,7 @@ function StoryVideo({
   return (
     <video
       ref={videoRef}
-      className="aspect-video w-full rounded-xl bg-neutral-900 object-contain"
+      className="h-full w-full rounded-xl bg-neutral-900 object-contain"
       muted
       loop
       playsInline

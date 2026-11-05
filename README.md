@@ -177,9 +177,13 @@ Others retains its article thumbnails.
 
 ## Homepage records story
 
-The `#records` section on `/[locale]` is a sticky scrollytelling section. On
-desktop, the left column scrolls through five steps while the right stage stays
-pinned. On mobile, the stage appears below each step.
+The `#records` section on `/[locale]` is a pinned step section. On desktop, the
+numbered step list and the app stage stay pinned while the scroll position moves
+the active step, one step per 380 px. Short viewports use the same stacked layout
+as mobile, so a large browser zoom cannot push the pinned stage under the header.
+On mobile, the list sits above one stage and
+advances every 5.2 seconds while in view; tapping a step stops the auto-advance.
+The active step is marked with `aria-current="step"`.
 
 The five steps are tutors and booking, achievement records, Knowledge Bank,
 Cogito Blog, and the competition calendar. The stage preview reads live public

@@ -21,8 +21,8 @@ export async function RecordsSection() {
       />
 
       <div className="relative mx-auto max-w-7xl px-4">
-        <div className="mx-auto flex flex-col items-center gap-3 text-center">
-          <h2 className="text-balance font-bold text-2xl text-neutral-1000 leading-tight tracking-[-0.03em] md:text-3xl lg:text-4xl">
+        <div className="mx-auto flex max-w-[71rem] flex-col items-center gap-3 text-center">
+          <h2 className="text-balance text-center font-bold text-2xl text-neutral-1000 leading-tight tracking-[-0.03em] md:text-3xl lg:text-4xl">
             {isId ? (
               <>
                 Satu aplikasi untuk{' '}
@@ -34,9 +34,9 @@ export async function RecordsSection() {
               </>
             )}
           </h2>
-          <p className="max-w-xl text-pretty font-medium text-neutral-800 text-sm leading-relaxed md:text-base">
+          <p className="max-w-xl text-pretty text-center font-medium text-neutral-800 text-sm leading-relaxed md:text-base">
             {isId
-              ? 'Rekaman belajar, prestasi, materi, artikel, dan jadwal lomba tersusun rapi. Geser untuk melihat bagaimana Cogito App menemanimu dari latihan sampai podium.'
+              ? 'Rekaman belajar, prestasi, materi, artikel, dan jadwal lomba tersusun rapi. Gulir untuk melihat bagaimana Cogito App menemanimu dari latihan sampai podium.'
               : 'Learning records, achievements, materials, articles, and competition dates in one place. Scroll to see how Cogito App supports you from practice to the podium.'}
           </p>
         </div>
