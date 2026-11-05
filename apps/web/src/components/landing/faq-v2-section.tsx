@@ -11,7 +11,7 @@ export default async function FaqSectionV2Section() {
 
   if (result.status === 'failure') {
     console.error('Landing FAQ request failed', result.error);
-    return null;
+    return <FaqSectionV2 items={[]} hasError />;
   }
 
   const { items } = result;

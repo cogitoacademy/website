@@ -10,6 +10,8 @@ import FaqSectionV2 from '@/components/landing/faq-v2-section';
 import Cta from '../../components/landing/cta';
 import { BASE_URL } from '@/lib/constants';
 
+export const dynamic = 'force-dynamic';
+
 export async function generateMetadata({
   params,
 }: {
