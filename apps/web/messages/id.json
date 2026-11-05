@@ -206,6 +206,16 @@
     },
     "empty": "Segera hadir! Kenali Cogito Academy lebih dekat lewat jawaban atas pertanyaanmu.",
     "viewAll": "Lihat semua FAQ",
+    "search": {
+      "label": "Cari FAQ",
+      "placeholder": "Cari pertanyaan...",
+      "clear": "Hapus pencarian",
+      "filterLabel": "Filter grup",
+      "all": "Semua",
+      "emptyTitle": "Tidak ada FAQ yang cocok",
+      "emptyDescription": "Coba kata kunci lain atau ubah filter grup.",
+      "reset": "Reset filter"
+    },
     "error": {
       "title": "Jawaban untukmu, segera hadir!",
       "description": "Kenali Cogito Academy lebih dekat. Nantikan kumpulan tanya jawab kami di sini.",

@@ -206,6 +206,16 @@
     },
     "empty": "Coming soon! Get to know Cogito Academy through answers to your questions.",
     "viewAll": "View all FAQs",
+    "search": {
+      "label": "Search FAQs",
+      "placeholder": "Search questions...",
+      "clear": "Clear search",
+      "filterLabel": "Filter by group",
+      "all": "All",
+      "emptyTitle": "No matching FAQs",
+      "emptyDescription": "Try another keyword or change the group filter.",
+      "reset": "Reset filters"
+    },
     "error": {
       "title": "Your questions, answered soon!",
       "description": "Get to know Cogito Academy better. Stay tuned for our FAQs right here.",
