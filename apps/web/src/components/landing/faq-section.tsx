@@ -183,13 +183,13 @@ export function FaqSection({
                 </button>
               </Empty>
             ) : (
-              <div className="space-y-10">
+              <div className="space-y-10 mt-10">
                 {filteredGroups.map((group) => {
                   const categoryKey = getGroupKey(group.category);
                   const headingId = `faq-category-${categoryKey}`;
 
                   return (
-                    <section key={categoryKey} aria-labelledby={headingId} className="space-y-4">
+                    <section key={categoryKey} aria-labelledby={headingId} className="space-y-3">
                       <h2
                         id={headingId}
                         className="font-semibold text-lg text-neutral-1000 md:text-xl"

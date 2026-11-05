@@ -482,23 +482,25 @@ export function SkillsSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.6 }}
           transition={{ duration: 0.5, ease: EASE }}
-          className="mx-auto flex max-w-2xl flex-col items-center gap-4 text-center"
+          className="mx-auto flex flex-col items-center gap-3 text-center"
         >
           <Badge variant="headline-cream">
             <MedalIcon className="size-5" />
             {isId ? 'Bidang Lomba' : 'Competition Fields'}
           </Badge>
-          <h2 id="skills-title" className="text-3xl font-bold tracking-tight md:text-4xl">
-            {isId ? 'Temukan bidang yang ' : 'Find what '}
-            <span className="inline-block text-primary-500">
-              {isId ? 'bikin kamu tertantang.' : 'challenges you.'}
-            </span>
-          </h2>
-          <p className="text-sm leading-relaxed text-neutral-600 md:text-base">
-            {isId
-              ? 'Pilih bidang dan lihat bagaimana kamu bisa belajar bersama tutor lewat sesi online.'
-              : 'Choose a field and discover how you can learn with a tutor in live online sessions.'}
-          </p>
+          <div className="flex flex-col items-center text-center gap-1">
+            <h2 id="skills-title" className="text-3xl font-bold tracking-tight md:text-4xl">
+              {isId ? 'Temukan bidang yang ' : 'Find what '}
+              <span className="text-primary-500">
+                {isId ? 'bikin kamu tertantang.' : 'challenges you.'}
+              </span>
+            </h2>
+            <p className="text-sm text-neutral-1000 md:text-base">
+              {isId
+                ? 'Pilih bidang dan lihat bagaimana kamu bisa belajar bersama tutor lewat sesi online.'
+                : 'Choose a field and discover how you can learn with a tutor in live online sessions.'}
+            </p>
+          </div>
         </motion.div>
 
         <Tabs
