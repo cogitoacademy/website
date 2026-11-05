@@ -54,7 +54,6 @@ function TabsTrigger({ className, ...props }: TabsPrimitive.Tab.Props) {
         // Variant: Line
         'group-data-[variant=line]/tabs-list:bg-transparent group-data-[variant=line]/tabs-list:data-active:bg-transparent dark:group-data-[variant=line]/tabs-list:data-active:border-transparent dark:group-data-[variant=line]/tabs-list:data-active:bg-transparent',
         // Background and Text
-        'data-active:text-black',
         // Position
         'after:absolute after:bg-foreground after:opacity-0 after:transition-opacity group-data-[variant=line]/tabs-list:data-active:after:opacity-100',
         // Border Color
