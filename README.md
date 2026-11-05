@@ -54,7 +54,7 @@ cogito-acad/
 | `/tutors`            | Filterable tutor directory with detail modals                   |
 | `/calendar`          | Interactive competition calendar (month/week/day/agenda views)  |
 | `/events/[category]` | Event listings by category (upcoming + past)                    |
-| `/blog`              | Bilingual blog index backed by the Cogito app content API        |
+| `/blog`              | Bilingual blog index backed by the Cogito app content API       |
 | `/student-resources` | Password-gated study materials                                  |
 | `/contact`           | Contact info, collaboration, tutor recruitment                  |
 
@@ -175,6 +175,27 @@ Classes use compact My Bookings-style rows with a date tile, class information,
 price and detail action; there is no class cover or placeholder image slot.
 Others retains its article thumbnails.
 
+## Homepage records story
+
+The `#records` section on `/[locale]` is a sticky scrollytelling section. On
+desktop, the left column scrolls through five steps while the right stage stays
+pinned. On mobile, the stage appears below each step.
+
+The five steps are tutors and booking, achievement records, Knowledge Bank,
+Cogito Blog, and the competition calendar. The stage preview reads live public
+records from the Cogito app and Sanity:
+
+- tutors and booking: `GET /rpc/publicContent/tutors/list`
+- achievements: `GET /rpc/achievement/listApproved`
+- Knowledge Bank: the published `studentResource` documents in Sanity
+- Cogito Blog: `POST /rpc/publicContent/blog/list`
+- competition calendar: the published `competition` documents in Sanity
+
+To use a screen recording instead of the data preview, put the MP4 file in
+`apps/web/public/videos/records/` and add its path to `STORY_VIDEOS` in
+`apps/web/src/components/landing/records-story.tsx`. The data preview remains the
+fallback when no video path is set or the video fails to load.
+
 ## Others articles (30 October 2026)
 
 Others now reads published articles exclusively from the cogito-app API, with
@@ -186,6 +207,5 @@ Migration 0077 must be applied before API deployment.
 ## Academy class content language
 
 Activities class titles use the same canonical `titleEn` content on the Indonesian and English routes. The class adapter no longer declares alternate `titleId`/`descriptionId` properties. Class/session content is authored once in Cogito app; surrounding website navigation and other content keep their existing localization. This consumer works with the canonical fields already present in the current public API, so it can deploy before the Cogito app change.
-
 
 Blog bylines display the Cogito Academy team, the featured tutor name (linked or manually entered in the app CMS), and an optional reviewerName from the public blog API. Manual names remain plain text and do not create profile links.

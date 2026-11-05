@@ -53,7 +53,7 @@ const RESOURCES_ITEMS_EN = [
 ];
 
 const QUICK_NAV_ITEMS_ID = [
-  { label: '#TutorJuara', href: '#tutors' },
+  { label: '#TutorJuara', href: '/tutors' },
   { label: 'Prestasi', href: '/achievements' },
   { label: 'Kenapa Cogito?', href: '#methods' },
   { label: 'Testimoni', href: '#testimonials' },
@@ -62,7 +62,7 @@ const QUICK_NAV_ITEMS_ID = [
 ];
 
 const QUICK_NAV_ITEMS_EN = [
-  { label: 'Cogito Tutors', href: '#tutors' },
+  { label: 'Cogito Tutors', href: '/tutors' },
   { label: 'Achievements', href: '/achievements' },
   { label: 'Why Us?', href: '#methods' },
   { label: 'Testimonials', href: '#testimonials' },
