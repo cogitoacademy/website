@@ -6,11 +6,7 @@ import { useLocale, useTranslations } from 'next-intl';
 import { Button } from '@/components/ui/button';
 import type { Tutor, TutorSubject } from '@/types/tutor';
 import { Badge } from './ui/badge';
-import {
-  Sheet,
-  SheetContent,
-  SheetTitle,
-} from './ui/sheet';
+import { Sheet, SheetContent, SheetTitle } from './ui/sheet';
 
 interface TutorDetailModalProps {
   tutor: Tutor;
@@ -73,10 +69,6 @@ export default function TutorDetailModal({ tutor, open, onOpenChange }: TutorDet
 
           <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/60 to-transparent sm:hidden" />
 
-          <div className="absolute right-4 bottom-4 left-4 z-10 flex flex-wrap gap-2 sm:hidden">
-            {badges}
-          </div>
-
           <Button
             variant="secondary"
             size="icon"
@@ -91,24 +83,22 @@ export default function TutorDetailModal({ tutor, open, onOpenChange }: TutorDet
         <div className="bg-background">
           <div className="p-6">
             <div className="space-y-3">
-              <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
-                <SheetTitle className="font-bold text-2xl text-foreground leading-none tracking-tight sm:text-3xl">
-                  {tutor.name}
-                </SheetTitle>
-
-                <div className="hidden max-w-[50%] flex-wrap justify-end gap-2 sm:flex">
-                  {badges}
-                </div>
-              </div>
+              <SheetTitle className="font-bold text-2xl text-foreground leading-none tracking-tight sm:text-3xl">
+                {tutor.name}
+              </SheetTitle>
 
               {tutor.affiliation && (
                 <p className="font-medium text-base text-neutral-1000">{tutor.affiliation}</p>
               )}
-              {tutor.shortBio && <p className="text-muted-foreground">{tutor.shortBio}</p>}
+
+              <div className="flex-wrap gap-2 flex">{badges}</div>
+              {tutor.shortBio && (
+                <p className="text-muted-foreground text-sm xl:text-base">{tutor.shortBio}</p>
+              )}
 
               {modalityLabel && (
                 <div className="flex flex-wrap gap-3">
-                  <div className="inline-flex items-center gap-2 rounded-md bg-background-primary px-3 py-1.5 font-medium text-neutral-1000 text-sm">
+                  <div className="inline-flex items-center gap-2 rounded-md bg-neutral-200 px-3 py-1.5 font-medium text-neutral-1000 text-sm">
                     {tutor.modality !== 'offline' && (
                       <Laptop aria-hidden="true" className="h-4 w-4" />
                     )}
@@ -122,14 +112,14 @@ export default function TutorDetailModal({ tutor, open, onOpenChange }: TutorDet
             </div>
 
             <div className="grid grid-cols-1 gap-4 pt-4 pb-[env(safe-area-inset-bottom)]">
-              <section className="h-full space-y-1 rounded-xl bg-background-primary px-3 py-2">
+              <section className="h-full space-y-1 rounded-xl bg-neutral-200 px-3 py-2">
                 <h3 className="pb-0.5 font-semibold text-base text-foreground">{t('education')}</h3>
                 {tutor.education.length === 0 ? (
                   <p className="text-muted-foreground/90 text-sm leading-relaxed">
                     {t('noProfileContent')}
                   </p>
                 ) : (
-                  <ul className="list-outside list-disc space-y-2 px-4 text-muted-foreground/90 text-sm leading-relaxed">
+                  <ul className="list-outside list-disc space-y-2 px-4 text-sm leading-relaxed">
                     {tutor.education.map((education) => (
                       <li key={education.university + education.degree}>
                         {education.degree
@@ -141,7 +131,7 @@ export default function TutorDetailModal({ tutor, open, onOpenChange }: TutorDet
                 )}
               </section>
 
-              <section className="h-full space-y-1 rounded-xl bg-background-primary px-3 py-2">
+              <section className="h-full space-y-1 rounded-xl bg-neutral-200 px-3 py-2">
                 <h3 className="pb-0.5 font-semibold text-base text-foreground">
                   {t('achievements')}
                 </h3>
@@ -150,7 +140,7 @@ export default function TutorDetailModal({ tutor, open, onOpenChange }: TutorDet
                     {t('noProfileContent')}
                   </p>
                 ) : (
-                  <ul className="list-outside list-disc space-y-2 px-4 text-muted-foreground/90 text-sm leading-relaxed">
+                  <ul className="list-outside list-disc space-y-2 px-4 text-sm leading-relaxed">
                     {tutor.achievements.map((achievement, index) => (
                       <li key={achievement.competitionName + achievement.year + index}>
                         <span className="font-medium text-neutral-1000">
@@ -165,7 +155,7 @@ export default function TutorDetailModal({ tutor, open, onOpenChange }: TutorDet
                 )}
               </section>
 
-              <section className="h-full space-y-1 rounded-xl bg-background-primary px-3 py-2">
+              <section className="h-full space-y-1 rounded-xl bg-neutral-200 px-3 py-2">
                 <h3 className="pb-0.5 font-semibold text-base text-foreground">
                   {t('experiences')}
                 </h3>
@@ -174,7 +164,7 @@ export default function TutorDetailModal({ tutor, open, onOpenChange }: TutorDet
                     {t('noProfileContent')}
                   </p>
                 ) : (
-                  <ul className="list-outside list-disc space-y-3 px-4 text-muted-foreground/90 text-sm leading-relaxed">
+                  <ul className="list-outside list-disc space-y-3 px-4 text-sm leading-relaxed">
                     {tutor.experiences.map((experience) => (
                       <li key={experience.role + experience.organization + experience.startYear}>
                         <p className="font-medium text-neutral-1000">
