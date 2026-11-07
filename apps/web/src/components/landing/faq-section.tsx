@@ -156,7 +156,7 @@ export function FaqSection({
                           : 'border-neutral-300 bg-white text-neutral-700 hover:border-neutral-500',
                       )}
                     >
-                      {t(`categories.${key}`)}
+                      {group.label ?? (t.has(`categories.${key}`) ? t(`categories.${key}`) : key)}
                     </button>
                   );
                 })}
@@ -194,7 +194,7 @@ export function FaqSection({
                         id={headingId}
                         className="font-semibold text-lg text-neutral-1000 md:text-xl"
                       >
-                        {t(`categories.${categoryKey}`)}
+                        {group.label ?? (t.has(`categories.${categoryKey}`) ? t(`categories.${categoryKey}`) : categoryKey)}
                       </h2>
                       <Accordion className="w-full">
                         {group.items.map((item) => (

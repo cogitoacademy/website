@@ -62,8 +62,8 @@ describe('FAQ category grouping', () => {
 
     const groups = groupFaqsByCategory(items);
 
-    expect(groups.map((group) => group.category)).toEqual(['about', null]);
-    expect(groups[1].items.map((item) => item.id)).toEqual(['future-category', 'legacy-entry']);
+    expect(groups.map((group) => group.category)).toEqual(['about', 'future-category', null]);
+    expect(groups[1].items.map((item) => item.id)).toEqual(['future-category']);
   });
 
   test('omits the uncategorized group when every entry has a known category', () => {

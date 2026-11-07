@@ -1,5 +1,6 @@
 "use client";
 
+import { TestimonialQuote } from "./testimonial-quote";
 import { ArrowLeftIcon, ArrowRightIcon } from "@phosphor-icons/react";
 import Image from "next/image";
 import type React from "react";
@@ -191,7 +192,7 @@ const Carousel: React.FC<CarouselProps> = ({
     const bgColor =
       itemId % 2 === 0
         ? "bg-tertiary-yellow-200 border-neutral-200 *:text-black"
-        : "bg-secondary-200 *:text-neutral-1000 border-neutral-200";
+        : "bg-sky-200 *:text-neutral-1000 border-neutral-200";
 
     const showInitials = item.avatar === "/placeholder.jpg" && item.initials;
 
@@ -200,8 +201,8 @@ const Carousel: React.FC<CarouselProps> = ({
         className={`mx-auto flex aspect-video w-full max-w-[90vw] flex-col overflow-hidden rounded-[20px] border shadow-sm transition sm:max-w-none ${bgColor}`}
       >
         <div className="flex flex-1 flex-col justify-between text-pretty p-4 text-left">
-          <p className="max-h-full overflow-y-auto text-xs min-[420px]:text-sm min-[500px]:text-base">
-            {item.desc}
+          <p className="max-h-full overflow-y-auto text-center leading-relaxed text-xs min-[420px]:text-sm min-[500px]:text-base">
+            <TestimonialQuote text={item.desc} />
           </p>
           <div className="flex items-center space-x-2">
             <div

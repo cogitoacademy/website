@@ -1,3 +1,4 @@
+import { TestimonialQuote } from "../testimonial-quote";
 import { UserSoundIcon } from '@phosphor-icons/react/dist/ssr';
 import Image from 'next/image';
 import { getLocale } from 'next-intl/server';
@@ -140,7 +141,7 @@ function MobileCard({ item }: { item: TestimonialItem }) {
   const bgColor =
     item.id % 2 === 0
       ? 'bg-tertiary-yellow-200 border-neutral-200 *:text-black'
-      : 'bg-secondary-200 *:text-neutral-1000 border-neutral-200';
+      : 'bg-sky-200 *:text-neutral-1000 border-neutral-200';
 
   const showInitials = item.avatar === '/placeholder.jpg' && item.initials;
 
@@ -149,8 +150,8 @@ function MobileCard({ item }: { item: TestimonialItem }) {
       className={`mx-auto flex min-h-64 w-full flex-col overflow-hidden rounded-[20px] border shadow-sm ${bgColor}`}
     >
       <div className="flex flex-1 flex-col justify-between gap-6 text-pretty p-4 text-left">
-        <p className="max-h-full overflow-y-auto text-xs min-[420px]:text-sm min-[500px]:text-base">
-          {item.desc}
+        <p className="max-h-full overflow-y-auto text-center leading-relaxed text-xs min-[420px]:text-sm min-[500px]:text-base">
+          <TestimonialQuote text={item.desc} />
         </p>
         <div className="flex items-center space-x-2">
           <div

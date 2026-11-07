@@ -179,6 +179,7 @@ export function parseFaqResponse(payload: unknown): PublicFaq[] {
         ? {}
         : { answerRich: parseRichTextDocument(value.answerRich, entryIndex, 'answerRich') }),
       ...(isFaqCategory(value.category) ? { category: value.category } : {}),
+      ...(typeof value.categoryLabel === 'string' && value.categoryLabel.trim() ? { categoryLabel: value.categoryLabel } : {}),
       sortOrder: value.sortOrder as number,
     };
   });

@@ -139,7 +139,7 @@ describe('public FAQ API', () => {
       }),
     );
 
-    expect(items.map((item) => item.category)).toEqual(['about', undefined, undefined, undefined]);
+    expect(items.map((item) => item.category)).toEqual(['about', undefined, 'future-category', undefined]);
   });
 
   test('rejects unsafe links in rich FAQ content', async () => {

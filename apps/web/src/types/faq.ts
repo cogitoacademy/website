@@ -15,16 +15,7 @@ export type FaqRichTextBlock =
 
 export type FaqRichTextDocument = { type: 'doc'; blocks: FaqRichTextBlock[] };
 
-export type FaqCategory =
-  | 'about'
-  | 'programs'
-  | 'tutors'
-  | 'accounts'
-  | 'marks'
-  | 'payments'
-  | 'progress'
-  | 'offline'
-  | 'tutor-join';
+export type FaqCategory = string;
 
 export type PublicFaq = {
   id: string;
@@ -34,6 +25,7 @@ export type PublicFaq = {
   answerRich?: FaqRichTextDocument;
   sortOrder: number;
   category?: FaqCategory;
+  categoryLabel?: string;
 };
 
 export type FaqLocale = 'en' | 'id';

@@ -12,15 +12,16 @@ export const FAQ_CATEGORY_ORDER = [
   'tutor-join',
 ] as const satisfies readonly FaqCategory[];
 
-const FAQ_CATEGORY_SET = new Set<string>(FAQ_CATEGORY_ORDER);
+
 
 export function isFaqCategory(value: unknown): value is FaqCategory {
-  return typeof value === 'string' && FAQ_CATEGORY_SET.has(value);
+  return typeof value === 'string' && value.trim().length > 0;
 }
 
 export type FaqCategoryGroup = {
   category: FaqCategory | null;
   items: PublicFaq[];
+  label?: string;
 };
 
 export function groupFaqsByCategory(items: PublicFaq[]): FaqCategoryGroup[] {
@@ -41,7 +42,15 @@ export function groupFaqsByCategory(items: PublicFaq[]): FaqCategoryGroup[] {
     const group = groups.get(category);
     return group ? [{ category, items: group }] : [];
   });
+  for (const [category, group] of groups) {
+    if (category !== null && !FAQ_CATEGORY_ORDER.includes(category as typeof FAQ_CATEGORY_ORDER[number])) {
+      categorized.push({ category, items: group });
+    }
+  }
   const uncategorized = groups.get(null);
 
-  return uncategorized ? [...categorized, { category: null, items: uncategorized }] : categorized;
+  return (uncategorized ? [...categorized, { category: null, items: uncategorized }] : categorized).map(group => ({
+    ...group,
+    label: group.items.find(item => item.categoryLabel)?.categoryLabel,
+  }));
 }
