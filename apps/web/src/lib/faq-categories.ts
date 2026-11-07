@@ -38,7 +38,7 @@ export function groupFaqsByCategory(items: PublicFaq[]): FaqCategoryGroup[] {
     }
   }
 
-  const categorized = FAQ_CATEGORY_ORDER.flatMap((category) => {
+  const categorized: FaqCategoryGroup[] = FAQ_CATEGORY_ORDER.flatMap((category) => {
     const group = groups.get(category);
     return group ? [{ category, items: group }] : [];
   });
