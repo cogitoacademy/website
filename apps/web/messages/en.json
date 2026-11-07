@@ -193,15 +193,15 @@
       "subtitle": "We're also ready to help discuss your achievement plans in depth."
     },
     "categories": {
-      "about": "About Cogito Academy",
-      "programs": "Programs & Classes",
+      "about": "About Cogito",
+      "programs": "Programs and classes",
       "tutors": "Tutors",
-      "accounts": "Account & Access",
-      "marks": "Grades & Reports",
-      "payments": "Payments & Billing",
-      "progress": "Learning Progress",
-      "offline": "Offline & Recordings",
-      "tutor-join": "Join as a Tutor",
+      "accounts": "Accounts and booking",
+      "marks": "Marks and pricing",
+      "payments": "Payments, cancellations and returns",
+      "progress": "Progress and results",
+      "offline": "Offline classes, schools and contact",
+      "tutor-join": "For tutors who want to join",
       "uncategorized": "Other questions"
     },
     "empty": "Coming soon! Get to know Cogito Academy through answers to your questions.",
