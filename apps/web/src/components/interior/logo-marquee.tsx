@@ -1,14 +1,16 @@
-"use client";
+'use client';
 
-import { useCallback, useEffect, useRef, useState } from "react";
-import { useIsomorphicLayoutEffect, useReducedMotion } from "motion/react";
-import { cn } from "@/lib/utils";
+import { useCallback, useEffect, useRef, useState } from 'react';
+import { useIsomorphicLayoutEffect, useReducedMotion } from 'motion/react';
+import { cn } from '@/lib/utils';
 
-const RAMP = 0.19;
+const RAMP_IN = 0.1;
+const RAMP_OUT = 0.015;
 const SETTLE = 0.16;
+const PARK_RATE = 0.02;
 const MAX_COPIES = 14;
 
-export type MarqueeDirection = "left" | "right";
+export type MarqueeDirection = 'left' | 'right';
 
 export type UseLogoMarqueeOptions = {
   speed?: number;
@@ -28,7 +30,7 @@ function clamp(x: number, min: number, max: number) {
 
 export function useLogoMarquee({
   speed = 44,
-  direction = "left",
+  direction = 'left',
   gap = 40,
   paused = false,
 }: UseLogoMarqueeOptions = {}) {
@@ -39,6 +41,7 @@ export function useLogoMarquee({
   const [copies, setCopies] = useState(4);
   const [held, setHeld] = useState(false);
   const [near, setNear] = useState(false);
+  const [wake, setWake] = useState(0);
 
   const reduced = useReducedMotion() === true;
   const stopped = held || paused;
@@ -52,12 +55,16 @@ export function useLogoMarquee({
   const nudge = useRef(0);
   const rate = useRef(0);
   const span = useRef(0);
+  const painted = useRef<number | null>(null);
 
   const paint = useCallback(() => {
     const track = trackRef.current;
     if (!track) return;
     const x = reducedRef.current ? 0 : offset.current - span.current;
-    track.style.transform = `translate3d(${x.toFixed(2)}px, 0, 0)`;
+    const value = Math.round(x * 1000) / 1000;
+    if (painted.current === value) return;
+    painted.current = value;
+    track.style.transform = `translate3d(${value}px, 0, 0)`;
   }, []);
 
   useIsomorphicLayoutEffect(() => {
@@ -73,10 +80,7 @@ export function useLogoMarquee({
       offset.current = loop > 0 ? clamp(offset.current, -loop, loop) : 0;
       paint();
 
-      const next =
-        reduced || loop <= 0
-          ? 4
-          : clamp(Math.ceil(room / loop) + 3, 4, MAX_COPIES);
+      const next = reduced || loop <= 0 ? 4 : clamp(Math.ceil(room / loop) + 3, 4, MAX_COPIES);
       setCopies((prev) => (prev === next ? prev : next));
     };
 
@@ -90,7 +94,7 @@ export function useLogoMarquee({
   useEffect(() => {
     const viewport = viewportRef.current;
     if (!viewport) return;
-    if (typeof IntersectionObserver === "undefined") {
+    if (typeof IntersectionObserver === 'undefined') {
       setNear(true);
       return;
     }
@@ -100,7 +104,7 @@ export function useLogoMarquee({
         const entry = entries[entries.length - 1];
         if (entry) setNear(entry.isIntersecting);
       },
-      { rootMargin: "96px" },
+      { rootMargin: '96px' },
     );
     observer.observe(viewport);
     return () => observer.disconnect();
@@ -111,22 +115,34 @@ export function useLogoMarquee({
 
     let frame = 0;
     let last = 0;
-    const sign = direction === "right" ? 1 : -1;
+    const sign = direction === 'right' ? 1 : -1;
 
     const tick = (now: number) => {
-      frame = requestAnimationFrame(tick);
-
       const dt = last ? Math.min((now - last) / 1000, 0.05) : 0;
       last = now;
 
       const loop = span.current;
-      if (loop <= 0) return;
+      if (loop <= 0) {
+        frame = requestAnimationFrame(tick);
+        return;
+      }
 
-      rate.current +=
-        ((movingRef.current ? 1 : 0) - rate.current) * (1 - Math.exp(-dt / RAMP));
+      const moving = movingRef.current;
+      const ramp = moving ? RAMP_IN : RAMP_OUT;
+      rate.current += ((moving ? 1 : 0) - rate.current) * (1 - Math.exp(-dt / ramp));
 
       const pull = nudge.current * (1 - Math.exp(-dt / SETTLE));
       nudge.current -= pull;
+
+      if (!moving && rate.current < PARK_RATE && Math.abs(nudge.current) < 0.01) {
+        rate.current = 0;
+        nudge.current = 0;
+        const dpr = typeof window === 'undefined' ? 1 : window.devicePixelRatio || 1;
+        const x = Math.round((offset.current - span.current) * dpr) / dpr;
+        offset.current = clamp(x + span.current, -loop, loop);
+        paint();
+        return;
+      }
 
       let x = offset.current + sign * speed * rate.current * dt + pull;
       if (rate.current > 0.002 && Math.abs(nudge.current) < 0.25) {
@@ -138,11 +154,12 @@ export function useLogoMarquee({
 
       offset.current = x;
       paint();
+      frame = requestAnimationFrame(tick);
     };
 
     frame = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(frame);
-  }, [reduced, near, speed, direction, paint]);
+  }, [reduced, near, stopped, wake, speed, direction, paint]);
 
   useEffect(() => {
     const viewport = viewportRef.current;
@@ -154,14 +171,14 @@ export function useLogoMarquee({
       if (viewport.scrollTop !== 0) viewport.scrollTop = 0;
     };
 
-    viewport.addEventListener("scroll", pin, { passive: true });
-    return () => viewport.removeEventListener("scroll", pin);
+    viewport.addEventListener('scroll', pin, { passive: true });
+    return () => viewport.removeEventListener('scroll', pin);
   }, []);
 
   useEffect(() => {
     const release = () => setHeld(false);
-    window.addEventListener("blur", release);
-    return () => window.removeEventListener("blur", release);
+    window.addEventListener('blur', release);
+    return () => window.removeEventListener('blur', release);
   }, []);
 
   const reveal = useCallback((node: HTMLElement) => {
@@ -181,15 +198,16 @@ export function useLogoMarquee({
 
     const target = clamp(offset.current + nudge.current + delta, -loop, loop);
     nudge.current = target - offset.current;
+    setWake((value) => value + 1);
   }, []);
 
   const bind = {
     onPointerEnter: (e: React.PointerEvent) => {
-      if (e.pointerType !== "touch") setHeld(true);
+      if (e.pointerType !== 'touch') setHeld(true);
     },
     onPointerDown: () => setHeld(true),
     onPointerUp: (e: React.PointerEvent) => {
-      if (e.pointerType === "touch") setHeld(false);
+      if (e.pointerType === 'touch') setHeld(false);
     },
     onPointerCancel: () => setHeld(false),
     onPointerLeave: () => setHeld(false),
@@ -230,10 +248,10 @@ export type LogoMarqueeProps = {
 };
 
 const FACE =
-  "inline-flex h-10 shrink-0 items-center gap-2 whitespace-nowrap rounded-[9px] px-3 text-[13px] font-medium tracking-[-0.01em] text-stone-500 dark:text-stone-400";
+  'inline-flex h-10 shrink-0 items-center gap-2 whitespace-nowrap rounded-[9px] px-3 text-[13px] font-medium tracking-[-0.01em] text-stone-500 dark:text-stone-400';
 
 const HIT =
-  "outline-none transition-colors duration-150 hover:text-stone-700 focus-visible:bg-[#4568FF]/[0.06] focus-visible:text-stone-700 focus-visible:shadow-[inset_0_0_0_1px_#4568FF] dark:hover:text-stone-200 dark:focus-visible:bg-[#93B0FF]/[0.10] dark:focus-visible:text-stone-200 dark:focus-visible:shadow-[inset_0_0_0_1px_#93B0FF]";
+  'outline-none transition-colors duration-150 hover:text-stone-700 focus-visible:bg-[#4568FF]/[0.06] focus-visible:text-stone-700 focus-visible:shadow-[inset_0_0_0_1px_#4568FF] dark:hover:text-stone-200 dark:focus-visible:bg-[#93B0FF]/[0.10] dark:focus-visible:text-stone-200 dark:focus-visible:shadow-[inset_0_0_0_1px_#93B0FF]';
 
 function face(item: LogoMarqueeItem) {
   if (!item.mark) return item.label;
@@ -247,16 +265,20 @@ function face(item: LogoMarqueeItem) {
 
 export function LogoMarquee({
   items,
-  label = "Logos",
+  label = 'Logos',
   speed = 44,
-  direction = "left",
+  direction = 'left',
   gap = 40,
   paused = false,
   onSelect,
-  className = "",
+  className = '',
 }: LogoMarqueeProps) {
-  const { viewportRef, trackRef, groupRef, copies, reduced, bind } =
-    useLogoMarquee({ speed, direction, gap, paused });
+  const { viewportRef, trackRef, groupRef, copies, reduced, bind } = useLogoMarquee({
+    speed,
+    direction,
+    gap,
+    paused,
+  });
 
   const groups = reduced ? 1 : copies;
   const live = reduced ? 0 : 1;
@@ -264,23 +286,26 @@ export function LogoMarquee({
   return (
     <section
       aria-label={label}
-      className={cn("relative isolate w-full min-w-0 max-w-full overflow-hidden rounded-[14px] border border-stone-200 bg-white shadow-[0_1px_2px_rgba(28,25,23,0.06),0_4px_10px_-8px_rgba(28,25,23,0.45)] dark:border-white/[0.16] dark:bg-[#1D1D1A] dark:shadow-[0_1px_6px_rgba(0,0,0,0.45)]", className)}
+      className={cn(
+        'relative isolate w-full min-w-0 max-w-full overflow-hidden rounded-[14px] border border-stone-200 bg-white shadow-[0_1px_2px_rgba(28,25,23,0.06),0_4px_10px_-8px_rgba(28,25,23,0.45)] dark:border-white/[0.16] dark:bg-[#1D1D1A] dark:shadow-[0_1px_6px_rgba(0,0,0,0.45)]',
+        className,
+      )}
       {...bind}
     >
       <div
         ref={viewportRef}
-
         // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
         tabIndex={reduced ? 0 : undefined}
         style={{
-          overflowX: reduced ? "auto" : "hidden",
-          maskImage: "linear-gradient(to right, transparent, black 40px, black calc(100% - 40px), transparent)",
+          overflowX: reduced ? 'auto' : 'hidden',
+          maskImage:
+            'linear-gradient(to right, transparent, black 40px, black calc(100% - 40px), transparent)',
         }}
         className="overflow-y-hidden py-2 outline-none focus-visible:bg-[#4568FF]/[0.06] focus-visible:shadow-[inset_0_0_0_1px_#4568FF] dark:focus-visible:bg-[#93B0FF]/[0.10] dark:focus-visible:shadow-[inset_0_0_0_1px_#93B0FF]"
       >
         <div
           ref={trackRef}
-          style={{ gap: `var(--logo-marquee-gap, ${gap}px)`, willChange: "transform" }}
+          style={{ gap: `var(--logo-marquee-gap, ${gap}px)`, willChange: 'transform' }}
           className="flex w-max items-center"
         >
           {Array.from({ length: groups }, (_, copy) => (
