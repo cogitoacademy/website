@@ -30,14 +30,14 @@ export async function RecordsSection() {
               </>
             ) : (
               <>
-                One app for your <span className="text-primary-500">entire champion journey.</span>
+                One app for your <span className="text-primary-500">journey to the podium.</span>
               </>
             )}
           </h2>
           <p className="max-w-xl text-pretty text-center font-medium text-neutral-800 text-sm leading-relaxed md:text-base">
             {isId
-              ? 'Rekaman belajar, prestasi, materi, artikel, dan jadwal lomba tersusun rapi. Gulir untuk melihat bagaimana Cogito App menemanimu dari latihan sampai podium.'
-              : 'Learning records, achievements, materials, articles, and competition dates in one place. Scroll to see how Cogito App supports you from practice to the podium.'}
+              ? 'Temukan tutor, akses materi belajar, dan persiapkan kompetisi berikutnya bersama Cogito Academy. Semua yang kamu butuhkan untuk terus berkembang, dalam satu aplikasi.'
+              : 'Find a tutor, explore learning resources, and prepare for your next competition with Cogito Academy. Everything you need to keep growing, in one app.'}
           </p>
         </div>
 

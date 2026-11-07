@@ -31,18 +31,18 @@ interface StoryStepCopy {
 const STORY_COPY: Record<RecordsStoryStepKey, { id: StoryStepCopy; en: StoryStepCopy }> = {
   tutors: {
     id: {
-      listLabel: 'Booking tutor & kelas',
-      title: 'Temukan tutor, pilih sesi, langsung booking.',
+      listLabel: 'Belajar bersama tutor',
+      title: 'Bimbingan yang sesuai dengan tujuanmu.',
       description:
-        'Lihat profil juara, bidang kompetisi, dan jadwal yang tersedia. Pilih sesi yang cocok tanpa perlu chat bolak-balik.',
+        'Kenali pengalaman dan bidang keahlian tutor kami, lalu pilih sesi belajar yang sesuai dengan kebutuhan dan jadwalmu.',
       cta: 'Lihat direktori tutor',
       href: '/tutors',
     },
     en: {
-      listLabel: 'Book tutors & classes',
-      title: 'Find a tutor, pick a session, book it.',
+      listLabel: 'Learn with a tutor',
+      title: 'Guidance for your next goal.',
       description:
-        'See champion profiles, competition fields, and available times. Choose the session that fits without back-and-forth messages.',
+        'Explore our tutors’ experience and areas of expertise, then choose a session that suits your learning needs and schedule.',
       cta: 'Browse the tutor directory',
       href: '/tutors',
     },
@@ -50,17 +50,17 @@ const STORY_COPY: Record<RecordsStoryStepKey, { id: StoryStepCopy; en: StoryStep
   achievements: {
     id: {
       listLabel: 'Catat prestasi',
-      title: 'Setiap medali tercatat dan terverifikasi.',
+      title: 'Rayakan setiap pencapaianmu.',
       description:
-        'Unggah sertifikat dan biarkan tim Cogito memverifikasi. Prestasi yang disetujui tampil di arsip publik dengan persetujuanmu.',
+        'Bagikan prestasi kompetisimu dan jadikan pencapaianmu bagian dari cerita komunitas Cogito. Setiap prestasi ditinjau oleh tim kami sebelum ditampilkan dengan persetujuanmu.',
       cta: 'Lihat arsip prestasi',
       href: '/achievements',
     },
     en: {
       listLabel: 'Record achievements',
-      title: 'Every medal is recorded and verified.',
+      title: 'Celebrate every achievement.',
       description:
-        'Upload your certificate and let the Cogito team review it. Approved achievements join the public archive with your consent.',
+        'Share your competition achievements and become part of the Cogito community’s story. Our team reviews each submission before publishing it with your consent.',
       cta: 'View the achievement archive',
       href: '/achievements',
     },
@@ -70,7 +70,7 @@ const STORY_COPY: Record<RecordsStoryStepKey, { id: StoryStepCopy; en: StoryStep
       listLabel: 'Belajar dari Knowledge Bank',
       title: 'Materi latihan selalu dalam jangkauan.',
       description:
-        'Position papers, panduan belajar, dan materi sesi tersusun per topik. Buka kembali kapan pun sebelum kompetisi.',
+        'Perdalam pemahamanmu dengan position paper, panduan belajar, dan materi pendukung untuk mempersiapkan kompetisi berikutnya.',
       cta: 'Buka Knowledge Bank',
       href: 'https://app.cogitoacademy.id/knowledge-bank',
       external: true,
@@ -79,7 +79,7 @@ const STORY_COPY: Record<RecordsStoryStepKey, { id: StoryStepCopy; en: StoryStep
       listLabel: 'Learn from the Knowledge Bank',
       title: 'Practice material, always within reach.',
       description:
-        'Position papers, study guides, and session material are sorted by topic. Reopen them any time before a competition.',
+        'Build your understanding with position papers, study guides, and resources to help you prepare for your next competition.',
       cta: 'Open the Knowledge Bank',
       href: 'https://app.cogitoacademy.id/knowledge-bank',
       external: true,
@@ -88,17 +88,17 @@ const STORY_COPY: Record<RecordsStoryStepKey, { id: StoryStepCopy; en: StoryStep
   blog: {
     id: {
       listLabel: 'Baca blog Cogito',
-      title: 'Strategi dan cerita, sebelum kamu bertanding.',
+      title: 'Wawasan baru untuk langkah berikutnya.',
       description:
-        'Artikel dari tutor dan siswa Cogito: panduan kompetisi, catatan latihan, dan strategi yang bisa langsung kamu pakai.',
+        'Jelajahi panduan kompetisi, tips belajar, dan cerita dari komunitas Cogito untuk memperkaya persiapanmu.',
       cta: 'Baca blog Cogito',
       href: '/blog',
     },
     en: {
       listLabel: 'Read the Cogito blog',
-      title: 'Strategy and stories before you compete.',
+      title: 'Fresh perspectives for your next step.',
       description:
-        'Articles from Cogito tutors and students: competition guides, practice notes, and strategies you can use right away.',
+        'Explore competition guides, study tips, and stories from the Cogito community to enrich your preparation.',
       cta: 'Read the Cogito blog',
       href: '/blog',
     },
@@ -108,7 +108,7 @@ const STORY_COPY: Record<RecordsStoryStepKey, { id: StoryStepCopy; en: StoryStep
       listLabel: 'Pantau kalender lomba',
       title: 'Jangan lewatkan panggung berikutnya.',
       description:
-        'Pantau kompetisi nasional dan internasional, tenggat pendaftaran, dan skala lomba dalam satu kalender terkurasi.',
+        'Temukan kompetisi nasional dan internasional, catat tenggat pendaftarannya, dan rencanakan persiapanmu sejak awal.',
       cta: 'Buka kalender lomba',
       href: '/calendar',
     },
@@ -116,7 +116,7 @@ const STORY_COPY: Record<RecordsStoryStepKey, { id: StoryStepCopy; en: StoryStep
       listLabel: 'Track the competition calendar',
       title: 'Never miss the next stage.',
       description:
-        'Track national and international competitions, registration deadlines, and event scale in one curated calendar.',
+        'Discover national and international competitions, keep track of registration deadlines, and plan your preparation ahead of time.',
       cta: 'Open the competition calendar',
       href: '/calendar',
     },
