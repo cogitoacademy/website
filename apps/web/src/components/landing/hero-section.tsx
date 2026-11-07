@@ -52,6 +52,36 @@ const sampleLogos = [
     name: 'Sekolah Cikal',
     url: '/logos/sekolah_cikal.webp',
   },
+  {
+    id: '9',
+    name: 'Gloria Christian School',
+    url: '/logos/gloria_christian_school.webp',
+  },
+  {
+    id: '10',
+    name: 'SMAK St. Louis Surabaya',
+    url: '/logos/smak_st_louis_surabaya.webp',
+  },
+  {
+    id: '11',
+    name: 'ACS Jakarta',
+    url: '/logos/acs_jakarta.webp',
+  },
+  {
+    id: '12',
+    name: 'MIS Jakarta',
+    url: '/logos/mis_jakarta.webp',
+  },
+  {
+    id: '13',
+    name: 'Little Sun School',
+    url: '/logos/little_sun_school.webp',
+  },
+  {
+    id: '14',
+    name: 'SMAN 2 Surabaya',
+    url: '/logos/sman_2_surabaya.webp',
+  },
 ];
 
 export function HeroSection() {
