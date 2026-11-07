@@ -186,14 +186,16 @@ advances every 5.2 seconds while in view; tapping a step stops the auto-advance.
 The active step is marked with `aria-current="step"`.
 
 The five steps are tutors and booking, achievement records, Knowledge Bank,
-Cogito Blog, and the competition calendar. The stage preview reads live public
+Cogito Blog, and the competition calendar. These previews read live public
 records from the Cogito app and Sanity:
 
 - tutors and booking: `GET /rpc/publicContent/tutors/list`
-- achievements: `GET /rpc/achievement/listApproved`
 - Knowledge Bank: the published `studentResource` documents in Sanity
-- Cogito Blog: `POST /rpc/publicContent/blog/list`
 - competition calendar: the published `competition` documents in Sanity
+
+Achievement and Cogito Blog previews use curated sample content from
+`STAGE_FEATURED` in `records-stage.tsx`. They do not call the content APIs, so
+draft or UAT records cannot appear on the homepage.
 
 To use a screen recording instead of the data preview, put the MP4 file in
 `apps/web/public/videos/records/` and add its path to `STORY_VIDEOS` in

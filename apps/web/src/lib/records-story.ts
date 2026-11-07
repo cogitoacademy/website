@@ -1,15 +1,10 @@
 import 'server-only';
 
-import { getCategoryLabel, getLevelLabel } from '@/components/achievements/achievement-utils';
-import { getBlogArticles } from '@/lib/blog-api';
 import { sanityToCalendarCompetition } from '@/lib/transforms/competitionTransform';
 import { COMPETITIONS_QUERY } from '@/queries/competitions';
 import { STUDENT_RESOURCES_QUERY } from '@/queries/studentResources';
 import { client } from '@/sanity/client';
-import type { AchievementLocale } from '@/types/achievement';
 import type {
-  RecordsStoryAchievement,
-  RecordsStoryArticle,
   RecordsStoryCompetition,
   RecordsStoryData,
   RecordsStoryLocale,
@@ -18,7 +13,6 @@ import type {
 } from '@/types/records-story';
 import type { SanityCompetition } from '@/types/sanity/competition';
 import type { Tutor } from '@/types/tutor';
-import { getApprovedAchievements } from './achievements';
 import { getTutors } from './tutors';
 
 interface SanityStudentResource {
@@ -60,54 +54,11 @@ function toStoryTutor(tutor: Tutor, locale: RecordsStoryLocale): RecordsStoryTut
   };
 }
 
-function toStoryAchievement(
-  achievement: {
-    eventName: string;
-    award: string;
-    level: string;
-    category: string;
-    displayName?: string | null;
-    awardingDate?: string | null;
-    createdAt?: string | null;
-  },
-  locale: RecordsStoryLocale,
-): RecordsStoryAchievement {
-  const achievementLocale: AchievementLocale = locale;
-  const date = achievement.awardingDate || achievement.createdAt;
-
-  return {
-    eventName: achievement.eventName,
-    award: achievement.award,
-    level: getLevelLabel(achievement.level, achievementLocale),
-    student: achievement.displayName || 'Cogito student',
-    year: date?.slice(0, 4) || '----',
-    category: getCategoryLabel(achievement.category, achievementLocale),
-  };
-}
-
 function toStoryResource(resource: SanityStudentResource): RecordsStoryResource {
   return {
     title: resource.title,
     description: resource.description || null,
     category: resource.category || 'other',
-  };
-}
-
-function toStoryArticle(article: {
-  id: string;
-  title: string;
-  excerpt: string;
-  category: { title: string };
-  readingMinutes: number;
-  publishedAt: string;
-}): RecordsStoryArticle {
-  return {
-    id: article.id,
-    title: article.title,
-    excerpt: article.excerpt,
-    category: article.category.title,
-    readingMinutes: article.readingMinutes,
-    publishedAt: article.publishedAt,
   };
 }
 
@@ -126,23 +77,18 @@ function toStoryCompetition(competition: {
 }
 
 export async function getRecordsStoryData(locale: RecordsStoryLocale): Promise<RecordsStoryData> {
-  const [tutorsResult, achievementsResult, resourcesResult, articlesResult, competitionsResult] =
-    await Promise.allSettled([
-      getTutors(),
-      getApprovedAchievements(),
-      client.fetch<SanityStudentResource[]>(
-        STUDENT_RESOURCES_QUERY,
-        {},
-        { next: { revalidate: 1800 } },
-      ),
-      getBlogArticles(locale, 3, 1),
-      client.fetch<SanityCompetition[]>(COMPETITIONS_QUERY, {}, { next: { revalidate: 1800 } }),
-    ]);
+  const [tutorsResult, resourcesResult, competitionsResult] = await Promise.allSettled([
+    getTutors(),
+    client.fetch<SanityStudentResource[]>(
+      STUDENT_RESOURCES_QUERY,
+      {},
+      { next: { revalidate: 1800 } },
+    ),
+    client.fetch<SanityCompetition[]>(COMPETITIONS_QUERY, {}, { next: { revalidate: 1800 } }),
+  ]);
 
   const tutors = tutorsResult.status === 'fulfilled' ? tutorsResult.value : [];
-  const achievements = achievementsResult.status === 'fulfilled' ? achievementsResult.value : [];
   const resources = resourcesResult.status === 'fulfilled' ? resourcesResult.value : [];
-  const articles = articlesResult.status === 'fulfilled' ? articlesResult.value.rows : [];
   const competitionDocuments =
     competitionsResult.status === 'fulfilled' ? competitionsResult.value : [];
 
@@ -158,17 +104,9 @@ export async function getRecordsStoryData(locale: RecordsStoryLocale): Promise<R
       total: tutors.length,
       items: tutors.slice(0, 1).map((tutor) => toStoryTutor(tutor, locale)),
     },
-    achievements: {
-      total: achievements.length,
-      items: achievements.slice(0, 1).map((achievement) => toStoryAchievement(achievement, locale)),
-    },
     resources: {
       total: resources.length,
       items: resources.slice(0, 3).map(toStoryResource),
-    },
-    articles: {
-      total: articles.length,
-      items: articles.slice(0, 3).map(toStoryArticle),
     },
     competitions: {
       total: competitions.length,

@@ -41,7 +41,6 @@ const STAGE_COPY = {
     verified: 'Terverifikasi',
     achievementArchive: 'Arsip prestasi',
     achievementTitle: 'Prestasi terverifikasi',
-    achievementCount: 'catatan',
     approved: 'Disetujui tim Cogito',
     upload: 'Diunggah',
     review: 'Diverifikasi',
@@ -53,13 +52,11 @@ const STAGE_COPY = {
     blog: 'Blog Cogito',
     blogTitle: 'Artikel terbaru',
     blogCount: 'artikel',
-    blogEmpty: 'Artikel pertama segera hadir.',
     readTime: 'menit baca',
     calendar: 'Kalender lomba',
     calendarTitle: 'Kompetisi terdekat',
     calendarCount: 'kompetisi',
     emptyTutors: 'Profil tutor segera hadir.',
-    emptyAchievements: 'Belum ada prestasi yang ditampilkan.',
     emptyResources: 'Materi belajar segera hadir.',
     emptyCalendar: 'Belum ada jadwal kompetisi baru.',
     wib: 'WIB',
@@ -85,7 +82,6 @@ const STAGE_COPY = {
     verified: 'Verified',
     achievementArchive: 'Achievement archive',
     achievementTitle: 'Verified achievements',
-    achievementCount: 'record',
     approved: 'Approved by the Cogito team',
     upload: 'Uploaded',
     review: 'Reviewed',
@@ -97,13 +93,11 @@ const STAGE_COPY = {
     blog: 'Cogito Blog',
     blogTitle: 'Latest articles',
     blogCount: 'article',
-    blogEmpty: 'The first article is coming soon.',
     readTime: 'min read',
     calendar: 'Competition calendar',
     calendarTitle: 'Upcoming competitions',
     calendarCount: 'competition',
     emptyTutors: 'Tutor profiles are coming soon.',
-    emptyAchievements: 'No achievements are on display yet.',
     emptyResources: 'Learning materials are coming soon.',
     emptyCalendar: 'No new competition dates yet.',
     wib: 'WIB',
@@ -122,6 +116,107 @@ const STAGE_COPY = {
 } satisfies Record<RecordsStoryLocale, Record<string, unknown>>;
 
 type StageCopy = (typeof STAGE_COPY)[RecordsStoryLocale];
+
+interface StageAchievement {
+  meta: string;
+  eventName: string;
+  award: string;
+  level: string;
+  student: string;
+  year: string;
+}
+
+interface StageArticle {
+  id: string;
+  title: string;
+  excerpt: string;
+  category: string;
+  readingMinutes: number;
+  publishedAt: string;
+}
+
+const STAGE_FEATURED: Record<
+  RecordsStoryLocale,
+  { achievement: StageAchievement; articles: StageArticle[] }
+> = {
+  id: {
+    achievement: {
+      meta: '100+ catatan',
+      eventName: 'Olimpiade Sains Nasional',
+      award: 'Medali Emas',
+      level: 'Nasional',
+      student: 'Siswa Cogito',
+      year: '2026',
+    },
+    articles: [
+      {
+        id: 'panduan-lomba-pertama',
+        title: 'Menyiapkan Lomba Pertamamu: Mulai dari Mana?',
+        excerpt:
+          'Susun target, pilih bidang, dan tentukan jadwal latihan yang realistis sebelum mendaftar.',
+        category: 'Panduan kompetisi',
+        readingMinutes: 6,
+        publishedAt: '2026-10-12T00:00:00.000Z',
+      },
+      {
+        id: 'membagi-waktu-belajar',
+        title: 'Membagi Waktu antara Sekolah dan Latihan',
+        excerpt:
+          'Rencana belajar yang konsisten lebih penting daripada latihan maraton menjelang lomba.',
+        category: 'Strategi',
+        readingMinutes: 5,
+        publishedAt: '2026-10-05T00:00:00.000Z',
+      },
+      {
+        id: 'kebiasaan-hari-lomba',
+        title: 'Kebiasaan Kecil yang Membantu di Hari Lomba',
+        excerpt: 'Tidur cukup, cek perlengkapan, dan latihan simulasi agar tampil lebih tenang.',
+        category: 'Catatan tutor',
+        readingMinutes: 4,
+        publishedAt: '2026-09-28T00:00:00.000Z',
+      },
+    ],
+  },
+  en: {
+    achievement: {
+      meta: '100+ records',
+      eventName: 'National Science Olympiad',
+      award: 'Gold Medal',
+      level: 'National',
+      student: 'Cogito student',
+      year: '2026',
+    },
+    articles: [
+      {
+        id: 'first-competition-guide',
+        title: 'Your First Competition: Where to Start?',
+        excerpt:
+          'Set a goal, choose your field, and build a realistic practice schedule before registering.',
+        category: 'Competition guides',
+        readingMinutes: 6,
+        publishedAt: '2026-10-12T00:00:00.000Z',
+      },
+      {
+        id: 'balance-school-and-practice',
+        title: 'Balancing School and Practice Time',
+        excerpt:
+          'A consistent study plan matters more than marathon practice sessions before competition day.',
+        category: 'Strategy',
+        readingMinutes: 5,
+        publishedAt: '2026-10-05T00:00:00.000Z',
+      },
+      {
+        id: 'small-habits-competition-day',
+        title: 'Small Habits That Help on Competition Day',
+        excerpt:
+          'Rest well, check your gear, and run a simulation so you can perform with more calm.',
+        category: 'Tutor notes',
+        readingMinutes: 4,
+        publishedAt: '2026-09-28T00:00:00.000Z',
+      },
+    ],
+  },
+};
 
 interface RecordsStageProps {
   screenId: string;
@@ -289,10 +384,10 @@ function StagePreview({
 }) {
   if (stepKey === 'tutors') return <TutorPreview data={data} locale={locale} copy={copy} />;
   if (stepKey === 'achievements') {
-    return <AchievementPreview data={data} locale={locale} copy={copy} />;
+    return <AchievementPreview locale={locale} copy={copy} />;
   }
   if (stepKey === 'knowledge') return <KnowledgePreview data={data} locale={locale} copy={copy} />;
-  if (stepKey === 'blog') return <BlogPreview data={data} locale={locale} copy={copy} />;
+  if (stepKey === 'blog') return <BlogPreview locale={locale} copy={copy} />;
   return <CalendarPreview data={data} locale={locale} copy={copy} />;
 }
 
@@ -411,16 +506,8 @@ function TutorPreview({
   );
 }
 
-function AchievementPreview({
-  data,
-  locale,
-  copy,
-}: {
-  data: RecordsStoryData;
-  locale: RecordsStoryLocale;
-  copy: StageCopy;
-}) {
-  const achievement = data.achievements.items[0];
+function AchievementPreview({ locale, copy }: { locale: RecordsStoryLocale; copy: StageCopy }) {
+  const achievement = STAGE_FEATURED[locale].achievement;
 
   return (
     <div className="flex h-full flex-col gap-2.5">
@@ -428,38 +515,34 @@ function AchievementPreview({
         icon={Medal}
         eyebrow={copy.achievementArchive}
         title={copy.achievementTitle}
-        meta={countLabel(data.achievements.total, copy.achievementCount, locale)}
+        meta={achievement.meta}
       />
 
-      {achievement ? (
-        <div className="relative overflow-hidden rounded-xl bg-tertiary-yellow-100 p-3">
-          <Medal
-            className="absolute -right-3 -bottom-4 size-24 rotate-12 text-tertiary-yellow-600/20"
-            aria-hidden="true"
-          />
-          <div className="relative">
-            <div className="flex items-center justify-between gap-2">
-              <span className="inline-flex items-center gap-1 rounded-full bg-white/70 px-2 py-1 font-semibold text-[9px] text-tertiary-yellow-1000">
-                <Check className="size-2.5" aria-hidden="true" />
-                {copy.approved}
-              </span>
-              <span className="font-semibold text-[9px] text-tertiary-yellow-1000/70 uppercase tracking-[0.1em]">
-                {achievement.level}
-              </span>
-            </div>
-            <h5 className="mt-3 line-clamp-2 font-bold text-sm text-neutral-1000 leading-tight">
-              {achievement.eventName}
-            </h5>
-            <p className="mt-1 font-semibold text-primary-700 text-xs">{achievement.award}</p>
-            <div className="mt-3 flex items-center justify-between gap-2 text-[10px] text-neutral-700">
-              <span className="truncate">{achievement.student}</span>
-              <span className="shrink-0 font-semibold">{achievement.year}</span>
-            </div>
+      <div className="relative overflow-hidden rounded-xl bg-tertiary-yellow-100 p-3">
+        <Medal
+          className="absolute -right-3 -bottom-4 size-24 rotate-12 text-tertiary-yellow-600/20"
+          aria-hidden="true"
+        />
+        <div className="relative">
+          <div className="flex items-center justify-between gap-2">
+            <span className="inline-flex items-center gap-1 rounded-full bg-white/70 px-2 py-1 font-semibold text-[9px] text-tertiary-yellow-1000">
+              <Check className="size-2.5" aria-hidden="true" />
+              {copy.approved}
+            </span>
+            <span className="font-semibold text-[9px] text-tertiary-yellow-1000/70 uppercase tracking-[0.1em]">
+              {achievement.level}
+            </span>
+          </div>
+          <h5 className="mt-3 line-clamp-2 font-bold text-sm text-neutral-1000 leading-tight">
+            {achievement.eventName}
+          </h5>
+          <p className="mt-1 font-semibold text-primary-700 text-xs">{achievement.award}</p>
+          <div className="mt-3 flex items-center justify-between gap-2 text-[10px] text-neutral-700">
+            <span className="truncate">{achievement.student}</span>
+            <span className="shrink-0 font-semibold">{achievement.year}</span>
           </div>
         </div>
-      ) : (
-        <EmptyPreview icon={Medal} copy={copy.emptyAchievements} />
-      )}
+      </div>
 
       <div className="mt-auto grid grid-cols-3 gap-1.5">
         {[copy.upload, copy.review, copy.public].map((label) => (
@@ -532,20 +615,9 @@ function KnowledgePreview({
   );
 }
 
-function BlogPreview({
-  data,
-  locale,
-  copy,
-}: {
-  data: RecordsStoryData;
-  locale: RecordsStoryLocale;
-  copy: StageCopy;
-}) {
-  const [featured, ...rest] = data.articles.items;
-  const topics =
-    locale === 'id'
-      ? ['Panduan kompetisi', 'Strategi', 'Catatan tutor']
-      : ['Competition guides', 'Strategy', 'Tutor notes'];
+function BlogPreview({ locale, copy }: { locale: RecordsStoryLocale; copy: StageCopy }) {
+  const articles = STAGE_FEATURED[locale].articles;
+  const [featured, ...rest] = articles;
 
   return (
     <div className="flex h-full flex-col gap-2.5">
@@ -553,70 +625,51 @@ function BlogPreview({
         icon={Newspaper}
         eyebrow={copy.blog}
         title={copy.blogTitle}
-        meta={countLabel(data.articles.total, copy.blogCount, locale)}
+        meta={countLabel(articles.length, copy.blogCount, locale)}
       />
 
-      {featured ? (
-        <div className="overflow-hidden rounded-xl border border-neutral-200 bg-white">
-          <div className="relative flex h-16 items-end bg-gradient-to-br from-primary-100 via-tertiary-pink-100 to-tertiary-yellow-100 p-2.5">
-            <Newspaper
-              className="absolute -right-2 -bottom-3 size-16 rotate-[-8deg] text-white/55"
-              aria-hidden="true"
-            />
-            <span className="rounded bg-white/85 px-1.5 py-0.5 font-semibold text-[8px] text-primary-800 uppercase tracking-[0.1em]">
-              {featured.category}
+      <div className="overflow-hidden rounded-xl border border-neutral-200 bg-white">
+        <div className="relative flex h-16 items-end bg-gradient-to-br from-primary-100 via-tertiary-pink-100 to-tertiary-yellow-100 p-2.5">
+          <Newspaper
+            className="absolute -right-2 -bottom-3 size-16 rotate-[-8deg] text-white/55"
+            aria-hidden="true"
+          />
+          <span className="rounded bg-white/85 px-1.5 py-0.5 font-semibold text-[8px] text-primary-800 uppercase tracking-[0.1em]">
+            {featured.category}
+          </span>
+        </div>
+        <div className="p-2.5">
+          <h5 className="line-clamp-2 font-bold text-xs text-neutral-1000 leading-snug">
+            {featured.title}
+          </h5>
+          <p className="mt-1 line-clamp-2 text-[9px] text-neutral-500 leading-relaxed">
+            {featured.excerpt}
+          </p>
+          <div className="mt-2 flex items-center justify-between gap-2 font-medium text-[8.5px] text-neutral-500">
+            <span>{formatBlogDate(featured.publishedAt, locale)}</span>
+            <span>
+              {featured.readingMinutes} {copy.readTime}
             </span>
           </div>
-          <div className="p-2.5">
-            <h5 className="line-clamp-2 font-bold text-xs text-neutral-1000 leading-snug">
-              {featured.title}
-            </h5>
-            <p className="mt-1 line-clamp-2 text-[9px] text-neutral-500 leading-relaxed">
-              {featured.excerpt}
-            </p>
-            <div className="mt-2 flex items-center justify-between gap-2 font-medium text-[8.5px] text-neutral-500">
-              <span>{formatBlogDate(featured.publishedAt, locale)}</span>
-              <span>
-                {featured.readingMinutes} {copy.readTime}
-              </span>
-            </div>
-          </div>
         </div>
-      ) : (
-        <EmptyPreview icon={Newspaper} copy={copy.blogEmpty} />
-      )}
+      </div>
 
-      {rest.length > 0 ? (
-        <div className="space-y-1.5">
-          {rest.map((article, index) => (
-            <div
-              key={article.id}
-              className="flex items-center gap-2 rounded-lg border border-neutral-200 bg-white p-2"
-            >
-              <span className="grid size-6 shrink-0 place-items-center rounded-md bg-tertiary-pink-100 font-bold text-[8px] text-tertiary-pink-1000">
-                {String(index + 2).padStart(2, '0')}
-              </span>
-              <div className="min-w-0 flex-1">
-                <p className="truncate font-semibold text-[10px] text-neutral-900">
-                  {article.title}
-                </p>
-                <p className="truncate text-[9px] text-neutral-500">{article.category}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      ) : (
-        <div className="mt-auto grid grid-cols-3 gap-1.5">
-          {topics.map((topic) => (
-            <span
-              key={topic}
-              className="flex min-h-12 items-center justify-center rounded-lg border border-neutral-200 bg-white px-1.5 text-center font-medium text-[8.5px] text-neutral-600 leading-snug"
-            >
-              {topic}
+      <div className="space-y-1.5">
+        {rest.map((article, index) => (
+          <div
+            key={article.id}
+            className="flex items-center gap-2 rounded-lg border border-neutral-200 bg-white p-2"
+          >
+            <span className="grid size-6 shrink-0 place-items-center rounded-md bg-tertiary-pink-100 font-bold text-[8px] text-tertiary-pink-1000">
+              {String(index + 2).padStart(2, '0')}
             </span>
-          ))}
-        </div>
-      )}
+            <div className="min-w-0 flex-1">
+              <p className="truncate font-semibold text-[10px] text-neutral-900">{article.title}</p>
+              <p className="truncate text-[9px] text-neutral-500">{article.category}</p>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
