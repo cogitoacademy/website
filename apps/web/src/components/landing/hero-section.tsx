@@ -1,6 +1,6 @@
 'use client';
 
-import { ChatsCircleIcon } from '@phosphor-icons/react/dist/ssr';
+import { GraduationCapIcon } from '@phosphor-icons/react/dist/ssr';
 import { ArrowRight } from 'lucide-react';
 import { useLocale, useTranslations } from 'next-intl';
 import { useEffect, useState } from 'react';
@@ -163,7 +163,7 @@ export function HeroSection() {
             >
               <Button size="md" className="w-full">
                 <span>{t('hero.ctaPrimary')}</span>
-                <ChatsCircleIcon weight="duotone" color="#ffffff" className="size-5" />
+                <GraduationCapIcon weight="duotone" color="#ffffff" className="size-5" />
               </Button>
             </Link>
 
