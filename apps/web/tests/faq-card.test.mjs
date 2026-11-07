@@ -20,8 +20,8 @@ const messages = {
       subtitle: 'Answers for families.',
     },
     categories: {
-      about: 'About Cogito Academy',
-      payments: 'Payments & Billing',
+      about: 'About Cogito',
+      payments: 'Payments, cancellations and returns',
       uncategorized: 'Other questions',
     },
     empty: 'No questions yet.',
@@ -114,8 +114,8 @@ describe('FAQ accordion', () => {
     const fullMarkup = renderWithMessages(createElement(FaqSection, { items }));
     const landingMarkup = renderWithMessages(createElement(FaqSectionV2, { items }));
 
-    const aboutIndex = fullMarkup.indexOf('About Cogito Academy');
-    const paymentsIndex = fullMarkup.indexOf('Payments &amp; Billing');
+    const aboutIndex = fullMarkup.indexOf('About Cogito');
+    const paymentsIndex = fullMarkup.indexOf('Payments, cancellations and returns');
     const uncategorizedIndex = fullMarkup.indexOf('Other questions');
 
     expect(fullMarkup).toContain('id="faq-category-about"');
@@ -125,8 +125,8 @@ describe('FAQ accordion', () => {
     expect(paymentsIndex).toBeGreaterThan(aboutIndex);
     expect(uncategorizedIndex).toBeGreaterThan(paymentsIndex);
 
-    expect(landingMarkup).not.toContain('About Cogito Academy');
-    expect(landingMarkup).not.toContain('Payments &amp; Billing');
+    expect(landingMarkup).not.toContain('About Cogito');
+    expect(landingMarkup).not.toContain('Payments, cancellations and returns');
   });
 
   test('localizes category headings for the active locale', () => {
@@ -135,7 +135,7 @@ describe('FAQ accordion', () => {
         ...messages.faq,
         categories: {
           ...messages.faq.categories,
-          about: 'Tentang Cogito Academy',
+          about: 'Tentang Cogito',
         },
       },
     };
@@ -149,7 +149,7 @@ describe('FAQ accordion', () => {
       ),
     );
 
-    expect(markup).toContain('Tentang Cogito Academy');
-    expect(markup).not.toContain('About Cogito Academy');
+    expect(markup).toContain('Tentang Cogito');
+    expect(markup).not.toContain('About Cogito');
   });
 });

@@ -193,16 +193,16 @@
       "subtitle": "Diskusikan tujuan belajar dan persiapan lombamu bersama tim Cogito."
     },
     "categories": {
-      "about": "Tentang Cogito Academy",
-      "programs": "Program & Kelas",
+      "about": "Tentang Cogito",
+      "programs": "Program dan kelas",
       "tutors": "Tutor",
-      "accounts": "Akun & Akses",
-      "marks": "Nilai & Rapor",
-      "payments": "Pembayaran & Tagihan",
-      "progress": "Progres Belajar",
-      "offline": "Offline & Rekaman",
-      "tutor-join": "Bergabung sebagai Tutor",
-      "uncategorized": "Pertanyaan Lainnya"
+      "accounts": "Akun dan pemesanan",
+      "marks": "Marks dan harga",
+      "payments": "Pembayaran, pembatalan, dan pengembalian",
+      "progress": "Perkembangan dan hasil",
+      "offline": "Kelas offline, sekolah, dan kontak",
+      "tutor-join": "Untuk tutor yang ingin bergabung",
+      "uncategorized": "Pertanyaan lainnya"
     },
     "empty": "Segera hadir! Kenali Cogito Academy lebih dekat lewat jawaban atas pertanyaanmu.",
     "viewAll": "Lihat semua FAQ",
