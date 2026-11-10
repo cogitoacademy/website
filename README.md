@@ -215,3 +215,5 @@ Migration 0077 must be applied before API deployment.
 Activities class titles use the same canonical `titleEn` content on the Indonesian and English routes. The class adapter no longer declares alternate `titleId`/`descriptionId` properties. Class/session content is authored once in Cogito app; surrounding website navigation and other content keep their existing localization. This consumer works with the canonical fields already present in the current public API, so it can deploy before the Cogito app change.
 
 Blog bylines display the Cogito Academy team, the featured tutor name (linked or manually entered in the app CMS), and an optional reviewerName from the public blog API. Manual names remain plain text and do not create profile links.
+
+Google Analytics uses measurement ID `G-3D8XXQC8S7` across locale pages. For client-side navigation page views, enable Enhanced Measurement and page changes based on browser history in the GA4 property.

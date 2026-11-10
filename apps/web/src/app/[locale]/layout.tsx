@@ -132,6 +132,15 @@ export default async function LocaleLayout({
 
   return (
     <html lang={locale} suppressHydrationWarning>
+      <head>
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-3D8XXQC8S7" />
+        <script dangerouslySetInnerHTML={{ __html: `
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-3D8XXQC8S7');
+        ` }} />
+      </head>
       <body className={`${lexendDeca.variable} ${inter.variable} min-h-screen antialiased`}>
         <a
           href="#main-content"
