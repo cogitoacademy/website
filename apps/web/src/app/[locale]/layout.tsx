@@ -6,6 +6,7 @@ import { hasLocale, NextIntlClientProvider } from 'next-intl';
 import { getMessages, setRequestLocale } from 'next-intl/server';
 import type { ReactNode } from 'react';
 import { Analytics } from '@vercel/analytics/next';
+import { GoogleAnalytics } from '@next/third-parties/google';
 
 import '../../index.css';
 import Footer from '@/components/footer';
@@ -148,6 +149,13 @@ export default async function LocaleLayout({
           </Providers>
         </NextIntlClientProvider>
         <Analytics />
+        <Script src="https://www.googletagmanager.com/gtag/js?id=G-3D8XXQC8S7" strategy="afterInteractive" />
+        <Script id="google-analytics" strategy="afterInteractive">{`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-3D8XXQC8S7');
+        `}</Script>
         {process.env.NODE_ENV !== 'production' && (
           <Script src="/tweaks-bar.js" strategy="afterInteractive" />
         )}
