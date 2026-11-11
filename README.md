@@ -217,3 +217,7 @@ Activities class titles use the same canonical `titleEn` content on the Indonesi
 Blog bylines display the Cogito Academy team, the featured tutor name (linked or manually entered in the app CMS), and an optional reviewerName from the public blog API. Manual names remain plain text and do not create profile links.
 
 Google Analytics uses measurement ID `G-3D8XXQC8S7` across locale pages. For client-side navigation page views, enable Enhanced Measurement and page changes based on browser history in the GA4 property.
+
+## Legal pages
+
+The localized `/privacy-policy` and `/terms-of-service` pages share `apps/web/src/components/legal/legal-document.tsx`. Student and tutor terms in `platform-terms.json` reproduce the November 2026 documents from cogito-app, excluding registration interface instructions. Update both languages together when the source agreements change. The privacy policy describes age/guardian consent records, student works, achievement publication consent, and session recording practices from those agreements. Repository changes require a website deployment before they appear publicly.
