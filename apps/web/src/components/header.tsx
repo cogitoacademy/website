@@ -1,12 +1,12 @@
 'use client';
 
-import { ListIcon } from '@phosphor-icons/react/dist/ssr';
+import { GraduationCapIcon, ListIcon } from '@phosphor-icons/react/dist/ssr';
 import { ChevronDown } from 'lucide-react';
 import Image from 'next/image';
-import { useLocale } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { useEffect, useState } from 'react';
 import { Link } from '@/i18n/routing';
-import { KNOWLEDGE_BANK_URL } from '@/lib/constants';
+import { APP_URL, KNOWLEDGE_BANK_URL } from '@/lib/constants';
 import LanguageToggle from './lang-toggle';
 import MobileMenu from './mobile-menu';
 import { Button } from './ui/button';
@@ -49,6 +49,7 @@ const NAV_ITEMS_EN = [
 
 export default function Header() {
   const locale = useLocale();
+  const t = useTranslations();
   const isId = locale === 'id';
   const navItems = isId ? NAV_ITEMS_ID : NAV_ITEMS_EN;
 
@@ -147,12 +148,18 @@ export default function Header() {
             </div>
 
             <div className="hidden items-center gap-3 lg:flex">
-              <LanguageToggle />
+              <a href={APP_URL} target="_blank" rel="noopener noreferrer">
+                <Button size="lg">
+                  <span>{t('hero.ctaPrimary')}</span>
+                  <GraduationCapIcon weight="duotone" color="#ffffff" className="size-5" />
+                </Button>
+              </a>
               <Link href="/contact">
                 <Button size="lg">
                   <span>{isId ? 'Hubungi Kami' : 'Contact Us'}</span>
                 </Button>
               </Link>
+              <LanguageToggle />
             </div>
 
             <div className="relative lg:hidden flex items-center gap-2">

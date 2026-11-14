@@ -5,6 +5,7 @@ import { ArrowRight } from 'lucide-react';
 import { useLocale, useTranslations } from 'next-intl';
 import { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
+import { APP_URL } from '@/lib/constants';
 import { Container } from '../ui/container';
 import { WordRotateHighlighter } from '../ui/word-rotate-highlighter';
 import { ClassCard } from './hero-class-card';
@@ -186,7 +187,7 @@ export function HeroSection() {
           {/* CTA Buttons */}
           <div className="my-2 flex w-full flex-col items-center gap-2 sm:my-6 sm:w-auto sm:flex-row sm:gap-4">
             <Link
-              href="https://wa.me/62881011990195"
+              href={APP_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="w-full max-w-[260px] sm:w-auto sm:max-w-none"
