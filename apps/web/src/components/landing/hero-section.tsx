@@ -186,7 +186,7 @@ export function HeroSection() {
 
           {/* CTA Buttons */}
           <div className="my-2 flex w-full flex-col items-center gap-2 sm:my-6 sm:w-auto sm:flex-row sm:gap-4">
-            <Link
+            <a
               href={APP_URL}
               target="_blank"
               rel="noopener noreferrer"
@@ -196,7 +196,7 @@ export function HeroSection() {
                 <span>{t('hero.ctaPrimary')}</span>
                 <GraduationCapIcon weight="duotone" color="#ffffff" className="size-5" />
               </Button>
-            </Link>
+            </a>
 
             <Link href="#skills" className="w-full max-w-[260px] sm:w-auto sm:max-w-none">
               <Button size="md" variant="gray" className="w-full">
