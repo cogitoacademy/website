@@ -1,6 +1,7 @@
 'use client';
 
 import {
+  GraduationCapIcon,
   InstagramLogoIcon,
   MapPinLineIcon,
   WhatsappLogoIcon,
@@ -8,7 +9,7 @@ import {
 } from '@phosphor-icons/react/dist/ssr';
 import { AnimatePresence, m } from 'motion/react';
 import Image from 'next/image';
-import { useLocale } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { useEffect } from 'react';
 import {
   Accordion,
@@ -18,7 +19,7 @@ import {
 } from '@/components/ui/accordion';
 import { Button } from '@/components/ui/button';
 import { Link } from '@/i18n/routing';
-import { KNOWLEDGE_BANK_URL } from '@/lib/constants';
+import { APP_URL, KNOWLEDGE_BANK_URL } from '@/lib/constants';
 import LanguageToggle from './lang-toggle';
 
 interface MobileMenuProps {
@@ -72,6 +73,7 @@ const QUICK_NAV_ITEMS_EN = [
 
 export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
   const locale = useLocale();
+  const t = useTranslations();
   const isId = locale === 'id';
 
   const navItems = isId ? NAV_ITEMS_ID : NAV_ITEMS_EN;
@@ -269,6 +271,12 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                 </div>
               </div>
 
+              <a href={APP_URL} target="_blank" rel="noopener noreferrer" onClick={onClose} className="w-full">
+                <Button size="md" className="w-full">
+                  <span>{t('hero.ctaPrimary')}</span>
+                  <GraduationCapIcon weight="duotone" color="#ffffff" className="size-5" />
+                </Button>
+              </a>
               <Link href="/contact" onClick={onClose} className="w-full cursor-pointer">
                 <Button variant="gray" size="md" className="w-full text-sm">
                   {isId ? 'Hubungi Kami' : 'Contact Us'}
