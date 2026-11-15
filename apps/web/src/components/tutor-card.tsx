@@ -3,7 +3,8 @@
 import { ArrowUpRightIcon } from 'lucide-react';
 import Image from 'next/image';
 import { useLocale } from 'next-intl';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { fitBadgeCount } from '@/lib/badge-overflow';
 import type { TutorSubject } from '@/types/tutor';
 import type { Tutor } from '@/types/tutor';
 import TutorDetailModal from './tutor-detail-modal';
@@ -22,6 +23,48 @@ function subjectName(subject: TutorSubject, locale: string) {
 export default function TutorCard({ tutor }: TutorCardProps) {
   const locale = useLocale();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [visibleCount, setVisibleCount] = useState(0);
+  const badgeRowRef = useRef<HTMLDivElement>(null);
+  const measurementRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const row = badgeRowRef.current;
+    const measurement = measurementRef.current;
+    if (!row || !measurement) return;
+    const measure = () => {
+      const widths = Array.from(
+        measurement.children,
+        (child) => child.getBoundingClientRect().width,
+      );
+      setVisibleCount(
+        fitBadgeCount(
+          widths.slice(0, tutor.subjects.length),
+          widths.slice(tutor.subjects.length),
+          row.clientWidth,
+          Number.parseFloat(getComputedStyle(row).columnGap) || 0,
+        ),
+      );
+    };
+    const observer = new ResizeObserver(measure);
+    observer.observe(row);
+    observer.observe(measurement);
+    measure();
+    return () => observer.disconnect();
+  }, [tutor.subjects, locale]);
+
+  const renderSubjectBadge = (subject: TutorSubject) => (
+    <Badge
+      key={subject.id}
+      variant="tutor"
+      className="bg-background-cream text-neutral-1000"
+      style={{
+        color: subject.parent.lightTextColor ?? undefined,
+        backgroundColor: subject.parent.lightBackgroundColor ?? undefined,
+      }}
+    >
+      {subjectName(subject, locale)}
+    </Badge>
+  );
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter' || e.key === ' ') {
@@ -68,20 +111,31 @@ export default function TutorCard({ tutor }: TutorCardProps) {
             </p>
 
             {tutor.subjects.length > 0 && (
-              <div className="mt-auto mb-0 flex flex-wrap gap-2">
-                {tutor.subjects.map((subject) => (
-                  <Badge
-                    key={subject.id}
-                    variant="tutor"
-                    className="bg-background-cream text-neutral-1000"
-                    style={{
-                      color: subject.parent.lightTextColor ?? undefined,
-                      backgroundColor: subject.parent.lightBackgroundColor ?? undefined,
-                    }}
-                  >
-                    {subjectName(subject, locale)}
-                  </Badge>
-                ))}
+              <div className="relative mt-auto mb-0 min-w-0">
+                <div ref={badgeRowRef} className="flex flex-nowrap gap-2 overflow-hidden">
+                  {tutor.subjects.slice(0, visibleCount).map(renderSubjectBadge)}
+                  {visibleCount < tutor.subjects.length && (
+                    <Badge variant="tutor" className="bg-neutral-200 text-neutral-1000">
+                      +{tutor.subjects.length - visibleCount}
+                    </Badge>
+                  )}
+                </div>
+                <div
+                  ref={measurementRef}
+                  aria-hidden="true"
+                  className="pointer-events-none invisible absolute top-0 left-0 flex w-max gap-2"
+                >
+                  {tutor.subjects.map(renderSubjectBadge)}
+                  {tutor.subjects.map((subject, index) => (
+                    <Badge
+                      key={`count-${subject.id}`}
+                      variant="tutor"
+                      className="bg-neutral-200 text-neutral-1000"
+                    >
+                      +{index + 1}
+                    </Badge>
+                  ))}
+                </div>
               </div>
             )}
           </div>

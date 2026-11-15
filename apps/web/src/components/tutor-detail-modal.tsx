@@ -1,6 +1,6 @@
 'use client';
 
-import { Laptop, MapPinIcon, XIcon } from 'lucide-react';
+import { XIcon } from 'lucide-react';
 import Image from 'next/image';
 import { useLocale, useTranslations } from 'next-intl';
 import { Button } from '@/components/ui/button';
@@ -48,137 +48,120 @@ export default function TutorDetailModal({ tutor, open, onOpenChange }: TutorDet
     <Sheet open={open} onOpenChange={onOpenChange}>
       <SheetContent
         side="bottom"
-        className="flex w-full max-h-[90dvh] flex-col gap-0 overflow-y-auto rounded-t-2xl border-none bg-background p-0 text-base sm:data-[side=bottom]:inset-x-auto sm:data-[side=bottom]:inset-y-0 sm:data-[side=bottom]:right-0 sm:data-[side=bottom]:h-dvh sm:max-h-dvh sm:w-full sm:max-w-xl sm:rounded-none sm:data-[side=bottom]:data-open:slide-in-from-bottom-0 sm:data-[side=bottom]:data-closed:slide-out-to-bottom-0 sm:data-[side=bottom]:data-open:slide-in-from-right-10 sm:data-[side=bottom]:data-closed:slide-out-to-right-10"
+        className="flex w-full max-h-[90dvh] flex-col gap-0 overflow-y-auto rounded-t-2xl border-none bg-background p-0 text-base sm:data-[side=bottom]:inset-x-auto sm:data-[side=bottom]:inset-y-0 sm:data-[side=bottom]:right-0 sm:data-[side=bottom]:h-dvh sm:max-h-dvh sm:w-full sm:max-w-lg sm:rounded-none sm:data-[side=bottom]:data-open:slide-in-from-bottom-0 sm:data-[side=bottom]:data-closed:slide-out-to-bottom-0 sm:data-[side=bottom]:data-open:slide-in-from-right-10 sm:data-[side=bottom]:data-closed:slide-out-to-right-10"
         showCloseButton={false}
       >
-        <div className="relative flex h-[240px] shrink-0 items-center justify-center overflow-hidden bg-muted sm:h-[280px]">
-          {tutor.profileImageUrl ? (
-            <Image
-              src={tutor.profileImageUrl}
-              alt={tutor.name}
-              fill
-              unoptimized
-              className="object-cover object-top"
-              sizes="(max-width: 640px) 100vw, 576px"
-            />
-          ) : (
-            <span aria-hidden="true" className="font-semibold text-6xl text-muted-foreground">
-              {tutor.name.slice(0, 1).toUpperCase()}
-            </span>
-          )}
-
-          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/60 to-transparent sm:hidden" />
-
-          <Button
-            variant="secondary"
-            size="icon"
-            className="absolute top-4 right-4 z-20 h-8 w-8 rounded-md bg-white/90 text-black shadow-sm hover:bg-white"
-            onClick={() => onOpenChange(false)}
-          >
+        <div className="flex shrink-0 justify-end px-4 pt-4">
+          <Button variant="ghost" size="icon" onClick={() => onOpenChange(false)}>
             <XIcon className="h-4 w-4" />
             <span className="sr-only">{locale === 'id' ? 'Tutup' : 'Close'}</span>
           </Button>
         </div>
-
         <div className="bg-background">
-          <div className="p-6">
-            <div className="space-y-3">
-              <SheetTitle className="font-bold text-2xl text-foreground leading-none tracking-tight sm:text-3xl">
-                {tutor.name}
-              </SheetTitle>
-
-              {tutor.affiliation && (
-                <p className="font-medium text-base text-neutral-1000">{tutor.affiliation}</p>
-              )}
-
-              <div className="flex-wrap gap-2 flex">{badges}</div>
-              {tutor.shortBio && (
-                <p className="text-muted-foreground text-sm xl:text-base">{tutor.shortBio}</p>
-              )}
-
-              {modalityLabel && (
-                <div className="flex flex-wrap gap-3">
-                  <div className="inline-flex items-center gap-2 rounded-md bg-neutral-200 px-3 py-1.5 font-medium text-neutral-1000 text-sm">
-                    {tutor.modality !== 'offline' && (
-                      <Laptop aria-hidden="true" className="h-4 w-4" />
-                    )}
-                    {tutor.modality !== 'online' && (
-                      <MapPinIcon aria-hidden="true" className="h-4 w-4" />
-                    )}
-                    <span>{modalityLabel}</span>
-                  </div>
-                </div>
-              )}
-            </div>
-
-            <div className="grid grid-cols-1 gap-4 pt-4 pb-[env(safe-area-inset-bottom)]">
-              <section className="h-full space-y-1 rounded-xl bg-neutral-200 px-3 py-2">
-                <h3 className="pb-0.5 font-semibold text-base text-foreground">{t('education')}</h3>
-                {tutor.education.length === 0 ? (
-                  <p className="text-muted-foreground/90 text-sm leading-relaxed">
-                    {t('noProfileContent')}
-                  </p>
+          <div className="p-4">
+            <div className="flex items-center gap-4">
+              <div className="relative flex size-24 shrink-0 items-center justify-center overflow-hidden rounded-md bg-muted">
+                {tutor.profileImageUrl ? (
+                  <Image
+                    src={tutor.profileImageUrl}
+                    alt={tutor.name}
+                    fill
+                    unoptimized
+                    className="object-cover"
+                    sizes="96px"
+                  />
                 ) : (
-                  <ul className="list-outside list-disc space-y-2 px-4 text-sm leading-relaxed">
+                  <span aria-hidden="true" className="font-semibold text-2xl text-muted-foreground">
+                    {tutor.name.slice(0, 1).toUpperCase()}
+                  </span>
+                )}
+              </div>
+              <div className="min-w-0 flex-1">
+                <SheetTitle className="break-words font-semibold text-xl text-foreground sm:text-2xl">
+                  {tutor.name}
+                </SheetTitle>
+                {tutor.affiliation && (
+                  <p className="mt-1 font-medium text-sm text-neutral-1000">{tutor.affiliation}</p>
+                )}
+                {modalityLabel && (
+                  <Badge variant="secondary" className="mt-2">
+                    {modalityLabel}
+                  </Badge>
+                )}
+              </div>
+            </div>
+            {tutor.subjects.length > 0 && (
+              <div className="mt-4 flex flex-wrap gap-1.5">{badges}</div>
+            )}
+            {tutor.shortBio && (
+              <p className="mt-3 text-sm text-muted-foreground">{tutor.shortBio}</p>
+            )}
+
+            <div className="grid grid-cols-1 gap-3 pt-5 pb-[env(safe-area-inset-bottom)]">
+              {tutor.education.length > 0 && (
+                <section className="space-y-3 rounded-xl bg-neutral-200 p-4">
+                  <h3 className="pb-0.5 font-semibold text-base text-foreground">
+                    {t('education')}
+                  </h3>
+                  <ul className="list-outside list-disc space-y-4 pl-5 text-sm leading-relaxed marker:text-muted-foreground">
                     {tutor.education.map((education) => (
                       <li key={education.university + education.degree}>
-                        {education.degree
-                          ? education.degree + ' · ' + education.university
-                          : education.university}
-                      </li>
-                    ))}
-                  </ul>
-                )}
-              </section>
-
-              <section className="h-full space-y-1 rounded-xl bg-neutral-200 px-3 py-2">
-                <h3 className="pb-0.5 font-semibold text-base text-foreground">
-                  {t('achievements')}
-                </h3>
-                {tutor.achievements.length === 0 ? (
-                  <p className="text-muted-foreground/90 text-sm leading-relaxed">
-                    {t('noProfileContent')}
-                  </p>
-                ) : (
-                  <ul className="list-outside list-disc space-y-2 px-4 text-sm leading-relaxed">
-                    {tutor.achievements.map((achievement, index) => (
-                      <li key={achievement.competitionName + achievement.year + index}>
-                        <span className="font-medium text-neutral-1000">
-                          {achievement.competitionName} ({achievement.year})
-                        </span>
-                        {achievement.awards.length > 0 && (
-                          <span>: {achievement.awards.join(', ')}</span>
+                        <p className="font-semibold leading-snug">{education.university}</p>
+                        {education.degree && (
+                          <p className="mt-0.5 text-muted-foreground">{education.degree}</p>
                         )}
                       </li>
                     ))}
                   </ul>
-                )}
-              </section>
+                </section>
+              )}
 
-              <section className="h-full space-y-1 rounded-xl bg-neutral-200 px-3 py-2">
-                <h3 className="pb-0.5 font-semibold text-base text-foreground">
-                  {t('experiences')}
-                </h3>
-                {tutor.experiences.length === 0 ? (
-                  <p className="text-muted-foreground/90 text-sm leading-relaxed">
-                    {t('noProfileContent')}
-                  </p>
-                ) : (
-                  <ul className="list-outside list-disc space-y-3 px-4 text-sm leading-relaxed">
-                    {tutor.experiences.map((experience) => (
-                      <li key={experience.role + experience.organization + experience.startYear}>
-                        <p className="font-medium text-neutral-1000">
-                          {experience.role} · {experience.organization}
+              {tutor.achievements.length > 0 && (
+                <section className="space-y-3 rounded-xl bg-neutral-200 p-4">
+                  <h3 className="pb-0.5 font-semibold text-base text-foreground">
+                    {t('achievements')}
+                  </h3>
+                  <ul className="list-outside list-disc space-y-4 pl-5 text-sm leading-relaxed marker:text-muted-foreground">
+                    {tutor.achievements.map((achievement, index) => (
+                      <li key={achievement.competitionName + achievement.year + index}>
+                        <p className="font-semibold leading-snug">
+                          {achievement.competitionName} {achievement.year}
                         </p>
-                        <p>
-                          {experience.startYear}–{experience.endYear ?? t('present')}
-                        </p>
-                        {experience.description && <p>{experience.description}</p>}
+                        {achievement.awards.length > 0 && (
+                          <p className="mt-0.5 text-muted-foreground">
+                            {achievement.awards.join(', ')}
+                          </p>
+                        )}
                       </li>
                     ))}
                   </ul>
-                )}
-              </section>
+                </section>
+              )}
+
+              {tutor.experiences.length > 0 && (
+                <section className="space-y-3 rounded-xl bg-neutral-200 p-4">
+                  <h3 className="pb-0.5 font-semibold text-base text-foreground">
+                    {t('experiences')}
+                  </h3>
+                  <ul className="list-outside list-disc space-y-4 pl-5 text-sm leading-relaxed marker:text-muted-foreground">
+                    {tutor.experiences.map((experience) => (
+                      <li key={experience.role + experience.organization + experience.startYear}>
+                        <p className="font-semibold leading-snug">
+                          {experience.role} · {experience.organization}
+                        </p>
+                        <p className="mt-0.5 text-muted-foreground">
+                          {experience.startYear} - {experience.endYear ?? t('present')}
+                        </p>
+                        {experience.description && (
+                          <p className="mt-1 whitespace-pre-line text-muted-foreground">
+                            {experience.description}
+                          </p>
+                        )}
+                      </li>
+                    ))}
+                  </ul>
+                </section>
+              )}
             </div>
           </div>
         </div>
