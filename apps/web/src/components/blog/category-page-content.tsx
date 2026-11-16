@@ -25,8 +25,8 @@ export async function CategoryPageContent({ locale, slug }: { locale: BlogLocale
   if (failed) {
     return (
       <>
-        <NavbarResolver className="bg-background-cream" />
-        <div className="bg-background-cream pb-40 text-neutral-1000">
+        <NavbarResolver className="bg-background" />
+        <div className="bg-background pb-40 text-neutral-1000">
           <div className="mx-auto max-w-3xl px-4">
             <BlogErrorState
               title={t('errorTitle')}
@@ -44,8 +44,8 @@ export async function CategoryPageContent({ locale, slug }: { locale: BlogLocale
 
   return (
     <>
-      <NavbarResolver className="bg-background-cream" />
-      <div className="bg-background-cream pb-40 text-neutral-1000">
+      <NavbarResolver className="bg-background" />
+      <div className="bg-background pb-40 text-neutral-1000">
         <div className="mx-auto max-w-7xl px-4">
           <CategoryHub category={data.category} articles={data.articles} locale={locale} />
         </div>
