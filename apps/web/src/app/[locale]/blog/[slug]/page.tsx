@@ -61,8 +61,8 @@ export default async function BlogArticlePage({ params }: Props) {
   if (!article) {
     return (
       <>
-        <NavbarResolver className="bg-neutral-100" />
-        <div className="bg-background-cream pb-40 text-neutral-1000">
+        <NavbarResolver className="bg-background" />
+        <div className="bg-background pb-40 text-neutral-1000">
           <div className="mx-auto max-w-3xl px-4">
             <BlogErrorState
               title={t('errorTitle')}
@@ -85,8 +85,8 @@ export default async function BlogArticlePage({ params }: Props) {
   return (
     <>
       <ArticleJsonLd article={article} locale={locale} />
-      <NavbarResolver className="bg-neutral-100" />
-      <div className="bg-neutral-100 pb-40 text-neutral-1000">
+      <NavbarResolver className="bg-background" />
+      <div className="bg-background pb-40 text-neutral-1000">
         <div className="mx-auto max-w-3xl px-4">
           <article className="min-w-0">
               <Link
