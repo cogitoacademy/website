@@ -46,7 +46,7 @@ export default function Footer() {
   return (
     <footer
       className={cn(
-        'relative z-1 -mt-18',
+        'relative z-1',
         isContactPage ? 'bg-background-primary' : 'bg-background-primary',
       )}
     >
