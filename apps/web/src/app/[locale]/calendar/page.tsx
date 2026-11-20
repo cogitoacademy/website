@@ -9,6 +9,8 @@ import { BASE_URL } from '@/lib/constants';
 import { competitionToCalendarCompetition } from '@/lib/transforms/competitionTransform';
 import CalendarClient from './calendar';
 
+export const dynamic = 'force-dynamic';
+
 export async function generateMetadata({
   params,
 }: {
