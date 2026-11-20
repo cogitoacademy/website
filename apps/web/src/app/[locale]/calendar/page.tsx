@@ -90,7 +90,7 @@ export default async function CompetitionCalendarPage({ params }: Props) {
   return (
     <>
       <NavbarResolver />
-      <div className="relative z-3 mx-auto max-w-7xl space-y-7 md:space-y-15 overflow-x-clip px-4">
+      <div className="relative z-3 mx-auto max-w-7xl space-y-7 overflow-x-clip px-4 pb-20 md:space-y-15 md:pb-30">
         <div className="space-y-2">
           <h1 className="font-semibold text-2xl text-neutral-1000 sm:text-3xl md:text-4xl lg:text-5xl">
             {locale === 'en' ? (
