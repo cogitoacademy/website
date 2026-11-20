@@ -4,11 +4,9 @@ import { Suspense } from 'react';
 import { CalendarSkeleton } from '@/components/competition-calendar/calendar-skeleton';
 import type { CalendarCompetition } from '@/components/competition-calendar/types';
 import NavbarResolver from '@/components/navbar-resolver';
+import { getPublicCompetitions, type CalendarLocale } from '@/lib/calendar-api';
 import { BASE_URL } from '@/lib/constants';
-import { sanityToCalendarCompetition } from '@/lib/transforms/competitionTransform';
-import { COMPETITIONS_QUERY } from '@/queries/competitions';
-import { client } from '@/sanity/client';
-import type { SanityCompetition } from '@/types/sanity/competition';
+import { competitionToCalendarCompetition } from '@/lib/transforms/competitionTransform';
 import CalendarClient from './calendar';
 
 export async function generateMetadata({
@@ -51,20 +49,26 @@ export async function generateMetadata({
 }
 
 /* eslint-disable react-compiler/react-compiler -- Server component with JSX in try/catch is intentional for error boundaries */
-async function CalendarContent({ locale }: { locale: string }) {
-  try {
-    const sanityCompetitions = await client.fetch<SanityCompetition[]>(
-      COMPETITIONS_QUERY,
-      {},
-      { next: { revalidate: 1800 } },
-    );
+function isDynamicServerUsage(error: unknown) {
+  return (
+    typeof error === 'object' &&
+    error !== null &&
+    'digest' in error &&
+    error.digest === 'DYNAMIC_SERVER_USAGE'
+  );
+}
 
-    const calendarCompetitions = sanityCompetitions
-      .map((c) => sanityToCalendarCompetition(c, locale))
-      .filter(Boolean) as CalendarCompetition[];
+async function CalendarContent({ locale }: { locale: CalendarLocale }) {
+  try {
+    const competitions = await getPublicCompetitions(process.env.COGITO_APP_API_URL ?? '', locale);
+
+    const calendarCompetitions: CalendarCompetition[] = competitions.map((competition) =>
+      competitionToCalendarCompetition(competition, locale),
+    );
 
     return <CalendarClient initialCompetitions={calendarCompetitions} />;
   } catch (error) {
+    if (isDynamicServerUsage(error)) throw error;
     console.error('Failed to fetch competitions:', error);
     return <CalendarClient initialCompetitions={[]} />;
   }
@@ -79,6 +83,7 @@ type Props = {
 export default async function CompetitionCalendarPage({ params }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);
+  const calendarLocale: CalendarLocale = locale === 'id' ? 'id' : 'en';
 
   return (
     <>
@@ -105,7 +110,7 @@ export default async function CompetitionCalendarPage({ params }: Props) {
           </p>
         </div>
         <Suspense fallback={<CalendarSkeleton locale={locale} />}>
-          <CalendarContent locale={locale} />
+          <CalendarContent locale={calendarLocale} />
         </Suspense>
       </div>
     </>

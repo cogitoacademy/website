@@ -1,98 +1,109 @@
 import type {
   CalendarCompetition,
   CompetitionColor,
+  CompetitionPalette,
 } from '@/components/competition-calendar/types';
-import { CORE_CATEGORIES, type CoreCategorySlug } from '@/lib/config/coreCategories';
-import type { SanityCompetition } from '@/types/sanity/competition';
+import type { CalendarLocale, PublicCompetition } from '@/lib/calendar-api';
+import { CORE_CATEGORIES, resolveCoreCategorySlug } from '@/lib/config/coreCategories';
 
-/**
- * Extract localized value from Sanity internationalized array
- */
-function getLocalizedValue(
-  arr?: Array<{ _key: string; value: string }>,
-  locale = 'id',
-): string | undefined {
-  if (!arr || arr.length === 0) return undefined;
+function firstText(...values: Array<string | null | undefined>) {
+  return values.find((value): value is string => Boolean(value?.trim()));
+}
 
-  // Try to find the requested locale
-  const localized = arr.find((item) => item._key === locale);
-  if (localized) return localized.value;
+function getPalette(
+  palette: NonNullable<PublicCompetition['categories']>[number]['parentColors'],
+): CompetitionPalette | undefined {
+  if (!palette) return undefined;
 
-  // Fallback to first available value
-  return arr[0]?.value;
+  const { lightTextColor, lightBackgroundColor, darkTextColor, darkBackgroundColor } = palette;
+  if (!lightTextColor || !lightBackgroundColor || !darkTextColor || !darkBackgroundColor) {
+    return undefined;
+  }
+
+  return { lightTextColor, lightBackgroundColor, darkTextColor, darkBackgroundColor };
 }
 
 /**
- * Transform Sanity Competition to Calendar Competition
+ * Resolve a localized field from either the app's localized projection
+ * (`title`) or its explicit bilingual pair (`titleEn` / `titleId`).
+ * Indonesian falls back to English so a missing translation never blanks the
+ * event, which keeps both locale routes compatible during the app rollout.
  */
-export function sanityToCalendarCompetition(
-  sanityCompetition: SanityCompetition,
-  locale = 'id',
-): CalendarCompetition | null {
-  // Validate that competition has at least one category with core category
-  const firstCategory = sanityCompetition.categories?.[0];
-  if (!firstCategory?.coreCategory) {
-    console.warn(`Competition ${sanityCompetition._id} is missing core category, skipping`);
-    return null;
-  }
+function getLocalizedValue(
+  competition: PublicCompetition,
+  field: 'title' | 'description' | 'location',
+  locale: CalendarLocale,
+): string | undefined {
+  const localized = competition[field];
+  const english = competition[`${field}En`];
+  const indonesian = competition[`${field}Id`];
 
-  // Transform categories with core category colors
-  const categories =
-    sanityCompetition.categories?.map((cat) => {
-      const coreSlug = cat.coreCategory as CoreCategorySlug;
-      const coreData = CORE_CATEGORIES[coreSlug];
+  return locale === 'id'
+    ? firstText(indonesian, localized, english)
+    : firstText(english, localized, indonesian);
+}
 
-      // Get color from core category config
-      const color = coreData?.brandColor || 'primary-500';
+function getCategoryName(
+  category: NonNullable<PublicCompetition['categories']>[number],
+  locale: CalendarLocale,
+) {
+  return locale === 'id' ? firstText(category.nameId, category.name) || '' : category.name;
+}
 
-      return {
-        name: cat.name,
-        coreCategory: cat.coreCategory,
-        color: color,
-      };
-    }) || [];
-
-  const eventColor = categories.length > 0 ? categories[0].color : 'primary-500';
-
-  // Extract localized strings
-  const title = getLocalizedValue(sanityCompetition.title, locale);
-  const description = getLocalizedValue(sanityCompetition.description, locale);
-  const location = getLocalizedValue(sanityCompetition.location, locale);
-
-  // Parse dates
-  const startDate = new Date(sanityCompetition.eventDate.startDate);
-  const endDate = new Date(sanityCompetition.eventDate.endDate);
-
-  // Determine if all-day event (if time is exactly 00:00:00)
-  const isAllDay =
+function isAllDayEvent(startDate: Date, endDate: Date) {
+  return (
     startDate.getHours() === 0 &&
     startDate.getMinutes() === 0 &&
     startDate.getSeconds() === 0 &&
     endDate.getHours() === 0 &&
     endDate.getMinutes() === 0 &&
-    endDate.getSeconds() === 0;
+    endDate.getSeconds() === 0
+  );
+}
+
+/**
+ * Transform an app-served competition into the calendar view model.
+ */
+export function competitionToCalendarCompetition(
+  competition: PublicCompetition,
+  locale: CalendarLocale = 'id',
+): CalendarCompetition {
+  const startDate = new Date(competition.startDate);
+  const endDate = new Date(competition.endDate);
+
+  const categories = (competition.categories ?? []).map((category) => {
+    const appSlug = category.coreCategory ?? category.slug ?? '';
+    const coreSlug = resolveCoreCategorySlug(appSlug);
+    return {
+      name: getCategoryName(category, locale),
+      coreCategory: coreSlug ?? appSlug,
+      color: coreSlug ? CORE_CATEGORIES[coreSlug].brandColor : 'primary-500',
+      // Keep the established soft calendar treatment for the seven defaults;
+      // custom app categories carry their own authored palette.
+      palette: coreSlug ? undefined : getPalette(category.parentColors),
+    };
+  });
+
+  const title = getLocalizedValue(competition, 'title', locale) || 'Untitled Competition';
 
   return {
-    id: sanityCompetition._id,
-    title: title || 'Untitled Competition',
-    description,
+    id: competition.id,
+    title,
+    description: getLocalizedValue(competition, 'description', locale),
     start: startDate,
     end: endDate,
-    allDay: isAllDay,
-    location,
-    categories: categories.map((cat) => ({
-      name: cat.name || '',
-      coreCategory: cat.coreCategory || '',
-      color: cat.color,
-    })),
-    color: eventColor as CompetitionColor, // Use first category's color as main event color
-    educationLevels: sanityCompetition.educationLevels || [],
-    scale: sanityCompetition.scale,
-    organizer: sanityCompetition.organizer,
-    registrationDeadline: sanityCompetition.registrationDeadline
-      ? new Date(sanityCompetition.registrationDeadline)
+    allDay: isAllDayEvent(startDate, endDate),
+    location: getLocalizedValue(competition, 'location', locale),
+    categories,
+    color: (categories[0]?.color || 'primary-500') as CompetitionColor,
+    palette: categories[0]?.palette,
+    educationLevels: competition.educationLevels || [],
+    scale: competition.scale || undefined,
+    organizer: competition.organizer || undefined,
+    registrationDeadline: competition.registrationDeadline
+      ? new Date(competition.registrationDeadline)
       : undefined,
-    registrationLink: sanityCompetition.registrationLink,
-    socialMediaLink: sanityCompetition.socialMediaLink,
+    registrationLink: competition.registrationLink || undefined,
+    socialMediaLink: competition.socialMediaLink || undefined,
   };
 }

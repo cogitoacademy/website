@@ -1,6 +1,31 @@
 import { isSameDay } from 'date-fns';
+import type { CSSProperties } from 'react';
 
-import type { CalendarCompetition, CompetitionColor } from './types';
+import type { CalendarCompetition, CompetitionColor, CompetitionPalette } from './types';
+
+const COMPETITION_PALETTE_CLASSES =
+  'bg-[color:var(--competition-light-background)] text-[color:var(--competition-light-text)] dark:bg-[color:var(--competition-dark-background)] dark:text-[color:var(--competition-dark-text)]';
+
+/**
+ * App catalog colors are authored as OKLCH values. These CSS variables let the
+ * calendar render any active app category without a fixed Tailwind color list.
+ */
+export function getCompetitionPaletteClasses() {
+  return COMPETITION_PALETTE_CLASSES;
+}
+
+export function getCompetitionPaletteStyle(
+  palette?: CompetitionPalette,
+): CSSProperties | undefined {
+  if (!palette) return undefined;
+
+  return {
+    '--competition-light-text': palette.lightTextColor,
+    '--competition-light-background': palette.lightBackgroundColor,
+    '--competition-dark-text': palette.darkTextColor,
+    '--competition-dark-background': palette.darkBackgroundColor,
+  } as CSSProperties;
+}
 
 /**
  * Get CSS classes for event colors

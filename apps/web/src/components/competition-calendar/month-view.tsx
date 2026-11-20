@@ -231,7 +231,9 @@ export function MonthView({
                               }
                             >
                               <div className="space-y-2">
-                                <div className="font-medium text-sm">{format(day, 'EEE d')}</div>
+                                <div className="font-medium text-sm">
+                                  {format(day, 'EEE d', { locale: dateLocale })}
+                                </div>
                                 <div className="space-y-1">
                                   {sortEvents(allEvents).map((event) => {
                                     const eventStart = new Date(event.start);

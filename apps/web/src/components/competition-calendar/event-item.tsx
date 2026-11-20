@@ -10,6 +10,8 @@ import {
   type CalendarCompetition,
   getBorderRadiusClasses,
   getCompetitionColorClasses,
+  getCompetitionPaletteClasses,
+  getCompetitionPaletteStyle,
   useDateLocale,
 } from '@/components/competition-calendar';
 import { cn } from '@/lib/utils';
@@ -63,10 +65,13 @@ function EventWrapper({
     : new Date(event.end);
 
   const isEventInPast = isPast(displayEnd);
+  const paletteStyle = getCompetitionPaletteStyle(event.palette);
+  const usePalette = Boolean(paletteStyle);
 
   // Get the inset shadow color based on event color
   // Blue: 500, Yellow: 400, Orange(KTI/primary): 400, Pink: 500, Green: 600, Red: 500, Purple: 500
   const getInsetShadowColor = () => {
+    if (event.palette) return event.palette.lightTextColor;
     if (event.color?.startsWith('tertiary-blue')) return 'rgba(59, 130, 246, 0.6)'; // Blue 500
     if (event.color?.startsWith('tertiary-pink')) return 'rgba(236, 72, 153, 0.6)'; // Pink 500
     if (event.color?.startsWith('tertiary-red')) return 'rgba(239, 68, 68, 0.6)'; // Red 500
@@ -87,7 +92,7 @@ function EventWrapper({
     <button
       className={cn(
         'relative flex size-full select-none overflow-hidden px-3 text-left font-medium outline-none backdrop-blur-md transition focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 data-dragging:cursor-grabbing data-dragging:shadow-lg',
-        getCompetitionColorClasses(event.color),
+        usePalette ? getCompetitionPaletteClasses() : getCompetitionColorClasses(event.color),
         getBorderRadiusClasses(isFirstDay, isLastDay),
         className,
       )}
@@ -96,7 +101,10 @@ function EventWrapper({
       onClick={onClick}
       onMouseDown={onMouseDown}
       onTouchStart={onTouchStart}
-      style={isFirstDay ? { boxShadow: `inset 6px 0 0 0 ${getInsetShadowColor()}` } : undefined}
+      style={{
+        ...paletteStyle,
+        ...(isFirstDay ? { boxShadow: `inset 6px 0 0 0 ${getInsetShadowColor()}` } : {}),
+      }}
       type="button"
       {...dndListeners}
       {...dndAttributes}
@@ -228,6 +236,7 @@ export function EventItem({
   // Get the inset shadow color for agenda view
   // Blue: 500, Yellow: 400, Orange(KTI/primary): 400, Pink: 500, Green: 600, Red: 500, Purple: 500
   const getAgendaInsetShadowColor = () => {
+    if (event.palette) return event.palette.lightTextColor;
     if (event.color?.startsWith('tertiary-blue')) return 'rgba(59, 130, 246, 0.6)'; // Blue 500
     if (event.color?.startsWith('tertiary-pink')) return 'rgba(236, 72, 153, 0.6)'; // Pink 500
     if (event.color?.startsWith('tertiary-red')) return 'rgba(239, 68, 68, 0.6)'; // Red 500
@@ -249,16 +258,17 @@ export function EventItem({
     <button
       className={cn(
         'flex w-full flex-col gap-1 rounded-r-2xl p-3 pl-7 text-left outline-none transition focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 data-past-event:line-through data-past-event:opacity-90',
-        getCompetitionColorClasses(eventColor),
+        event.palette ? getCompetitionPaletteClasses() : getCompetitionColorClasses(eventColor),
         className,
       )}
       data-past-event={isPast(new Date(event.end)) || undefined}
       onClick={onClick}
       onMouseDown={onMouseDown}
       onTouchStart={onTouchStart}
-      style={
-        isFirstDay ? { boxShadow: `inset 10px 0 0 0 ${getAgendaInsetShadowColor()}` } : undefined
-      }
+      style={{
+        ...getCompetitionPaletteStyle(event.palette),
+        ...(isFirstDay ? { boxShadow: `inset 10px 0 0 0 ${getAgendaInsetShadowColor()}` } : {}),
+      }}
       type="button"
       {...dndListeners}
       {...dndAttributes}

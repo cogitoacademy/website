@@ -52,7 +52,7 @@ cogito-acad/
 | -------------------- | --------------------------------------------------------------- |
 | `/`                  | Landing page (hero, events, methods, tutors, testimonials, FAQ) |
 | `/tutors`            | Filterable tutor directory with detail modals                   |
-| `/calendar`          | Interactive competition calendar (month/week/day/agenda views)  |
+| `/calendar`          | App-backed competition calendar (month/week/day/agenda views)   |
 | `/events/[category]` | Event listings by category (upcoming + past)                    |
 | `/blog`              | Bilingual blog index backed by the Cogito app content API       |
 | `/student-resources` | Password-gated study materials                                  |
@@ -80,6 +80,27 @@ oRPC paths are `/rpc/publicContent/blog/*`, not `/rpc/public-content/blog/*`.
 Image delivery uses the public R2 URL returned by the API. Set
 `NEXT_PUBLIC_R2_HOST` to the bucket's public host so `next/image` can optimize the
 files. Local development also allows `localhost` and `127.0.0.1` image hosts.
+
+## Competition calendar
+
+`/[locale]/calendar` now reads competitions from the Cogito app instead of
+Sanity. The server adapter calls `POST /rpc/publicContent/calendar/list` with the
+active locale, using `COGITO_APP_API_URL`. It preserves bilingual output: the app
+may return a localized `title`/`description`/`location`, or explicit
+`titleEn`/`titleId` pairs. Indonesian uses the Indonesian value when present and
+falls back to English when a translation is missing; English always uses the
+English value. Category names and the app's category slugs drive the calendar
+badges and colors.
+
+The app must expose this anonymous RPC alongside the existing public tutors, FAQ,
+and activities reads. If the endpoint is unavailable, the calendar renders its
+localized empty state and logs the error.
+
+There is no Sanity fallback for competitions. A failed app request renders the
+calendar's localized empty state and logs the error. The homepage Records story
+calendar preview uses the same app read. The `competition` documents remain in
+Sanity only as migration source material; editing them no longer changes the
+public website.
 
 ## Getting Started
 
@@ -141,7 +162,7 @@ bun run build
 | Schema                | Description                                                          |
 | --------------------- | -------------------------------------------------------------------- |
 | `tutor`               | Tutor profiles (name, affiliation, achievements, competition fields) |
-| `competition`         | Competitions displayed on the calendar                               |
+| `competition`         | Legacy competition calendar source; the website now reads app data   |
 | `competitionCategory` | Competition category taxonomy                                        |
 | `event`               | Events with registration links (upcoming/past)                       |
 | `studentResource`     | Password-protected study materials                                   |
@@ -191,7 +212,7 @@ records from the Cogito app and Sanity:
 
 - tutors and booking: `GET /rpc/publicContent/tutors/list`
 - Knowledge Bank: the published `studentResource` documents in Sanity
-- competition calendar: the published `competition` documents in Sanity
+- competition calendar: `POST /rpc/publicContent/calendar/list` from the Cogito app
 
 Achievement and Cogito Blog previews use curated sample content from
 `STAGE_FEATURED` in `records-stage.tsx`. They do not call the content APIs, so

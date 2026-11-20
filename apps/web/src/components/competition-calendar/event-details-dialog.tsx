@@ -2,7 +2,11 @@
 
 import { format } from 'date-fns';
 import { ArrowRight } from 'lucide-react';
-import { useDateLocale } from '@/components/competition-calendar';
+import {
+  getCompetitionPaletteClasses,
+  getCompetitionPaletteStyle,
+  useDateLocale,
+} from '@/components/competition-calendar';
 import { Badge } from '@/components/ui/badge';
 import { buttonVariants } from '@/components/ui/button';
 import {
@@ -27,8 +31,8 @@ export function EventDetailsDialog({ event, isOpen, onClose }: EventDetailsDialo
 
   if (!event) return null;
 
-  // Check if this is a Sanity competition (has categories) or manual competition (has color)
-  const isSanityCompetition = event.categories && event.categories.length > 0;
+  // App-backed competitions carry categories; manual events only carry a color.
+  const hasCategories = event.categories && event.categories.length > 0;
 
   const timelineStart = format(event.start, 'dd');
   const timelineEnd = format(event.end, 'dd MMMM yyyy', { locale: dateLocale });
@@ -54,14 +58,18 @@ export function EventDetailsDialog({ event, isOpen, onClose }: EventDetailsDialo
             </ResponsiveModalDescription>
 
             {/* Mobile: subtitle + badge below title */}
-            {isSanityCompetition && event.categories && event.categories.length > 0 && (
+            {hasCategories && event.categories && event.categories.length > 0 && (
               <div className="mt-3 sm:hidden">
                 <div className="flex flex-wrap gap-2">
                   {event.categories.map((category) => (
                     <Badge
                       key={category.name}
                       variant="tutor"
-                      className={getBrandColorClass(category.color)}
+                      className={cn(
+                        getBrandColorClass(category.color),
+                        category.palette && getCompetitionPaletteClasses(),
+                      )}
+                      style={getCompetitionPaletteStyle(category.palette)}
                     >
                       {category.name}
                     </Badge>
@@ -72,13 +80,17 @@ export function EventDetailsDialog({ event, isOpen, onClose }: EventDetailsDialo
           </div>
 
           {/* Desktop: badge to the right of title */}
-          {isSanityCompetition && event.categories && event.categories.length > 0 && (
+          {hasCategories && event.categories && event.categories.length > 0 && (
             <div className="mr-9 hidden shrink-0 flex-wrap gap-2 sm:flex">
               {event.categories.map((category) => (
                 <Badge
                   key={category.name}
                   variant="tutor"
-                  className={getBrandColorClass(category.color)}
+                  className={cn(
+                    getBrandColorClass(category.color),
+                    category.palette && getCompetitionPaletteClasses(),
+                  )}
+                  style={getCompetitionPaletteStyle(category.palette)}
                 >
                   {category.name}
                 </Badge>
@@ -138,8 +150,7 @@ export function EventDetailsDialog({ event, isOpen, onClose }: EventDetailsDialo
               )}
               {event.scale && (
                 <p>
-                  <strong>{isId ? 'Skala:' : 'Scale:'}</strong>{' '}
-                  <span>{formattedScale}</span>
+                  <strong>{isId ? 'Skala:' : 'Scale:'}</strong> <span>{formattedScale}</span>
                 </p>
               )}
               {event.organizer && (

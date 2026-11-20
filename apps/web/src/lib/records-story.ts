@@ -1,7 +1,7 @@
 import 'server-only';
 
-import { sanityToCalendarCompetition } from '@/lib/transforms/competitionTransform';
-import { COMPETITIONS_QUERY } from '@/queries/competitions';
+import { getPublicCompetitions } from '@/lib/calendar-api';
+import { competitionToCalendarCompetition } from '@/lib/transforms/competitionTransform';
 import { STUDENT_RESOURCES_QUERY } from '@/queries/studentResources';
 import { client } from '@/sanity/client';
 import type {
@@ -11,7 +11,6 @@ import type {
   RecordsStoryResource,
   RecordsStoryTutor,
 } from '@/types/records-story';
-import type { SanityCompetition } from '@/types/sanity/competition';
 import type { Tutor } from '@/types/tutor';
 import { getTutors } from './tutors';
 
@@ -84,7 +83,7 @@ export async function getRecordsStoryData(locale: RecordsStoryLocale): Promise<R
       {},
       { next: { revalidate: 1800 } },
     ),
-    client.fetch<SanityCompetition[]>(COMPETITIONS_QUERY, {}, { next: { revalidate: 1800 } }),
+    getPublicCompetitions(process.env.COGITO_APP_API_URL ?? '', locale),
   ]);
 
   const tutors = tutorsResult.status === 'fulfilled' ? tutorsResult.value : [];
@@ -92,9 +91,9 @@ export async function getRecordsStoryData(locale: RecordsStoryLocale): Promise<R
   const competitionDocuments =
     competitionsResult.status === 'fulfilled' ? competitionsResult.value : [];
 
-  const competitions = competitionDocuments
-    .map((competition) => sanityToCalendarCompetition(competition, locale))
-    .filter((competition) => competition !== null);
+  const competitions = competitionDocuments.map((competition) =>
+    competitionToCalendarCompetition(competition, locale),
+  );
   const upcomingCompetitions = competitions
     .filter((competition) => competition.start.getTime() >= Date.now())
     .sort((a, b) => a.start.getTime() - b.start.getTime());

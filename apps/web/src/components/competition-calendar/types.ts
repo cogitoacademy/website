@@ -1,5 +1,12 @@
 export type CalendarView = 'month' | 'week' | 'day' | 'agenda';
 
+export interface CompetitionPalette {
+  lightTextColor: string;
+  lightBackgroundColor: string;
+  darkTextColor: string;
+  darkBackgroundColor: string;
+}
+
 export interface CalendarCompetition {
   id: string;
   title: string;
@@ -9,12 +16,14 @@ export interface CalendarCompetition {
   allDay?: boolean;
   location?: string;
 
-  // For Sanity-sourced competitions
+  // Fields supplied by the Cogito app competition catalog
   categories?: Array<{
     name: string;
     coreCategory: string;
     color: string;
+    palette?: CompetitionPalette;
   }>;
+  palette?: CompetitionPalette;
   educationLevels?: string[];
   scale?: string;
   organizer?: string;
