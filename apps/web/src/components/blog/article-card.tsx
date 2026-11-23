@@ -32,6 +32,7 @@ export async function ArticleCard({
               alt={article.hero.alt ?? article.title}
               fill
               priority={priority}
+              quality={90}
               sizes="(min-width: 1024px) 360px, (min-width: 640px) 45vw, 92vw"
               className="object-cover transition duration-500 group-hover:scale-[1.03]"
             />

@@ -94,6 +94,7 @@ export function SocialEmbed({
                 src={posterUrl}
                 alt={posterAlt ?? `${providerLabel} preview`}
                 fill
+                quality={90}
                 sizes="(min-width: 640px) 420px, 92vw"
                 className="object-cover opacity-90 transition group-hover:opacity-100"
               />

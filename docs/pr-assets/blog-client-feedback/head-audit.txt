@@ -1,0 +1,28 @@
+Head audit — paired article fixture (ID slug: panduan-olimpiade-matematika, EN slug: math-olympiad-guide)
+Local app: http://localhost:2001 with NEXT_PUBLIC_SITE_URL=https://cogitoacademy.id (apex) to prove www normalization.
+
+== GET /en/blog/math-olympiad-guide ==
+<title>Math Olympiad Guide | Cogito Academy</title>
+<link rel="canonical" href="https://www.cogitoacademy.id/en/blog/math-olympiad-guide"/>
+<link rel="alternate" hrefLang="en" href="https://www.cogitoacademy.id/en/blog/math-olympiad-guide"/>
+<link rel="alternate" hrefLang="id" href="https://www.cogitoacademy.id/id/blog/panduan-olimpiade-matematika"/>
+<link rel="alternate" hrefLang="x-default" href="https://www.cogitoacademy.id/en/blog/math-olympiad-guide"/>
+<meta property="og:url" content="https://www.cogitoacademy.id/en/blog/math-olympiad-guide"/>
+
+== GET /id/blog/panduan-olimpiade-matematika ==
+<title>Panduan Olimpiade Matematika | Cogito Academy</title>
+<link rel="canonical" href="https://www.cogitoacademy.id/id/blog/panduan-olimpiade-matematika"/>
+<link rel="alternate" hrefLang="id" href="https://www.cogitoacademy.id/id/blog/panduan-olimpiade-matematika"/>
+<link rel="alternate" hrefLang="en" href="https://www.cogitoacademy.id/en/blog/math-olympiad-guide"/>
+<link rel="alternate" hrefLang="x-default" href="https://www.cogitoacademy.id/en/blog/math-olympiad-guide"/>
+<meta property="og:url" content="https://www.cogitoacademy.id/id/blog/panduan-olimpiade-matematika"/>
+
+== GET /blog-sitemap.xml (paired entries) ==
+<loc>https://www.cogitoacademy.id/id/blog/panduan-olimpiade-matematika</loc>
+<xhtml:link rel="alternate" hreflang="id" href="https://www.cogitoacademy.id/id/blog/panduan-olimpiade-matematika"/>
+<xhtml:link rel="alternate" hreflang="en" href="https://www.cogitoacademy.id/en/blog/math-olympiad-guide"/>
+<xhtml:link rel="alternate" hreflang="x-default" href="https://www.cogitoacademy.id/en/blog/math-olympiad-guide"/>
+<loc>https://www.cogitoacademy.id/en/blog/math-olympiad-guide</loc>
+<xhtml:link rel="alternate" hreflang="en" href="https://www.cogitoacademy.id/en/blog/math-olympiad-guide"/>
+<xhtml:link rel="alternate" hreflang="id" href="https://www.cogitoacademy.id/id/blog/panduan-olimpiade-matematika"/>
+<xhtml:link rel="alternate" hreflang="x-default" href="https://www.cogitoacademy.id/en/blog/math-olympiad-guide"/>

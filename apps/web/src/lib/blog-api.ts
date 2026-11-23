@@ -58,6 +58,27 @@ const blockSchema = z.discriminatedUnion('type', [
     url: z.string().url(),
     posterMediaId: z.string().optional(),
   }),
+  z
+    .object({
+      type: z.literal('table'),
+      header: z.array(runSchema).min(1).max(8).optional(),
+      rows: z.array(z.array(runSchema).min(1).max(8)).min(1).max(50),
+    })
+    .superRefine((block, ctx) => {
+      const columns = block.rows[0].length;
+      if (block.header && block.header.length !== columns) {
+        ctx.addIssue({
+          code: 'custom',
+          message: 'Table header must have the same number of cells as every row',
+        });
+      }
+      if (block.rows.some((row) => row.length !== columns)) {
+        ctx.addIssue({
+          code: 'custom',
+          message: 'Every table row must have the same number of cells',
+        });
+      }
+    }),
 ]);
 
 const categorySchema = z.object({

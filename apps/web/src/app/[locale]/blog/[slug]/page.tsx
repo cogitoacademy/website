@@ -38,7 +38,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   } catch (error) {
     if (error instanceof BlogNotFoundError) notFound();
     console.error('Blog article metadata request failed', error);
-    return { title: 'Blog', robots: { index: false, follow: true } };
+    return { title: { absolute: 'Blog | Cogito Academy' }, robots: { index: false, follow: true } };
   }
 }
 
@@ -157,6 +157,7 @@ export default async function BlogArticlePage({ params }: Props) {
                       alt={article.hero.alt ?? article.title}
                       fill
                       priority
+                      quality={90}
                       sizes="(min-width: 1024px) 760px, 92vw"
                       className="object-cover"
                     />
@@ -189,6 +190,7 @@ export default async function BlogArticlePage({ params }: Props) {
                           src={image.url}
                           alt={image.alt ?? article.title}
                           fill
+                          quality={90}
                           sizes="(min-width: 640px) 360px, 92vw"
                           className="object-cover"
                         />

@@ -66,7 +66,20 @@ All routes are prefixed with locale: `/id/...` (Indonesian, default) or `/en/...
 `/[locale]/blog/[slug]`. Category hubs use `/[locale]/blog/kategori/[slug]` in
 Indonesian and `/[locale]/blog/category/[slug]` in English; a mixed locale and
 segment pair returns 404. `/blog-sitemap.xml` emits one entry per published locale
-version with `xhtml:link` alternates.
+version with `xhtml:link` alternates. Blog `x-default` alternates point at the
+English URL; on an article or category without an English sibling, only the self
+alternate is emitted.
+
+Blog pages set an absolute `title` of `Judul | Cogito Academy`, bypassing the site
+title template. Configured site URLs are normalized to the canonical
+`https://www.cogitoacademy.id` host, so an apex `NEXT_PUBLIC_SITE_URL` still yields
+www canonical, hreflang, Open Graph, JSON-LD, RSS and sitemap URLs.
+
+Article bodies support `heading`, `paragraph`, `list`, `quote`, `callout`, `image`,
+`embed`, and `table` blocks. A table has an optional `header` row and 1–50 `rows`
+with 1–8 cells each; every row must have the same number of cells as the header.
+Tables render as semantic, horizontally scrollable HTML tables. Blog images use
+`quality={90}`.
 
 Blog content is owned by the Cogito app. Marketing reads it through
 `COGITO_APP_API_URL` at request time with a 60-second revalidation window. There is

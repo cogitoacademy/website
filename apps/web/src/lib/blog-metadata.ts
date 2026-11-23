@@ -5,6 +5,15 @@ import { articlePath, blogHomePath, categoryPath } from './blog-paths';
 import { BASE_URL } from './constants';
 
 const OG_IMAGE = `${BASE_URL}/og-image-cogito.jpg`;
+const SHORT_TITLE_SUFFIX = 'Cogito Academy';
+
+/**
+ * Blog pages bypass the root title template so the tab reads
+ * "Judul | Cogito Academy" instead of the longer site default.
+ */
+function blogTitle(title: string): Metadata['title'] {
+  return { absolute: `${title} | ${SHORT_TITLE_SUFFIX}` };
+}
 
 function openGraphLocale(locale: BlogLocale) {
   return locale === 'id' ? 'id_ID' : 'en_US';
@@ -26,14 +35,14 @@ export function buildBlogHomeMetadata({
   const pageSuffix = page > 1 ? ` — Page ${page}` : '';
 
   return {
-    title: `${title}${pageSuffix}`,
+    title: blogTitle(`${title}${pageSuffix}`),
     description,
     alternates: {
       canonical: `${BASE_URL}${path}${pageQuery}`,
       languages: {
         id: `${BASE_URL}${blogHomePath('id')}${pageQuery}`,
         en: `${BASE_URL}${blogHomePath('en')}${pageQuery}`,
-        'x-default': `${BASE_URL}${blogHomePath('id')}${pageQuery}`,
+        'x-default': `${BASE_URL}${blogHomePath('en')}${pageQuery}`,
       },
       types: {
         'application/rss+xml': `${BASE_URL}${path}/rss.xml`,
@@ -66,12 +75,12 @@ export function buildArticleMetadata(article: BlogArticle, locale: BlogLocale): 
     const alternateUrl = `${BASE_URL}${articlePath(article.alternate.locale, article.alternate.slug)}`;
     languages[article.alternate.locale] = alternateUrl;
 
-    const indonesianSlug = locale === 'id' ? article.slug : article.alternate.slug;
-    languages['x-default'] = `${BASE_URL}${articlePath('id', indonesianSlug)}`;
+    const englishSlug = locale === 'en' ? article.slug : article.alternate.slug;
+    languages['x-default'] = `${BASE_URL}${articlePath('en', englishSlug)}`;
   }
 
   return {
-    title: article.seoTitle,
+    title: blogTitle(article.seoTitle),
     description: article.metaDescription,
     alternates: { canonical, languages },
     openGraph: {
@@ -114,12 +123,12 @@ export function buildCategoryMetadata({
     const siblingUrl = `${BASE_URL}${categoryPath(siblingLocale, siblingSlug)}`;
     languages[siblingLocale] = siblingUrl;
 
-    const indonesianSlug = locale === 'id' ? slug : siblingSlug;
-    languages['x-default'] = `${BASE_URL}${categoryPath('id', indonesianSlug)}`;
+    const englishSlug = locale === 'en' ? slug : siblingSlug;
+    languages['x-default'] = `${BASE_URL}${categoryPath('en', englishSlug)}`;
   }
 
   return {
-    title,
+    title: blogTitle(title),
     description,
     alternates: { canonical, languages },
     openGraph: {
