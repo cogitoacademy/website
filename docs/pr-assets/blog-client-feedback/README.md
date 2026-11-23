@@ -15,8 +15,9 @@ A throwaway Bun server (not committed) served the public blog RPC endpoints from
 
 All responses used the oRPC `{ json: ... }` envelope. The fixture article was a
 paired ID/EN article (`alternate` non-null) with a heading, a paragraph, a
-3-column table with a header row, key facts, and a public hero image. The web app
-ran on `http://localhost:2001` with:
+3-column table with a header row, key facts, and a public hero image. Table cells
+are arrays of runs (`BlogRun[][]` header, `BlogRun[][][]` rows), matching the app
+contract. The web app ran on `http://localhost:2001` with:
 
 ```env
 COGITO_APP_API_URL=http://localhost:4400
@@ -27,11 +28,11 @@ The apex site URL intentionally exercises the www-normalization path.
 
 ## Artifacts
 
-| File                                 | What it shows                                                                                    |
-| ------------------------------------ | ------------------------------------------------------------------------------------------------ |
-| `01-blog-article-table-desktop.png`  | 1440px-wide article with the table block rendered as a bordered, scrollable semantic table.      |
-| `02-blog-article-table-mobile.png`   | 390px-wide article; the 3-column table overflows horizontally instead of squashing its columns.  |
-| `head-audit.txt`                     | Rendered `<title>`, canonical, hreflang, `og:url`, and sitemap alternate tags for the fixture.   |
+| File                                | What it shows                                                                                   |
+| ----------------------------------- | ----------------------------------------------------------------------------------------------- |
+| `01-blog-article-table-desktop.png` | 1440px-wide article with the table block rendered as a bordered, scrollable semantic table.     |
+| `02-blog-article-table-mobile.png`  | 390px-wide article; the 3-column table overflows horizontally instead of squashing its columns. |
+| `head-audit.txt`                    | Rendered `<title>`, canonical, hreflang, `og:url`, and sitemap alternate tags for the fixture.  |
 
 ## Verified in the audit
 

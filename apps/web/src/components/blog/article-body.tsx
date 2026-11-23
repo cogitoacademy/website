@@ -165,7 +165,7 @@ export function ArticleBody({ body, media }: { body: BlogBlock[]; media: Media }
                               scope="col"
                               className="border-neutral-200 border-b px-4 py-3 align-top font-semibold text-neutral-1000"
                             >
-                              <Runs runs={[cell]} />
+                              <Runs runs={cell} />
                             </th>
                           ))}
                         </tr>
@@ -176,7 +176,7 @@ export function ArticleBody({ body, media }: { body: BlogBlock[]; media: Media }
                         <tr key={rowIndex} className="border-neutral-200 border-t first:border-t-0">
                           {row.map((cell, cellIndex) => (
                             <td key={cellIndex} className="px-4 py-3 align-top">
-                              <Runs runs={[cell]} />
+                              <Runs runs={cell} />
                             </td>
                           ))}
                         </tr>

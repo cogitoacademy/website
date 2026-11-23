@@ -76,10 +76,11 @@ title template. Configured site URLs are normalized to the canonical
 www canonical, hreflang, Open Graph, JSON-LD, RSS and sitemap URLs.
 
 Article bodies support `heading`, `paragraph`, `list`, `quote`, `callout`, `image`,
-`embed`, and `table` blocks. A table has an optional `header` row and 1–50 `rows`
-with 1–8 cells each; every row must have the same number of cells as the header.
-Tables render as semantic, horizontally scrollable HTML tables. Blog images use
-`quality={90}`.
+`embed`, and `table` blocks. A table has an optional `header`, 1–50 `rows`, and
+1–8 cells per row; every cell is an array of text runs, and each cell is capped at
+20 runs / 500 characters. Every row must have the same number of cells as the
+header. Tables render as semantic, horizontally scrollable HTML tables. Blog
+images use `quality={90}`.
 
 Blog content is owned by the Cogito app. Marketing reads it through
 `COGITO_APP_API_URL` at request time with a 60-second revalidation window. There is

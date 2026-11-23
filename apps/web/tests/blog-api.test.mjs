@@ -48,10 +48,14 @@ describe('Blog article table blocks', () => {
     const body = [
       {
         type: 'table',
-        header: [{ text: 'Topik' }, { text: 'Materi', bold: true }, { text: 'Durasi' }],
+        header: [[{ text: 'Topik' }], [{ text: 'Materi', bold: true }], [{ text: 'Durasi' }]],
         rows: [
-          [{ text: 'Aljabar' }, { text: 'Persamaan', italic: true }, { text: '2 jam' }],
-          [{ text: 'Geometri' }, { text: 'Bangun datar' }, { text: '3 jam' }],
+          [
+            [{ text: 'Aljabar' }],
+            [{ text: 'Persamaan' }, { text: ' linear', italic: true }],
+            [{ text: '2 jam' }],
+          ],
+          [[{ text: 'Geometri' }], [{ text: 'Bangun datar' }], [{ text: '3 jam' }]],
         ],
       },
     ];
@@ -67,8 +71,8 @@ describe('Blog article table blocks', () => {
       {
         type: 'table',
         rows: [
-          [{ text: 'A' }, { text: 'B' }],
-          [{ text: 'C' }, { text: 'D' }],
+          [[{ text: 'A' }], [{ text: 'B' }]],
+          [[{ text: 'C' }], [{ text: 'D' }]],
         ],
       },
     ];
@@ -77,12 +81,27 @@ describe('Blog article table blocks', () => {
     await expect(getBlogArticle('id', 'belajar-matematika')).resolves.toBeDefined();
   });
 
-  test('rejects a table whose header length differs from its rows', async () => {
+  test('rejects a table whose row length differs from the header', async () => {
     const body = [
       {
         type: 'table',
-        header: [{ text: 'Topik' }, { text: 'Materi' }],
-        rows: [[{ text: 'Aljabar' }, { text: 'Persamaan' }, { text: '2 jam' }]],
+        header: [[{ text: 'Topik' }], [{ text: 'Materi' }]],
+        rows: [[[{ text: 'Aljabar' }], [{ text: 'Persamaan' }], [{ text: '2 jam' }]]],
+      },
+    ];
+    globalThis.fetch = mock(async () => Response.json({ json: { ...articlePayload, body } }));
+
+    await expect(getBlogArticle('id', 'belajar-matematika')).rejects.toThrow('unexpected payload');
+  });
+
+  test('rejects a table whose rows have different lengths', async () => {
+    const body = [
+      {
+        type: 'table',
+        rows: [
+          [[{ text: 'A' }], [{ text: 'B' }]],
+          [[{ text: 'C' }], [{ text: 'D' }], [{ text: 'E' }]],
+        ],
       },
     ];
     globalThis.fetch = mock(async () => Response.json({ json: { ...articlePayload, body } }));
@@ -91,8 +110,20 @@ describe('Blog article table blocks', () => {
   });
 
   test('rejects a table with more than eight columns', async () => {
-    const row = Array.from({ length: 9 }, (_, index) => ({ text: `Kolom ${index + 1}` }));
+    const row = Array.from({ length: 9 }, (_, index) => [{ text: `Kolom ${index + 1}` }]);
     const body = [{ type: 'table', rows: [row, row] }];
+    globalThis.fetch = mock(async () => Response.json({ json: { ...articlePayload, body } }));
+
+    await expect(getBlogArticle('id', 'belajar-matematika')).rejects.toThrow('unexpected payload');
+  });
+
+  test('rejects a table cell longer than 500 characters', async () => {
+    const body = [
+      {
+        type: 'table',
+        rows: [[[{ text: 'x'.repeat(501) }]], [[{ text: 'ok' }]]],
+      },
+    ];
     globalThis.fetch = mock(async () => Response.json({ json: { ...articlePayload, body } }));
 
     await expect(getBlogArticle('id', 'belajar-matematika')).rejects.toThrow('unexpected payload');

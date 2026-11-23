@@ -24,6 +24,19 @@ const runSchema = z.object({
   href: z.string().optional(),
 });
 
+const cellSchema = z
+  .array(runSchema)
+  .max(20)
+  .superRefine((runs, ctx) => {
+    const characters = runs.reduce((total, run) => total + run.text.length, 0);
+    if (characters > 500) {
+      ctx.addIssue({
+        code: 'custom',
+        message: 'A table cell must not exceed 500 characters',
+      });
+    }
+  });
+
 const blockSchema = z.discriminatedUnion('type', [
   z.object({
     type: z.literal('heading'),
@@ -61,17 +74,11 @@ const blockSchema = z.discriminatedUnion('type', [
   z
     .object({
       type: z.literal('table'),
-      header: z.array(runSchema).min(1).max(8).optional(),
-      rows: z.array(z.array(runSchema).min(1).max(8)).min(1).max(50),
+      header: z.array(cellSchema).min(1).max(8).optional(),
+      rows: z.array(z.array(cellSchema).min(1).max(8)).min(1).max(50),
     })
     .superRefine((block, ctx) => {
-      const columns = block.rows[0].length;
-      if (block.header && block.header.length !== columns) {
-        ctx.addIssue({
-          code: 'custom',
-          message: 'Table header must have the same number of cells as every row',
-        });
-      }
+      const columns = block.header?.length ?? block.rows[0].length;
       if (block.rows.some((row) => row.length !== columns)) {
         ctx.addIssue({
           code: 'custom',
