@@ -25,7 +25,7 @@ export async function ArticleCard({
         href={`/blog/${article.slug}`}
         className="group flex h-full flex-col-reverse overflow-hidden rounded-2xl bg-neutral-100 ring-1 ring-neutral-200 transition hover:ring-primary-300 focus-visible:outline-2 focus-visible:outline-primary-500 focus-visible:outline-offset-2 sm:flex-row-reverse"
       >
-        <div className="relative mx-4 mb-4 aspect-[16/9] w-auto shrink-0 overflow-hidden rounded-xl border border-neutral-200 bg-neutral-200 sm:mx-0 sm:my-4 sm:mr-4 sm:aspect-auto sm:min-h-36 sm:w-[30%] sm:min-w-16">
+        <div className="relative mx-4 mb-4 aspect-[16/9] w-auto shrink-0 overflow-hidden rounded-xl border border-neutral-200 bg-neutral-200 sm:mx-0 sm:my-4 sm:mr-4 sm:aspect-[5/4] sm:self-start sm:w-[30%] sm:min-w-16">
           {article.hero ? (
             <Image
               src={article.hero.url}
@@ -62,9 +62,7 @@ export async function ArticleCard({
           <p className="line-clamp-3 text-neutral-700 text-sm leading-relaxed">{article.excerpt}</p>
 
           <div className="mt-auto flex flex-wrap items-center gap-2 text-xs">
-            <span className="font-medium text-primary-700">
-              {article.category.title}
-            </span>
+            <span className="font-medium text-primary-700">{article.category.title}</span>
             {article.subcategory ? (
               <span className="text-neutral-600">{article.subcategory.title}</span>
             ) : null}

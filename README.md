@@ -75,6 +75,10 @@ title template. Configured site URLs are normalized to the canonical
 `https://www.cogitoacademy.id` host, so an apex `NEXT_PUBLIC_SITE_URL` still yields
 www canonical, hreflang, Open Graph, JSON-LD, RSS and sitemap URLs.
 
+Blog list cards keep a fixed 5:4 thumbnail on desktop
+(`sm:aspect-[5/4] sm:self-start`), so one-line and two-line titles share the same
+crop. Mobile keeps the 16:9 card image.
+
 Article bodies support `heading`, `paragraph`, `list`, `quote`, `callout`, `image`,
 `embed`, and `table` blocks. A table has an optional `header`, 1–50 `rows`, and
 1–8 cells per row; every cell is an array of text runs, and each cell is capped at

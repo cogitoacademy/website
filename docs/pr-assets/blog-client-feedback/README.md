@@ -28,11 +28,16 @@ The apex site URL intentionally exercises the www-normalization path.
 
 ## Artifacts
 
-| File                                | What it shows                                                                                   |
-| ----------------------------------- | ----------------------------------------------------------------------------------------------- |
-| `01-blog-article-table-desktop.png` | 1440px-wide article with the table block rendered as a bordered, scrollable semantic table.     |
-| `02-blog-article-table-mobile.png`  | 390px-wide article; the 3-column table overflows horizontally instead of squashing its columns. |
-| `head-audit.txt`                    | Rendered `<title>`, canonical, hreflang, `og:url`, and sitemap alternate tags for the fixture.  |
+| File                                        | What it shows                                                                                                  |
+| ------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
+| `01-blog-article-table-desktop.png`         | 1440px-wide article with the table block rendered as a bordered, scrollable semantic table.                    |
+| `02-blog-article-table-mobile.png`          | 390px-wide article; the 3-column table overflows horizontally instead of squashing its columns.                |
+| `07-blog-list-fixed-thumbnails-desktop.png` | 1440px-wide blog list with four cards of different title lengths; every desktop thumbnail is the same 5:4 box. |
+| `head-audit.txt`                            | Rendered `<title>`, canonical, hreflang, `og:url`, and sitemap alternate tags for the fixture.                 |
+
+The blog-list screenshot used a second throwaway list fixture with four cards and
+one- and two-line titles. The measured image boxes were all 218 x 175 CSS pixels,
+so the 5:4 desktop ratio is fixed instead of following the card height.
 
 ## Verified in the audit
 
