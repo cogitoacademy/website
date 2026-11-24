@@ -123,6 +123,7 @@ export function ArticleBody({ body, media }: { body: BlogBlock[]; media: Media }
                   width={item.width ?? 1200}
                   height={item.height ?? 800}
                   sizes="(min-width: 1024px) 720px, 92vw"
+                  quality={90}
                   className="h-auto w-full rounded-2xl border border-neutral-200 bg-neutral-200 object-cover"
                 />
                 {block.caption ? (
@@ -143,6 +144,47 @@ export function ArticleBody({ body, media }: { body: BlogBlock[]; media: Media }
                 posterUrl={poster?.url}
                 posterAlt={poster?.filename}
               />
+            );
+          }
+          case 'table': {
+            const columns = block.rows[0].length;
+            const minWidth = `${Math.max(columns * 9, 20)}rem`;
+            return (
+              <figure key={index} className="my-2">
+                <div className="overflow-x-auto rounded-xl border border-neutral-200">
+                  <table
+                    className="w-full border-collapse text-left text-neutral-800 text-sm leading-relaxed"
+                    style={{ minWidth }}
+                  >
+                    {block.header ? (
+                      <thead className="bg-neutral-100">
+                        <tr>
+                          {block.header.map((cell, cellIndex) => (
+                            <th
+                              key={cellIndex}
+                              scope="col"
+                              className="border-neutral-200 border-b px-4 py-3 align-top font-semibold text-neutral-1000"
+                            >
+                              <Runs runs={cell} />
+                            </th>
+                          ))}
+                        </tr>
+                      </thead>
+                    ) : null}
+                    <tbody>
+                      {block.rows.map((row, rowIndex) => (
+                        <tr key={rowIndex} className="border-neutral-200 border-t first:border-t-0">
+                          {row.map((cell, cellIndex) => (
+                            <td key={cellIndex} className="px-4 py-3 align-top">
+                              <Runs runs={cell} />
+                            </td>
+                          ))}
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </figure>
             );
           }
           default:

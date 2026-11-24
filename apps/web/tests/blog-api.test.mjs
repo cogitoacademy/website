@@ -28,6 +28,108 @@ const card = {
   readingMinutes: 4,
 };
 
+const articlePayload = {
+  ...card,
+  reviewerName: null,
+  lead: 'Pendahuluan',
+  seoTitle: 'Belajar Matematika',
+  metaDescription: 'Panduan belajar matematika.',
+  keyFacts: [],
+  body: [],
+  faq: [],
+  gallery: [],
+  media: {},
+  related: [],
+  alternate: null,
+};
+
+describe('Blog article table blocks', () => {
+  test('accepts a table with a header and matching rows', async () => {
+    const body = [
+      {
+        type: 'table',
+        header: [[{ text: 'Topik' }], [{ text: 'Materi', bold: true }], [{ text: 'Durasi' }]],
+        rows: [
+          [
+            [{ text: 'Aljabar' }],
+            [{ text: 'Persamaan' }, { text: ' linear', italic: true }],
+            [{ text: '2 jam' }],
+          ],
+          [[{ text: 'Geometri' }], [{ text: 'Bangun datar' }], [{ text: '3 jam' }]],
+        ],
+      },
+    ];
+    globalThis.fetch = mock(async () => Response.json({ json: { ...articlePayload, body } }));
+
+    const article = await getBlogArticle('id', 'belajar-matematika');
+    expect(article.body).toHaveLength(1);
+    expect(article.body[0].type).toBe('table');
+  });
+
+  test('accepts a table without a header', async () => {
+    const body = [
+      {
+        type: 'table',
+        rows: [
+          [[{ text: 'A' }], [{ text: 'B' }]],
+          [[{ text: 'C' }], [{ text: 'D' }]],
+        ],
+      },
+    ];
+    globalThis.fetch = mock(async () => Response.json({ json: { ...articlePayload, body } }));
+
+    await expect(getBlogArticle('id', 'belajar-matematika')).resolves.toBeDefined();
+  });
+
+  test('rejects a table whose row length differs from the header', async () => {
+    const body = [
+      {
+        type: 'table',
+        header: [[{ text: 'Topik' }], [{ text: 'Materi' }]],
+        rows: [[[{ text: 'Aljabar' }], [{ text: 'Persamaan' }], [{ text: '2 jam' }]]],
+      },
+    ];
+    globalThis.fetch = mock(async () => Response.json({ json: { ...articlePayload, body } }));
+
+    await expect(getBlogArticle('id', 'belajar-matematika')).rejects.toThrow('unexpected payload');
+  });
+
+  test('rejects a table whose rows have different lengths', async () => {
+    const body = [
+      {
+        type: 'table',
+        rows: [
+          [[{ text: 'A' }], [{ text: 'B' }]],
+          [[{ text: 'C' }], [{ text: 'D' }], [{ text: 'E' }]],
+        ],
+      },
+    ];
+    globalThis.fetch = mock(async () => Response.json({ json: { ...articlePayload, body } }));
+
+    await expect(getBlogArticle('id', 'belajar-matematika')).rejects.toThrow('unexpected payload');
+  });
+
+  test('rejects a table with more than eight columns', async () => {
+    const row = Array.from({ length: 9 }, (_, index) => [{ text: `Kolom ${index + 1}` }]);
+    const body = [{ type: 'table', rows: [row, row] }];
+    globalThis.fetch = mock(async () => Response.json({ json: { ...articlePayload, body } }));
+
+    await expect(getBlogArticle('id', 'belajar-matematika')).rejects.toThrow('unexpected payload');
+  });
+
+  test('rejects a table cell longer than 500 characters', async () => {
+    const body = [
+      {
+        type: 'table',
+        rows: [[[{ text: 'x'.repeat(501) }]], [[{ text: 'ok' }]]],
+      },
+    ];
+    globalThis.fetch = mock(async () => Response.json({ json: { ...articlePayload, body } }));
+
+    await expect(getBlogArticle('id', 'belajar-matematika')).rejects.toThrow('unexpected payload');
+  });
+});
+
 describe('Blog API adapter', () => {
   test('posts the wrapped payload and reads the JSON envelope', async () => {
     globalThis.fetch = mock(async (url, options) => {

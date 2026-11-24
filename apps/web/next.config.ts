@@ -53,7 +53,7 @@ const nextConfig: NextConfig = {
       ...r2RemotePatterns(),
       ...localImagePatterns,
     ],
-    qualities: [25, 50, 75, 100],
+    qualities: [25, 50, 75, 90, 100],
   },
   async headers() {
     return [

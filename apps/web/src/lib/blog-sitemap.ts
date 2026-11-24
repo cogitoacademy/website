@@ -27,10 +27,9 @@ function alternateLinks(entry: BlogSitemapEntry) {
     links.push(
       `<xhtml:link rel="alternate" hreflang="${entry.alternate.locale}" href="${escapeXml(`${BASE_URL}${articlePath(entry.alternate.locale, entry.alternate.slug)}`)}"/>`,
     );
-    const indonesian =
-      entry.locale === 'id' ? { locale: 'id' as const, slug: entry.slug } : entry.alternate;
+    const english = entry.locale === 'en' ? { slug: entry.slug } : { slug: entry.alternate.slug };
     links.push(
-      `<xhtml:link rel="alternate" hreflang="x-default" href="${escapeXml(`${BASE_URL}${articlePath(indonesian.locale, indonesian.slug)}`)}"/>`,
+      `<xhtml:link rel="alternate" hreflang="x-default" href="${escapeXml(`${BASE_URL}${articlePath('en', english.slug)}`)}"/>`,
     );
   }
 
