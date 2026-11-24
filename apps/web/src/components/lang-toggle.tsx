@@ -5,6 +5,7 @@ import { useLocale } from 'next-intl';
 import { type ButtonProps, buttonVariants } from '@/components/ui/button';
 import { Link, usePathname } from '@/i18n/routing';
 import { cn } from '@/lib/utils';
+import { useLocaleAlternate } from './locale-alternate';
 
 interface LanguageToggleProps {
   className?: string;
@@ -14,12 +15,15 @@ interface LanguageToggleProps {
 export default function LanguageToggle({ className, variant = 'default' }: LanguageToggleProps) {
   const locale = useLocale();
   const pathname = usePathname();
+  const alternate = useLocaleAlternate();
 
   const targetLocale = locale === 'en' ? 'id' : 'en';
+  const fallback = pathname.startsWith('/blog/') ? '/blog' : pathname;
+  const href = alternate?.locale === targetLocale ? alternate.path : fallback;
 
   return (
     <Link
-      href={pathname}
+      href={href}
       locale={targetLocale}
       scroll={false}
       className={cn(

@@ -14,6 +14,7 @@ import { BlogFaq } from '@/components/blog/blog-faq';
 import { StickyConsultation } from '@/components/blog/sticky-consultation';
 import { TableOfContents } from '@/components/blog/table-of-contents';
 import NavbarResolver from '@/components/navbar-resolver';
+import { SetLocaleAlternate } from '@/components/locale-alternate';
 import { Link } from '@/i18n/routing';
 import { BlogNotFoundError, getBlogArticle, isBlogLocale, type BlogLocale } from '@/lib/blog-api';
 import { formatBlogDate } from '@/lib/blog-format';
@@ -85,6 +86,12 @@ export default async function BlogArticlePage({ params }: Props) {
   return (
     <>
       <ArticleJsonLd article={article} locale={locale} />
+      {article.alternate ? (
+        <SetLocaleAlternate
+          locale={article.alternate.locale}
+          path={`/blog/${article.alternate.slug}`}
+        />
+      ) : null}
       <NavbarResolver className="bg-background" />
       <div className="bg-background pb-40 text-neutral-1000">
         <div className="mx-auto max-w-3xl px-4">
