@@ -8,6 +8,6 @@ ID category: /id/blog/kategori/panduan-lomba
 EN category: /en/blog/category/competition-guides
   ID toggle hrefs: [{"text":"ID","href":"/id/blog/kategori/panduan-lomba"},{"text":"ID","href":"/id/blog/kategori/panduan-lomba"}]
 Single-language article: /id/blog/artikel-tanpa-pasangan
-  EN toggle hrefs: [{"text":"EN","href":"/en/blog"},{"text":"EN","href":"/en/blog"}]
+  toggle elements: []
 
-Expected: each toggle opens the sibling slug in the other locale, including the category hub path segment. A blog page without an alternate falls back to the target locale's blog home.
+Expected: paired articles and category hubs open the sibling slug in the other locale. A single-language article hides the navbar toggle entirely so readers switch from the blog index instead of hitting a 404.

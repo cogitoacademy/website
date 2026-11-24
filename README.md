@@ -81,7 +81,8 @@ crop. Mobile keeps the 16:9 card image.
 
 The header and mobile language toggles use the page's `alternate` for blog
 articles and category hubs. Localized slugs therefore open the sibling page
-instead of the same slug under the other locale prefix. Other blog URLs without a
+instead of the same slug under the other locale prefix. A single-language article
+hides the toggle so readers switch from the blog index; other blog URLs without a
 registered alternate fall back to the target locale's blog home.
 
 Article bodies support `heading`, `paragraph`, `list`, `quote`, `callout`, `image`,
