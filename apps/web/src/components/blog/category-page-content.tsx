@@ -4,9 +4,10 @@ import { getTranslations } from 'next-intl/server';
 import { BlogErrorState } from '@/components/blog/blog-error-state';
 import { CategoryHub } from '@/components/blog/category-hub';
 import NavbarResolver from '@/components/navbar-resolver';
+import { SetLocaleAlternate } from '@/components/locale-alternate';
 import type { BlogLocale } from '@/lib/blog-api';
 import { loadCategoryPage } from '@/lib/blog-category';
-import { categoryPath } from '@/lib/blog-paths';
+import { categoryPath, categorySegment } from '@/lib/blog-paths';
 
 export async function CategoryPageContent({ locale, slug }: { locale: BlogLocale; slug: string }) {
   const t = await getTranslations({ locale, namespace: 'blog.category' });
@@ -44,6 +45,12 @@ export async function CategoryPageContent({ locale, slug }: { locale: BlogLocale
 
   return (
     <>
+      {data.sibling ? (
+        <SetLocaleAlternate
+          locale={data.sibling.locale}
+          path={`/blog/${categorySegment(data.sibling.locale)}/${data.sibling.slug}`}
+        />
+      ) : null}
       <NavbarResolver className="bg-background" />
       <div className="bg-background pb-40 text-neutral-1000">
         <div className="mx-auto max-w-7xl px-4">

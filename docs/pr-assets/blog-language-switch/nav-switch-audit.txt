@@ -1,0 +1,13 @@
+Blog navbar language switch audit — paired fixture
+ID article: /id/blog/artikel-indonesia
+  EN toggle hrefs: [{"text":"EN","href":"/en/blog/english-article"},{"text":"EN","href":"/en/blog/english-article"}]
+EN article: /en/blog/english-article
+  ID toggle hrefs: [{"text":"ID","href":"/id/blog/artikel-indonesia"},{"text":"ID","href":"/id/blog/artikel-indonesia"}]
+ID category: /id/blog/kategori/panduan-lomba
+  EN toggle hrefs: [{"text":"EN","href":"/en/blog/category/competition-guides"},{"text":"EN","href":"/en/blog/category/competition-guides"}]
+EN category: /en/blog/category/competition-guides
+  ID toggle hrefs: [{"text":"ID","href":"/id/blog/kategori/panduan-lomba"},{"text":"ID","href":"/id/blog/kategori/panduan-lomba"}]
+Single-language article: /id/blog/artikel-tanpa-pasangan
+  toggle elements: []
+
+Expected: paired articles and category hubs open the sibling slug in the other locale. A single-language article hides the navbar toggle entirely so readers switch from the blog index instead of hitting a 404.

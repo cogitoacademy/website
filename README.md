@@ -79,6 +79,12 @@ Blog list cards keep a fixed 5:4 thumbnail on desktop
 (`sm:aspect-[5/4] sm:self-start`), so one-line and two-line titles share the same
 crop. Mobile keeps the 16:9 card image.
 
+The header and mobile language toggles use the page's `alternate` for blog
+articles and category hubs. Localized slugs therefore open the sibling page
+instead of the same slug under the other locale prefix. A single-language article
+hides the toggle so readers switch from the blog index; other blog URLs without a
+registered alternate fall back to the target locale's blog home.
+
 Article bodies support `heading`, `paragraph`, `list`, `quote`, `callout`, `image`,
 `embed`, and `table` blocks. A table has an optional `header`, 1–50 `rows`, and
 1–8 cells per row; every cell is an array of text runs, and each cell is capped at
