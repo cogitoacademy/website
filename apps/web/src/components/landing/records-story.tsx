@@ -12,11 +12,11 @@ import styles from './records-story.module.css';
 // Drop recordings in apps/web/public/videos/records, then add their paths here.
 // The data preview is used until a video path is set.
 const STORY_VIDEOS: Partial<Record<RecordsStoryStepKey, string>> = {
-  // tutors: '/videos/records/tutor-booking.mp4',
-  // achievements: '/videos/records/achievements.mp4',
-  // knowledge: '/videos/records/knowledge-bank.mp4',
-  // blog: '/videos/records/blog.mp4',
-  // calendar: '/videos/records/competition-calendar.mp4',
+  tutors: '/videos/records/tutor-booking.mp4',
+  achievements: '/videos/records/achievements.mp4',
+  knowledge: '/videos/records/knowledge-bank.mp4',
+  blog: '/videos/records/blog.mp4',
+  calendar: '/videos/records/competition-calendar.mp4',
 };
 
 interface StoryStepCopy {
